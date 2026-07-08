@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Renovação de Treino | MaxResults</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#08080a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #08080a; --surface: #111114; --surface-2: #19191d; --surface-3: #222226;
+      --border: rgba(255,255,255,0.06); --border-light: rgba(255,255,255,0.1);
+      --text: #ededef; --text-dim: #b0b0b6; --text-muted: #6b6b73;
+      --accent: #f59e0b; --accent-dim: rgba(245,158,11,0.1); --accent-glow: rgba(245,158,11,0.3);
+      --green: #34d399; --green-dim: rgba(52,211,153,0.1); --red: #fb7185;
+      --radius: 16px; --radius-sm: 10px;
+      --font-display: 'Outfit', sans-serif; --font-body: 'DM Sans', sans-serif;
+    }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100dvh; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
+    body::before { content: ''; position: fixed; top: -120px; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(245,158,11,0.06) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+    .container { max-width: 480px; margin: 0 auto; padding: 0 20px 120px; position: relative; z-index: 1; }
+    .header { position: sticky; top: 0; z-index: 100; background: rgba(8,8,10,0.85); backdrop-filter: blur(24px) saturate(1.6); -webkit-backdrop-filter: blur(24px) saturate(1.6); padding: 20px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+    .brand { font-family: var(--font-display); font-size: 16px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; background: linear-gradient(135deg, var(--accent), #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+    .header h1 { font-family: var(--font-display); font-size: 24px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 6px; }
+    .header p { font-size: 13px; color: var(--text-muted); }
+    .progress-bar { margin-top: 16px; display: flex; align-items: center; gap: 12px; }
+    .progress-track { flex: 1; height: 5px; background: var(--surface-2); border-radius: 100px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--accent), var(--green)); transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); width: 0%; }
+    .progress-label { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--text-muted); min-width: 36px; text-align: right; }
+    .section { margin-bottom: 32px; animation: fadeIn 0.4s ease both; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .section-title { font-family: var(--font-display); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .field { margin-bottom: 20px; }
+    .field label { display: block; font-family: var(--font-display); font-size: 14px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.2px; }
+    .field label .required { color: var(--red); margin-left: 2px; }
+    .field .hint { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+    input[type="text"], input[type="number"], textarea { width: 100%; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: var(--text); font-family: var(--font-body); font-size: 15px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; -webkit-appearance: none; }
+    input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    input::placeholder, textarea::placeholder { color: var(--text-muted); }
+    textarea { min-height: 80px; resize: vertical; }
+    .radio-group { display: flex; flex-direction: column; gap: 8px; }
+    .radio-option { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; transition: all 0.2s; -webkit-user-select: none; user-select: none; }
+    .radio-option:active { transform: scale(0.98); }
+    .radio-option.selected { border-color: rgba(245,158,11,0.4); background: var(--accent-dim); }
+    .radio-option input { display: none; }
+    .radio-dot { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
+    .radio-dot::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); transform: scale(0); transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .selected .radio-dot { border-color: var(--accent); }
+    .selected .radio-dot::after { transform: scale(1); }
+    .option-text { font-size: 14px; font-weight: 500; }
+    .slider-row { display: flex; align-items: center; gap: 16px; }
+    .slider-row input[type="range"] { flex: 1; -webkit-appearance: none; height: 6px; background: var(--surface-2); border-radius: 100px; outline: none; border: none; padding: 0; }
+    .slider-row input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent-glow); cursor: pointer; }
+    .slider-value { font-family: var(--font-display); font-size: 18px; font-weight: 800; color: var(--accent); min-width: 30px; text-align: center; }
+    .submit-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--accent), #d97706); border: none; border-radius: var(--radius); color: #000; font-family: var(--font-display); font-size: 16px; font-weight: 800; letter-spacing: 0.5px; cursor: pointer; transition: all 0.2s; margin-top: 20px; }
+    .submit-btn:active { transform: scale(0.97); }
+    .submit-btn .btn-sub { font-size: 11px; font-weight: 500; opacity: 0.7; margin-top: 2px; }
+    .success-screen { display: none; text-align: center; padding: 60px 20px; }
+    .success-screen.visible { display: block; animation: fadeIn 0.5s ease; }
+    .success-screen .emoji { font-size: 48px; margin-bottom: 16px; }
+    .success-screen h2 { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--green); margin-bottom: 8px; }
+    .success-screen p { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+    .footer { text-align: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 11px; line-height: 1.8; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="brand">MaxResults</div>
+    <h1>🔄 Renovação de Treino</h1>
+    <p>Hora de atualizar! Suas respostas vão guiar seu novo plano de treino.</p>
+    <div class="progress-bar">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0%</div>
+    </div>
+  </div>
+
+  <form id="renovacaoForm">
+
+    <div class="section">
+      <div class="section-title">📊 Feedback do Treino Anterior</div>
+
+      <div class="field">
+        <label>Teve alguma dificuldade no último treino? <span class="required">*</span></label>
+        <div class="radio-group" data-name="dificuldade">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="dificuldade" value="Não, tudo tranquilo">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não, tudo tranquilo 👍</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="dificuldade" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim, tive dificuldade</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" id="dificuldadeDetalhe" style="display:none">
+        <label>Qual foi a dificuldade? Me explique</label>
+        <textarea name="dificuldade_detalhe" placeholder="Ex: Não consegui fazer o exercício X, senti dor em Y..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Teve resultados no último mês? <span class="required">*</span></label>
+        <div class="radio-group" data-name="resultados">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="resultados" value="Sim, bastante">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim, bastante! 💪</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="resultados" value="Um pouco">
+            <span class="radio-dot"></span>
+            <span class="option-text">Um pouco</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="resultados" value="Não vi diferença">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não vi diferença</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Se viu resultados, me conta quais!</label>
+        <textarea name="resultados_detalhe" placeholder="Ex: Emagreci, me sinto mais definida, mais disposição..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Quantas vezes realizou o treino antigo no último mês?</label>
+        <input type="number" name="treinos_mes" placeholder="Ex: 12">
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🎯 Novos Objetivos</div>
+
+      <div class="field">
+        <label>Qual seu objetivo com o treinamento? <span class="required">*</span></label>
+        <textarea name="objetivo" required placeholder="Ex: Emagrecer, definir, ganhar massa, manter..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Quantas vezes por semana se compromete a treinar?</label>
+        <div class="radio-group" data-name="frequencia">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia" value="2x/semana">
+            <span class="radio-dot"></span>
+            <span class="option-text">2x por semana</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia" value="3x/semana">
+            <span class="radio-dot"></span>
+            <span class="option-text">3x por semana</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia" value="4x/semana">
+            <span class="radio-dot"></span>
+            <span class="option-text">4x por semana</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia" value="5x/semana">
+            <span class="radio-dot"></span>
+            <span class="option-text">5x por semana</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia" value="6x/semana">
+            <span class="radio-dot"></span>
+            <span class="option-text">6x por semana</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Quanto tempo por dia?</label>
+        <div class="radio-group" data-name="tempo">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="tempo" value="30 min">
+            <span class="radio-dot"></span>
+            <span class="option-text">30 minutos</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="tempo" value="45 min">
+            <span class="radio-dot"></span>
+            <span class="option-text">45 minutos</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="tempo" value="60 min">
+            <span class="radio-dot"></span>
+            <span class="option-text">1 hora</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="tempo" value="90+ min">
+            <span class="radio-dot"></span>
+            <span class="option-text">1h30 ou mais</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Deseja dar ênfase em alguma parte do corpo?</label>
+        <input type="text" name="enfase" placeholder="Ex: Glúteo, costas, braços, abdômen...">
+      </div>
+
+      <div class="field">
+        <label>Intensidade desejada</label>
+        <div class="radio-group" data-name="intensidade">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="intensidade" value="Leve">
+            <span class="radio-dot"></span>
+            <span class="option-text">Leve</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="intensidade" value="Moderado">
+            <span class="radio-dot"></span>
+            <span class="option-text">Moderado</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="intensidade" value="Intenso">
+            <span class="radio-dot"></span>
+            <span class="option-text">Intenso</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">❤️ Saúde Atualizada</div>
+
+      <div class="field">
+        <label>Surgiu alguma lesão, dor ou restrição nova?</label>
+        <div class="radio-group" data-name="lesao_nova">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="lesao_nova" value="Não, tô bem">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não, tô bem 💪</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="lesao_nova" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" id="lesaoDetalhe" style="display:none">
+        <label>Descreva</label>
+        <textarea name="lesao_detalhe" placeholder="O que está sentindo?"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Tem alguma restrição ao exercício?</label>
+        <div class="radio-group" data-name="restricao">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="restricao" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="restricao" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" id="restricaoDetalhe" style="display:none">
+        <label>Qual restrição?</label>
+        <textarea name="restricao_detalhe" placeholder="Descreva a restrição"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Está tomando algum remédio novo?</label>
+        <div class="radio-group" data-name="remedio">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="remedio" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="remedio" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Nível de estresse atual (1 a 10)</label>
+        <div class="slider-row">
+          <span style="font-size:12px;color:var(--text-muted)">😌</span>
+          <input type="range" name="estresse" min="1" max="10" value="5" oninput="document.getElementById('estresseVal').textContent=this.value">
+          <span style="font-size:12px;color:var(--text-muted)">😰</span>
+          <span class="slider-value" id="estresseVal">5</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">💬 Mais Sobre Você</div>
+
+      <div class="field">
+        <label>Qual exercício tem mais dificuldade para executar?</label>
+        <input type="text" name="exercicio_dificuldade" placeholder="Ex: Agachamento, levantamento terra...">
+      </div>
+
+      <div class="field">
+        <label>Qual sua maior dificuldade no controle alimentar?</label>
+        <textarea name="dificuldade_alimentar" placeholder="Ex: Comer no final de semana, incluir vegetais..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Faz acompanhamento nutricional?</label>
+        <div class="radio-group" data-name="nutricionista">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="nutricionista" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="nutricionista" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Algo mais que gostaria de me contar?</label>
+        <textarea name="observacoes" placeholder="Qualquer coisa que ajude a montar o melhor treino pra você..."></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">
+      Enviar Renovação 📨
+      <div class="btn-sub">Suas respostas serão enviadas para o Luisão</div>
+    </button>
+  </form>
+
+  <div class="success-screen" id="successScreen">
+    <div class="emoji">🔄</div>
+    <h2>Renovação Enviada!</h2>
+    <p>Obrigado! O Luisão vai analisar suas respostas e montar seu novo treino. Aguarde o contato pelo WhatsApp! 💪</p>
+  </div>
+
+  <footer class="footer">
+    Metodologia MaxResults &middot; Luisão Ribeiro<br>
+    Seus dados são confidenciais
+  </footer>
+</div>
+
+<script>
+function selectRadio(el) {
+  const group = el.closest('.radio-group');
+  group.querySelectorAll('.radio-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input').checked = true;
+
+  if (el.querySelector('input[name="dificuldade"]')) {
+    document.getElementById('dificuldadeDetalhe').style.display = el.querySelector('input').value === 'Sim' ? 'block' : 'none';
+  }
+  if (el.querySelector('input[name="lesao_nova"]')) {
+    document.getElementById('lesaoDetalhe').style.display = el.querySelector('input').value === 'Sim' ? 'block' : 'none';
+  }
+  if (el.querySelector('input[name="restricao"]')) {
+    document.getElementById('restricaoDetalhe').style.display = el.querySelector('input').value === 'Sim' ? 'block' : 'none';
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const required = ['objetivo'];
+  const radios = ['dificuldade', 'resultados'];
+  let filled = 0;
+  const total = required.length + radios.length + 3; // +3 for other fields
+
+  required.forEach(name => {
+    const el = document.querySelector(`[name="${name}"]`);
+    if (el && el.value.trim()) filled++;
+  });
+  radios.forEach(name => {
+    if (document.querySelector(`input[name="${name}"]:checked`)) filled++;
+  });
+  ['frequencia','tempo','intensidade'].forEach(name => {
+    if (document.querySelector(`input[name="${name}"]:checked`)) filled++;
+  });
+
+  const pct = Math.round((filled / total) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = pct + '%';
+}
+
+document.querySelectorAll('input, textarea').forEach(el => {
+  el.addEventListener('input', updateProgress);
+});
+
+document.getElementById('renovacaoForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const fd = new FormData(this);
+  const d = {};
+  fd.forEach((v, k) => { d[k] = v; });
+  d.estresse = document.querySelector('input[name="estresse"]').value + '/10';
+
+  let msg = '🔄 *RENOVAÇÃO DE TREINO MAXRESULTS*\n\n';
+  msg += '📊 *FEEDBACK*\n';
+  msg += `*Dificuldade:* ${d.dificuldade || '—'}`;
+  if (d.dificuldade_detalhe) msg += ` — ${d.dificuldade_detalhe}`;
+  msg += '\n';
+  msg += `*Resultados:* ${d.resultados || '—'}`;
+  if (d.resultados_detalhe) msg += ` — ${d.resultados_detalhe}`;
+  msg += '\n';
+  msg += `*Treinos no mês:* ${d.treinos_mes || '—'}\n\n`;
+
+  msg += '🎯 *NOVOS OBJETIVOS*\n';
+  msg += `*Objetivo:* ${d.objetivo || '—'}\n`;
+  msg += `*Frequência:* ${d.frequencia || '—'}\n`;
+  msg += `*Tempo:* ${d.tempo || '—'}\n`;
+  msg += `*Ênfase:* ${d.enfase || '—'}\n`;
+  msg += `*Intensidade:* ${d.intensidade || '—'}\n\n`;
+
+  msg += '❤️ *SAÚDE*\n';
+  msg += `*Lesão nova:* ${d.lesao_nova || '—'}`;
+  if (d.lesao_detalhe) msg += ` — ${d.lesao_detalhe}`;
+  msg += '\n';
+  msg += `*Restrição:* ${d.restricao || '—'}`;
+  if (d.restricao_detalhe) msg += ` — ${d.restricao_detalhe}`;
+  msg += '\n';
+  msg += `*Remédio novo:* ${d.remedio || '—'}\n`;
+  msg += `*Estresse:* ${d.estresse}\n\n`;
+
+  msg += '💬 *OUTROS*\n';
+  msg += `*Exercício difícil:* ${d.exercicio_dificuldade || '—'}\n`;
+  msg += `*Dificuldade alimentar:* ${d.dificuldade_alimentar || '—'}\n`;
+  msg += `*Nutricionista:* ${d.nutricionista || '—'}\n`;
+  if (d.observacoes) msg += `*Obs:* ${d.observacoes}\n`;
+
+  // Send to Discord webhook (automatic)
+  const WEBHOOK_URL = 'https://discord.com/api/webhooks/1524177768508555284/WLBeLBG2D2qNw-gZE9II6njy9cDJIYZfMLdb05SyDC7OQ2zUlu_k93X3KvAtakgGCsNU';
+  const discordMsg = msg.replace(/\*/g, '**');
+
+  const submitBtn = document.querySelector('[type="submit"]');
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando...'; }
+
+  fetch(WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ content: discordMsg, username: 'Renovação — ' + (d.nome || 'Aluno') })
+  }).then(() => {
+    const phone = '5541999775758';
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+    this.style.display = 'none';
+    document.getElementById('successScreen').classList.add('visible');
+  }).catch(() => {
+    const phone = '5541999775758';
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+    this.style.display = 'none';
+    document.getElementById('successScreen').classList.add('visible');
+  });
+});
+
+updateProgress();
+</script>
+</body>
+</html>

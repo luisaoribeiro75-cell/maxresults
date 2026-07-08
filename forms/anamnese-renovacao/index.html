@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Anamnese de Renovação | MaxResults</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#08080a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #08080a;
+      --surface: #111114;
+      --surface-2: #19191d;
+      --surface-3: #222226;
+      --border: rgba(255,255,255,0.06);
+      --border-light: rgba(255,255,255,0.1);
+      --text: #ededef;
+      --text-dim: #b0b0b6;
+      --text-muted: #6b6b73;
+      --accent: #f59e0b;
+      --accent-dim: rgba(245,158,11,0.1);
+      --accent-glow: rgba(245,158,11,0.3);
+      --green: #34d399;
+      --green-dim: rgba(52,211,153,0.1);
+      --red: #fb7185;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100dvh;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(245,158,11,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 20px 120px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,8,10,0.85);
+      backdrop-filter: blur(24px) saturate(1.6);
+      -webkit-backdrop-filter: blur(24px) saturate(1.6);
+      padding: 20px 0 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--accent), #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .header h1 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      margin-bottom: 6px;
+    }
+
+    .header p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .progress-bar {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 5px;
+      background: var(--surface-2);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--accent), var(--green));
+      transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      width: 0%;
+    }
+
+    .progress-label {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      min-width: 36px;
+      text-align: right;
+    }
+
+    .section {
+      margin-bottom: 32px;
+      animation: fadeIn 0.4s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    .field label {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+
+    .field label .required {
+      color: var(--red);
+      margin-left: 2px;
+    }
+
+    .field .hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236b6b73'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+    }
+
+    select option {
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .radio-group, .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .radio-option, .checkbox-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.2s;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .radio-option:active, .checkbox-option:active {
+      transform: scale(0.98);
+    }
+
+    .radio-option.selected, .checkbox-option.selected {
+      border-color: rgba(245,158,11,0.4);
+      background: var(--accent-dim);
+    }
+
+    .radio-option input, .checkbox-option input {
+      display: none;
+    }
+
+    .radio-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .radio-dot::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      transform: scale(0);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .selected .radio-dot {
+      border-color: var(--accent);
+    }
+
+    .selected .radio-dot::after {
+      transform: scale(1);
+    }
+
+    .check-box {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 2px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .check-box svg {
+      width: 12px;
+      height: 12px;
+      stroke: transparent;
+      stroke-width: 3;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .selected .check-box {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .selected .check-box svg {
+      stroke: #fff;
+    }
+
+    .option-text {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .slider-row input[type="range"] {
+      flex: 1;
+      -webkit-appearance: none;
+      height: 6px;
+      background: var(--surface-2);
+      border-radius: 100px;
+      outline: none;
+      border: none;
+      padding: 0;
+    }
+
+    .slider-row input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+      cursor: pointer;
+    }
+
+    .slider-row input[type="range"]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+      cursor: pointer;
+      border: none;
+    }
+
+    .slider-value {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent);
+      min-width: 30px;
+      text-align: center;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--accent), #d97706);
+      border: none;
+      border-radius: var(--radius);
+      color: #000;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 20px;
+    }
+
+    .submit-btn:active {
+      transform: scale(0.97);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .submit-btn .btn-sub {
+      font-size: 11px;
+      font-weight: 500;
+      opacity: 0.7;
+      margin-top: 2px;
+    }
+
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .success-screen.visible {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .success-screen .emoji {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .success-screen h2 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    .success-screen p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="brand">MaxResults</div>
+    <h1>🔄 Renovação de Treino</h1>
+    <p>Responda para montarmos seu próximo programa</p>
+    <div class="progress-bar">
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-label" id="progressLabel">0%</div>
+    </div>
+  </div>
+
+  <form id="anamneseForm">
+
+    <!-- DADOS PESSOAIS -->
+    <div class="section">
+      <div class="section-title">👤 Dados Pessoais</div>
+
+      <div class="field">
+        <label>Nome completo <span class="required">*</span></label>
+        <input type="text" name="nome" required placeholder="Seu nome completo">
+      </div>
+    </div>
+
+    <!-- SOBRE O TREINO ANTERIOR -->
+    <div class="section">
+      <div class="section-title">📊 Sobre o Treino Anterior</div>
+
+      <div class="field">
+        <label>Teve alguma dificuldade no último treino? Se teve, me explique?</label>
+        <textarea name="dificuldades" placeholder="Conte sobre as dificuldades que encontrou..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Teve resultados no último mês? Se conseguiu ver diferenças, me fale todas?</label>
+        <textarea name="resultados" placeholder="Descreva os resultados que você percebeu..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Quantas vezes você realizou o treino antigo no último mês?</label>
+        <div class="radio-group" data-name="frequencia_ultimo_mes">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia_ultimo_mes" value="1-2x">
+            <span class="radio-dot"></span>
+            <span class="option-text">1-2x</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia_ultimo_mes" value="3-4x">
+            <span class="radio-dot"></span>
+            <span class="option-text">3-4x</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia_ultimo_mes" value="5-8x">
+            <span class="radio-dot"></span>
+            <span class="option-text">5-8x</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia_ultimo_mes" value="9-12x">
+            <span class="radio-dot"></span>
+            <span class="option-text">9-12x</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia_ultimo_mes" value="13+">
+            <span class="radio-dot"></span>
+            <span class="option-text">13+</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Teve algum exercício que não conseguiu realizar? Qual o motivo?</label>
+        <textarea name="exercicio_nao_realizado" placeholder="Ex: Agachamento profundo — dor no joelho..."></textarea>
+      </div>
+    </div>
+
+    <!-- NOVO PROGRAMA -->
+    <div class="section">
+      <div class="section-title">🎯 Novo Programa</div>
+
+      <div class="field">
+        <label>Qual seu objetivo com o treinamento?</label>
+        <div class="radio-group" data-name="objetivo">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="objetivo" value="Perder gordura/Emagrecer">
+            <span class="radio-dot"></span>
+            <span class="option-text">Perder gordura / Emagrecer</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="objetivo" value="Definição muscular">
+            <span class="radio-dot"></span>
+            <span class="option-text">Definição muscular</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="objetivo" value="Ganhar massa muscular">
+            <span class="radio-dot"></span>
+            <span class="option-text">Ganhar massa muscular</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="objetivo" value="Saúde e qualidade de vida">
+            <span class="radio-dot"></span>
+            <span class="option-text">Saúde e qualidade de vida</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="objetivo" value="Condicionamento físico">
+            <span class="radio-dot"></span>
+            <span class="option-text">Condicionamento físico</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Quantas vezes por semana se compromete a treinar?</label>
+        <div class="radio-group" data-name="frequencia">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia" value="2x">
+            <span class="radio-dot"></span>
+            <span class="option-text">2x</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia" value="3x">
+            <span class="radio-dot"></span>
+            <span class="option-text">3x</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia" value="4x">
+            <span class="radio-dot"></span>
+            <span class="option-text">4x</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia" value="5x">
+            <span class="radio-dot"></span>
+            <span class="option-text">5x</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="frequencia" value="6x">
+            <span class="radio-dot"></span>
+            <span class="option-text">6x</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Quanto tempo por dia?</label>
+        <select name="tempo">
+          <option value="">Selecione...</option>
+          <option value="30min">30 minutos</option>
+          <option value="45min">45 minutos</option>
+          <option value="1h">1 hora</option>
+          <option value="1h15">1h15</option>
+          <option value="1h30">1h30</option>
+          <option value="2h">2 horas</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Você deseja dar ênfase em alguma musculatura?</label>
+        <input type="text" name="enfase_muscular" placeholder="Ex: Glúteos, pernas, braços...">
+      </div>
+
+      <div class="field">
+        <label>Qual sua expectativa para o treino?</label>
+        <div class="radio-group" data-name="intensidade">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="intensidade" value="Leve">
+            <span class="radio-dot"></span>
+            <span class="option-text">Leve</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="intensidade" value="Moderado">
+            <span class="radio-dot"></span>
+            <span class="option-text">Moderado</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="intensidade" value="Intenso">
+            <span class="radio-dot"></span>
+            <span class="option-text">Intenso</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Qual sua maior dificuldade com o treino?</label>
+        <textarea name="dificuldade_treino" placeholder="Ex: Falta de tempo, motivação, dificuldade técnica..."></textarea>
+      </div>
+    </div>
+
+    <!-- SAÚDE (PAR-Q) -->
+    <div class="section">
+      <div class="section-title">❤️ Saúde (PAR-Q)</div>
+
+      <div class="field">
+        <label>Alguma vez seu médico disse que você possui algum problema cardíaco e recomendou que só praticasse atividade física sob prescrição médica?</label>
+        <div class="radio-group" data-name="parq_cardiaco">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_cardiaco" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_cardiaco" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Você sente dor no tórax quando pratica uma atividade física?</label>
+        <div class="radio-group" data-name="parq_dor_exercicio">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_dor_exercicio" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_dor_exercicio" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>No último mês você sentiu dor torácica quando não estava praticando atividade física?</label>
+        <div class="radio-group" data-name="parq_dor_repouso">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_dor_repouso" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_dor_repouso" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Você perdeu o equilíbrio em virtude de tonturas ou perdeu a consciência?</label>
+        <div class="radio-group" data-name="parq_tontura">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_tontura" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_tontura" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Seu médico já recomendou medicamentos para controle da pressão arterial ou condição cardiovascular?</label>
+        <div class="radio-group" data-name="parq_medicamentos">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_medicamentos" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_medicamentos" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Você tem conhecimento de alguma outra razão física que o impeça de participar de atividades físicas?</label>
+        <div class="radio-group" data-name="parq_outra_razao">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_outra_razao" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_outra_razao" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" id="restricaoField" style="display:none">
+        <label>Você tem alguma restrição ao exercício?</label>
+        <input type="text" name="restricao_exercicio" placeholder="Descreva suas restrições...">
+      </div>
+
+      <div class="field">
+        <label>Você tem alguma doença?</label>
+        <input type="text" name="doenca" placeholder="Ex: Diabetes, hipertensão...">
+      </div>
+
+      <div class="field">
+        <label>Você toma algum remédio?</label>
+        <input type="text" name="remedio" placeholder="Liste os medicamentos que usa...">
+      </div>
+
+      <div class="field">
+        <label>Algum parente próximo teve ataque cardíaco antes dos 50 anos?</label>
+        <div class="radio-group" data-name="parq_historico_familia">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_historico_familia" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_historico_familia" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Você está grávida?</label>
+        <div class="radio-group" data-name="gravida">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="gravida" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="gravida" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="gravida" value="Não se aplica">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não se aplica</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESTILO DE VIDA -->
+    <div class="section">
+      <div class="section-title">🧘 Estilo de Vida</div>
+
+      <div class="field">
+        <label>Numa escala de 0 a 10 qual número melhor representa a quantidade de estresse que você tem?</label>
+        <div class="slider-row">
+          <span style="font-size:12px;color:var(--text-muted)">😌</span>
+          <input type="range" name="estresse" min="0" max="10" value="5" oninput="document.getElementById('estresseVal').textContent=this.value">
+          <span style="font-size:12px;color:var(--text-muted)">😰</span>
+          <span class="slider-value" id="estresseVal">5</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Treina há quanto tempo?</label>
+        <input type="text" name="tempo_treinando" placeholder="Ex: 1 ano, 6 meses...">
+      </div>
+
+      <div class="field">
+        <label>Você faz acompanhamento com nutricionista?</label>
+        <div class="radio-group" data-name="nutricionista">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="nutricionista" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="nutricionista" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Qual sua maior dificuldade com a alimentação?</label>
+        <textarea name="dificuldade_alimentacao" placeholder="Ex: Falta de tempo para preparar, compulsão por doces..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Você vai treinar em casa, academia do condomínio ou academia normal?</label>
+        <select name="local_treino">
+          <option value="">Selecione...</option>
+          <option value="Casa">Casa</option>
+          <option value="Academia do condomínio">Academia do condomínio</option>
+          <option value="Academia normal">Academia normal</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- FINAL -->
+    <div class="section">
+      <div class="section-title">✅ Confirmação</div>
+
+      <div class="field">
+        <label class="checkbox-option" onclick="toggleCheckbox(this)">
+          <input type="checkbox" name="veracidade" required>
+          <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+          <span class="option-text">Assume a veracidade das informações prestadas <span class="required">*</span></span>
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">
+      Enviar Renovação 🔄
+      <div class="btn-sub">Suas respostas serão enviadas para o Luisão</div>
+    </button>
+  </form>
+
+  <div class="success-screen" id="successScreen">
+    <div class="emoji">🎉</div>
+    <h2>Renovação Enviada!</h2>
+    <p>Obrigado! O Luisão vai analisar suas respostas e montar seu novo treino personalizado. Aguarde o contato pelo WhatsApp! 💪</p>
+  </div>
+
+  <footer class="footer">
+    Metodologia MaxResults &middot; Luisão Ribeiro<br>
+    Seus dados são confidenciais
+  </footer>
+</div>
+
+<script>
+function selectRadio(el) {
+  const group = el.closest('.radio-group');
+  group.querySelectorAll('.radio-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input').checked = true;
+
+  // Show/hide restriction field if any PAR-Q is "Sim"
+  checkParqRestrictions();
+
+  updateProgress();
+}
+
+function toggleCheckbox(el) {
+  el.classList.toggle('selected');
+  const input = el.querySelector('input[type="checkbox"]');
+  input.checked = !input.checked;
+  updateProgress();
+}
+
+function checkParqRestrictions() {
+  const parqFields = [
+    'parq_cardiaco',
+    'parq_dor_exercicio',
+    'parq_dor_repouso',
+    'parq_tontura',
+    'parq_medicamentos',
+    'parq_outra_razao'
+  ];
+
+  let hasRestriction = false;
+  parqFields.forEach(field => {
+    const input = document.querySelector(`input[name="${field}"]:checked`);
+    if (input && input.value === 'Sim') {
+      hasRestriction = true;
+    }
+  });
+
+  const restricaoField = document.getElementById('restricaoField');
+  restricaoField.style.display = hasRestriction ? 'block' : 'none';
+}
+
+function updateProgress() {
+  const requiredFields = document.querySelectorAll('input[required], select[required]');
+  const checkboxRequired = document.querySelector('input[name="veracidade"]');
+  
+  let filled = 0;
+  let total = requiredFields.length;
+
+  requiredFields.forEach(f => {
+    if (f.type === 'checkbox') {
+      if (f.checked) filled++;
+    } else if (f.value.trim()) {
+      filled++;
+    }
+  });
+
+  const pct = Math.round((filled / total) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = pct + '%';
+}
+
+// Update progress on input
+document.querySelectorAll('input, textarea, select').forEach(el => {
+  el.addEventListener('input', updateProgress);
+  el.addEventListener('change', updateProgress);
+});
+
+document.getElementById('anamneseForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const fd = new FormData(this);
+  const data = {};
+  fd.forEach((v, k) => { data[k] = v; });
+
+  // Add estresse value
+  data.estresse = document.querySelector('input[name="estresse"]').value;
+
+  // Build Discord message
+  let msg = '🔄 **ANAMNESE DE RENOVAÇÃO**\n\n';
+  msg += `**Nome:** ${data.nome || '—'}\n\n`;
+
+  msg += '📊 **TREINO ANTERIOR**\n';
+  msg += `**Dificuldades:** ${data.dificuldades || '—'}\n`;
+  msg += `**Resultados:** ${data.resultados || '—'}\n`;
+  msg += `**Frequência no último mês:** ${data.frequencia_ultimo_mes || '—'}\n`;
+  msg += `**Exercício não realizado:** ${data.exercicio_nao_realizado || '—'}\n\n`;
+
+  msg += '🎯 **NOVO PROGRAMA**\n';
+  msg += `**Objetivo:** ${data.objetivo || '—'}\n`;
+  msg += `**Frequência:** ${data.frequencia || '—'}\n`;
+  msg += `**Tempo/treino:** ${data.tempo || '—'}\n`;
+  msg += `**Ênfase muscular:** ${data.enfase_muscular || '—'}\n`;
+  msg += `**Intensidade:** ${data.intensidade || '—'}\n`;
+  msg += `**Maior dificuldade:** ${data.dificuldade_treino || '—'}\n\n`;
+
+  msg += '❤️ **SAÚDE (PAR-Q)**\n';
+  msg += `**Problema cardíaco:** ${data.parq_cardiaco || '—'}\n`;
+  msg += `**Dor torácica (exercício):** ${data.parq_dor_exercicio || '—'}\n`;
+  msg += `**Dor torácica (repouso):** ${data.parq_dor_repouso || '—'}\n`;
+  msg += `**Tontura/desmaio:** ${data.parq_tontura || '—'}\n`;
+  msg += `**Medicamentos pressão:** ${data.parq_medicamentos || '—'}\n`;
+  msg += `**Outra razão física:** ${data.parq_outra_razao || '—'}\n`;
+  msg += `**Restrição exercício:** ${data.restricao_exercicio || '—'}\n`;
+  msg += `**Doença:** ${data.doenca || '—'}\n`;
+  msg += `**Remédio:** ${data.remedio || '—'}\n`;
+  msg += `**Histórico cardíaco família:** ${data.parq_historico_familia || '—'}\n`;
+  msg += `**Grávida:** ${data.gravida || '—'}\n\n`;
+
+  msg += '🧘 **ESTILO DE VIDA**\n';
+  msg += `**Estresse:** ${data.estresse}/10\n`;
+  msg += `**Tempo treinando:** ${data.tempo_treinando || '—'}\n`;
+  msg += `**Nutricionista:** ${data.nutricionista || '—'}\n`;
+  msg += `**Dificuldade alimentação:** ${data.dificuldade_alimentacao || '—'}\n`;
+  msg += `**Local treino:** ${data.local_treino || '—'}\n`;
+
+  // WhatsApp message (same content)
+  const whatsappMsg = msg.replace(/\*\*/g, '*'); // Discord bold → WhatsApp bold
+
+  // Send to Discord webhook
+  const WEBHOOK_URL = 'https://discord.com/api/webhooks/1524177768508555284/WLBeLBG2D2qNw-gZE9II6njy9cDJIYZfMLdb05SyDC7OQ2zUlu_k93X3KvAtakgGCsNU';
+
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Enviando...';
+
+  fetch(WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+      content: msg, 
+      username: 'Renovação — ' + (data.nome || 'Aluno') 
+    })
+  }).then(() => {
+    // Also open WhatsApp as backup
+    const phone = '5541999775758';
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(whatsappMsg)}`;
+    window.open(url, '_blank');
+
+    // Show success
+    this.style.display = 'none';
+    document.getElementById('successScreen').classList.add('visible');
+  }).catch(() => {
+    // Fallback to WhatsApp only
+    const phone = '5541999775758';
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(whatsappMsg)}`;
+    window.open(url, '_blank');
+    this.style.display = 'none';
+    document.getElementById('successScreen').classList.add('visible');
+  });
+});
+
+updateProgress();
+</script>
+
+</body>
+</html>

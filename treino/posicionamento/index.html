@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Posicionamento MaxResults — Obviously Awesome</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #08080a;
+            color: #e5e5e5;
+            min-height: 100vh;
+            padding: 1rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 2rem 0;
+            letter-spacing: -0.02em;
+        }
+
+        .logo .max {
+            color: #fff;
+        }
+
+        .logo .results {
+            color: #f59e0b;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .header p {
+            color: #a3a3a3;
+            font-size: 0.95rem;
+        }
+
+        .progress-bar {
+            background: #111113;
+            height: 8px;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #f59e0b, #a855f7);
+            height: 100%;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 999px;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 0.875rem;
+            color: #737373;
+            margin-bottom: 2rem;
+        }
+
+        .section {
+            background: #111113;
+            border-radius: 16px;
+            padding: 2rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f59e0b;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #d4d4d4;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .question {
+            margin-bottom: 2rem;
+        }
+
+        .question-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #e5e5e5;
+            font-size: 1rem;
+        }
+
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.875rem;
+            background: #08080a;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .checkbox-item:hover,
+        .radio-item:hover {
+            background: #1a1a1c;
+            border-color: #f59e0b33;
+        }
+
+        .checkbox-item.checked,
+        .radio-item.checked {
+            background: #1a1a1c;
+            border-color: #f59e0b;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #f59e0b;
+            flex-shrink: 0;
+        }
+
+        label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        textarea,
+        input[type="text"] {
+            width: 100%;
+            background: #08080a;
+            border: 1px solid #262626;
+            border-radius: 8px;
+            padding: 0.875rem;
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            resize: vertical;
+            transition: all 0.2s;
+        }
+
+        textarea {
+            min-height: 120px;
+        }
+
+        textarea:focus,
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #f59e0b;
+            background: #0a0a0c;
+        }
+
+        .other-input {
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .other-input.active {
+            display: block;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: space-between;
+        }
+
+        button {
+            padding: 0.875rem 1.75rem;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex: 1;
+        }
+
+        .btn-back {
+            background: #262626;
+            color: #e5e5e5;
+        }
+
+        .btn-back:hover {
+            background: #333333;
+        }
+
+        .btn-back:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .btn-next,
+        .btn-submit {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .btn-next:hover,
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            transform: translateY(-1px);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #c084fc, #a855f7);
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .success-message .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-message h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            color: #f59e0b;
+            margin-bottom: 1rem;
+        }
+
+        .success-message p {
+            color: #a3a3a3;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 1.35rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.25rem;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        .auto-save-indicator {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: #111113;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: #a3a3a3;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border: 1px solid #262626;
+        }
+
+        .auto-save-indicator.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <span class="max">MAXRE.</span><span class="results">SULTS</span>
+        </div>
+
+        <div class="header">
+            <h1>Posicionamento MaxResults — Obviously Awesome</h1>
+            <p>Responda com calma, uma seção por dia. Suas respostas são salvas automaticamente.</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">Seção 1 de 5</div>
+
+        <!-- Seção 1: Alternativas Competitivas -->
+        <div class="section active" data-section="1">
+            <div class="section-title">🎯 Alternativas Competitivas</div>
+            <div class="section-subtitle">"Contra quem você compete na cabeça do aluno?"</div>
+
+            <div class="question">
+                <label class="question-label">1. Quando um aluno te procura, o que ele estava fazendo ANTES?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="alt1_1" name="alternatives" value="Treinando sozinho na academia sem orientação">
+                        <label for="alt1_1">Treinando sozinho na academia sem orientação</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="alt1_2" name="alternatives" value="Usando algum app de treino">
+                        <label for="alt1_2">Usando algum app de treino (qual?)</label>
+                    </div>
+                    <input type="text" class="other-input" id="alt1_2_other" placeholder="Qual app?">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="alt1_3" name="alternatives" value="Seguindo treino de influencer/YouTube">
+                        <label for="alt1_3">Seguindo treino de influencer/YouTube</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="alt1_4" name="alternatives" value="Tinha personal presencial e parou">
+                        <label for="alt1_4">Tinha personal presencial e parou (por quê?)</label>
+                    </div>
+                    <input type="text" class="other-input" id="alt1_4_other" placeholder="Por quê?">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="alt1_5" name="alternatives" value="Totalmente parado, sem fazer nada">
+                        <label for="alt1_5">Totalmente parado, sem fazer nada</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="alt1_6" name="alternatives" value="Outro">
+                        <label for="alt1_6">Outro</label>
+                    </div>
+                    <input type="text" class="other-input" id="alt1_6_other" placeholder="Descreva...">
+                </div>
+            </div>
+
+            <div class="question">
+                <label class="question-label">2. Dos seus alunos atuais, consegue lembrar de casos específicos? Ex: "A Fulana veio porque estava fazendo X e não via resultado"</label>
+                <textarea id="q1_2" placeholder="Conte alguns casos..."></textarea>
+            </div>
+
+            <div class="question">
+                <label class="question-label">3. Na sua opinião, qual é o "concorrente" mais comum — o que MAIS alunos estavam fazendo antes de te procurar?</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="comp1" name="main_competitor" value="Treinando sozinho">
+                        <label for="comp1">Treinando sozinho</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="comp2" name="main_competitor" value="Usando app">
+                        <label for="comp2">Usando app</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="comp3" name="main_competitor" value="Seguindo influencer">
+                        <label for="comp3">Seguindo influencer</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="comp4" name="main_competitor" value="Personal presencial">
+                        <label for="comp4">Personal presencial</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="comp5" name="main_competitor" value="Parado">
+                        <label for="comp5">Parado</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="comp6" name="main_competitor" value="Outro">
+                        <label for="comp6">Outro</label>
+                    </div>
+                    <input type="text" class="other-input" id="comp6_other" placeholder="Descreva...">
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 2: Clientes que Amam o MaxResults -->
+        <div class="section" data-section="2">
+            <div class="section-title">💜 Clientes que Amam o MaxResults</div>
+            <div class="section-subtitle">"Quem são seus melhores alunos?"</div>
+
+            <div class="question">
+                <label class="question-label">1. Dos seus alunos atuais, quais são os MAIS engajados? Os que mais treinam, mais dão feedback, mais gostam?</label>
+                <textarea id="q2_1" placeholder="Nomes e por quê..."></textarea>
+            </div>
+
+            <div class="question">
+                <label class="question-label">2. O que esses alunos engajados têm em comum?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="common1" name="common" value="Faixa etária similar">
+                        <label for="common1">Faixa etária similar</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="common2" name="common" value="Mesmo objetivo">
+                        <label for="common2">Mesmo objetivo (hipertrofia, definição, emagrecimento)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="common3" name="common" value="Mesmo nível de experiência">
+                        <label for="common3">Mesmo nível de experiência</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="common4" name="common" value="Profissão/rotina similar">
+                        <label for="common4">Profissão/rotina similar</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="common5" name="common" value="Outro">
+                        <label for="common5">Outro</label>
+                    </div>
+                    <input type="text" class="other-input" id="common5_other" placeholder="Descreva...">
+                </div>
+            </div>
+
+            <div class="question">
+                <label class="question-label">3. Por que esses alunos escolheram VOCÊ e não um app ou outro personal? O que eles falam?</label>
+                <textarea id="q2_3" placeholder="O que eles dizem..."></textarea>
+            </div>
+
+            <div class="question">
+                <label class="question-label">4. Se um aluno fosse indicar o MaxResults para um amigo, o que ele diria? Tenta imaginar a frase.</label>
+                <textarea id="q2_4" placeholder="A frase de indicação seria..."></textarea>
+            </div>
+        </div>
+
+        <!-- Seção 3: Diferenciais Reais -->
+        <div class="section" data-section="3">
+            <div class="section-title">✨ Diferenciais Reais</div>
+            <div class="section-subtitle">"O que você tem que ninguém mais tem?"</div>
+
+            <div class="question">
+                <label class="question-label">1. Marque tudo que você oferece e que um app genérico (Freeletics, FitBod) NÃO oferece:</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="diff1" name="differentials" value="Prescrição de treino individualizada">
+                        <label for="diff1">Prescrição de treino individualizada por personal de verdade</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="diff2" name="differentials" value="Acompanhamento semanal">
+                        <label for="diff2">Acompanhamento semanal com ajuste de treino</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="diff3" name="differentials" value="Aulas gravadas com coaching de voz">
+                        <label for="diff3">Aulas gravadas com coaching de voz (MaxLift, MaxStep, etc.)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="diff4" name="differentials" value="Adaptação por equipamento">
+                        <label for="diff4">Adaptação por equipamento disponível (casa, academia, prédio)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="diff5" name="differentials" value="Avaliação física documentada">
+                        <label for="diff5">Avaliação física com evolução documentada</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="diff6" name="differentials" value="Suporte via WhatsApp">
+                        <label for="diff6">Suporte via WhatsApp</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="diff7" name="differentials" value="Exercícios com vídeo E dicas faladas">
+                        <label for="diff7">Exercícios com vídeo E dicas de execução faladas</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="diff8" name="differentials" value="Outro">
+                        <label for="diff8">Outro</label>
+                    </div>
+                    <input type="text" class="other-input" id="diff8_other" placeholder="Descreva...">
+                </div>
+            </div>
+
+            <div class="question">
+                <label class="question-label">2. Se você tivesse que escolher UMA COISA que te diferencia de todo mundo, qual seria?</label>
+                <textarea id="q3_2" placeholder="Meu maior diferencial é..."></textarea>
+            </div>
+
+            <div class="question">
+                <label class="question-label">3. O que seus alunos mais elogiam? O que eles falam que é "o melhor" do MaxResults?</label>
+                <textarea id="q3_3" placeholder="Eles sempre falam que..."></textarea>
+            </div>
+        </div>
+
+        <!-- Seção 4: Posicionamento -->
+        <div class="section" data-section="4">
+            <div class="section-title">🎯 Posicionamento</div>
+            <div class="section-subtitle">"Como o mundo deve ver o MaxResults?"</div>
+
+            <div class="question">
+                <label class="question-label">1. Qual dessas frases descreve melhor o MaxResults?</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="pos1" name="positioning" value="App de treino online">
+                        <label for="pos1">"App de treino online"</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="pos2" name="positioning" value="Personal training online">
+                        <label for="pos2">"Personal training online"</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="pos3" name="positioning" value="Personal training de hipertrofia e definição online">
+                        <label for="pos3">"Personal training de hipertrofia e definição online"</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="pos4" name="positioning" value="Treinamento personalizado com acompanhamento real">
+                        <label for="pos4">"Treinamento personalizado com acompanhamento real"</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="pos5" name="positioning" value="Método de treino completo com personal dedicado">
+                        <label for="pos5">"Método de treino completo com personal dedicado"</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="pos6" name="positioning" value="Outra">
+                        <label for="pos6">Outra</label>
+                    </div>
+                    <input type="text" class="other-input" id="pos6_other" placeholder="Descreva...">
+                </div>
+            </div>
+
+            <div class="question">
+                <label class="question-label">2. Para qual público o MaxResults é PERFEITO? Descreva a pessoa ideal.</label>
+                <textarea id="q4_2" placeholder="O aluno ideal é..."></textarea>
+            </div>
+
+            <div class="question">
+                <label class="question-label">3. E para quem o MaxResults NÃO é? Quem você NÃO quer como aluno?</label>
+                <textarea id="q4_3" placeholder="MaxResults não é para quem..."></textarea>
+            </div>
+
+            <div class="question">
+                <label class="question-label">4. Se o MaxResults fosse uma pessoa, como ela seria?</label>
+                <textarea id="q4_4" placeholder="A personalidade da marca seria..."></textarea>
+            </div>
+        </div>
+
+        <!-- Seção 5: Pitch de 30 Segundos -->
+        <div class="section" data-section="5">
+            <div class="section-title">🚀 Pitch de 30 Segundos</div>
+            <div class="section-subtitle">"Explique o MaxResults em 30 segundos"</div>
+
+            <div class="question">
+                <label class="question-label">1. Complete a frase: "O MaxResults é para pessoas que..."</label>
+                <textarea id="q5_1" placeholder="O MaxResults é para pessoas que..."></textarea>
+            </div>
+
+            <div class="question">
+                <label class="question-label">2. Complete: "Diferente de [alternativa], o MaxResults..."</label>
+                <textarea id="q5_2" placeholder="Diferente de..."></textarea>
+            </div>
+
+            <div class="question">
+                <label class="question-label">3. Tenta escrever um pitch de 30 segundos do MaxResults — como se estivesse explicando para um desconhecido no elevador.</label>
+                <textarea id="q5_3" placeholder="Seu pitch..."></textarea>
+            </div>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            <div class="icon">🎉</div>
+            <h2>Questionário Completo!</h2>
+            <p>Suas respostas foram enviadas com sucesso e salvas localmente.</p>
+        </div>
+
+        <div class="buttons" id="navigationButtons">
+            <button class="btn-back" id="btnBack" disabled>← Voltar</button>
+            <button class="btn-next" id="btnNext">Próximo →</button>
+        </div>
+    </div>
+
+    <div class="auto-save-indicator" id="autoSaveIndicator">💾 Progresso salvo</div>
+
+    <script>
+        // Configuration
+        const WEBHOOK_URL = 'PLACEHOLDER_WEBHOOK_URL'; // Replace with actual Discord webhook URL
+        const TOTAL_SECTIONS = 5;
+        let currentSection = 1;
+
+        // DOM Elements
+        const sections = document.querySelectorAll('.section');
+        const btnBack = document.getElementById('btnBack');
+        const btnNext = document.getElementById('btnNext');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const autoSaveIndicator = document.getElementById('autoSaveIndicator');
+        const successMessage = document.getElementById('successMessage');
+        const navigationButtons = document.getElementById('navigationButtons');
+
+        // Initialize
+        loadProgress();
+        updateProgress();
+        setupEventListeners();
+        loadFormData();
+
+        function setupEventListeners() {
+            // Navigation buttons
+            btnBack.addEventListener('click', () => navigateSection(-1));
+            btnNext.addEventListener('click', () => navigateSection(1));
+
+            // Auto-save on input change
+            document.querySelectorAll('input, textarea').forEach(input => {
+                input.addEventListener('change', () => {
+                    saveFormData();
+                    showAutoSaveIndicator();
+                });
+            });
+
+            // Checkbox visual feedback
+            document.querySelectorAll('.checkbox-item input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const item = this.closest('.checkbox-item');
+                    if (this.checked) {
+                        item.classList.add('checked');
+                    } else {
+                        item.classList.remove('checked');
+                    }
+                });
+            });
+
+            // Radio visual feedback
+            document.querySelectorAll('.radio-item input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const group = this.name;
+                    document.querySelectorAll(`input[name="${group}"]`).forEach(r => {
+                        r.closest('.radio-item').classList.remove('checked');
+                    });
+                    this.closest('.radio-item').classList.add('checked');
+                });
+            });
+
+            // Show/hide "other" input fields
+            setupOtherInputs();
+        }
+
+        function setupOtherInputs() {
+            // For checkboxes with other option
+            const otherCheckboxes = [
+                { checkbox: 'alt1_2', input: 'alt1_2_other' },
+                { checkbox: 'alt1_4', input: 'alt1_4_other' },
+                { checkbox: 'alt1_6', input: 'alt1_6_other' },
+                { checkbox: 'common5', input: 'common5_other' },
+                { checkbox: 'diff8', input: 'diff8_other' }
+            ];
+
+            otherCheckboxes.forEach(({ checkbox, input }) => {
+                const cb = document.getElementById(checkbox);
+                const inp = document.getElementById(input);
+                if (cb && inp) {
+                    cb.addEventListener('change', function() {
+                        if (this.checked) {
+                            inp.classList.add('active');
+                        } else {
+                            inp.classList.remove('active');
+                            inp.value = '';
+                        }
+                    });
+                }
+            });
+
+            // For radio buttons with other option
+            const otherRadios = [
+                { radio: 'comp6', input: 'comp6_other' },
+                { radio: 'pos6', input: 'pos6_other' }
+            ];
+
+            otherRadios.forEach(({ radio, input }) => {
+                const rd = document.getElementById(radio);
+                const inp = document.getElementById(input);
+                if (rd && inp) {
+                    rd.addEventListener('change', function() {
+                        if (this.checked) {
+                            inp.classList.add('active');
+                        }
+                    });
+                    
+                    // Hide other input when different radio is selected
+                    const radioName = rd.name;
+                    document.querySelectorAll(`input[name="${radioName}"]`).forEach(r => {
+                        if (r.id !== radio) {
+                            r.addEventListener('change', function() {
+                                if (this.checked) {
+                                    inp.classList.remove('active');
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+        function navigateSection(direction) {
+            const newSection = currentSection + direction;
+            
+            if (newSection < 1 || newSection > TOTAL_SECTIONS + 1) return;
+
+            if (direction === 1 && currentSection === TOTAL_SECTIONS) {
+                // Submit form
+                submitForm();
+                return;
+            }
+
+            currentSection = newSection;
+            showSection(currentSection);
+            updateProgress();
+            saveProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showSection(sectionNumber) {
+            sections.forEach(section => section.classList.remove('active'));
+            
+            const targetSection = document.querySelector(`[data-section="${sectionNumber}"]`);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // Update buttons
+            btnBack.disabled = sectionNumber === 1;
+            
+            if (sectionNumber === TOTAL_SECTIONS) {
+                btnNext.textContent = '✓ Enviar';
+                btnNext.className = 'btn-submit';
+            } else {
+                btnNext.textContent = 'Próximo →';
+                btnNext.className = 'btn-next';
+            }
+        }
+
+        function updateProgress() {
+            const progress = (currentSection / TOTAL_SECTIONS) * 100;
+            progressFill.style.width = `${progress}%`;
+            progressText.textContent = `Seção ${currentSection} de ${TOTAL_SECTIONS}`;
+        }
+
+        function saveProgress() {
+            localStorage.setItem('maxresults_positioning_section', currentSection);
+        }
+
+        function loadProgress() {
+            const saved = localStorage.getItem('maxresults_positioning_section');
+            if (saved) {
+                currentSection = parseInt(saved);
+                showSection(currentSection);
+            }
+        }
+
+        function saveFormData() {
+            const formData = collectFormData();
+            localStorage.setItem('maxresults_positioning_data', JSON.stringify(formData));
+        }
+
+        function loadFormData() {
+            const saved = localStorage.getItem('maxresults_positioning_data');
+            if (!saved) return;
+
+            try {
+                const data = JSON.parse(saved);
+                
+                // Restore checkboxes
+                Object.keys(data.checkboxes || {}).forEach(name => {
+                    const values = data.checkboxes[name];
+                    values.forEach(value => {
+                        const checkbox = document.querySelector(`input[name="${name}"][value="${value}"]`);
+                        if (checkbox) {
+                            checkbox.checked = true;
+                            checkbox.closest('.checkbox-item')?.classList.add('checked');
+                        }
+                    });
+                });
+
+                // Restore radio buttons
+                Object.keys(data.radios || {}).forEach(name => {
+                    const value = data.radios[name];
+                    const radio = document.querySelector(`input[name="${name}"][value="${value}"]`);
+                    if (radio) {
+                        radio.checked = true;
+                        radio.closest('.radio-item')?.classList.add('checked');
+                    }
+                });
+
+                // Restore text inputs and textareas
+                Object.keys(data.texts || {}).forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.value = data.texts[id];
+                    }
+                });
+
+                // Show other inputs if needed
+                setupOtherInputs();
+            } catch (e) {
+                console.error('Error loading form data:', e);
+            }
+        }
+
+        function collectFormData() {
+            const data = {
+                checkboxes: {},
+                radios: {},
+                texts: {},
+                timestamp: new Date().toISOString()
+            };
+
+            // Collect checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                if (cb.checked) {
+                    const name = cb.name;
+                    if (!data.checkboxes[name]) data.checkboxes[name] = [];
+                    data.checkboxes[name].push(cb.value);
+                }
+            });
+
+            // Collect radio buttons
+            document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+                data.radios[radio.name] = radio.value;
+            });
+
+            // Collect text inputs and textareas
+            document.querySelectorAll('input[type="text"], textarea').forEach(input => {
+                if (input.value.trim()) {
+                    data.texts[input.id] = input.value.trim();
+                }
+            });
+
+            return data;
+        }
+
+        function formatAnswersForDiscord(data) {
+            let message = '# 📋 Posicionamento MaxResults - Obviously Awesome\n\n';
+            
+            message += '## 🎯 Seção 1: Alternativas Competitivas\n';
+            message += '**1. O que alunos faziam antes:**\n';
+            if (data.checkboxes.alternatives) {
+                data.checkboxes.alternatives.forEach(alt => {
+                    message += `- ${alt}\n`;
+                });
+            }
+            if (data.texts.alt1_2_other) message += `  → App: ${data.texts.alt1_2_other}\n`;
+            if (data.texts.alt1_4_other) message += `  → Parou porque: ${data.texts.alt1_4_other}\n`;
+            if (data.texts.alt1_6_other) message += `  → Outro: ${data.texts.alt1_6_other}\n`;
+            
+            message += `\n**2. Casos específicos:**\n${data.texts.q1_2 || 'Não respondido'}\n`;
+            message += `\n**3. Concorrente mais comum:** ${data.radios.main_competitor || 'Não respondido'}\n`;
+            if (data.texts.comp6_other) message += `  → ${data.texts.comp6_other}\n`;
+
+            message += '\n## 💜 Seção 2: Clientes que Amam o MaxResults\n';
+            message += `**1. Alunos mais engajados:**\n${data.texts.q2_1 || 'Não respondido'}\n`;
+            message += '\n**2. O que têm em comum:**\n';
+            if (data.checkboxes.common) {
+                data.checkboxes.common.forEach(c => {
+                    message += `- ${c}\n`;
+                });
+            }
+            if (data.texts.common5_other) message += `  → ${data.texts.common5_other}\n`;
+            message += `\n**3. Por que escolheram você:**\n${data.texts.q2_3 || 'Não respondido'}\n`;
+            message += `\n**4. Frase de indicação:**\n${data.texts.q2_4 || 'Não respondido'}\n`;
+
+            message += '\n## ✨ Seção 3: Diferenciais Reais\n';
+            message += '**1. Diferenciais vs. apps genéricos:**\n';
+            if (data.checkboxes.differentials) {
+                data.checkboxes.differentials.forEach(d => {
+                    message += `- ${d}\n`;
+                });
+            }
+            if (data.texts.diff8_other) message += `  → ${data.texts.diff8_other}\n`;
+            message += `\n**2. Maior diferencial:**\n${data.texts.q3_2 || 'Não respondido'}\n`;
+            message += `\n**3. O que alunos mais elogiam:**\n${data.texts.q3_3 || 'Não respondido'}\n`;
+
+            message += '\n## 🎯 Seção 4: Posicionamento\n';
+            message += `**1. Melhor descrição:** ${data.radios.positioning || 'Não respondido'}\n`;
+            if (data.texts.pos6_other) message += `  → ${data.texts.pos6_other}\n`;
+            message += `\n**2. Público perfeito:**\n${data.texts.q4_2 || 'Não respondido'}\n`;
+            message += `\n**3. Para quem NÃO é:**\n${data.texts.q4_3 || 'Não respondido'}\n`;
+            message += `\n**4. Personalidade da marca:**\n${data.texts.q4_4 || 'Não respondido'}\n`;
+
+            message += '\n## 🚀 Seção 5: Pitch de 30 Segundos\n';
+            message += `**1. É para pessoas que:**\n${data.texts.q5_1 || 'Não respondido'}\n`;
+            message += `\n**2. Diferente de:**\n${data.texts.q5_2 || 'Não respondido'}\n`;
+            message += `\n**3. Pitch completo:**\n${data.texts.q5_3 || 'Não respondido'}\n`;
+
+            message += `\n---\n*Enviado em: ${new Date().toLocaleString('pt-BR')}*`;
+
+            return message;
+        }
+
+        async function submitForm() {
+            const formData = collectFormData();
+            const formattedMessage = formatAnswersForDiscord(formData);
+
+            // Save to localStorage as backup
+            localStorage.setItem('maxresults_positioning_submitted', JSON.stringify(formData));
+
+            // Send to Discord
+            try {
+                if (WEBHOOK_URL !== 'PLACEHOLDER_WEBHOOK_URL') {
+                    const response = await fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ content: formattedMessage })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Webhook failed');
+                    }
+                }
+            } catch (error) {
+                console.error('Error sending to Discord:', error);
+                // Continue anyway - data is saved locally
+            }
+
+            // Show success message
+            sections.forEach(s => s.style.display = 'none');
+            navigationButtons.style.display = 'none';
+            document.querySelector('.progress-bar').style.display = 'none';
+            document.querySelector('.progress-text').style.display = 'none';
+            successMessage.classList.add('active');
+
+            // Add export button to success message
+            const exportBtn = document.createElement('button');
+            exportBtn.textContent = '📋 Copiar Respostas';
+            exportBtn.style.cssText = 'margin-top:1.5rem;padding:1rem 2rem;background:#f59e0b;color:#000;border:none;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;';
+            exportBtn.onclick = function() { exportAnswers(); };
+            successMessage.appendChild(exportBtn);
+        }
+
+        function exportAnswers() {
+            const saved = localStorage.getItem('maxresults_positioning_submitted') || localStorage.getItem('maxresults_positioning_data');
+            if (!saved) { alert('Nenhuma resposta encontrada!'); return; }
+            const data = JSON.parse(saved);
+            const text = formatAnswersForDiscord(data);
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('✅ Respostas copiadas! Agora cola no Discord.');
+                }).catch(() => {
+                    // Fallback
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:50%;z-index:9999;font-size:14px;background:#111;color:#fff;padding:1rem;';
+                    document.body.appendChild(ta);
+                    ta.select();
+                    alert('Seleciona tudo (Ctrl+A) e copia (Ctrl+C)!');
+                });
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:50%;z-index:9999;font-size:14px;background:#111;color:#fff;padding:1rem;';
+                document.body.appendChild(ta);
+                ta.select();
+                alert('Seleciona tudo e copia!');
+            }
+        }
+
+        function showAutoSaveIndicator() {
+            autoSaveIndicator.classList.add('show');
+            setTimeout(() => {
+                autoSaveIndicator.classList.remove('show');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

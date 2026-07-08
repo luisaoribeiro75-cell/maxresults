@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Avaliação Física | MaxResults</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#08080a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #08080a;
+      --surface: #111114;
+      --surface-2: #19191d;
+      --surface-3: #222226;
+      --border: rgba(255,255,255,0.06);
+      --border-light: rgba(255,255,255,0.1);
+      --text: #ededef;
+      --text-dim: #b0b0b6;
+      --text-muted: #6b6b73;
+      --accent: #f59e0b;
+      --accent-dim: rgba(245,158,11,0.1);
+      --accent-glow: rgba(245,158,11,0.3);
+      --green: #34d399;
+      --green-dim: rgba(52,211,153,0.1);
+      --red: #fb7185;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100dvh;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(245,158,11,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 20px 120px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,8,10,0.85);
+      backdrop-filter: blur(24px) saturate(1.6);
+      -webkit-backdrop-filter: blur(24px) saturate(1.6);
+      padding: 20px 0 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--accent), #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .header h1 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      margin-bottom: 6px;
+    }
+
+    .header p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .progress-bar {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 5px;
+      background: var(--surface-2);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--accent), var(--green));
+      transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      width: 0%;
+    }
+
+    .progress-label {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      min-width: 36px;
+      text-align: right;
+    }
+
+    .section {
+      margin-bottom: 32px;
+      animation: fadeIn 0.4s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-hint {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      padding: 12px 16px;
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--accent);
+      line-height: 1.5;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    .field label {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+
+    .field label .required {
+      color: var(--red);
+      margin-left: 2px;
+    }
+
+    .field .hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"],
+    textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .measure-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .measure-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+    }
+
+    .measure-item label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .measure-item input {
+      padding: 8px 12px;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .measure-unit {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .photo-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .photo-upload {
+      background: var(--surface);
+      border: 2px dashed var(--border-light);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-upload:active {
+      transform: scale(0.98);
+    }
+
+    .photo-upload.has-photo {
+      border-color: rgba(52,211,153,0.3);
+      border-style: solid;
+    }
+
+    .photo-upload input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .photo-upload .photo-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .photo-upload .photo-label {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .photo-upload .photo-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .photo-upload .photo-preview {
+      display: none;
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 8px;
+      margin-top: 12px;
+    }
+
+    .photo-upload.has-photo .photo-preview {
+      display: block;
+    }
+
+    .photo-upload.has-photo .photo-icon {
+      display: none;
+    }
+
+    .photo-upload .photo-check {
+      display: none;
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+
+    .photo-upload.has-photo .photo-check {
+      display: block;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--accent), #d97706);
+      border: none;
+      border-radius: var(--radius);
+      color: #000;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 20px;
+    }
+
+    .submit-btn:active { transform: scale(0.97); }
+
+    .submit-btn .btn-sub {
+      font-size: 11px;
+      font-weight: 500;
+      opacity: 0.7;
+      margin-top: 2px;
+    }
+
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .success-screen.visible {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .success-screen .emoji { font-size: 48px; margin-bottom: 16px; }
+
+    .success-screen h2 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    .success-screen p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="brand">MaxResults</div>
+    <h1>📏 Avaliação Física</h1>
+    <p>Meça com cuidado — esses dados vão ajudar a acompanhar sua evolução!</p>
+    <div class="progress-bar">
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-label" id="progressLabel">0%</div>
+    </div>
+  </div>
+
+  <form id="avaliacaoForm">
+
+    <!-- DADOS BÁSICOS -->
+    <div class="section">
+      <div class="section-title">⚖️ Dados Básicos</div>
+
+      <div class="field">
+        <label>Nome completo <span class="required">*</span></label>
+        <input type="text" name="nome" required placeholder="Seu nome completo">
+      </div>
+
+      <div class="measure-grid">
+        <div class="measure-item">
+          <label>Peso <span class="required">*</span></label>
+          <input type="number" name="peso" step="0.1" required placeholder="0.0">
+          <div class="measure-unit">kg</div>
+        </div>
+        <div class="measure-item">
+          <label>Altura <span class="required">*</span></label>
+          <input type="number" name="altura" step="0.1" required placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERIMETRIA -->
+    <div class="section">
+      <div class="section-title">📐 Perimetria</div>
+
+      <div class="section-hint">
+        💡 <strong>Como medir:</strong> Use uma fita métrica flexível. Meça rente à pele, sem apertar. Mantenha a fita horizontal e o corpo relaxado. Na dúvida, meça 2x e use a média.
+      </div>
+
+      <div class="measure-grid">
+        <div class="measure-item">
+          <label>Pescoço</label>
+          <input type="number" name="pescoco" step="0.1" placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+        <div class="measure-item">
+          <label>Ombro</label>
+          <input type="number" name="ombro" step="0.1" placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+        <div class="measure-item">
+          <label>Tórax</label>
+          <input type="number" name="torax" step="0.1" placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+        <div class="measure-item">
+          <label>Braço Esquerdo</label>
+          <input type="number" name="braco_esq" step="0.1" placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+        <div class="measure-item">
+          <label>Braço Direito</label>
+          <input type="number" name="braco_dir" step="0.1" placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+        <div class="measure-item">
+          <label>Cintura</label>
+          <input type="number" name="cintura" step="0.1" placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+        <div class="measure-item">
+          <label>Abdômen</label>
+          <input type="number" name="abdomen" step="0.1" placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+        <div class="measure-item">
+          <label>Quadril</label>
+          <input type="number" name="quadril" step="0.1" placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+        <div class="measure-item">
+          <label>Coxa Esquerda</label>
+          <input type="number" name="coxa_esq" step="0.1" placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+        <div class="measure-item">
+          <label>Coxa Direita</label>
+          <input type="number" name="coxa_dir" step="0.1" placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+        <div class="measure-item">
+          <label>Perna Esquerda</label>
+          <input type="number" name="perna_esq" step="0.1" placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+        <div class="measure-item">
+          <label>Perna Direita</label>
+          <input type="number" name="perna_dir" step="0.1" placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOTOS -->
+    <div class="section">
+      <div class="section-title">📸 Fotos Corporais</div>
+
+      <div class="section-hint">
+        💡 <strong>Dicas para as fotos:</strong> Vista roupa justa ou de academia. Boa iluminação, fundo limpo. Corpo inteiro, dos pés à cabeça. Peça para alguém tirar se possível.
+      </div>
+
+      <div class="photo-section">
+        <div class="photo-upload" onclick="" id="photoFront">
+          <input type="file" accept="image/*" capture="environment" onchange="previewPhoto(this, 'photoFront')">
+          <div class="photo-icon">📷</div>
+          <div class="photo-check">✅</div>
+          <div class="photo-label">Foto Frontal</div>
+          <div class="photo-hint">De frente, braços ao lado do corpo</div>
+          <img class="photo-preview" id="previewFront">
+        </div>
+
+        <div class="photo-upload" onclick="" id="photoCostas">
+          <input type="file" accept="image/*" capture="environment" onchange="previewPhoto(this, 'photoCostas')">
+          <div class="photo-icon">📷</div>
+          <div class="photo-check">✅</div>
+          <div class="photo-label">Foto de Costas</div>
+          <div class="photo-hint">De costas, braços ao lado do corpo</div>
+          <img class="photo-preview" id="previewCostas">
+        </div>
+
+        <div class="photo-upload" onclick="" id="photoLateral">
+          <input type="file" accept="image/*" capture="environment" onchange="previewPhoto(this, 'photoLateral')">
+          <div class="photo-icon">📷</div>
+          <div class="photo-check">✅</div>
+          <div class="photo-label">Foto Lateral</div>
+          <div class="photo-hint">De lado (perfil), braços ao lado do corpo</div>
+          <img class="photo-preview" id="previewLateral">
+        </div>
+      </div>
+    </div>
+
+    <!-- OBSERVAÇÕES -->
+    <div class="section">
+      <div class="field">
+        <label>Observações</label>
+        <textarea name="observacoes" placeholder="Algo que queira comentar sobre as medidas, dificuldade em medir alguma parte, etc..."></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">
+      Enviar Avaliação 📨
+      <div class="btn-sub">Os dados e fotos serão enviados para o Luisão via WhatsApp</div>
+    </button>
+  </form>
+
+  <div class="success-screen" id="successScreen">
+    <div class="emoji">🎉</div>
+    <h2>Avaliação Enviada!</h2>
+    <p>Obrigado! O Luisão vai analisar seus dados e montar seu treino personalizado. Aguarde o contato pelo WhatsApp! 💪</p>
+  </div>
+
+  <footer class="footer">
+    Metodologia MaxResults &middot; Luisão Ribeiro<br>
+    Seus dados são confidenciais
+  </footer>
+</div>
+
+<script>
+const photoFiles = {};
+
+function previewPhoto(input, containerId) {
+  const container = document.getElementById(containerId);
+  const previewId = containerId.replace('photo', 'preview');
+  const preview = document.getElementById(previewId);
+
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      preview.src = e.target.result;
+      container.classList.add('has-photo');
+      photoFiles[containerId] = input.files[0];
+      updateProgress();
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function updateProgress() {
+  const required = ['nome', 'peso', 'altura'];
+  const measures = ['pescoco', 'ombro', 'torax', 'braco_esq', 'braco_dir', 'cintura', 'abdomen', 'quadril', 'coxa_esq', 'coxa_dir', 'perna_esq', 'perna_dir'];
+  const photos = ['photoFront', 'photoCostas', 'photoLateral'];
+
+  let filled = 0;
+  const total = required.length + measures.length + photos.length;
+
+  required.forEach(name => {
+    const el = document.querySelector(`[name="${name}"]`);
+    if (el && el.value.trim()) filled++;
+  });
+
+  measures.forEach(name => {
+    const el = document.querySelector(`[name="${name}"]`);
+    if (el && el.value.trim()) filled++;
+  });
+
+  photos.forEach(id => {
+    if (photoFiles[id]) filled++;
+  });
+
+  const pct = Math.round((filled / total) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = pct + '%';
+}
+
+document.querySelectorAll('input, textarea').forEach(el => {
+  el.addEventListener('input', updateProgress);
+});
+
+document.getElementById('avaliacaoForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const fd = new FormData(this);
+  const d = {};
+  fd.forEach((v, k) => { d[k] = v; });
+
+  let msg = '📏 *AVALIAÇÃO FÍSICA MAXRESULTS*\n\n';
+  msg += `*Nome:* ${d.nome || '—'}\n`;
+  msg += `*Peso:* ${d.peso || '—'} kg\n`;
+  msg += `*Altura:* ${d.altura || '—'} cm\n\n`;
+
+  msg += '📐 *PERIMETRIA (cm)*\n';
+  const medidas = [
+    ['Pescoço', d.pescoco], ['Ombro', d.ombro], ['Tórax', d.torax],
+    ['Braço Esq.', d.braco_esq], ['Braço Dir.', d.braco_dir],
+    ['Cintura', d.cintura], ['Abdômen', d.abdomen], ['Quadril', d.quadril],
+    ['Coxa Esq.', d.coxa_esq], ['Coxa Dir.', d.coxa_dir],
+    ['Perna Esq.', d.perna_esq], ['Perna Dir.', d.perna_dir],
+  ];
+  medidas.forEach(([label, val]) => {
+    if (val) msg += `${label}: ${val}\n`;
+  });
+
+  msg += '\n📸 *Fotos:* ';
+  const photoCount = Object.keys(photoFiles).length;
+  msg += photoCount > 0 ? `${photoCount} foto(s) — envio separado a seguir` : 'Nenhuma enviada';
+  msg += '\n';
+
+  if (d.observacoes) msg += `\n*Obs:* ${d.observacoes}\n`;
+
+  // Send to Discord webhook (automatic)
+  const WEBHOOK_URL = 'https://discord.com/api/webhooks/1524177768508555284/WLBeLBG2D2qNw-gZE9II6njy9cDJIYZfMLdb05SyDC7OQ2zUlu_k93X3KvAtakgGCsNU';
+  const discordMsg = msg.replace(/\*/g, '**');
+
+  const submitBtn = document.querySelector('[type="submit"]');
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando...'; }
+
+  fetch(WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ content: discordMsg, username: 'Avaliação — ' + (d.nome || 'Aluno') })
+  }).then(() => {
+    const phone = '5541999775758';
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+    if (photoCount > 0) {
+      setTimeout(() => {
+        alert('Agora envie as ' + photoCount + ' foto(s) na mesma conversa do WhatsApp com o Luisão! 📸');
+      }, 1500);
+    }
+    this.style.display = 'none';
+    document.getElementById('successScreen').classList.add('visible');
+  }).catch(() => {
+    const phone = '5541999775758';
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+    this.style.display = 'none';
+    document.getElementById('successScreen').classList.add('visible');
+  });
+});
+
+updateProgress();
+</script>
+
+</body>
+</html>
