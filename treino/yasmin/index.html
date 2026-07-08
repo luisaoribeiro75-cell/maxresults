@@ -1019,7 +1019,7 @@ function stopSession() {
 
   // Show completion message
   renderReport();
-  try{fetch('https://discord.com/api/webhooks/1486461383062061096/NaYJvJvQipulZ8Ux8D-alhPgliARc79TbcXf-sRQ0JNzLaLaRgdlhCq4NsErs79RR7PU',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'✅ **Yasmin** finalizou treino!\n📅 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') — '+day.label+'\n🧬 Ciclo: '+CYCLE_ID+'\n🆔 Slot: '+(day.slotId || '-')+'\n⏱️ Tempo: '+formatDuration(elapsed)+'\n📊 Exercícios: '+pct+'% ('+done+'/'+total+')',username:'Frequência — Yasmin'})}).catch(function(){});}catch(e){}alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
+  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'✅ **Yasmin** finalizou treino!\n📅 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') — '+day.label+'\n🧬 Ciclo: '+CYCLE_ID+'\n🆔 Slot: '+(day.slotId || '-')+'\n⏱️ Tempo: '+formatDuration(elapsed)+'\n📊 Exercícios: '+pct+'% ('+done+'/'+total+')',username:'Frequência — Yasmin'})}).catch(function(){});}catch(e){}alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
 }
 
 function restoreTimer() {
