@@ -853,8 +853,8 @@
       <div class="section-title">✅ Confirmação</div>
 
       <div class="field">
-        <label class="checkbox-option" onclick="toggleCheckbox(this)">
-          <input type="checkbox" name="veracidade" required>
+        <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+          <input type="checkbox" name="veracidade">
           <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
           <span class="option-text">Assume a veracidade das informações prestadas <span class="required">*</span></span>
         </label>
@@ -892,10 +892,12 @@ function selectRadio(el) {
   updateProgress();
 }
 
-function toggleCheckbox(el) {
+function toggleCheckbox(e, el) {
+  // Impede o toggle nativo do label (evita duplo-toggle com input display:none)
+  if (e) e.preventDefault();
   el.classList.toggle('selected');
   const input = el.querySelector('input[type="checkbox"]');
-  input.checked = !input.checked;
+  input.checked = el.classList.contains('selected'); // classe = fonte da verdade
   updateProgress();
 }
 
@@ -949,6 +951,15 @@ document.querySelectorAll('input, textarea, select').forEach(el => {
 
 document.getElementById('anamneseForm').addEventListener('submit', function(e) {
   e.preventDefault();
+
+  // Validação do aceite (o campo é display:none, então validamos aqui e não no navegador)
+  const veracidade = document.querySelector('input[name="veracidade"]');
+  if (!veracidade.checked) {
+    const box = veracidade.closest('.checkbox-option');
+    box.style.borderColor = '#ef4444';
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
 
   const fd = new FormData(this);
   const data = {};
