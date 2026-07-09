@@ -369,7 +369,9 @@ const V = {
   pranchaIso: 'https://vd.mfitpersonal.com.br/852/mp4/852.mp4',        // Prancha Isométrica
   // cardio
   caminhada: 'https://vd.mfitpersonal.com.br/521/mp4/521.mp4',         // Esteira Caminhada (backup)
-  maxStep: 'https://player.mediadelivery.net/play/655450/361e1faf-2d79-4c33-a263-1563fad53286', // Bunny: MaxStep#1 - Aquecimento (step em casa)
+  maxStepOrientacao: 'https://player.mediadelivery.net/play/655450/690a957e-4643-48fd-b3aa-1c673d02e3c5', // Bunny: MaxStep#1 - Orientação (~3min)
+  maxStepPreparacao: 'https://player.mediadelivery.net/play/655450/d05b3877-6dfd-426a-8bb4-231442b671e7', // Bunny: MaxStep - Preparação (~1min)
+  maxStep: 'https://player.mediadelivery.net/play/655450/361e1faf-2d79-4c33-a263-1563fad53286', // Bunny: MaxStep#1 - Aquecimento (~4min, o aeróbico)
 };
 
 // ─── Shared blocks (treino em casa) ───
@@ -436,9 +438,11 @@ const SOLTURA_B = {
 const CARDIO_HOME = {
   type: 'cardio', label: 'Cardio / Aeróbico',
   title: 'MaxStep em Casa', duration: '12–15 min',
-  meta: 'Aeróbico no step, ritmo moderado — siga o vídeo e repita',
+  meta: 'Sequência de 3 vídeos no step — faça na ordem e repita pra fechar 12–15 min',
   exercises: [
-    { name: 'MaxStep — Aeróbico no Step', muscle: 'Cardiovascular / Pernas', duration: '12–15 min', equipment: 'Step em casa', tip: 'Siga o vídeo do MaxStep no seu ritmo e repita a sequência até completar 12–15 min. Sempre com um pé apoiado (baixo impacto). 🦵 Se o joelho incomodar, use um step mais baixo, reduza a amplitude e mantenha o ritmo leve — sem forçar.', video: V.maxStep },
+    { name: 'MaxStep 1 — Orientação', muscle: 'Cardiovascular / Pernas', duration: '~3 min', equipment: 'Step em casa', tip: 'Comece por aqui: assista a orientação pra entender os movimentos do MaxStep antes de acelerar. Sempre com um pé apoiado (baixo impacto).', video: V.maxStepOrientacao },
+    { name: 'MaxStep 2 — Preparação', muscle: 'Cardiovascular / Pernas', duration: '~1 min', equipment: 'Step em casa', tip: 'Prepare o corpo pro ritmo — movimentos leves no step pra aquecer a articulação antes do aeróbico.', video: V.maxStepPreparacao },
+    { name: 'MaxStep 3 — Aeróbico', muscle: 'Cardiovascular / Pernas', duration: '~4 min · repita', equipment: 'Step em casa', tip: 'O aeróbico de fato: siga o vídeo no seu ritmo e repita a sequência até completar 12–15 min no total. Sempre com um pé apoiado. 🦵 Se o joelho incomodar, use um step mais baixo, reduza a amplitude e mantenha leve — sem forçar.', video: V.maxStep },
   ]
 };
 
