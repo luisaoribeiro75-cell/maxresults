@@ -327,7 +327,7 @@
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
   <video id="videoPlayer" controls playsinline style="display:none"></video>
-  <iframe id="ytPlayer" width="360" height="640" style="display:none" allow="autoplay"></iframe>
+  <iframe id="ytPlayer" width="360" height="640" style="display:none" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 </div>
 <script>
 const ATHLETE = 'Vivyane';
@@ -368,7 +368,8 @@ const V = {
   deadBug: 'https://vd.mfitpersonal.com.br/734/mp4/734.mp4',           // Abdominal Dead Bug
   pranchaIso: 'https://vd.mfitpersonal.com.br/852/mp4/852.mp4',        // Prancha Isométrica
   // cardio
-  caminhada: 'https://vd.mfitpersonal.com.br/521/mp4/521.mp4',         // Esteira Caminhada (rua/esteira/marcha no lugar)
+  caminhada: 'https://vd.mfitpersonal.com.br/521/mp4/521.mp4',         // Esteira Caminhada (backup)
+  maxStep: 'https://player.mediadelivery.net/play/655450/361e1faf-2d79-4c33-a263-1563fad53286', // Bunny: MaxStep#1 - Aquecimento (step em casa)
 };
 
 // ─── Shared blocks (treino em casa) ───
@@ -434,10 +435,10 @@ const SOLTURA_B = {
 
 const CARDIO_HOME = {
   type: 'cardio', label: 'Cardio / Aeróbico',
-  title: 'Caminhada (rua, esteira ou marcha no lugar)', duration: '15–20 min',
-  meta: 'Zona moderada, sem impacto — 15 a 20 minutos',
+  title: 'MaxStep em Casa', duration: '12–15 min',
+  meta: 'Aeróbico no step, ritmo moderado — siga o vídeo e repita',
   exercises: [
-    { name: 'Caminhada / Marcha no Lugar', muscle: 'Cardiovascular', duration: '15–20 min', equipment: 'Rua, esteira ou marcha no lugar', tip: 'Ritmo moderado e constante, sem impacto. Se for em casa, marche no lugar levantando bem os joelhos (sem saltar). Consegue conversar com um pouco de esforço.', video: V.caminhada },
+    { name: 'MaxStep — Aeróbico no Step', muscle: 'Cardiovascular / Pernas', duration: '12–15 min', equipment: 'Step em casa', tip: 'Siga o vídeo do MaxStep no seu ritmo e repita a sequência até completar 12–15 min. Sempre com um pé apoiado (baixo impacto). 🦵 Se o joelho incomodar, use um step mais baixo, reduza a amplitude e mantenha o ritmo leve — sem forçar.', video: V.maxStep },
   ]
 };
 
@@ -671,8 +672,12 @@ function playVideo(e, url) {
   const overlay = document.getElementById('videoOverlay');
   const player = document.getElementById('videoPlayer');
   const ytPlayer = document.getElementById('ytPlayer');
+  const isBunny = url.includes('player.mediadelivery.net/play/') || url.includes('iframe.mediadelivery.net/embed/');
   if (url.startsWith('yt:')) {
     ytPlayer.src = `https://www.youtube.com/embed/${url.slice(3)}?autoplay=1`;
+    ytPlayer.style.display = 'block'; player.style.display = 'none';
+  } else if (isBunny) {
+    ytPlayer.src = url + (url.includes('?') ? '&' : '?') + 'autoplay=true';
     ytPlayer.style.display = 'block'; player.style.display = 'none';
   } else {
     player.src = url; player.style.display = 'block'; ytPlayer.style.display = 'none'; player.play().catch(err => {
