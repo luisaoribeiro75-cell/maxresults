@@ -345,9 +345,9 @@ const V = {
   maxlift2bt: 'https://1drv.ms/v/c/437d19de9d024724/IQAkRwKd3hl9IIBD5-MAAAAAATY48VJYTyzfx0Gq6gLKC2s?e=37FE2V',
   alongCoxa: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/lpgl41gg1op_opt.mp4',
   alongFlexor: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/5e9lix657lb_opt.mp4',
-  alongPeitoral: '', // era YouTube (removido — regra: sem YouTube). Sem vídeo até o Luisão gravar.
+  alongPeitoral: 'https://vd.mfitpersonal.com.br/585/mp4/585.mp4', // MFit "Alongamento de Peitoral Espaldar" (substituiu YouTube)
   alongGluteos: 'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',
-  handToToes: '', // era YouTube (removido — regra: sem YouTube). Sem vídeo até o Luisão gravar.
+  handToToes: 'https://vd.mfitpersonal.com.br/316/mp4/316.mp4', // MFit "Alongamento de Posteriores V" (substituiu YouTube)
   legPress: 'https://vd.mfitpersonal.com.br/481/mp4/481.mp4',
   supinoBarra: 'https://vd.mfitpersonal.com.br/203/mp4/203.mp4',
   supinoHalter: 'https://vd.mfitpersonal.com.br/201/mp4/201.mp4',
@@ -434,10 +434,10 @@ const MOBILIDADE_A = {
 
 const MOBILIDADE_B = {
   type: 'warmup', label: 'Mobilidade',
-  title: 'Hand to Toes + Glúteo', duration: '25 reps + 25s',
+  title: 'Alongamento de Posteriores + Glúteo', duration: '25s cada',
   meta: '25 repetições + segurar embaixo',
   exercises: [
-    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '25 reps + 20s', equipment: 'Nenhum', tip: '25 repetições tocando os pés, depois segure 20 segundos na posição inferior.', video: V.handToToes },
+    { name: 'Alongamento de Posteriores', muscle: 'Post. coxa', duration: '25s/lado', equipment: 'Nenhum', tip: 'Alongue a parte posterior da coxa. Segure 25 segundos cada lado, respirando fundo.', video: V.handToToes },
     { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '25s/lado', equipment: 'Nenhum', tip: 'Deitada, cruze uma perna sobre a outra e puxe em direção ao peito. 25 segundos cada lado.', video: V.alongGluteos },
   ]
 };
@@ -449,7 +449,7 @@ const MOBILIDADE_C = {
   exercises: [
     { name: 'Alongamento Peitoral', muscle: 'Peitoral', duration: '25s', equipment: 'Nenhum', tip: 'Alongue o peitoral por 25 segundos.', video: V.alongPeitoral },
     { name: 'Alongamento de Coxa', muscle: 'Quadríceps', duration: '25s/lado', equipment: 'Nenhum', tip: 'Em pé, puxe o pé em direção ao glúteo. 25 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '25 reps + 20s', equipment: 'Nenhum', tip: '25 repetições tocando os pés, depois segure 20 segundos na posição inferior.', video: V.handToToes },
+    { name: 'Alongamento de Posteriores', muscle: 'Post. coxa', duration: '25s/lado', equipment: 'Nenhum', tip: 'Alongue a parte posterior da coxa. Segure 25 segundos cada lado, respirando fundo.', video: V.handToToes },
     { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '25s/lado', equipment: 'Nenhum', tip: 'Deitada, cruze uma perna sobre a outra e puxe em direção ao peito.', video: V.alongGluteos },
   ]
 };
@@ -470,7 +470,7 @@ const ALONG_FINAL_B = {
   title: 'Alongamento Posterior', duration: '10s cada',
   meta: '10 segundos cada alongamento',
   exercises: [
-    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '10s', equipment: 'Nenhum', tip: '10 segundos na posição inferior.', video: V.handToToes },
+    { name: 'Alongamento de Posteriores', muscle: 'Post. coxa', duration: '10s', equipment: 'Nenhum', tip: 'Alongue a posterior da coxa. Segure ~10 segundos.', video: V.handToToes },
     { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongGluteos },
   ]
 };
@@ -482,7 +482,7 @@ const ALONG_FINAL_C = {
   exercises: [
     { name: 'Alongamento Peitoral', muscle: 'Peitoral', duration: '10s', equipment: 'Nenhum', tip: '10 segundos.', video: V.alongPeitoral },
     { name: 'Alongamento de Coxa', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '10s', equipment: 'Nenhum', tip: '10 segundos na posição.', video: V.handToToes },
+    { name: 'Alongamento de Posteriores', muscle: 'Post. coxa', duration: '10s', equipment: 'Nenhum', tip: 'Alongue a posterior da coxa. Segure ~10 segundos.', video: V.handToToes },
     { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongGluteos },
   ]
 };
