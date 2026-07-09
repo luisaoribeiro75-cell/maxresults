@@ -387,7 +387,7 @@ const AQUEC_MUSCULAR_A = {
   exercises: [
     { name: 'Balanço Frontal das Pernas', muscle: 'Quadril / Pernas', duration: '1x12', equipment: 'Apoio', tip: 'Segure em um apoio e balance a perna para frente e para trás com controle. 12 cada lado.', video: V.balanco },
     { name: 'Giros dos Braços', muscle: 'Ombros', duration: '1x12', equipment: 'Nenhum', tip: 'Braços estendidos, gire em círculos amplos. 12 para frente, 12 para trás.', video: V.giros },
-    { name: 'Ativação de Glúteo com Power Band', muscle: 'Glúteos', duration: '1x15', equipment: 'Mini band', tip: 'Faixa acima dos joelhos. Abra e feche as pernas com controle sentindo o glúteo médio. 15 repetições.', video: null },
+    { name: 'Glúteos em 4 Apoios', muscle: 'Glúteos', duration: '1x15/lado', equipment: 'Colchonete', tip: 'Em 4 apoios, eleve a perna dobrada em direção ao teto contraindo o glúteo e volte com controle. 15 cada lado — ativa o glúteo pro treino.', video: V.gluteos4apoios },
   ]
 };
 
@@ -404,22 +404,22 @@ const AQUEC_MUSCULAR_B = {
 
 const AQUEC_MUSCULAR_C = {
   type: 'warmup', label: 'Aquecimento Muscular',
-  title: 'Balanço + Giros + Ponte de Glúteo', duration: '1x12–15',
+  title: 'Balanço + Giros + Glúteos 4 Apoios', duration: '1x12–15',
   meta: 'Ativação leve para preparar o treino',
   exercises: [
     { name: 'Balanço Frontal das Pernas', muscle: 'Quadril / Pernas', duration: '1x12', equipment: 'Apoio', tip: 'Segure em um apoio e balance a perna para frente e para trás com controle. 12 cada lado.', video: V.balanco },
     { name: 'Giros dos Braços', muscle: 'Ombros', duration: '1x12', equipment: 'Nenhum', tip: 'Braços estendidos, gire em círculos amplos. 12 para frente, 12 para trás.', video: V.giros },
-    { name: 'Ponte de Glúteo', muscle: 'Glúteos', duration: '1x15', equipment: 'Colchonete', tip: 'Deitada de costas, joelhos dobrados. Suba o quadril contraindo o glúteo e desça devagar. 15 repetições.', video: null },
+    { name: 'Glúteos em 4 Apoios', muscle: 'Glúteos', duration: '1x15/lado', equipment: 'Colchonete', tip: 'Em 4 apoios, eleve a perna dobrada contraindo o glúteo e desça devagar. 15 cada lado — ativa o glúteo pro treino.', video: V.gluteos4apoios },
   ]
 };
 
 const MOBILIDADE_A = {
   type: 'warmup', label: 'Mobilidade',
-  title: 'Quadril 90/90 + Adutores', duration: '1x8 · 30s',
+  title: 'Flexor do Quadril + Glúteos', duration: '30s cada',
   meta: 'Mobilidade de quadril e abertura de adutores',
   exercises: [
-    { name: 'Mobilidade de Quadril 90/90', muscle: 'Quadril', duration: '1x8/lado', equipment: 'Colchonete', tip: 'Sentada no chão, alterne as pernas de um lado para o outro na posição 90/90, controlando o giro do quadril. 8 cada lado.', video: null },
-    { name: 'Alongamento de Adutores (Borboleta Ativa)', muscle: 'Adutores', duration: '1x30s', equipment: 'Colchonete', tip: 'Sentada, plantas dos pés juntas. Leve os joelhos ativamente em direção ao chão e segure. 30 segundos.', video: null },
+    { name: 'Alongamento de Flexor do Quadril (Afundo Estático)', muscle: 'Quadril', duration: '1x30s/lado', equipment: 'Colchonete', tip: 'Em afundo, joelho de trás apoiado. Empurre o quadril à frente até sentir a frente da coxa/quadril alongar. 30s cada lado — abre o quadril.', video: V.alongFlexor },
+    { name: 'Alongamento de Glúteos', muscle: 'Glúteos / Quadril', duration: '1x30s/lado', equipment: 'Colchonete', tip: 'Deitada, cruze o tornozelo sobre o joelho oposto e puxe a coxa em direção ao peito. 30s cada lado — solta o quadril.', video: V.alongGluteos },
   ]
 };
 
@@ -428,18 +428,18 @@ const MOBILIDADE_B = {
   title: 'Quadril em 4 Apoios + Flexor', duration: '1x8 · 30s',
   meta: 'Rotação de quadril e abertura do flexor',
   exercises: [
-    { name: 'Mobilidade de Quadril — Rotação em 4 Apoios', muscle: 'Quadril', duration: '1x8/lado', equipment: 'Colchonete', tip: 'Em 4 apoios, abra o quadril para o lado (como um cachorrinho) e volte com controle. 8 cada lado.', video: null },
+    { name: 'Glúteos em 4 Apoios', muscle: 'Quadril / Glúteos', duration: '1x8/lado', equipment: 'Colchonete', tip: 'Em 4 apoios, abra o quadril para o lado (como um cachorrinho) e volte com controle, mobilizando o quadril. 8 cada lado.', video: V.gluteos4apoios },
     { name: 'Alongamento de Flexor do Quadril (Afundo Estático)', muscle: 'Flexor do quadril', duration: '1x30s/lado', equipment: 'Colchonete', tip: 'Em afundo, joelho de trás no chão. Empurre o quadril para frente suavemente e segure. 30 segundos cada lado.', video: V.alongFlexor },
   ]
 };
 
 const MOBILIDADE_C = {
   type: 'warmup', label: 'Mobilidade',
-  title: 'Quadril Circular + Adutores', duration: '1x8 · 30s',
+  title: 'Flexor do Quadril + Posterior', duration: '30s cada',
   meta: 'Mobilidade de quadril e abertura de adutores',
   exercises: [
-    { name: 'Mobilidade de Quadril — Rotação Circular em Pé', muscle: 'Quadril', duration: '1x8/sentido', equipment: 'Apoio', tip: 'Em pé, apoiada. Faça círculos amplos com o quadril, 8 para cada sentido, controlando o movimento.', video: null },
-    { name: 'Alongamento de Adutores em Pé', muscle: 'Adutores', duration: '1x30s', equipment: 'Nenhum', tip: 'Pernas afastadas, desloque o peso para um lado dobrando o joelho e sinta o adutor da outra perna. 30 segundos.', video: null },
+    { name: 'Alongamento de Flexor do Quadril (Afundo Estático)', muscle: 'Quadril', duration: '1x30s/lado', equipment: 'Colchonete', tip: 'Em afundo, joelho de trás apoiado, empurre o quadril à frente e segure. 30s cada lado — mobiliza e alonga o quadril.', video: V.alongFlexor },
+    { name: 'Alongamento de Posterior de Coxa', muscle: 'Posterior / Adutores', duration: '1x30s/lado', equipment: 'Nenhum', tip: 'Perna à frente estendida, incline o tronco com a coluna reta até sentir a parte de trás da coxa. 30s cada lado.', video: V.alongCoxa },
   ]
 };
 
@@ -465,10 +465,10 @@ const ALONG_FINAL_B = {
 
 const ALONG_FINAL_C = {
   type: 'warmup', label: 'Alongamento Final',
-  title: 'Full Body Dinâmico', duration: '10s cada',
-  meta: '10 segundos cada movimento',
+  title: 'Alongamento de Posteriores', duration: '10s cada',
+  meta: '10 segundos, respirando fundo',
   exercises: [
-    { name: 'Alongamento Full Body Dinâmico', muscle: 'Corpo todo', duration: '10s cada', equipment: 'Nenhum', tip: 'Sequência dinâmica leve: alongue posterior, adutor, quadril e tronco, passando ~10 segundos em cada posição sem forçar.', video: null },
+    { name: 'Alongamento de Posteriores', muscle: 'Cadeia posterior', duration: '10s cada', equipment: 'Nenhum', tip: 'Em pé, joelhos levemente flexionados, desça as mãos em direção aos pés alongando toda a parte de trás do corpo. Segure e respire, sem forçar.', video: V.handToToes },
   ]
 };
 
@@ -527,7 +527,7 @@ const TREINO_A = [
     meta: 'Ênfase adutores + core — descanso 90s só ao fim do bloco',
     exercises: [
       { name: 'Cadeira Adutora', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Feche as pernas com controle e segure 1s na contração. Ênfase do treino.', video: V.aducao },
-      { name: 'Prancha Frontal', muscle: 'Core / Abdômen', duration: '3x30s', equipment: 'Colchonete', tip: 'Antebraços no chão, corpo alinhado. Contraia abdômen e glúteo, sem deixar o quadril cair. 30 segundos.', video: null },
+      { name: 'Abdominal Supra', muscle: 'Core / Abdômen', duration: '3x15', equipment: 'Colchonete', tip: 'Deitada, joelhos dobrados, mãos na nuca sem puxar o pescoço. Suba o tronco contraindo o abdômen e desça devagar. 15 repetições.', video: V.abdomSupra },
     ]
   },
   CARDIO_A,
@@ -596,7 +596,7 @@ const TREINO_C = [
     title: 'Prancha Lateral ↔ Abdução de Quadril', duration: '3x20s / 15 · Sem descanso no par',
     meta: 'Ênfase core + adutores/abdutores — descanso 90s só ao fim do bloco',
     exercises: [
-      { name: 'Prancha Lateral', muscle: 'Core / Oblíquos', duration: '3x20s (cada lado)', equipment: 'Colchonete', tip: 'Apoie no antebraço, corpo alinhado e quadril elevado. Segure 20 segundos cada lado.', video: null },
+      { name: 'Abdominal Supra', muscle: 'Core / Abdômen', duration: '3x15', equipment: 'Colchonete', tip: 'Deitada, joelhos dobrados, mãos na nuca sem puxar o pescoço. Contraia o abdômen subindo o tronco e desça devagar. 15 repetições.', video: V.abdomSupra },
       { name: 'Abdução de Quadril na Máquina', muscle: 'Abdutores / Glúteo médio', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abra com controle e segure 1s na contração.', video: V.abdQuadril },
     ]
   },
