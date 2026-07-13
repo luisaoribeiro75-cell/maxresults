@@ -340,6 +340,8 @@ const WEEKLY_GOALS = [
 ];
 
 const V = {
+  gluteos4: 'https://vd.mfitpersonal.com.br/240/mp4/240.mp4',
+  remadaUniHalter: 'https://vd.mfitpersonal.com.br/210/mp4/210.mp4',
   giros: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/8d76rg3vbsm_opt.mp4',
   balanco: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/d508q2wlkh_opt.mp4',
   maxlift2bt: 'https://1drv.ms/v/c/437d19de9d024724/IQAkRwKd3hl9IIBD5-MAAAAAATY48VJYTyzfx0Gq6gLKC2s?e=37FE2V',
@@ -348,7 +350,7 @@ const V = {
   alongPeitoral: 'https://vd.mfitpersonal.com.br/585/mp4/585.mp4', // MFit "Alongamento de Peitoral Espaldar" (substituiu YouTube)
   alongGluteos: 'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',
   handToToes: 'https://vd.mfitpersonal.com.br/316/mp4/316.mp4', // MFit "Alongamento de Posteriores V" (substituiu YouTube)
-  legPress: 'https://vd.mfitpersonal.com.br/481/mp4/481.mp4',
+  legPress: 'https://vd.mfitpersonal.com.br/491/mp4/491.mp4',
   supinoBarra: 'https://vd.mfitpersonal.com.br/203/mp4/203.mp4',
   supinoHalter: 'https://vd.mfitpersonal.com.br/201/mp4/201.mp4',
   cadeiraExt: 'https://vd.mfitpersonal.com.br/504/mp4/504.mp4',
@@ -369,7 +371,7 @@ const V = {
   bike: 'https://vd.mfitpersonal.com.br/529/mp4/529.mp4',
   panturrilhaParede: 'https://vd.mfitpersonal.com.br/762/mp4/762.mp4',
   bomDia: 'https://vd.mfitpersonal.com.br/269/mp4/269.mp4',
-  agachLivre: 'https://vd.mfitpersonal.com.br/52/mp4/52.mp4',
+  agachLivre: 'https://vd.mfitpersonal.com.br/50/mp4/50.mp4',
   agachSmith: 'https://vd.mfitpersonal.com.br/73/mp4/73.mp4',
   agachSumoHalter: 'https://vd.mfitpersonal.com.br/78/mp4/78.mp4',
   elevLateral: 'https://vd.mfitpersonal.com.br/153/mp4/153.mp4',
@@ -514,11 +516,11 @@ const TREINO_A = [
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Flexora ↔ Remada Baixa', duration: '3x12 · Sem descanso no par',
-    meta: 'Posterior + costas — descanso 90s só ao fim do bloco',
+    title: 'Cadeira Flexora ↔ Remada Unilateral (Halteres)', duration: '3x12 · Sem descanso no par',
+    meta: 'Posterior + costas — máquina + livre (não ocupa 2 estações)',
     exercises: [
       { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12', equipment: 'Máquina flexora', tip: 'Controle a volta e evite tirar o quadril do banco.', video: V.cadeiraFlexora },
-      { name: 'Remada Baixa', muscle: 'Costas (meio das costas)', duration: '3x12', equipment: 'Puxador baixo', tip: 'Puxe em direção ao abdômen, fechando as escápulas no final.', video: V.remadaBaixa },
+      { name: 'Remada Unilateral com Halteres (Neutra)', muscle: 'Costas (dorsal/meio)', duration: '3x12 cada lado', equipment: 'Halter + banco (ao lado da flexora)', tip: 'Uma mão e um joelho no banco, tronco paralelo ao chão, pegada neutra. Puxa o halter à cintura fechando a escápula. Feita ao lado da flexora, sem ocupar outra máquina.', video: V.remadaUniHalter },
     ]
   },
   {
@@ -549,11 +551,11 @@ const TREINO_B = [
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Extensora ↔ Glúteos Coice', duration: '3x12 · Sem descanso no par',
-    meta: 'Quadríceps + glúteo — descanso 90s só ao fim do bloco',
+    title: 'Cadeira Extensora ↔ Glúteos 4 Apoios', duration: '3x12 · Sem descanso no par',
+    meta: 'Quadríceps + glúteo — máquina + peso do corpo (ancorado)',
     exercises: [
       { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12', equipment: 'Máquina extensora', tip: 'Segure 1 segundo no topo de cada repetição.', video: V.cadeiraExt },
-      { name: 'Glúteos Coice na Polia', muscle: 'Glúteos', duration: '3x12 (cada lado)', equipment: 'Polia baixa + caneleira', tip: 'Chuta para trás sem compensar na lombar. Alterna os lados.', video: V.gluteosCoice },
+      { name: 'Glúteos 4 Apoios c/ Caneleira', muscle: 'Glúteos', duration: '3x12 (cada lado)', equipment: 'Colchonete + caneleira (ao lado)', tip: 'No colchonete ao lado da extensora. Estende a perna pra trás contraindo o glúteo, sem compensar na lombar.', video: V.gluteos4 },
     ]
   },
   {
