@@ -341,6 +341,7 @@ const WEEKLY_GOALS = [
 ];
 
 const V = {
+  aducaoCaneleira: 'https://vd.mfitpersonal.com.br/26/mp4/26.mp4',
   legPressHoriz: 'https://vd.mfitpersonal.com.br/491/mp4/491.mp4',
   remadaUniHalter: 'https://vd.mfitpersonal.com.br/210/mp4/210.mp4',
   deadBug: 'https://vd.mfitpersonal.com.br/734/mp4/734.mp4',
@@ -531,22 +532,22 @@ const TREINO_A = [
   MOBILIDADE_A,
   {
     type: 'lift', label: 'Tri-Set 1',
-    title: 'Leg Press Horizontal → Remada Unilateral → Prancha', duration: '3-4 voltas · 15-20 reps · descanso só no fim da volta',
-    meta: 'Circuito metabólico: emenda os 3 exercícios, descanso ~60s só ao fim de cada volta. Ritmo alto = mais queima (o intenso da renovação, sem carga na coluna).',
+    title: 'Leg Press Horizontal → Remada Unilateral → Dead Bug', duration: '3-4 voltas · 15-20 reps · descanso só no fim da volta',
+    meta: 'Circuito metabólico: emenda os 3, descanso ~60s só ao fim de cada volta. Ritmo alto = queima (intenso, sem carga na coluna).',
     exercises: [
       { name: 'Leg Press Horizontal', muscle: 'Quadríceps / Glúteos', duration: '3-4x15-20', equipment: 'Máquina Leg Press (horizontal)', tip: 'Costas 100% apoiadas (protege a lombar). Empurra pelo calcanhar, sem travar o joelho. Ritmo constante.', video: V.legPressHoriz },
-      { name: 'Remada Unilateral com Halteres (Neutra)', muscle: 'Costas (dorsal)', duration: '3-4x12-15 cada lado', equipment: 'Halter + banco', tip: 'Uma mão e um joelho no banco, tronco paralelo ao chão, pegada neutra. Puxa à cintura; troca de lado sem parar.', video: V.remadaUniHalter },
-      { name: 'Prancha', muscle: 'Core', duration: '3-4x 30-40s', equipment: 'Colchonete', tip: 'Corpo alinhado, abdômen firme. Fecha a volta.', video: V.prancha },
+      { name: 'Remada Unilateral com Halteres (Neutra)', muscle: 'Costas (dorsal)', duration: '3-4x12-15 cada lado', equipment: 'Halter + banco', tip: 'Uma mão e um joelho no banco, tronco paralelo, pegada neutra. Puxa à cintura; troca de lado sem parar.', video: V.remadaUniHalter },
+      { name: 'Dead Bug', muscle: 'Core anti-extensão', duration: '3-4x10 cada lado', equipment: 'Colchonete', tip: 'Lombar colada no chão, estende braço/perna opostos devagar. Protege a coluna.', video: V.deadBug },
     ]
   },
   {
-    type: 'lift', label: 'Tri-Set 2',
-    title: 'Adução Máquina → Supino Halteres → Dead Bug', duration: '3-4 voltas · 15-20 reps · descanso só no fim da volta',
-    meta: 'Circuito metabólico: emenda os 3 exercícios, descanso ~60s só ao fim de cada volta. Ritmo alto = mais queima (o intenso da renovação, sem carga na coluna).',
+    type: 'lift', label: 'Tri-Set 2 · SOLO (sala separada)',
+    title: 'Supino Halteres (no step) → Adução no chão → Prancha', duration: '3-4 voltas · 15-20 reps · descanso só no fim da volta',
+    meta: 'Circuito no SOLO, em sala separada — zero máquina. Monta o step, pega os halteres e a caneleira e faz os 3 emendados no colchonete. Ninguém te atrapalha e o ritmo não cai.',
     exercises: [
-      { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3-4x15-20', equipment: 'Máquina adutora', tip: 'Fecha as pernas com controle, sem pausa entre as reps.', video: V.aducao },
-      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '3-4x12-15', equipment: 'Halteres + banco', tip: 'Deitada, empurra os halteres controlando. Pés no chão.', video: V.supinoHalter },
-      { name: 'Dead Bug', muscle: 'Core anti-extensão', duration: '3-4x10 cada lado', equipment: 'Colchonete', tip: 'Lombar colada no chão, estende braço/perna opostos devagar. Protege a coluna.', video: V.deadBug },
+      { name: 'Supino Reto com Halteres (no step)', muscle: 'Peitoral', duration: '3-4x12-15', equipment: 'Step + halteres', tip: 'Deitada no step, empurra os halteres controlando. Pés no chão, lombar neutra.', video: V.supinoHalter },
+      { name: 'Adução de Pernas no Chão (Caneleira)', muscle: 'Adutores', duration: '3-4x15-20 cada lado', equipment: 'Colchonete + caneleira', tip: 'Deitada de lado no colchonete, caneleira no tornozelo: sobe a perna de baixo cruzando à frente da de cima, contrai o adutor e desce controlando. Troca de lado.', video: V.aducaoCaneleira },
+      { name: 'Prancha', muscle: 'Core', duration: '3-4x 30-40s', equipment: 'Colchonete', tip: 'Cotovelos no chão, corpo alinhado, abdômen firme. Fecha a volta.', video: V.prancha },
     ]
   },
   MAXLIFT_BT,
