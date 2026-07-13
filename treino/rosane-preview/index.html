@@ -318,6 +318,8 @@ const WEEKLY_GOALS = [
 ];
 
 const V = {
+  abdomSolo: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
+  gluteos4: 'https://vd.mfitpersonal.com.br/240/mp4/240.mp4',
   giros: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/8d76rg3vbsm_opt.mp4',
   balanco: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/d508q2wlkh_opt.mp4',
   maxlift3: 'https://1drv.ms/v/c/437d19de9d024724/IQAkRwKd3hl9IIBDXOUAAAAAAcpS0aYRHYfXg37biRry5dA',
@@ -346,7 +348,7 @@ const V = {
   elevLateral: 'https://vd.mfitpersonal.com.br/131/mp4/131.mp4',
   puxadaFrontal: 'https://vd.mfitpersonal.com.br/565/mp4/565.mp4',
   remadaBaixa: 'https://vd.mfitpersonal.com.br/576/mp4/576.mp4',
-  remadaUnilateral: 'https://player.mediadelivery.net/play/655450/01183ec0-4234-46e5-b484-9bffa330c3c7',
+  remadaUnilateral: 'https://vd.mfitpersonal.com.br/210/mp4/210.mp4',
   agachSmith: 'https://vd.mfitpersonal.com.br/73/mp4/73.mp4',
   cordaGrande: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/nddbtpg8z38_opt.mp4',
   elevQuadril: 'https://vd.mfitpersonal.com.br/255/mp4/255.mp4',
@@ -425,11 +427,20 @@ const TREINO_A = [
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Extensora ↔ Cadeira Flexora', duration: '3x15 · Sem descanso',
-    meta: 'Frente e trás da coxa com estabilidade total',
+    title: 'Cadeira Extensora ↔ Abdominal no chão', duration: '3x15 · Sem descanso',
+    meta: 'Quadríceps + core, ancorado na máquina',
     exercises: [
       { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x15', equipment: 'Máquina extensora', tip: 'Suba controlando e segure 1 segundo no topo.', video: V.cadeiraExt },
+      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3x15-20', equipment: 'Colchonete (ao lado)', tip: 'Feito no colchonete ao lado da extensora — não sai do lugar. Sobe com o abdômen, sem puxar o pescoço.', video: V.abdomSolo },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 2b',
+    title: 'Cadeira Flexora ↔ Glúteos 4 Apoios', duration: '3x15 · Sem descanso',
+    meta: 'Posterior de coxa + glúteo, ancorado na máquina',
+    exercises: [
       { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x15', equipment: 'Máquina flexora', tip: 'Controle a volta. Evite tirar o quadril do banco.', video: V.cadeiraFlexora },
+      { name: 'Glúteos 4 Apoios c/ Caneleira', muscle: 'Glúteos', duration: '3x15 (cada lado)', equipment: 'Colchonete + caneleira (ao lado)', tip: 'No colchonete ao lado da flexora. Estende a perna pra trás contraindo o glúteo, sem forçar a lombar.', video: V.gluteos4 },
     ]
   },
   {
@@ -458,11 +469,11 @@ const TREINO_B = [
   },
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Puxada Frontal ↔ Remada Baixa', duration: '3x15 · Sem descanso',
+    title: 'Puxada Frontal ↔ Remada Unilateral (Neutra)', duration: '3x15 · Sem descanso',
     meta: 'Costas com apoio e trajetória segura',
     exercises: [
       { name: 'Puxada Frontal Aberta', muscle: 'Costas (dorsal)', duration: '3x15', equipment: 'Puxador', tip: 'Puxe até a linha do peito, fechando escápulas.', video: V.puxadaFrontal },
-      { name: 'Remada Baixa', muscle: 'Costas (meio das costas)', duration: '3x15', equipment: 'Remada baixa', tip: 'Tronco estável, puxa na linha do abdômen.', video: V.remadaBaixa },
+      { name: 'Remada Unilateral com Halter (Neutra/Serrote)', muscle: 'Costas (dorsal/meio)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Uma mão e um joelho no banco, tronco paralelo ao chão, pegada neutra (palma pro corpo). Puxa o halter à cintura contraindo a escápula; um lado depois o outro. Feita ao lado da puxada, sem ocupar outra máquina.', video: V.remadaUnilateral },
     ]
   },
   {
@@ -530,11 +541,11 @@ const TREINO_D = [
   },
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Puxada Frontal ↔ Remada Baixa', duration: '3x15 · Sem descanso',
+    title: 'Puxada Frontal ↔ Remada Unilateral (Neutra)', duration: '3x15 · Sem descanso',
     meta: 'Costas com tronco estável e sem compensar lombar',
     exercises: [
       { name: 'Puxada Frontal Aberta', muscle: 'Costas', duration: '3x15', equipment: 'Puxador', tip: 'Puxe até a linha do peito, fechando escápulas.', video: V.puxadaFrontal },
-      { name: 'Remada Baixa', muscle: 'Costas', duration: '3x15', equipment: 'Remada baixa', tip: 'Tronco estável, puxa na linha do abdômen.', video: V.remadaBaixa },
+      { name: 'Remada Unilateral com Halter (Neutra/Serrote)', muscle: 'Costas (dorsal/meio)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Uma mão e um joelho no banco, tronco paralelo ao chão, pegada neutra (palma pro corpo). Puxa o halter à cintura contraindo a escápula; um lado depois o outro. Feita ao lado da puxada, sem ocupar outra máquina.', video: V.remadaUnilateral },
     ]
   },
   {

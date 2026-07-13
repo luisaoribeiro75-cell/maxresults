@@ -362,7 +362,7 @@ const V = {
   abdQuadril: 'https://vd.mfitpersonal.com.br/515/mp4/515.mp4',
   desenvNeutro: 'https://vd.mfitpersonal.com.br/155/mp4/155.mp4',
   puxadaFrontal: 'https://vd.mfitpersonal.com.br/565/mp4/565.mp4',
-  remadaBaixa: 'https://vd.mfitpersonal.com.br/576/mp4/576.mp4',
+  remadaBaixa: 'https://vd.mfitpersonal.com.br/403/mp4/403.mp4',
   remadaCurvada: 'https://vd.mfitpersonal.com.br/221/mp4/221.mp4',
   gluteosCoice: 'https://vd.mfitpersonal.com.br/457/mp4/457.mp4',
   gluteos4apoios: 'https://vd.mfitpersonal.com.br/240/mp4/240.mp4',
@@ -562,12 +562,21 @@ const TREINO_B = [
   AQUEC_MUSCULAR_B,
   MOBILIDADE_B,
   {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Cadeira Flexora ↔ Puxada Frontal', duration: '3x12-15 · Sem descanso',
-    meta: '3 séries de 12-15 · Sem descanso entre exercícios',
+    type: 'lift', label: 'Bi-Set',
+    title: 'Cadeira Flexora ↔ Abdominal no chão', duration: '3x12-15 · Sem descanso',
+    meta: 'Posterior de coxa + core, ancorado na máquina',
     exercises: [
-      { name: 'Cadeira Flexora', muscle: 'Post. coxa', duration: '3x12-15', equipment: 'Máquina flexora', tip: 'Controle a fase excêntrica. Não deixe o peso cair. Mantenha o quadril no banco.', video: V.cadeiraFlexora },
-      { name: 'Puxada Frontal', muscle: 'Costas (dorsal)', duration: '3x12-15', equipment: 'Puxador', tip: 'Pegada aberta pronada. Puxe a barra até a linha do peito, contraindo as escápulas.', video: V.puxadaFrontal },
+      { name: 'Cadeira Flexora', muscle: 'Post. coxa', duration: '3x12-15', equipment: 'Máquina flexora', tip: 'Controle a fase excêntrica, não deixe o peso cair. Quadril no banco.', video: V.cadeiraFlexora },
+      { name: 'Abdominal Supra no chão', muscle: 'Abdômen / Core', duration: '3x15-20', equipment: 'Colchonete (ao lado)', tip: 'No colchonete ao lado da flexora — não sai do lugar. Core firme (bom pra coluna).', video: V.abdomSupra },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set',
+    title: 'Puxada Frontal ↔ Crucifixo Inverso (Halteres)', duration: '3x12-15 · Sem descanso',
+    meta: 'Dorsal + postural, máquina + livre',
+    exercises: [
+      { name: 'Puxada Frontal', muscle: 'Costas (dorsal)', duration: '3x12-15', equipment: 'Puxador', tip: 'Pegada aberta, puxe até a linha do peito contraindo escápulas.', video: V.puxadaFrontal },
+      { name: 'Crucifixo Inverso com Halteres', muscle: 'Post. de ombro / Postura', duration: '3x12-15', equipment: 'Halteres (ao lado do puxador)', tip: 'Com os halteres ao lado, tronco levemente inclinado, abra os braços contraindo as escápulas. Ótimo pra postura.', video: V.crucifixoInvHalter },
     ]
   },
   {
@@ -576,7 +585,7 @@ const TREINO_B = [
     meta: '3 séries de 12-15 · Sem descanso entre exercícios',
     exercises: [
       { name: 'Glúteos Coice na Polia', muscle: 'Glúteos', duration: '3x12-15', equipment: 'Polia baixa + caneleira', tip: 'Empurre a perna para trás contraindo o glúteo no topo. Desça controlando. Sem forçar a lombar.', video: V.gluteosCoice },
-      { name: 'Remada Baixa', muscle: 'Costas (meio)', duration: '3x12-15', equipment: 'Polia + triângulo', tip: 'Puxe em direção ao abdômen contraindo as escápulas. Sem balançar o tronco.', video: V.remadaBaixa },
+      { name: 'Remada Baixa na Polia Baixa (Supinada)', muscle: 'Costas (meio)', duration: '3x12-15', equipment: 'Polia baixa do crossover + barra reta', tip: 'Tronco inclinado à frente, pegada supinada (palma pra cima). Puxe a barra ao abdômen contraindo as escápulas, sem balançar o tronco. Mesma polia do coice de glúteo — não sai do aparelho.', video: V.remadaBaixa },
     ]
   },
   {
@@ -608,12 +617,21 @@ const TREINO_C = [
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Flexora ↔ Puxada Frontal', duration: '3x12-15 · Sem descanso',
-    meta: '3 séries de 12-15 · Sem descanso entre exercícios',
+    type: 'lift', label: 'Bi-Set',
+    title: 'Cadeira Flexora ↔ Abdominal no chão', duration: '3x12-15 · Sem descanso',
+    meta: 'Posterior de coxa + core, ancorado na máquina',
     exercises: [
-      { name: 'Cadeira Flexora', muscle: 'Post. coxa', duration: '3x12-15', equipment: 'Máquina flexora', tip: 'Controle a fase excêntrica. Mantenha o quadril no banco.', video: V.cadeiraFlexora },
+      { name: 'Cadeira Flexora', muscle: 'Post. coxa', duration: '3x12-15', equipment: 'Máquina flexora', tip: 'Controle a fase excêntrica, não deixe o peso cair. Quadril no banco.', video: V.cadeiraFlexora },
+      { name: 'Abdominal Supra no chão', muscle: 'Abdômen / Core', duration: '3x15-20', equipment: 'Colchonete (ao lado)', tip: 'No colchonete ao lado da flexora — não sai do lugar. Core firme (bom pra coluna).', video: V.abdomSupra },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set',
+    title: 'Puxada Frontal ↔ Crucifixo Inverso (Halteres)', duration: '3x12-15 · Sem descanso',
+    meta: 'Dorsal + postural, máquina + livre',
+    exercises: [
       { name: 'Puxada Frontal', muscle: 'Costas (dorsal)', duration: '3x12-15', equipment: 'Puxador', tip: 'Pegada aberta, puxe até a linha do peito contraindo escápulas.', video: V.puxadaFrontal },
+      { name: 'Crucifixo Inverso com Halteres', muscle: 'Post. de ombro / Postura', duration: '3x12-15', equipment: 'Halteres (ao lado do puxador)', tip: 'Com os halteres ao lado, tronco levemente inclinado, abra os braços contraindo as escápulas. Ótimo pra postura.', video: V.crucifixoInvHalter },
     ]
   },
   {

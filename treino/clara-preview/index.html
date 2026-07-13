@@ -340,6 +340,7 @@ const WEEKLY_GOALS = [
 ];
 
 const V = {
+  gluteos4: 'https://vd.mfitpersonal.com.br/240/mp4/240.mp4',
   giros: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/8d76rg3vbsm_opt.mp4',
   balanco: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/d508q2wlkh_opt.mp4',
   maxlift2bt: 'https://1drv.ms/v/c/437d19de9d024724/IQAkRwKd3hl9IIBD5-MAAAAAATY48VJYTyzfx0Gq6gLKC2s?e=37FE2V',
@@ -375,7 +376,7 @@ const V = {
   hipThrust: 'https://vd.mfitpersonal.com.br/367/mp4/367.mp4',
   stiffHalteres: 'https://vd.mfitpersonal.com.br/267/mp4/267.mp4',
   abdomInfra: 'https://vd.mfitpersonal.com.br/375/mp4/375.mp4',
-  prancha: 'https://vd.mfitpersonal.com.br/243/mp4/243.mp4',
+  prancha: 'https://vd.mfitpersonal.com.br/852/mp4/852.mp4',
   agachSmith: 'https://vd.mfitpersonal.com.br/73/mp4/73.mp4',
   corda: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/owhepr9y3xo_opt.mp4',
   wallBall: 'yt:EqjGKsiIMCE',
@@ -569,11 +570,20 @@ const TREINO_B = [
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Glúteos Coice ↔ Abdução Máquina', duration: '4x12-15 · Sem descanso',
-    meta: 'Glúteos em duas angulações',
+    title: 'Glúteos Coice na Polia ↔ Prancha', duration: '4x12-15 · Sem descanso',
+    meta: 'Glúteo na polia + core, ancorado',
     exercises: [
       { name: 'Glúteos Coice na Polia', muscle: 'Glúteos', duration: '4x12 (cada lado)', equipment: 'Polia + caneleira', tip: 'Sem compensar na lombar. Movimento limpo.', video: V.gluteosCoice },
+      { name: 'Prancha', muscle: 'Core', duration: '4x 30-40s', equipment: 'Colchonete (ao lado da polia)', tip: 'No colchonete ao lado — não ocupa outra máquina.', video: V.prancha },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 2b',
+    title: 'Abdução Máquina ↔ Abdominal no chão', duration: '4x15 · Sem descanso',
+    meta: 'Glúteo médio + core, ancorado na máquina',
+    exercises: [
       { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio / Abdutores', duration: '4x15', equipment: 'Máquina abdutora', tip: 'Abre controlando e segura 1s na contração.', video: V.abdQuadril },
+      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '4x15-20', equipment: 'Colchonete (ao lado)', tip: 'No colchonete ao lado da abdutora.', video: V.abdomSupra },
     ]
   },
   MAXLIFT_POSTERIOR_BUNNY,
@@ -616,20 +626,29 @@ const TREINO_D = [
   MOBILIDADE_A,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Leg Press ↔ Cadeira Extensora', duration: '4x12 · Sem descanso',
-    meta: 'Quadríceps/glúteo adaptado para condromalacia',
+    title: 'Leg Press ↔ Abdominal no chão', duration: '4x12 · Sem descanso',
+    meta: 'Quadríceps/glúteo + core, ancorado (condromalácia)',
     exercises: [
-      { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '4x12', equipment: 'Leg Press', tip: 'Amplitude até ~90°. Sem travar joelhos.', video: V.legPress },
-      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '4x12', equipment: 'Máquina extensora', tip: 'Amplitude controlada e sem dor no joelho.', video: V.cadeiraExt },
+      { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '4x12', equipment: 'Leg Press', tip: 'Amplitude até ~90°, sem travar os joelhos. Condromalácia: sem dor.', video: V.legPress },
+      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '4x15-20', equipment: 'Colchonete (ao lado)', tip: 'No colchonete ao lado do leg press — não sai do lugar.', video: V.abdomSupra },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 1b',
+    title: 'Cadeira Extensora (Isometria) ↔ Prancha', duration: '4 séries · Sem descanso',
+    meta: 'Extensora ISOMÉTRICA — condromalácia (sem movimento dinâmico)',
+    exercises: [
+      { name: 'Cadeira Extensora — ISOMETRIA', muscle: 'Quadríceps (isométrico)', duration: '4x 30-45s', equipment: 'Máquina extensora', tip: 'ISOMETRIA (condromalácia): segure PARADA a ~60° de flexão, NÃO estenda até o final (é onde o joelho sofre). 30-45s, ~70% do esforço, SEM dor. Nada de repetições.', video: V.cadeiraExt },
+      { name: 'Prancha', muscle: 'Core', duration: '4x 30-40s', equipment: 'Colchonete (ao lado)', tip: 'No colchonete ao lado da extensora. Corpo alinhado, abdômen firme.', video: V.prancha },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Leg Press ↔ Abdução Máquina', duration: '3x12-15 · Sem descanso',
-    meta: 'Quadríceps e glúteos com estabilidade',
+    title: 'Leg Press ↔ Glúteos 4 Apoios', duration: '3x12 · Sem descanso',
+    meta: 'Quadríceps/glúteo, ancorado (condromalácia)',
     exercises: [
-      { name: 'Leg Press 45° (amplitude controlada)', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press', tip: 'Troca do Smith (você tinha dificuldade nele). Condromalácia: desça só até onde o joelho aceitar sem dor, amplitude controlada, sem travar o joelho na subida.', video: V.legPress },
-      { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio / Abdutores', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abre com controle, sem embalo.', video: V.abdQuadril },
+      { name: 'Leg Press 45° (amplitude controlada)', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press', tip: 'Troca do Smith. Condromalácia: desça só até onde o joelho aceitar sem dor, amplitude controlada, sem travar na subida.', video: V.legPress },
+      { name: 'Glúteos 4 Apoios c/ Caneleira', muscle: 'Glúteos', duration: '3x15 (cada lado)', equipment: 'Colchonete + caneleira (ao lado)', tip: 'No colchonete ao lado do leg press. Estende a perna contraindo o glúteo, sem forçar a lombar.', video: V.gluteos4 },
     ]
   },
   ALONG_FINAL_A,
