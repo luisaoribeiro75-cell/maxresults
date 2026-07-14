@@ -517,6 +517,21 @@ const CARDIO_MAXCYCLE = {
   ]
 };
 
+const CARDIO_CORRIDA = {
+  type: 'cardio', label: 'Cardio Final — Corrida',
+  title: 'Planilha de Corrida — 25 min (Intermediário)', duration: '25 min',
+  meta: 'Intervalado 3:1 na esteira ou rua. Corrida "moderada" = ritmo em que você fala só frases curtas (~7-8/10 de esforço). Progrida a velocidade quando ficar fácil.',
+  exercises: [
+    { name: 'Aquecimento', muscle: 'Cardio', duration: '3 min', equipment: 'Esteira / rua', tip: 'Caminhada rápida evoluindo pra trote leve. Sobe a frequência cardíaca aos poucos.', video: '' },
+    { name: 'Bloco 1 — Corrida + Caminhada', muscle: 'Cardio', duration: '4 min', equipment: 'Esteira / rua', tip: '3 min corrida moderada + 1 min caminhada de recuperação.', video: '' },
+    { name: 'Bloco 2 — Corrida + Caminhada', muscle: 'Cardio', duration: '4 min', equipment: 'Esteira / rua', tip: '3 min corrida moderada + 1 min caminhada. Mantém o ritmo do bloco 1.', video: '' },
+    { name: 'Bloco 3 — Corrida + Caminhada', muscle: 'Cardio', duration: '4 min', equipment: 'Esteira / rua', tip: '3 min corrida moderada + 1 min caminhada. Metade da planilha — segura o ritmo.', video: '' },
+    { name: 'Bloco 4 — Corrida + Caminhada', muscle: 'Cardio', duration: '4 min', equipment: 'Esteira / rua', tip: '3 min corrida moderada + 1 min caminhada. Se sobrar gás, acelera um pouco a corrida.', video: '' },
+    { name: 'Bloco 5 — Corrida + Caminhada', muscle: 'Cardio', duration: '4 min', equipment: 'Esteira / rua', tip: '3 min corrida (última — pode fechar mais forte) + 1 min caminhada.', video: '' },
+    { name: 'Desaceleração', muscle: 'Cardio', duration: '2 min', equipment: 'Esteira / rua', tip: 'Caminhada leve, respiração controlada. Baixa a frequência cardíaca.', video: '' },
+  ]
+};
+
 const RELAX_FINAL = {
   type: 'warmup', label: 'Respiração',
   title: 'Respiração + Relaxamento', duration: '~3 min',
@@ -567,7 +582,7 @@ const TREINO_A = [
       { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3x15-20', equipment: 'Colchonete', tip: 'Sobe com o abdômen, sem puxar o pescoço.', video: V.abdomSupra },
     ]
   },
-  CARDIO_MAXCYCLE,
+  CARDIO_CORRIDA,
   ALONG_FINAL_A,
   RELAX_FINAL,
 ];
@@ -612,7 +627,7 @@ const TREINO_B = [
       { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Fecha as pernas com controle, segura 1s.', video: V.aducao },
     ]
   },
-  CARDIO_MAXCYCLE,
+  CARDIO_CORRIDA,
   ALONG_FINAL_B,
   RELAX_FINAL,
 ];
@@ -657,7 +672,7 @@ const TREINO_C = [
       { name: 'Dead Bug', muscle: 'Core', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Lombar colada no chão, alterna braço/perna devagar.', video: V.deadBug },
     ]
   },
-  CARDIO_MAXCYCLE,
+  CARDIO_CORRIDA,
   ALONG_FINAL_C,
   RELAX_FINAL,
 ];
