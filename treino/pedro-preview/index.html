@@ -302,7 +302,7 @@
   <main id="workoutContent" class="initial-load"></main>
   <div class="session-complete" id="sessionComplete">
     <h3>Sessão Concluída! 💪</h3>
-    <p>Ótimo treino, Pedro! Descanse, se hidrate e cuide da coluna.</p>
+    <p>Ótimo treino, Pedro! Descanse, hidrate e recupere bem.</p>
   </div>
   <button class="finish-btn" id="finishBtn" onclick="finishWorkout()">✅ Finalizar Treino</button>
   <div id="skippedInfo"></div>
@@ -322,7 +322,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">PREVIEW Renovação Mix#5 &middot; Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 13/07/2026</footer>
+  <footer class="footer">Treino Pedro &middot; Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 13/07/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -333,11 +333,8 @@
 const ATHLETE = 'Pedro';
 
 const WEEKLY_GOALS = [
-  { icon: '🏋️', type: 'strength', text: '<strong>Preview Mix#5:</strong> 3x/sem em 45min, com força para preservar massa magra' },
-  { icon: '💊', type: 'assessment', text: '<strong>Mounjaro novo:</strong> monitorar náusea, tontura, fadiga e ingestão proteica antes de subir carga' },
-  { icon: '🔥', type: 'fat', text: '<strong>Emagrecimento:</strong> cardio compacto dentro dos 45min; avaliar cardio extra se o objetivo exigir mais' },
-  { icon: '🛡️', type: 'assessment', text: '<strong>Coluna:</strong> sem terra, barra nas costas, búlgaro ou flexão/rotação excessiva de tronco' },
-  { icon: '📋', type: 'assessment', text: '<strong>Avaliação física:</strong> vencida; com Mounjaro, medir composição corporal virou prioridade' },
+  { icon: '🏋️', type: 'strength', text: '<strong>Treino:</strong> A (superior) · B (inferior) · C (full body) — 45min, força e condicionamento' },
+  { icon: '🏃', type: 'fat', text: '<strong>Cardio:</strong> planilha de corrida 25min (intermediário) no fim de cada treino' },
 ];
 
 const V = {
@@ -768,7 +765,7 @@ function renderWeekGoal() {
   document.getElementById('weekGoal').innerHTML = `
     <div class="week-goal-header"><span class="week-goal-label">Meta da Semana</span><span class="week-goal-badge" id="weekBadge"></span></div>
     <div class="week-goal-items">${WEEKLY_GOALS.map(g => `<div class="week-goal-item"><div class="week-goal-icon ${g.type}">${g.icon}</div><div class="week-goal-text">${g.text}</div></div>`).join('')}</div>
-    <div class="elbow-alert">⚠️ <strong>Protrusão discal L5 + Escoliose</strong> — Todos os exercícios foram adaptados para proteger sua coluna. Evite sobrecarga lombar e movimentos que causem dor. Se sentir desconforto, <em>pare imediatamente</em> e avise o Luisão. Progressão de carga deve ser <em>gradual</em>.</div>`;
+    `;
 }
 
 function renderDaySwitcher() {
@@ -783,7 +780,7 @@ function renderWorkout() {
   const content = document.getElementById('workoutContent');
   document.getElementById('headerDay').textContent = day.rest ? `${day.day} — Descanso` : `${day.day} ${day.num}/${day.date.split('-')[1]}`;
   document.getElementById('headerDate').textContent = document.getElementById('weekBadge')?.textContent || '';
-  if (day.rest) { content.innerHTML = `<div class="rest-message"><h2>Dia de Descanso 😴</h2><p>Recuperação é parte do treino. Cuide da sua coluna — alongue e descanse.</p></div>`; document.getElementById('sessionComplete').classList.remove('visible'); return; }
+  if (day.rest) { content.innerHTML = `<div class="rest-message"><h2>Dia de Descanso 😴</h2><p>Recuperação é parte do treino. Alongue e descanse — recuperação é parte do treino.</p></div>`; document.getElementById('sessionComplete').classList.remove('visible'); return; }
 
   content.innerHTML = day.blocks.map((block, bi) => {
     const doneCount = block.exercises.filter((_, ei) => completedExercises[exerciseKey(currentDayIndex, bi, ei)]).length;
@@ -945,7 +942,7 @@ function saveDayConfig() {
 }
 
 // ─── Finish Workout (partial) ───
-const FINISH_KEY = 'maxresults-daine-finished-v1';
+const FINISH_KEY = 'maxresults-pedro-finished-v1';
 
 function loadFinished() { try { return JSON.parse(localStorage.getItem(FINISH_KEY)||'{}'); } catch { return {}; } }
 
@@ -1066,49 +1063,9 @@ render();
 setTimeout(() => document.getElementById('workoutContent').classList.remove('initial-load'), 600);
 
 // ─── Assessment ───
-const ASSESSMENTS = [
-  {
-    date: '09/09/2025', label: 'Avaliação Inicial',
-    basics: { age: 38, height: 168, weight: 108.9 },
-    results: { imc: 38.58, fatPercent: 40.06, leanPercent: 59.94, leanMass: 65.27, fatMass: 43.63, idealWeight: 85, sumSkinfolds: 248.0 },
-    perimetry: { cintura: 99.5, abdomen: 119, quadril: 130.5, coxaE: 81, coxaD: 80.5, bracoE: 40, bracoD: 40 },
-  },
-  {
-    date: '17/11/2025', label: 'Renovação',
-    basics: { age: 38, height: 168, weight: 104.6 },
-    results: { imc: 37.06, fatPercent: 39.24, leanPercent: 60.76, leanMass: 63.55, fatMass: 41.05, idealWeight: 85, sumSkinfolds: 239.4 },
-    perimetry: { cintura: 95.01, abdomen: 117, quadril: 127, coxaE: 78.5, coxaD: 78.5, bracoE: 39, bracoD: 39 },
-  }
-];
+const ASSESSMENTS = [];
 
-const ASSESSMENT = {
-  date: '17/11/2025',
-  protocol: 'Pollock, 1984 — 7 Dobras',
-  nextAssessment: '15/02/2026 (vencida)',
-  basics: { age: 38, height: 168, weight: 104.6 },
-  perimetry: [
-    { label: 'Ombro', value: 114.5 }, { label: 'Tórax', value: 111.5 },
-    { label: 'Braço Esq.', value: 39 }, { label: 'Braço Dir.', value: 39 },
-    { label: 'Cintura', value: 95.01 }, { label: 'Abdômen', value: 117 },
-    { label: 'Quadril', value: 127 },
-    { label: 'Coxa Esq.', value: 78.5 }, { label: 'Coxa Dir.', value: 78.5 },
-    { label: 'Perna Esq.', value: 49 }, { label: 'Perna Dir.', value: 46.5 },
-  ],
-  skinfolds: [
-    { label: 'Tricipital', value: 31.3 }, { label: 'Subescapular', value: 29.5 },
-    { label: 'Supra-ilíaca', value: 28.9 }, { label: 'Peitoral', value: 14.5 },
-    { label: 'Axilar Média', value: 28.5 }, { label: 'Abdominal', value: 49.6 },
-    { label: 'Coxa', value: 57.1 },
-  ],
-  results: {
-    imc: { value: 37.06, classification: 'Obesidade grau II' },
-    idealFat: 17, fatPercent: 39.24, leanPercent: 60.76,
-    leanMass: 63.55, fatMass: 41.05, idealWeight: 85,
-    sumSkinfolds: 239.4,
-  },
-  objective: 'Emagrecimento',
-  emphasis: 'Adaptações para protrusão discal L5 e escoliose',
-};
+const ASSESSMENT = null;
 
 function renderAssessment(a) {
   const r = a.results;
@@ -1201,7 +1158,7 @@ function renderEvolution(assessments) {
     </div>`;
 }
 
-document.getElementById('assessPanel').innerHTML = renderAssessment(ASSESSMENT) + renderEvolution(ASSESSMENTS);
+if (ASSESSMENT) { document.getElementById('assessPanel').innerHTML = renderAssessment(ASSESSMENT) + renderEvolution(ASSESSMENTS); } else { var _at=document.getElementById('assessToggle'); if(_at) _at.style.display='none'; var _ap=document.getElementById('assessPanel'); if(_ap) _ap.innerHTML=''; }
 document.getElementById('assessToggle').addEventListener('click', function() { this.classList.toggle('open'); document.getElementById('assessPanel').classList.toggle('open'); });
 
 // ─── Session Timer ───
