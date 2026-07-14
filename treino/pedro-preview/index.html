@@ -638,8 +638,8 @@ const TREINO_C = [
     title: 'Agachamento Livre ↔ Remada Unilateral', duration: '3x10-12 · descanso 45-60s',
     meta: 'Perna + costas',
     exercises: [
-      { name: 'Agachamento Livre', muscle: 'Quadríceps / Glúteos', duration: '3x12-15', equipment: 'Peso do corpo (ou halteres)', tip: 'Pés na largura dos ombros, desce controlando até onde for confortável, joelhos alinhados com os pés. Mesmo movimento do aquecimento.', video: V.agachLivre },
-      { name: 'Remada Unilateral com Halteres', muscle: 'Costas (dorsal)', duration: '3x10-12 cada lado', equipment: 'Halter + banco', tip: 'Mão e joelho no banco, tronco paralelo, puxa à cintura.', video: V.remadaUniHalter },
+      { name: 'Agachamento Livre', muscle: 'Quadríceps / Glúteos', duration: '3x12-15', equipment: 'Peso do corpo (ou halteres)', tip: 'Pés na largura dos ombros, desce controlando até onde for confortável, joelhos alinhados com os pés. Mesmo movimento do aquecimento.', video: V.agachLivre, carga: 'Sem carga (peso do corpo)' },
+      { name: 'Remada Unilateral com Halteres', muscle: 'Costas (dorsal)', duration: '3x10-12 cada lado', equipment: 'Halter + banco', tip: 'Mão e joelho no banco, tronco paralelo, puxa à cintura.', video: V.remadaUniHalter, carga: '10 a 12 kg (cada braço)' },
     ]
   },
   {
@@ -647,8 +647,8 @@ const TREINO_C = [
     title: 'Supino Halteres ↔ Cadeira Flexora', duration: '3x10-12 · descanso 45-60s',
     meta: 'Peito + posterior',
     exercises: [
-      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '3x10-12', equipment: 'Halteres + banco', tip: 'Empurra os halteres controlando, pés no chão.', video: V.supinoHalter },
-      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x10-12', equipment: 'Máquina flexora', tip: 'Controle a excêntrica.', video: V.cadeiraFlexora },
+      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '3x10-12', equipment: 'Halteres + banco', tip: 'Empurra os halteres controlando, pés no chão.', video: V.supinoHalter, carga: '10 a 12 kg' },
+      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x10-12', equipment: 'Máquina flexora', tip: 'Controle a excêntrica.', video: V.cadeiraFlexora, carga: '6º furo' },
     ]
   },
   {
@@ -656,8 +656,8 @@ const TREINO_C = [
     title: 'Abdução Máquina ↔ Rosca Direta', duration: '3x10-12 · descanso 45-60s',
     meta: 'Glúteo médio + bíceps',
     exercises: [
-      { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abre com controle, segura 1s.', video: V.abdQuadril },
-      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos fixos, sobe sem balançar.', video: V.roscaDireta },
+      { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abre com controle, segura 1s.', video: V.abdQuadril, carga: '8º furo' },
+      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos fixos, sobe sem balançar.', video: V.roscaDireta, carga: '7 kg' },
     ]
   },
   {
@@ -665,7 +665,7 @@ const TREINO_C = [
     title: 'Tríceps Corda ↔ Dead Bug', duration: '3x10-12 · descanso 45-60s',
     meta: 'Tríceps + core',
     exercises: [
-      { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x12', equipment: 'Polia + corda', tip: 'Cotovelos fixos, estende completo.', video: V.tricepsCorda },
+      { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x12', equipment: 'Polia + corda', tip: 'Cotovelos fixos, estende completo.', video: V.tricepsCorda, carga: '6º furo' },
       { name: 'Dead Bug', muscle: 'Core', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Lombar colada no chão, alterna braço/perna devagar.', video: V.deadBug },
     ]
   },
@@ -814,6 +814,7 @@ function renderWorkout() {
             ${block.type==='lift' ? `<div class="load-row" onclick="event.stopPropagation()"><span class="load-label">Carga:</span><input type="text" inputmode="decimal" class="load-input" placeholder="—" data-load-key="${key}" onchange="saveLoad(this)" value=""><span class="load-unit">kg</span></div>` : ''}
             ${block.type==='lift' ? `<div class="load-row" onclick="event.stopPropagation()"><span class="rest-label">Descanso:</span><input type="text" inputmode="decimal" class="rest-input" placeholder="90" data-rest-key="${key}" onchange="saveRest(this)" value=""><span class="load-unit">seg</span></div>` : ''}
 
+            ${ex.carga ? `<div class="detail-row"><span class="detail-label">Carga sugerida:</span><span class="detail-value"><strong>${ex.carga}</strong></span></div>` : ''}
             <div class="detail-row"><span class="detail-label">Equipamento:</span><span class="detail-value">${ex.equipment}</span></div>
             <div class="detail-row"><span class="detail-label">Dica:</span><span class="detail-value">${ex.tip}</span></div>
           </div></div>
