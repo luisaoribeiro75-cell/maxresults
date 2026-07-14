@@ -590,10 +590,10 @@ const TREINO_B = [
   MOBILIDADE_B,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Leg Press 45° ↔ Abdominal', duration: '3x10-12 · descanso 45-60s',
+    title: 'Agachamento Livre ↔ Abdominal', duration: '3x10-12 · descanso 45-60s',
     meta: 'Quadríceps/glúteo + core',
     exercises: [
-      { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '3x10-12', equipment: 'Máquina Leg Press', tip: 'Pés na largura dos ombros, desça até ~90° e empurre sem travar o joelho.', video: V.legPress },
+      { name: 'Agachamento Livre', muscle: 'Quadríceps / Glúteos', duration: '3x12-15', equipment: 'Peso do corpo (ou halteres)', tip: 'Pés na largura dos ombros, desce controlando, joelhos alinhados com os pés. Mesmo movimento do aquecimento.', video: V.agachLivre },
       { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3x15-20', equipment: 'Colchonete (ao lado)', tip: 'No colchonete ao lado do leg press.', video: V.abdomSupra },
     ]
   },
@@ -635,10 +635,10 @@ const TREINO_C = [
   MOBILIDADE_C,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Leg Press Horizontal ↔ Remada Unilateral', duration: '3x10-12 · descanso 45-60s',
+    title: 'Agachamento Livre ↔ Remada Unilateral', duration: '3x10-12 · descanso 45-60s',
     meta: 'Perna + costas',
     exercises: [
-      { name: 'Leg Press Horizontal', muscle: 'Quadríceps / Glúteos', duration: '3x10-12', equipment: 'Máquina Leg Press (horizontal)', tip: 'Costas apoiadas, empurra pelo calcanhar.', video: V.legPressHoriz },
+      { name: 'Agachamento Livre', muscle: 'Quadríceps / Glúteos', duration: '3x12-15', equipment: 'Peso do corpo (ou halteres)', tip: 'Pés na largura dos ombros, desce controlando até onde for confortável, joelhos alinhados com os pés. Mesmo movimento do aquecimento.', video: V.agachLivre },
       { name: 'Remada Unilateral com Halteres', muscle: 'Costas (dorsal)', duration: '3x10-12 cada lado', equipment: 'Halter + banco', tip: 'Mão e joelho no banco, tronco paralelo, puxa à cintura.', video: V.remadaUniHalter },
     ]
   },
@@ -706,9 +706,7 @@ function buildWeek() {
 }
 
 const TRAINING_SLOTS = [
-  { label: 'Treino A — Superior 45min', blocks: TREINO_A },
-  { label: 'Treino B — Inferior 45min', blocks: TREINO_B },
-  { label: 'Treino C — Full Body 45min', blocks: TREINO_C },
+  { label: 'Treino Único — Full Body 45min', blocks: TREINO_C },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 const DAY_CONFIG_KEY = 'maxresults-pedro-preview-days-v1';
