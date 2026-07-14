@@ -339,6 +339,7 @@ const WEEKLY_GOALS = [
 ];
 
 const V = {
+  stiffHalter: 'https://vd.mfitpersonal.com.br/267/mp4/267.mp4',
   abducaoPeCaneleira: 'https://vd.mfitpersonal.com.br/249/mp4/249.mp4',
   aducaoCaneleira: 'https://vd.mfitpersonal.com.br/26/mp4/26.mp4',
   legPressHoriz: 'https://vd.mfitpersonal.com.br/491/mp4/491.mp4',
@@ -645,19 +646,19 @@ const TREINO_C = [
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Supino Halteres ↔ Cadeira Flexora', duration: '3x10-12 · descanso 45-60s',
+    title: 'Supino Halteres ↔ Stiff com Halteres', duration: '3x10-12 · descanso 45-60s',
     meta: 'Peito + posterior',
     exercises: [
       { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '3x10-12', equipment: 'Halteres + banco', tip: 'Empurra os halteres controlando, pés no chão.', video: V.supinoHalter, carga: '10 a 12 kg' },
-      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x10-12', equipment: 'Máquina flexora', tip: 'Controle a excêntrica.', video: V.cadeiraFlexora, carga: '6º furo' },
+      { name: 'Stiff com Halteres', muscle: 'Posterior de coxa / Glúteos', duration: '3x10-12', equipment: 'Halteres', tip: 'Joelhos levemente flexionados, empurra o quadril pra trás descendo os halteres rente às pernas, coluna neutra (não arredonda). Sente o posterior alongar e volta contraindo o glúteo.', video: V.stiffHalter, carga: '10 a 12 kg (ajustar)' },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3',
-    title: 'Abdução Máquina ↔ Rosca Direta', duration: '3x10-12 · descanso 45-60s',
+    title: 'Abdução em Pé (Caneleira) ↔ Rosca Direta', duration: '3x10-12 · descanso 45-60s',
     meta: 'Glúteo médio + bíceps',
     exercises: [
-      { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abre com controle, segura 1s.', video: V.abdQuadril, carga: '8º furo' },
+      { name: 'Abdução de Quadril em Pé (Caneleira)', muscle: 'Glúteo médio / Abdutores', duration: '3x15 cada lado', equipment: 'Caneleira (em pé, com apoio)', tip: 'Em pé, caneleira no tornozelo, segura num apoio. Abre a perna pro lado contraindo o glúteo, sem inclinar o tronco. Troca de lado.', video: V.abducaoPeCaneleira, carga: '3 kg (caneleira)' },
       { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos fixos, sobe sem balançar.', video: V.roscaDireta, carga: '7 kg' },
     ]
   },
