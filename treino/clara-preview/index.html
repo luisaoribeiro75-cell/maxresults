@@ -632,50 +632,31 @@ const TREINO_B = [
 
 const TREINO_C = [
   AQUEC_ARTICULAR,
-  AQUEC_MUSCULAR_C,
   MOBILIDADE_C,
   {
-    type: 'lift', label: 'Circuito 1',
-    title: 'Clean and Jerk Pump → Swing → Bom Dia', duration: '', meta: 'HIIT funcional em circuito: ritmo alto, descanso curto. Foco em glúteo, lombar e core. Adaptado pra proteger o joelho (sem agachamento profundo/impacto).',
+    type: 'lift', label: 'WOD · Chipper',
+    title: 'WOD — Chipper (2 voltas · ~10-12 min)', duration: '2 voltas · For Time (o mais rápido que der, com técnica)',
+    meta: 'Lista de cima a baixo, 2 voltas, o mais rápido possível com técnica. GRUPOS ALTERNADOS (glúteo/cardio/abdômen/funcional/posterior) — coração alto e corpo revezando. Joelho-safe: cardio sem salto, sem agacho profundo.',
     exercises: [
-      { name: 'Clean and Jerk Pump', muscle: 'Corpo todo / Cardio', duration: '4x10-12', equipment: 'Barra leve (estilo Les Mills)', tip: 'Versão Pump: barra leve, alta repetição, no ritmo. Puxa do chão, encaixa e arremessa acima da cabeça. Joelho-safe (sem agachamento profundo).', video: V.cleanJerkPump },
-      { name: 'Swing Kettlebell', muscle: 'Glúteos / Posterior / Cardio', duration: '4x15-20', equipment: 'Kettlebell', tip: 'Movimento de QUADRIL (hinge), não de agachamento — impulsiona com o glúteo, coluna neutra. Sem forçar o joelho.', video: V.swingKB },
-      { name: 'Bom Dia', muscle: 'Lombar / Posterior', duration: '3x12', equipment: 'Barra leve / cabo', tip: 'Quadril pra trás, coluna neutra, desce e sobe controlando. Fortalece a lombar.', video: V.bomDia },
+      { name: 'Elevação Pélvica / Hip Thrust', muscle: 'Glúteos (glúteo)', duration: '12 reps', equipment: 'Banco + barra', tip: 'Explode na subida, contrai o glúteo no topo.', video: V.hipThrust },
+      { name: 'Shadow Boxing', muscle: 'Cardio (cardio)', duration: '30s', equipment: 'Peso do corpo', tip: 'Socos no ar em ritmo alto, base leve. Sobe a FC sem impacto no joelho.', video: '' },
+      { name: 'Abdominal Infra no chão', muscle: 'Abdômen (abdômen)', duration: '15 reps', equipment: 'Colchonete', tip: 'Sobe as pernas controlando, lombar apoiada.', video: V.abdomInfra },
+      { name: 'Clean and Jerk Pump', muscle: 'Funcional (funcional)', duration: '10 reps', equipment: 'Barra leve', tip: 'Barra leve, ritmo. Puxa do chão e arremessa acima da cabeça. Sem agacho profundo.', video: V.cleanJerkPump },
+      { name: 'Bom Dia', muscle: 'Posterior / Lombar (posterior)', duration: '12 reps', equipment: 'Barra leve', tip: 'Quadril pra trás, coluna neutra, desce e sobe controlando.', video: V.bomDia },
+      { name: 'Subida no Banco (Step-up)', muscle: 'Cardio (cardio)', duration: '30s (alternando pernas)', equipment: 'Banco/step', tip: 'Sobe e desce controlando, SEM salto. Joelho alinhado com o pé.', video: '' },
+      { name: 'Glúteos 4 Apoios c/ Caneleira', muscle: 'Glúteos (glúteo)', duration: '12 cada lado', equipment: 'Colchonete + caneleira', tip: 'Estende a perna pra trás contraindo o glúteo.', video: V.gluteos4apoios },
+      { name: 'Prancha Lateral', muscle: 'Abdômen / Core (abdômen)', duration: '20s cada lado', equipment: 'Colchonete', tip: 'Quadril alto, corpo em linha.', video: V.pranchaLateral },
+      { name: 'Swing Kettlebell', muscle: 'Funcional / Cardio (funcional)', duration: '15 reps', equipment: 'Kettlebell', tip: 'Hinge de quadril, impulsiona com o glúteo. Sem agachar.', video: V.swingKB },
+      { name: 'Marcha Joelho Alto no Lugar', muscle: 'Cardio (cardio)', duration: '30s', equipment: 'Peso do corpo', tip: 'No lugar, sobe os joelhos em ritmo alto. SEM salto — baixo impacto.', video: '' },
     ]
   },
-  {
-    type: 'lift', label: 'Circuito 2',
-    title: 'Hip Thrust ↔ Glúteos Coice Polia', duration: '', meta: '',
-    exercises: [
-      { name: 'Elevação Pélvica / Hip Thrust', muscle: 'Glúteos', duration: '4x15', equipment: 'Banco + barra', tip: 'Explode na subida, contrai o glúteo no topo.', video: V.hipThrust },
-      { name: 'Glúteos Coice na Polia', muscle: 'Glúteos', duration: '3x12 cada lado', equipment: 'Polia + caneleira', tip: 'Chuta pra trás sem compensar na lombar.', video: V.gluteosCoice },
-    ]
-  },
-  {
-    type: 'lift', label: 'Circuito 3',
-    title: 'Abdominal ↔ Prancha Lateral', duration: '', meta: '',
-    exercises: [
-      { name: 'Abdominal Infra no chão', muscle: 'Abdômen inferior', duration: '4x15-20', equipment: 'Colchonete', tip: 'Sobe as pernas controlando, lombar apoiada.', video: V.abdomInfra },
-      { name: 'Prancha Lateral', muscle: 'Core lateral', duration: '3x 25-30s cada lado', equipment: 'Colchonete', tip: 'Quadril alto, corpo em linha.', video: V.pranchaLateral },
-    ]
-  },
-  {
-    type: 'lift', label: 'Circuito 4',
-    title: 'Abdominal Supra ↔ Prancha', duration: '', meta: '',
-    exercises: [
-      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '4x15-20', equipment: 'Colchonete', tip: 'Sobe com o abdômen, sem forçar o pescoço.', video: V.abdomSupra },
-      { name: 'Prancha', muscle: 'Core', duration: '3x 30-40s', equipment: 'Colchonete', tip: 'Corpo alinhado, abdômen firme.', video: V.prancha },
-    ]
-  },
-  CARDIO_BIKE,
   ALONG_FINAL_C,
 ];
-
 
 const TRAINING_SLOTS = [
   { label: 'Treino A — Glúteo/Posterior/Costas/Bíceps/Abd', blocks: TREINO_A },
   { label: 'Treino B — Coxa/Peito/Tríceps/Ombro', blocks: TREINO_B },
-  { label: 'Treino C — HIIT Funcional + Core', blocks: TREINO_C },
+  { label: 'Treino C — HIIT (WOD Chipper)', blocks: TREINO_C },
   { label: 'Treino D — repete o A', blocks: TREINO_A },
   { label: 'Treino E — repete o B', blocks: TREINO_B },
 ];
