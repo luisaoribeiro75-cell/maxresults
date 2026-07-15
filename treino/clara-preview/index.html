@@ -340,6 +340,7 @@ const WEEKLY_GOALS = [
 ];
 
 const V = {
+  swingKB: 'https://vd.mfitpersonal.com.br/713/mp4/713.mp4',
   abducaoPeCaneleira: 'https://vd.mfitpersonal.com.br/249/mp4/249.mp4',
   coiceBancoPolia: 'https://vd.mfitpersonal.com.br/545/mp4/545.mp4',
   roscaMartelo: 'https://vd.mfitpersonal.com.br/126/mp4/126.mp4',
@@ -537,34 +538,42 @@ const TREINO_A = [
   MOBILIDADE_A,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Hip Thrust ↔ Abdução em Pé (Caneleira)', duration: '', meta: 'Pirâmide 12·10·8 (subindo carga) + DROP-SET na última série do 1º exercício. Descanso 45-60s. É o estímulo novo de definição.',
+    title: 'Hip Thrust ↔ Remada Baixa', duration: '', meta: 'Bi-set alternado por segmento (inferior + superior): faz um, emenda o outro, descanso 45-60s só no fim do par.',
     exercises: [
-      { name: 'Elevação Pélvica / Hip Thrust', muscle: 'Glúteos', duration: '12·10·8 + drop', equipment: 'Banco + barra', tip: 'Costas no banco, barra no quadril. Sobe contraindo o glúteo, sem hiperestender a lombar. Drop-set na última: reduz o peso e continua.', video: V.hipThrust },
-      { name: 'Abdução de Quadril em Pé (Caneleira)', muscle: 'Glúteo médio', duration: '3x15 cada lado', equipment: 'Caneleira (em pé, apoio)', tip: 'Em pé, caneleira no tornozelo, abre a perna sem inclinar o tronco.', video: V.abducaoPeCaneleira },
+      { name: 'Elevação Pélvica / Hip Thrust', muscle: 'Glúteos', duration: '3x10-12', equipment: 'Banco + barra', tip: 'Barra no quadril, sobe contraindo o glúteo, sem hiperestender a lombar.', video: V.hipThrust },
+      { name: 'Remada Baixa', muscle: 'Costas (meio)', duration: '3x12', equipment: 'Polia', tip: 'Puxa ao abdômen fechando as escápulas.', video: V.remadaBaixa },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Stiff ↔ Coice no Banco (Polia)', duration: '', meta: '',
+    title: 'Stiff ↔ Puxada Frontal', duration: '', meta: '',
     exercises: [
-      { name: 'Stiff com Halteres', muscle: 'Posterior de coxa', duration: '12·10·8', equipment: 'Halteres', tip: 'Quadril pra trás, coluna neutra, desce rente às pernas.', video: V.stiffHalteres },
-      { name: 'Glúteos Coice no Banco (Polia)', muscle: 'Glúteos', duration: '3x12 cada lado', equipment: 'Polia baixa + banco', tip: 'Apoiado no banco, chuta pra trás contraindo o glúteo. Sem forçar a lombar.', video: V.coiceBancoPolia },
+      { name: 'Stiff com Halteres', muscle: 'Posterior de coxa', duration: '3x12', equipment: 'Halteres', tip: 'Quadril pra trás, coluna neutra, desce rente às pernas.', video: V.stiffHalteres },
+      { name: 'Puxada Frontal', muscle: 'Costas (dorsal)', duration: '3x12', equipment: 'Puxador', tip: 'Pegada aberta, puxa à linha do peito.', video: V.puxadaFrontal },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3',
-    title: 'Cadeira Flexora ↔ Glúteos 4 Apoios', duration: '', meta: '',
+    title: 'Glúteos 4 Apoios ↔ Rosca Direta', duration: '', meta: '',
     exercises: [
-      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12-15', equipment: 'Máquina flexora', tip: 'Controle a excêntrica, quadril no banco.', video: V.cadeiraFlexora },
-      { name: 'Glúteos 4 Apoios c/ Caneleira', muscle: 'Glúteos', duration: '3x15 cada lado', equipment: 'Colchonete + caneleira', tip: 'No chão ao lado, estende a perna contraindo o glúteo.', video: V.gluteos4apoios },
+      { name: 'Glúteos 4 Apoios c/ Caneleira', muscle: 'Glúteos', duration: '3x15 cada lado', equipment: 'Colchonete + caneleira', tip: 'Estende a perna pra trás contraindo o glúteo.', video: V.gluteos4apoios },
+      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos fixos, sobe sem embalo.', video: V.roscaDireta },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 4',
-    title: 'Adução ↔ Prancha Lateral', duration: '', meta: '',
+    title: 'Cadeira Flexora ↔ Rosca Martelo', duration: '', meta: '',
     exercises: [
-      { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Fecha as pernas com controle, segura 1s.', video: V.aducao },
-      { name: 'Prancha Lateral', muscle: 'Core lateral', duration: '3x 25-30s cada lado', equipment: 'Colchonete', tip: 'Quadril alto, corpo em linha.', video: V.pranchaLateral },
+      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12-15', equipment: 'Máquina flexora', tip: 'Controle a excêntrica, quadril no banco.', video: V.cadeiraFlexora },
+      { name: 'Rosca Martelo', muscle: 'Bíceps / Braquial', duration: '3x12', equipment: 'Halteres', tip: 'Pegada neutra, cotovelos fixos.', video: V.roscaMartelo },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 5',
+    title: 'Abdômen', duration: '', meta: '',
+    exercises: [
+      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3x15-20', equipment: 'Colchonete', tip: 'Sobe com o abdômen, sem puxar o pescoço.', video: V.abdomSupra },
+      { name: 'Prancha', muscle: 'Core', duration: '3x 30-40s', equipment: 'Colchonete', tip: 'Corpo alinhado, abdômen firme.', video: V.prancha },
     ]
   },
   CARDIO_BIKE,
@@ -577,34 +586,42 @@ const TREINO_B = [
   MOBILIDADE_B,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Puxada Frontal ↔ Rosca Martelo', duration: '', meta: 'Pirâmide 12·10·8 (subindo carga) + DROP-SET na última série do 1º exercício. Descanso 45-60s. É o estímulo novo de definição.',
+    title: 'Leg Press ↔ Supino Reto Barra', duration: '', meta: 'Bi-set alternado por segmento (inferior + superior): faz um, emenda o outro, descanso 45-60s só no fim do par.',
     exercises: [
-      { name: 'Puxada Frontal', muscle: 'Costas (dorsal)', duration: '12·10·8 + drop', equipment: 'Puxador', tip: 'Pegada aberta, puxa à linha do peito. Drop-set na última série.', video: V.puxadaFrontal },
-      { name: 'Rosca Martelo', muscle: 'Bíceps / Braquial', duration: '3x12', equipment: 'Halteres', tip: 'Pegada neutra (martelo), cotovelos fixos.', video: V.roscaMartelo },
+      { name: 'Leg Press 45° (amplitude controlada)', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press', tip: 'Amplitude até ~90°, sem travar o joelho. Condromalácia: sem dor.', video: V.legPress },
+      { name: 'Supino Reto com Barra', muscle: 'Peitoral', duration: '3x10-12', equipment: 'Barra + banco', tip: 'Desce à linha do peito e empurra controlando.', video: V.supinoBarra },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Remada Baixa ↔ Rosca Direta', duration: '', meta: '',
+    title: 'Cadeira Extensora ISOMETRIA ↔ Desenvolvimento', duration: '', meta: '',
     exercises: [
-      { name: 'Remada Baixa', muscle: 'Costas (meio)', duration: '12·10·8', equipment: 'Polia', tip: 'Puxa ao abdômen fechando as escápulas, sem balançar.', video: V.remadaBaixa },
-      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos fixos, sobe sem embalo.', video: V.roscaDireta },
+      { name: 'Cadeira Extensora — ISOMETRIA', muscle: 'Quadríceps (isométrico)', duration: '4x 30-45s', equipment: 'Máquina extensora', tip: 'ISOMETRIA (condromalácia): segura PARADA a ~60° de flexão, NÃO estende até o final. ~70% do esforço, sem dor. Nada de repetições.', video: V.cadeiraExt },
+      { name: 'Desenvolvimento com Halteres', muscle: 'Ombros', duration: '3x10-12', equipment: 'Halteres + banco', tip: 'Sentada com apoio, empurra sem travar o cotovelo.', video: V.desenvHalteres },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3',
-    title: 'Remada Unilateral ↔ Face Pull (Polia)', duration: '', meta: '',
+    title: 'Adução ↔ Supino Halteres', duration: '', meta: '',
     exercises: [
-      { name: 'Remada Unilateral com Halteres', muscle: 'Costas (dorsal)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Mão e joelho no banco, puxa à cintura.', video: V.remadaUniHalter },
-      { name: 'Face Pull (Crucifixo Inverso na Polia)', muscle: 'Post. de ombro / Postura', duration: '3x15', equipment: 'Polia alta + corda', tip: 'Puxa a corda à altura do rosto, abrindo, contraindo escápulas.', video: V.faceP },
+      { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Fecha as pernas com controle, segura 1s.', video: V.aducao },
+      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '3x10-12', equipment: 'Halteres + banco', tip: 'Empurra controlando, sem descer demais.', video: V.supinoHalter },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 4',
-    title: 'Remada Curvada Barra ↔ Prancha', duration: '', meta: '',
+    title: 'Elevação Lateral ↔ Tríceps Corda', duration: '', meta: '',
     exercises: [
-      { name: 'Remada Curvada com Barra', muscle: 'Costas (meio)', duration: '3x12', equipment: 'Barra', tip: 'Tronco inclinado, coluna neutra, puxa à cintura.', video: V.remadaCurvadaBarra },
-      { name: 'Prancha', muscle: 'Core', duration: '3x 30-40s', equipment: 'Colchonete', tip: 'Corpo alinhado, abdômen firme.', video: V.prancha },
+      { name: 'Elevação Lateral', muscle: 'Ombro (lateral)', duration: '3x12-15', equipment: 'Halteres', tip: 'Sobe até a linha dos ombros.', video: V.elevLateral },
+      { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x12-15', equipment: 'Polia + corda', tip: 'Cotovelos fixos, estende e abre no fim.', video: V.tricepsCorda },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 5',
+    title: 'Elevação Frontal ↔ Tríceps Testa', duration: '', meta: '',
+    exercises: [
+      { name: 'Elevação Frontal com Halteres', muscle: 'Ombro (anterior)', duration: '3x12', equipment: 'Halteres', tip: 'Sobe até a linha dos olhos.', video: V.elevFrontal },
+      { name: 'Tríceps Testa Barra Reta', muscle: 'Tríceps', duration: '3x12', equipment: 'Barra', tip: 'Desce à testa e estende, cotovelos parados.', video: V.tricepsTesta },
     ]
   },
   CARDIO_BIKE,
@@ -616,128 +633,48 @@ const TREINO_C = [
   AQUEC_MUSCULAR_C,
   MOBILIDADE_C,
   {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Supino Reto Barra ↔ Tríceps Testa', duration: '', meta: 'Pirâmide 12·10·8 (subindo carga) + DROP-SET na última série do 1º exercício. Descanso 45-60s. É o estímulo novo de definição.',
+    type: 'lift', label: 'Circuito 1',
+    title: 'Swing Kettlebell ↔ Bom Dia', duration: '', meta: 'HIIT funcional em circuito: ritmo alto, descanso curto. Foco em glúteo, lombar e core. Adaptado pra proteger o joelho (sem agachamento profundo/impacto).',
     exercises: [
-      { name: 'Supino Reto com Barra', muscle: 'Peitoral', duration: '12·10·8 + drop', equipment: 'Barra + banco', tip: 'Desce à linha do peito e empurra. Drop-set na última.', video: V.supinoBarra },
-      { name: 'Tríceps Testa Barra Reta', muscle: 'Tríceps', duration: '3x12', equipment: 'Barra + banco', tip: 'Cotovelos apontados pra cima, desce à testa e estende.', video: V.tricepsTesta },
+      { name: 'Swing Kettlebell', muscle: 'Glúteos / Posterior / Cardio', duration: '4x15-20', equipment: 'Kettlebell', tip: 'Movimento de QUADRIL (hinge), não de agachamento — impulsiona com o glúteo, coluna neutra. Sem forçar o joelho.', video: V.swingKB },
+      { name: 'Bom Dia', muscle: 'Lombar / Posterior', duration: '3x12', equipment: 'Barra leve / cabo', tip: 'Quadril pra trás, coluna neutra, desce e sobe controlando. Fortalece a lombar.', video: V.bomDia },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 2',
-    title: 'Supino Halteres ↔ Tríceps Corda', duration: '', meta: '',
+    type: 'lift', label: 'Circuito 2',
+    title: 'Hip Thrust ↔ Glúteos Coice Polia', duration: '', meta: '',
     exercises: [
-      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '12·10·8', equipment: 'Halteres + banco', tip: 'Empurra controlando, sem descer demais (protege o ombro).', video: V.supinoHalter },
-      { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x12-15', equipment: 'Polia + corda', tip: 'Cotovelos fixos, estende e abre a corda no fim.', video: V.tricepsCorda },
+      { name: 'Elevação Pélvica / Hip Thrust', muscle: 'Glúteos', duration: '4x15', equipment: 'Banco + barra', tip: 'Explode na subida, contrai o glúteo no topo.', video: V.hipThrust },
+      { name: 'Glúteos Coice na Polia', muscle: 'Glúteos', duration: '3x12 cada lado', equipment: 'Polia + caneleira', tip: 'Chuta pra trás sem compensar na lombar.', video: V.gluteosCoice },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 3',
-    title: 'Crucifixo Inclinado ↔ Tríceps Francês', duration: '', meta: '',
+    type: 'lift', label: 'Circuito 3',
+    title: 'Abdominal ↔ Prancha Lateral', duration: '', meta: '',
     exercises: [
-      { name: 'Crucifixo Inclinado com Halteres', muscle: 'Peitoral (superior)', duration: '3x12', equipment: 'Halteres + banco inclinado', tip: 'Abre em arco até a linha do peito, sem descer demais.', video: V.crucifixoIncl },
-      { name: 'Tríceps Francês', muscle: 'Tríceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos fixos apontando pra cima, estende completo.', video: V.tricepsFrances },
+      { name: 'Abdominal Infra no chão', muscle: 'Abdômen inferior', duration: '4x15-20', equipment: 'Colchonete', tip: 'Sobe as pernas controlando, lombar apoiada.', video: V.abdomInfra },
+      { name: 'Prancha Lateral', muscle: 'Core lateral', duration: '3x 25-30s cada lado', equipment: 'Colchonete', tip: 'Quadril alto, corpo em linha.', video: V.pranchaLateral },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 4',
-    title: 'Flexão de Braço ↔ Abdominal', duration: '', meta: '',
+    type: 'lift', label: 'Circuito 4',
+    title: 'Abdominal Supra ↔ Prancha', duration: '', meta: '',
     exercises: [
-      { name: 'Flexão de Braço', muscle: 'Peitoral / Core', duration: '3x máx', equipment: 'Peso do corpo', tip: 'Corpo alinhado; joelhos no chão se precisar.', video: V.pushUps },
-      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3x15-20', equipment: 'Colchonete', tip: 'Sobe com o abdômen, sem puxar o pescoço.', video: V.abdomSupra },
+      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '4x15-20', equipment: 'Colchonete', tip: 'Sobe com o abdômen, sem forçar o pescoço.', video: V.abdomSupra },
+      { name: 'Prancha', muscle: 'Core', duration: '3x 30-40s', equipment: 'Colchonete', tip: 'Corpo alinhado, abdômen firme.', video: V.prancha },
     ]
   },
   CARDIO_BIKE,
   ALONG_FINAL_C,
 ];
 
-const TREINO_D = [
-  AQUEC_ARTICULAR,
-  AQUEC_MUSCULAR_A,
-  MOBILIDADE_A,
-  {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Desenvolvimento ↔ Elevação Lateral', duration: '', meta: 'Pirâmide 12·10·8 (subindo carga) + DROP-SET na última série do desenvolvimento. Descanso 45-60s. É o estímulo novo de definição.',
-    exercises: [
-      { name: 'Desenvolvimento com Halteres', muscle: 'Ombros', duration: '12·10·8 + drop', equipment: 'Halteres + banco', tip: 'Sentada com apoio, empurra sem travar o cotovelo. Drop-set na última.', video: V.desenvHalteres },
-      { name: 'Elevação Lateral', muscle: 'Ombro (lateral)', duration: '3x12-15', equipment: 'Halteres', tip: 'Sobe até a linha dos ombros, cotovelo levemente flexionado.', video: V.elevLateral },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 2',
-    title: 'Elevação Frontal ↔ Face Pull', duration: '', meta: '',
-    exercises: [
-      { name: 'Elevação Frontal com Halteres', muscle: 'Ombro (anterior)', duration: '3x12', equipment: 'Halteres', tip: 'Sobe até a linha dos olhos, controle na descida.', video: V.elevFrontal },
-      { name: 'Face Pull (Crucifixo Inverso na Polia)', muscle: 'Post. de ombro / Postura', duration: '3x15', equipment: 'Polia alta + corda', tip: 'Puxa à altura do rosto, abrindo, contraindo escápulas.', video: V.faceP },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 3',
-    title: 'Rosca Direta ↔ Tríceps Corda', duration: '', meta: '',
-    exercises: [
-      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '12·10·8', equipment: 'Halteres', tip: 'Cotovelos fixos, sobe sem balançar.', video: V.roscaDireta },
-      { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x12-15', equipment: 'Polia + corda', tip: 'Cotovelos fixos, estende completo.', video: V.tricepsCorda },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 4',
-    title: 'Rosca Martelo ↔ Tríceps Testa', duration: '', meta: '',
-    exercises: [
-      { name: 'Rosca Martelo', muscle: 'Bíceps / Braquial', duration: '3x12', equipment: 'Halteres', tip: 'Pegada neutra, cotovelos fixos.', video: V.roscaMartelo },
-      { name: 'Tríceps Testa Barra Reta', muscle: 'Tríceps', duration: '3x12', equipment: 'Barra', tip: 'Desce à testa e estende, cotovelos parados.', video: V.tricepsTesta },
-    ]
-  },
-  CARDIO_BIKE,
-  ALONG_FINAL_A,
-];
-
-const TREINO_E = [
-  AQUEC_ARTICULAR,
-  AQUEC_MUSCULAR_B,
-  MOBILIDADE_B,
-  {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Leg Press ↔ Abdominal', duration: '', meta: 'Perna joelho-safe: amplitude controlada, SEM flexão profunda. Sem drop-set em joelho.',
-    exercises: [
-      { name: 'Leg Press 45° (amplitude controlada)', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press', tip: 'Amplitude até ~90°, sem travar o joelho. Condromalácia: sem dor.', video: V.legPress },
-      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3x15-20', equipment: 'Colchonete', tip: 'No chão ao lado do leg press.', video: V.abdomSupra },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Extensora ISOMETRIA ↔ Prancha', duration: '', meta: '',
-    exercises: [
-      { name: 'Cadeira Extensora — ISOMETRIA', muscle: 'Quadríceps (isométrico)', duration: '4x 30-45s', equipment: 'Máquina extensora', tip: 'ISOMETRIA (condromalácia): segura PARADA a ~60° de flexão, NÃO estende até o final. ~70% do esforço, sem dor. Nada de repetições.', video: V.cadeiraExt },
-      { name: 'Prancha', muscle: 'Core', duration: '4x 30-40s', equipment: 'Colchonete', tip: 'Corpo alinhado, abdômen firme.', video: V.prancha },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 3',
-    title: 'Stiff ↔ Panturrilha Sentado', duration: '', meta: '',
-    exercises: [
-      { name: 'Stiff com Halteres', muscle: 'Posterior de coxa', duration: '3x12', equipment: 'Halteres', tip: 'Quadril pra trás, coluna neutra.', video: V.stiffHalteres },
-      { name: 'Panturrilha Sentado (Máquina)', muscle: 'Panturrilha', duration: '3x15-20', equipment: 'Máquina panturrilha sentado', tip: 'Amplitude completa, segura 1s no topo.', video: V.panturrilhaSentado },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 4',
-    title: 'Adução ↔ Abdução em Pé', duration: '', meta: '',
-    exercises: [
-      { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Fecha as pernas com controle.', video: V.aducao },
-      { name: 'Abdução de Quadril em Pé (Caneleira)', muscle: 'Glúteo médio', duration: '3x15 cada lado', equipment: 'Caneleira (em pé, apoio)', tip: 'Abre a perna sem inclinar o tronco.', video: V.abducaoPeCaneleira },
-    ]
-  },
-  CARDIO_BIKE,
-  ALONG_FINAL_B,
-];
-
 
 const TRAINING_SLOTS = [
-  { label: 'Treino A — Glúteo/Posterior 45-60min', blocks: TREINO_A },
-  { label: 'Treino B — Costas/Bíceps 45-60min', blocks: TREINO_B },
-  { label: 'Treino C — Peito/Tríceps 45-60min', blocks: TREINO_C },
-  { label: 'Treino D — Ombro/Braço 45-60min', blocks: TREINO_D },
-  { label: 'Treino E — Pernas (joelho-safe) + Core 45-60min', blocks: TREINO_E },
+  { label: 'Treino A — Glúteo/Posterior/Costas/Bíceps/Abd', blocks: TREINO_A },
+  { label: 'Treino B — Coxa/Peito/Tríceps/Ombro', blocks: TREINO_B },
+  { label: 'Treino C — HIIT Funcional + Core', blocks: TREINO_C },
+  { label: 'Treino D — repete o A', blocks: TREINO_A },
+  { label: 'Treino E — repete o B', blocks: TREINO_B },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 const DAY_CONFIG_KEY = 'maxresults-clara-preview-days-v1';
