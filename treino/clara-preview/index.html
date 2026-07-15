@@ -634,20 +634,22 @@ const TREINO_C = [
   AQUEC_ARTICULAR,
   MOBILIDADE_C,
   {
-    type: 'lift', label: 'WOD · Chipper',
-    title: 'WOD — Chipper (2 voltas · ~10-12 min)', duration: '2 voltas · For Time (o mais rápido que der, com técnica)',
-    meta: 'Lista de cima a baixo, 2 voltas, o mais rápido possível com técnica. GRUPOS ALTERNADOS (glúteo/cardio/abdômen/funcional/posterior) — coração alto e corpo revezando. Joelho-safe: cardio sem salto, sem agacho profundo.',
+    type: 'lift', label: 'WOD 1 · Triplet AMRAP',
+    title: 'Triplet — AMRAP 7 min (descanso 3 min)', duration: 'AMRAP 7 min · máximo de voltas · descanso 3 min ao fim', meta: 'Faz os 3 emendados, o MÁXIMO de voltas em 7 min. Grupos alternados (funcional/glúteo/core), joelho-safe. Anota quantas voltas fez.',
     exercises: [
-      { name: 'Elevação Pélvica / Hip Thrust', muscle: 'Glúteos (glúteo)', duration: '12 reps', equipment: 'Banco + barra', tip: 'Explode na subida, contrai o glúteo no topo.', video: V.hipThrust },
-      { name: 'Shadow Boxing', muscle: 'Cardio (cardio)', duration: '30s', equipment: 'Peso do corpo', tip: 'Socos no ar em ritmo alto, base leve. Sobe a FC sem impacto no joelho.', video: '' },
-      { name: 'Abdominal Infra no chão', muscle: 'Abdômen (abdômen)', duration: '15 reps', equipment: 'Colchonete', tip: 'Sobe as pernas controlando, lombar apoiada.', video: V.abdomInfra },
-      { name: 'Clean and Jerk Pump', muscle: 'Funcional (funcional)', duration: '10 reps', equipment: 'Barra leve', tip: 'Barra leve, ritmo. Puxa do chão e arremessa acima da cabeça. Sem agacho profundo.', video: V.cleanJerkPump },
-      { name: 'Bom Dia', muscle: 'Posterior / Lombar (posterior)', duration: '12 reps', equipment: 'Barra leve', tip: 'Quadril pra trás, coluna neutra, desce e sobe controlando.', video: V.bomDia },
-      { name: 'Subida no Banco (Step-up)', muscle: 'Cardio (cardio)', duration: '30s (alternando pernas)', equipment: 'Banco/step', tip: 'Sobe e desce controlando, SEM salto. Joelho alinhado com o pé.', video: '' },
-      { name: 'Glúteos 4 Apoios c/ Caneleira', muscle: 'Glúteos (glúteo)', duration: '12 cada lado', equipment: 'Colchonete + caneleira', tip: 'Estende a perna pra trás contraindo o glúteo.', video: V.gluteos4apoios },
-      { name: 'Prancha Lateral', muscle: 'Abdômen / Core (abdômen)', duration: '20s cada lado', equipment: 'Colchonete', tip: 'Quadril alto, corpo em linha.', video: V.pranchaLateral },
-      { name: 'Swing Kettlebell', muscle: 'Funcional / Cardio (funcional)', duration: '15 reps', equipment: 'Kettlebell', tip: 'Hinge de quadril, impulsiona com o glúteo. Sem agachar.', video: V.swingKB },
-      { name: 'Marcha Joelho Alto no Lugar', muscle: 'Cardio (cardio)', duration: '30s', equipment: 'Peso do corpo', tip: 'No lugar, sobe os joelhos em ritmo alto. SEM salto — baixo impacto.', video: '' },
+      { name: 'Clean and Jerk Pump', muscle: 'Funcional (funcional)', duration: '8 reps', equipment: 'Barra leve', tip: 'Barra leve, ritmo. Puxa do chão e arremessa acima da cabeça. Sem agacho profundo.', video: V.cleanJerkPump },
+      { name: 'Elevação Pélvica / Hip Thrust', muscle: 'Glúteos (glúteo)', duration: '10 reps', equipment: 'Banco + barra', tip: 'Explode na subida, contrai o glúteo no topo.', video: V.hipThrust },
+      { name: 'Abdominal Infra no chão', muscle: 'Abdômen (core)', duration: '12 reps', equipment: 'Colchonete', tip: 'Sobe as pernas controlando, lombar apoiada.', video: V.abdomInfra },
+    ]
+  },
+  {
+    type: 'lift', label: 'WOD 2 · Tabata',
+    title: 'Tabata — 4 exercícios (20s on / 10s off)', duration: '20s forte / 10s pausa · 2 voltas nos 4 (8 rounds) · ~4 min', meta: 'Cada exercício 20s no talo, 10s de pausa. Passa pelos 4 e repete (2 voltas = 8 rounds). Grupos alternados, joelho-safe.',
+    exercises: [
+      { name: 'Swing Kettlebell', muscle: 'Funcional / Cardio (funcional)', duration: '20s', equipment: 'Kettlebell', tip: 'Hinge de quadril, impulsiona com o glúteo. Sem agachar.', video: V.swingKB },
+      { name: 'Prancha Lateral', muscle: 'Core (abdômen)', duration: '20s (troca lado por volta)', equipment: 'Colchonete', tip: 'Quadril alto, corpo em linha.', video: V.pranchaLateral },
+      { name: 'Glúteos 4 Apoios c/ Caneleira', muscle: 'Glúteos (glúteo)', duration: '20s cada volta', equipment: 'Colchonete + caneleira', tip: 'Estende a perna pra trás contraindo o glúteo.', video: V.gluteos4apoios },
+      { name: 'Shadow Boxing', muscle: 'Cardio (cardio)', duration: '20s', equipment: 'Peso do corpo', tip: 'Socos no ar em ritmo alto. Sobe a FC sem impacto no joelho.', video: '' },
     ]
   },
   ALONG_FINAL_C,
@@ -656,7 +658,7 @@ const TREINO_C = [
 const TRAINING_SLOTS = [
   { label: 'Treino A — Glúteo/Posterior/Costas/Bíceps/Abd', blocks: TREINO_A },
   { label: 'Treino B — Coxa/Peito/Tríceps/Ombro', blocks: TREINO_B },
-  { label: 'Treino C — HIIT (WOD Chipper)', blocks: TREINO_C },
+  { label: 'Treino C — HIIT (AMRAP + Tabata)', blocks: TREINO_C },
   { label: 'Treino D — repete o A', blocks: TREINO_A },
   { label: 'Treino E — repete o B', blocks: TREINO_B },
 ];
