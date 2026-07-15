@@ -273,7 +273,17 @@
     .video-overlay.active { display: flex; }
     .video-overlay video, .video-overlay iframe { max-width: 100%; max-height: 80vh; border-radius: 12px; border: none; }
     .video-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); border: none; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-  </style>
+  .timer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;z-index:9999}
+.timer-overlay.active{display:flex}
+.timer-box{text-align:center;color:#fff;padding:24px;width:100%}
+.timer-phase{font-size:1.7rem;font-weight:800;margin-bottom:10px;letter-spacing:1px}
+.timer-count{font-size:5.2rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.timer-round{font-size:1.05rem;opacity:.75;margin-top:10px}
+.timer-controls{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.timer-controls button{padding:12px 18px;border:0;border-radius:10px;background:#2b2b2b;color:#fff;font-size:1rem;font-weight:600}
+.timer-phase.work{color:#4ade80}.timer-phase.rest{color:#fbbf24}.timer-phase.prep{color:#93c5fd}.timer-phase.done{color:#f472b6}
+.timer-btn{margin-left:8px;padding:5px 12px;border:0;border-radius:8px;background:#e0a80d;color:#111;font-weight:700;font-size:.82rem;cursor:pointer}
+</style>
 </head>
 <body>
 <div class="container">
@@ -636,7 +646,7 @@ const TREINO_C = [
   MOBILIDADE_C,
   {
     type: 'lift', label: 'WOD 1 · Triplet AMRAP',
-    title: 'Triplet — AMRAP 7 min (descanso 3 min)', duration: 'AMRAP 7 min · máximo de voltas · descanso 3 min ao fim', meta: 'Faz os 3 emendados, o MÁXIMO de voltas em 7 min. Grupos alternados (funcional/glúteo/core), joelho-safe. Anota quantas voltas fez.',
+    title: 'Triplet — AMRAP 7 min (descanso 3 min)', timer: { type: 'amrap', work: 420, rest: 180, prep: 10 }, duration: 'AMRAP 7 min · máximo de voltas · descanso 3 min ao fim', meta: 'Faz os 3 emendados, o MÁXIMO de voltas em 7 min. Grupos alternados (funcional/glúteo/core), joelho-safe. Anota quantas voltas fez.',
     exercises: [
       { name: 'Clean and Jerk Pump', muscle: 'Funcional (funcional)', duration: '8 reps', equipment: 'Barra leve', tip: 'Barra leve, ritmo. Puxa do chão e arremessa acima da cabeça. Sem agacho profundo.', video: V.cleanJerkPump },
       { name: 'Elevação Pélvica / Hip Thrust', muscle: 'Glúteos (glúteo)', duration: '10 reps', equipment: 'Banco + barra', tip: 'Explode na subida, contrai o glúteo no topo.', video: V.hipThrust },
@@ -645,7 +655,7 @@ const TREINO_C = [
   },
   {
     type: 'lift', label: 'WOD 2 · Tabata',
-    title: 'Tabata — 4 exercícios (20s on / 10s off)', duration: '20s forte / 10s pausa · 2 voltas nos 4 (8 rounds) · ~4 min', meta: 'Cada exercício 20s no talo, 10s de pausa. Passa pelos 4 e repete (2 voltas = 8 rounds). Grupos alternados, joelho-safe.',
+    title: 'Tabata — 4 exercícios (20s on / 10s off)', timer: { type: 'tabata', work: 20, rest: 10, rounds: 8, prep: 10 }, duration: '20s forte / 10s pausa · 2 voltas nos 4 (8 rounds) · ~4 min', meta: 'Cada exercício 20s no talo, 10s de pausa. Passa pelos 4 e repete (2 voltas = 8 rounds). Grupos alternados, joelho-safe.',
     exercises: [
       { name: 'Swing Kettlebell', muscle: 'Funcional / Cardio (funcional)', duration: '20s', equipment: 'Kettlebell', tip: 'Hinge de quadril, impulsiona com o glúteo. Sem agachar.', video: V.swingKB },
       { name: 'Abdominal Bicicleta', muscle: 'Core / Oblíquos (abdômen)', duration: '20s (conte as reps)', equipment: 'Colchonete', tip: 'Deitada, alterna cotovelo no joelho oposto em ritmo. Conta cada toque como 1 rep.', video: V.abdomBicicleta },
@@ -771,7 +781,7 @@ function renderWorkout() {
     return `<section class="block block--${block.type}">
       <div class="block-header"><div class="block-info"><div class="block-dot"></div><div><div class="block-name">${block.label}</div></div></div><div class="block-progress ${blockDone?'done':''}">${doneCount}/${total}</div></div>
       <div class="block-subtitle">${block.title}</div>
-      <div class="block-meta">${block.meta||block.duration}</div>
+      <div class="block-meta">${block.meta||block.duration}</div>${block.timer ? `<button class="timer-btn" data-timer='${JSON.stringify(block.timer)}' onclick="event.stopPropagation(); startWodTimer(this)">\u23f1\ufe0f Iniciar Timer</button>` : ''}
       ${/wod|amrap|tabata|chipper|emom/i.test((block.label||'')+(block.title||'')) ? `<div class="load-row" onclick="event.stopPropagation()"><span class="load-label">📊 Resultado do dia:</span><input type="text" class="result-input" placeholder="ex: 5 voltas / 120 reps totais" data-result-key="${currentDayIndex}-${bi}" onchange="saveResult(this)" value=""></div>` : ''}
       ${block.exercises.map((ex, ei) => {
         const key = exerciseKey(currentDayIndex, bi, ei);
@@ -1298,6 +1308,44 @@ document.getElementById('avatarInput').addEventListener('change', function(e) {
   if (e.target.files && e.target.files[0]) saveAvatar(e.target.files[0]);
 });
 loadAvatar();
+
+var _twState=null,_twCfg=null;
+function _beep(f,d){try{var C=window.AudioContext||window.webkitAudioContext;if(!C)return;var c=new C();var o=c.createOscillator(),g=c.createGain();o.frequency.value=f;o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.4,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);o.start();o.stop(c.currentTime+d);}catch(e){}}
+function _buildPhases(cfg){var p=[];p.push({label:'Preparar',s:cfg.prep||5,kind:'prep'});
+if(cfg.type==='tabata'){for(var r=1;r<=cfg.rounds;r++){p.push({label:'FORCA! '+r+'/'+cfg.rounds,s:cfg.work,kind:'work'});if(r<cfg.rounds)p.push({label:'Descanso',s:cfg.rest,kind:'rest'});}}
+else if(cfg.type==='emom'){for(var r2=1;r2<=cfg.rounds;r2++)p.push({label:'Min '+r2+'/'+cfg.rounds,s:60,kind:'work'});}
+else{p.push({label:cfg.label||'VAI!',s:cfg.work,kind:'work'});if(cfg.rest)p.push({label:'Descanso',s:cfg.rest,kind:'rest'});}
+p.push({label:'FIM! ',s:0,kind:'done'});return p;}
+function startWodTimer(btn){try{_twCfg=JSON.parse(btn.dataset.timer);}catch(e){return;}_runTimer();}
+function _runTimer(){var phases=_buildPhases(_twCfg),idx=0,left=phases[0].s,paused=false;
+var ov=document.getElementById('timerOverlay'),ph=document.getElementById('timerPhase'),ct=document.getElementById('timerCount'),rd=document.getElementById('timerRound');
+ov.classList.add('active');
+function draw(){var q=phases[idx];ph.textContent=q.label;ph.className='timer-phase '+q.kind;var m=Math.floor(left/60),s=left%60;ct.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;}
+_beep(660,.1);draw();
+if(_twState&&_twState.iv)clearInterval(_twState.iv);
+var iv=setInterval(function(){if(paused)return;left--;
+if(left<0){idx++;if(idx>=phases.length){clearInterval(iv);return;}var q=phases[idx];left=q.s;
+if(q.kind==='work')_beep(880,.22);else if(q.kind==='rest')_beep(440,.22);
+else if(q.kind==='done'){_beep(880,.15);setTimeout(function(){_beep(1150,.3);},200);draw();setTimeout(closeWodTimer,2600);return;}}
+else if(left<=3&&left>=1){_beep(700,.06);}
+draw();},1000);
+_twState={iv:iv,pause:function(){paused=!paused;document.getElementById('timerPause').textContent=paused?'▶ Retomar':'⏸ Pausar';}};}
+function toggleTimerPause(){if(_twState)_twState.pause();}
+function restartWodTimer(){if(_twState&&_twState.iv)clearInterval(_twState.iv);_runTimer();}
+function closeWodTimer(){if(_twState&&_twState.iv)clearInterval(_twState.iv);document.getElementById('timerOverlay').classList.remove('active');}
+
 </script>
+<div id="timerOverlay" class="timer-overlay">
+  <div class="timer-box">
+    <div class="timer-phase" id="timerPhase">Preparar</div>
+    <div class="timer-count" id="timerCount">00:10</div>
+    <div class="timer-round" id="timerRound"></div>
+    <div class="timer-controls">
+      <button id="timerPause" onclick="toggleTimerPause()">⏸ Pausar</button>
+      <button onclick="restartWodTimer()">↻ Reiniciar</button>
+      <button onclick="closeWodTimer()">✕ Fechar</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
