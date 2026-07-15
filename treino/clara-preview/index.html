@@ -1324,10 +1324,10 @@ function draw(){var q=phases[idx];ph.textContent=q.label;ph.className='timer-pha
 _beep(660,.1);draw();
 if(_twState&&_twState.iv)clearInterval(_twState.iv);
 var iv=setInterval(function(){if(paused)return;left--;
-if(left<0){idx++;if(idx>=phases.length){clearInterval(iv);return;}var q=phases[idx];left=q.s;
-if(q.kind==='work')_beep(880,.22);else if(q.kind==='rest')_beep(440,.22);
-else if(q.kind==='done'){_beep(880,.15);setTimeout(function(){_beep(1150,.3);},200);draw();setTimeout(closeWodTimer,2600);return;}}
-else if(left<=3&&left>=1){_beep(700,.06);}
+if(left<0){var ended=phases[idx];idx++;if(idx>=phases.length){clearInterval(iv);return;}var q=phases[idx];left=q.s;
+if(ended.kind==='work'){_beep(523,.14);setTimeout(function(){_beep(523,.14);},170);}
+if(q.kind==='work'){_beep(880,.28);}else if(q.kind==='done'){_beep(880,.15);setTimeout(function(){_beep(1150,.35);},200);draw();setTimeout(closeWodTimer,2600);return;}}
+else if(left<=5&&left>=1){_beep(700,.07);}
 draw();},1000);
 _twState={iv:iv,pause:function(){paused=!paused;document.getElementById('timerPause').textContent=paused?'▶ Retomar':'⏸ Pausar';}};}
 function toggleTimerPause(){if(_twState)_twState.pause();}
