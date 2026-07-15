@@ -340,6 +340,7 @@ const WEEKLY_GOALS = [
 ];
 
 const V = {
+  cleanJerkPump: 'https://player.mediadelivery.net/play/655450/e159f81b-2bc1-43bb-8501-47ef2a97d080',
   flexaoJoelho: 'https://vd.mfitpersonal.com.br/239/mp4/239.mp4',
   swingKB: 'https://vd.mfitpersonal.com.br/713/mp4/713.mp4',
   abducaoPeCaneleira: 'https://vd.mfitpersonal.com.br/249/mp4/249.mp4',
@@ -635,8 +636,9 @@ const TREINO_C = [
   MOBILIDADE_C,
   {
     type: 'lift', label: 'Circuito 1',
-    title: 'Swing Kettlebell ↔ Bom Dia', duration: '', meta: 'HIIT funcional em circuito: ritmo alto, descanso curto. Foco em glúteo, lombar e core. Adaptado pra proteger o joelho (sem agachamento profundo/impacto).',
+    title: 'Clean and Jerk Pump → Swing → Bom Dia', duration: '', meta: 'HIIT funcional em circuito: ritmo alto, descanso curto. Foco em glúteo, lombar e core. Adaptado pra proteger o joelho (sem agachamento profundo/impacto).',
     exercises: [
+      { name: 'Clean and Jerk Pump', muscle: 'Corpo todo / Cardio', duration: '4x10-12', equipment: 'Barra leve (estilo Les Mills)', tip: 'Versão Pump: barra leve, alta repetição, no ritmo. Puxa do chão, encaixa e arremessa acima da cabeça. Joelho-safe (sem agachamento profundo).', video: V.cleanJerkPump },
       { name: 'Swing Kettlebell', muscle: 'Glúteos / Posterior / Cardio', duration: '4x15-20', equipment: 'Kettlebell', tip: 'Movimento de QUADRIL (hinge), não de agachamento — impulsiona com o glúteo, coluna neutra. Sem forçar o joelho.', video: V.swingKB },
       { name: 'Bom Dia', muscle: 'Lombar / Posterior', duration: '3x12', equipment: 'Barra leve / cabo', tip: 'Quadril pra trás, coluna neutra, desce e sobe controlando. Fortalece a lombar.', video: V.bomDia },
     ]
