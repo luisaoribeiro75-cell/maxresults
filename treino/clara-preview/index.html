@@ -1312,11 +1312,11 @@ loadAvatar();
 var _twState=null,_twCfg=null;
 function _beep(f,d){try{var C=window.AudioContext||window.webkitAudioContext;if(!C)return;var c=new C();var o=c.createOscillator(),g=c.createGain();o.frequency.value=f;o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.4,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);o.start();o.stop(c.currentTime+d);}catch(e){}}
 function _buildPhases(cfg){var p=[];p.push({label:'Preparar',s:cfg.prep||5,kind:'prep'});
-if(cfg.type==='tabata'){for(var r=1;r<=cfg.rounds;r++){p.push({label:'FORCA! '+r+'/'+cfg.rounds,s:cfg.work,kind:'work'});if(r<cfg.rounds)p.push({label:'Descanso',s:cfg.rest,kind:'rest'});}}
+if(cfg.type==='tabata'||cfg.type==='custom'){for(var r=1;r<=cfg.rounds;r++){p.push({label:'FORCA! '+r+'/'+cfg.rounds,s:cfg.work,kind:'work'});if(r<cfg.rounds)p.push({label:'Descanso',s:cfg.rest,kind:'rest'});}}
 else if(cfg.type==='emom'){for(var r2=1;r2<=cfg.rounds;r2++)p.push({label:'Min '+r2+'/'+cfg.rounds,s:60,kind:'work'});}
 else{p.push({label:cfg.label||'VAI!',s:cfg.work,kind:'work'});if(cfg.rest)p.push({label:'Descanso',s:cfg.rest,kind:'rest'});}
 p.push({label:'FIM! ',s:0,kind:'done'});return p;}
-function startWodTimer(btn){try{_twCfg=JSON.parse(btn.dataset.timer);}catch(e){return;}_runTimer();}
+function startWodTimer(btn){try{_twCfg=JSON.parse(btn.dataset.timer);}catch(e){return;}if(_twCfg.type==='fortime'){_runForTime();}else{_runTimer();}}
 function _runTimer(){var phases=_buildPhases(_twCfg),idx=0,left=phases[0].s,paused=false;
 var ov=document.getElementById('timerOverlay'),ph=document.getElementById('timerPhase'),ct=document.getElementById('timerCount'),rd=document.getElementById('timerRound');
 ov.classList.add('active');
@@ -1330,8 +1330,20 @@ if(q.kind==='work'){_beep(880,.28);}else if(q.kind==='done'){_beep(880,.15);setT
 else if(left<=5&&left>=1){_beep(700,.07);}
 draw();},1000);
 _twState={iv:iv,pause:function(){paused=!paused;document.getElementById('timerPause').textContent=paused?'▶ Retomar':'⏸ Pausar';}};}
+function _runForTime(){var cfg=_twCfg,prep=cfg.prep||5,elapsed=-prep,paused=false,cap=cfg.cap||0;
+var ov=document.getElementById('timerOverlay'),ph=document.getElementById('timerPhase'),ct=document.getElementById('timerCount'),rd=document.getElementById('timerRound');
+ov.classList.add('active');
+function fmt(x){var m=Math.floor(x/60),s=x%60;return (m<10?'0':'')+m+':'+(s<10?'0':'')+s;}
+function draw(){if(elapsed<0){ph.textContent='Preparar';ph.className='timer-phase prep';ct.textContent=fmt(-elapsed);}else{ph.textContent='FOR TIME';ph.className='timer-phase work';ct.textContent=fmt(elapsed);}rd.textContent=cap?('Time cap: '+Math.floor(cap/60)+' min — anota teu tempo'):'anota teu tempo';}
+_beep(660,.1);draw();
+if(_twState&&_twState.iv)clearInterval(_twState.iv);
+var iv=setInterval(function(){if(paused)return;elapsed++;
+if(elapsed===0){_beep(880,.28);}else if(elapsed<0&&elapsed>=-5){_beep(700,.07);}
+if(cap&&elapsed>=cap){_beep(523,.14);setTimeout(function(){_beep(523,.14);},170);setTimeout(function(){_beep(1150,.35);},360);ph.textContent='TIME CAP! ';ph.className='timer-phase done';draw();clearInterval(iv);return;}
+draw();},1000);
+_twState={iv:iv,pause:function(){paused=!paused;document.getElementById('timerPause').textContent=paused?'▶ Retomar':'⏸ Pausar';}};}
 function toggleTimerPause(){if(_twState)_twState.pause();}
-function restartWodTimer(){if(_twState&&_twState.iv)clearInterval(_twState.iv);_runTimer();}
+function restartWodTimer(){if(_twState&&_twState.iv)clearInterval(_twState.iv);if(_twCfg&&_twCfg.type==='fortime'){_runForTime();}else{_runTimer();}}
 function closeWodTimer(){if(_twState&&_twState.iv)clearInterval(_twState.iv);document.getElementById('timerOverlay').classList.remove('active');}
 
 </script>
