@@ -460,34 +460,34 @@ const TREINO_B = [
   MOBILIDADE,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Puxada Frontal ↔ Rosca Martelo', duration: '', meta: 'Ritmo gentil (fibromialgia): controlado, sem falha, sem drop-set. No dia de dor, reduz o volume sem culpa — constância vale mais que carga.',
+    title: 'Puxada Frontal ↔ Abdominal', duration: '', meta: '',
     exercises: [
       { name: 'Puxada Frontal Aberta', muscle: 'Costas (dorsal)', duration: '3x12-15', equipment: 'Puxador', tip: 'Puxa à linha do peito fechando as escápulas.', video: V.puxadaFrontal },
-      { name: 'Rosca Martelo', muscle: 'Bíceps / Braquial', duration: '3x12', equipment: 'Halteres', tip: 'Pegada neutra, cotovelos fixos.', video: V.roscaMartelo },
+      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3x15', equipment: 'Colchonete', tip: 'Sobe com o abdômen, sem puxar o pescoço.', video: V.abdomSolo },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Remada Baixa ↔ Rosca Alternada', duration: '', meta: '',
+    title: 'Remada Baixa ↔ Prancha', duration: '', meta: '',
     exercises: [
       { name: 'Remada Baixa', muscle: 'Costas (meio)', duration: '3x12-15', equipment: 'Polia', tip: 'Puxa ao abdômen, tronco estável.', video: V.remadaBaixa },
-      { name: 'Rosca Alternada com Halteres', muscle: 'Bíceps', duration: '3x12 cada braço', equipment: 'Halteres', tip: 'Alterna os braços, sem balançar o tronco.', video: V.roscaAlt },
+      { name: 'Prancha', muscle: 'Core', duration: '3x 25-30s', equipment: 'Colchonete', tip: 'Corpo alinhado, abdômen firme.', video: V.prancha },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3',
-    title: 'Remada Unilateral ↔ Face Pull', duration: '', meta: '',
+    title: 'Remada Unilateral ↔ Dead Bug', duration: '', meta: '',
     exercises: [
       { name: 'Remada Unilateral com Halter (Neutra)', muscle: 'Costas (dorsal)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Mão e joelho no banco, puxa à cintura.', video: V.remadaUnilateral },
-      { name: 'Face Pull (Crucifixo Inverso na Polia)', muscle: 'Post. de ombro / Postura', duration: '3x15', equipment: 'Polia alta + corda', tip: 'Puxa à altura do rosto, contraindo escápulas. Ótimo pra postura.', video: V.faceP },
+      { name: 'Dead Bug', muscle: 'Core / Estabilidade', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Lombar colada no chão, alterna braço/perna devagar.', video: V.deadBug },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 4',
-    title: 'Dead Bug ↔ Prancha', duration: '', meta: '',
+    title: 'Rosca Martelo ↔ Rosca Alternada (foco bíceps)', duration: '', meta: '',
     exercises: [
-      { name: 'Dead Bug', muscle: 'Core / Estabilidade', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Lombar colada no chão, alterna braço/perna devagar.', video: V.deadBug },
-      { name: 'Prancha', muscle: 'Core', duration: '3x 25-30s', equipment: 'Colchonete', tip: 'Corpo alinhado, abdômen firme.', video: V.prancha },
+      { name: 'Rosca Martelo', muscle: 'Bíceps / Braquial', duration: '3x12', equipment: 'Halteres', tip: 'Pegada neutra, cotovelos fixos.', video: V.roscaMartelo },
+      { name: 'Rosca Alternada com Halteres', muscle: 'Bíceps', duration: '3x12 cada braço', equipment: 'Halteres', tip: 'Alterna os braços, sem balançar o tronco.', video: V.roscaAlt },
     ]
   },
   CARDIO_BIKE,
@@ -499,18 +499,18 @@ const TREINO_C = [
   MOBILIDADE,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Supino Halteres ↔ Tríceps Corda', duration: '', meta: 'Ritmo gentil (fibromialgia): controlado, sem falha, sem drop-set. No dia de dor, reduz o volume sem culpa — constância vale mais que carga.',
+    title: 'Supino Halteres ↔ Abdominal', duration: '', meta: '',
     exercises: [
-      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '3x12-15', equipment: 'Halteres + banco', tip: 'Empurra controlando, sem descer demais (protege o ombro).', video: V.supino },
-      { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x12-15', equipment: 'Polia + corda', tip: 'Cotovelos fixos, estende e abre a corda no fim.', video: V.tricepsCorda },
+      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '3x12-15', equipment: 'Halteres + banco', tip: 'Empurra controlando, sem descer demais.', video: V.supino },
+      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3x15', equipment: 'Colchonete', tip: 'Sobe com o abdômen, sem forçar a lombar.', video: V.abdomSolo },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Crucifixo Inclinado ↔ Tríceps Testa', duration: '', meta: '',
+    title: 'Crucifixo Inclinado ↔ Prancha', duration: '', meta: '',
     exercises: [
-      { name: 'Crucifixo Inclinado com Halteres', muscle: 'Peitoral (superior)', duration: '3x12', equipment: 'Halteres + banco inclinado', tip: 'Abre em arco até a linha do peito.', video: V.crucifixoIncl },
-      { name: 'Tríceps Testa Barra Reta', muscle: 'Tríceps', duration: '3x12', equipment: 'Barra + banco', tip: 'Desce à testa e estende, cotovelos parados.', video: V.tricepsTesta },
+      { name: 'Crucifixo Inclinado com Halteres', muscle: 'Peitoral (superior)', duration: '3x12', equipment: 'Halteres + banco inclinado', tip: 'Abre em arco até a linha do peito. Isola o peito (sem tríceps).', video: V.crucifixoIncl },
+      { name: 'Prancha', muscle: 'Core', duration: '3x 25-30s', equipment: 'Colchonete', tip: 'Corpo alinhado, abdômen firme.', video: V.prancha },
     ]
   },
   {
@@ -518,15 +518,15 @@ const TREINO_C = [
     title: 'Desenvolvimento Arnold ↔ Elevação Lateral', duration: '', meta: '',
     exercises: [
       { name: 'Desenvolvimento Arnold', muscle: 'Ombros', duration: '3x12', equipment: 'Halteres + banco', tip: 'Gira os punhos na subida, controlado.', video: V.desenvArnold },
-      { name: 'Elevação Lateral com Halteres', muscle: 'Ombro (lateral)', duration: '3x12-15', equipment: 'Halteres', tip: 'Sobe até a linha dos ombros.', video: V.elevLateral },
+      { name: 'Elevação Lateral com Halteres', muscle: 'Ombro (lateral)', duration: '3x12-15', equipment: 'Halteres', tip: 'Sobe até a linha dos ombros. Independente do tríceps.', video: V.elevLateral },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 4',
-    title: 'Elevação Frontal ↔ Abdominal', duration: '', meta: '',
+    title: 'Tríceps Corda ↔ Tríceps Testa (foco tríceps)', duration: '', meta: '',
     exercises: [
-      { name: 'Elevação Frontal com Halteres', muscle: 'Ombro (anterior)', duration: '3x12', equipment: 'Halteres', tip: 'Sobe até a linha dos olhos, controle na descida.', video: V.elevFrontal },
-      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3x15', equipment: 'Colchonete', tip: 'Amplitude parcial se precisar, sem forçar a lombar.', video: V.abdomSolo },
+      { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x12-15', equipment: 'Polia + corda', tip: 'Cotovelos fixos, estende e abre a corda no fim.', video: V.tricepsCorda },
+      { name: 'Tríceps Testa Barra Reta', muscle: 'Tríceps', duration: '3x12', equipment: 'Barra + banco', tip: 'Desce à testa e estende, cotovelos parados.', video: V.tricepsTesta },
     ]
   },
   CARDIO_BIKE,
