@@ -340,6 +340,7 @@ const WEEKLY_GOALS = [
 ];
 
 const V = {
+  abdomBicicleta: 'https://vd.mfitpersonal.com.br/770/mp4/770.mp4',
   cleanJerkPump: 'https://player.mediadelivery.net/play/655450/e159f81b-2bc1-43bb-8501-47ef2a97d080',
   flexaoJoelho: 'https://vd.mfitpersonal.com.br/239/mp4/239.mp4',
   swingKB: 'https://vd.mfitpersonal.com.br/713/mp4/713.mp4',
@@ -647,7 +648,7 @@ const TREINO_C = [
     title: 'Tabata — 4 exercícios (20s on / 10s off)', duration: '20s forte / 10s pausa · 2 voltas nos 4 (8 rounds) · ~4 min', meta: 'Cada exercício 20s no talo, 10s de pausa. Passa pelos 4 e repete (2 voltas = 8 rounds). Grupos alternados, joelho-safe.',
     exercises: [
       { name: 'Swing Kettlebell', muscle: 'Funcional / Cardio (funcional)', duration: '20s', equipment: 'Kettlebell', tip: 'Hinge de quadril, impulsiona com o glúteo. Sem agachar.', video: V.swingKB },
-      { name: 'Prancha Lateral', muscle: 'Core (abdômen)', duration: '20s (troca lado por volta)', equipment: 'Colchonete', tip: 'Quadril alto, corpo em linha.', video: V.pranchaLateral },
+      { name: 'Abdominal Bicicleta', muscle: 'Core / Oblíquos (abdômen)', duration: '20s (conte as reps)', equipment: 'Colchonete', tip: 'Deitada, alterna cotovelo no joelho oposto em ritmo. Conta cada toque como 1 rep.', video: V.abdomBicicleta },
       { name: 'Glúteos 4 Apoios c/ Caneleira', muscle: 'Glúteos (glúteo)', duration: '20s cada volta', equipment: 'Colchonete + caneleira', tip: 'Estende a perna pra trás contraindo o glúteo.', video: V.gluteos4apoios },
       { name: 'Shadow Boxing', muscle: 'Cardio (cardio)', duration: '20s', equipment: 'Peso do corpo', tip: 'Socos no ar em ritmo alto. Sobe a FC sem impacto no joelho.', video: '' },
     ]
@@ -738,7 +739,7 @@ function findCurrentDay() {
   return 0;
 }
 
-function render() { renderWeekGoal(); renderDaySwitcher(); renderWorkout(); updateProgress(); updateFinishButton(); renderWeekOverview(); restoreLoads(); restoreRests(); }
+function render() { renderWeekGoal(); renderDaySwitcher(); renderWorkout(); updateProgress(); updateFinishButton(); renderWeekOverview(); restoreLoads(); restoreRests(); restoreResults(); }
 
 function renderWeekGoal() {
   document.getElementById('weekGoal').innerHTML = `
@@ -771,6 +772,7 @@ function renderWorkout() {
       <div class="block-header"><div class="block-info"><div class="block-dot"></div><div><div class="block-name">${block.label}</div></div></div><div class="block-progress ${blockDone?'done':''}">${doneCount}/${total}</div></div>
       <div class="block-subtitle">${block.title}</div>
       <div class="block-meta">${block.meta||block.duration}</div>
+      ${/wod|amrap|tabata|chipper|emom/i.test((block.label||'')+(block.title||'')) ? `<div class="load-row" onclick="event.stopPropagation()"><span class="load-label">📊 Resultado do dia:</span><input type="text" class="result-input" placeholder="ex: 5 voltas / 120 reps totais" data-result-key="${currentDayIndex}-${bi}" onchange="saveResult(this)" value=""></div>` : ''}
       ${block.exercises.map((ex, ei) => {
         const key = exerciseKey(currentDayIndex, bi, ei);
         const done = completedExercises[key];
@@ -1029,6 +1031,10 @@ function restoreLoads() { const loads=loadLoads(); document.querySelectorAll('.l
 function loadRests() { try { return JSON.parse(localStorage.getItem(REST_KEY)||'{}'); } catch { return {}; } }
 function saveRest(input) { const rests=loadRests(); const k=input.dataset.restKey; input.value.trim() ? rests[k]=input.value.trim() : delete rests[k]; localStorage.setItem(REST_KEY, JSON.stringify(rests)); }
 function restoreRests() { const rests=loadRests(); document.querySelectorAll(".rest-input").forEach(i => { const k=i.dataset.restKey; if (rests[k]) { i.value=rests[k]; } else if (i.placeholder && i.placeholder!=="—") { i.value=i.placeholder; saveRest(i); } }); }
+const RESULT_KEY = 'maxresults-clara-preview-result-v1';
+function loadResults() { try { return JSON.parse(localStorage.getItem(RESULT_KEY)||'{}'); } catch { return {}; } }
+function saveResult(input) { const r=loadResults(); const k=input.dataset.resultKey; input.value.trim() ? r[k]=input.value.trim() : delete r[k]; localStorage.setItem(RESULT_KEY, JSON.stringify(r)); }
+function restoreResults() { const r=loadResults(); document.querySelectorAll('.result-input').forEach(i => { const k=i.dataset.resultKey; if (r[k]) i.value=r[k]; }); }
 
 document.getElementById('weekToggle').addEventListener('click', function() {
   this.classList.toggle('open');
