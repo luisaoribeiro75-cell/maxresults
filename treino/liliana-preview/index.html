@@ -379,6 +379,8 @@ const V = {
   desenvHalteres: 'https://vd.mfitpersonal.com.br/155/mp4/155.mp4',
   hipThrust: 'https://vd.mfitpersonal.com.br/367/mp4/367.mp4',
   stiffHalteres: 'https://vd.mfitpersonal.com.br/267/mp4/267.mp4',
+  prancha: 'https://vd.mfitpersonal.com.br/852/mp4/852.mp4',
+  pranchaLateral: 'https://vd.mfitpersonal.com.br/181/mp4/181.mp4',
 };
 
 // ─── Shared blocks ───
@@ -507,17 +509,17 @@ const TREINO_A = [
   MOBILIDADE_A,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Hip Thrust ↔ Puxada Frontal', duration: '3x12 · Sem descanso no par',
-    meta: 'Glúteo + costas — descanso 90s só ao fim do bloco',
+    title: 'Hip Thrust ↔ Alongamento Peitoral', duration: '3x12 + 30s cada lado',
+    meta: 'Grande grupo + mobilidade oposta — alongamento é o descanso ativo',
     exercises: [
       { name: 'Elevação Pélvica (Hip Thrust)', muscle: 'Glúteos', duration: '3x12', equipment: 'Banco + barra', tip: 'Suba forte contraindo o glúteo no topo. Segure 1s antes de descer. Alvo: fechar 12 com boa execução.', video: V.hipThrust },
-      { name: 'Puxada Frontal', muscle: 'Costas (dorsal)', duration: '3x12', equipment: 'Puxador', tip: 'Peito aberto e escápulas encaixadas. Puxe até a linha do peito.', video: V.puxadaFrontal },
+      { name: 'Alongamento de Peitoral', muscle: 'Peitoral (descanso ativo)', duration: '30s cada lado', equipment: 'Nenhum (parede/porta)', tip: 'Braço apoiado na parede/porta em 90°, gira o tronco pro lado oposto. Alonga 30s um lado, 30s o outro. Serve de descanso pro glúteo.', video: V.alongPeitoral },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
     title: 'Cadeira Flexora ↔ Remada Unilateral (Halteres)', duration: '3x12 · Sem descanso no par',
-    meta: 'Posterior + costas — máquina + livre (não ocupa 2 estações)',
+    meta: 'Aparelho + livre perto — feita ao lado da flexora, não ocupa 2 estações',
     exercises: [
       { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12', equipment: 'Máquina flexora', tip: 'Controle a volta e evite tirar o quadril do banco.', video: V.cadeiraFlexora },
       { name: 'Remada Unilateral com Halteres (Neutra)', muscle: 'Costas (dorsal/meio)', duration: '3x12 cada lado', equipment: 'Halter + banco (ao lado da flexora)', tip: 'Uma mão e um joelho no banco, tronco paralelo ao chão, pegada neutra. Puxa o halter à cintura fechando a escápula. Feita ao lado da flexora, sem ocupar outra máquina.', video: V.remadaUniHalter },
@@ -526,10 +528,10 @@ const TREINO_A = [
   {
     type: 'lift', label: 'Bi-Set 3 · Ênfase',
     title: 'Cadeira Adutora ↔ Prancha Frontal', duration: '3x15 / 30s · Sem descanso no par',
-    meta: 'Ênfase adutores + core — descanso 90s só ao fim do bloco',
+    meta: 'Ênfase adutores + core — aparelho + livre no chão ao lado',
     exercises: [
       { name: 'Cadeira Adutora', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Feche as pernas com controle e segure 1s na contração. Ênfase do treino.', video: V.aducao },
-      { name: 'Abdominal Supra', muscle: 'Core / Abdômen', duration: '3x15', equipment: 'Colchonete', tip: 'Deitada, joelhos dobrados, mãos na nuca sem puxar o pescoço. Suba o tronco contraindo o abdômen e desça devagar. 15 repetições.', video: V.abdomSupra },
+      { name: 'Prancha Frontal', muscle: 'Core / Abdômen', duration: '3x30s', equipment: 'Colchonete (ao lado da adutora)', tip: 'Antebraços no chão, corpo alinhado dos ombros aos calcanhares. Não deixa o quadril cair nem subir. 30s. No colchonete ao lado — não ocupa outra máquina.', video: V.prancha },
     ]
   },
   CARDIO_A,
@@ -542,11 +544,11 @@ const TREINO_B = [
   MOBILIDADE_B,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Leg Press Horizontal ↔ Remada Curvada', duration: '3x12 · Sem descanso no par',
-    meta: 'Quadríceps/glúteo + costas — descanso 90s só ao fim do bloco',
+    title: 'Leg Press Horizontal ↔ Alongamento Peitoral', duration: '3x12 + 30s cada lado',
+    meta: 'Grande grupo + mobilidade oposta — alongamento é o descanso ativo',
     exercises: [
-      { name: 'Leg Press Horizontal', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press', tip: 'Substitui o agachamento Smith; amplitude controlada por você, sem forçar o quadril. Empurre pelo calcanhar.', video: V.legPress },
-      { name: 'Remada Curvada', muscle: 'Costas', duration: '3x12', equipment: 'Halteres', tip: 'Tronco inclinado estável. Puxe os halteres até a linha da cintura.', video: V.remadaCurvada },
+      { name: 'Leg Press Horizontal', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press', tip: 'Substitui o agachamento Smith; amplitude confortável, sem forçar o quadril. Empurre pelo calcanhar.', video: V.legPress },
+      { name: 'Alongamento de Peitoral', muscle: 'Peitoral (descanso ativo)', duration: '30s cada lado', equipment: 'Nenhum (parede/porta)', tip: 'Braço apoiado na parede/porta em 90°, gira o tronco pro lado oposto. 30s um lado, 30s o outro. Serve de descanso pra perna sem sair da estação.', video: V.alongPeitoral },
     ]
   },
   {
@@ -586,20 +588,20 @@ const TREINO_C = [
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Stiff Halteres ↔ Crucifixo Inverso', duration: '3x12 · Sem descanso no par',
-    meta: 'Posterior + costas/ombro posterior — descanso 90s só ao fim do bloco',
+    title: 'Stiff Halteres ↔ Crucifixo Inverso c/ Halteres', duration: '3x12 · Sem descanso no par',
+    meta: 'Mesma estação de halter — troca só a posição do tronco',
     exercises: [
       { name: 'Stiff com Halteres', muscle: 'Posterior de coxa / Glúteos', duration: '3x12', equipment: 'Halteres', tip: 'Quadril para trás e coluna neutra. Sinta alongar a posterior.', video: V.stiffHalteres },
-      { name: 'Crucifixo Inverso Máquina', muscle: 'Costas / posterior de ombro', duration: '3x12', equipment: 'Máquina crucifixo', tip: 'Abra os braços para trás e segure a contração no final.', video: V.crucifixoInv },
+      { name: 'Crucifixo Inverso com Halteres', muscle: 'Costas / posterior de ombro', duration: '3x12', equipment: 'Halteres', tip: 'Tronco inclinado à frente (posição de remada). Abre os braços pra trás como se fosse abraçar alguém de trás, apertando as escápulas. Mesma estação do stiff — sem trocar de aparelho.', video: V.crucifixoInv },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3 · Ênfase',
-    title: 'Prancha Lateral ↔ Abdução de Quadril', duration: '3x20s / 15 · Sem descanso no par',
-    meta: 'Ênfase core + adutores/abdutores — descanso 90s só ao fim do bloco',
+    title: 'Cadeira Adutora ↔ Prancha Lateral', duration: '3x15 + 3x20s cada lado',
+    meta: 'Ênfase adutor + core — aparelho + livre no chão ao lado',
     exercises: [
-      { name: 'Abdominal Supra', muscle: 'Core / Abdômen', duration: '3x15', equipment: 'Colchonete', tip: 'Deitada, joelhos dobrados, mãos na nuca sem puxar o pescoço. Contraia o abdômen subindo o tronco e desça devagar. 15 repetições.', video: V.abdomSupra },
-      { name: 'Abdução de Quadril na Máquina', muscle: 'Abdutores / Glúteo médio', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abra com controle e segure 1s na contração.', video: V.abdQuadril },
+      { name: 'Cadeira Adutora', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Feche as pernas com controle e segure 1s na contração. Ênfase do treino.', video: V.aducao },
+      { name: 'Prancha Lateral', muscle: 'Core / Oblíquos', duration: '3x20s cada lado', equipment: 'Colchonete (ao lado da adutora)', tip: 'Apoiada no antebraço e no pé de baixo, corpo alinhado. Quadril não desce. 20s de um lado, 20s do outro. No colchonete ao lado — não ocupa outra máquina.', video: V.pranchaLateral },
     ]
   },
   CARDIO_C,
