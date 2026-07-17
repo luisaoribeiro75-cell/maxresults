@@ -669,7 +669,7 @@ document.getElementById('avaliacaoForm').addEventListener('submit', function(e) 
   if (d.observacoes) msg += `\n*Obs:* ${d.observacoes}\n`;
 
   // Send to Discord webhook (automatic)
-  const WEBHOOK_URL = 'https://discord.com/api/webhooks/1524177768508555284/WLBeLBG2D2qNw-gZE9II6njy9cDJIYZfMLdb05SyDC7OQ2zUlu_k93X3KvAtakgGCsNU';
+  const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxVIwFvx1TpgvbEoI8jUDnY4pCRAKDaSwpxnsamHEyNuwEKumuqLYH1zby1C-jW-e6jaA/exec'; // planilha Google (fonte da verdade) — ela repassa pro Discord
   const discordMsg = msg.replace(/\*/g, '**');
 
   const submitBtn = document.querySelector('[type="submit"]');
@@ -677,8 +677,9 @@ document.getElementById('avaliacaoForm').addEventListener('submit', function(e) 
 
   fetch(WEBHOOK_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ content: discordMsg, username: 'Avaliação — ' + (d.nome || 'Aluno') })
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify({ tipo: 'avaliacao', aluna: (d.nome || 'Aluno'), conteudo: discordMsg })
   }).then(() => {
     const phone = '5541999775758';
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;

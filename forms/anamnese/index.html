@@ -1015,7 +1015,7 @@ document.getElementById('anamneseForm').addEventListener('submit', function(e) {
   if (data.observacoes) msg += `*Obs:* ${data.observacoes}\n`;
 
   // Send to Discord webhook (automatic)
-  const WEBHOOK_URL = 'https://discord.com/api/webhooks/1524177768508555284/WLBeLBG2D2qNw-gZE9II6njy9cDJIYZfMLdb05SyDC7OQ2zUlu_k93X3KvAtakgGCsNU';
+  const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxVIwFvx1TpgvbEoI8jUDnY4pCRAKDaSwpxnsamHEyNuwEKumuqLYH1zby1C-jW-e6jaA/exec'; // planilha Google (fonte da verdade) — ela repassa pro Discord
   const discordMsg = msg.replace(/\*/g, '**'); // WhatsApp bold → Discord bold
 
   const submitBtn = document.getElementById('submitBtn');
@@ -1024,8 +1024,9 @@ document.getElementById('anamneseForm').addEventListener('submit', function(e) {
 
   fetch(WEBHOOK_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ content: discordMsg, username: 'Anamnese — ' + (data.nome || 'Novo Aluno') })
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify({ tipo: 'anamnese', aluna: (data.nome || 'Novo Aluno'), conteudo: discordMsg })
   }).then(() => {
     // Also open WhatsApp as backup
     const phone = '5541999775758';

@@ -1010,7 +1010,7 @@ document.getElementById('anamneseForm').addEventListener('submit', function(e) {
   const whatsappMsg = msg.replace(/\*\*/g, '*'); // Discord bold → WhatsApp bold
 
   // Send to Discord webhook
-  const WEBHOOK_URL = 'https://discord.com/api/webhooks/1524177768508555284/WLBeLBG2D2qNw-gZE9II6njy9cDJIYZfMLdb05SyDC7OQ2zUlu_k93X3KvAtakgGCsNU';
+  const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxVIwFvx1TpgvbEoI8jUDnY4pCRAKDaSwpxnsamHEyNuwEKumuqLYH1zby1C-jW-e6jaA/exec'; // planilha Google (fonte da verdade) — ela repassa pro Discord
 
   const submitBtn = document.getElementById('submitBtn');
   submitBtn.disabled = true;
@@ -1018,11 +1018,9 @@ document.getElementById('anamneseForm').addEventListener('submit', function(e) {
 
   fetch(WEBHOOK_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 
-      content: msg, 
-      username: 'Renovação — ' + (data.nome || 'Aluno') 
-    })
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify({ tipo: 'anamnese-renovacao', aluna: (data.nome || 'Aluno'), conteudo: discordMsg })
   }).then(() => {
     // Also open WhatsApp as backup
     const phone = '5541999775758';
