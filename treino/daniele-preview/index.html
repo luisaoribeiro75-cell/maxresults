@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Daniele — Treino | MaxResults (PREVIEW)</title>
+  <title>Daniele — Treino | MaxResults</title>
   <meta name="robots" content="noindex, nofollow">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -326,7 +326,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Renovação Ciclo 5 · Gerado em 10/07/2026 · PREVIEW</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Renovação Ciclo 5 · Gerado em 10/07/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -450,14 +450,22 @@ const TREINO_A = [
   MOBILIDADE_LOMBAR_A,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Leg Press ↔ Elevação Lateral', duration: '', meta: 'Coluna (protrusão L4-L5): sem carga axial, dorso neutro sempre. Se doer a lombar ou irradiar pra perna, para e avisa.',
+    title: 'Supino Inclinado ↔ Prancha', duration: '', meta: 'Coluna (protrusão L4-L5): sem carga axial, dorso neutro sempre. Se doer a lombar ou irradiar pra perna, para e avisa.',
+    exercises: [
+      { name: 'Supino Inclinado com Halteres', muscle: 'Peitoral superior', duration: '3x12-15', equipment: 'Halteres + banco 30-45°', tip: 'Empurra controlando, sem descer demais.', video: V.supinoInclinado },
+      { name: 'Prancha Frontal', muscle: 'Core', duration: '3x 30-40s', equipment: 'Colchonete', tip: 'Corpo alinhado, abdômen e glúteo firmes.', video: V.prancha },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 2',
+    title: 'Leg Press ↔ Elevação Lateral', duration: '', meta: '',
     exercises: [
       { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '3x12-15', equipment: 'Máquina Leg Press', tip: 'Pés um pouco mais altos (reduz stress lombar). Costas apoiadas, amplitude confortável.', video: V.legPress },
       { name: 'Elevação Lateral Sentada', muscle: 'Ombro (lateral)', duration: '3x12-15', equipment: 'Halteres (sentada)', tip: 'Sentada evita compensar com a lombar. Sobe até a linha dos ombros.', video: V.elevLateral },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 2',
+    type: 'lift', label: 'Bi-Set 3',
     title: 'Cadeira Extensora ↔ Bird Dog', duration: '', meta: '',
     exercises: [
       { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12-15', equipment: 'Máquina extensora', tip: 'Sobe controlando, sem solavancos.', video: V.cadeiraExt },
@@ -465,19 +473,11 @@ const TREINO_A = [
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 3',
+    type: 'lift', label: 'Bi-Set 4',
     title: 'Adução ↔ Dead Bug', duration: '', meta: '',
     exercises: [
       { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Fecha as pernas com controle.', video: V.aducao },
       { name: 'Dead Bug', muscle: 'Core anti-extensão', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Lombar colada no chão, alterna devagar. Protege L4-L5.', video: V.deadBug },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 4',
-    title: 'Supino Inclinado ↔ Prancha', duration: '', meta: '',
-    exercises: [
-      { name: 'Supino Inclinado com Halteres', muscle: 'Peitoral superior', duration: '3x12-15', equipment: 'Halteres + banco 30-45°', tip: 'Empurra controlando, sem descer demais.', video: V.supinoInclinado },
-      { name: 'Prancha Frontal', muscle: 'Core', duration: '3x 30-40s', equipment: 'Colchonete', tip: 'Corpo alinhado, abdômen e glúteo firmes.', video: V.prancha },
     ]
   },
   {
@@ -504,18 +504,18 @@ const TREINO_B = [
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Flexora ↔ Rosca Alternada', duration: '', meta: '',
-    exercises: [
-      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12-15', equipment: 'Máquina flexora', tip: 'Controle a volta, quadril no banco.', video: V.cadeiraFlexora },
-      { name: 'Rosca Alternada com Halteres', muscle: 'Bíceps', duration: '3x12 cada braço', equipment: 'Halteres', tip: 'Alterna os braços, sem balançar o tronco.', video: V.roscaAlt },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 3',
     title: 'Remada Baixa ↔ Bird Dog', duration: '', meta: '',
     exercises: [
       { name: 'Remada Baixa Máquina (Neutra)', muscle: 'Costas (meio)', duration: '3x12-15', equipment: 'Máquina remada (peito apoiado)', tip: 'Peito apoiado evita compensar com a lombar. Puxa fechando escápulas.', video: V.remadaBaixa },
       { name: 'Bird Dog', muscle: 'Core / Estabilidade lombar', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Braço e perna opostos, coluna neutra.', video: V.birdDog },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 3',
+    title: 'Cadeira Flexora ↔ Rosca Alternada', duration: '', meta: '',
+    exercises: [
+      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12-15', equipment: 'Máquina flexora', tip: 'Controle a volta, quadril no banco.', video: V.cadeiraFlexora },
+      { name: 'Rosca Alternada com Halteres', muscle: 'Bíceps', duration: '3x12 cada braço', equipment: 'Halteres', tip: 'Alterna os braços, sem balançar o tronco.', video: V.roscaAlt },
     ]
   },
   {
@@ -638,7 +638,7 @@ function getWeekKey() {
 }
 
 
-const STORAGE_KEY = 'maxresults-daniele-' + getWeekKey() + '-ciclo5-preview-v1';
+const STORAGE_KEY = 'maxresults-daniele-' + getWeekKey() + '-v1';
 let currentDayIndex = 0;
 let completedExercises = loadProgress();
 
@@ -863,7 +863,7 @@ function saveDayConfig() {
 }
 
 // ─── Finish Workout (partial) ───
-const FINISH_KEY = 'maxresults-daniele-finished-ciclo5-preview-v1';
+const FINISH_KEY = 'maxresults-daniele-finished-v1';
 
 function loadFinished() { try { return JSON.parse(localStorage.getItem(FINISH_KEY)||'{}'); } catch { return {}; } }
 
@@ -953,8 +953,8 @@ function updateFinishButton() {
   }
 }
 
-const LOAD_KEY = 'maxresults-daniele-loads-ciclo5-preview-v1';
-const REST_KEY = 'maxresults-daniele-rest-ciclo5-preview-v1';
+const LOAD_KEY = 'maxresults-daniele-loads-v1';
+const REST_KEY = 'maxresults-daniele-rest-v1';
 function loadLoads() { try { return JSON.parse(localStorage.getItem(LOAD_KEY)||'{}'); } catch { return {}; } }
 function saveLoad(input) { const loads=loadLoads(); const k=input.dataset.loadKey; input.value.trim() ? loads[k]=input.value.trim() : delete loads[k]; localStorage.setItem(LOAD_KEY, JSON.stringify(loads)); }
 function restoreLoads() { const loads=loadLoads(); document.querySelectorAll('.load-input').forEach(i => { const k=i.dataset.loadKey; if (loads[k]) i.value=loads[k]; }); }
@@ -1083,8 +1083,8 @@ document.getElementById('assessPanel').innerHTML = ASSESSMENT ? renderAssessment
 document.getElementById('assessToggle').addEventListener('click', function() { this.classList.toggle('open'); document.getElementById('assessPanel').classList.toggle('open'); });
 
 // ─── Session Timer ───
-const TIMER_KEY = 'maxresults-daniele-timer-ciclo5-preview-v1';
-const HISTORY_KEY = 'maxresults-daniele-history-ciclo5-preview-v1';
+const TIMER_KEY = 'maxresults-daniele-timer-v1';
+const HISTORY_KEY = 'maxresults-daniele-history-v1';
 let timerInterval = null;
 let sessionStartTime = null;
 
@@ -1144,8 +1144,7 @@ function stopSession() {
   document.getElementById('timerBar').classList.remove('active');
   document.getElementById('stopBtn').classList.add('hidden');
   document.getElementById('timerDisplay').textContent = '00:00';
-  /* PREVIEW: webhook de frequência desativado — não reportar cliques de revisão */
-  alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
+  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'✅ **Daniele** finalizou treino!\n📅 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') — '+day.label+'\n⏱️ Tempo: '+formatDuration(elapsed)+'\n📊 Exercícios: '+pct+'% ('+done+'/'+total+')',username:'Frequência — Daniele'})}).catch(function(){});}catch(e){}alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
 }
 
 function restoreTimer() {
@@ -1165,7 +1164,7 @@ function restoreTimer() {
 restoreTimer();
 
 // ─── Avatar photo ───
-const AVATAR_KEY = 'maxresults-daniele-avatar-ciclo5-preview-v1';
+const AVATAR_KEY = 'maxresults-daniele-avatar-v1';
 function loadAvatar() {
   const data = localStorage.getItem(AVATAR_KEY);
   const circle = document.getElementById('avatarCircle');
