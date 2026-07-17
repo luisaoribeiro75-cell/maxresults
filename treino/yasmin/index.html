@@ -381,20 +381,20 @@ const TREINO_A = [
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Afundo c/ Barra ↔ Desenvolvimento Barra', duration: '3x15 · Sem descanso',
-    meta: '3 séries de 15 · Sem descanso entre exercícios · Descanso entre bi-sets',
-    exercises: [
-      { name: 'Afundo com Barra Livre', muscle: 'Quadríceps / Glúteos', duration: '3x15 (cada perna)', equipment: 'Barra + anilhas', tip: 'Passo à frente, desça até o joelho de trás quase tocar o chão. Mantenha o tronco ereto. Alterne as pernas a cada série.', video: V.afundoCarga, showRest: true },
-      { name: 'Desenvolvimento Barra Reta', muscle: 'Ombros', duration: '3x15', equipment: 'Barra + anilhas', tip: 'Em pé, empurre a barra acima da cabeça estendendo os braços. Desça controlando até a linha dos ombros. Não arqueie demais as costas.', video: V.desenvBarra, showRest: true },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 3',
     title: 'Agachamento Isométrico ↔ Supino Reto', duration: '3x15 · Sem descanso',
     meta: '3 séries · Sem descanso entre exercícios · Descanso entre bi-sets',
     exercises: [
       { name: 'Agachamento Isométrico na Parede', muscle: 'Quadríceps', duration: '3x 30-45s', equipment: 'Parede', tip: 'Costas na parede, desça até as coxas ficarem paralelas (posição de "cadeira"). Segure por 30-45 segundos por série.', video: V.agachIsometrico, showRest: true },
       { name: 'Supino Reto com Barra Reta', muscle: 'Peitoral / Tríceps', duration: '3x15', equipment: 'Barra + anilhas', tip: 'Deitada no chão (ou no step quando tiver). Desça a barra até o peito e empurre para cima. Mantenha os pés firmes no chão.', video: V.supinoRetoBarra, showRest: true, note: '💡 Pode fazer no chão até ter o step!' },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 3',
+    title: 'Afundo c/ Barra ↔ Desenvolvimento Barra', duration: '3x15 · Sem descanso',
+    meta: '3 séries de 15 · Sem descanso entre exercícios · Descanso entre bi-sets',
+    exercises: [
+      { name: 'Afundo com Barra Livre', muscle: 'Quadríceps / Glúteos', duration: '3x15 (cada perna)', equipment: 'Barra + anilhas', tip: 'Passo à frente, desça até o joelho de trás quase tocar o chão. Mantenha o tronco ereto. Alterne as pernas a cada série.', video: V.afundoCarga, showRest: true },
+      { name: 'Desenvolvimento Barra Reta', muscle: 'Ombros', duration: '3x15', equipment: 'Barra + anilhas', tip: 'Em pé, empurre a barra acima da cabeça estendendo os braços. Desça controlando até a linha dos ombros. Não arqueie demais as costas.', video: V.desenvBarra, showRest: true },
     ]
   },
   {
@@ -431,11 +431,19 @@ const TREINO_B = [
   },
   {
     type: 'lift', label: 'Bi-Set 3',
-    title: 'Búlgaro ↔ Bom Dia', duration: '3x15 · Sem descanso',
+    title: 'Búlgaro ↔ Abdominal Supra', duration: '3x15 · Sem descanso',
     meta: '3 séries de 15 · Sem descanso entre exercícios · Descanso entre bi-sets',
     exercises: [
       { name: 'Agachamento Búlgaro', muscle: 'Quadríceps / Glúteos', duration: '3x15 (cada perna)', equipment: 'Cadeira/sofá + caneleira', tip: 'Pé de trás apoiado na cadeira/sofá. Desça flexionando o joelho da frente até ~90°. Mantenha o tronco ereto. Alterne as pernas.', video: V.agachBulgaro, showRest: true },
-      { name: 'Bom Dia', muscle: 'Post. coxa / Lombar', duration: '3x15', equipment: 'Barra + anilhas', tip: 'Barra no trapézio, pés na largura dos ombros. Incline o tronco à frente mantendo as costas retas. Suba contraindo glúteos e posteriores.', video: V.bomDia, showRest: true },
+      { name: 'Abdominal Supra Solo', muscle: 'Abdômen', duration: '3x15', equipment: 'Colchonete', tip: 'Deitada com joelhos dobrados, mãos atrás da cabeça. Suba contraindo o abdômen. Não puxe o pescoço!', video: V.abdomSupra, showRest: true },
+    ]
+  },
+  {
+    type: 'lift', label: 'Solo',
+    title: 'Bom Dia', duration: '3x15',
+    meta: 'Fora do bi-set: descanse entre as séries. É o exercício que mais exige da lombar do dia — faça sem pressa, com atenção total à técnica.',
+    exercises: [
+      { name: 'Bom Dia', muscle: 'Post. coxa / Lombar', duration: '3x15', equipment: 'Barra + anilhas', tip: 'Barra no trapézio, pés na largura dos ombros. Incline o tronco à frente mantendo as costas retas. Suba contraindo glúteos e posteriores. Carga leve/moderada — técnica acima de peso.', video: V.bomDia, showRest: true },
     ]
   },
   {
