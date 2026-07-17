@@ -322,7 +322,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 13/05/2026</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 17/07/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -472,7 +472,7 @@ const TREINO_B = [
     meta: 'Posterior guiado + ombro com halteres ao lado da máquina',
     exercises: [
       { name: 'Mesa Flexora', muscle: 'Posterior de coxa', duration: '3x12-15', equipment: 'Mesa flexora', tip: 'Quadril apoiado, sobe controlando e desce mais devagar ainda. Sem tirar o quadril da máquina.', video: V(555) },
-      { name: 'Desenvolvimento com Halteres (Pegada Neutra)', muscle: 'Ombros', duration: '3x12', equipment: 'Halteres', tip: 'Sentada se possível. Abdômen firme, sem arquear a lombar e sem subir além do confortável.', video: V(155) },
+      { name: 'Desenvolvimento com Halteres (Pegada Neutra)', muscle: 'Ombros', duration: '3x12', equipment: 'Halteres', tip: 'Sentada com encosto (obrigatório — protege a coluna). Abdômen firme, sem arquear a lombar e sem subir além do confortável.', video: V(155) },
     ]
   },
   {
@@ -932,32 +932,25 @@ setTimeout(() => document.getElementById('workoutContent').classList.remove('ini
 const ASSESSMENTS = [];
 
 const ASSESSMENT = {
-  date: '04/02/2026',
+  date: '27/03/2026',
   protocol: 'Pollock, 1984 — 7 Dobras',
-  nextAssessment: '05/05/2026',
-  basics: { age: 30, height: 173, weight: 62 },
+  nextAssessment: 'A agendar (venceu 25/06/2026)',
+  basics: { age: 42, height: 165, weight: 83.45 },
   perimetry: [
-    { label: 'Ombro', value: 98.5 }, { label: 'Tórax', value: 86.5 },
-    { label: 'Braço Esq.', value: 30 }, { label: 'Braço Dir.', value: 29.5 },
-    { label: 'Cintura', value: 66 }, { label: 'Abdômen', value: 83.5 },
-    { label: 'Quadril', value: 94 },
-    { label: 'Coxa Esq.', value: 57.5 }, { label: 'Coxa Dir.', value: 57 },
-    { label: 'Perna Esq.', value: 34.5 }, { label: 'Perna Dir.', value: 34 },
+    { label: 'Cintura', value: 80.0 }, { label: 'Abdômen', value: 95.0 },
+    { label: 'Quadril', value: 121.5 },
   ],
   skinfolds: [
-    { label: 'Tricipital', value: 21.4 }, { label: 'Subescapular', value: 11.9 },
-    { label: 'Supra-ilíaca', value: 10.9 }, { label: 'Peitoral', value: 7.1 },
-    { label: 'Axilar Média', value: 13 }, { label: 'Abdominal', value: 24.3 },
-    { label: 'Coxa', value: 26.2 },
+    { label: 'Σ 7 Dobras', value: 175.8 },
   ],
   results: {
-    imc: { value: 20.72, classification: 'Peso normal' },
-    idealFat: 20, fatPercent: 22.5, leanPercent: 77.5,
-    leanMass: 48.05, fatMass: 13.95, idealWeight: 65,
-    sumSkinfolds: 114.8,
+    imc: { value: 30.65, classification: 'Em evolução ⬇️' },
+    fatPercent: 32.29, leanPercent: 67.71,
+    leanMass: 56.5, fatMass: 26.95, rcq: 0.66,
+    sumSkinfolds: 175.8,
   },
   objective: 'Emagrecimento',
-  emphasis: 'Costas + Panturrilha',
+  emphasis: 'Glúteos + Pernas',
 };
 
 function renderAssessment(a) {
@@ -988,8 +981,8 @@ function renderAssessment(a) {
       <div class="assess-card"><div class="assess-stats">
         <div class="assess-stat"><div class="as-value">${r.imc.value}</div><div class="as-sub">${r.imc.classification}</div><div class="as-label">IMC</div></div>
         <div class="assess-stat"><div class="as-value">${r.sumSkinfolds}<span class="ab-unit">mm</span></div><div class="as-label">Σ Dobras</div></div>
-        <div class="assess-stat"><div class="as-value">${r.idealWeight}<span class="ab-unit">kg</span></div><div class="as-label">Peso Ideal</div></div>
-        <div class="assess-stat"><div class="as-value">${r.idealFat}%</div><div class="as-sub">Meta</div><div class="as-label">% Gordura Ideal</div></div>
+        <div class="assess-stat"><div class="as-value">${r.rcq}</div><div class="as-sub">Baixo risco</div><div class="as-label">RCQ</div></div>
+        <div class="assess-stat"><div class="as-value">${r.leanMass}<span class="ab-unit">kg</span></div><div class="as-sub">Preservada ✅</div><div class="as-label">Massa Magra</div></div>
       </div></div></div>`;
 }
 
