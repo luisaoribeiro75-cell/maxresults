@@ -330,7 +330,7 @@ const V = {
   alongGluteos: 'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',
   abdQuadril: 'https://vd.mfitpersonal.com.br/25/mp4/25.mp4',
   legPress: 'https://vd.mfitpersonal.com.br/496/mp4/496.mp4',
-  panturrilha: 'https://vd.mfitpersonal.com.br/520/mp4/520.mp4',
+  panturrilha: 'https://vd.mfitpersonal.com.br/498/mp4/498.mp4',
   cadeiraExt: 'https://vd.mfitpersonal.com.br/504/mp4/504.mp4',
   cadeiraFlexora: 'https://vd.mfitpersonal.com.br/502/mp4/502.mp4',
   desenvArnold: 'https://vd.mfitpersonal.com.br/101/mp4/101.mp4',
@@ -351,6 +351,9 @@ const V = {
   cordaGrande: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/nddbtpg8z38_opt.mp4',
   elevQuadril: 'https://vd.mfitpersonal.com.br/255/mp4/255.mp4',
   supino: 'https://vd.mfitpersonal.com.br/201/mp4/201.mp4',
+  flexaoCaneleira: 'https://vd.mfitpersonal.com.br/248/mp4/248.mp4',
+  deadBug: 'https://vd.mfitpersonal.com.br/734/mp4/734.mp4',
+  pranchaIso: 'https://vd.mfitpersonal.com.br/852/mp4/852.mp4',
 };
 
 const MOBILIDADE = {
@@ -425,11 +428,11 @@ const TREINO_A = [
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Extensora ↔ Cadeira Flexora', duration: '3x15 · Sem descanso',
-    meta: 'Frente e trás da coxa com estabilidade total',
+    title: 'Cadeira Extensora ↔ Flexão de Joelhos com Caneleiras', duration: '3x15 · Sem descanso',
+    meta: 'Frente e trás da coxa sem largar a máquina — a flexão sai na caneleira ali do lado',
     exercises: [
       { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x15', equipment: 'Máquina extensora', tip: 'Suba controlando e segure 1 segundo no topo.', video: V.cadeiraExt },
-      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x15', equipment: 'Máquina flexora', tip: 'Controle a volta. Evite tirar o quadril do banco.', video: V.cadeiraFlexora },
+      { name: 'Flexão de Joelhos com Caneleiras', muscle: 'Posterior de coxa', duration: '3x15', equipment: 'Caneleira', tip: 'Deitada de bruços no colchonete ao lado da extensora. Traga o calcanhar em direção ao glúteo, sem arquear a lombar.', video: V.flexaoCaneleira },
     ]
   },
   {
@@ -458,24 +461,33 @@ const TREINO_B = [
   },
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Puxada Frontal ↔ Remada Baixa', duration: '3x15 · Sem descanso',
-    meta: 'Costas com apoio e trajetória segura',
+    title: 'Puxada Frontal ↔ Remada Unilateral', duration: '3x15 · Sem descanso',
+    meta: 'Costas sem trocar de estação — a remada sai no halter ao lado do puxador',
     exercises: [
       { name: 'Puxada Frontal Aberta', muscle: 'Costas (dorsal)', duration: '3x15', equipment: 'Puxador', tip: 'Puxe até a linha do peito, fechando escápulas.', video: V.puxadaFrontal },
-      { name: 'Remada Baixa', muscle: 'Costas (meio das costas)', duration: '3x15', equipment: 'Remada baixa', tip: 'Tronco estável, puxa na linha do abdômen.', video: V.remadaBaixa },
+      { name: 'Remada Unilateral com Halter', muscle: 'Costas (meio das costas)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Apoie uma mão e um joelho no banco ao lado do puxador. Puxe o halter na direção da cintura, sem girar o tronco.', video: V.remadaUnilateral },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Supino Halteres ↔ Elevação Lateral', duration: '3x12-15 · Sem descanso',
-    meta: 'Peito e ombro sem exigir estabilidade lombar',
+    title: 'Supino Halteres ↔ Abdominal Dead Bug', duration: '3x12-15 · Sem descanso',
+    meta: 'Peito + core no colchonete ao lado do banco — ombro fica fresco pro Bi-Set 3',
     exercises: [
       { name: 'Supino Reto com Halteres', muscle: 'Peitoral / Tríceps', duration: '3x12', equipment: 'Halteres + banco', tip: 'Banco apoiado. Desça controlando e sem sobrecarregar os cotovelos.', video: V.supino },
-      { name: 'Elevação Lateral com Halteres', muscle: 'Ombros', duration: '3x15', equipment: 'Halteres', tip: 'Sentada ou em pé bem estável. Sobe até a linha dos ombros.', video: V.elevLateral },
+      { name: 'Abdominal Dead Bug', muscle: 'Abdômen / Core', duration: '3x12 cada lado', equipment: 'Colchonete', tip: 'Deitada de costas, lombar colada no chão o tempo todo. Estenda braço e perna opostos devagar. Se a lombar descolar, reduza a amplitude.', video: V.deadBug },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3',
+    title: 'Elevação Lateral ↔ Prancha', duration: '3x15 · Sem descanso',
+    meta: 'Ombro depois de todo o peito do dia — core no colchonete ao lado',
+    exercises: [
+      { name: 'Elevação Lateral com Halteres', muscle: 'Ombros', duration: '3x15', equipment: 'Halteres', tip: 'Sentada ou em pé bem estável. Sobe até a linha dos ombros.', video: V.elevLateral },
+      { name: 'Prancha Isométrica', muscle: 'Abdômen / Core', duration: '3x20-30s', equipment: 'Colchonete', tip: 'Corpo em linha reta, abdômen firme, sem deixar o quadril cair. No dia de dor, segure menos tempo — constância importa mais que o cronômetro.', video: V.pranchaIso },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 4',
     title: 'Rosca Alternada ↔ Tríceps Corda', duration: '3x15 · Sem descanso',
     meta: 'Braços com progressão gradual de carga',
     exercises: [

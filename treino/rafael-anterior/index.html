@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Ian — Treino | MaxResults</title>
+  <title>Rafael — Treino | MaxResults</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#08080a">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -284,7 +284,7 @@
       <div class="header-date" id="headerDate"></div>
     </div>
     <div class="header-title">
-      <div><div class="avatar-wrap"><div class="avatar-circle" id="avatarCircle" onclick="document.getElementById('avatarInput').click()"><span class="avatar-placeholder">📸</span><span class="avatar-hint">+</span></div><span class="athlete">Ian</span></div><span class="separator">/</span><span class="day" id="headerDay"></span></div>
+      <div><div class="avatar-wrap"><div class="avatar-circle" id="avatarCircle" onclick="document.getElementById('avatarInput').click()"><span class="avatar-placeholder">📸</span><span class="avatar-hint">+</span></div><span class="athlete">Rafael</span></div><span class="separator">/</span><span class="day" id="headerDay"></span></div>
     </div>
     <div class="progress-bar-container">
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
@@ -302,7 +302,7 @@
   <main id="workoutContent" class="initial-load"></main>
   <div class="session-complete" id="sessionComplete">
     <h3>Sessão Concluída! 💪</h3>
-    <p>Ótimo treino, Ian! Descanse e se hidrate. 💪</p>
+    <p>Mandou bem demais, Rafael! 👊 Um passo de cada vez — hidrata, respira e descansa. Orgulho da sua volta.</p>
   </div>
   <button class="finish-btn" id="finishBtn" onclick="finishWorkout()">✅ Finalizar Treino</button>
   <div id="skippedInfo"></div>
@@ -322,267 +322,299 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 01/04/2026</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Ciclo 3 · Mês 1 (Volume) · Gerado em 10/07/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
   <video id="videoPlayer" controls playsinline style="display:none"></video>
-  <iframe id="ytPlayer" width="360" height="640" style="display:none" allow="autoplay"></iframe>
+  <iframe id="ytPlayer" width="360" height="640" style="display:none" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 </div>
 <script>
-const ATHLETE = 'Ian';
+const ATHLETE = 'Rafael';
 
 const WEEKLY_GOALS = [
-  { icon: '🔥', type: 'fat', text: '<strong>Emagrecimento:</strong> Full Body 3x/semana — máxima queima calórica' },
-  { icon: '📈', type: 'strength', text: '<strong>Progressão:</strong> 4x12 — aumente a carga quando completar 12 reps com boa execução' },
-  { icon: '🫀', type: 'cardio', text: '<strong>Cardio:</strong> 20min esteira/elíptico após cada treino' },
-  { icon: '📋', type: 'assessment', text: '<strong>Avaliação Física:</strong> <a href="https://wa.me/5541999775758?text=Oi%20Luisão!%20Quero%20agendar%20minha%20avaliação%20física%20🏋️" target="_blank" style="color:var(--accent-lift);text-decoration:underline;">Agendar com Luisão</a>' },
+  { icon: '🎯', type: 'strength', text: '<strong>Objetivo:</strong> definição muscular (misto), com ênfase em <strong>braços + postura</strong>' },
+  { icon: '🌱', type: 'strength', text: '<strong>Retomada consciente:</strong> 1ª semana em intensidade moderada-baixa. Foco em execução e sensação de progresso — sem pressa.' },
+  { icon: '📈', type: 'strength', text: '<strong>Progressão:</strong> comece leve, domine o movimento. Fez todas as reps com folga? sobe a carga só na próxima semana.' },
+  { icon: '💧', type: 'assessment', text: '<strong>Medicação (hidratação):</strong> beba água antes/durante/depois. Levante do banco <strong>devagar</strong> (tontura ao levantar). Sentiu tontura? senta, hidrata e avisa.' },
+  { icon: '❤️', type: 'fat', text: '<strong>Cardio zona aeróbica, sem picos:</strong> ritmo de conversa. Falta de ar desproporcional, tontura ou dor no peito → <strong>pare</strong> e reporte.' },
+  { icon: '🩺', type: 'assessment', text: '<strong>Avaliação física vencida (20/03/2026):</strong> vamos reagendar pra medir seu progresso. <a href="https://wa.me/5541999775758?text=Oi%20Luis%C3%A3o!%20Quero%20reagendar%20minha%20avalia%C3%A7%C3%A3o%20f%C3%ADsica%20🏋️" target="_blank" style="color:var(--accent-lift);">Agendar com Luisão</a>' },
 ];
 
 const V = {
-  giros: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/8d76rg3vbsm_opt.mp4',
-  balanco: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/d508q2wlkh_opt.mp4',
-  flexaoApoio: 'https://vd.mfitpersonal.com.br/239/mp4/239.mp4',
-  agachLivre: 'https://vd.mfitpersonal.com.br/50/mp4/50.mp4',
-  alongCoxa: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/lpgl41gg1op_opt.mp4',
-  alongTriceps: 'https://vd.mfitpersonal.com.br/595/mp4/595.mp4',
-  alongPeitoral: 'https://vd.mfitpersonal.com.br/585/mp4/585.mp4',
-  supinoReto: 'https://vd.mfitpersonal.com.br/472/mp4/472.mp4',
-  agachHalterFrente: 'https://vd.mfitpersonal.com.br/v2/1093/mp4/1093_opt.mp4',
-  cadeiraExt: 'https://vd.mfitpersonal.com.br/504/mp4/504.mp4',
-  legPress: 'https://vd.mfitpersonal.com.br/495/mp4/495.mp4',
-  supinoInclinado: 'https://vd.mfitpersonal.com.br/195/mp4/195.mp4',
-  elevLateral: 'https://vd.mfitpersonal.com.br/131/mp4/131.mp4',
-  tricepsBanco: 'https://vd.mfitpersonal.com.br/144/mp4/144.mp4',
-  esteira: 'https://vd.mfitpersonal.com.br/521/mp4/521.mp4',
-  puxadaAberta: 'https://vd.mfitpersonal.com.br/565/mp4/565.mp4',
-  terraHalteres: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/14rlmaet2tk_opt.mp4',
-  cadeiraFlexora: 'https://vd.mfitpersonal.com.br/502/mp4/502.mp4',
-  afundoHalteres: 'https://vd.mfitpersonal.com.br/32/mp4/32.mp4',
-  remadaCurvadaHalteres: 'https://vd.mfitpersonal.com.br/221/mp4/221.mp4',
-  roscaBarra: 'https://vd.mfitpersonal.com.br/113/mp4/113.mp4',
-  abdomSupra: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
-  eliptico: 'https://vd.mfitpersonal.com.br/527/mp4/527.mp4',
+  // ─── vazio/pendência de gravação (aquecimento, mobilidade, soltura) → renderiza texto simples, sem link ───
+  ext: '',
+  // ─── Musculação (acervo MFit — conferidos no catálogo oficial) ───
+  supinoBarra:      'https://vd.mfitpersonal.com.br/203/mp4/203.mp4', // Supino Reto com Barra Reta
+  supinoInclHalter: 'https://vd.mfitpersonal.com.br/195/mp4/195.mp4', // Supino Inclinado com Halteres
+  crucifixoMaq:     'https://vd.mfitpersonal.com.br/530/mp4/530.mp4', // Crucifixo Máquina (Peck Deck)
+  desenvMaquina:    'https://vd.mfitpersonal.com.br/507/mp4/507.mp4', // Desenvolvimento Máquina (Pegada Neutra)
+  elevLateral:      'https://vd.mfitpersonal.com.br/131/mp4/131.mp4', // Elevação Lateral com Halteres
+  agachSmith:       'https://vd.mfitpersonal.com.br/73/mp4/73.mp4',   // Agachamento Smith
+  cadeiraExt:       'https://vd.mfitpersonal.com.br/504/mp4/504.mp4', // Cadeira Extensora
+  tricepsCorda:     'https://vd.mfitpersonal.com.br/418/mp4/418.mp4', // Tríceps na Polia com Corda
+  tricepsFrances:   'https://vd.mfitpersonal.com.br/135/mp4/135.mp4', // Tríceps Francês Sentado com Halteres
+  puxadaFrontal:    'https://vd.mfitpersonal.com.br/565/mp4/565.mp4', // Puxada Aberta Barra reta
+  remadaBaixa:      'https://vd.mfitpersonal.com.br/401/mp4/401.mp4', // Remada Baixa na Polia Baixa (Pegada Neutra)
+  remadaCurvada:    'https://vd.mfitpersonal.com.br/221/mp4/221.mp4', // Remada Curvada com Halteres (Pegada Neutra)
+  cadeiraFlexora:   'https://vd.mfitpersonal.com.br/502/mp4/502.mp4', // Cadeira Flexora
+  stiffHalteres:    'https://vd.mfitpersonal.com.br/267/mp4/267.mp4', // Stiff com Halteres
+  elevPelvicaBarra: 'https://vd.mfitpersonal.com.br/367/mp4/367.mp4', // Elevação de Quadril com Barra
+  roscaDiretaW:     'https://vd.mfitpersonal.com.br/117/mp4/117.mp4', // Rosca Direta Barra W
+  roscaMartelo:     'https://vd.mfitpersonal.com.br/106/mp4/106.mp4', // Rosca Martelo com Halteres
+  pranchaAbdominal: 'https://vd.mfitpersonal.com.br/14/mp4/14.mp4',   // Abdominal Prancha Isométrica
+  // ─── Musculação adicionais (reestrutura 15/07/2026) ───
+  cadeiraAdutora:   'https://vd.mfitpersonal.com.br/514/mp4/514.mp4', // Cadeira Adutora (ênfase pélvica)
+  panturrilhaPeMaq: 'https://vd.mfitpersonal.com.br/500/mp4/500.mp4', // Extensão de Panturrilha em Pé (Máquina)
+  // ─── Aquecimento / Mobilidade / Soltura (acervo MFit) ───
+  flexaoParede:     'https://vd.mfitpersonal.com.br/760/mp4/760.mp4', // Flexão de Braços na Parede
+  catCow:           'https://vd.mfitpersonal.com.br/282/mp4/282.mp4', // Cat-Cow (Gato-Vaca)
+  alongPeitoral:    'https://vd.mfitpersonal.com.br/585/mp4/585.mp4', // Alongamento de Peitoral Espaldar
+  alongOmbros:      'https://vd.mfitpersonal.com.br/89/mp4/89.mp4',   // Alongamento de Ombros
+  alongDorsal:      'https://vd.mfitpersonal.com.br/596/mp4/596.mp4', // Alongamento Dorsal I (child's pose)
+  alongGluteos:     'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',   // Alongamento de Glúteos II
+  alongPanturrilha: 'https://vd.mfitpersonal.com.br/764/mp4/764.mp4', // Alongamento de Panturrilha
+  mobQuadril:       'https://vd.mfitpersonal.com.br/291/mp4/291.mp4', // Mobilidade de Quadril I
+  mobDorsal:        'https://vd.mfitpersonal.com.br/305/mp4/305.mp4', // Mobilidade Dorsal I (torácica)
+  elevPelvicaSolo:  'https://vd.mfitpersonal.com.br/624/mp4/624.mp4', // Elevação de Quadril (ponte de glúteo — ativação)
+  birdDog:          'https://vd.mfitpersonal.com.br/310/mp4/310.mp4', // Bird Dog
+  deadBug:          'https://vd.mfitpersonal.com.br/734/mp4/734.mp4', // Dead Bug
+  // ─── Cardio (acervo MFit) ───
+  esteiraInclinada: 'https://vd.mfitpersonal.com.br/522/mp4/522.mp4', // Esteira com Inclinação
 };
 
-// ─── Shared blocks ───
-const AQUEC_ARTICULAR = {
-  type: 'warmup', label: 'Aquecimento Articular',
-  title: 'Giros + Balanço + Joelhos', duration: '1x12 cada',
-  meta: '1 série de 12 repetições cada',
+// ══════════════════ TREINO A — Anterior (Peito · Ombro · Tríceps · Quadríceps) ══════════════════
+const AQUEC_A = {
+  type: 'warmup', label: 'Aquecimento',
+  title: 'Articular + Muscular', duration: '5–8 min',
+  meta: 'Prepara ombro, peito e quadríceps do dia',
   exercises: [
-    { name: 'Giros dos Braços Frente e Trás', muscle: 'Ombros', duration: '1x12', equipment: 'Nenhum', tip: 'Braços estendidos, gire em círculos amplos. 12 para frente e 12 para trás.', video: V.giros },
-    { name: 'Balanço Frontal das Pernas', muscle: 'Quadril / Pernas', duration: '1x12', equipment: 'Nenhum', tip: 'Segure em um apoio. Balance a perna para frente e para trás com controle. 12 cada lado.', video: V.balanco },
-    { name: 'Giro dos joelhos', muscle: 'Joelhos / Mobilidade', duration: '1x12', equipment: 'Nenhum', tip: 'Faça círculos controlados para aquecer a articulação do joelho.', video: V.giroJoelho },
+    { name: 'Balanços de Braço (frontais + laterais)', muscle: 'Ombro', duration: '20 reps cada', equipment: 'Nenhum', tip: 'Braços soltos, balance para frente/trás e para os lados. 20 de cada — solta a articulação do ombro.', video: V.ext },
+    { name: 'Rotação de Ombro (círculos grandes)', muscle: 'Ombro', duration: '10 reps/direção', equipment: 'Nenhum', tip: 'Círculos amplos com os braços, 10 para frente e 10 para trás.', video: V.ext },
+    { name: 'Balanço de Perna (lateral + anterior/posterior)', muscle: 'Quadril', duration: '15 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna com controle nos dois sentidos. 15 cada perna.', video: V.ext },
+    { name: 'Agachamento Livre (peso do corpo)', muscle: 'Quadríceps', duration: '2x15', equipment: 'Nenhum', tip: 'Sem carga. Desça só até onde for confortável, coluna reta. Prepara o quadríceps.', video: V.ext },
+    { name: 'Flexão de Braço na Parede/Inclinada', muscle: 'Peito / Ombro / Tríceps', duration: '2x10–15', equipment: 'Parede', tip: 'Mãos na parede na altura do peito, corpo reto. Aproxime o peito e empurre. Aquece peito, ombro e tríceps.', video: V.flexaoParede },
   ]
 };
 
-const AQUEC_MUSCULAR_A = {
-  type: 'warmup', label: 'Aquecimento Muscular',
-  title: 'Flexão + Agachamento Livre', duration: '2x12 cada',
-  meta: '2 séries de 12 repetições cada',
+const MOBIL_A = {
+  type: 'warmup', label: 'Mobilidade',
+  title: 'Foco Postural', duration: '5–7 min',
+  meta: 'Abertura de peitoral + torácica + quadril',
   exercises: [
-    { name: 'Flexão de Braços com Apoio', muscle: 'Peito / Tríceps', duration: '2x12', equipment: 'Banco/apoio', tip: 'Use apoio para facilitar o movimento. Foque em aquecer o peitoral e tríceps.', video: V.flexaoApoio },
-    { name: 'Agachamento Livre', muscle: 'Quadríceps / Glúteos', duration: '2x12', equipment: 'Nenhum', tip: 'Agachamento sem carga para preparar quadríceps e glúteos.', video: V.agachLivre },
+    { name: 'Alongamento de Peitoral no Canto (T na parede)', muscle: 'Peitoral', duration: '30s/lado', equipment: 'Parede/quina', tip: 'Antebraço apoiado na parede formando um "T", gire o tronco para o lado oposto abrindo o peito. 30s cada lado.', video: V.alongPeitoral },
+    { name: 'Mobilidade Torácica em 4 Apoios (thread-the-needle)', muscle: 'Coluna torácica', duration: '8 reps/lado', equipment: 'Colchonete', tip: 'Em 4 apoios, passe um braço por baixo do corpo girando a coluna e volte abrindo o braço pro teto. 8 cada lado.', video: V.mobDorsal },
+    { name: 'Cat-Cow (cachorro cima ↔ cachorro baixo)', muscle: 'Coluna', duration: '8 reps', equipment: 'Colchonete', tip: 'Em 4 apoios, alterne arquear (olhar pra cima) e arredondar (olhar pro umbigo) a coluna, no ritmo da respiração. 8 ciclos.', video: V.catCow },
+    { name: 'Mobilidade de Quadril (world’s greatest stretch)', muscle: 'Quadril', duration: '5 reps/lado', equipment: 'Nenhum', tip: 'Avance em afundo, apoie a mão do mesmo lado no chão e gire o tronco abrindo o outro braço pro teto. 5 cada lado.', video: V.mobQuadril },
+    { name: 'Power Band — Rotação Externa de Ombro (deitado)', muscle: 'Manguito rotador', duration: '12 reps/lado', equipment: 'Power Band', tip: 'Cotovelo colado no corpo a 90°, gire o antebraço para fora contra a faixa. Movimento pequeno e controlado. 12 cada lado.', video: V.ext },
   ]
 };
 
-const AQUEC_MUSCULAR_B = {
-  type: 'warmup', label: 'Aquecimento Muscular',
-  title: 'Flexão + Agachamento Livre', duration: '2x12 cada',
-  meta: '2 séries de 12 repetições cada',
+// ─── Bloco principal em SOLO / BI-SET alternado (reestrutura 15/07/2026) ───
+const SOLO_A_1 = {
+  type: 'lift', label: 'Solo 1',
+  title: 'Agachamento no Smith', duration: '3x10–12',
+  meta: 'Composto de perna — abre o treino. Descanso 90s.',
   exercises: [
-    { name: 'Flexão de Braços com Apoio', muscle: 'Peito / Tríceps', duration: '2x12', equipment: 'Banco/apoio', tip: 'Use apoio para facilitar o movimento. Foco em preparar o tronco para o treino.', video: V.flexaoApoio },
-    { name: 'Agachamento Livre', muscle: 'Quadríceps / Glúteos', duration: '2x12', equipment: 'Nenhum', tip: 'Agachamento sem carga para aquecer pernas e quadril.', video: V.agachLivre },
+    { name: 'Agachamento no Smith', muscle: 'Quadríceps / Glúteos', duration: '3x10–12', equipment: 'Smith Machine', tip: '⚠️ Smith pra dar segurança na execução. Desça só até onde controlar bem. Manda um vídeo pro Luisão revisar a técnica.', video: V.agachSmith },
   ]
 };
 
-const MOBILIDADE_A = {
-  type: 'warmup', label: 'Alongamento Inicial',
-  title: 'Coxa + Tríceps + Posterior + Peitoral', duration: '20s cada',
-  meta: '20 segundos em cada exercício ou para cada membro',
+const BISET_A_1 = {
+  type: 'lift', label: 'Bi-Set 1',
+  title: 'Supino Reto ↔ Cadeira Extensora', duration: '3x10–15 · Sem descanso no par',
+  meta: 'Peito grande + quadríceps isolado. Descanso 60–90s ao fim do par.',
   exercises: [
-    { name: 'Alongamento de coxa - I', muscle: 'Quadríceps', duration: '20s/lado', equipment: 'Nenhum', tip: 'Puxe o pé em direção ao glúteo e segure 20 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Alongamento de Tríceps', muscle: 'Tríceps', duration: '20s/lado', equipment: 'Nenhum', tip: 'Braço acima da cabeça, empurre suavemente o cotovelo para baixo.', video: V.alongTriceps },
-    { name: 'Hand to toes', muscle: 'Posteriores', duration: '20s', equipment: 'Nenhum', tip: 'Toque os pés mantendo o tronco alongado. Segure 20 segundos.', video: V.handToToes },
-    { name: 'Alongamento de Peitoral Espaldar', muscle: 'Peitoral', duration: '20s', equipment: 'Espaldar/parede', tip: 'Abra o peitoral e segure 20 segundos.', video: V.alongPeitoral },
+    { name: 'Supino Reto com Barra', muscle: 'Peitoral / Tríceps', duration: '3x10–12', equipment: 'Barra + banco', tip: 'Foco na execução. Cotovelo a ~45° do corpo, desça controlando até o peito.', video: V.supinoBarra },
+    { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12–15', equipment: 'Máquina extensora', tip: 'Suba estendendo o joelho e segure 1s no topo. Amplitude confortável, sem dor.', video: V.cadeiraExt },
   ]
 };
 
-const MOBILIDADE_B = {
-  type: 'warmup', label: 'Alongamento Inicial',
-  title: 'Coxa + Tríceps + Posterior + Peitoral', duration: '20s cada',
-  meta: '20 segundos em cada exercício ou para cada membro',
+const SOLO_A_2 = {
+  type: 'lift', label: 'Solo 2',
+  title: 'Supino Inclinado com Halteres', duration: '3x10–12',
+  meta: 'Composto de peitoral superior. Descanso 60–90s.',
   exercises: [
-    { name: 'Alongamento de coxa - I', muscle: 'Quadríceps', duration: '20s/lado', equipment: 'Nenhum', tip: 'Puxe o pé em direção ao glúteo e segure 20 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Alongamento de Tríceps', muscle: 'Tríceps', duration: '20s/lado', equipment: 'Nenhum', tip: 'Braço acima da cabeça, empurre suavemente o cotovelo para baixo.', video: V.alongTriceps },
-    { name: 'Hand to toes', muscle: 'Posteriores', duration: '20s', equipment: 'Nenhum', tip: 'Toque os pés mantendo o tronco alongado. Segure 20 segundos.', video: V.handToToes },
-    { name: 'Alongamento de Peitoral Espaldar', muscle: 'Peitoral', duration: '20s', equipment: 'Espaldar/parede', tip: 'Abra o peitoral e segure 20 segundos.', video: V.alongPeitoral },
+    { name: 'Supino Inclinado com Halteres', muscle: 'Peitoral superior', duration: '3x10–12', equipment: 'Halteres + banco inclinado', tip: 'Banco a ~30–45°. Desça até a linha do peito e suba sem travar os cotovelos.', video: V.supinoInclHalter },
   ]
 };
 
-const ALONG_FINAL_A = {
-  type: 'stretch', label: 'Alongamento Final',
-  title: 'Repetir alongamentos do início', duration: '10s cada',
-  meta: 'Repita os alongamentos iniciais com 10 segundos em cada exercício ou membro',
+const BISET_A_2 = {
+  type: 'lift', label: 'Bi-Set 2',
+  title: 'Desenvolvimento Máquina ↔ Cadeira Adutora', duration: '3x10–15 · Sem descanso no par',
+  meta: 'Ombro grande + adutor (ênfase pélvica). Descanso 60–90s ao fim do par.',
   exercises: [
-    { name: 'Alongamento de coxa - I', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Alongamento de Tríceps', muscle: 'Tríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongTriceps },
-    { name: 'Hand to toes', muscle: 'Posteriores', duration: '10s', equipment: 'Nenhum', tip: '10 segundos.', video: V.handToToes },
-    { name: 'Alongamento de Peitoral Espaldar', muscle: 'Peitoral', duration: '10s', equipment: 'Espaldar/parede', tip: '10 segundos.', video: V.alongPeitoral },
+    { name: 'Desenvolvimento Máquina', muscle: 'Ombros', duration: '3x10–12', equipment: 'Máquina de desenvolvimento', tip: 'Máquina escolhida pela estabilidade (facilita a execução). Empurre para cima sem encolher os ombros.', video: V.desenvMaquina },
+    { name: 'Cadeira Adutora', muscle: 'Adutores', duration: '3x12–15', equipment: 'Máquina adutora', tip: 'Ênfase pélvica. Feche as pernas com controle e segure 1s na contração.', video: V.cadeiraAdutora },
   ]
 };
 
-const ALONG_FINAL_B = {
-  type: 'stretch', label: 'Alongamento Final',
-  title: 'Repetir alongamentos do início', duration: '10s cada',
-  meta: 'Repita os alongamentos iniciais com 10 segundos em cada exercício ou membro',
+const ISO_A_1 = {
+  type: 'lift', label: 'Isolado 1',
+  title: 'Tríceps na Polia com Corda', duration: '3x12–15',
+  meta: 'Finalização — ênfase braço. Descanso 45–60s.',
   exercises: [
-    { name: 'Alongamento de coxa - I', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Alongamento de Tríceps', muscle: 'Tríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongTriceps },
-    { name: 'Hand to toes', muscle: 'Posteriores', duration: '10s', equipment: 'Nenhum', tip: '10 segundos.', video: V.handToToes },
-    { name: 'Alongamento de Peitoral Espaldar', muscle: 'Peitoral', duration: '10s', equipment: 'Espaldar/parede', tip: '10 segundos.', video: V.alongPeitoral },
+    { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x12–15', equipment: 'Polia alta + corda', tip: 'Ênfase braço. Cotovelos fixos ao lado do corpo, estenda até o fim abrindo a corda.', video: V.tricepsCorda },
   ]
 };
 
-const CARDIO_ESTEIRA = {
-  type: 'cardio', label: 'Cardio Final',
-  title: 'Esteira Caminhada', duration: '20 min',
-  meta: '20 minutos caminhando rápido',
+const ISO_A_2 = {
+  type: 'lift', label: 'Isolado 2',
+  title: 'Tríceps Francês (Testa) com Halteres', duration: '3x10–12',
+  meta: 'Finalização — ênfase braço. Descanso 60s.',
   exercises: [
-    { name: 'Esteira Caminhada', muscle: 'Cardio', duration: '20 min', equipment: 'Esteira', tip: 'Caminhada rápida por 20 minutos. Depois repita os alongamentos do início com 10s cada.', video: V.esteira },
+    { name: 'Tríceps Francês (Testa) com Halteres', muscle: 'Tríceps', duration: '3x10–12', equipment: 'Halteres (ou barra W)', tip: 'Ênfase braço. Cotovelos apontando pra cima e fixos, desça o peso atrás da cabeça e estenda.', video: V.tricepsFrances },
   ]
 };
 
-const CARDIO_ELIPTICO = {
-  type: 'cardio', label: 'Cardio Final',
-  title: 'Elíptico', duration: '20 min',
-  meta: '20 minutos · cadência mínima 40 rpm · carga 5',
+const CARDIO_A = {
+  type: 'cardio', label: 'Cardio',
+  title: 'Esteira Inclinada — Zona Aeróbica', duration: '25–30 min',
+  meta: 'Ritmo de conversa. Sem picos.',
   exercises: [
-    { name: 'Elíptico', muscle: 'Cardio', duration: '20 min', equipment: 'Elíptico', tip: 'Cadência mínima 40 rpm, carga 5. Depois repita os alongamentos do início com 10s cada.', video: V.eliptico },
+    { name: 'Esteira Caminhada Inclinada', muscle: 'Cardiovascular', duration: '25–30 min', equipment: 'Esteira (ou bike)', tip: 'Inclinação 5–8%, ritmo confortável de conversa (~65–70% FCmax). Alternativa: bike ergométrica leve. ⚠️ Tontura/falta de ar/dor no peito → pare, sente e hidrate.', video: V.esteiraInclinada },
   ]
 };
 
-// ─── Treino A — Full Body (Ênfase Empurrar) ───
-const TREINO_A = [
-  AQUEC_ARTICULAR,
-  AQUEC_MUSCULAR_A,
-  MOBILIDADE_A,
-  {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Leg Press 45 ↔ Supino Reto', duration: '4x12 · Sem descanso',
-    meta: '4 séries de 12 repetições · Sem descanso entre exercícios',
-    exercises: [
-      { name: 'Leg Press 45', muscle: 'Quadríceps / Glúteos', duration: '4x12', equipment: 'Máquina Leg Press', tip: 'Pés firmes na plataforma. Desça controlando e suba sem travar joelhos.', video: V.legPress },
-      { name: 'Banco Supino Reto', muscle: 'Peitoral', duration: '4x12', equipment: 'Banco + barra', tip: 'Controle a descida e empurre com estabilidade. Teste e atualize os pesos.', video: V.supinoReto },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Extensora ↔ Elevação Lateral', duration: '4x12 · Sem descanso',
-    meta: '4 séries de 12 repetições · Sem descanso entre exercícios',
-    exercises: [
-      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '4x12', equipment: 'Máquina extensora', tip: 'Movimento controlado, segure a contração no topo por 1s.', video: V.cadeiraExt },
-      { name: 'Elevação Lateral com Halteres', muscle: 'Ombros', duration: '4x12', equipment: 'Halteres', tip: 'Eleve até a linha dos ombros sem roubar com o tronco.', video: V.elevLateral },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 3',
-    title: 'Puxada Aberta ↔ Abdominal Supra', duration: '4x12 · Sem descanso',
-    meta: '4 séries de 12 repetições · Sem descanso entre exercícios',
-    exercises: [
-      { name: 'Puxada Aberta Barra Reta', muscle: 'Dorsal', duration: '4x12', equipment: 'Puxador', tip: 'Puxe a barra até a linha do peito e contraia as escápulas.', video: V.puxadaAberta },
-      { name: 'Abdominal Supra Solo', muscle: 'Abdômen', duration: '4x12', equipment: 'Colchonete', tip: 'Suba com controle, focando em contrair o abdômen.', video: V.abdomSupra },
-    ]
-  },
-  CARDIO_ESTEIRA,
-  ALONG_FINAL_A,
-];
+const SOLTURA_A = {
+  type: 'warmup', label: 'Soltura',
+  title: 'Alongamento Final', duration: '3–5 min',
+  meta: '≤10s cada — só da musculatura do dia',
+  exercises: [
+    { name: 'Alongamento de Peitoral em Pé (mãos atrás)', muscle: 'Peitoral', duration: '10s x2', equipment: 'Nenhum', tip: 'Mãos entrelaçadas atrás das costas, suba os braços abrindo o peito. 10 segundos, 2 vezes.', video: V.alongPeitoral },
+    { name: 'Alongamento de Tríceps atrás da Cabeça', muscle: 'Tríceps', duration: '10s/lado', equipment: 'Nenhum', tip: 'Cotovelo apontando pra cima, puxe com a outra mão. Pode fazer caminhando. 10s cada.', video: V.ext },
+    { name: 'Alongamento de Quadríceps em Pé', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Apoio', tip: 'Em pé, puxe o tornozelo em direção ao glúteo, uma mão no apoio. 10s cada perna.', video: V.ext },
+    { name: 'Alongamento de Ombro Cruzado no Peito', muscle: 'Ombro', duration: '10s/lado', equipment: 'Nenhum', tip: 'Cruze o braço na frente do peito e puxe com o outro. 10s cada lado.', video: V.alongOmbros },
+  ]
+};
 
-// ─── Treino B — Full Body (Ênfase Puxar) ───
-const TREINO_B = [
-  AQUEC_ARTICULAR,
-  AQUEC_MUSCULAR_B,
-  MOBILIDADE_B,
-  {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Terra c/ Halteres ↔ Remada Curvada', duration: '4x12 · Sem descanso',
-    meta: '4 séries de 12 repetições · Sem descanso entre exercícios',
-    exercises: [
-      { name: 'Levantamento terra com halteres', muscle: 'Posteriores / Glúteos', duration: '4x12', equipment: 'Halteres', tip: 'Halteres próximos ao corpo, quadril vai para trás e coluna neutra.', video: V.terraHalteres },
-      { name: 'Remada Curvada com Halteres (Pegada Neutra)', muscle: 'Costas', duration: '4x12', equipment: 'Halteres', tip: 'Tronco inclinado, puxe os halteres para a cintura sem balançar.', video: V.remadaCurvadaHalteres },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Flexora ↔ Supino Inclinado', duration: '4x12 · Sem descanso',
-    meta: '4 séries de 12 repetições · Sem descanso entre exercícios',
-    exercises: [
-      { name: 'Cadeira Flexora', muscle: 'Posteriores', duration: '4x12', equipment: 'Máquina flexora', tip: 'Controle a fase excêntrica e mantenha o quadril estabilizado.', video: V.cadeiraFlexora },
-      { name: 'Supino Inclinado com Halteres', muscle: 'Peitoral superior', duration: '4x12', equipment: 'Halteres + banco inclinado', tip: 'Mantenha os cotovelos estáveis e controle a descida.', video: V.supinoInclinado },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 3',
-    title: 'Rosca Direta ↔ Tríceps Banco', duration: '4x12 · Sem descanso',
-    meta: '4 séries de 12 repetições · Sem descanso entre exercícios',
-    exercises: [
-      { name: 'Rosca Direta Barra Reta', muscle: 'Bíceps', duration: '4x12', equipment: 'Barra reta', tip: 'Cotovelos fixos ao lado do corpo. Suba controlando, sem balanço.', video: V.roscaBarra },
-      { name: 'Tríceps Banco com Pernas Dobradas', muscle: 'Tríceps', duration: '4x12', equipment: 'Banco', tip: 'Pernas dobradas. Desça e suba com controle.', video: V.tricepsBanco },
-    ]
-  },
-  CARDIO_ELIPTICO,
-  ALONG_FINAL_B,
-];
+// ══════════════════ TREINO B — Posterior (Costas · Bíceps · Post. Coxa · Glúteo · Core) ══════════════════
+const AQUEC_B = {
+  type: 'warmup', label: 'Aquecimento',
+  title: 'Articular + Muscular', duration: '5–8 min',
+  meta: 'Prepara costas, posterior e glúteo do dia',
+  exercises: [
+    { name: 'Balanços de Braço + Círculos de Ombro', muscle: 'Ombro', duration: '20 reps', equipment: 'Nenhum', tip: 'Solta o ombro com balanços e círculos amplos antes de puxar.', video: V.ext },
+    { name: 'Balanço de Perna (lateral + anterior)', muscle: 'Quadril', duration: '15 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna com controle. 15 cada perna.', video: V.ext },
+    { name: 'Cat-Cow (cachorro cima ↔ cachorro baixo)', muscle: 'Coluna', duration: '6 reps', equipment: 'Colchonete', tip: 'Alterne arquear e arredondar a coluna no ritmo da respiração. 6 ciclos.', video: V.catCow },
+    { name: 'Remada com Elástico (peso corporal)', muscle: 'Costas', duration: '2x15', equipment: 'Elástico', tip: 'Elástico preso à frente, puxe fechando as escápulas. Ativa as costas antes do treino.', video: V.ext },
+    { name: 'Elevação Pélvica no Chão (glúteo)', muscle: 'Glúteos', duration: '2x15', equipment: 'Colchonete', tip: 'Deitado, joelhos dobrados, suba o quadril contraindo o glúteo. Sem carga — só ativação. 2x15.', video: V.elevPelvicaSolo },
+  ]
+};
 
-// ─── Treino C — Full Body (Ênfase Composto) ───
-const TREINO_C = [
-  AQUEC_ARTICULAR,
-  AQUEC_MUSCULAR_A,
-  MOBILIDADE_A,
-  {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Agachamento Halter ↔ Puxada Aberta', duration: '4x12 · Sem descanso',
-    meta: '4 séries de 12 repetições · Sem descanso entre exercícios',
-    exercises: [
-      { name: 'Agachamento com Halter na Frente', muscle: 'Quadríceps / Glúteos', duration: '4x12', equipment: 'Halter', tip: 'Segure o halter na frente do corpo, desça com postura e suba controlando.', video: V.agachHalterFrente },
-      { name: 'Puxada Aberta Barra Reta', muscle: 'Dorsal', duration: '4x12', equipment: 'Puxador', tip: 'Puxe até a linha do peito, contraia escápulas.', video: V.puxadaAberta },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 2',
-    title: 'Afundo c/ Halteres ↔ Supino Reto', duration: '4x12 · Sem descanso',
-    meta: '4 séries de 12 repetições · Sem descanso entre exercícios',
-    exercises: [
-      { name: 'Afundo com Halteres', muscle: 'Quadríceps / Glúteos', duration: '4x12', equipment: 'Halteres', tip: 'Passo firme, desça controlando e mantenha o tronco estável.', video: V.afundoHalteres },
-      { name: 'Banco Supino Reto', muscle: 'Peitoral', duration: '4x12', equipment: 'Banco + barra', tip: 'Controle a descida e empurre com estabilidade.', video: V.supinoReto },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 3',
-    title: 'Elevação Lateral ↔ Abdominal Supra', duration: '4x12 · Sem descanso',
-    meta: '4 séries de 12 repetições · Sem descanso entre exercícios',
-    exercises: [
-      { name: 'Elevação Lateral com Halteres', muscle: 'Ombros', duration: '4x12', equipment: 'Halteres', tip: 'Eleve até a linha dos ombros, sem roubar com o tronco.', video: V.elevLateral },
-      { name: 'Abdominal Supra Solo', muscle: 'Abdômen', duration: '4x12', equipment: 'Colchonete', tip: 'Suba com controle, focando em contrair o abdômen.', video: V.abdomSupra },
-    ]
-  },
-  CARDIO_ESTEIRA,
-  ALONG_FINAL_A,
-];
+const MOBIL_B = {
+  type: 'warmup', label: 'Mobilidade',
+  title: 'Postural — Coluna · Escápula · Isquios', duration: '5–7 min',
+  meta: 'Retração escapular + quadril + posterior',
+  exercises: [
+    { name: 'Alongamento Gato-Vaca', muscle: 'Coluna', duration: '10 reps', equipment: 'Colchonete', tip: 'Mobiliza toda a coluna no ritmo da respiração. 10 ciclos.', video: V.catCow },
+    { name: 'Alongamento de Isquiotibiais Sentado (uma perna)', muscle: 'Posterior de coxa', duration: '30s/lado', equipment: 'Nenhum', tip: 'Sentado, uma perna estendida, incline o tronco à frente com a coluna reta. 30s cada.', video: V.alongPanturrilha },
+    { name: 'Alongamento de Piriforme (deitado, tornozelo no joelho)', muscle: 'Glúteo / Quadril', duration: '30s/lado', equipment: 'Colchonete', tip: 'Deitado, cruze o tornozelo sobre o joelho oposto e puxe a coxa em direção ao peito. 30s cada.', video: V.alongGluteos },
+    { name: 'Power Band — Pull-Apart Horizontal (retração escapular)', muscle: 'Costas / Escápula', duration: '2x15', equipment: 'Power Band', tip: 'Braços à frente na altura do ombro, abra a faixa fechando as escápulas. Foco postural. 2x15.', video: V.ext },
+    { name: 'Power Band — Face Pull Deitado', muscle: 'Deltoide post. / Escápula', duration: '2x12', equipment: 'Power Band', tip: 'Puxe a faixa em direção ao rosto, cotovelos altos, abrindo as escápulas. 2x12.', video: V.ext },
+  ]
+};
 
+// ─── Bloco principal em SOLO / BI-SET alternado (reestrutura 15/07/2026) ───
+const SOLO_B_1 = {
+  type: 'lift', label: 'Solo 1',
+  title: 'Stiff com Halteres', duration: '3x10–12',
+  meta: 'Composto de posterior/glúteo — abre o treino. Descanso 90s.',
+  exercises: [
+    { name: 'Stiff com Halteres', muscle: 'Posterior de coxa / Glúteo', duration: '3x10–12', equipment: 'Halteres', tip: '⚠️ Cuidado com a lombar: coluna reta, joelhos semiflexionados, desça o peso deslizando pela coxa. Execução limpa.', video: V.stiffHalteres },
+  ]
+};
+
+const BISET_B_1 = {
+  type: 'lift', label: 'Bi-Set 1',
+  title: 'Puxada Frontal ↔ Cadeira Flexora', duration: '3x10–15 · Sem descanso no par',
+  meta: 'Costas grande + posterior isolado. Descanso 60–90s ao fim do par.',
+  exercises: [
+    { name: 'Puxada Frontal (pegada aberta)', muscle: 'Costas (dorsal)', duration: '3x10–12', equipment: 'Polia alta / puxador', tip: 'Pegada aberta. Puxe a barra até o peito levando as escápulas "pro bolso". Sem jogar o tronco.', video: V.puxadaFrontal },
+    { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12–15', equipment: 'Máquina flexora', tip: 'Isquios. Flexione o joelho contra o peso e controle a volta — não deixe cair.', video: V.cadeiraFlexora },
+  ]
+};
+
+const SOLO_B_2 = {
+  type: 'lift', label: 'Solo 2',
+  title: 'Elevação Pélvica com Barra (Hip Thrust)', duration: '3x12–15',
+  meta: 'Composto de glúteo (ênfase pélvica). Descanso 90s.',
+  exercises: [
+    { name: 'Elevação Pélvica com Barra', muscle: 'Glúteos', duration: '3x12–15', equipment: 'Barra + banco', tip: 'Ênfase pélvica. Suba o quadril contraindo o glúteo e segure 1s no topo. Queixo pro peito.', video: V.elevPelvicaBarra },
+  ]
+};
+
+const BISET_B_2 = {
+  type: 'lift', label: 'Bi-Set 2',
+  title: 'Remada Baixa ↔ Panturrilha em Pé', duration: '3x10–15 · Sem descanso no par',
+  meta: 'Costas grande + panturrilha isolada. Descanso 60–90s ao fim do par.',
+  exercises: [
+    { name: 'Remada Baixa (máquina/cabo)', muscle: 'Costas (meio)', duration: '3x10–12', equipment: 'Polia baixa', tip: 'Postural — retraia as escápulas e puxe em direção ao abdômen. Tronco firme.', video: V.remadaBaixa },
+    { name: 'Panturrilha em Pé (Máquina)', muscle: 'Panturrilha', duration: '3x15', equipment: 'Máquina de panturrilha em pé', tip: 'Suba na ponta dos pés estendendo o tornozelo, segure 1s no topo. Amplitude completa.', video: V.panturrilhaPeMaq },
+  ]
+};
+
+const BISET_B_3 = {
+  type: 'lift', label: 'Bi-Set 3',
+  title: 'Remada Curvada com Halteres ↔ Prancha Abdominal', duration: '3x10–12 / 30–45s · Sem descanso no par',
+  meta: 'Costas grande + core (postural). Descanso 60–90s ao fim do par.',
+  exercises: [
+    { name: 'Remada Curvada com Halteres (unilateral)', muscle: 'Costas', duration: '3x10–12/lado', equipment: 'Halter + banco', tip: 'Uma mão e um joelho no banco, tronco paralelo ao chão. Puxe o halter em direção ao quadril. 10–12 cada lado.', video: V.remadaCurvada },
+    { name: 'Prancha Abdominal (isometria)', muscle: 'Core / Abdômen', duration: '3x30–45s', equipment: 'Colchonete', tip: 'Postural/core. Antebraços no chão, corpo reto, abdômen e glúteo firmes. Segure 30–45s.', video: V.pranchaAbdominal },
+  ]
+};
+
+const ISO_B_1 = {
+  type: 'lift', label: 'Isolado 1',
+  title: 'Rosca Direta com Barra W', duration: '3x10–12',
+  meta: 'Finalização — ênfase braço. Descanso 60s.',
+  exercises: [
+    { name: 'Rosca Direta com Barra W', muscle: 'Bíceps', duration: '3x10–12', equipment: 'Barra W', tip: 'Ênfase braço. Cotovelos fixos ao lado do corpo, sem embalar o tronco. Controle a descida.', video: V.roscaDiretaW },
+  ]
+};
+
+const ISO_B_2 = {
+  type: 'lift', label: 'Isolado 2',
+  title: 'Rosca Martelo com Halteres', duration: '3x10–12',
+  meta: 'Finalização — ênfase braço. Descanso 45–60s.',
+  exercises: [
+    { name: 'Rosca Martelo com Halteres', muscle: 'Bíceps / Antebraço', duration: '3x10–12', equipment: 'Halteres', tip: 'Ênfase braço. Pegada neutra (polegar pra cima), suba sem girar o punho. Controle na descida.', video: V.roscaMartelo },
+  ]
+};
+
+const CARDIO_B = {
+  type: 'cardio', label: 'Cardio',
+  title: 'Esteira Inclinada — Zona Aeróbica', duration: '25–30 min',
+  meta: 'Ritmo de conversa. Sem picos.',
+  exercises: [
+    { name: 'Esteira Caminhada Inclinada', muscle: 'Cardiovascular', duration: '25–30 min', equipment: 'Esteira (ou bike)', tip: 'Inclinação 5–8%, ritmo confortável de conversa (~65–70% FCmax). Alternativa: bike ergométrica leve. ⚠️ Tontura/falta de ar/dor no peito → pare, sente e hidrate.', video: V.esteiraInclinada },
+  ]
+};
+
+const SOLTURA_B = {
+  type: 'warmup', label: 'Soltura',
+  title: 'Alongamento Final', duration: '3–5 min',
+  meta: '≤10s cada — só da musculatura do dia',
+  exercises: [
+    { name: 'Alongamento Dorsal (child’s pose com braços estendidos)', muscle: 'Dorsal / Coluna', duration: '20s x2', equipment: 'Colchonete', tip: 'Sentado sobre os calcanhares, estenda os braços à frente no chão e relaxe a coluna. 20s, 2 vezes.', video: V.alongDorsal },
+    { name: 'Alongamento de Bíceps na Parede', muscle: 'Bíceps', duration: '10s/lado', equipment: 'Parede', tip: 'Mão na parede atrás do corpo, gire o tronco pro lado oposto. 10s cada.', video: V.ext },
+    { name: 'Alongamento de Isquios em Pé', muscle: 'Posterior de coxa', duration: '10s/lado', equipment: 'Nenhum', tip: 'Perna à frente, incline o tronco pra frente com a coluna reta. Pode combinar puxando o cotovelo. 10s cada.', video: V.ext },
+    { name: 'Alongamento de Glúteo Cruzado Deitado', muscle: 'Glúteos', duration: '10s/lado', equipment: 'Colchonete', tip: 'Deitado, cruze o tornozelo sobre o joelho oposto e puxe. 10s cada.', video: V.alongGluteos },
+  ]
+};
+
+const TREINO_A = [ AQUEC_A, MOBIL_A, SOLO_A_1, BISET_A_1, SOLO_A_2, BISET_A_2, ISO_A_1, ISO_A_2, CARDIO_A, SOLTURA_A ];
+const TREINO_B = [ AQUEC_B, MOBIL_B, SOLO_B_1, BISET_B_1, SOLO_B_2, BISET_B_2, BISET_B_3, ISO_B_1, ISO_B_2, CARDIO_B, SOLTURA_B ];
+
+// 3x/sem alternando A · B · A (Semana 1). Descanso mínimo de 48h entre repetições.
 const TRAINING_SLOTS = [
-  { label: 'Treino A — Full Body (Empurrar)', blocks: TREINO_A },
-  { label: 'Treino B — Full Body (Puxar)', blocks: TREINO_B },
-  { label: 'Treino C — Full Body (Composto)', blocks: TREINO_C },
+  { label: 'Treino A — Anterior', blocks: TREINO_A },
+  { label: 'Treino B — Posterior', blocks: TREINO_B },
+  { label: 'Treino A — Anterior', blocks: TREINO_A },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-const DAY_CONFIG_KEY = 'maxresults-ian-days-v1';
+const DAY_CONFIG_KEY = 'maxresults-rafael-days-v1';
 const DEFAULT_DAYS = ['Seg', 'Qua', 'Sex'];
-function loadDayConfig() {
-  try { return JSON.parse(localStorage.getItem(DAY_CONFIG_KEY)) || DEFAULT_DAYS; }
-  catch { return DEFAULT_DAYS; }
-}
 
 function getMonday(d) {
   const dt = new Date(d);
@@ -605,6 +637,11 @@ function buildWeek() {
   });
 }
 
+function loadDayConfig() {
+  try { return JSON.parse(localStorage.getItem(DAY_CONFIG_KEY)) || DEFAULT_DAYS; }
+  catch { return DEFAULT_DAYS; }
+}
+
 function buildSchedule() {
   const chosen = loadDayConfig();
   let slotIdx = 0;
@@ -620,14 +657,12 @@ function buildSchedule() {
 let WEEK_SCHEDULE = buildSchedule();
 let WEEK = buildWeek();
 
-// Dynamic storage key based on current week
 function getWeekKey() {
   const m = getMonday(new Date());
   return m.getFullYear() + '-' + pad(m.getMonth()+1) + '-' + pad(m.getDate());
 }
 
-
-const STORAGE_KEY = 'maxresults-ian-' + getWeekKey() + '-v1';
+const STORAGE_KEY = 'maxresults-rafael-' + getWeekKey() + '-v1';
 let currentDayIndex = 0;
 let completedExercises = loadProgress();
 
@@ -637,10 +672,8 @@ function exerciseKey(di, bi, ei) { return `${di}-${bi}-${ei}`; }
 
 function findCurrentDay() {
   const today = new Date().toISOString().split('T')[0];
-  // First: show today if it exists in the week (even rest days)
   const todayIdx = WEEK.findIndex(d => d.date === today);
   if (todayIdx !== -1) return todayIdx;
-  // Fallback: find next training day
   for (let i = 0; i < WEEK.length; i++) { if (WEEK[i].date >= today && !WEEK[i].rest) return i; }
   return 0;
 }
@@ -666,13 +699,12 @@ function renderWorkout() {
   const content = document.getElementById('workoutContent');
   document.getElementById('headerDay').textContent = day.rest ? `${day.day} — Descanso` : `${day.day} ${day.num}/${day.date.split('-')[1]}`;
   document.getElementById('headerDate').textContent = document.getElementById('weekBadge')?.textContent || '';
-  if (day.rest) { content.innerHTML = `<div class="rest-message"><h2>Dia de Descanso 😴</h2><p>Recuperação é parte do treino. Alongue e descanse.</p></div>`; document.getElementById('sessionComplete').classList.remove('visible'); return; }
+  if (day.rest) { content.innerHTML = `<div class="rest-message"><h2>Dia de Descanso 😴</h2><p>Recuperação é parte do treino. Hidrate, alongue e descanse — 48h entre os treinos.</p></div>`; document.getElementById('sessionComplete').classList.remove('visible'); return; }
 
-  content.innerHTML = day.blocks.map((block, bi) => {
+  content.innerHTML = `<div class="elbow-alert">❤️ <strong>Atenção cardíaca + medicação</strong> — Cardio sempre em <em>zona aeróbica (ritmo de conversa)</em>, sem picos. Hidrate bem e levante do banco <em>devagar</em> (tontura ao levantar). Falta de ar desproporcional, tontura ou dor no peito → <em>pare imediatamente</em>, sente, hidrate e avise o Luisão.</div>` + day.blocks.map((block, bi) => {
     const doneCount = block.exercises.filter((_, ei) => completedExercises[exerciseKey(currentDayIndex, bi, ei)]).length;
     const total = block.exercises.length;
     const blockDone = doneCount === total;
-    const isSuperset = block.exercises.length === 2 && (block.type === 'lift');
 
     return `<section class="block block--${block.type}">
       <div class="block-header"><div class="block-info"><div class="block-dot"></div><div><div class="block-name">${block.label}</div></div></div><div class="block-progress ${blockDone?'done':''}">${doneCount}/${total}</div></div>
@@ -682,8 +714,6 @@ function renderWorkout() {
         const key = exerciseKey(currentDayIndex, bi, ei);
         const done = completedExercises[key];
         const tagClass = 'tag--' + block.type;
-        const supersetTag = isSuperset ? '<span class="tag tag--superset">Bi-Set</span>' : '';
-        const noRestTag = isSuperset ? '<span class="tag tag--norest">Sem descanso</span>' : '';
         const videoUrl = ex.video || '';
         const isYt = videoUrl.startsWith('yt:');
         const nameHtml = videoUrl
@@ -694,14 +724,13 @@ function renderWorkout() {
             <div class="check" onclick="event.stopPropagation(); toggleExercise('${key}')"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
             <div class="exercise-content">
               <div class="exercise-top">${nameHtml}<span class="exercise-duration">${ex.duration}</span></div>
-              <div class="exercise-tags"><span class="tag ${tagClass}">${ex.muscle}</span>${supersetTag}${noRestTag}</div>
+              <div class="exercise-tags"><span class="tag ${tagClass}">${ex.muscle}</span></div>
             </div>
             <svg class="expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </div>
           <div class="exercise-detail"><div class="detail-inner">
             ${block.type==='lift' ? `<div class="load-row" onclick="event.stopPropagation()"><span class="load-label">Carga:</span><input type="text" inputmode="decimal" class="load-input" placeholder="—" data-load-key="${key}" onchange="saveLoad(this)" value=""><span class="load-unit">kg</span></div>` : ''}
             ${block.type==='lift' ? `<div class="load-row" onclick="event.stopPropagation()"><span class="rest-label">Descanso:</span><input type="text" inputmode="decimal" class="rest-input" placeholder="90" data-rest-key="${key}" onchange="saveRest(this)" value=""><span class="load-unit">seg</span></div>` : ''}
-
             <div class="detail-row"><span class="detail-label">Equipamento:</span><span class="detail-value">${ex.equipment}</span></div>
             <div class="detail-row"><span class="detail-label">Dica:</span><span class="detail-value">${ex.tip}</span></div>
           </div></div>
@@ -712,23 +741,24 @@ function renderWorkout() {
 }
 
 function playVideo(e, url) {
-  // OneDrive links: let them open in new tab normally
-  if (url.includes('1drv.ms') || url.includes('onedrive')) {
-    // Don't prevent default - let the link open
-    return;
-  }
+  if (url.includes('1drv.ms') || url.includes('onedrive')) { return; }
   e.preventDefault();
   const overlay = document.getElementById('videoOverlay');
   const player = document.getElementById('videoPlayer');
   const ytPlayer = document.getElementById('ytPlayer');
-  if (url.startsWith('yt:')) {
+  const isYoutube = url.startsWith('yt:');
+  const isBunny = url.includes('player.mediadelivery.net/play/');
+  player.pause(); player.src = ''; ytPlayer.src = '';
+  if (isYoutube) {
     ytPlayer.src = `https://www.youtube.com/embed/${url.slice(3)}?autoplay=1`;
     ytPlayer.style.display = 'block'; player.style.display = 'none';
+  } else if (isBunny) {
+    var _bunny = url.replace('player.mediadelivery.net/play/','iframe.mediadelivery.net/embed/').replace('iframe.mediadelivery.net/play/','iframe.mediadelivery.net/embed/');
+    ytPlayer.src = _bunny + (_bunny.includes('?') ? '&' : '?') + 'autoplay=true';
+    ytPlayer.style.display = 'block'; player.style.display = 'none';
   } else {
-    player.src = url; player.style.display = 'block'; ytPlayer.style.display = 'none'; player.play().catch(err => {
-      console.error('Error playing video:', err);
-      alert('Erro ao carregar o vídeo. Tente abrir em nova aba.');
-    });
+    player.src = url; player.style.display = 'block'; ytPlayer.style.display = 'none';
+    player.play().catch(err => { console.error('Error playing video:', err); window.open(url, '_blank', 'noopener'); });
   }
   overlay.classList.add('active');
 }
@@ -790,7 +820,6 @@ function updateBlockProgress() {
 
 function toggleDetail(key) { document.getElementById('ex-'+key).classList.toggle('expanded'); }
 
-// ─── Day Configuration ───
 function openDayModal() {
   const chosen = loadDayConfig();
   document.getElementById('dayOptions').innerHTML = ALL_DAYS.map(day =>
@@ -822,9 +851,7 @@ function saveDayConfig() {
   closeDayModal();
 }
 
-// ─── Finish Workout (partial) ───
-const FINISH_KEY = 'maxresults-ian-finished-v1';
-
+const FINISH_KEY = 'maxresults-rafael-finished-v1';
 function loadFinished() { try { return JSON.parse(localStorage.getItem(FINISH_KEY)||'{}'); } catch { return {}; } }
 
 function finishWorkout() {
@@ -832,8 +859,6 @@ function finishWorkout() {
   if (day.rest) return;
   const finished = loadFinished();
   const dateKey = day.date;
-  
-  // Collect skipped exercises
   const skipped = [];
   day.blocks.forEach((block, bi) => {
     block.exercises.forEach((ex, ei) => {
@@ -841,28 +866,16 @@ function finishWorkout() {
       if (!completedExercises[key]) skipped.push(ex.name);
     });
   });
-  
-  finished[dateKey] = {
-    completed: true,
-    partial: skipped.length > 0,
-    skipped: skipped,
-    timestamp: new Date().toISOString()
-  };
+  finished[dateKey] = { completed: true, partial: skipped.length > 0, skipped: skipped, timestamp: new Date().toISOString() };
   localStorage.setItem(FINISH_KEY, JSON.stringify(finished));
-  
   const btn = document.getElementById('finishBtn');
-  btn.classList.add('finished');
-  btn.textContent = '✅ Treino Finalizado!';
-  btn.disabled = true;
-  
+  btn.classList.add('finished'); btn.textContent = '✅ Treino Finalizado!'; btn.disabled = true;
   const info = document.getElementById('skippedInfo');
   if (skipped.length > 0) {
     info.innerHTML = `<div class="skipped-list">⚠️ Exercícios pulados: <span>${skipped.join(', ')}</span></div>`;
   } else {
     info.innerHTML = `<div class="skipped-list" style="color:var(--green)">✅ Todos os exercícios concluídos!</div>`;
   }
-  
-  // Record session for frequency tracking
   recordSession();
   renderDaySwitcher();
 }
@@ -879,42 +892,27 @@ function updateFinishButton() {
   const btn = document.getElementById('finishBtn');
   const info = document.getElementById('skippedInfo');
   if (day.rest) { btn.classList.remove('show'); info.innerHTML = ''; return; }
-  
   const finished = loadFinished();
   const alreadyFinished = finished[day.date]?.completed;
   const allDone = isDayComplete(currentDayIndex);
-  
   if (allDone) {
-    // All exercises done — session-complete shows, hide finish button
-    btn.classList.remove('show');
-    info.innerHTML = '';
+    btn.classList.remove('show'); info.innerHTML = '';
   } else if (alreadyFinished) {
-    btn.classList.add('show', 'finished');
-    btn.textContent = '✅ Treino Finalizado!';
-    btn.disabled = true;
+    btn.classList.add('show', 'finished'); btn.textContent = '✅ Treino Finalizado!'; btn.disabled = true;
     const skipped = finished[day.date]?.skipped || [];
-    info.innerHTML = skipped.length > 0
-      ? `<div class="skipped-list">⚠️ Exercícios pulados: <span>${skipped.join(', ')}</span></div>`
-      : '';
+    info.innerHTML = skipped.length > 0 ? `<div class="skipped-list">⚠️ Exercícios pulados: <span>${skipped.join(', ')}</span></div>` : '';
   } else {
-    // Some exercises pending — show finish button
     const total = day.blocks.reduce((s,b) => s+b.exercises.length, 0);
     const done = day.blocks.reduce((s,b,bi) => s+b.exercises.filter((_,ei) => completedExercises[exerciseKey(currentDayIndex,bi,ei)]).length, 0);
     if (done > 0) {
-      btn.classList.add('show');
-      btn.classList.remove('finished');
-      btn.textContent = `⏭️ Finalizar Treino (${done}/${total} feitos)`;
-      btn.disabled = false;
-      info.innerHTML = '';
-    } else {
-      btn.classList.remove('show');
-      info.innerHTML = '';
-    }
+      btn.classList.add('show'); btn.classList.remove('finished');
+      btn.textContent = `⏭️ Finalizar Treino (${done}/${total} feitos)`; btn.disabled = false; info.innerHTML = '';
+    } else { btn.classList.remove('show'); info.innerHTML = ''; }
   }
 }
 
-const LOAD_KEY = 'maxresults-ian-loads-v1';
-const REST_KEY = 'maxresults-ian-rest-v1';
+const LOAD_KEY = 'maxresults-rafael-loads-v1';
+const REST_KEY = 'maxresults-rafael-rest-v1';
 function loadLoads() { try { return JSON.parse(localStorage.getItem(LOAD_KEY)||'{}'); } catch { return {}; } }
 function saveLoad(input) { const loads=loadLoads(); const k=input.dataset.loadKey; input.value.trim() ? loads[k]=input.value.trim() : delete loads[k]; localStorage.setItem(LOAD_KEY, JSON.stringify(loads)); }
 function restoreLoads() { const loads=loadLoads(); document.querySelectorAll('.load-input').forEach(i => { const k=i.dataset.loadKey; if (loads[k]) i.value=loads[k]; }); }
@@ -927,7 +925,6 @@ document.getElementById('weekToggle').addEventListener('click', function() {
   document.getElementById('weekOverview').classList.toggle('open');
   this.childNodes[0].textContent = this.classList.contains('open') ? 'Esconder semana ' : 'Ver semana completa ';
 });
-
 
 function updateWeekBadge() {
   const badge = document.getElementById('weekBadge');
@@ -943,13 +940,52 @@ updateWeekBadge();
 render();
 setTimeout(() => document.getElementById('workoutContent').classList.remove('initial-load'), 600);
 
-// ─── Assessment ───
-const ASSESSMENTS = [];
+// ─── Avaliação Física (dados reais da FICHA — sem body-fat% pois não medido) ───
+const ASSESSMENT = {
+  date: '20/12/2025',
+  protocol: 'Pollock, 1984 — 7 Dobras',
+  nextAssessment: '20/03/2026 ⚠️ VENCIDA — reagendar',
+  basics: { age: 24, height: 178, weight: 88.25 },
+  objective: 'Definição muscular',
+  emphasis: 'Braços + Postura',
+  stats: [
+    { value: '27.85', sub: 'Sobrepeso', label: 'IMC' },
+    { value: '0.88', sub: 'Baixo risco', label: 'RCQ' },
+    { value: '149.5', unit: 'mm', label: 'Σ Dobras' },
+    { value: '85', unit: 'kg', label: 'Peso Ideal' },
+  ],
+  perimetryDate: 'Set/2025 (última completa)',
+  perimetry: [
+    { label: 'Ombro', value: 118.0 }, { label: 'Tórax', value: 107.8 },
+    { label: 'Abdômen', value: 101.5 }, { label: 'Cintura', value: 97.5 },
+    { label: 'Quadril', value: 106.5 },
+    { label: 'Braço Esq.', value: 30.5 }, { label: 'Braço Dir.', value: 30.5 },
+    { label: 'Coxa Esq.', value: 63.5 }, { label: 'Coxa Dir.', value: 63.0 },
+    { label: 'Perna Esq.', value: 42.0 }, { label: 'Perna Dir.', value: 42.0 },
+  ],
+};
 
-const ASSESSMENT = null;
+// Evolução real entre as duas avaliações (Set/25 → Dez/25)
+const EVOLUTION = {
+  from: '11/09/2025 (Av.1)', to: '20/12/2025 (Av.2)',
+  summary: [
+    { value: '-2.6', unit: 'kg', label: 'Peso perdido', good: true },
+    { value: '-21.2', unit: 'mm', label: 'Σ Dobras', good: true },
+    { value: '-6.0', unit: 'cm', label: 'Abdômen', good: true },
+    { value: '-5.5', unit: 'cm', label: 'Cintura', good: true },
+  ],
+  rows: [
+    { label: 'Peso', old: '90.85kg', cur: '88.25kg', delta: '-2.6kg', cls: 'good' },
+    { label: 'IMC', old: '28.67', cur: '27.85', delta: '-0.82', cls: 'good' },
+    { label: 'RCQ', old: '0.92', cur: '0.88', delta: '-0.04', cls: 'good' },
+    { label: 'Σ Dobras', old: '170.7mm', cur: '149.5mm', delta: '-21.2mm', cls: 'good' },
+    { label: 'Σ Perimetria', old: '684.8cm', cur: '665.5cm', delta: '-19.3cm', cls: 'good' },
+    { label: 'Abdômen', old: '101.5cm', cur: '95.5cm', delta: '-6.0cm', cls: 'good' },
+    { label: 'Cintura', old: '97.5cm', cur: '92.0cm', delta: '-5.5cm', cls: 'good' },
+  ],
+};
 
 function renderAssessment(a) {
-  const r = a.results;
   return `
     <div class="assess-section"><div class="assess-section-title">Dados Básicos</div>
       <div class="assess-card"><div class="assess-basics">
@@ -962,89 +998,36 @@ function renderAssessment(a) {
         <div class="assess-meta-row"><span class="assess-meta-label">Protocolo</span><span class="assess-meta-value">${a.protocol}</span></div>
         <div class="assess-meta-row"><span class="assess-meta-label">Objetivo</span><span class="assess-meta-value">${a.objective}</span></div>
         <div class="assess-meta-row"><span class="assess-meta-label">Ênfase</span><span class="assess-meta-value">${a.emphasis}</span></div>
-        <div class="assess-meta-row"><span class="assess-meta-label">Próxima Avaliação</span><span class="assess-meta-value">${a.nextAssessment}</span></div>
+        <div class="assess-meta-row"><span class="assess-meta-label">Próxima Avaliação</span><span class="assess-meta-value" style="color:#ef4444;font-weight:700">${a.nextAssessment}</span></div>
       </div></div>
-    <div class="assess-section"><div class="assess-section-title">Perimetria (cm)</div>
-      <div class="assess-card"><div class="assess-grid">${a.perimetry.map(p => `<div class="assess-grid-item"><span class="agi-label">${p.label}</span><span class="agi-value">${p.value}</span></div>`).join('')}</div></div></div>
-    <div class="assess-section"><div class="assess-section-title">Dobras Cutâneas (mm)</div>
-      <div class="assess-card"><div class="assess-grid">${a.skinfolds.map(s => `<div class="assess-grid-item"><span class="agi-label">${s.label}</span><span class="agi-value">${s.value}</span></div>`).join('')}</div></div></div>
-    <div class="assess-section"><div class="assess-section-title">Composição Corporal</div>
-      <div class="assess-card"><div class="assess-donut-wrap">
-        <div class="assess-donut" style="--fat-pct: ${r.fatPercent}%"><div class="assess-donut-inner"><div class="adi-pct">${r.fatPercent}%</div><div class="adi-label">Gordura</div></div></div>
-        <div class="assess-donut-legend"><span><span class="dot fat"></span>Gordura ${r.fatPercent}%</span><span><span class="dot lean"></span>Magra ${r.leanPercent}%</span></div>
-      </div></div>
+    <div class="assess-section"><div class="assess-section-title">Indicadores</div>
       <div class="assess-card"><div class="assess-stats">
-        <div class="assess-stat"><div class="as-value">${r.imc.value}</div><div class="as-sub">${r.imc.classification}</div><div class="as-label">IMC</div></div>
-        <div class="assess-stat"><div class="as-value">${r.sumSkinfolds}<span class="ab-unit">mm</span></div><div class="as-label">Σ Dobras</div></div>
-        <div class="assess-stat"><div class="as-value">${r.idealWeight}<span class="ab-unit">kg</span></div><div class="as-label">Peso Ideal</div></div>
-        <div class="assess-stat"><div class="as-value">${r.idealFat}%</div><div class="as-sub">Meta</div><div class="as-label">% Gordura Ideal</div></div>
-      </div></div></div>`;
+        ${a.stats.map(s => `<div class="assess-stat"><div class="as-value">${s.value}${s.unit?`<span class="ab-unit">${s.unit}</span>`:''}</div>${s.sub?`<div class="as-sub">${s.sub}</div>`:''}<div class="as-label">${s.label}</div></div>`).join('')}
+      </div></div></div>
+    <div class="assess-section"><div class="assess-section-title">Perimetria (cm) — ${a.perimetryDate}</div>
+      <div class="assess-card"><div class="assess-grid">${a.perimetry.map(p => `<div class="assess-grid-item"><span class="agi-label">${p.label}</span><span class="agi-value">${p.value}</span></div>`).join('')}</div></div></div>`;
 }
 
-function renderEvolution(assessments) {
-  if (assessments.length < 2) return '';
-  const old = assessments[0];
-  const cur = assessments[assessments.length - 1];
-  
-  function delta(oldVal, newVal, unit, lowerIsBetter) {
-    const diff = newVal - oldVal;
-    if (Math.abs(diff) < 0.01) return { html: '<span class="evo-delta neutral">—</span>', diff: 0 };
-    const sign = diff > 0 ? '+' : '';
-    const cls = lowerIsBetter ? (diff < 0 ? 'good' : 'bad') : (diff > 0 ? 'good' : 'bad');
-    return { html: `<span class="evo-delta ${cls}">${sign}${diff.toFixed(1)}${unit}</span>`, diff };
-  }
-  
-  const weightD = delta(old.basics.weight, cur.basics.weight, 'kg', true);
-  const fatPctD = delta(old.results.fatPercent, cur.results.fatPercent, '%', true);
-  const fatMassD = delta(old.results.fatMass, cur.results.fatMass, 'kg', true);
-  const leanD = delta(old.results.leanMass, cur.results.leanMass, 'kg', false);
-  const imcD = delta(old.results.imc, cur.results.imc, '', true);
-  const skinD = delta(old.results.sumSkinfolds, cur.results.sumSkinfolds, 'mm', true);
-  
-  const periRows = [
-    { label: 'Cintura', old: old.perimetry.cintura, cur: cur.perimetry.cintura },
-    { label: 'Abdômen', old: old.perimetry.abdomen, cur: cur.perimetry.abdomen },
-    { label: 'Quadril', old: old.perimetry.quadril, cur: cur.perimetry.quadril },
-    { label: 'Coxa Esq.', old: old.perimetry.coxaE, cur: cur.perimetry.coxaE },
-    { label: 'Coxa Dir.', old: old.perimetry.coxaD, cur: cur.perimetry.coxaD },
-    { label: 'Braço Esq.', old: old.perimetry.bracoE, cur: cur.perimetry.bracoE },
-    { label: 'Braço Dir.', old: old.perimetry.bracoD, cur: cur.perimetry.bracoD },
-  ];
-  
+function renderEvolution(e) {
   return `
     <div class="evo-section">
       <div class="evo-title">📈 Evolução entre Avaliações</div>
-      <div class="evo-period">${old.date} (${old.label}) → ${cur.date} (${cur.label})</div>
+      <div class="evo-period">${e.from} → ${e.to}</div>
       <div class="evo-summary">
-        <div class="evo-summary-item"><div class="evo-summary-value green">${(old.basics.weight - cur.basics.weight).toFixed(1)}kg</div><div class="evo-summary-label">Peso perdido</div></div>
-        <div class="evo-summary-item"><div class="evo-summary-value green">${(old.results.fatMass - cur.results.fatMass).toFixed(1)}kg</div><div class="evo-summary-label">Gordura perdida</div></div>
-        <div class="evo-summary-item"><div class="evo-summary-value ${old.perimetry.cintura - cur.perimetry.cintura > 0 ? 'green' : 'red'}">${(old.perimetry.cintura - cur.perimetry.cintura).toFixed(1)}cm</div><div class="evo-summary-label">Cintura reduzida</div></div>
-        <div class="evo-summary-item"><div class="evo-summary-value ${old.perimetry.abdomen - cur.perimetry.abdomen > 0 ? 'green' : 'red'}">${(old.perimetry.abdomen - cur.perimetry.abdomen).toFixed(1)}cm</div><div class="evo-summary-label">Abdômen reduzido</div></div>
+        ${e.summary.map(s => `<div class="evo-summary-item"><div class="evo-summary-value ${s.good?'green':'red'}">${s.value}${s.unit}</div><div class="evo-summary-label">${s.label}</div></div>`).join('')}
       </div>
       <div class="evo-card">
-        <div class="evo-row"><span class="evo-label">Peso</span><div class="evo-values"><span class="evo-old">${old.basics.weight}kg</span><span class="evo-new">${cur.basics.weight}kg</span>${weightD.html}</div></div>
-        <div class="evo-row"><span class="evo-label">% Gordura</span><div class="evo-values"><span class="evo-old">${old.results.fatPercent}%</span><span class="evo-new">${cur.results.fatPercent}%</span>${fatPctD.html}</div></div>
-        <div class="evo-row"><span class="evo-label">Massa Gorda</span><div class="evo-values"><span class="evo-old">${old.results.fatMass}kg</span><span class="evo-new">${cur.results.fatMass}kg</span>${fatMassD.html}</div></div>
-        <div class="evo-row"><span class="evo-label">Massa Magra</span><div class="evo-values"><span class="evo-old">${old.results.leanMass}kg</span><span class="evo-new">${cur.results.leanMass}kg</span>${leanD.html}</div></div>
-        <div class="evo-row"><span class="evo-label">IMC</span><div class="evo-values"><span class="evo-old">${old.results.imc}</span><span class="evo-new">${cur.results.imc}</span>${imcD.html}</div></div>
-        <div class="evo-row"><span class="evo-label">Σ Dobras</span><div class="evo-values"><span class="evo-old">${old.results.sumSkinfolds}mm</span><span class="evo-new">${cur.results.sumSkinfolds}mm</span>${skinD.html}</div></div>
-      </div>
-      <div class="evo-card">
-        <div style="font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Perimetria (cm)</div>
-        ${periRows.map(r => {
-          const d = delta(r.old, r.cur, 'cm', true);
-          return `<div class="evo-row"><span class="evo-label">${r.label}</span><div class="evo-values"><span class="evo-old">${r.old}</span><span class="evo-new">${r.cur}</span>${d.html}</div></div>`;
-        }).join('')}
+        ${e.rows.map(r => `<div class="evo-row"><span class="evo-label">${r.label}</span><div class="evo-values"><span class="evo-old">${r.old}</span><span class="evo-new">${r.cur}</span><span class="evo-delta ${r.cls}">${r.delta}</span></div></div>`).join('')}
       </div>
     </div>`;
 }
 
-document.getElementById('assessPanel').innerHTML = ASSESSMENT ? renderAssessment(ASSESSMENT) + renderEvolution(ASSESSMENTS) : '<div class="assess-section" style="padding:20px;text-align:center;color:var(--text-muted);"><p>📋 Avaliação física pendente</p><p style="margin-top:8px;"><a href="https://wa.me/5541999775758?text=Oi%20Luisão!%20Quero%20agendar%20minha%20avaliação%20física%20🏋️" target="_blank" style="color:var(--accent-lift);">Agendar com Luisão</a></p></div>';
+document.getElementById('assessPanel').innerHTML = renderAssessment(ASSESSMENT) + renderEvolution(EVOLUTION);
 document.getElementById('assessToggle').addEventListener('click', function() { this.classList.toggle('open'); document.getElementById('assessPanel').classList.toggle('open'); });
 
 // ─── Session Timer ───
-const TIMER_KEY = 'maxresults-ian-timer-v1';
-const HISTORY_KEY = 'maxresults-ian-history-v1';
+const TIMER_KEY = 'maxresults-rafael-timer-v1';
+const HISTORY_KEY = 'maxresults-rafael-history-v1';
 let timerInterval = null;
 let sessionStartTime = null;
 
@@ -1084,6 +1067,16 @@ function updateTimer() {
   document.getElementById('timerDisplay').textContent = formatTimer(elapsed);
 }
 
+function recordSession() {
+  const day = WEEK[currentDayIndex];
+  if (!day || day.rest) return;
+  let total = 0, done = 0;
+  day.blocks.forEach((b, bi) => { b.exercises.forEach((_, ei) => { total++; if (completedExercises[exerciseKey(currentDayIndex, bi, ei)]) done++; }); });
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  const slotId = (day.label||'').includes('Treino A') ? 'A' : (day.label||'').includes('Treino B') ? 'B' : '?';
+  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'\u2705 **Rafael** finalizou treino!\n\ud83d\udcc5 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') \u2014 '+day.label+'\n\ud83d\udcca Exerc\u00edcios: '+pct+'% ('+done+'/'+total+')',username:'Frequ\u00eancia \u2014 Rafael',embeds:[{fields:[{name:'studentSlug',value:'rafael',inline:true},{name:'cycleId',value:'rafael-2026-07-10',inline:true},{name:'slotId',value:slotId,inline:true},{name:'slotLabel',value:day.label||'',inline:false}]}]})}).catch(function(){});}catch(e){}
+}
+
 function stopSession() {
   if (!sessionStartTime) return;
   const elapsed = Date.now() - sessionStartTime;
@@ -1104,7 +1097,8 @@ function stopSession() {
   document.getElementById('timerBar').classList.remove('active');
   document.getElementById('stopBtn').classList.add('hidden');
   document.getElementById('timerDisplay').textContent = '00:00';
-  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'✅ **Ian** finalizou treino!\n📅 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') — '+day.label+'\n⏱️ Tempo: '+formatDuration(elapsed)+'\n📊 Exercícios: '+pct+'% ('+done+'/'+total+')',username:'Frequência — Ian'})}).catch(function(){});}catch(e){}alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
+  const slotId = (day.label||'').includes('Treino A') ? 'A' : (day.label||'').includes('Treino B') ? 'B' : '?';
+  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'\u2705 **Rafael** finalizou treino!\n\ud83d\udcc5 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') \u2014 '+day.label+'\n\u23f1\ufe0f Tempo: '+formatDuration(elapsed)+'\n\ud83d\udcca Exerc\u00edcios: '+pct+'% ('+done+'/'+total+')',username:'Frequ\u00eancia \u2014 Rafael',embeds:[{fields:[{name:'studentSlug',value:'rafael',inline:true},{name:'cycleId',value:'rafael-2026-07-10',inline:true},{name:'slotId',value:slotId,inline:true},{name:'slotLabel',value:day.label||'',inline:false}]}]})}).catch(function(){});}catch(e){}alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
 }
 
 function restoreTimer() {
@@ -1124,7 +1118,7 @@ function restoreTimer() {
 restoreTimer();
 
 // ─── Avatar photo ───
-const AVATAR_KEY = 'maxresults-ian-avatar-v1';
+const AVATAR_KEY = 'maxresults-rafael-avatar-v1';
 function loadAvatar() {
   const data = localStorage.getItem(AVATAR_KEY);
   const circle = document.getElementById('avatarCircle');
