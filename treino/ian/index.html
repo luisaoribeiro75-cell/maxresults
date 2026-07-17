@@ -340,6 +340,8 @@ const WEEKLY_GOALS = [
 ];
 
 const V = {
+  giroJoelhosFix: 'https://vd.mfitpersonal.com.br/282/mp4/282.mp4',
+  handToToesFix: 'https://vd.mfitpersonal.com.br/91/mp4/91.mp4',
   giros: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/8d76rg3vbsm_opt.mp4',
   balanco: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/d508q2wlkh_opt.mp4',
   flexaoApoio: 'https://vd.mfitpersonal.com.br/239/mp4/239.mp4',
@@ -373,7 +375,7 @@ const AQUEC_ARTICULAR = {
   exercises: [
     { name: 'Giros dos Braços Frente e Trás', muscle: 'Ombros', duration: '1x12', equipment: 'Nenhum', tip: 'Braços estendidos, gire em círculos amplos. 12 para frente e 12 para trás.', video: V.giros },
     { name: 'Balanço Frontal das Pernas', muscle: 'Quadril / Pernas', duration: '1x12', equipment: 'Nenhum', tip: 'Segure em um apoio. Balance a perna para frente e para trás com controle. 12 cada lado.', video: V.balanco },
-    { name: 'Giro dos joelhos', muscle: 'Joelhos / Mobilidade', duration: '1x12', equipment: 'Nenhum', tip: 'Faça círculos controlados para aquecer a articulação do joelho.', video: V.giroJoelho },
+    { name: 'Giro dos joelhos', muscle: 'Joelhos / Mobilidade', duration: '1x12', equipment: 'Nenhum', tip: 'Faça círculos controlados para aquecer a articulação do joelho.', video: V.giroJoelhosFix },
   ]
 };
 
@@ -404,7 +406,7 @@ const MOBILIDADE_A = {
   exercises: [
     { name: 'Alongamento de coxa - I', muscle: 'Quadríceps', duration: '20s/lado', equipment: 'Nenhum', tip: 'Puxe o pé em direção ao glúteo e segure 20 segundos cada lado.', video: V.alongCoxa },
     { name: 'Alongamento de Tríceps', muscle: 'Tríceps', duration: '20s/lado', equipment: 'Nenhum', tip: 'Braço acima da cabeça, empurre suavemente o cotovelo para baixo.', video: V.alongTriceps },
-    { name: 'Hand to toes', muscle: 'Posteriores', duration: '20s', equipment: 'Nenhum', tip: 'Toque os pés mantendo o tronco alongado. Segure 20 segundos.', video: V.handToToes },
+    { name: 'Hand to toes', muscle: 'Posteriores', duration: '20s', equipment: 'Nenhum', tip: 'Toque os pés mantendo o tronco alongado. Segure 20 segundos.', video: V.handToToesFix },
     { name: 'Alongamento de Peitoral Espaldar', muscle: 'Peitoral', duration: '20s', equipment: 'Espaldar/parede', tip: 'Abra o peitoral e segure 20 segundos.', video: V.alongPeitoral },
   ]
 };
@@ -416,7 +418,7 @@ const MOBILIDADE_B = {
   exercises: [
     { name: 'Alongamento de coxa - I', muscle: 'Quadríceps', duration: '20s/lado', equipment: 'Nenhum', tip: 'Puxe o pé em direção ao glúteo e segure 20 segundos cada lado.', video: V.alongCoxa },
     { name: 'Alongamento de Tríceps', muscle: 'Tríceps', duration: '20s/lado', equipment: 'Nenhum', tip: 'Braço acima da cabeça, empurre suavemente o cotovelo para baixo.', video: V.alongTriceps },
-    { name: 'Hand to toes', muscle: 'Posteriores', duration: '20s', equipment: 'Nenhum', tip: 'Toque os pés mantendo o tronco alongado. Segure 20 segundos.', video: V.handToToes },
+    { name: 'Hand to toes', muscle: 'Posteriores', duration: '20s', equipment: 'Nenhum', tip: 'Toque os pés mantendo o tronco alongado. Segure 20 segundos.', video: V.handToToesFix },
     { name: 'Alongamento de Peitoral Espaldar', muscle: 'Peitoral', duration: '20s', equipment: 'Espaldar/parede', tip: 'Abra o peitoral e segure 20 segundos.', video: V.alongPeitoral },
   ]
 };
@@ -428,7 +430,7 @@ const ALONG_FINAL_A = {
   exercises: [
     { name: 'Alongamento de coxa - I', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongCoxa },
     { name: 'Alongamento de Tríceps', muscle: 'Tríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongTriceps },
-    { name: 'Hand to toes', muscle: 'Posteriores', duration: '10s', equipment: 'Nenhum', tip: '10 segundos.', video: V.handToToes },
+    { name: 'Hand to toes', muscle: 'Posteriores', duration: '10s', equipment: 'Nenhum', tip: '10 segundos.', video: V.handToToesFix },
     { name: 'Alongamento de Peitoral Espaldar', muscle: 'Peitoral', duration: '10s', equipment: 'Espaldar/parede', tip: '10 segundos.', video: V.alongPeitoral },
   ]
 };
@@ -440,7 +442,7 @@ const ALONG_FINAL_B = {
   exercises: [
     { name: 'Alongamento de coxa - I', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongCoxa },
     { name: 'Alongamento de Tríceps', muscle: 'Tríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongTriceps },
-    { name: 'Hand to toes', muscle: 'Posteriores', duration: '10s', equipment: 'Nenhum', tip: '10 segundos.', video: V.handToToes },
+    { name: 'Hand to toes', muscle: 'Posteriores', duration: '10s', equipment: 'Nenhum', tip: '10 segundos.', video: V.handToToesFix },
     { name: 'Alongamento de Peitoral Espaldar', muscle: 'Peitoral', duration: '10s', equipment: 'Espaldar/parede', tip: '10 segundos.', video: V.alongPeitoral },
   ]
 };

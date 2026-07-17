@@ -294,6 +294,17 @@ const WEEKLY_GOALS = [
 ];
 
 const V = {
+  elevLateralCaboFix: 'https://vd.mfitpersonal.com.br/437/mp4/437.mp4',
+  hangPowerCleanFix: 'https://player.mediadelivery.net/play/655450/7c3ec635-385c-476f-b21e-2e4cb94a9a84',
+  hangPowerSnatchFix: 'https://player.mediadelivery.net/play/655450/da5fd40b-60a5-46a0-9af2-f41a376ce47d',
+  pushPressFix: 'https://player.mediadelivery.net/play/655450/5fe63005-066f-4e78-8aac-f8ce17d50a17',
+  supinoInclHalterFix: 'https://vd.mfitpersonal.com.br/195/mp4/195.mp4',
+  puxadaAbertaFix: 'https://vd.mfitpersonal.com.br/565/mp4/565.mp4',
+  remadaTrianguloFix: 'https://vd.mfitpersonal.com.br/576/mp4/576.mp4',
+  facePullFix: 'https://vd.mfitpersonal.com.br/1110/mp4/1110.mp4',
+  elevLateralFix: 'https://vd.mfitpersonal.com.br/131/mp4/131.mp4',
+  alongPeitoralFix: 'https://vd.mfitpersonal.com.br/1168/mp4/1168.mp4',
+  handToToesFix: 'https://vd.mfitpersonal.com.br/91/mp4/91.mp4',
   // Warmup
   giros: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/8d76rg3vbsm_opt.mp4',
   balanco: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/d508q2wlkh_opt.mp4',
@@ -328,9 +339,7 @@ const V = {
   // Stretching
   alongCoxa: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/lpgl41gg1op_opt.mp4',
   alongFlexor: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/5e9lix657lb_opt.mp4',
-  alongPeitoral: 'yt:be0xXepDGhQ',
   alongGluteos: 'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',
-  handToToes: 'yt:eFGc-g-HudQ',
 };
 
 // ─── Shared warmup/stretching blocks ───
@@ -385,7 +394,7 @@ const ALONG_PUSH = {
   title: 'Peitoral + Flexor do Quadril', duration: '10s cada',
   meta: '10 segundos cada alongamento',
   exercises: [
-    { name: 'Alongamento Peitoral', muscle: 'Peitoral', duration: '10s', equipment: 'Nenhum', tip: '10 segundos. Alongue e relaxe.', video: V.alongPeitoral },
+    { name: 'Alongamento Peitoral', muscle: 'Peitoral', duration: '10s', equipment: 'Nenhum', tip: '10 segundos. Alongue e relaxe.', video: V.alongPeitoralFix },
     { name: 'Alongamento de Coxa', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongCoxa },
     { name: 'Alongamento Flexor do Quadril', muscle: 'Flexor do quadril', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongFlexor },
   ]
@@ -396,7 +405,7 @@ const ALONG_PULL = {
   title: 'Posterior + Glúteos', duration: '10s cada',
   meta: '10 segundos cada alongamento',
   exercises: [
-    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '10s', equipment: 'Nenhum', tip: '10 segundos na posição inferior.', video: V.handToToes },
+    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '10s', equipment: 'Nenhum', tip: '10 segundos na posição inferior.', video: V.handToToesFix },
     { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongGluteos },
   ]
 };
@@ -406,9 +415,9 @@ const ALONG_FULL = {
   title: 'Alongamento Full Body', duration: '10s cada',
   meta: '10 segundos cada alongamento',
   exercises: [
-    { name: 'Alongamento Peitoral', muscle: 'Peitoral', duration: '10s', equipment: 'Nenhum', tip: '10 segundos.', video: V.alongPeitoral },
+    { name: 'Alongamento Peitoral', muscle: 'Peitoral', duration: '10s', equipment: 'Nenhum', tip: '10 segundos.', video: V.alongPeitoralFix },
     { name: 'Alongamento de Coxa', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '10s', equipment: 'Nenhum', tip: '10 segundos na posição.', video: V.handToToes },
+    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '10s', equipment: 'Nenhum', tip: '10 segundos na posição.', video: V.handToToesFix },
     { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongGluteos },
   ]
 };
@@ -424,7 +433,7 @@ const PUSH_DAY = [
     title: 'Hang Power Clean', duration: '4x5-6 · 120s',
     meta: '🏋️ LPO — SNC fresco, primeiro exercício do dia',
     exercises: [
-      { name: 'Hang Power Clean', muscle: 'Full Body / Explosão', duration: '4x5-6', equipment: 'Barra olímpica + anilhas', tip: 'Barra na cintura (hang), puxe explosivamente até os ombros fazendo o "rack". Extensão rápida de quadril + encolhimento de ombros. Aterrisse com os pés na largura dos ombros.', rest: '120s' },
+      { name: 'Hang Power Clean', muscle: 'Full Body / Explosão', duration: '4x5-6', equipment: 'Barra olímpica + anilhas', tip: 'Barra na cintura (hang), puxe explosivamente até os ombros fazendo o "rack". Extensão rápida de quadril + encolhimento de ombros. Aterrisse com os pés na largura dos ombros.', rest: '120s', video: V.hangPowerCleanFix },
     ]
   },
   {
@@ -440,7 +449,7 @@ const PUSH_DAY = [
     title: 'Supino Inclinado com Halteres', duration: '3x10-12 · 75s',
     meta: 'Hipertrofia — foco na contração do peitoral superior',
     exercises: [
-      { name: 'Supino Inclinado com Halteres', muscle: 'Peitoral Superior', duration: '3x10-12', equipment: 'Halteres + banco inclinado', tip: 'Banco a 30-45°. Desça os halteres controlando até sentir o alongamento do peitoral. Suba contraindo.', video: V.supinoIncHalter, rest: '75s' },
+      { name: 'Supino Inclinado com Halteres', muscle: 'Peitoral Superior', duration: '3x10-12', equipment: 'Halteres + banco inclinado', tip: 'Banco a 30-45°. Desça os halteres controlando até sentir o alongamento do peitoral. Suba contraindo.', video: V.supinoInclHalterFix, rest: '75s' },
     ]
   },
   {
@@ -489,7 +498,7 @@ const PULL_DAY = [
     title: 'Hang Power Snatch', duration: '4x5-6 · 120s',
     meta: '🏋️ LPO — SNC fresco, primeiro exercício do dia',
     exercises: [
-      { name: 'Hang Power Snatch', muscle: 'Full Body / Explosão', duration: '4x5-6', equipment: 'Barra olímpica + anilhas', tip: 'Barra na cintura com pegada larga (snatch grip). Puxe explosivamente num único movimento até acima da cabeça. Extensão de quadril + encolhimento + puxada alta. Braços travam em cima.', rest: '120s' },
+      { name: 'Hang Power Snatch', muscle: 'Full Body / Explosão', duration: '4x5-6', equipment: 'Barra olímpica + anilhas', tip: 'Barra na cintura com pegada larga (snatch grip). Puxe explosivamente num único movimento até acima da cabeça. Extensão de quadril + encolhimento + puxada alta. Braços travam em cima.', rest: '120s', video: V.hangPowerSnatchFix },
     ]
   },
   {
@@ -505,7 +514,7 @@ const PULL_DAY = [
     title: 'Puxada Frontal Aberta', duration: '3x10-12 · 75s',
     meta: 'Hipertrofia — largura do dorsal',
     exercises: [
-      { name: 'Puxada Frontal Aberta', muscle: 'Dorsal / Bíceps', duration: '3x10-12', equipment: 'Puxador', tip: 'Pegada aberta pronada. Puxe a barra até a linha do peito superior, contraindo as escápulas. Controle o retorno.', video: V.puxadaFrontal, rest: '75s' },
+      { name: 'Puxada Frontal Aberta', muscle: 'Dorsal / Bíceps', duration: '3x10-12', equipment: 'Puxador', tip: 'Pegada aberta pronada. Puxe a barra até a linha do peito superior, contraindo as escápulas. Controle o retorno.', video: V.puxadaAbertaFix, rest: '75s' },
     ]
   },
   {
@@ -513,7 +522,7 @@ const PULL_DAY = [
     title: 'Remada Baixa (triângulo)', duration: '3x10-12 · 75s',
     meta: 'Hipertrofia — espessura do meio das costas',
     exercises: [
-      { name: 'Remada Baixa (triângulo)', muscle: 'Costas (meio)', duration: '3x10-12', equipment: 'Polia + triângulo', tip: 'Puxe em direção ao abdômen contraindo as escápulas. Peito aberto. Sem balançar o tronco.', video: V.remadaBaixa, rest: '75s' },
+      { name: 'Remada Baixa (triângulo)', muscle: 'Costas (meio)', duration: '3x10-12', equipment: 'Polia + triângulo', tip: 'Puxe em direção ao abdômen contraindo as escápulas. Peito aberto. Sem balançar o tronco.', video: V.remadaTrianguloFix, rest: '75s' },
     ]
   },
   {
@@ -529,7 +538,7 @@ const PULL_DAY = [
     title: 'Face Pull com Corda', duration: '3x15-20 · 45s',
     meta: 'Saúde do ombro — rotadores externos + post. deltóide',
     exercises: [
-      { name: 'Face Pull com Corda', muscle: 'Deltóide Post. / Rotadores', duration: '3x15-20', equipment: 'Polia alta + corda', tip: 'Puxe a corda em direção ao rosto, abrindo as mãos para fora. Contraia escápulas e rotadores externos. Cotovelos altos.', rest: '45s' },
+      { name: 'Face Pull com Corda', muscle: 'Deltóide Post. / Rotadores', duration: '3x15-20', equipment: 'Polia alta + corda', tip: 'Puxe a corda em direção ao rosto, abrindo as mãos para fora. Contraia escápulas e rotadores externos. Cotovelos altos.', rest: '45s', video: V.facePullFix },
     ]
   },
   {
@@ -635,7 +644,7 @@ const SHOULDERS_DAY = [
     title: 'Elevação Lateral com Halteres', duration: '4x12-15 · 45s',
     meta: 'Isolamento — deltóide lateral (ênfase ombros!)',
     exercises: [
-      { name: 'Elevação Lateral com Halteres', muscle: 'Deltóide Lateral', duration: '4x12-15', equipment: 'Halteres', tip: 'Eleve os halteres até a linha dos ombros, cotovelos levemente flexionados. Controle a descida. Não balance o corpo.', video: V.elevLateral, rest: '45s' },
+      { name: 'Elevação Lateral com Halteres', muscle: 'Deltóide Lateral', duration: '4x12-15', equipment: 'Halteres', tip: 'Eleve os halteres até a linha dos ombros, cotovelos levemente flexionados. Controle a descida. Não balance o corpo.', video: V.elevLateralFix, rest: '45s' },
     ]
   },
   {
@@ -643,7 +652,7 @@ const SHOULDERS_DAY = [
     title: 'Elevação Lateral no Cabo (unilateral)', duration: '3x12-15 · 45s',
     meta: 'Isolamento — tensão constante no deltóide lateral',
     exercises: [
-      { name: 'Elevação Lateral no Cabo (unilateral)', muscle: 'Deltóide Lateral', duration: '3x12-15', equipment: 'Polia baixa', tip: 'Unilateral na polia baixa. Maior tensão constante que halteres. Eleve até a linha do ombro. Controle o retorno.', rest: '45s' },
+      { name: 'Elevação Lateral no Cabo (unilateral)', muscle: 'Deltóide Lateral', duration: '3x12-15', equipment: 'Polia baixa', tip: 'Unilateral na polia baixa. Maior tensão constante que halteres. Eleve até a linha do ombro. Controle o retorno.', rest: '45s', video: V.elevLateralCaboFix },
     ]
   },
   {
