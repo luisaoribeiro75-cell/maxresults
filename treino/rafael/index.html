@@ -341,46 +341,49 @@ const WEEKLY_GOALS = [
   { icon: '🩺', type: 'assessment', text: '<strong>Avaliação física vencida (20/03/2026):</strong> vamos reagendar pra medir seu progresso. <a href="https://wa.me/5541999775758?text=Oi%20Luis%C3%A3o!%20Quero%20reagendar%20minha%20avalia%C3%A7%C3%A3o%20f%C3%ADsica%20🏋️" target="_blank" style="color:var(--accent-lift);">Agendar com Luisão</a>' },
 ];
 
+// NOTA: valores em linha limpa (chave: 'url',) — SEM comentário inline, senão o gate
+// mr-verify-videos não lê a chave. O nome real de cada ID está conferido no catálogo MFit.
 const V = {
-  // ─── vazio/pendência de gravação (aquecimento, mobilidade, soltura) → renderiza texto simples, sem link ───
+  // vazio/pendência (aquecimento, mobilidade, soltura) → renderiza texto simples, sem link
   ext: '',
-  // ─── Musculação (acervo MFit — conferidos no catálogo oficial) ───
-  supinoBarra:      'https://vd.mfitpersonal.com.br/203/mp4/203.mp4', // Supino Reto com Barra Reta
-  supinoInclHalter: 'https://vd.mfitpersonal.com.br/195/mp4/195.mp4', // Supino Inclinado com Halteres
-  crucifixoMaq:     'https://vd.mfitpersonal.com.br/530/mp4/530.mp4', // Crucifixo Máquina (Peck Deck)
-  desenvMaquina:    'https://vd.mfitpersonal.com.br/507/mp4/507.mp4', // Desenvolvimento Máquina (Pegada Neutra)
-  elevLateral:      'https://vd.mfitpersonal.com.br/131/mp4/131.mp4', // Elevação Lateral com Halteres
-  agachSmith:       'https://vd.mfitpersonal.com.br/73/mp4/73.mp4',   // Agachamento Smith
-  cadeiraExt:       'https://vd.mfitpersonal.com.br/504/mp4/504.mp4', // Cadeira Extensora
-  tricepsCorda:     'https://vd.mfitpersonal.com.br/418/mp4/418.mp4', // Tríceps na Polia com Corda
-  tricepsFrances:   'https://vd.mfitpersonal.com.br/135/mp4/135.mp4', // Tríceps Francês Sentado com Halteres
-  puxadaFrontal:    'https://vd.mfitpersonal.com.br/565/mp4/565.mp4', // Puxada Aberta Barra reta
-  remadaBaixa:      'https://vd.mfitpersonal.com.br/401/mp4/401.mp4', // Remada Baixa na Polia Baixa (Pegada Neutra)
-  remadaCurvada:    'https://vd.mfitpersonal.com.br/221/mp4/221.mp4', // Remada Curvada com Halteres (Pegada Neutra)
-  cadeiraFlexora:   'https://vd.mfitpersonal.com.br/502/mp4/502.mp4', // Cadeira Flexora
-  stiffHalteres:    'https://vd.mfitpersonal.com.br/267/mp4/267.mp4', // Stiff com Halteres
-  elevPelvicaBarra: 'https://vd.mfitpersonal.com.br/367/mp4/367.mp4', // Elevação de Quadril com Barra
-  roscaDiretaW:     'https://vd.mfitpersonal.com.br/117/mp4/117.mp4', // Rosca Direta Barra W
-  roscaMartelo:     'https://vd.mfitpersonal.com.br/106/mp4/106.mp4', // Rosca Martelo com Halteres
-  pranchaAbdominal: 'https://vd.mfitpersonal.com.br/14/mp4/14.mp4',   // Abdominal Prancha Isométrica
-  // ─── Musculação adicionais (reestrutura 15/07/2026) ───
-  cadeiraAdutora:   'https://vd.mfitpersonal.com.br/514/mp4/514.mp4', // Cadeira Adutora (ênfase pélvica)
-  panturrilhaPeMaq: 'https://vd.mfitpersonal.com.br/500/mp4/500.mp4', // Extensão de Panturrilha em Pé (Máquina)
-  // ─── Aquecimento / Mobilidade / Soltura (acervo MFit) ───
-  flexaoParede:     'https://vd.mfitpersonal.com.br/760/mp4/760.mp4', // Flexão de Braços na Parede
-  catCow:           'https://vd.mfitpersonal.com.br/282/mp4/282.mp4', // Cat-Cow (Gato-Vaca)
-  alongPeitoral:    'https://vd.mfitpersonal.com.br/585/mp4/585.mp4', // Alongamento de Peitoral Espaldar
-  alongOmbros:      'https://vd.mfitpersonal.com.br/89/mp4/89.mp4',   // Alongamento de Ombros
-  alongDorsal:      'https://vd.mfitpersonal.com.br/596/mp4/596.mp4', // Alongamento Dorsal I (child's pose)
-  alongGluteos:     'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',   // Alongamento de Glúteos II
-  alongPanturrilha: 'https://vd.mfitpersonal.com.br/764/mp4/764.mp4', // Alongamento de Panturrilha
-  mobQuadril:       'https://vd.mfitpersonal.com.br/291/mp4/291.mp4', // Mobilidade de Quadril I
-  mobDorsal:        'https://vd.mfitpersonal.com.br/305/mp4/305.mp4', // Mobilidade Dorsal I (torácica)
-  elevPelvicaSolo:  'https://vd.mfitpersonal.com.br/624/mp4/624.mp4', // Elevação de Quadril (ponte de glúteo — ativação)
-  birdDog:          'https://vd.mfitpersonal.com.br/310/mp4/310.mp4', // Bird Dog
-  deadBug:          'https://vd.mfitpersonal.com.br/734/mp4/734.mp4', // Dead Bug
-  // ─── Cardio (acervo MFit) ───
-  esteiraInclinada: 'https://vd.mfitpersonal.com.br/522/mp4/522.mp4', // Esteira com Inclinação
+  // Musculação (acervo MFit — IDs conferidos por NOME no catálogo oficial)
+  supinoBarra:      'https://vd.mfitpersonal.com.br/203/mp4/203.mp4',
+  supinoInclHalter: 'https://vd.mfitpersonal.com.br/195/mp4/195.mp4',
+  crucifixoMaq:     'https://vd.mfitpersonal.com.br/530/mp4/530.mp4',
+  desenvMaquina:    'https://vd.mfitpersonal.com.br/507/mp4/507.mp4',
+  elevLateral:      'https://vd.mfitpersonal.com.br/131/mp4/131.mp4',
+  agachSmith:       'https://vd.mfitpersonal.com.br/73/mp4/73.mp4',
+  cadeiraExt:       'https://vd.mfitpersonal.com.br/504/mp4/504.mp4',
+  tricepsCorda:     'https://vd.mfitpersonal.com.br/418/mp4/418.mp4',
+  tricepsFrances:   'https://vd.mfitpersonal.com.br/135/mp4/135.mp4',
+  puxadaFrontal:    'https://vd.mfitpersonal.com.br/565/mp4/565.mp4',
+  remadaBaixa:      'https://vd.mfitpersonal.com.br/401/mp4/401.mp4',
+  remadaCurvada:    'https://vd.mfitpersonal.com.br/221/mp4/221.mp4',
+  stiffHalteres:    'https://vd.mfitpersonal.com.br/267/mp4/267.mp4',
+  elevPelvicaBarra: 'https://vd.mfitpersonal.com.br/367/mp4/367.mp4',
+  roscaDiretaW:     'https://vd.mfitpersonal.com.br/117/mp4/117.mp4',
+  roscaMartelo:     'https://vd.mfitpersonal.com.br/106/mp4/106.mp4',
+  pranchaAbdominal: 'https://vd.mfitpersonal.com.br/14/mp4/14.mp4',
+  // Isolados LIVRES (fix Regra 2 — 16/07/2026): substituem adutora/flexora/panturrilha-máquina
+  aducaoCaneleira:  'https://vd.mfitpersonal.com.br/26/mp4/26.mp4',
+  flexaoNordica:    'https://vd.mfitpersonal.com.br/481/mp4/481.mp4',
+  panturrilhaStep:  'https://vd.mfitpersonal.com.br/263/mp4/263.mp4',
+  // Aquecimento / Mobilidade / Soltura (acervo MFit)
+  flexaoParede:     'https://vd.mfitpersonal.com.br/760/mp4/760.mp4',
+  catCow:           'https://vd.mfitpersonal.com.br/282/mp4/282.mp4',
+  alongPeitoral:    'https://vd.mfitpersonal.com.br/585/mp4/585.mp4',
+  alongOmbros:      'https://vd.mfitpersonal.com.br/89/mp4/89.mp4',
+  alongDorsal:      'https://vd.mfitpersonal.com.br/596/mp4/596.mp4',
+  alongGluteos:     'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',
+  alongPanturrilha: 'https://vd.mfitpersonal.com.br/764/mp4/764.mp4',
+  alongIsquios:     'https://vd.mfitpersonal.com.br/606/mp4/606.mp4',
+  mobQuadril:       'https://vd.mfitpersonal.com.br/291/mp4/291.mp4',
+  mobDorsal:        'https://vd.mfitpersonal.com.br/305/mp4/305.mp4',
+  elevPelvicaSolo:  'https://vd.mfitpersonal.com.br/624/mp4/624.mp4',
+  birdDog:          'https://vd.mfitpersonal.com.br/310/mp4/310.mp4',
+  deadBug:          'https://vd.mfitpersonal.com.br/734/mp4/734.mp4',
+  // Cardio (acervo MFit)
+  esteiraInclinada: 'https://vd.mfitpersonal.com.br/522/mp4/522.mp4',
 };
 
 // ══════════════════ TREINO A — Anterior (Peito · Ombro · Tríceps · Quadríceps) ══════════════════
@@ -441,11 +444,11 @@ const SOLO_A_2 = {
 
 const BISET_A_2 = {
   type: 'lift', label: 'Bi-Set 2',
-  title: 'Desenvolvimento Máquina ↔ Cadeira Adutora', duration: '3x10–15 · Sem descanso no par',
-  meta: 'Ombro grande + adutor (ênfase pélvica). Descanso 60–90s ao fim do par.',
+  title: 'Desenvolvimento Máquina ↔ Adução com Caneleira', duration: '3x10–15 · Sem descanso no par',
+  meta: 'Ombro grande + adutor livre (ênfase pélvica). Âncora na máquina de desenvolvimento — adução na caneleira feita ao lado, sem largar a estação. Descanso 60–90s ao fim do par.',
   exercises: [
     { name: 'Desenvolvimento Máquina', muscle: 'Ombros', duration: '3x10–12', equipment: 'Máquina de desenvolvimento', tip: 'Máquina escolhida pela estabilidade (facilita a execução). Empurre para cima sem encolher os ombros.', video: V.desenvMaquina },
-    { name: 'Cadeira Adutora', muscle: 'Adutores', duration: '3x12–15', equipment: 'Máquina adutora', tip: 'Ênfase pélvica. Feche as pernas com controle e segure 1s na contração.', video: V.cadeiraAdutora },
+    { name: 'Adução de Quadril com Caneleira', muscle: 'Adutores', duration: '3x12–15/lado', equipment: 'Caneleira', tip: 'Ênfase pélvica. Deitado de lado, perna de baixo estendida, suba-a contra a caneleira fechando o adutor. Feito ao lado da máquina — não ocupa outra estação. 12–15 cada perna.', video: V.aducaoCaneleira },
   ]
 };
 
@@ -508,7 +511,7 @@ const MOBIL_B = {
   meta: 'Retração escapular + quadril + posterior',
   exercises: [
     { name: 'Alongamento Gato-Vaca', muscle: 'Coluna', duration: '10 reps', equipment: 'Colchonete', tip: 'Mobiliza toda a coluna no ritmo da respiração. 10 ciclos.', video: V.catCow },
-    { name: 'Alongamento de Isquiotibiais Sentado (uma perna)', muscle: 'Posterior de coxa', duration: '30s/lado', equipment: 'Nenhum', tip: 'Sentado, uma perna estendida, incline o tronco à frente com a coluna reta. 30s cada.', video: V.alongPanturrilha },
+    { name: 'Alongamento de Isquiotibiais Sentado (uma perna)', muscle: 'Posterior de coxa', duration: '30s/lado', equipment: 'Nenhum', tip: 'Sentado, uma perna estendida, incline o tronco à frente com a coluna reta. 30s cada.', video: V.alongIsquios },
     { name: 'Alongamento de Piriforme (deitado, tornozelo no joelho)', muscle: 'Glúteo / Quadril', duration: '30s/lado', equipment: 'Colchonete', tip: 'Deitado, cruze o tornozelo sobre o joelho oposto e puxe a coxa em direção ao peito. 30s cada.', video: V.alongGluteos },
     { name: 'Power Band — Pull-Apart Horizontal (retração escapular)', muscle: 'Costas / Escápula', duration: '2x15', equipment: 'Power Band', tip: 'Braços à frente na altura do ombro, abra a faixa fechando as escápulas. Foco postural. 2x15.', video: V.ext },
     { name: 'Power Band — Face Pull Deitado', muscle: 'Deltoide post. / Escápula', duration: '2x12', equipment: 'Power Band', tip: 'Puxe a faixa em direção ao rosto, cotovelos altos, abrindo as escápulas. 2x12.', video: V.ext },
@@ -527,11 +530,11 @@ const SOLO_B_1 = {
 
 const BISET_B_1 = {
   type: 'lift', label: 'Bi-Set 1',
-  title: 'Puxada Frontal ↔ Cadeira Flexora', duration: '3x10–15 · Sem descanso no par',
-  meta: 'Costas grande + posterior isolado. Descanso 60–90s ao fim do par.',
+  title: 'Puxada Frontal ↔ Flexão Nórdica Adaptada', duration: '3x10–15 · Sem descanso no par',
+  meta: 'Costas grande + posterior isolado (livre). Âncora no puxador — nórdica feita ao lado no colchonete, sem ocupar outra máquina. Descanso 60–90s ao fim do par.',
   exercises: [
     { name: 'Puxada Frontal (pegada aberta)', muscle: 'Costas (dorsal)', duration: '3x10–12', equipment: 'Polia alta / puxador', tip: 'Pegada aberta. Puxe a barra até o peito levando as escápulas "pro bolso". Sem jogar o tronco.', video: V.puxadaFrontal },
-    { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12–15', equipment: 'Máquina flexora', tip: 'Isquios. Flexione o joelho contra o peso e controle a volta — não deixe cair.', video: V.cadeiraFlexora },
+    { name: 'Flexão Nórdica Adaptada', muscle: 'Posterior de coxa', duration: '3x8–12', equipment: 'Colchonete (peso do corpo)', tip: 'Isquios sem máquina. Joelhos apoiados, alguém/um apoio segura os tornozelos (ou use amplitude curta). Desça o tronco à frente controlando com o posterior e volte. Comece na versão adaptada/curta.', video: V.flexaoNordica },
   ]
 };
 
@@ -546,11 +549,11 @@ const SOLO_B_2 = {
 
 const BISET_B_2 = {
   type: 'lift', label: 'Bi-Set 2',
-  title: 'Remada Baixa ↔ Panturrilha em Pé', duration: '3x10–15 · Sem descanso no par',
-  meta: 'Costas grande + panturrilha isolada. Descanso 60–90s ao fim do par.',
+  title: 'Remada Baixa ↔ Panturrilha no Step', duration: '3x10–15 · Sem descanso no par',
+  meta: 'Costas grande + panturrilha isolada (peso do corpo). Âncora na polia baixa — panturrilha no step feita ao lado, sem ocupar outra máquina. Descanso 60–90s ao fim do par.',
   exercises: [
     { name: 'Remada Baixa (máquina/cabo)', muscle: 'Costas (meio)', duration: '3x10–12', equipment: 'Polia baixa', tip: 'Postural — retraia as escápulas e puxe em direção ao abdômen. Tronco firme.', video: V.remadaBaixa },
-    { name: 'Panturrilha em Pé (Máquina)', muscle: 'Panturrilha', duration: '3x15', equipment: 'Máquina de panturrilha em pé', tip: 'Suba na ponta dos pés estendendo o tornozelo, segure 1s no topo. Amplitude completa.', video: V.panturrilhaPeMaq },
+    { name: 'Panturrilha no Step (peso do corpo)', muscle: 'Panturrilha', duration: '3x15–20', equipment: 'Step (peso do corpo)', tip: 'Ponta dos pés no step, calcanhares livres. Suba estendendo o tornozelo e desça alongando a panturrilha. Amplitude completa. Feito ao lado da polia — sem ocupar máquina. 15–20 reps.', video: V.panturrilhaStep },
   ]
 };
 
