@@ -394,6 +394,10 @@ const V = {
   deadBug:          'https://vd.mfitpersonal.com.br/734/mp4/734.mp4',
   // Cardio (acervo MFit)
   esteiraInclinada: 'https://vd.mfitpersonal.com.br/522/mp4/522.mp4',
+  // Aquecimento de ombro (acervo MFit — substituem os "sem vídeo" 18/07)
+  polichinelo: 'https://vd.mfitpersonal.com.br/360/mp4/360.mp4',
+  mobOmbro1: 'https://vd.mfitpersonal.com.br/285/mp4/285.mp4',
+  mobOmbroBastao: 'https://vd.mfitpersonal.com.br/914/mp4/914.mp4',
 };
 
 // ══════════════════ TREINO A — Anterior (Peito · Ombro · Tríceps · Quadríceps) ══════════════════
@@ -402,8 +406,8 @@ const AQUEC_A = {
   title: 'Articular + Muscular', duration: '5–8 min',
   meta: 'Prepara ombro, peito e quadríceps do dia',
   exercises: [
-    { name: 'Balanços de Braço (frontais + laterais)', muscle: 'Ombro', duration: '20 reps cada', equipment: 'Nenhum', tip: 'Braços soltos, balance para frente/trás e para os lados. 20 de cada — solta a articulação do ombro.', video: V.ext },
-    { name: 'Rotação de Ombro (círculos grandes)', muscle: 'Ombro', duration: '10 reps/direção', equipment: 'Nenhum', tip: 'Círculos amplos com os braços, 10 para frente e 10 para trás.', video: V.ext },
+    { name: 'Polichinelo', muscle: 'Ombro / Corpo todo', duration: '20 reps', equipment: 'Nenhum', tip: 'Braços sobem e descem em amplitude total a cada salto — solta a articulação do ombro e já eleva a temperatura. 20 repetições em ritmo confortável.', video: V.polichinelo },
+    { name: 'Mobilidade de Ombro I', muscle: 'Ombro', duration: '10 reps/direção', equipment: 'Bastão (cabo de vassoura)', tip: 'Segure o bastão com pegada bem aberta e leve por cima da cabeça, de frente pra trás e de volta, com controle. 10 pra cada direção.', video: V.mobOmbro1 },
     { name: 'Balanço de Perna (lateral + anterior/posterior)', muscle: 'Quadril', duration: '15 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna com controle nos dois sentidos. 15 cada perna.', video: V.balancoPerna },
     { name: 'Agachamento Livre (peso do corpo)', muscle: 'Quadríceps', duration: '2x15', equipment: 'Nenhum', tip: 'Sem carga. Desça só até onde for confortável, coluna reta. Prepara o quadríceps.', video: V.agachLivrePC },
     { name: 'Flexão de Braço na Parede/Inclinada', muscle: 'Peito / Ombro / Tríceps', duration: '2x10–15', equipment: 'Parede', tip: 'Mãos na parede na altura do peito, corpo reto. Aproxime o peito e empurre. Aquece peito, ombro e tríceps.', video: V.flexaoParede },
@@ -507,7 +511,7 @@ const AQUEC_B = {
   title: 'Articular + Muscular', duration: '5–8 min',
   meta: 'Prepara costas, posterior e glúteo do dia',
   exercises: [
-    { name: 'Balanços de Braço + Círculos de Ombro', muscle: 'Ombro', duration: '20 reps', equipment: 'Nenhum', tip: 'Solta o ombro com balanços e círculos amplos antes de puxar.', video: V.ext },
+    { name: 'Mobilidade de Ombro com Cabo de Vassoura', muscle: 'Ombro', duration: '10 reps/direção', equipment: 'Bastão (cabo de vassoura)', tip: 'Bastão com pegada aberta, gire por cima da cabeça com controle nos dois sentidos — solta o ombro antes de puxar.', video: V.mobOmbroBastao },
     { name: 'Balanço de Perna (lateral + anterior)', muscle: 'Quadril', duration: '15 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna com controle. 15 cada perna.', video: V.balancoPerna },
     { name: 'Cat-Cow (cachorro cima ↔ cachorro baixo)', muscle: 'Coluna', duration: '6 reps', equipment: 'Colchonete', tip: 'Alterne arquear e arredondar a coluna no ritmo da respiração. 6 ciclos.', video: V.catCow },
     { name: 'Remada Curvada com Halteres (leve)', muscle: 'Costas', duration: '2x15', equipment: 'Halteres leves', tip: 'Tronco inclinado, dorso neutro, halteres leves. Puxa até a linha do quadril — ativa costas sem elástico.', video: V.remadaHalterLeve },
