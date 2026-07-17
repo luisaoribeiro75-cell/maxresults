@@ -394,6 +394,13 @@ const V = {
   deadBug:          'https://vd.mfitpersonal.com.br/734/mp4/734.mp4',
   // Cardio (acervo MFit)
   esteiraInclinada: 'https://vd.mfitpersonal.com.br/522/mp4/522.mp4',
+  // Substitutos 18/07 (lista negra masculina + supino-barra-e-solo)
+  mobQuadrilDin: 'https://vd.mfitpersonal.com.br/v2/1062/mp4/1062_opt.mp4',
+  bomDia: 'https://vd.mfitpersonal.com.br/269/mp4/269.mp4',
+  bulgaroCarga: 'https://vd.mfitpersonal.com.br/789/mp4/789.mp4',
+  abdomSupra: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
+  alongColuna1: 'https://vd.mfitpersonal.com.br/96/mp4/96.mp4',
+  alongColuna2: 'https://vd.mfitpersonal.com.br/97/mp4/97.mp4',
   // Aquecimento de ombro (acervo MFit — substituem os "sem vídeo" 18/07)
   polichinelo: 'https://vd.mfitpersonal.com.br/360/mp4/360.mp4',
   mobOmbro1: 'https://vd.mfitpersonal.com.br/285/mp4/285.mp4',
@@ -421,8 +428,8 @@ const MOBIL_A = {
   exercises: [
     { name: 'Alongamento de Peitoral no Canto (T na parede)', muscle: 'Peitoral', duration: '30s/lado', equipment: 'Parede/quina', tip: 'Antebraço apoiado na parede formando um "T", gire o tronco para o lado oposto abrindo o peito. 30s cada lado.', video: V.alongPeitoral },
     { name: 'Mobilidade Torácica em 4 Apoios (thread-the-needle)', muscle: 'Coluna torácica', duration: '8 reps/lado', equipment: 'Colchonete', tip: 'Em 4 apoios, passe um braço por baixo do corpo girando a coluna e volte abrindo o braço pro teto. 8 cada lado.', video: V.mobDorsal },
-    { name: 'Cat-Cow (cachorro cima ↔ cachorro baixo)', muscle: 'Coluna', duration: '8 reps', equipment: 'Colchonete', tip: 'Em 4 apoios, alterne arquear (olhar pra cima) e arredondar (olhar pro umbigo) a coluna, no ritmo da respiração. 8 ciclos.', video: V.catCow },
-    { name: 'Mobilidade de Quadril (world’s greatest stretch)', muscle: 'Quadril', duration: '5 reps/lado', equipment: 'Nenhum', tip: 'Avance em afundo, apoie a mão do mesmo lado no chão e gire o tronco abrindo o outro braço pro teto. 5 cada lado.', video: V.mobQuadril },
+    { name: 'Alongamento de Coluna I', muscle: 'Coluna', duration: '30s/lado', equipment: 'Colchonete', tip: 'Deitado, deixe os joelhos caírem pro lado girando a coluna com os ombros no chão. 30s cada lado, respirando fundo.', video: V.alongColuna1 },
+    { name: 'Mobilidade de Quadril Dinâmico', muscle: 'Quadril', duration: '30s/lado', equipment: 'Colchonete', tip: 'Em afundo, joelho de trás apoiado, empurre o quadril à frente até sentir a frente da coxa alongar. 30s cada lado.', video: V.mobQuadrilDin },
     { name: 'Rotação Externa na Polia (leve)', muscle: 'Manguito rotador', duration: '12 reps/lado', equipment: 'Polia (cross)', tip: 'Cotovelo colado no corpo, gira o antebraço pra fora contra a polia leve. Prepara o manguito.', video: V.rotExternaCross },
   ]
 };
@@ -439,16 +446,25 @@ const SOLO_A_1 = {
 
 const BISET_A_1 = {
   type: 'lift', label: 'Bi-Set 1',
-  title: 'Supino Reto ↔ Cadeira Extensora', duration: '3x10–15 · Sem descanso no par',
-  meta: 'Peito grande + quadríceps isolado. Descanso 60–90s ao fim do par.',
+  title: 'Cadeira Extensora ↔ Abdominal Supra', duration: '3x12–15 · Sem descanso no par',
+  meta: 'Quadríceps isolado + core — colchonete ao lado da extensora, uma estação só. Descanso 60–90s ao fim do par.',
   exercises: [
-    { name: 'Supino Reto com Barra', muscle: 'Peitoral / Tríceps', duration: '3x10–12', equipment: 'Barra + banco', tip: 'Foco na execução. Cotovelo a ~45° do corpo, desça controlando até o peito.', video: V.supinoBarra },
     { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12–15', equipment: 'Máquina extensora', tip: 'Suba estendendo o joelho e segure 1s no topo. Amplitude confortável, sem dor.', video: V.cadeiraExt },
+    { name: 'Abdominal Supra', muscle: 'Core / Abdômen', duration: '3x15', equipment: 'Colchonete (ao lado da extensora)', tip: 'Suba contraindo o abdômen, sem puxar o pescoço. No colchonete ao lado — não ocupa outra máquina.', video: V.abdomSupra },
+  ]
+};
+
+const SOLO_A_SUPINO = {
+  type: 'lift', label: 'Solo 2',
+  title: 'Supino Reto com Barra', duration: '3x10–12',
+  meta: 'Básico pesado de peito — SOLO: banco com apoio é estação fixa (Regra 2), não entra em bi-set. Descanso 90s.',
+  exercises: [
+    { name: 'Supino Reto com Barra', muscle: 'Peitoral / Tríceps', duration: '3x10–12', equipment: 'Banco de supino + barra', tip: 'Escápulas travadas, pés no chão. Cotovelo a ~45° do corpo, desça controlando até o peito e empurre forte.', video: V.supinoBarra },
   ]
 };
 
 const SOLO_A_2 = {
-  type: 'lift', label: 'Solo 2',
+  type: 'lift', label: 'Solo 3',
   title: 'Supino Inclinado com Halteres', duration: '3x10–12',
   meta: 'Composto de peitoral superior. Descanso 60–90s.',
   exercises: [
@@ -467,11 +483,12 @@ const BISET_A_2 = {
 };
 
 const ISO_A_1 = {
-  type: 'lift', label: 'Isolado 1',
-  title: 'Tríceps na Polia com Corda', duration: '3x12–15',
-  meta: 'Finalização — ênfase braço. Descanso 45–60s.',
+  type: 'lift', label: 'Bi-Set 3',
+  title: 'Tríceps na Polia com Corda ↔ Elevação Lateral', duration: '3x10–15 · Sem descanso no par',
+  meta: 'Dois isolados independentes (refino Regra 1, 18/07) — halteres ao lado da polia, uma estação só. Descanso 60–90s ao fim do par.',
   exercises: [
     { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x12–15', equipment: 'Polia alta + corda', tip: 'Ênfase braço. Cotovelos fixos ao lado do corpo, estenda até o fim abrindo a corda.', video: V.tricepsCorda },
+    { name: 'Elevação Lateral com Halteres', muscle: 'Ombro (deltoide medial)', duration: '3x12–15', equipment: 'Halteres (ao lado da polia)', tip: 'Cotovelos levemente flexionados, sobe até a linha dos ombros sem balançar o tronco. Halteres ao lado da polia — sem ocupar outra estação.', video: V.elevLateral },
   ]
 };
 
@@ -513,9 +530,9 @@ const AQUEC_B = {
   exercises: [
     { name: 'Mobilidade de Ombro com Cabo de Vassoura', muscle: 'Ombro', duration: '10 reps/direção', equipment: 'Bastão (cabo de vassoura)', tip: 'Bastão com pegada aberta, gire por cima da cabeça com controle nos dois sentidos — solta o ombro antes de puxar.', video: V.mobOmbroBastao },
     { name: 'Balanço de Perna (lateral + anterior)', muscle: 'Quadril', duration: '15 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna com controle. 15 cada perna.', video: V.balancoPerna },
-    { name: 'Cat-Cow (cachorro cima ↔ cachorro baixo)', muscle: 'Coluna', duration: '6 reps', equipment: 'Colchonete', tip: 'Alterne arquear e arredondar a coluna no ritmo da respiração. 6 ciclos.', video: V.catCow },
+    { name: 'Alongamento de Coluna I', muscle: 'Coluna', duration: '30s/lado', equipment: 'Colchonete', tip: 'Deitado, joelhos caem pro lado girando a coluna, ombros no chão. 30s cada lado.', video: V.alongColuna1 },
     { name: 'Remada Curvada com Halteres (leve)', muscle: 'Costas', duration: '2x15', equipment: 'Halteres leves', tip: 'Tronco inclinado, dorso neutro, halteres leves. Puxa até a linha do quadril — ativa costas sem elástico.', video: V.remadaHalterLeve },
-    { name: 'Elevação Pélvica no Chão (glúteo)', muscle: 'Glúteos', duration: '2x15', equipment: 'Colchonete', tip: 'Deitado, joelhos dobrados, suba o quadril contraindo o glúteo. Sem carga — só ativação. 2x15.', video: V.elevPelvicaSolo },
+    { name: 'Bom Dia', muscle: 'Posterior / Glúteos', duration: '2x15', equipment: 'Peso do corpo', tip: 'Em pé, mãos atrás da cabeça, quadril pra trás com a coluna reta e volta contraindo o glúteo. Sem carga — só ativação. 2x15.', video: V.bomDia },
   ]
 };
 
@@ -524,7 +541,7 @@ const MOBIL_B = {
   title: 'Postural — Coluna · Escápula · Isquios', duration: '5–7 min',
   meta: 'Retração escapular + quadril + posterior',
   exercises: [
-    { name: 'Alongamento Gato-Vaca', muscle: 'Coluna', duration: '10 reps', equipment: 'Colchonete', tip: 'Mobiliza toda a coluna no ritmo da respiração. 10 ciclos.', video: V.catCow },
+    { name: 'Alongamento de Coluna II', muscle: 'Coluna', duration: '30s/lado', equipment: 'Colchonete', tip: 'Deitado, cruze uma perna sobre o corpo girando a coluna, ombros no chão. 30s cada lado.', video: V.alongColuna2 },
     { name: 'Alongamento de Isquiotibiais Sentado (uma perna)', muscle: 'Posterior de coxa', duration: '30s/lado', equipment: 'Nenhum', tip: 'Sentado, uma perna estendida, incline o tronco à frente com a coluna reta. 30s cada.', video: V.alongIsquios },
     { name: 'Alongamento de Piriforme (deitado, tornozelo no joelho)', muscle: 'Glúteo / Quadril', duration: '30s/lado', equipment: 'Colchonete', tip: 'Deitado, cruze o tornozelo sobre o joelho oposto e puxe a coxa em direção ao peito. 30s cada.', video: V.alongGluteos },
     { name: 'Crucifixo Inverso com Halteres (leve)', muscle: 'Costas / Escápula', duration: '2x15', equipment: 'Halteres leves', tip: 'Braços abrem na horizontal apertando as escápulas — mesma função do pull-apart, sem elástico.', video: V.crucInvLeve },
@@ -554,10 +571,10 @@ const BISET_B_1 = {
 
 const SOLO_B_2 = {
   type: 'lift', label: 'Solo 2',
-  title: 'Elevação Pélvica com Barra (Hip Thrust)', duration: '3x12–15',
-  meta: 'Composto de glúteo (ênfase pélvica). Descanso 90s.',
+  title: 'Agachamento Búlgaro com Carga', duration: '3x10–12 cada perna',
+  meta: 'Composto de glúteo unilateral (Regra 9 — substitui a ênfase pélvica). Descanso 90s.',
   exercises: [
-    { name: 'Elevação Pélvica com Barra', muscle: 'Glúteos', duration: '3x12–15', equipment: 'Barra + banco', tip: 'Ênfase pélvica. Suba o quadril contraindo o glúteo e segure 1s no topo. Queixo pro peito.', video: V.elevPelvicaBarra },
+    { name: 'Agachamento Búlgaro com Carga', muscle: 'Glúteos / Quadríceps', duration: '3x10–12 cada perna', equipment: 'Halteres + banco (pé de trás apoiado)', tip: 'Peito do pé de trás no banco, tronco levemente inclinado à frente pra jogar a carga no glúteo. Desce controlado e empurra pelo calcanhar da frente.', video: V.bulgaroCarga },
   ]
 };
 
@@ -620,7 +637,7 @@ const SOLTURA_B = {
   ]
 };
 
-const TREINO_A = [ AQUEC_A, MOBIL_A, SOLO_A_1, BISET_A_1, SOLO_A_2, BISET_A_2, ISO_A_1, ISO_A_2, CARDIO_A, SOLTURA_A ];
+const TREINO_A = [ AQUEC_A, MOBIL_A, SOLO_A_1, BISET_A_1, SOLO_A_SUPINO, SOLO_A_2, BISET_A_2, ISO_A_1, ISO_A_2, CARDIO_A, SOLTURA_A ];
 const TREINO_B = [ AQUEC_B, MOBIL_B, SOLO_B_1, BISET_B_1, SOLO_B_2, BISET_B_2, BISET_B_3, ISO_B_1, ISO_B_2, CARDIO_B, SOLTURA_B ];
 
 // 3x/sem alternando A · B · A (Semana 1). Descanso mínimo de 48h entre repetições.
