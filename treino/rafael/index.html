@@ -344,6 +344,16 @@ const WEEKLY_GOALS = [
 // NOTA: valores em linha limpa (chave: 'url',) — SEM comentário inline, senão o gate
 // mr-verify-videos não lê a chave. O nome real de cada ID está conferido no catálogo MFit.
 const V = {
+  alongBicepsParede: 'https://player.mediadelivery.net/play/655450/1623ed17-b5a6-4ab2-a33c-74d393ae5417',
+  alongIsquios: 'https://vd.mfitpersonal.com.br/91/mp4/91.mp4',
+  balancoPerna: 'https://player.mediadelivery.net/play/655450/30003f8b-5e6b-474b-a920-d9a788692ea2',
+  agachLivrePC: 'https://vd.mfitpersonal.com.br/50/mp4/50.mp4',
+  rotExternaCross: 'https://player.mediadelivery.net/play/655450/92167cbc-82a5-431f-9022-8576ecc28b07',
+  alongTricepsW: 'https://vd.mfitpersonal.com.br/595/mp4/595.mp4',
+  alongQuadParede: 'https://vd.mfitpersonal.com.br/1180/mp4/1180.mp4',
+  remadaHalterLeve: 'https://vd.mfitpersonal.com.br/221/mp4/221.mp4',
+  crucInvLeve: 'https://vd.mfitpersonal.com.br/215/mp4/215.mp4',
+  facePullPolia: 'https://vd.mfitpersonal.com.br/1110/mp4/1110.mp4',
   // vazio/pendência (aquecimento, mobilidade, soltura) → renderiza texto simples, sem link
   ext: '',
   // Musculação (acervo MFit — IDs conferidos por NOME no catálogo oficial)
@@ -394,8 +404,8 @@ const AQUEC_A = {
   exercises: [
     { name: 'Balanços de Braço (frontais + laterais)', muscle: 'Ombro', duration: '20 reps cada', equipment: 'Nenhum', tip: 'Braços soltos, balance para frente/trás e para os lados. 20 de cada — solta a articulação do ombro.', video: V.ext },
     { name: 'Rotação de Ombro (círculos grandes)', muscle: 'Ombro', duration: '10 reps/direção', equipment: 'Nenhum', tip: 'Círculos amplos com os braços, 10 para frente e 10 para trás.', video: V.ext },
-    { name: 'Balanço de Perna (lateral + anterior/posterior)', muscle: 'Quadril', duration: '15 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna com controle nos dois sentidos. 15 cada perna.', video: V.ext },
-    { name: 'Agachamento Livre (peso do corpo)', muscle: 'Quadríceps', duration: '2x15', equipment: 'Nenhum', tip: 'Sem carga. Desça só até onde for confortável, coluna reta. Prepara o quadríceps.', video: V.ext },
+    { name: 'Balanço de Perna (lateral + anterior/posterior)', muscle: 'Quadril', duration: '15 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna com controle nos dois sentidos. 15 cada perna.', video: V.balancoPerna },
+    { name: 'Agachamento Livre (peso do corpo)', muscle: 'Quadríceps', duration: '2x15', equipment: 'Nenhum', tip: 'Sem carga. Desça só até onde for confortável, coluna reta. Prepara o quadríceps.', video: V.agachLivrePC },
     { name: 'Flexão de Braço na Parede/Inclinada', muscle: 'Peito / Ombro / Tríceps', duration: '2x10–15', equipment: 'Parede', tip: 'Mãos na parede na altura do peito, corpo reto. Aproxime o peito e empurre. Aquece peito, ombro e tríceps.', video: V.flexaoParede },
   ]
 };
@@ -409,7 +419,7 @@ const MOBIL_A = {
     { name: 'Mobilidade Torácica em 4 Apoios (thread-the-needle)', muscle: 'Coluna torácica', duration: '8 reps/lado', equipment: 'Colchonete', tip: 'Em 4 apoios, passe um braço por baixo do corpo girando a coluna e volte abrindo o braço pro teto. 8 cada lado.', video: V.mobDorsal },
     { name: 'Cat-Cow (cachorro cima ↔ cachorro baixo)', muscle: 'Coluna', duration: '8 reps', equipment: 'Colchonete', tip: 'Em 4 apoios, alterne arquear (olhar pra cima) e arredondar (olhar pro umbigo) a coluna, no ritmo da respiração. 8 ciclos.', video: V.catCow },
     { name: 'Mobilidade de Quadril (world’s greatest stretch)', muscle: 'Quadril', duration: '5 reps/lado', equipment: 'Nenhum', tip: 'Avance em afundo, apoie a mão do mesmo lado no chão e gire o tronco abrindo o outro braço pro teto. 5 cada lado.', video: V.mobQuadril },
-    { name: 'Power Band — Rotação Externa de Ombro (deitado)', muscle: 'Manguito rotador', duration: '12 reps/lado', equipment: 'Power Band', tip: 'Cotovelo colado no corpo a 90°, gire o antebraço para fora contra a faixa. Movimento pequeno e controlado. 12 cada lado.', video: V.ext },
+    { name: 'Rotação Externa na Polia (leve)', muscle: 'Manguito rotador', duration: '12 reps/lado', equipment: 'Polia (cross)', tip: 'Cotovelo colado no corpo, gira o antebraço pra fora contra a polia leve. Prepara o manguito.', video: V.rotExternaCross },
   ]
 };
 
@@ -485,8 +495,8 @@ const SOLTURA_A = {
   meta: '≤10s cada — só da musculatura do dia',
   exercises: [
     { name: 'Alongamento de Peitoral em Pé (mãos atrás)', muscle: 'Peitoral', duration: '10s x2', equipment: 'Nenhum', tip: 'Mãos entrelaçadas atrás das costas, suba os braços abrindo o peito. 10 segundos, 2 vezes.', video: V.alongPeitoral },
-    { name: 'Alongamento de Tríceps atrás da Cabeça', muscle: 'Tríceps', duration: '10s/lado', equipment: 'Nenhum', tip: 'Cotovelo apontando pra cima, puxe com a outra mão. Pode fazer caminhando. 10s cada.', video: V.ext },
-    { name: 'Alongamento de Quadríceps em Pé', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Apoio', tip: 'Em pé, puxe o tornozelo em direção ao glúteo, uma mão no apoio. 10s cada perna.', video: V.ext },
+    { name: 'Alongamento de Tríceps atrás da Cabeça', muscle: 'Tríceps', duration: '10s/lado', equipment: 'Nenhum', tip: 'Cotovelo apontando pra cima, puxe com a outra mão. Pode fazer caminhando. 10s cada.', video: V.alongTricepsW },
+    { name: 'Alongamento de Quadríceps em Pé', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Apoio', tip: 'Em pé, puxe o tornozelo em direção ao glúteo, uma mão no apoio. 10s cada perna.', video: V.alongQuadParede },
     { name: 'Alongamento de Ombro Cruzado no Peito', muscle: 'Ombro', duration: '10s/lado', equipment: 'Nenhum', tip: 'Cruze o braço na frente do peito e puxe com o outro. 10s cada lado.', video: V.alongOmbros },
   ]
 };
@@ -498,9 +508,9 @@ const AQUEC_B = {
   meta: 'Prepara costas, posterior e glúteo do dia',
   exercises: [
     { name: 'Balanços de Braço + Círculos de Ombro', muscle: 'Ombro', duration: '20 reps', equipment: 'Nenhum', tip: 'Solta o ombro com balanços e círculos amplos antes de puxar.', video: V.ext },
-    { name: 'Balanço de Perna (lateral + anterior)', muscle: 'Quadril', duration: '15 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna com controle. 15 cada perna.', video: V.ext },
+    { name: 'Balanço de Perna (lateral + anterior)', muscle: 'Quadril', duration: '15 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna com controle. 15 cada perna.', video: V.balancoPerna },
     { name: 'Cat-Cow (cachorro cima ↔ cachorro baixo)', muscle: 'Coluna', duration: '6 reps', equipment: 'Colchonete', tip: 'Alterne arquear e arredondar a coluna no ritmo da respiração. 6 ciclos.', video: V.catCow },
-    { name: 'Remada com Elástico (peso corporal)', muscle: 'Costas', duration: '2x15', equipment: 'Elástico', tip: 'Elástico preso à frente, puxe fechando as escápulas. Ativa as costas antes do treino.', video: V.ext },
+    { name: 'Remada Curvada com Halteres (leve)', muscle: 'Costas', duration: '2x15', equipment: 'Halteres leves', tip: 'Tronco inclinado, dorso neutro, halteres leves. Puxa até a linha do quadril — ativa costas sem elástico.', video: V.remadaHalterLeve },
     { name: 'Elevação Pélvica no Chão (glúteo)', muscle: 'Glúteos', duration: '2x15', equipment: 'Colchonete', tip: 'Deitado, joelhos dobrados, suba o quadril contraindo o glúteo. Sem carga — só ativação. 2x15.', video: V.elevPelvicaSolo },
   ]
 };
@@ -513,8 +523,8 @@ const MOBIL_B = {
     { name: 'Alongamento Gato-Vaca', muscle: 'Coluna', duration: '10 reps', equipment: 'Colchonete', tip: 'Mobiliza toda a coluna no ritmo da respiração. 10 ciclos.', video: V.catCow },
     { name: 'Alongamento de Isquiotibiais Sentado (uma perna)', muscle: 'Posterior de coxa', duration: '30s/lado', equipment: 'Nenhum', tip: 'Sentado, uma perna estendida, incline o tronco à frente com a coluna reta. 30s cada.', video: V.alongIsquios },
     { name: 'Alongamento de Piriforme (deitado, tornozelo no joelho)', muscle: 'Glúteo / Quadril', duration: '30s/lado', equipment: 'Colchonete', tip: 'Deitado, cruze o tornozelo sobre o joelho oposto e puxe a coxa em direção ao peito. 30s cada.', video: V.alongGluteos },
-    { name: 'Power Band — Pull-Apart Horizontal (retração escapular)', muscle: 'Costas / Escápula', duration: '2x15', equipment: 'Power Band', tip: 'Braços à frente na altura do ombro, abra a faixa fechando as escápulas. Foco postural. 2x15.', video: V.ext },
-    { name: 'Power Band — Face Pull Deitado', muscle: 'Deltoide post. / Escápula', duration: '2x12', equipment: 'Power Band', tip: 'Puxe a faixa em direção ao rosto, cotovelos altos, abrindo as escápulas. 2x12.', video: V.ext },
+    { name: 'Crucifixo Inverso com Halteres (leve)', muscle: 'Costas / Escápula', duration: '2x15', equipment: 'Halteres leves', tip: 'Braços abrem na horizontal apertando as escápulas — mesma função do pull-apart, sem elástico.', video: V.crucInvLeve },
+    { name: 'Face Pull na Polia (leve)', muscle: 'Deltoide post. / Escápula', duration: '2x12', equipment: 'Polia + corda', tip: 'Puxa a corda em direção ao rosto, cotovelos altos. Leve — é preparo, não carga.', video: V.facePullPolia },
   ]
 };
 
@@ -600,8 +610,8 @@ const SOLTURA_B = {
   meta: '≤10s cada — só da musculatura do dia',
   exercises: [
     { name: 'Alongamento Dorsal (child’s pose com braços estendidos)', muscle: 'Dorsal / Coluna', duration: '20s x2', equipment: 'Colchonete', tip: 'Sentado sobre os calcanhares, estenda os braços à frente no chão e relaxe a coluna. 20s, 2 vezes.', video: V.alongDorsal },
-    { name: 'Alongamento de Bíceps na Parede', muscle: 'Bíceps', duration: '10s/lado', equipment: 'Parede', tip: 'Mão na parede atrás do corpo, gire o tronco pro lado oposto. 10s cada.', video: V.ext },
-    { name: 'Alongamento de Isquios em Pé', muscle: 'Posterior de coxa', duration: '10s/lado', equipment: 'Nenhum', tip: 'Perna à frente, incline o tronco pra frente com a coluna reta. Pode combinar puxando o cotovelo. 10s cada.', video: V.ext },
+    { name: 'Alongamento de Bíceps na Parede', muscle: 'Bíceps', duration: '10s/lado', equipment: 'Parede', tip: 'Mão na parede atrás do corpo, gire o tronco pro lado oposto. 10s cada.', video: V.alongBicepsParede },
+    { name: 'Alongamento de Isquios em Pé', muscle: 'Posterior de coxa', duration: '10s/lado', equipment: 'Nenhum', tip: 'Perna à frente, incline o tronco pra frente com a coluna reta. Pode combinar puxando o cotovelo. 10s cada.', video: V.alongIsquios },
     { name: 'Alongamento de Glúteo Cruzado Deitado', muscle: 'Glúteos', duration: '10s/lado', equipment: 'Colchonete', tip: 'Deitado, cruze o tornozelo sobre o joelho oposto e puxe. 10s cada.', video: V.alongGluteos },
   ]
 };
