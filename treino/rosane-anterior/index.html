@@ -300,7 +300,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">PREVIEW Renovação Ciclo 3 &middot; Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 13/07/2026</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 13/05/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -311,15 +311,13 @@
 const ATHLETE = 'Rosane';
 
 const WEEKLY_GOALS = [
-  { icon: '🛡️', type: 'strength', text: '<strong>Preview Ciclo 3:</strong> saúde e qualidade de vida, com 4 treinos mais curtos e controlados' },
-  { icon: '⚠️', type: 'assessment', text: '<strong>Fibromialgia:</strong> intensidade baixa a moderada, sem pico de carga e com progressão lenta' },
-  { icon: '🏋️', type: 'strength', text: '<strong>Estratégia:</strong> máquinas, banco apoiado, polias e unilateral controlado para proteger lombar/quadril' },
-  { icon: '🎯', type: 'assessment', text: '<strong>Ênfase:</strong> glúteos, abdômen, parte interna da coxa e braços' },
+  { icon: '🛡️', type: 'strength', text: '<strong>Objetivo:</strong> hipertrofia segura, protegendo lombar e quadril até sair a ressonância' },
+  { icon: '🏋️', type: 'strength', text: '<strong>Estratégia:</strong> mais máquinas, banco apoiado, polias e unilateral controlado' },
+  { icon: '⚠️', type: 'assessment', text: '<strong>Alerta:</strong> sem impacto e sem heroísmo. Se a lombar ou quadril reclamarem, reduz a amplitude e avisa o Luisão.' },
+  { icon: '🎯', type: 'assessment', text: '<strong>Ênfase:</strong> parte interna da coxa, abdômen e braços com progressão gradual de carga' },
 ];
 
 const V = {
-  abdomSolo: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
-  gluteos4: 'https://vd.mfitpersonal.com.br/240/mp4/240.mp4',
   giros: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/8d76rg3vbsm_opt.mp4',
   balanco: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/d508q2wlkh_opt.mp4',
   maxlift3: 'https://1drv.ms/v/c/437d19de9d024724/IQAkRwKd3hl9IIBDXOUAAAAAAcpS0aYRHYfXg37biRry5dA',
@@ -348,11 +346,14 @@ const V = {
   elevLateral: 'https://vd.mfitpersonal.com.br/131/mp4/131.mp4',
   puxadaFrontal: 'https://vd.mfitpersonal.com.br/565/mp4/565.mp4',
   remadaBaixa: 'https://vd.mfitpersonal.com.br/576/mp4/576.mp4',
-  remadaUnilateral: 'https://vd.mfitpersonal.com.br/210/mp4/210.mp4',
+  remadaUnilateral: 'https://player.mediadelivery.net/play/655450/01183ec0-4234-46e5-b484-9bffa330c3c7',
   agachSmith: 'https://vd.mfitpersonal.com.br/73/mp4/73.mp4',
   cordaGrande: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/nddbtpg8z38_opt.mp4',
   elevQuadril: 'https://vd.mfitpersonal.com.br/255/mp4/255.mp4',
   supino: 'https://vd.mfitpersonal.com.br/201/mp4/201.mp4',
+  flexaoCaneleira: 'https://vd.mfitpersonal.com.br/248/mp4/248.mp4',
+  deadBug: 'https://vd.mfitpersonal.com.br/734/mp4/734.mp4',
+  pranchaIso: 'https://vd.mfitpersonal.com.br/852/mp4/852.mp4',
 };
 
 const MOBILIDADE = {
@@ -421,26 +422,17 @@ const TREINO_A = [
     title: 'Leg Press ↔ Panturrilha no Leg Press', duration: '3x15 · Sem descanso',
     meta: 'Mesma máquina, zero deslocamento e mais fluidez no bi-set',
     exercises: [
-      { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '3x15', equipment: 'Máquina Leg Press', tip: 'Lombar 100% apoiada no banco; desça só até onde for confortável. Se o 45° te der insegurança, use o leg press horizontal (mais apoio) ou me avise que a gente troca — sem forçar.', video: V.legPress },
+      { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '3x15', equipment: 'Máquina Leg Press', tip: 'Desça até amplitude confortável. Lombar sempre apoiada no banco.', video: V.legPress },
       { name: 'Panturrilha no Leg Press', muscle: 'Panturrilha', duration: '3x15', equipment: 'Máquina Leg Press', tip: 'Na mesma máquina, empurre com a ponta dos pés, com amplitude controlada e sem perder o apoio da lombar.', video: V.panturrilha },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Extensora ↔ Abdominal no chão', duration: '3x15 · Sem descanso',
-    meta: 'Quadríceps + core, ancorado na máquina',
+    title: 'Cadeira Extensora ↔ Flexão de Joelhos com Caneleiras', duration: '3x15 · Sem descanso',
+    meta: 'Frente e trás da coxa sem largar a máquina — a flexão sai na caneleira ali do lado',
     exercises: [
       { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x15', equipment: 'Máquina extensora', tip: 'Suba controlando e segure 1 segundo no topo.', video: V.cadeiraExt },
-      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3x15-20', equipment: 'Colchonete (ao lado)', tip: 'Feito no colchonete ao lado da extensora — não sai do lugar. Sobe com o abdômen, sem puxar o pescoço.', video: V.abdomSolo },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 2b',
-    title: 'Cadeira Flexora ↔ Glúteos 4 Apoios', duration: '3x15 · Sem descanso',
-    meta: 'Posterior de coxa + glúteo, ancorado na máquina',
-    exercises: [
-      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x15', equipment: 'Máquina flexora', tip: 'Controle a volta. Evite tirar o quadril do banco.', video: V.cadeiraFlexora },
-      { name: 'Glúteos 4 Apoios c/ Caneleira', muscle: 'Glúteos', duration: '3x15 (cada lado)', equipment: 'Colchonete + caneleira (ao lado)', tip: 'No colchonete ao lado da flexora. Estende a perna pra trás contraindo o glúteo, sem forçar a lombar.', video: V.gluteos4 },
+      { name: 'Flexão de Joelhos com Caneleiras', muscle: 'Posterior de coxa', duration: '3x15', equipment: 'Caneleira', tip: 'Deitada de bruços no colchonete ao lado da extensora. Traga o calcanhar em direção ao glúteo, sem arquear a lombar.', video: V.flexaoCaneleira },
     ]
   },
   {
@@ -469,24 +461,33 @@ const TREINO_B = [
   },
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Puxada Frontal ↔ Remada Unilateral (Neutra)', duration: '3x15 · Sem descanso',
-    meta: 'Costas com apoio e trajetória segura',
+    title: 'Puxada Frontal ↔ Remada Unilateral', duration: '3x15 · Sem descanso',
+    meta: 'Costas sem trocar de estação — a remada sai no halter ao lado do puxador',
     exercises: [
       { name: 'Puxada Frontal Aberta', muscle: 'Costas (dorsal)', duration: '3x15', equipment: 'Puxador', tip: 'Puxe até a linha do peito, fechando escápulas.', video: V.puxadaFrontal },
-      { name: 'Remada Unilateral com Halter (Neutra/Serrote)', muscle: 'Costas (dorsal/meio)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Uma mão e um joelho no banco, tronco paralelo ao chão, pegada neutra (palma pro corpo). Puxa o halter à cintura contraindo a escápula; um lado depois o outro. Feita ao lado da puxada, sem ocupar outra máquina.', video: V.remadaUnilateral },
+      { name: 'Remada Unilateral com Halter', muscle: 'Costas (meio das costas)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Apoie uma mão e um joelho no banco ao lado do puxador. Puxe o halter na direção da cintura, sem girar o tronco.', video: V.remadaUnilateral },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Supino Halteres ↔ Elevação Lateral', duration: '3x12-15 · Sem descanso',
-    meta: 'Peito e ombro sem exigir estabilidade lombar',
+    title: 'Supino Halteres ↔ Abdominal Dead Bug', duration: '3x12-15 · Sem descanso',
+    meta: 'Peito + core no colchonete ao lado do banco — ombro fica fresco pro Bi-Set 3',
     exercises: [
       { name: 'Supino Reto com Halteres', muscle: 'Peitoral / Tríceps', duration: '3x12', equipment: 'Halteres + banco', tip: 'Banco apoiado. Desça controlando e sem sobrecarregar os cotovelos.', video: V.supino },
-      { name: 'Elevação Lateral com Halteres', muscle: 'Ombros', duration: '3x15', equipment: 'Halteres', tip: 'Sentada ou em pé bem estável. Sobe até a linha dos ombros.', video: V.elevLateral },
+      { name: 'Abdominal Dead Bug', muscle: 'Abdômen / Core', duration: '3x12 cada lado', equipment: 'Colchonete', tip: 'Deitada de costas, lombar colada no chão o tempo todo. Estenda braço e perna opostos devagar. Se a lombar descolar, reduza a amplitude.', video: V.deadBug },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3',
+    title: 'Elevação Lateral ↔ Prancha', duration: '3x15 · Sem descanso',
+    meta: 'Ombro depois de todo o peito do dia — core no colchonete ao lado',
+    exercises: [
+      { name: 'Elevação Lateral com Halteres', muscle: 'Ombros', duration: '3x15', equipment: 'Halteres', tip: 'Sentada ou em pé bem estável. Sobe até a linha dos ombros.', video: V.elevLateral },
+      { name: 'Prancha Isométrica', muscle: 'Abdômen / Core', duration: '3x20-30s', equipment: 'Colchonete', tip: 'Corpo em linha reta, abdômen firme, sem deixar o quadril cair. No dia de dor, segure menos tempo — constância importa mais que o cronômetro.', video: V.pranchaIso },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 4',
     title: 'Rosca Alternada ↔ Tríceps Corda', duration: '3x15 · Sem descanso',
     meta: 'Braços com progressão gradual de carga',
     exercises: [
@@ -512,7 +513,7 @@ const TREINO_C = [
     title: 'Leg Press ↔ Remada Unilateral', duration: '3x12-15 · Sem descanso',
     meta: 'Full body leve e seguro',
     exercises: [
-      { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press', tip: 'Lombar 100% apoiada no banco; desça só até onde for confortável. Se o 45° te der insegurança, use o leg press horizontal (mais apoio) ou me avise que a gente troca — sem forçar.', video: V.legPress },
+      { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press', tip: 'Amplitude confortável e sem tirar a lombar do banco.', video: V.legPress },
       { name: 'Remada Unilateral com Halter', muscle: 'Costas', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Apoie uma mão e um joelho no banco. Puxe o halter na direção da cintura, sem girar o tronco.', video: V.remadaUnilateral },
     ]
   },
@@ -528,57 +529,14 @@ const TREINO_C = [
   ALONG_TRAS,
 ];
 
-const TREINO_D = [
-  MOBILIDADE,
-  {
-    type: 'warmup', label: 'Aquecimento',
-    title: 'Bike + Escápulas', duration: '~8 min',
-    meta: 'Preparar costas e ombros sem impacto',
-    exercises: [
-      { name: 'Bike Spinning Leve', muscle: 'Cardiovascular', duration: '4 min', equipment: 'Bike', tip: 'Ritmo confortável, só para aquecer.', video: V.bike },
-      { name: 'Giros dos Braços', muscle: 'Ombros', duration: '1x12', equipment: 'Nenhum', tip: 'Amplitude confortável, sem forçar ombro.', video: V.giros },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Puxada Frontal ↔ Remada Unilateral (Neutra)', duration: '3x15 · Sem descanso',
-    meta: 'Costas com tronco estável e sem compensar lombar',
-    exercises: [
-      { name: 'Puxada Frontal Aberta', muscle: 'Costas', duration: '3x15', equipment: 'Puxador', tip: 'Puxe até a linha do peito, fechando escápulas.', video: V.puxadaFrontal },
-      { name: 'Remada Unilateral com Halter (Neutra/Serrote)', muscle: 'Costas (dorsal/meio)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Uma mão e um joelho no banco, tronco paralelo ao chão, pegada neutra (palma pro corpo). Puxa o halter à cintura contraindo a escápula; um lado depois o outro. Feita ao lado da puxada, sem ocupar outra máquina.', video: V.remadaUnilateral },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 2',
-    title: 'Crucifixo Inverso ↔ Rosca Alternada', duration: '3x12-15 · Sem descanso',
-    meta: 'Postura + bíceps com carga moderada',
-    exercises: [
-      { name: 'Crucifixo Inverso Máquina', muscle: 'Ombro posterior / Costas', duration: '3x12', equipment: 'Máquina', tip: 'Movimento controlado, sem jogar o tronco.', video: V.crucifixoInv },
-      { name: 'Rosca Alternada com Halteres', muscle: 'Bíceps', duration: '3x12/lado', equipment: 'Halteres', tip: 'Cotovelos fixos ao lado do corpo.', video: V.roscaAlt },
-    ]
-  },
-  {
-    type: 'lift', label: 'Core Final',
-    title: 'Abdômen Controlado', duration: '3 séries',
-    meta: 'Core sem flexão lombar excessiva',
-    exercises: [
-      { name: 'Abdominal Supra Banco Declinado', muscle: 'Abdômen', duration: '3x12', equipment: 'Banco declinado', tip: 'Movimento curto. Se lombar reclamar, trocar por abdominal na máquina.', video: V.abdomSupra },
-      { name: 'Abdominal Infra no Banco Declinado', muscle: 'Abdômen', duration: '3x10-12', equipment: 'Banco declinado', tip: 'Amplitude pequena e controlada.', video: V.abdomInfra },
-    ]
-  },
-  CARDIO_BIKE,
-  ALONG_TRAS,
-];
-
 const TRAINING_SLOTS = [
-  { label: 'Treino A — Glúteo/Interna Coxa', blocks: TREINO_A },
-  { label: 'Treino B — Peito/Ombro + Tríceps', blocks: TREINO_B },
-  { label: 'Treino C — MMII + Core', blocks: TREINO_C },
-  { label: 'Treino D — Costas + Bíceps + Core', blocks: TREINO_D },
+  { label: 'Treino A — MMII Seguro', blocks: TREINO_A },
+  { label: 'Treino B — Superior + Braços', blocks: TREINO_B },
+  { label: 'Treino C — Full Body Leve', blocks: TREINO_C },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-const DAY_CONFIG_KEY = 'maxresults-rosane-preview-days-v1';
-const DEFAULT_DAYS = ['Seg', 'Qua', 'Sex', 'Sáb'];
+const DAY_CONFIG_KEY = 'maxresults-rosane-days-v1';
+const DEFAULT_DAYS = ['Seg', 'Qua', 'Sex'];
 
 function getMonday(d) {
   const dt = new Date(d);
@@ -634,7 +592,7 @@ function getWeekKey() {
 }
 
 
-const STORAGE_KEY = 'maxresults-rosane-preview-' + getWeekKey() + '-v1';
+const STORAGE_KEY = 'maxresults-rosane-' + getWeekKey() + '-v1';
 let currentDayIndex = 0;
 let completedExercises = loadProgress();
 
@@ -669,13 +627,13 @@ function closeDayModal() { document.getElementById('dayModal').classList.remove(
 function limitDaySelection() {
   const checked = document.querySelectorAll('#dayOptions input:checked');
   const unchecked = document.querySelectorAll('#dayOptions input:not(:checked)');
-  unchecked.forEach(cb => cb.disabled = checked.length >= 4);
+  unchecked.forEach(cb => cb.disabled = checked.length >= 3);
 }
 
 function saveDayConfig() {
   const checked = [...document.querySelectorAll('#dayOptions input:checked')].map(cb => cb.value);
   if (checked.length < 1) { alert('Selecione pelo menos 1 dia!'); return; }
-  if (checked.length > 4) { alert('Máximo 4 dias!'); return; }
+  if (checked.length > 3) { alert('Máximo 3 dias!'); return; }
   localStorage.setItem(DAY_CONFIG_KEY, JSON.stringify(checked));
   WEEK_SCHEDULE = buildSchedule();
   WEEK = buildWeek();
@@ -933,8 +891,8 @@ function updateBlockProgress() {
 
 function toggleDetail(key) { document.getElementById('ex-'+key).classList.toggle('expanded'); }
 
-const LOAD_KEY = 'maxresults-rosane-preview-loads-v1';
-const REST_KEY = 'maxresults-rosane-preview-rest-v1';
+const LOAD_KEY = 'maxresults-rosane-loads-v1';
+const REST_KEY = 'maxresults-rosane-rest-v1';
 function loadLoads() { try { return JSON.parse(localStorage.getItem(LOAD_KEY)||'{}'); } catch { return {}; } }
 function saveLoad(input) { const loads=loadLoads(); const k=input.dataset.loadKey; input.value.trim() ? loads[k]=input.value.trim() : delete loads[k]; localStorage.setItem(LOAD_KEY, JSON.stringify(loads)); }
 function restoreLoads() { const loads=loadLoads(); document.querySelectorAll('.load-input').forEach(i => { const k=i.dataset.loadKey; if (loads[k]) i.value=loads[k]; }); }
@@ -1030,8 +988,8 @@ document.getElementById('assessPanel').innerHTML = renderAssessment(ASSESSMENT);
 document.getElementById('assessToggle').addEventListener('click', function() { this.classList.toggle('open'); document.getElementById('assessPanel').classList.toggle('open'); });
 
 // ─── Session Timer ───
-const TIMER_KEY = 'maxresults-rosane-preview-timer-v1';
-const HISTORY_KEY = 'maxresults-rosane-preview-history-v1';
+const TIMER_KEY = 'maxresults-rosane-timer-v1';
+const HISTORY_KEY = 'maxresults-rosane-history-v1';
 let timerInterval = null; let sessionStartTime = null;
 function loadTimerState() { try { return JSON.parse(localStorage.getItem(TIMER_KEY) || 'null'); } catch { return null; } }
 function saveTimerState(state) { if (state) localStorage.setItem(TIMER_KEY, JSON.stringify(state)); else localStorage.removeItem(TIMER_KEY); }
@@ -1041,12 +999,12 @@ function formatTimer(ms) { const s=Math.floor(ms/1000); const m=Math.floor(s/60)
 function formatDuration(ms) { const m=Math.floor(ms/60000); if(m<60) return m+'min'; return Math.floor(m/60)+'h'+(m%60>0?m%60+'min':''); }
 function startSession() { sessionStartTime=Date.now(); saveTimerState({start:sessionStartTime,dayIndex:currentDayIndex}); document.getElementById('startBtn').classList.add('hidden'); document.getElementById('timerBar').classList.add('active'); document.getElementById('stopBtn').classList.remove('hidden'); timerInterval=setInterval(updateTimer,1000); updateTimer(); }
 function updateTimer() { if(!sessionStartTime) return; document.getElementById('timerDisplay').textContent=formatTimer(Date.now()-sessionStartTime); }
-function stopSession() { if(!sessionStartTime) return; const elapsed=Date.now()-sessionStartTime; clearInterval(timerInterval); const day=WEEK[currentDayIndex]; let total=0,done=0; if(day&&day.blocks){day.blocks.forEach((b,bi)=>{b.exercises.forEach((_,ei)=>{total++;if(completedExercises[exerciseKey(currentDayIndex,bi,ei)])done++;});});} const pct=total>0?Math.round((done/total)*100):0; const history=loadHistory(); history.push({date:new Date().toISOString(),dayIndex:currentDayIndex,dayLabel:day?day.label:'',dayName:day?day.day:'',duration:elapsed,completionPct:pct,weekKey:getWeekKey()}); saveHistory(history.filter(h=>new Date(h.date).getTime()>Date.now()-90*86400000)); sessionStartTime=null; saveTimerState(null); document.getElementById('startBtn').classList.remove('hidden'); document.getElementById('timerBar').classList.remove('active'); document.getElementById('stopBtn').classList.add('hidden'); document.getElementById('timerDisplay').textContent='00:00'; try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'✅ **Rosane** finalizou treino!\\n📅 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') — '+day.label+'\\n⏱️ Tempo: '+formatDuration(elapsed)+'\\n📊 Exercícios: '+pct+'% ('+done+'/'+total+')',username:'Frequência — Rosane',embeds:[{fields:[{name:'studentSlug',value:'rosane',inline:true},{name:'cycleId',value:'rosane-2026-07-13',inline:true},{name:'slotId',value:(day.label||'').includes('Treino A')?'A':(day.label||'').includes('Treino B')?'B':'C',inline:true},{name:'slotLabel',value:day.label||'',inline:false}]}]})}).catch(function(){});}catch(e){} alert('Sessão finalizada! \nTempo: '+formatDuration(elapsed)+'\nExercícios: '+pct+'% concluídos'); }
+function stopSession() { if(!sessionStartTime) return; const elapsed=Date.now()-sessionStartTime; clearInterval(timerInterval); const day=WEEK[currentDayIndex]; let total=0,done=0; if(day&&day.blocks){day.blocks.forEach((b,bi)=>{b.exercises.forEach((_,ei)=>{total++;if(completedExercises[exerciseKey(currentDayIndex,bi,ei)])done++;});});} const pct=total>0?Math.round((done/total)*100):0; const history=loadHistory(); history.push({date:new Date().toISOString(),dayIndex:currentDayIndex,dayLabel:day?day.label:'',dayName:day?day.day:'',duration:elapsed,completionPct:pct,weekKey:getWeekKey()}); saveHistory(history.filter(h=>new Date(h.date).getTime()>Date.now()-90*86400000)); sessionStartTime=null; saveTimerState(null); document.getElementById('startBtn').classList.remove('hidden'); document.getElementById('timerBar').classList.remove('active'); document.getElementById('stopBtn').classList.add('hidden'); document.getElementById('timerDisplay').textContent='00:00'; try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'✅ **Rosane** finalizou treino!\\n📅 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') — '+day.label+'\\n⏱️ Tempo: '+formatDuration(elapsed)+'\\n📊 Exercícios: '+pct+'% ('+done+'/'+total+')',username:'Frequência — Rosane',embeds:[{fields:[{name:'studentSlug',value:'rosane',inline:true},{name:'cycleId',value:'rosane-2026-05-13',inline:true},{name:'slotId',value:(day.label||'').includes('Treino A')?'A':(day.label||'').includes('Treino B')?'B':'C',inline:true},{name:'slotLabel',value:day.label||'',inline:false}]}]})}).catch(function(){});}catch(e){} alert('Sessão finalizada! \nTempo: '+formatDuration(elapsed)+'\nExercícios: '+pct+'% concluídos'); }
 function restoreTimer() { const state=loadTimerState(); if(state&&state.start){ const elapsed=Date.now()-state.start; if(elapsed<3*3600000){ sessionStartTime=state.start; document.getElementById('startBtn').classList.add('hidden'); document.getElementById('timerBar').classList.add('active'); document.getElementById('stopBtn').classList.remove('hidden'); timerInterval=setInterval(updateTimer,1000); updateTimer(); } else { saveTimerState(null); } } }
 restoreTimer();
 
 // ─── Avatar photo ───
-const AVATAR_KEY = 'maxresults-rosane-preview-avatar-v1';
+const AVATAR_KEY = 'maxresults-rosane-avatar-v1';
 function loadAvatar() {
   const data = localStorage.getItem(AVATAR_KEY);
   const circle = document.getElementById('avatarCircle');

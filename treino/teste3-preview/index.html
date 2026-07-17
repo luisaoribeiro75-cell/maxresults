@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Clara — Treino | MaxResults</title>
+  <title>Juliana (TESTE) — Treino | MaxResults</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#08080a">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -284,7 +284,7 @@
       <div class="header-date" id="headerDate"></div>
     </div>
     <div class="header-title">
-      <div><div class="avatar-wrap"><div class="avatar-circle" id="avatarCircle" onclick="document.getElementById('avatarInput').click()"><span class="avatar-placeholder">📸</span><span class="avatar-hint">+</span></div><span class="athlete">Clara</span></div><span class="separator">/</span><span class="day" id="headerDay"></span></div>
+      <div><div class="avatar-wrap"><div class="avatar-circle" id="avatarCircle" onclick="document.getElementById('avatarInput').click()"><span class="avatar-placeholder">📸</span><span class="avatar-hint">+</span></div><span class="athlete">Juliana</span></div><span class="separator">/</span><span class="day" id="headerDay"></span></div>
     </div>
     <div class="progress-bar-container">
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
@@ -302,7 +302,7 @@
   <main id="workoutContent" class="initial-load"></main>
   <div class="session-complete" id="sessionComplete">
     <h3>Sessão Concluída! 💪</h3>
-    <p>Ótimo treino, Clara! 💪 Descanse e se hidrate. 💪</p>
+    <p>Ótimo treino, Juliana! 💪 Descanse e se hidrate. 💪</p>
   </div>
   <button class="finish-btn" id="finishBtn" onclick="finishWorkout()">✅ Finalizar Treino</button>
   <div id="skippedInfo"></div>
@@ -322,387 +322,263 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 13/05/2026</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>PÁGINA DE TESTE (fictícia) &middot; Gerado em 16/07/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
   <video id="videoPlayer" controls playsinline style="display:none"></video>
-  <iframe id="ytPlayer" width="360" height="640" style="display:none" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+  <iframe id="ytPlayer" width="360" height="640" style="display:none" allow="autoplay"></iframe>
 </div>
 <script>
-const ATHLETE = 'Clara';
+const ATHLETE = 'Juliana';
 
 const WEEKLY_GOALS = [
-  { icon: '🚀', type: 'strength', text: '<strong>Objetivo:</strong> condicionamento alto + disposição, sem perder o foco estético' },
-  { icon: '💪', type: 'strength', text: '<strong>Divisão:</strong> 2 dias fortes + 2 dias mistos + 1 dia cardio/condicionamento' },
-  { icon: '⚠️', type: 'assessment', text: '<strong>Condromalacia:</strong> amplitude controlada, sem impacto agressivo. Joelho reclamou? ajusta na hora.' },
-  { icon: '🎯', type: 'assessment', text: '<strong>Ênfase:</strong> superior, glúteos e abdômen com intensidade alta' },
-];
+  { icon: '🎯', type: 'fat', text: '<strong>Ciclo 2:</strong> emagrecimento — Full Body 3x com exercícios novos, estímulo diferente do ciclo 1' },
+  { icon: '🔻', type: 'strength', text: '<strong>Lombar (mantida):</strong> mesmo sem dor nas últimas semanas, seguimos protegendo — máquina com apoio, core isométrico, sem flexão de tronco com carga' },
+  { icon: '💪', type: 'strength', text: '<strong>Ombro D (novo — tendinite do supraespinhal):</strong> NADA acima da cabeça (sem desenvolvimento/elevação lateral). Ombro só atrás/rotador, abaixo da linha do ombro' },
+  { icon: '📈', type: 'assessment', text: '<strong>Progressão:</strong> fechou as reps com boa execução e SEM dor no ombro → sobe carga leve. Dor no ombro = para e avisa' },
+]
 
 const V = {
+  // aquecimento / mobilidade / soltura (mantidos do ciclo 1 — lombar-safe)
+  esteira: 'https://vd.mfitpersonal.com.br/521/mp4/521.mp4',
   giros: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/8d76rg3vbsm_opt.mp4',
-  balanco: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/d508q2wlkh_opt.mp4',
-  maxlift2bt: 'https://1drv.ms/v/c/437d19de9d024724/IQAkRwKd3hl9IIBD5-MAAAAAATY48VJYTyzfx0Gq6gLKC2s?e=37FE2V',
-  alongCoxa: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/lpgl41gg1op_opt.mp4',
+  alongColuna: 'https://vd.mfitpersonal.com.br/v2/1161/mp4/1161_opt.mp4',
   alongFlexor: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/5e9lix657lb_opt.mp4',
-  alongPeitoral: 'yt:be0xXepDGhQ',
   alongGluteos: 'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',
-  handToToes: 'yt:eFGc-g-HudQ',
-  legPress: 'https://vd.mfitpersonal.com.br/495/mp4/495.mp4',
-  supinoBarra: 'https://vd.mfitpersonal.com.br/203/mp4/203.mp4',
-  supinoHalter: 'https://vd.mfitpersonal.com.br/201/mp4/201.mp4',
+  alongPostColuna: 'https://vd.mfitpersonal.com.br/756/mp4/756.mp4',
+  bike: 'https://vd.mfitpersonal.com.br/529/mp4/529.mp4',
+  // MMII/glúteo: leg press horizontal=491 · leg press 45=495 · extensora=504 · mesa flexora=555(NOVO) · adutora=514(NOVO) · abdução=515 · glúteo coice polia=457 · panturrilha sentada máq=482(NOVO)
+  legPress: 'https://vd.mfitpersonal.com.br/491/mp4/491.mp4',
+  legPress45: 'https://vd.mfitpersonal.com.br/495/mp4/495.mp4',
   cadeiraExt: 'https://vd.mfitpersonal.com.br/504/mp4/504.mp4',
-  cadeiraFlexora: 'https://vd.mfitpersonal.com.br/502/mp4/502.mp4',
-  crucifixoMaq: 'https://vd.mfitpersonal.com.br/530/mp4/530.mp4',
-  crucifixoInv: 'https://vd.mfitpersonal.com.br/531/mp4/531.mp4',
-  aducao: 'https://vd.mfitpersonal.com.br/514/mp4/514.mp4',
-  abdQuadril: 'https://vd.mfitpersonal.com.br/515/mp4/515.mp4',
-  desenvNeutro: 'https://vd.mfitpersonal.com.br/155/mp4/155.mp4',
-  puxadaFrontal: 'https://vd.mfitpersonal.com.br/565/mp4/565.mp4',
-  remadaBaixa: 'https://vd.mfitpersonal.com.br/567/mp4/567.mp4',
-  remadaCurvada: 'https://vd.mfitpersonal.com.br/221/mp4/221.mp4',
-  gluteosCoice: 'https://vd.mfitpersonal.com.br/457/mp4/457.mp4',
-  gluteos4apoios: 'https://vd.mfitpersonal.com.br/240/mp4/240.mp4',
-  roscaDireta: 'https://vd.mfitpersonal.com.br/109/mp4/109.mp4',
-  tricepsCorda: 'https://vd.mfitpersonal.com.br/418/mp4/418.mp4',
+  mesaFlexora: 'https://vd.mfitpersonal.com.br/555/mp4/555.mp4',
+  cadeiraAdutora: 'https://vd.mfitpersonal.com.br/514/mp4/514.mp4',
+  abducao: 'https://vd.mfitpersonal.com.br/515/mp4/515.mp4',
+  gluteoCoice: 'https://vd.mfitpersonal.com.br/457/mp4/457.mp4',
+  panturrilhaSentada: 'https://vd.mfitpersonal.com.br/482/mp4/482.mp4',
+  // MMSS ombro-safe (tendinite supraespinhal — nada acima da cabeça): supino na polia sentado=446(NOVO) · puxada neutra triângulo=569(NOVO) · remada baixa polia=401 · crucifixo inverso máquina=531(NOVO) · face pull=1110(NOVO)
+  supinoPolia: 'https://vd.mfitpersonal.com.br/446/mp4/446.mp4',
+  puxadaNeutra: 'https://vd.mfitpersonal.com.br/569/mp4/569.mp4',
+  remadaBaixa: 'https://vd.mfitpersonal.com.br/401/mp4/401.mp4',
+  crucifixoInvMaq: 'https://vd.mfitpersonal.com.br/531/mp4/531.mp4',
+  facePull: 'https://vd.mfitpersonal.com.br/v2/1110/mp4/1110_opt.mp4',
+  // core (peso do corpo — lombar-safe): prancha=852 · prancha lateral=858 · dead bug=734 · abd infra=774 · abd supra=20 · abd oblíquo=778
+  prancha: 'https://vd.mfitpersonal.com.br/852/mp4/852.mp4',
+  pranchaLateral: 'https://vd.mfitpersonal.com.br/858/mp4/858.mp4',
+  deadBug: 'https://vd.mfitpersonal.com.br/734/mp4/734.mp4',
+  abdomInfra: 'https://vd.mfitpersonal.com.br/774/mp4/774.mp4',
   abdomSupra: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
-  bike: 'https://vd.mfitpersonal.com.br/518/mp4/518.mp4',
-  bomDia: 'https://vd.mfitpersonal.com.br/269/mp4/269.mp4',
-  agachLivre: 'https://vd.mfitpersonal.com.br/52/mp4/52.mp4',
-  elevLateral: 'https://vd.mfitpersonal.com.br/131/mp4/131.mp4',
-  tricepsFrances: 'https://vd.mfitpersonal.com.br/135/mp4/135.mp4',
-  desenvHalteres: 'https://vd.mfitpersonal.com.br/155/mp4/155.mp4',
-  hipThrust: 'https://vd.mfitpersonal.com.br/367/mp4/367.mp4',
-  stiffHalteres: 'https://vd.mfitpersonal.com.br/267/mp4/267.mp4',
-  abdomInfra: 'https://vd.mfitpersonal.com.br/375/mp4/375.mp4',
-  prancha: 'https://vd.mfitpersonal.com.br/243/mp4/243.mp4',
-  agachSmith: 'https://vd.mfitpersonal.com.br/73/mp4/73.mp4',
-  corda: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/owhepr9y3xo_opt.mp4',
-  wallBall: 'yt:EqjGKsiIMCE',
-  sumoDeadliftHP: 'yt:7RwkiIjaFj4',
-  pushPress: 'yt:X6-DMh-t4nQ',
-  remadaCurvadaBarra: 'https://vd.mfitpersonal.com.br/217/mp4/217.mp4',
-  pushUps: 'https://vd.mfitpersonal.com.br/238/mp4/238.mp4',
-  alongOmbro: 'yt:_d7k-gNOxVE',
-};
+  abdomObliquo: 'https://vd.mfitpersonal.com.br/778/mp4/778.mp4',
+}
 
-// ─── Shared blocks ───
-const AQUEC_ARTICULAR = {
-  type: 'warmup', label: 'Aquecimento Articular',
-  title: 'Balanço + Giros', duration: '1x12 cada',
-  meta: '1 série de 12 repetições cada',
+// ─── Shared blocks (aquecimento / mobilidade / cardio / soltura) — iguais nos 3 dias ───
+const AQUEC_GERAL = {
+  type: 'warmup', label: 'Aquecimento',
+  title: 'Caminhada Leve + Giros de Braço', duration: '5 min + 1x12',
+  meta: 'Ativação geral leve, sem impacto na lombar',
   exercises: [
-    { name: 'Balanço Frontal das Pernas', muscle: 'Quadril / Pernas', duration: '1x12', equipment: 'Nenhum', tip: 'Segure em um apoio. Balance a perna para frente e para trás com controle. 12 cada lado.', video: V.balanco },
-    { name: 'Giros dos Braços', muscle: 'Ombros', duration: '1x12', equipment: 'Nenhum', tip: 'Braços estendidos, gire em círculos amplos. 12 para frente, 12 para trás.', video: V.giros },
+    { name: 'Esteira Caminhada (leve)', muscle: 'Cardiovascular', duration: '5 min', equipment: 'Esteira', tip: 'Caminhada leve e constante por 5 min só pra aquecer, sem inclinação forte. Postura ereta, sem curvar a lombar.', video: V.esteira },
+    { name: 'Giros dos Braços', muscle: 'Ombros', duration: '1x12', equipment: 'Nenhum', tip: 'Braços estendidos, gire em círculos amplos. 12 pra frente, 12 pra trás — aquece o ombro pro treino.', video: V.giros },
   ]
 };
 
-const AQUEC_MUSCULAR_A = {
-  type: 'warmup', label: 'Aquecimento Muscular',
-  title: 'Supino + Leg Press (leve)', duration: '2x20 cada',
-  meta: 'Carga leve — apenas para aquecer',
-  exercises: [
-    { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '2x20', equipment: 'Halteres + banco', tip: 'Carga leve — apenas para aquecer. Foco no movimento controlado.', video: V.supinoHalter },
-    { name: 'Leg Press 45° (leve)', muscle: 'Quadríceps', duration: '2x20', equipment: 'Máquina Leg Press', tip: 'Carga leve — apenas para aquecer. Amplitude normal sem forçar.', video: V.legPress },
-  ]
-};
-
-const AQUEC_MUSCULAR_B = {
-  type: 'warmup', label: 'Aquecimento Muscular',
-  title: 'Inclinação Frontal + Remada (leve)', duration: '1x15 cada',
-  meta: 'Carga leve — apenas para aquecer',
-  exercises: [
-    { name: 'Inclinação Frontal do Tronco c/ Halteres', muscle: 'Post. coxa / Lombar', duration: '1x15', equipment: 'Halteres', tip: 'Carga leve — apenas para aquecer. Desça o tronco controlando sem forçar a coluna.', video: V.bomDia },
-    { name: 'Remada Curvada (leve)', muscle: 'Costas', duration: '1x15', equipment: 'Halteres', tip: 'Carga leve — apenas para aquecer. Tronco inclinado, puxe os halteres em direção ao abdômen.', video: V.remadaCurvada },
-  ]
-};
-
-const AQUEC_MUSCULAR_C = {
-  type: 'warmup', label: 'Aquecimento Muscular',
-  title: 'Supino + Inclinação + Agachamento (leve)', duration: 'Leve',
-  meta: 'Carga leve — apenas para aquecer',
-  exercises: [
-    { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '2x20', equipment: 'Halteres + banco', tip: 'Carga leve — apenas para aquecer.', video: V.supinoHalter },
-    { name: 'Inclinação Frontal do Tronco c/ Halteres', muscle: 'Post. coxa', duration: '1x15', equipment: 'Halteres', tip: 'Carga leve — apenas para aquecer.', video: V.bomDia },
-    { name: 'Agachamento Livre sem Barra', muscle: 'Pernas', duration: '2x20', equipment: 'Nenhum (usar banco)', tip: 'Amplitude menor — sente no banco como referência. Sem barra. Controle a descida.', video: V.agachLivre },
-  ]
-};
-
-const MOBILIDADE_A = {
+const MOB_LOMBAR = {
   type: 'warmup', label: 'Mobilidade',
-  title: 'Alongamento Anterior', duration: '25s cada',
-  meta: 'Mantenha cada posição por 25 segundos',
+  title: 'Coluna + Flexor do Quadril (proteção da lombar)', duration: '30s cada',
+  meta: 'Mobilidade de coluna e quadril — protege a lombalgia antes de carregar',
   exercises: [
-    { name: 'Alongamento Peitoral', muscle: 'Peitoral', duration: '25s', equipment: 'Nenhum', tip: 'Alongue o peitoral por 25 segundos. Respire profundamente.', video: V.alongPeitoral },
-    { name: 'Alongamento de Coxa', muscle: 'Quadríceps', duration: '25s/lado', equipment: 'Nenhum', tip: 'Em pé, puxe o pé em direção ao glúteo. 25 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Alongamento Flexor do Quadril', muscle: 'Flexor do quadril', duration: '25s/lado', equipment: 'Nenhum', tip: 'Ajoelhada, avance uma perna à frente. Empurre o quadril para frente suavemente. 25 segundos cada lado.', video: V.alongFlexor },
-  ]
-};
-
-const MOBILIDADE_B = {
-  type: 'warmup', label: 'Mobilidade',
-  title: 'Hand to Toes + Glúteo', duration: '25 reps + 25s',
-  meta: '25 repetições + segurar embaixo',
-  exercises: [
-    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '25 reps + 20s', equipment: 'Nenhum', tip: '25 repetições tocando os pés, depois segure 20 segundos na posição inferior.', video: V.handToToes },
-    { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '25s/lado', equipment: 'Nenhum', tip: 'Deitada, cruze uma perna sobre a outra e puxe em direção ao peito. 25 segundos cada lado.', video: V.alongGluteos },
-  ]
-};
-
-const MOBILIDADE_C = {
-  type: 'warmup', label: 'Mobilidade',
-  title: 'Mobilidade Full Body', duration: '25s cada',
-  meta: 'Todos os alongamentos — 25 segundos cada',
-  exercises: [
-    { name: 'Alongamento Peitoral', muscle: 'Peitoral', duration: '25s', equipment: 'Nenhum', tip: 'Alongue o peitoral por 25 segundos.', video: V.alongPeitoral },
-    { name: 'Alongamento de Coxa', muscle: 'Quadríceps', duration: '25s/lado', equipment: 'Nenhum', tip: 'Em pé, puxe o pé em direção ao glúteo. 25 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '25 reps + 20s', equipment: 'Nenhum', tip: '25 repetições tocando os pés, depois segure 20 segundos na posição inferior.', video: V.handToToes },
-    { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '25s/lado', equipment: 'Nenhum', tip: 'Deitada, cruze uma perna sobre a outra e puxe em direção ao peito.', video: V.alongGluteos },
-  ]
-};
-
-const ALONG_FINAL_A = {
-  type: 'warmup', label: 'Alongamento Final',
-  title: 'Alongamento Anterior', duration: '10s cada',
-  meta: '10 segundos cada alongamento',
-  exercises: [
-    { name: 'Alongamento Peitoral', muscle: 'Peitoral', duration: '10s', equipment: 'Nenhum', tip: '10 segundos. Alongue e relaxe.', video: V.alongPeitoral },
-    { name: 'Alongamento de Coxa', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Alongamento Flexor do Quadril', muscle: 'Flexor do quadril', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongFlexor },
-  ]
-};
-
-const ALONG_FINAL_B = {
-  type: 'warmup', label: 'Alongamento Final',
-  title: 'Alongamento Posterior', duration: '10s cada',
-  meta: '10 segundos cada alongamento',
-  exercises: [
-    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '10s', equipment: 'Nenhum', tip: '10 segundos na posição inferior.', video: V.handToToes },
-    { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongGluteos },
-  ]
-};
-
-const ALONG_FINAL_C = {
-  type: 'warmup', label: 'Alongamento Final',
-  title: 'Alongamento Full Body', duration: '10s cada',
-  meta: '10 segundos cada alongamento',
-  exercises: [
-    { name: 'Alongamento Peitoral', muscle: 'Peitoral', duration: '10s', equipment: 'Nenhum', tip: '10 segundos.', video: V.alongPeitoral },
-    { name: 'Alongamento de Coxa', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '10s', equipment: 'Nenhum', tip: '10 segundos na posição.', video: V.handToToes },
-    { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongGluteos },
-  ]
-};
-
-const MAXLIFT_BT = {
-  type: 'warmup', label: 'Aula MaxLift',
-  title: 'MaxLift Mix 2 — Bíceps e Tríceps', duration: '~10 min',
-  exercises: [
-    { name: 'MaxLift Mix 2 – Bíceps e Tríceps', muscle: 'Bíceps / Tríceps', duration: '~10 min', equipment: 'Aula em vídeo', tip: 'Siga o vídeo MaxLift Mix 2. Foco em bíceps e tríceps com ritmo da aula.', video: V.maxlift2bt },
+    { name: 'Alongamento de Coluna', muscle: 'Coluna / Lombar', duration: '1x30s', equipment: 'Colchonete', tip: 'De quatro apoios, alterne arquear e arredondar as costas devagar (gato-camelo), respirando. Solta a lombar sem forçar.', video: V.alongColuna },
+    { name: 'Alongamento de Flexor do Quadril', muscle: 'Quadril', duration: '1x30s/lado', equipment: 'Colchonete', tip: 'Em afundo, joelho de trás apoiado, empurre o quadril à frente até sentir a frente da coxa/quadril alongar. 30s cada lado — quadril solto tira carga da lombar.', video: V.alongFlexor },
   ]
 };
 
 const CARDIO_BIKE = {
-  type: 'cardio', label: 'Cardio',
+  type: 'cardio', label: 'Cardio / Aeróbico',
   title: 'Bike', duration: '20 min',
-  meta: '20 minutos em ritmo moderado',
+  meta: 'Bike (sem impacto — protege lombar/joelho) · zona moderada · emagrecimento',
   exercises: [
-    { name: 'Bike', muscle: 'Cardiovascular', duration: '20 min', equipment: 'Bike ergométrica', tip: 'Ritmo moderado. Mantenha a frequência cardíaca elevada.', video: V.bike },
+    { name: 'Bike', muscle: 'Cardiovascular', duration: '20 min', equipment: 'Bike ergométrica', tip: 'Ritmo moderado e constante por 20 min. Bike em vez de corrida pra não dar impacto na lombar. Postura ereta, sem afundar as costas.', video: V.bike },
   ]
 };
 
-// ─── Treino A — Anterior (Peito / Coxa / Adutores / Tríceps / Ombro) ───
-const MAXLIFT_POSTERIOR_BUNNY = {
-  type: 'warmup', label: 'MaxLift',
-  title: 'MaxLift Posteriores — Bunny', duration: '~12 min',
+const ALONG_FINAL = {
+  type: 'warmup', label: 'Alongamento Final',
+  title: 'Glúteos + Posterior/Coluna', duration: '20s cada',
+  meta: '20 segundos cada, respirando fundo — relaxa a lombar',
   exercises: [
-    { name: 'MaxLift Posteriores — Bunny', muscle: 'Posterior / Glúteos / Cardio', duration: '~12 min', equipment: 'Aula em vídeo', tip: 'Peça oficial do ciclo. Se o joelho incomodar em alguma passagem, reduz amplitude e mantém o ritmo.', video: 'https://player.mediadelivery.net/play/618688/a50663fb-48ea-4802-925f-d4f60f71edd4' },
+    { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '20s/lado', equipment: 'Colchonete', tip: 'Deitada, cruze o tornozelo sobre o joelho oposto e puxe a coxa em direção ao peito. 20s cada lado — alivia a lombar.', video: V.alongGluteos },
+    { name: 'Alongamento de Posterior e Coluna', muscle: 'Posterior / Coluna', duration: '20s', equipment: 'Colchonete', tip: 'Sentada com as pernas à frente, incline o tronco com a coluna longa em direção aos pés, sem forçar. Segure e respire.', video: V.alongPostColuna },
   ]
 };
 
+// ─── Treino A — Full Body (Ciclo 2: peito/costas em máquina/polia · ombro só posterior) ───
 const TREINO_A = [
-  AQUEC_ARTICULAR,
-  AQUEC_MUSCULAR_A,
-  MOBILIDADE_A,
+  AQUEC_GERAL,
+  MOB_LOMBAR,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Supino Reto ↔ Puxada Frontal', duration: '4x12 · Sem descanso',
-    meta: 'Superior completo com foco em performance',
+    title: 'Leg Press 45 ↔ Prancha Isométrica', duration: '3x12 + 30s',
+    meta: 'MMII + core — máquina + peso do corpo ao lado (ancorado)',
     exercises: [
-      { name: 'Supino Reto com Barra', muscle: 'Peitoral / Tríceps', duration: '4x12', equipment: 'Barra + banco', tip: 'Antebraços verticais e pegada confortável. Cotovelos protegidos.', video: V.supinoBarra },
-      { name: 'Puxada Frontal', muscle: 'Costas', duration: '4x12', equipment: 'Puxador', tip: 'Puxa até o peito e fecha escápulas.', video: V.puxadaFrontal },
+      { name: 'Leg Press 45', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press 45°', tip: 'Amplitude confortável, empurre pelo calcanhar sem travar o joelho. Lombar e quadril colados no encosto.', video: V.legPress45 },
+      { name: 'Prancha Isométrica', muscle: 'Core / Abdômen', duration: '3x30s', equipment: 'Colchonete (ao lado)', tip: 'Antebraços no chão, corpo alinhado, abdômen firme, lombar neutra. 30s. No colchonete ao lado.', video: V.prancha },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Desenvolvimento Halteres ↔ Remada Baixa', duration: '4x12 · Sem descanso',
-    meta: 'Ombro + costas para reforçar parte superior',
+    title: 'Supino na Polia Sentado ↔ Abdominal Dead Bug', duration: '3x12 · Sem descanso no par',
+    meta: 'Peito (ombro-safe) + core — polia + peso do corpo ao lado',
     exercises: [
-      { name: 'Desenvolvimento com Halteres', muscle: 'Ombros', duration: '4x12', equipment: 'Halteres + banco', tip: 'Banco apoiado. Desça controlando e sobe sem travar.', video: V.desenvHalteres },
-      { name: 'Remada Baixa', muscle: 'Costas (meio)', duration: '4x12', equipment: 'Puxador baixo', tip: 'Puxa na direção do abdômen, sem jogar o tronco.', video: V.remadaBaixa },
+      { name: 'Supino na Polia Sentado', muscle: 'Peitoral', duration: '3x12', equipment: 'Polia (banco sentado)', tip: 'Ombro D: empurre à frente na linha do PEITO (abaixo do ombro), sem abrir demais o cotovelo pra trás — amplitude reduzida, sem forçar o supraespinhal. Costas apoiadas.', video: V.supinoPolia },
+      { name: 'Abdominal Dead Bug', muscle: 'Core / Estabilização', duration: '3x10/lado', equipment: 'Colchonete (ao lado)', tip: 'Braços e joelhos pro teto, estenda braço e perna opostos com a lombar colada no chão. Melhor core pra lombar (sem flexão com carga).', video: V.deadBug },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3',
-    title: 'Elevação Lateral ↔ Prancha', duration: '3x15/30s · Sem descanso',
-    meta: 'Acabamento de ombro + core',
+    title: 'Puxada Neutra (Triângulo) ↔ Prancha Isométrica Lateral', duration: '3x12 · Sem descanso no par',
+    meta: 'Costas (pegada neutra, ombro-safe) + core — puxador + peso do corpo ao lado',
     exercises: [
-      { name: 'Elevação Lateral', muscle: 'Ombros', duration: '3x15', equipment: 'Halteres', tip: 'Sobe até a linha dos ombros e desce controlando.', video: V.elevLateral },
-      { name: 'Prancha', muscle: 'Core / Abdômen', duration: '3x30s', equipment: 'Colchonete', tip: 'Corpo reto. Abdômen firme o tempo todo.', video: V.prancha },
+      { name: 'Puxada Neutra (Triângulo)', muscle: 'Costas (dorsal)', duration: '3x12', equipment: 'Máquina puxada (triângulo)', tip: 'Ombro D: pegada NEUTRA (triângulo) é mais amigável ao ombro. Puxe ao peito levando os cotovelos pra baixo, sem passar da linha do queixo. Tronco firme, sem jogar pra trás.', video: V.puxadaNeutra },
+      { name: 'Prancha Isométrica Lateral', muscle: 'Core / Oblíquos', duration: '3x20s/lado', equipment: 'Colchonete (ao lado)', tip: 'Apoio no antebraço e no pé, quadril elevado. 20s cada lado. Estabiliza a lombar.', video: V.pranchaLateral },
     ]
   },
-  ALONG_FINAL_A,
+  {
+    type: 'lift', label: 'Bi-Set 4',
+    title: 'Mesa Flexora ↔ Abdominal Infra', duration: '3x12 · Sem descanso no par',
+    meta: 'Posterior de coxa + core — máquina + peso do corpo ao lado',
+    exercises: [
+      { name: 'Mesa Flexora', muscle: 'Posterior de Coxa', duration: '3x12', equipment: 'Máquina mesa flexora (deitada)', tip: 'Deitada de bruços na mesa, flexione o joelho puxando o calcanhar ao glúteo e volte controlado. Quadril apoiado — sem arquear a lombar.', video: V.mesaFlexora },
+      { name: 'Abdominal Infra', muscle: 'Core / Abdômen inferior', duration: '3x12', equipment: 'Colchonete (ao lado)', tip: 'Joelhos flexionados subindo ao peito, contração baixa do abdômen, sem embalo. Peso do corpo só.', video: V.abdomInfra },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 5 · Ombro seguro',
+    title: 'Crucifixo Inverso Máquina ↔ Abdominal Supra', duration: '3x15 · Sem descanso no par',
+    meta: 'Ombro posterior (rotador — ombro-safe) + core — máquina + peso do corpo ao lado',
+    exercises: [
+      { name: 'Crucifixo Inverso Máquina', muscle: 'Ombro posterior (deltoide post.)', duration: '3x15', equipment: 'Máquina (peito apoiado)', tip: 'Ombro D: abre os braços pra trás na LINHA DO OMBRO (nunca acima), peito apoiado na almofada. Trabalha o deltoide posterior/rotador — fortalece sem provocar o supraespinhal.', video: V.crucifixoInvMaq },
+      { name: 'Abdominal Supra', muscle: 'Core / Abdômen', duration: '3x15', equipment: 'Colchonete (ao lado)', tip: 'Suba contraindo o abdômen sem puxar o pescoço, amplitude curta. Peso do corpo só.', video: V.abdomSupra },
+    ]
+  },
+  CARDIO_BIKE,
+  ALONG_FINAL,
 ];
 
+// ─── Treino B — Full Body (Ciclo 2: costas polia · adutor · face pull ombro-safe) ───
 const TREINO_B = [
-  AQUEC_ARTICULAR,
-  AQUEC_MUSCULAR_B,
-  MOBILIDADE_B,
+  AQUEC_GERAL,
+  MOB_LOMBAR,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Hip Thrust ↔ Cadeira Flexora', duration: '4x12 · Sem descanso',
-    meta: 'Glúteo/posterior pesado com controle total',
+    title: 'Cadeira Extensora ↔ Prancha Isométrica', duration: '3x12 + 30s',
+    meta: 'Quadríceps + core — máquina + peso do corpo ao lado',
     exercises: [
-      { name: 'Elevação Pélvica (Hip Thrust)', muscle: 'Glúteos', duration: '4x12', equipment: 'Banco + barra', tip: 'Segura 1s no topo e desce controlando.', video: V.hipThrust },
-      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '4x12', equipment: 'Máquina flexora', tip: 'Controle total da volta. Não deixa o peso cair.', video: V.cadeiraFlexora },
+      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12', equipment: 'Máquina extensora', tip: 'Estenda controlado e volte devagar, sem chutar. Costas apoiadas no encosto.', video: V.cadeiraExt },
+      { name: 'Prancha Isométrica', muscle: 'Core / Abdômen', duration: '3x30s', equipment: 'Colchonete (ao lado)', tip: 'Antebraços no chão, corpo alinhado, abdômen firme, lombar neutra. 30s.', video: V.prancha },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Glúteos Coice ↔ Abdução Máquina', duration: '4x12-15 · Sem descanso',
-    meta: 'Glúteos em duas angulações',
+    title: 'Remada Baixa na Polia ↔ Prancha Isométrica Lateral', duration: '3x12 · Sem descanso no par',
+    meta: 'Costas + core — polia + peso do corpo ao lado (ancorado)',
     exercises: [
-      { name: 'Glúteos Coice na Polia', muscle: 'Glúteos', duration: '4x12 (cada lado)', equipment: 'Polia + caneleira', tip: 'Sem compensar na lombar. Movimento limpo.', video: V.gluteosCoice },
-      { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio / Abdutores', duration: '4x15', equipment: 'Máquina abdutora', tip: 'Abre controlando e segura 1s na contração.', video: V.abdQuadril },
+      { name: 'Remada Baixa na Polia', muscle: 'Costas (dorsal/meio)', duration: '3x12', equipment: 'Polia baixa (triângulo)', tip: 'Sentada, COLUNA NEUTRA e firme (sem curvar nem jogar o tronco). Puxe o triângulo ao abdômen fechando as escápulas — pegada neutra, cotovelo rente ao corpo (ombro-safe). Movimento só dos braços — protege a lombar.', video: V.remadaBaixa },
+      { name: 'Prancha Isométrica Lateral', muscle: 'Core / Oblíquos', duration: '3x20s/lado', equipment: 'Colchonete (ao lado)', tip: 'Apoio no antebraço e no pé, quadril elevado. 20s cada lado.', video: V.pranchaLateral },
     ]
   },
-  MAXLIFT_POSTERIOR_BUNNY,
-  ALONG_FINAL_B,
+  {
+    type: 'lift', label: 'Bi-Set 3',
+    title: 'Cadeira Adutora ↔ Abdominal Dead Bug', duration: '3x15 · Sem descanso no par',
+    meta: 'Adutor + core — máquina + peso do corpo ao lado',
+    exercises: [
+      { name: 'Cadeira Adutora', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Feche as pernas contra a resistência contraindo a parte interna da coxa. Segure 1s. Tronco apoiado no encosto.', video: V.cadeiraAdutora },
+      { name: 'Abdominal Dead Bug', muscle: 'Core / Estabilização', duration: '3x10/lado', equipment: 'Colchonete (ao lado)', tip: 'Braço e perna opostos com a lombar colada no chão. Alterna. Sem flexão de tronco com carga.', video: V.deadBug },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 4',
+    title: 'Glúteos Coice na Polia ↔ Abdominal Oblíquo', duration: '3x15 · Sem descanso no par',
+    meta: 'Glúteo + core oblíquo — polia + peso do corpo ao lado',
+    exercises: [
+      { name: 'Glúteos Coice na Polia', muscle: 'Glúteos', duration: '3x15/lado', equipment: 'Polia baixa (caneleira)', tip: 'Caneleira no tornozelo, tronco levemente à frente e firme, chute a perna pra trás contraindo o glúteo. O movimento é do quadril — sem arquear a lombar.', video: V.gluteoCoice },
+      { name: 'Abdominal Oblíquo Alternado', muscle: 'Core / Oblíquos', duration: '3x12/lado', equipment: 'Colchonete (ao lado)', tip: 'Leve o cotovelo ao joelho oposto alternando, sem puxar o pescoço. Peso do corpo só.', video: V.abdomObliquo },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 5 · Ombro seguro',
+    title: 'Face Pull na Polia ↔ Abdominal Infra', duration: '3x15 · Sem descanso no par',
+    meta: 'Ombro posterior/rotador (ombro-safe) + core — polia + peso do corpo ao lado',
+    exercises: [
+      { name: 'Face Pull na Polia', muscle: 'Ombro posterior / Rotadores', duration: '3x15', equipment: 'Polia (corda, altura do rosto)', tip: 'Ombro D: puxe a corda em direção ao ROSTO abrindo os cotovelos na linha do ombro, girando os punhos pra fora. Fortalece o manguito rotador — é amigo da tendinite, desde que sem dor. Sem passar acima da cabeça.', video: V.facePull },
+      { name: 'Abdominal Infra', muscle: 'Core / Abdômen inferior', duration: '3x12', equipment: 'Colchonete (ao lado)', tip: 'Joelhos flexionados ao peito, contração baixa do abdômen. Peso do corpo só.', video: V.abdomInfra },
+    ]
+  },
+  CARDIO_BIKE,
+  ALONG_FINAL,
 ];
 
+// ─── Treino C — Full Body (Ciclo 2: glúteo/panturrilha + peito polia) ───
 const TREINO_C = [
-  {
-    type: 'warmup', label: 'Cardio',
-    title: 'Bike', duration: '25 min',
-    meta: 'Cardio contínuo — base de condicionamento',
-    exercises: [
-      { name: 'Bike Spinning', muscle: 'Cardiovascular', duration: '25 min', equipment: 'Bike', tip: 'Ritmo moderado a forte, mas sem perder o fôlego por completo.', video: V.bike },
-    ]
-  },
+  AQUEC_GERAL,
+  MOB_LOMBAR,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Abdominal Supra ↔ Abdominal Infra', duration: '4x15 · Sem descanso',
-    meta: 'Core forte para postura e performance',
+    title: 'Leg Press Horizontal ↔ Prancha Isométrica', duration: '3x12 + 30s',
+    meta: 'MMII + core — máquina + peso do corpo ao lado',
     exercises: [
-      { name: 'Abdominal Supra', muscle: 'Abdômen', duration: '4x15', equipment: 'Colchonete', tip: 'Sobe contraindo o abdômen, sem puxar o pescoço.', video: V.abdomSupra },
-      { name: 'Abdominal Infra', muscle: 'Abdômen inferior', duration: '4x15', equipment: 'Colchonete / banco', tip: 'Suba as pernas com controle, sem embalar.', video: V.abdomInfra },
+      { name: 'Leg Press Horizontal', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press', tip: 'Amplitude confortável, empurre pelo calcanhar sem travar o joelho. Tronco apoiado no encosto — lombar protegida.', video: V.legPress },
+      { name: 'Prancha Isométrica', muscle: 'Core / Abdômen', duration: '3x30s', equipment: 'Colchonete (ao lado)', tip: 'Antebraços no chão, corpo alinhado, abdômen firme, lombar neutra. 30s.', video: V.prancha },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Prancha ↔ Glúteos 4 Apoios', duration: '3x30s/15 · Sem descanso',
-    meta: 'Core + glúteo para fechar sem impacto',
+    title: 'Supino na Polia Sentado ↔ Abdominal Dead Bug', duration: '3x12 · Sem descanso no par',
+    meta: 'Peito (ombro-safe) + core — polia + peso do corpo ao lado',
     exercises: [
-      { name: 'Prancha', muscle: 'Core', duration: '3x30s', equipment: 'Colchonete', tip: 'Ativa abdômen e glúteos o tempo inteiro.', video: V.prancha },
-      { name: 'Glúteos 4 Apoios', muscle: 'Glúteos', duration: '3x15 (cada lado)', equipment: 'Colchonete', tip: 'Sobe a perna controlando, sem arquear a lombar.', video: V.gluteos4apoios },
-    ]
-  },
-  ALONG_FINAL_C,
-];
-
-const TREINO_D = [
-  AQUEC_ARTICULAR,
-  AQUEC_MUSCULAR_A,
-  MOBILIDADE_A,
-  {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Leg Press ↔ Cadeira Extensora', duration: '4x12 · Sem descanso',
-    meta: 'Quadríceps/glúteo adaptado para condromalacia',
-    exercises: [
-      { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '4x12', equipment: 'Leg Press', tip: 'Amplitude até ~90°. Sem travar joelhos.', video: V.legPress },
-      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '4x12', equipment: 'Máquina extensora', tip: 'Amplitude controlada e sem dor no joelho.', video: V.cadeiraExt },
+      { name: 'Supino na Polia Sentado', muscle: 'Peitoral', duration: '3x12', equipment: 'Polia (banco sentado)', tip: 'Ombro D: empurre à frente na linha do peito (abaixo do ombro), amplitude reduzida, sem forçar o supraespinhal. Costas apoiadas.', video: V.supinoPolia },
+      { name: 'Abdominal Dead Bug', muscle: 'Core / Estabilização', duration: '3x10/lado', equipment: 'Colchonete (ao lado)', tip: 'Braço e perna opostos com a lombar colada no chão. Alterna.', video: V.deadBug },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 2',
-    title: 'Agachamento Smith ↔ Abdução Máquina', duration: '3x12-15 · Sem descanso',
-    meta: 'Quadríceps e glúteos com estabilidade',
+    type: 'lift', label: 'Bi-Set 3',
+    title: 'Abdução de Quadril ↔ Prancha Isométrica Lateral', duration: '3x15 · Sem descanso no par',
+    meta: 'Glúteo médio + core — máquina + peso do corpo ao lado',
     exercises: [
-      { name: 'Agachamento no Smith', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Smith Machine', tip: 'Desce só até onde o joelho aceita bem. Movimento controlado.', video: V.agachSmith },
-      { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio / Abdutores', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abre com controle, sem embalo.', video: V.abdQuadril },
-    ]
-  },
-  ALONG_FINAL_A,
-];
-
-const TREINO_E = [
-  AQUEC_ARTICULAR,
-  {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Supino Halteres ↔ Remada Curvada Barra', duration: '3x12 · Sem descanso',
-    meta: 'Upper forte para fechar a semana',
-    exercises: [
-      { name: 'Supino Reto com Halteres', muscle: 'Peitoral / Tríceps', duration: '3x12', equipment: 'Halteres + banco', tip: 'Desce controlando sem fechar demais os cotovelos.', video: V.supinoHalter },
-      { name: 'Remada Curvada com Barra', muscle: 'Costas', duration: '3x12', equipment: 'Barra', tip: 'Tronco firme e escápulas fechando no final.', video: V.remadaCurvadaBarra },
+      { name: 'Abdução de Quadril (Máquina)', muscle: 'Glúteo médio', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abra as pernas contra o apoio contraindo o glúteo, volte controlado. Tronco firme no encosto.', video: V.abducao },
+      { name: 'Prancha Isométrica Lateral', muscle: 'Core / Oblíquos', duration: '3x20s/lado', equipment: 'Colchonete (ao lado)', tip: 'Apoio no antebraço e no pé, quadril elevado. 20s cada lado.', video: V.pranchaLateral },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 2',
-    title: 'Tríceps Corda ↔ Rosca Direta', duration: '3x15 · Sem descanso',
-    meta: 'Braços + densidade metabólica',
+    type: 'lift', label: 'Bi-Set 4',
+    title: 'Panturrilha Sentada Máquina ↔ Abdominal Infra', duration: '3x15 · Sem descanso no par',
+    meta: 'Panturrilha + core — máquina + peso do corpo ao lado',
     exercises: [
-      { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x15', equipment: 'Polia + corda', tip: 'Cotovelos fixos e extensão completa.', video: V.tricepsCorda },
-      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3x15', equipment: 'Halteres', tip: 'Sem embalar o tronco. Controle na descida.', video: V.roscaDireta },
+      { name: 'Panturrilha Sentada Máquina', muscle: 'Panturrilha (sóleo)', duration: '3x15', equipment: 'Máquina panturrilha sentada', tip: 'Joelhos sob a almofada, estenda e contraia a panturrilha na amplitude total, subindo na ponta dos pés. Segure 1s no topo.', video: V.panturrilhaSentada },
+      { name: 'Abdominal Infra', muscle: 'Core / Abdômen inferior', duration: '3x12', equipment: 'Colchonete (ao lado)', tip: 'Joelhos flexionados ao peito, contração baixa do abdômen. Peso do corpo só.', video: V.abdomInfra },
     ]
   },
   {
-    type: 'cardio', label: 'Metabólico',
-    title: 'Bike', duration: '12 min',
-    meta: 'Fechamento intenso e sem impacto',
+    type: 'lift', label: 'Bi-Set 5 · Ombro seguro',
+    title: 'Crucifixo Inverso Máquina ↔ Abdominal Supra', duration: '3x15 · Sem descanso no par',
+    meta: 'Ombro posterior (rotador — ombro-safe) + core — máquina + peso do corpo ao lado',
     exercises: [
-      { name: 'Bike Spinning', muscle: 'Cardiovascular', duration: '12 min', equipment: 'Bike', tip: 'Ritmo forte, mas sem perder a técnica.', video: V.bike },
+      { name: 'Crucifixo Inverso Máquina', muscle: 'Ombro posterior (deltoide post.)', duration: '3x15', equipment: 'Máquina (peito apoiado)', tip: 'Ombro D: abre os braços pra trás na linha do ombro (nunca acima), peito apoiado. Deltoide posterior/rotador — sem provocar o supraespinhal.', video: V.crucifixoInvMaq },
+      { name: 'Abdominal Supra', muscle: 'Core / Abdômen', duration: '3x15', equipment: 'Colchonete (ao lado)', tip: 'Suba contraindo o abdômen sem puxar o pescoço, amplitude curta. Peso do corpo só.', video: V.abdomSupra },
     ]
   },
-  ALONG_FINAL_C,
+  CARDIO_BIKE,
+  ALONG_FINAL,
 ];
 
 const TRAINING_SLOTS = [
-  { label: 'Treino A — Superior + Core', blocks: TREINO_A },
-  { label: 'Treino B — Glúteo/Posterior', blocks: TREINO_B },
-  { label: 'Treino C — Cardio + Abdômen', blocks: TREINO_C },
-  { label: 'Treino D — Quadríceps/Glúteo', blocks: TREINO_D },
-  { label: 'Treino E — Upper + Metabólico', blocks: TREINO_E },
+  { label: 'Treino A — Full Body', blocks: TREINO_A },
+  { label: 'Treino B — Full Body', blocks: TREINO_B },
+  { label: 'Treino C — Full Body', blocks: TREINO_C },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-const DAY_CONFIG_KEY = 'maxresults-clara-days-v1';
-const DEFAULT_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
-
-function getMonday(d) {
-  const dt = new Date(d);
-  const day = dt.getDay();
-  const diff = dt.getDate() - day + (day === 0 ? -6 : 1);
-  return new Date(dt.setDate(diff));
-}
-
-function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
-function buildWeek() {
-  const monday = getMonday(new Date());
-  return WEEK_SCHEDULE.map((s, i) => {
-    const dt = new Date(monday);
-    dt.setDate(monday.getDate() + i);
-    const dateStr = dt.getFullYear() + '-' + pad(dt.getMonth()+1) + '-' + pad(dt.getDate());
-    const entry = {
-      day: s.dayName,
-      date: dateStr,
-      num: dt.getDate(),
-      rest: s.rest,
-      label: s.label,
-    };
-    if (s.blocks) entry.blocks = s.blocks;
-    return entry;
-  });
-}
+const DAY_CONFIG_KEY = 'maxresults-teste3-days-v1';
+const DEFAULT_DAYS = ['Seg', 'Qua', 'Sex'];
 
 function loadDayConfig() {
   try { return JSON.parse(localStorage.getItem(DAY_CONFIG_KEY)) || DEFAULT_DAYS; }
@@ -713,8 +589,8 @@ function buildSchedule() {
   const chosen = loadDayConfig();
   let slotIdx = 0;
   return ALL_DAYS.map(day => {
-    if (chosen.includes(day) && slotIdx < TRAINING_SLOTS.length) {
-      const slot = TRAINING_SLOTS[slotIdx++];
+    if (chosen.includes(day)) {
+      const slot = TRAINING_SLOTS[slotIdx++ % TRAINING_SLOTS.length];
       return { dayName: day, rest: false, label: slot.label, blocks: slot.blocks };
     }
     return { dayName: day, rest: true, label: 'Descanso' };
@@ -731,7 +607,7 @@ function getWeekKey() {
 }
 
 
-const STORAGE_KEY = 'maxresults-clara-' + getWeekKey() + '-v1';
+const STORAGE_KEY = 'maxresults-teste3-' + getWeekKey() + '-v1';
 let currentDayIndex = 0;
 let completedExercises = loadProgress();
 
@@ -772,7 +648,7 @@ function renderWorkout() {
   document.getElementById('headerDate').textContent = document.getElementById('weekBadge')?.textContent || '';
   if (day.rest) { content.innerHTML = `<div class="rest-message"><h2>Dia de Descanso 😴</h2><p>Recuperação é parte do treino. Alongue e descanse.</p></div>`; document.getElementById('sessionComplete').classList.remove('visible'); return; }
 
-  content.innerHTML = `<div class="elbow-alert">⚠️ <strong>Condromalacia Patelar</strong> — Amplitude controlada nos exercícios de perna (~90°). Não travar joelhos na extensão. Se sentir dor, <em>pare imediatamente</em> e avise o Luisão.</div>` + day.blocks.map((block, bi) => {
+  content.innerHTML = day.blocks.map((block, bi) => {
     const doneCount = block.exercises.filter((_, ei) => completedExercises[exerciseKey(currentDayIndex, bi, ei)]).length;
     const total = block.exercises.length;
     const blockDone = doneCount === total;
@@ -818,35 +694,24 @@ function renderWorkout() {
 function playVideo(e, url) {
   // OneDrive links: let them open in new tab normally
   if (url.includes('1drv.ms') || url.includes('onedrive')) {
+    // Don't prevent default - let the link open
     return;
   }
   e.preventDefault();
   const overlay = document.getElementById('videoOverlay');
   const player = document.getElementById('videoPlayer');
   const ytPlayer = document.getElementById('ytPlayer');
-  const isYoutube = url.startsWith('yt:');
-  const isBunny = url.includes('player.mediadelivery.net/play/');
-
-  player.pause();
-  player.src = '';
-  ytPlayer.src = '';
-
-  if (isYoutube) {
+  if (url.startsWith('yt:')) {
     ytPlayer.src = `https://www.youtube.com/embed/${url.slice(3)}?autoplay=1`;
-    ytPlayer.style.display = 'block';
-    player.style.display = 'none';
-  } else if (isBunny) {
-    var _bunny = url.replace('player.mediadelivery.net/play/','iframe.mediadelivery.net/embed/').replace('iframe.mediadelivery.net/play/','iframe.mediadelivery.net/embed/');
-    ytPlayer.src = _bunny + (_bunny.includes('?') ? '&' : '?') + 'autoplay=true';
-    ytPlayer.style.display = 'block';
-    player.style.display = 'none';
+    ytPlayer.style.display = 'block'; player.style.display = 'none';
+  } else if (url.includes('mediadelivery.net')) {
+    var embed = url.replace('player.mediadelivery.net/play/', 'iframe.mediadelivery.net/embed/').replace('iframe.mediadelivery.net/play/', 'iframe.mediadelivery.net/embed/');
+    ytPlayer.src = embed + (embed.indexOf('?') >= 0 ? '&' : '?') + 'autoplay=true';
+    ytPlayer.style.display = 'block'; player.style.display = 'none';
   } else {
-    player.src = url;
-    player.style.display = 'block';
-    ytPlayer.style.display = 'none';
-    player.play().catch(err => {
+    player.src = url; player.style.display = 'block'; ytPlayer.style.display = 'none'; player.play().catch(err => {
       console.error('Error playing video:', err);
-      window.open(url, '_blank', 'noopener');
+      alert('Erro ao carregar o vídeo. Tente abrir em nova aba.');
     });
   }
   overlay.classList.add('active');
@@ -926,13 +791,13 @@ function closeDayModal() { document.getElementById('dayModal').classList.remove(
 function limitDaySelection() {
   const checked = document.querySelectorAll('#dayOptions input:checked');
   const unchecked = document.querySelectorAll('#dayOptions input:not(:checked)');
-  unchecked.forEach(cb => cb.disabled = checked.length >= 5);
+  unchecked.forEach(cb => cb.disabled = checked.length >= 3);
 }
 
 function saveDayConfig() {
   const checked = [...document.querySelectorAll('#dayOptions input:checked')].map(cb => cb.value);
   if (checked.length < 1) { alert('Selecione pelo menos 1 dia!'); return; }
-  if (checked.length > 5) { alert('Máximo 5 dias!'); return; }
+  if (checked.length > 4) { alert('Máximo 4 dias!'); return; }
   localStorage.setItem(DAY_CONFIG_KEY, JSON.stringify(checked));
   WEEK_SCHEDULE = buildSchedule();
   WEEK = buildWeek();
@@ -942,7 +807,7 @@ function saveDayConfig() {
 }
 
 // ─── Finish Workout (partial) ───
-const FINISH_KEY = 'maxresults-clara-finished-v1';
+const FINISH_KEY = 'maxresults-teste3-finished-v1';
 
 function loadFinished() { try { return JSON.parse(localStorage.getItem(FINISH_KEY)||'{}'); } catch { return {}; } }
 
@@ -1032,8 +897,8 @@ function updateFinishButton() {
   }
 }
 
-const LOAD_KEY = 'maxresults-clara-loads-v1';
-const REST_KEY = 'maxresults-clara-rest-v1';
+const LOAD_KEY = 'maxresults-teste3-loads-v1';
+const REST_KEY = 'maxresults-teste3-rest-v1';
 function loadLoads() { try { return JSON.parse(localStorage.getItem(LOAD_KEY)||'{}'); } catch { return {}; } }
 function saveLoad(input) { const loads=loadLoads(); const k=input.dataset.loadKey; input.value.trim() ? loads[k]=input.value.trim() : delete loads[k]; localStorage.setItem(LOAD_KEY, JSON.stringify(loads)); }
 function restoreLoads() { const loads=loadLoads(); document.querySelectorAll('.load-input').forEach(i => { const k=i.dataset.loadKey; if (loads[k]) i.value=loads[k]; }); }
@@ -1065,34 +930,8 @@ setTimeout(() => document.getElementById('workoutContent').classList.remove('ini
 // ─── Assessment ───
 const ASSESSMENTS = [];
 
-const ASSESSMENT = {
-  date: '11/12/2025',
-  protocol: 'Pollock, 1984 — 7 Dobras',
-  nextAssessment: '11/03/2026 (vencida)',
-  basics: { age: 56, height: 153, weight: 53.15 },
-  perimetry: [
-    { label: 'Ombro', value: 98.5 }, { label: 'Tórax', value: 89 },
-    { label: 'Braço Esq.', value: 28.5 }, { label: 'Braço Dir.', value: 28.5 },
-    { label: 'Cintura', value: 75.5 }, { label: 'Abdômen', value: 88 },
-    { label: 'Quadril', value: 90 },
-    { label: 'Coxa Esq.', value: 48 }, { label: 'Coxa Dir.', value: 48 },
-    { label: 'Perna Esq.', value: 34 }, { label: 'Perna Dir.', value: 34 },
-  ],
-  skinfolds: [
-    { label: 'Tricipital', value: 13.5 }, { label: 'Subescapular', value: 17 },
-    { label: 'Supra-ilíaca', value: 13.3 }, { label: 'Peitoral', value: 6.2 },
-    { label: 'Axilar Média', value: 14.5 }, { label: 'Abdominal', value: 22 },
-    { label: 'Coxa', value: 18 },
-  ],
-  results: {
-    imc: { value: 22.71, classification: 'Peso normal' },
-    idealFat: 20, fatPercent: 28.0, leanPercent: 72.0,
-    leanMass: 38.27, fatMass: 14.88, idealWeight: 50,
-    sumSkinfolds: 104.5,
-  },
-  objective: 'Emagrecimento e definição muscular',
-  emphasis: 'Abdômen e glúteos',
-};
+// Aluno fictício de teste — sem avaliação física coletada. Painel mostra "pendente".
+const ASSESSMENT = null;
 
 function renderAssessment(a) {
   const r = a.results;
@@ -1189,8 +1028,8 @@ document.getElementById('assessPanel').innerHTML = ASSESSMENT ? renderAssessment
 document.getElementById('assessToggle').addEventListener('click', function() { this.classList.toggle('open'); document.getElementById('assessPanel').classList.toggle('open'); });
 
 // ─── Session Timer ───
-const TIMER_KEY = 'maxresults-clara-timer-v1';
-const HISTORY_KEY = 'maxresults-clara-history-v1';
+const TIMER_KEY = 'maxresults-teste3-timer-v1';
+const HISTORY_KEY = 'maxresults-teste3-history-v1';
 let timerInterval = null;
 let sessionStartTime = null;
 
@@ -1250,7 +1089,8 @@ function stopSession() {
   document.getElementById('timerBar').classList.remove('active');
   document.getElementById('stopBtn').classList.add('hidden');
   document.getElementById('timerDisplay').textContent = '00:00';
-  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'✅ **Clara** finalizou treino!\n📅 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') — '+day.label+'\n⏱️ Tempo: '+formatDuration(elapsed)+'\n📊 Exercícios: '+pct+'% ('+done+'/'+total+')',username:'Frequência — Clara',embeds:[{fields:[{name:'studentSlug',value:'clara',inline:true},{name:'cycleId',value:'clara-2026-05-13',inline:true},{name:'slotId',value:(day.label||'').includes('Treino A')?'A':(day.label||'').includes('Treino B')?'B':(day.label||'').includes('Treino C')?'C':(day.label||'').includes('Treino D')?'D':'E',inline:true},{name:'slotLabel',value:day.label||'',inline:false}]}]})}).catch(function(){});}catch(e){}alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
+  /* WEBHOOK DESATIVADO — página de TESTE fictícia, não notifica canal nenhum. */
+  alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
 }
 
 function restoreTimer() {
@@ -1270,7 +1110,7 @@ function restoreTimer() {
 restoreTimer();
 
 // ─── Avatar photo ───
-const AVATAR_KEY = 'maxresults-clara-avatar-v1';
+const AVATAR_KEY = 'maxresults-teste3-avatar-v1';
 function loadAvatar() {
   const data = localStorage.getItem(AVATAR_KEY);
   const circle = document.getElementById('avatarCircle');
