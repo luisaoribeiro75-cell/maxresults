@@ -332,7 +332,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">PREVIEW Renovação Ciclo 3 &middot; Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 13/07/2026</footer>
+  <footer class="footer">PREVIEW Renovação Ciclo 3 &middot; Metodologia MaxResults &middot; Luisão Ribeiro<br>Atualizado em 17/07/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -347,6 +347,7 @@ const WEEKLY_GOALS = [
   { icon: '⚠️', type: 'assessment', text: '<strong>Condromalácia permanente:</strong> amplitude controlada em leg press/extensora/smith, sem impacto agressivo' },
   { icon: '💪', type: 'strength', text: '<strong>Ênfase:</strong> glúteos, braços e abdômen; braços entram com mais volume no ciclo' },
   { icon: '⏱️', type: 'assessment', text: '<strong>Fluxo:</strong> bi-sets com aparelhos próximos sempre que possível para não perder tempo na academia' },
+  { icon: '💪', type: 'assessment', text: '<strong>Cotovelo:</strong> antebraços verticais no supino/desenvolvimento e tríceps na corda — sem sobrecarregar a articulação' },
 ];
 
 const V = {
@@ -367,12 +368,11 @@ const V = {
   gluteos4: 'https://vd.mfitpersonal.com.br/240/mp4/240.mp4',
   giros: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/8d76rg3vbsm_opt.mp4',
   balanco: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/d508q2wlkh_opt.mp4',
-  maxlift2bt: 'https://1drv.ms/v/c/437d19de9d024724/IQAkRwKd3hl9IIBD5-MAAAAAATY48VJYTyzfx0Gq6gLKC2s?e=37FE2V',
   alongCoxa: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/lpgl41gg1op_opt.mp4',
   alongFlexor: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/5e9lix657lb_opt.mp4',
-  alongPeitoral: 'yt:be0xXepDGhQ',
+  alongPeitoral: 'https://vd.mfitpersonal.com.br/v2/1168/mp4/1168_opt.mp4',
   alongGluteos: 'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',
-  handToToes: 'yt:eFGc-g-HudQ',
+  handToToes: 'https://vd.mfitpersonal.com.br/851/mp4/851.mp4',
   legPress: 'https://vd.mfitpersonal.com.br/495/mp4/495.mp4',
   supinoBarra: 'https://vd.mfitpersonal.com.br/203/mp4/203.mp4',
   supinoHalter: 'https://vd.mfitpersonal.com.br/201/mp4/201.mp4',
@@ -403,12 +403,9 @@ const V = {
   prancha: 'https://vd.mfitpersonal.com.br/852/mp4/852.mp4',
   agachSmith: 'https://vd.mfitpersonal.com.br/73/mp4/73.mp4',
   corda: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/owhepr9y3xo_opt.mp4',
-  wallBall: 'yt:EqjGKsiIMCE',
-  sumoDeadliftHP: 'yt:7RwkiIjaFj4',
-  pushPress: 'yt:X6-DMh-t4nQ',
+  cordaNaval: 'https://vd.mfitpersonal.com.br/695/mp4/695.mp4',
   remadaCurvadaBarra: 'https://vd.mfitpersonal.com.br/217/mp4/217.mp4',
   pushUps: 'https://vd.mfitpersonal.com.br/238/mp4/238.mp4',
-  alongOmbro: 'yt:_d7k-gNOxVE',
 };
 
 // ─── Shared blocks ───
@@ -519,14 +516,6 @@ const ALONG_FINAL_C = {
   ]
 };
 
-const MAXLIFT_BT = {
-  type: 'warmup', label: 'Aula MaxLift',
-  title: 'MaxLift Mix 2 — Bíceps e Tríceps', duration: '~10 min',
-  exercises: [
-    { name: 'MaxLift Mix 2 – Bíceps e Tríceps', muscle: 'Bíceps / Tríceps', duration: '~10 min', equipment: 'Aula em vídeo', tip: 'Siga o vídeo MaxLift Mix 2. Foco em bíceps e tríceps com ritmo da aula.', video: V.maxlift2bt },
-  ]
-};
-
 const CARDIO_BIKE = {
   type: 'cardio', label: 'Cardio',
   title: 'Bike', duration: '20 min',
@@ -602,23 +591,23 @@ const TREINO_B = [
     title: 'Leg Press ↔ Supino Reto Barra', duration: '', meta: 'Bi-set alternado por segmento (inferior + superior): faz um, emenda o outro, descanso 45-60s só no fim do par.',
     exercises: [
       { name: 'Leg Press 45° (amplitude controlada)', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press', tip: 'Amplitude até ~90°, sem travar o joelho. Condromalácia: sem dor.', video: V.legPress },
-      { name: 'Supino Reto com Barra', muscle: 'Peitoral', duration: '3x10-12', equipment: 'Barra + banco', tip: 'Desce à linha do peito e empurra controlando.', video: V.supinoBarra },
+      { name: 'Supino Reto com Barra', muscle: 'Peitoral', duration: '3x10-12', equipment: 'Barra + banco', tip: 'Desce à linha do peito e empurra controlando. Antebraços verticais e pegada sem fechar demais — poupa o cotovelo.', video: V.supinoBarra },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Extensora ISOMETRIA ↔ Desenvolvimento', duration: '', meta: '',
+    title: 'Adução ↔ Flexão de Braço (joelho apoiado)', duration: '', meta: '',
     exercises: [
-      { name: 'Cadeira Extensora — ISOMETRIA', muscle: 'Quadríceps (isométrico)', duration: '4x 30-45s', equipment: 'Máquina extensora', tip: 'ISOMETRIA (condromalácia): segura PARADA a ~60° de flexão, NÃO estende até o final. ~70% do esforço, sem dor. Nada de repetições.', video: V.cadeiraExt },
-      { name: 'Desenvolvimento com Halteres', muscle: 'Ombros', duration: '3x10-12', equipment: 'Halteres + banco', tip: 'Sentada com apoio, empurra sem travar o cotovelo.', video: V.desenvHalteres },
+      { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Fecha as pernas com controle, segura 1s.', video: V.aducao },
+      { name: 'Flexão de Braço (joelho apoiado)', muscle: 'Peitoral / Core', duration: '3x12-15', equipment: 'Peso do corpo (joelhos no chão)', tip: 'Joelhos apoiados no chão, corpo alinhado do joelho à cabeça. Desce controlando até quase encostar o peito. Antebraços na vertical pra poupar o cotovelo.', video: V.flexaoJoelho },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3',
-    title: 'Adução ↔ Flexão de Braço (joelho apoiado)', duration: '', meta: '',
+    title: 'Cadeira Extensora ISOMETRIA ↔ Desenvolvimento', duration: '', meta: '',
     exercises: [
-      { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Fecha as pernas com controle, segura 1s.', video: V.aducao },
-      { name: 'Flexão de Braço (joelho apoiado)', muscle: 'Peitoral / Core', duration: '3x12-15', equipment: 'Peso do corpo (joelhos no chão)', tip: 'Joelhos apoiados no chão, corpo alinhado do joelho à cabeça. Desce controlando até quase encostar o peito.', video: V.flexaoJoelho },
+      { name: 'Cadeira Extensora — ISOMETRIA', muscle: 'Quadríceps (isométrico)', duration: '4x 30-45s', equipment: 'Máquina extensora', tip: 'ISOMETRIA (condromalácia): segura PARADA a ~60° de flexão, NÃO estende até o final. ~70% do esforço, sem dor. Nada de repetições.', video: V.cadeiraExt },
+      { name: 'Desenvolvimento com Halteres', muscle: 'Ombros', duration: '3x10-12', equipment: 'Halteres + banco', tip: 'Sentada com apoio, empurra sem travar o cotovelo. Antebraços verticais na descida.', video: V.desenvHalteres },
     ]
   },
   {
@@ -660,7 +649,7 @@ const TREINO_C = [
       { name: 'Swing Kettlebell', muscle: 'Funcional / Cardio (funcional)', duration: '20s', equipment: 'Kettlebell', tip: 'Hinge de quadril, impulsiona com o glúteo. Sem agachar.', video: V.swingKB },
       { name: 'Abdominal Bicicleta', muscle: 'Core / Oblíquos (abdômen)', duration: '20s (conte as reps)', equipment: 'Colchonete', tip: 'Deitada, alterna cotovelo no joelho oposto em ritmo. Conta cada toque como 1 rep.', video: V.abdomBicicleta },
       { name: 'Glúteos 4 Apoios c/ Caneleira', muscle: 'Glúteos (glúteo)', duration: '20s cada volta', equipment: 'Colchonete + caneleira', tip: 'Estende a perna pra trás contraindo o glúteo.', video: V.gluteos4apoios },
-      { name: 'Shadow Boxing', muscle: 'Cardio (cardio)', duration: '20s', equipment: 'Peso do corpo', tip: 'Socos no ar em ritmo alto. Sobe a FC sem impacto no joelho.', video: '' },
+      { name: 'Corda Naval', muscle: 'Cardio / Ombros (cardio)', duration: '20s', equipment: 'Corda naval', tip: 'Ondas rápidas e contínuas com os braços. Sobe a FC sem impacto no joelho. Se não tiver corda, faz socos no ar (shadow boxing) no mesmo ritmo.', video: V.cordaNaval },
     ]
   },
   ALONG_FINAL_C,
