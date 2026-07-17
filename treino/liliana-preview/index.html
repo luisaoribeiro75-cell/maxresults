@@ -322,7 +322,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 13/05/2026</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 17/07/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -336,7 +336,8 @@ const WEEKLY_GOALS = [
   { icon: '🏋️', type: 'strength', text: '<strong>Objetivo:</strong> condicionamento físico com treinos enxutos de 30min' },
   { icon: '🎯', type: 'strength', text: '<strong>Ênfase:</strong> adutores + core em todos os treinos' },
   { icon: '📈', type: 'assessment', text: '<strong>Progressão:</strong> quando fechar 12 reps com boa execução, sobe a carga na semana seguinte' },
-  { icon: '🔥', type: 'fat', text: '<strong>Formato:</strong> intensidade moderada — retomando ritmo (pós-gripe, estresse alto), sem empilhar carga' },
+  { icon: '⚡', type: 'cardio', text: '<strong>Formato:</strong> séries simples + 1 bi-set por treino — fluido mesmo com a academia cheia, sem depender de dois aparelhos' },
+  { icon: '🔥', type: 'fat', text: '<strong>Ritmo:</strong> intensidade moderada — retomando o pique, sem empilhar carga' },
 ];
 
 const V = {
@@ -504,34 +505,41 @@ const CARDIO_C = {
 };
 
 // ─── Treino A — Posterior de coxa + Costas + Adutores/Core (30min) ───
+// Estrutura simples → bi-set → simples (Luisão 17/07): academia lotada + retomada de energia.
 const TREINO_A = [
   AQUEC_MUSCULAR_A,
   MOBILIDADE_A,
   {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Hip Thrust ↔ Alongamento Peitoral', duration: '3x12 + 30s cada lado',
-    meta: 'Grande grupo + mobilidade oposta — alongamento é o descanso ativo',
+    type: 'lift', label: 'Série Simples 1',
+    title: 'Elevação Pélvica (Hip Thrust)', duration: '3x12 · Descanso 45–60s',
+    meta: 'Série simples — no seu ritmo, uma estação só',
     exercises: [
-      { name: 'Elevação Pélvica (Hip Thrust)', muscle: 'Glúteos', duration: '3x12', equipment: 'Banco + barra', tip: 'Suba forte contraindo o glúteo no topo. Segure 1s antes de descer. Alvo: fechar 12 com boa execução.', video: V.hipThrust },
-      { name: 'Alongamento de Peitoral', muscle: 'Peitoral (descanso ativo)', duration: '30s cada lado', equipment: 'Nenhum (parede/porta)', tip: 'Braço apoiado na parede/porta em 90°, gira o tronco pro lado oposto. Alonga 30s um lado, 30s o outro. Serve de descanso pro glúteo.', video: V.alongPeitoral },
+      { name: 'Elevação Pélvica (Hip Thrust)', muscle: 'Glúteos', duration: '3x12', equipment: 'Banco + barra', tip: 'Suba forte contraindo o glúteo no topo. Segure 1s antes de descer. Descansa 45–60s entre as séries. Alvo: fechar 12 com boa execução.', video: V.hipThrust },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 2',
+    type: 'lift', label: 'Bi-Set · Condicionamento',
     title: 'Cadeira Flexora ↔ Remada Unilateral (Halteres)', duration: '3x12 · Sem descanso no par',
-    meta: 'Aparelho + livre perto — feita ao lado da flexora, não ocupa 2 estações',
+    meta: 'O bi-set do dia: mantém o coração acelerado — halter fica ao lado da flexora, uma estação só',
     exercises: [
-      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12', equipment: 'Máquina flexora', tip: 'Controle a volta e evite tirar o quadril do banco.', video: V.cadeiraFlexora },
-      { name: 'Remada Unilateral com Halteres (Neutra)', muscle: 'Costas (dorsal/meio)', duration: '3x12 cada lado', equipment: 'Halter + banco (ao lado da flexora)', tip: 'Uma mão e um joelho no banco, tronco paralelo ao chão, pegada neutra. Puxa o halter à cintura fechando a escápula. Feita ao lado da flexora, sem ocupar outra máquina.', video: V.remadaUniHalter },
+      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12', equipment: 'Máquina flexora', tip: 'Controle a volta e evite tirar o quadril do banco. Emenda direto na remada — é isso que acelera o cardio.', video: V.cadeiraFlexora },
+      { name: 'Remada Unilateral com Halteres (Neutra)', muscle: 'Costas (dorsal/meio)', duration: '3x12 cada lado', equipment: 'Halter + banco (ao lado da flexora)', tip: 'Uma mão e um joelho no banco, tronco paralelo ao chão, pegada neutra. Puxa o halter à cintura fechando a escápula. Leva o halter pro lado da flexora — sem ocupar outra máquina.', video: V.remadaUniHalter },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 3 · Ênfase',
-    title: 'Cadeira Adutora ↔ Prancha Frontal', duration: '3x15 / 30s · Sem descanso no par',
-    meta: 'Ênfase adutores + core — aparelho + livre no chão ao lado',
+    type: 'lift', label: 'Série Simples 2 · Ênfase',
+    title: 'Cadeira Adutora', duration: '3x15 · Descanso 45–60s',
+    meta: 'Ênfase adutores — série simples',
     exercises: [
-      { name: 'Cadeira Adutora', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Feche as pernas com controle e segure 1s na contração. Ênfase do treino.', video: V.aducao },
-      { name: 'Prancha Frontal', muscle: 'Core / Abdômen', duration: '3x30s', equipment: 'Colchonete (ao lado da adutora)', tip: 'Antebraços no chão, corpo alinhado dos ombros aos calcanhares. Não deixa o quadril cair nem subir. 30s. No colchonete ao lado — não ocupa outra máquina.', video: V.prancha },
+      { name: 'Cadeira Adutora', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Feche as pernas com controle e segure 1s na contração. Ênfase do treino. Descansa 45–60s entre as séries.', video: V.aducao },
+    ]
+  },
+  {
+    type: 'lift', label: 'Série Simples 3 · Core',
+    title: 'Prancha Frontal', duration: '3x30s · Descanso 30s',
+    meta: 'Ênfase core — fecha o bloco principal',
+    exercises: [
+      { name: 'Prancha Frontal', muscle: 'Core / Abdômen', duration: '3x30s', equipment: 'Colchonete', tip: 'Antebraços no chão, corpo alinhado dos ombros aos calcanhares. Não deixa o quadril cair nem subir. 30s firme, descansa 30s e repete.', video: V.prancha },
     ]
   },
   CARDIO_A,
@@ -539,34 +547,41 @@ const TREINO_A = [
 ];
 
 // ─── Treino B — Quadríceps/Glúteo (SEM Smith) + Adutores/Core (30min) ───
+// Estrutura simples → bi-set → simples (Luisão 17/07): academia lotada + retomada de energia.
 const TREINO_B = [
   AQUEC_MUSCULAR_B,
   MOBILIDADE_B,
   {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Leg Press Horizontal ↔ Alongamento Peitoral', duration: '3x12 + 30s cada lado',
-    meta: 'Grande grupo + mobilidade oposta — alongamento é o descanso ativo',
+    type: 'lift', label: 'Série Simples 1',
+    title: 'Leg Press Horizontal', duration: '3x12 · Descanso 45–60s',
+    meta: 'Série simples — no seu ritmo, uma estação só',
     exercises: [
-      { name: 'Leg Press Horizontal', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press', tip: 'Substitui o agachamento Smith; amplitude confortável, sem forçar o quadril. Empurre pelo calcanhar.', video: V.legPress },
-      { name: 'Alongamento de Peitoral', muscle: 'Peitoral (descanso ativo)', duration: '30s cada lado', equipment: 'Nenhum (parede/porta)', tip: 'Braço apoiado na parede/porta em 90°, gira o tronco pro lado oposto. 30s um lado, 30s o outro. Serve de descanso pra perna sem sair da estação.', video: V.alongPeitoral },
+      { name: 'Leg Press Horizontal', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press', tip: 'Amplitude confortável, sem forçar o quadril. Empurre pelo calcanhar. Descansa 45–60s entre as séries.', video: V.legPress },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 2',
+    type: 'lift', label: 'Bi-Set · Condicionamento',
     title: 'Cadeira Extensora ↔ Glúteos 4 Apoios', duration: '3x12 · Sem descanso no par',
-    meta: 'Quadríceps + glúteo — máquina + peso do corpo (ancorado)',
+    meta: 'O bi-set do dia: mantém o coração acelerado — colchonete ao lado da extensora, uma estação só',
     exercises: [
-      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12', equipment: 'Máquina extensora', tip: 'Segure 1 segundo no topo de cada repetição.', video: V.cadeiraExt },
+      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12', equipment: 'Máquina extensora', tip: 'Segure 1 segundo no topo de cada repetição. Emenda direto no glúteo 4 apoios — é isso que acelera o cardio.', video: V.cadeiraExt },
       { name: 'Glúteos 4 Apoios c/ Caneleira', muscle: 'Glúteos', duration: '3x12 (cada lado)', equipment: 'Colchonete + caneleira (ao lado)', tip: 'No colchonete ao lado da extensora. Estende a perna pra trás contraindo o glúteo, sem compensar na lombar.', video: V.gluteos4 },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 3 · Ênfase',
-    title: 'Cadeira Adutora ↔ Abdominal Supra', duration: '3x15 · Sem descanso no par',
-    meta: 'Ênfase adutores + core — descanso 90s só ao fim do bloco',
+    type: 'lift', label: 'Série Simples 2 · Ênfase',
+    title: 'Cadeira Adutora', duration: '3x15 · Descanso 45–60s',
+    meta: 'Ênfase adutores — série simples (depois do leg press, como manda a ordem)',
     exercises: [
-      { name: 'Cadeira Adutora', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Feche as pernas com controle e segure 1s na contração. Ênfase do treino.', video: V.aducao },
-      { name: 'Abdominal Supra', muscle: 'Core / Abdômen', duration: '3x15', equipment: 'Colchonete', tip: 'Suba contraindo o abdômen, sem puxar o pescoço.', video: V.abdomSupra },
+      { name: 'Cadeira Adutora', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Feche as pernas com controle e segure 1s na contração. Ênfase do treino. Descansa 45–60s entre as séries.', video: V.aducao },
+    ]
+  },
+  {
+    type: 'lift', label: 'Série Simples 3 · Core',
+    title: 'Abdominal Supra', duration: '3x15 · Descanso 30s',
+    meta: 'Ênfase core — fecha o bloco principal',
+    exercises: [
+      { name: 'Abdominal Supra', muscle: 'Core / Abdômen', duration: '3x15', equipment: 'Colchonete', tip: 'Suba contraindo o abdômen, sem puxar o pescoço. Descansa 30s entre as séries.', video: V.abdomSupra },
     ]
   },
   CARDIO_B,
@@ -574,34 +589,41 @@ const TREINO_B = [
 ];
 
 // ─── Treino C — Full Body Metabólico + Adutores/Core (30min) ───
+// Estrutura simples → bi-set → simples (Luisão 17/07): academia lotada + retomada de energia.
 const TREINO_C = [
   AQUEC_MUSCULAR_C,
   MOBILIDADE_C,
   {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Agachamento Sumô ↔ Supino Reto', duration: '3x12 · Sem descanso no par',
-    meta: 'Full body metabólico — descanso 90s só ao fim do bloco',
+    type: 'lift', label: 'Série Simples 1',
+    title: 'Agachamento Sumô com Halter', duration: '3x12 · Descanso 45–60s',
+    meta: 'Série simples — no seu ritmo, um halter e pronto',
     exercises: [
-      { name: 'Agachamento Sumô com Halter', muscle: 'Adutores / Glúteos', duration: '3x12', equipment: 'Halter', tip: 'Base aberta do sumô trabalha adutor e é mais confortável pro quadril. Desça mantendo o peito alto.', video: V.agachSumoHalter },
-      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '3x12', equipment: 'Halteres + banco', tip: 'Controle a descida e sobe forte sem perder a postura.', video: V.supinoHalter },
+      { name: 'Agachamento Sumô com Halter', muscle: 'Adutores / Glúteos', duration: '3x12', equipment: 'Halter', tip: 'Base aberta do sumô trabalha adutor e é mais confortável pro quadril. Desça mantendo o peito alto. Descansa 45–60s entre as séries.', video: V.agachSumoHalter },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 2',
-    title: 'Stiff Halteres ↔ Crucifixo Inverso c/ Halteres', duration: '3x12 · Sem descanso no par',
-    meta: 'Mesma estação de halter — troca só a posição do tronco',
+    type: 'lift', label: 'Bi-Set · Condicionamento',
+    title: 'Stiff Halteres ↔ Supino Reto com Halteres', duration: '3x12 · Sem descanso no par',
+    meta: 'O bi-set do dia: perna + peito mantém o coração acelerado — mesmo banco e halteres, uma estação só',
     exercises: [
-      { name: 'Stiff com Halteres', muscle: 'Posterior de coxa / Glúteos', duration: '3x12', equipment: 'Halteres', tip: 'Quadril para trás e coluna neutra. Sinta alongar a posterior.', video: V.stiffHalteres },
-      { name: 'Crucifixo Inverso com Halteres', muscle: 'Costas / posterior de ombro', duration: '3x12', equipment: 'Halteres', tip: 'Tronco inclinado à frente (posição de remada). Abre os braços pra trás como se fosse abraçar alguém de trás, apertando as escápulas. Mesma estação do stiff — sem trocar de aparelho.', video: V.crucifixoInv },
+      { name: 'Stiff com Halteres', muscle: 'Posterior de coxa / Glúteos', duration: '3x12', equipment: 'Halteres (ao lado do banco)', tip: 'Quadril para trás e coluna neutra. Sinta alongar a posterior. Emenda direto no supino — é isso que acelera o cardio.', video: V.stiffHalteres },
+      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '3x12', equipment: 'Halteres + banco', tip: 'Controle a descida e sobe forte sem perder a postura. Mesmo banco e halteres do stiff — sem trocar de aparelho.', video: V.supinoHalter },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 3 · Ênfase',
-    title: 'Cadeira Adutora ↔ Prancha Lateral', duration: '3x15 + 3x20s cada lado',
-    meta: 'Ênfase adutor + core — aparelho + livre no chão ao lado',
+    type: 'lift', label: 'Série Simples 2 · Ênfase',
+    title: 'Cadeira Adutora', duration: '3x15 · Descanso 45–60s',
+    meta: 'Ênfase adutores — série simples (depois do sumô, como manda a ordem)',
     exercises: [
-      { name: 'Cadeira Adutora', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Feche as pernas com controle e segure 1s na contração. Ênfase do treino.', video: V.aducao },
-      { name: 'Prancha Lateral', muscle: 'Core / Oblíquos', duration: '3x20s cada lado', equipment: 'Colchonete (ao lado da adutora)', tip: 'Apoiada no antebraço e no pé de baixo, corpo alinhado. Quadril não desce. 20s de um lado, 20s do outro. No colchonete ao lado — não ocupa outra máquina.', video: V.pranchaLateral },
+      { name: 'Cadeira Adutora', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Feche as pernas com controle e segure 1s na contração. Ênfase do treino. Descansa 45–60s entre as séries.', video: V.aducao },
+    ]
+  },
+  {
+    type: 'lift', label: 'Série Simples 3 · Core',
+    title: 'Prancha Lateral', duration: '3x20s cada lado · Descanso 30s',
+    meta: 'Ênfase core — fecha o bloco principal',
+    exercises: [
+      { name: 'Prancha Lateral', muscle: 'Core / Oblíquos', duration: '3x20s cada lado', equipment: 'Colchonete', tip: 'Apoiada no antebraço e no pé de baixo, corpo alinhado. Quadril não desce. 20s de um lado, 20s do outro, descansa 30s.', video: V.pranchaLateral },
     ]
   },
   CARDIO_C,
