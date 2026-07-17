@@ -341,60 +341,56 @@ const WEEKLY_GOALS = [
 ];
 
 const V = {
-  // ─── Treino principal (MFit) ───
-  supinoBarra: 'https://vd.mfitpersonal.com.br/203/mp4/203.mp4',        // Supino Reto com Barra Reta
-  supinoInclHalter: 'https://vd.mfitpersonal.com.br/195/mp4/195.mp4',   // Supino Inclinado com Halteres
-  crucifixoInclHalter: 'https://vd.mfitpersonal.com.br/196/mp4/196.mp4',// Crucifixo Inclinado com Halteres
-  peckDeck: 'https://vd.mfitpersonal.com.br/v2/1135/mp4/1135_opt.mp4',         // Peck Deck
-  tricepsTestaW: 'https://vd.mfitpersonal.com.br/140/mp4/140.mp4',      // Tríceps Testa com Barra W
-  tricepsCorda: 'https://vd.mfitpersonal.com.br/418/mp4/418.mp4',       // Tríceps na Polia com Corda
-  tricepsFrancesUni: 'https://vd.mfitpersonal.com.br/147/mp4/147.mp4',  // Tríceps Francês Unilateral com Halteres
-  barraFixaGraviton: 'https://vd.mfitpersonal.com.br/509/mp4/509.mp4',  // Barra Fixa Gráviton (assistida)
-  remadaCurvadaBarra: 'https://vd.mfitpersonal.com.br/217/mp4/217.mp4', // Remada Curvada com Barra Reta (Pronada)
-  puxadaAberta: 'https://vd.mfitpersonal.com.br/565/mp4/565.mp4',       // Puxada Aberta Barra reta (frontal)
-  remadaUniHalter: 'https://vd.mfitpersonal.com.br/210/mp4/210.mp4',    // Remada Unilateral Halteres (Serrote)
-  roscaDiretaW: 'https://vd.mfitpersonal.com.br/117/mp4/117.mp4',       // Rosca Direta Barra W
-  roscaMartelo: 'https://vd.mfitpersonal.com.br/106/mp4/106.mp4',       // Rosca Martelo com Halteres
-  roscaConcentradaPolia: 'https://vd.mfitpersonal.com.br/414/mp4/414.mp4', // Rosca Concentrada na Polia Baixa (troca — ver relatório)
-  agachBarra: 'https://vd.mfitpersonal.com.br/52/mp4/52.mp4',           // Agachamento Livre com Barra
-  legPress45: 'https://vd.mfitpersonal.com.br/495/mp4/495.mp4',         // Leg Press 45
-  cadeiraExt: 'https://vd.mfitpersonal.com.br/504/mp4/504.mp4',         // Cadeira Extensora
-  stiffBarra: 'https://vd.mfitpersonal.com.br/265/mp4/265.mp4',         // Stiff pés próximo com Barra Livre
-  mesaFlexora: 'https://vd.mfitpersonal.com.br/555/mp4/555.mp4',        // Mesa Flexora
-  elevQuadrilBarra: 'https://vd.mfitpersonal.com.br/367/mp4/367.mp4',   // Elevação de Quadril com Barra (Hip Thrust)
-  panturrilhaPeMaq: 'https://vd.mfitpersonal.com.br/500/mp4/500.mp4',   // Extensão de Panturrilha Maquina (em pé)
-  panturrilhaSentado: 'https://vd.mfitpersonal.com.br/482/mp4/482.mp4', // Panturrilha Sentado Maquina
-  desenvBarra: 'https://vd.mfitpersonal.com.br/152/mp4/152.mp4',        // Desenvolvimento Barra Reta
-  elevLateral: 'https://vd.mfitpersonal.com.br/131/mp4/131.mp4',        // Elevação Lateral com Halteres
-  elevFrontalAlt: 'https://vd.mfitpersonal.com.br/133/mp4/133.mp4',     // Elevação Frontal Alternada
-  crucifixoInvMaq: 'https://vd.mfitpersonal.com.br/531/mp4/531.mp4',    // Crucifixo Inverso Máquina
-  roscaAlternada: 'https://vd.mfitpersonal.com.br/110/mp4/110.mp4',     // Rosca Alternada com Halteres
-  tricepsPolia: 'https://vd.mfitpersonal.com.br/415/mp4/415.mp4',       // Tríceps na Polia com Barra Reta
-  rosca21W: 'https://vd.mfitpersonal.com.br/119/mp4/119.mp4',           // Rosca Direta 21 Barra W
-  flexao: 'https://vd.mfitpersonal.com.br/831/mp4/831.mp4',             // Flexão de Braços
-  agachLivreCorpo: 'https://vd.mfitpersonal.com.br/50/mp4/50.mp4',      // Agachamento Livre (peso do corpo)
-  // ─── Aquecimento / Mobilidade (MFit) ───
-  mobOmbro: 'https://vd.mfitpersonal.com.br/285/mp4/285.mp4',           // Mobilidade de Ombro I
-  mobToracica: 'https://vd.mfitpersonal.com.br/283/mp4/283.mp4',        // Mobilidade Torácica I
-  mobEscapula: 'https://vd.mfitpersonal.com.br/284/mp4/284.mp4',        // Mobilidade de Escápula I
-  mobDorsal: 'https://vd.mfitpersonal.com.br/305/mp4/305.mp4',          // Mobilidade Dorsal I
-  mobQuadril: 'https://vd.mfitpersonal.com.br/297/mp4/297.mp4',         // Mobilidade de Quadril VII (em pé, base aberta) — trocado do 291 (bola)
-  mobQuadrilDin: 'https://vd.mfitpersonal.com.br/v2/1062/mp4/1062_opt.mp4',    // Mobilidade de Quadril Dinâmico
-  mobTornozelo: 'https://vd.mfitpersonal.com.br/749/mp4/749.mp4',       // Mobilidade de Tornozelo
-  mobPunho: 'https://vd.mfitpersonal.com.br/v2/1153/mp4/1153_opt.mp4',         // Mobilidade de Punho I
-  mobBiceps: 'https://vd.mfitpersonal.com.br/v2/1173/mp4/1173_opt.mp4',        // Mobilidade de Bíceps
-  // ─── Cardio (MFit) ───
-  esteira: 'https://vd.mfitpersonal.com.br/521/mp4/521.mp4',            // Esteira Caminhada
-  bike: 'https://vd.mfitpersonal.com.br/529/mp4/529.mp4',              // Bike Spinning Sentado
-  // ─── Soltura / Alongamento final (MFit) ───
-  alongPeitoral: 'https://vd.mfitpersonal.com.br/v2/1168/mp4/1168_opt.mp4',    // Alongamento de Peitoral
-  alongTriceps: 'https://vd.mfitpersonal.com.br/595/mp4/595.mp4',       // Alongamento de Tríceps
-  alongOmbros: 'https://vd.mfitpersonal.com.br/89/mp4/89.mp4',          // Alongamento de Ombros
-  alongDorsal: 'https://vd.mfitpersonal.com.br/596/mp4/596.mp4',        // Alongamento Dorsal I
-  alongPosterior: 'https://vd.mfitpersonal.com.br/91/mp4/91.mp4',       // Alongamento de Posterior I
-  alongQuad: 'https://vd.mfitpersonal.com.br/90/mp4/90.mp4',            // Alongamento de Quadríceps I
-  alongGluteos: 'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',         // Alongamento de Glúteos II
-  alongPanturrilha: 'https://vd.mfitpersonal.com.br/764/mp4/764.mp4',   // Alongamento de Panturrilha
+  supinoBarra: 'https://vd.mfitpersonal.com.br/203/mp4/203.mp4',
+  supinoInclHalter: 'https://vd.mfitpersonal.com.br/195/mp4/195.mp4',
+  crucifixoInclHalter: 'https://vd.mfitpersonal.com.br/196/mp4/196.mp4',
+  peckDeck: 'https://vd.mfitpersonal.com.br/v2/1135/mp4/1135_opt.mp4',
+  tricepsTestaW: 'https://vd.mfitpersonal.com.br/140/mp4/140.mp4',
+  tricepsCorda: 'https://vd.mfitpersonal.com.br/418/mp4/418.mp4',
+  tricepsFrancesUni: 'https://vd.mfitpersonal.com.br/147/mp4/147.mp4',
+  barraFixaGraviton: 'https://vd.mfitpersonal.com.br/509/mp4/509.mp4',
+  remadaCurvadaBarra: 'https://vd.mfitpersonal.com.br/217/mp4/217.mp4',
+  puxadaAberta: 'https://vd.mfitpersonal.com.br/565/mp4/565.mp4',
+  remadaUniHalter: 'https://vd.mfitpersonal.com.br/210/mp4/210.mp4',
+  roscaDiretaW: 'https://vd.mfitpersonal.com.br/117/mp4/117.mp4',
+  roscaMartelo: 'https://vd.mfitpersonal.com.br/106/mp4/106.mp4',
+  roscaConcentradaPolia: 'https://vd.mfitpersonal.com.br/414/mp4/414.mp4',
+  agachBarra: 'https://vd.mfitpersonal.com.br/52/mp4/52.mp4',
+  legPress45: 'https://vd.mfitpersonal.com.br/495/mp4/495.mp4',
+  cadeiraExt: 'https://vd.mfitpersonal.com.br/504/mp4/504.mp4',
+  stiffBarra: 'https://vd.mfitpersonal.com.br/265/mp4/265.mp4',
+  mesaFlexora: 'https://vd.mfitpersonal.com.br/555/mp4/555.mp4',
+  elevQuadrilBarra: 'https://vd.mfitpersonal.com.br/367/mp4/367.mp4',
+  panturrilhaPeMaq: 'https://vd.mfitpersonal.com.br/500/mp4/500.mp4',
+  panturrilhaSentado: 'https://vd.mfitpersonal.com.br/482/mp4/482.mp4',
+  desenvBarra: 'https://vd.mfitpersonal.com.br/152/mp4/152.mp4',
+  elevLateral: 'https://vd.mfitpersonal.com.br/131/mp4/131.mp4',
+  elevFrontalAlt: 'https://vd.mfitpersonal.com.br/133/mp4/133.mp4',
+  crucifixoInvMaq: 'https://vd.mfitpersonal.com.br/531/mp4/531.mp4',
+  roscaAlternada: 'https://vd.mfitpersonal.com.br/110/mp4/110.mp4',
+  tricepsPolia: 'https://vd.mfitpersonal.com.br/415/mp4/415.mp4',
+  rosca21W: 'https://vd.mfitpersonal.com.br/119/mp4/119.mp4',
+  flexao: 'https://vd.mfitpersonal.com.br/831/mp4/831.mp4',
+  agachLivreCorpo: 'https://vd.mfitpersonal.com.br/50/mp4/50.mp4',
+  mobOmbro: 'https://vd.mfitpersonal.com.br/285/mp4/285.mp4',
+  mobToracica: 'https://vd.mfitpersonal.com.br/283/mp4/283.mp4',
+  mobEscapula: 'https://vd.mfitpersonal.com.br/284/mp4/284.mp4',
+  mobDorsal: 'https://vd.mfitpersonal.com.br/305/mp4/305.mp4',
+  mobQuadril: 'https://vd.mfitpersonal.com.br/297/mp4/297.mp4',
+  mobQuadrilDin: 'https://vd.mfitpersonal.com.br/v2/1062/mp4/1062_opt.mp4',
+  mobTornozelo: 'https://vd.mfitpersonal.com.br/749/mp4/749.mp4',
+  mobPunho: 'https://vd.mfitpersonal.com.br/v2/1153/mp4/1153_opt.mp4',
+  mobBiceps: 'https://vd.mfitpersonal.com.br/v2/1173/mp4/1173_opt.mp4',
+  esteira: 'https://vd.mfitpersonal.com.br/521/mp4/521.mp4',
+  bike: 'https://vd.mfitpersonal.com.br/529/mp4/529.mp4',
+  alongPeitoral: 'https://vd.mfitpersonal.com.br/v2/1168/mp4/1168_opt.mp4',
+  alongTriceps: 'https://vd.mfitpersonal.com.br/595/mp4/595.mp4',
+  alongOmbros: 'https://vd.mfitpersonal.com.br/89/mp4/89.mp4',
+  alongDorsal: 'https://vd.mfitpersonal.com.br/596/mp4/596.mp4',
+  alongPosterior: 'https://vd.mfitpersonal.com.br/91/mp4/91.mp4',
+  alongQuad: 'https://vd.mfitpersonal.com.br/90/mp4/90.mp4',
+  alongGluteos: 'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',
+  alongPanturrilha: 'https://vd.mfitpersonal.com.br/764/mp4/764.mp4',
 };
 
 // ─── Cardio compartilhado (leve, zona aeróbica, antes da soltura) ───
