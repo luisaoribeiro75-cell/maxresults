@@ -249,6 +249,21 @@
     .stop-btn { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; margin-top: 8px; }
     .stop-btn:active { transform: scale(0.98); }
     .stop-btn.hidden { display: none; }
+    /* ── Aviso de avaliação vencida (padrão 18/07 — aviso-avaliacao-vencida.md) ── */
+    .assess-alert { margin-top: 16px; padding: 16px; border-radius: var(--radius); position: relative; overflow: hidden;
+      background: linear-gradient(135deg, rgba(239,68,68,0.14), rgba(245,158,11,0.10));
+      border: 2px solid rgba(239,68,68,0.55); animation: alertPulse 1.6s ease-in-out infinite; }
+    @keyframes alertPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.45); border-color: rgba(239,68,68,0.55); }
+      50% { box-shadow: 0 0 22px 4px rgba(239,68,68,0.35); border-color: rgba(239,68,68,0.95); } }
+    .assess-alert .aa-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .assess-alert .aa-icon { font-size: 26px; display: inline-block; animation: alertShake 1.1s ease-in-out infinite; }
+    @keyframes alertShake { 0%,100% { transform: rotate(0); } 15% { transform: rotate(-14deg) scale(1.1); } 30% { transform: rotate(12deg) scale(1.15); } 45% { transform: rotate(-8deg); } 60% { transform: rotate(6deg); } 75% { transform: rotate(0); } }
+    .assess-alert .aa-title { font-family: var(--font-display); font-size: 13px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: #ef4444; }
+    .assess-alert .aa-msg { font-size: 13.5px; line-height: 1.55; color: var(--text); margin-bottom: 12px; }
+    .assess-alert .aa-cta { display: block; text-align: center; padding: 12px; border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, #ef4444, #f59e0b); color: #fff; font-family: var(--font-display);
+      font-size: 14px; font-weight: 800; text-decoration: none; letter-spacing: 0.3px; }
+    .assess-alert .aa-cta:active { transform: scale(0.98); }
     .video-overlay { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.92); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px; }
     .video-overlay.active { display: flex; }
     .video-overlay video, .video-overlay iframe { max-width: 100%; max-height: 80vh; border-radius: 12px; border: none; }
@@ -270,6 +285,11 @@
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
       <div class="progress-label" id="progressLabel">0%</div>
     </div>
+  </div>
+  <div class="assess-alert" id="assessAlert">
+    <div class="aa-head"><span class="aa-icon">🚨</span><span class="aa-title">Avaliação Física VENCIDA</span></div>
+    <div class="aa-msg" id="assessAlertMsg"></div>
+    <a class="aa-cta" href="https://wa.me/5541999775758?text=Oi%20Lu%C3%ADs%C3%A3o!%20Quero%20agendar%20minha%20avalia%C3%A7%C3%A3o%20f%C3%ADsica%20%F0%9F%8F%8B%EF%B8%8F" target="_blank" rel="noopener">🗓️ Agendar minha avaliação agora</a>
   </div>
   <div class="week-goal" id="weekGoal"></div>
   <nav class="day-switcher" id="daySwitcher"></nav>
@@ -1014,6 +1034,26 @@ document.getElementById('avatarInput').addEventListener('change', function(e) {
   if (e.target.files && e.target.files[0]) saveAvatar(e.target.files[0]);
 });
 loadAvatar();
+
+// ── Aviso de avaliação vencida: frase rotativa mensal (aviso-avaliacao-vencida.md) ──
+(function(){
+  const F = [
+    '{n}, seu treino está sendo montado com dados VENCIDOS. Sem avaliação nova, eu prescrevo no escuro — e você deixa resultado na mesa.',
+    'Treino genérico é pra quem não tem dados. Os seus venceram, {n} — bora medir de novo e treinar com precisão cirúrgica?',
+    '{n}, cada semana sem avaliação é um ciclo montado na estimativa. Seus músculos mudaram — seu treino ainda não sabe disso.',
+    'Sem medidas novas eu não sei o que cresceu, o que reduziu e onde apertar. Sua avaliação venceu, {n} — me dá os dados e eu te dou o treino exato.',
+    '{n}, seu corpo de hoje não é o da última avaliação. Treinar com dados velhos = progresso mais lento. Agenda comigo e destrava.',
+    'Resultado de verdade se MEDE. A sua avaliação está vencida, {n} — sem ela, a progressão de cargas vira chute.',
+    '⚠️ {n}, estou montando seus ciclos sem saber seu % de gordura atual. É como dirigir de olhos fechados. Reavaliação: 20 minutos que mudam TODO o próximo treino.',
+    'O seu plano é personalizado — mas personalização exige dado FRESCO. Avaliação vencida, {n}: bora atualizar e turbinar o próximo ciclo?',
+    '{n}, quem não mede, não gerencia. Sua evolução merece números novos — a avaliação venceu e o próximo treino depende dela.',
+    'Cada ciclo sem avaliação nova é um ciclo menos eficiente, {n}. Seus dados venceram — 20 minutos comigo e seu treino volta a ser feito SOB MEDIDA.',
+    '{n}, o fim de ano chega e eu quero fechar sua evolução com números — não com achismo. Reavaliação em atraso: bora agendar?',
+    'Ano acabando, {n}! Última chance de medir a evolução de 2026 e começar o ano com um treino calibrado nos SEUS números atuais.',
+  ];
+  const el = document.getElementById('assessAlertMsg');
+  if (el) el.textContent = F[new Date().getMonth()].split('{n}').join(ATHLETE);
+})();
 </script>
 </body>
 </html>
