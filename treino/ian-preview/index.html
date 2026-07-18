@@ -341,6 +341,8 @@ const WEEKLY_GOALS = [
 ];
 
 const V = {
+  flexJoelhosCaneleira: 'https://vd.mfitpersonal.com.br/248/mp4/248.mp4',
+  bulgaroCarga: 'https://vd.mfitpersonal.com.br/789/mp4/789.mp4',
   supinoBarra: 'https://vd.mfitpersonal.com.br/203/mp4/203.mp4',
   supinoInclHalter: 'https://vd.mfitpersonal.com.br/195/mp4/195.mp4',
   crucifixoInclHalter: 'https://vd.mfitpersonal.com.br/196/mp4/196.mp4',
@@ -519,19 +521,49 @@ const TREINO_C = [
     ]
   },
   {
-    type: 'lift', label: 'Treino Principal',
-    title: 'Pernas Completo', duration: '8 exercícios · 8–20 reps',
-    meta: 'Dia de perna INTEIRO — quadríceps, posterior, glúteo e panturrilha. Cargas em branco.',
+    type: 'lift', label: 'Solo 1',
+    title: 'Agachamento Back Squat', duration: '4x8–10',
+    meta: 'Básico pesado SOLO (Regra 8) — performance máxima. Descanso 2–3 min.',
+    exercises: [ { name: 'Agachamento Back Squat', muscle: 'Quadríceps / Glúteos', duration: '4x8–10', equipment: 'Barra + suporte', tip: 'Base do dia — carga progressiva na barra. Desça com o peito alto e joelhos alinhados aos pés, controle a descida.', video: V.agachBarra }, ]
+  },
+  {
+    type: 'lift', label: 'Solo 2',
+    title: 'Leg Press 45°', duration: '4x10–12',
+    meta: 'Composto pesado — descanso 90s–2min.',
+    exercises: [ { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '4x10–12', equipment: 'Máquina Leg Press 45', tip: 'Volume de quadríceps e glúteo. Empurre pelo calcanhar, não estenda o joelho de forma travada.', video: V.legPress45 }, ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set · Agonista ↔ Antagonista',
+    title: 'Cadeira Extensora ↔ Flexão de Joelhos com Caneleiras', duration: '3x12 · Sem descanso no par',
+    meta: 'Quadríceps ↔ posterior (agonista/antagonista — Luisão 18/07). Caneleira no colchonete ao lado da extensora: uma estação só. Descanso 60–90s ao fim do par.',
     exercises: [
-      { name: 'Agachamento Back Squat', muscle: 'Quadríceps / Glúteos', duration: '4x8–10', equipment: 'Barra + suporte', tip: 'Base do dia — carga progressiva na barra. Desça com o peito alto e joelhos alinhados aos pés, controle a descida.', video: V.agachBarra },
-      { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '4x10–12', equipment: 'Máquina Leg Press 45', tip: 'Volume de quadríceps e glúteo. Empurre pelo calcanhar, não estenda o joelho de forma travada.', video: V.legPress45 },
       { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12', equipment: 'Máquina extensora', tip: 'Isolador de quadríceps. Segure 1s no topo de cada repetição.', video: V.cadeiraExt },
-      { name: 'Stiff (Terra Romeno)', muscle: 'Posterior / Glúteos', duration: '4x10–12', equipment: 'Barra', tip: 'Com a barra, quadril pra trás, coluna neutra, desça sentindo alongar a posterior. Volte contraindo o glúteo.', video: V.stiffBarra },
-      { name: 'Mesa Flexora', muscle: 'Posterior de coxa', duration: '3x12', equipment: 'Máquina flexora', tip: 'Isolador de posterior. Controle a volta sem tirar o quadril do apoio.', video: V.mesaFlexora },
-      { name: 'Elevação Pélvica com Barra (Hip Thrust)', muscle: 'Glúteos', duration: '3x12', equipment: 'Banco + barra', tip: 'Glúteo direto. Suba forte contraindo o glúteo e segure 1s no topo antes de descer.', video: V.elevQuadrilBarra },
-      { name: 'Panturrilha em Pé (Máquina)', muscle: 'Panturrilha (gastrocnêmio)', duration: '4x15–20', equipment: 'Máquina panturrilha em pé', tip: 'Volume alto. Amplitude completa: desce alongando e sobe na ponta do pé segurando 1s.', video: V.panturrilhaPeMaq },
-      { name: 'Panturrilha Sentado', muscle: 'Panturrilha (sóleo)', duration: '3x15–20', equipment: 'Máquina panturrilha sentado', tip: 'Trabalha o sóleo. Amplitude completa e controle na descida.', video: V.panturrilhaSentado },
+      { name: 'Flexão de Joelhos com Caneleiras', muscle: 'Posterior de coxa', duration: '3x12 cada perna', equipment: 'Caneleira + colchonete (ao lado da extensora)', tip: 'Deitado de bruços, dobra o joelho trazendo o calcanhar ao glúteo, desce controlando. Antagonista direto da extensora — no colchonete ao lado.', video: V.flexJoelhosCaneleira },
     ]
+  },
+  {
+    type: 'lift', label: 'Solo 3',
+    title: 'Stiff (Terra Romeno)', duration: '4x10–12',
+    meta: 'Cadeia posterior — básico pesado solo. Descanso 90s–2min.',
+    exercises: [ { name: 'Stiff (Terra Romeno)', muscle: 'Posterior / Glúteos', duration: '4x10–12', equipment: 'Barra', tip: 'Com a barra, quadril pra trás, coluna neutra, desça sentindo alongar a posterior. Volte contraindo o glúteo.', video: V.stiffBarra }, ]
+  },
+  {
+    type: 'lift', label: 'Solo 4',
+    title: 'Agachamento Búlgaro com Carga', duration: '3x12 cada perna',
+    meta: 'Glúteo unilateral (substitui a elevação pélvica — Regra 9). Descanso 90s.',
+    exercises: [ { name: 'Agachamento Búlgaro com Carga', muscle: 'Glúteos / Quadríceps', duration: '3x12 cada perna', equipment: 'Halteres + banco (pé de trás apoiado)', tip: 'Tronco levemente inclinado à frente pra ênfase no glúteo. Desce controlado, empurra pelo calcanhar da frente.', video: V.bulgaroCarga }, ]
+  },
+  {
+    type: 'lift', label: 'Solo 5',
+    title: 'Panturrilha em Pé (Máquina)', duration: '4x15–20',
+    meta: 'Gastrocnêmio — descanso 45–60s.',
+    exercises: [ { name: 'Panturrilha em Pé (Máquina)', muscle: 'Panturrilha (gastrocnêmio)', duration: '4x15–20', equipment: 'Máquina panturrilha em pé', tip: 'Volume alto. Amplitude completa: desce alongando e sobe na ponta do pé segurando 1s.', video: V.panturrilhaPeMaq }, ]
+  },
+  {
+    type: 'lift', label: 'Solo 6',
+    title: 'Panturrilha Sentado', duration: '3x15–20',
+    meta: 'Sóleo — descanso 45–60s.',
+    exercises: [ { name: 'Panturrilha Sentado', muscle: 'Panturrilha (sóleo)', duration: '3x15–20', equipment: 'Máquina panturrilha sentado', tip: 'Trabalha o sóleo. Amplitude completa e controle na descida.', video: V.panturrilhaSentado }, ]
   },
   {
     type: 'cardio', label: 'Cardio / Aeróbico',
@@ -576,16 +608,30 @@ const TREINO_D = [
     ]
   },
   {
-    type: 'lift', label: 'Treino Principal',
-    title: 'Ombros + Braços (2ª dose)', duration: '7 exercícios · 8–21 reps',
-    meta: '2ª dose de braço da semana + ombro. Cargas em branco.',
+    type: 'lift', label: 'Ombros',
+    title: 'Desenvolvimento + Elevações', duration: '4 exercícios · 8–15 reps',
+    meta: 'Composto pesado primeiro (Regra 7), isolados depois. Descanso 90s no militar, 60s nos isolados.',
     exercises: [
       { name: 'Desenvolvimento Militar com Barra', muscle: 'Ombros', duration: '4x8–10', equipment: 'Barra', tip: 'Base de ombros. Empurre a barra acima da cabeça sem hiperestender a lombar. Core firme.', video: V.desenvBarra },
       { name: 'Elevação Lateral com Halteres', muscle: 'Deltoide médio', duration: '4x12', equipment: 'Halteres', tip: 'Suba até a linha dos ombros liderando com o cotovelo, sem balançar. Segura a contração.', video: V.elevLateral },
       { name: 'Elevação Frontal Alternada', muscle: 'Deltoide anterior', duration: '3x12', equipment: 'Halteres', tip: 'Um braço de cada vez à frente até a linha do ombro, controlando a descida.', video: V.elevFrontalAlt },
       { name: 'Crucifixo Invertido (Máquina)', muscle: 'Deltoide posterior', duration: '3x12–15', equipment: 'Máquina crucifixo', tip: 'Abra os braços pra trás e segure a contração no final. Trabalha o deltoide posterior.', video: V.crucifixoInvMaq },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set · Agonista ↔ Antagonista',
+    title: 'Rosca Alternada ↔ Tríceps na Polia', duration: '3x10–12 · Sem descanso no par',
+    meta: 'Bíceps ↔ tríceps (músculos menores, agonista/antagonista — Luisão 18/07). Halteres ao lado da polia: uma estação só. Descanso 60–90s ao fim do par.',
+    exercises: [
       { name: 'Rosca Alternada com Halteres', muscle: 'Bíceps', duration: '3x10–12', equipment: 'Halteres', tip: '2ª dose de bíceps da semana. Um braço de cada vez, cotovelo fixo.', video: V.roscaAlternada },
       { name: 'Tríceps na Polia com Barra Reta', muscle: 'Tríceps', duration: '3x10–12', equipment: 'Polia alta + barra', tip: '2ª dose de tríceps. Cotovelos colados, estenda até embaixo e volte controlando.', video: V.tricepsPolia },
+    ]
+  },
+  {
+    type: 'lift', label: 'Finisher',
+    title: 'Rosca 21', duration: '1x21',
+    meta: 'Fechamento de bíceps — série única.',
+    exercises: [
       { name: 'Rosca 21 com Barra W (Finisher)', muscle: 'Bíceps', duration: '1x21', equipment: 'Barra W', tip: 'Finisher opcional: 7 reps na metade de baixo + 7 na metade de cima + 7 completas. Prepara o método pro Mês 2.', video: V.rosca21W },
     ]
   },
