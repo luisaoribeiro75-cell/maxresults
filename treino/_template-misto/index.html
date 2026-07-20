@@ -294,20 +294,29 @@ const TRK_SOLTURA = {
 /* AULA — a ORDEM deste array é a que vale (estrutura §3.0 + S1). Full Track
    completo (3x/sem): Aquec → Agacho → Peito → Posteriores → Ombros(menor) →
    Cardio → Soltura. */
-/* Bloco de MUSCULAÇÃO (type:'lift') — no misto, entra pra cobrir os menores que o
-   track não pega. Bi-set ancorado (Regra 2). Vídeo = MFit (mp4), não Bunny. */
+/* Bloco de MUSCULAÇÃO (type lift) — no misto, entra pra cobrir os menores que o
+   track não pega. Bi-set ancorado (Regra 2). Vídeo = MFit (mp4), não Bunny.
+   FORMATO PADRÃO MUSCULAÇÃO: mapa `V` (chave→url MFit) + exercícios `video: V.x`
+   no esquema name→muscle→…→video. Assim os gates mr-verify-videos e mr-verify-schema
+   cobrem a parte lift da mista igual às páginas de musculação (sem "pulo"). */
+const V = {
+  elevLateral: 'https://vd.mfitpersonal.com.br/131/mp4/131.mp4',
+  abdomSupra: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
+};
+
 const MUSC_MENORES = {
-  type: 'lift', role: 'forca', label: 'Musculação · Menores do dia',
+  type: 'lift', label: 'Musculação · Menores do dia',
+  title: 'Elevação Lateral (Halteres) ↔ Abdominal Supra', role: 'forca',
   meta: 'Bi-set ancorado — halteres + colchonete ao lado (uma estação só). Os menores que o track não cobre.',
   exercises: [
     { name: 'Elevação Lateral com Halteres', muscle: 'Ombro', biset: true,
-      mfit: 'https://vd.mfitpersonal.com.br/153/mp4/153.mp4', reps: '3x12-15',
-      loadLabel: 'Elevação Lateral',
-      tip: 'Cotovelos levemente flexionados, sobe até a linha dos ombros sem balançar o tronco.' },
+      reps: '3x12-15', loadLabel: 'Elevação Lateral',
+      tip: 'Cotovelos levemente flexionados, sobe até a linha dos ombros sem balançar o tronco.',
+      video: V.elevLateral },
     { name: 'Abdominal Supra', muscle: 'Core', biset: true,
-      mfit: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4', reps: '3x15',
-      loadLabel: null,
-      tip: 'Sobe contraindo o abdômen, sem puxar o pescoço. No colchonete ao lado — não ocupa outra máquina.' },
+      reps: '3x15', loadLabel: null,
+      tip: 'Sobe contraindo o abdômen, sem puxar o pescoço. No colchonete ao lado — não ocupa outra máquina.',
+      video: V.abdomSupra },
   ],
 };
 
@@ -403,7 +412,7 @@ function renderWorkout() {
   if (day.rest) { content.innerHTML = `<div class="rest-message"><h2>Dia de Descanso 😴</h2><p>Recuperação também é treino. Alongue e descanse.</p></div>`; document.getElementById('sessionComplete').classList.remove('visible'); return; }
 
   content.innerHTML = day.tracks.map((blk, ti) => {
-    // ── bloco de MUSCULAÇÃO (type:'lift') ──
+    // ── bloco de MUSCULAÇÃO (type lift) ──
     if (blk.type === 'lift') {
       const exsHtml = (blk.exercises || []).map((ex, ei) => {
         const key = trackKey(currentDayIndex, ti) + '-e' + ei;
@@ -423,7 +432,7 @@ function renderWorkout() {
             </div>
             <svg class="expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </div>
-          <button class="track-play" onclick="event.stopPropagation(); playTrack('${ex.mfit}')">▶ Ver exercício</button>
+          <button class="track-play" onclick="event.stopPropagation(); playTrack('${ex.video}')">▶ Ver exercício</button>
           <div class="track-detail"><div class="detail-inner">
             ${loadHtml}
             <div class="detail-row"><span class="detail-label">Como fazer:</span><span class="detail-value">${ex.tip}</span></div>
