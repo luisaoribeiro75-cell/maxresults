@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Avaliação Física — Alessandro Bacellar | MaxResults</title>
+  <title>Avaliação Física | MaxResults</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#08080a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,102 +12,120 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #08080a; --surface: #111114; --surface-2: #19191d; --surface-3: #222226;
-      --border: rgba(255,255,255,0.06); --border-light: rgba(255,255,255,0.1);
-      --text: #ededef; --text-dim: #b0b0b6; --text-muted: #6b6b73;
-      --amber: #f59e0b; --amber-dim: rgba(245,158,11,0.1); --amber-glow: rgba(245,158,11,0.3);
-      --green: #34d399; --green-dim: rgba(52,211,153,0.1);
-      --red: #ef4444; --red-dim: rgba(239,68,68,0.12);
-      --radius: 16px; --radius-sm: 10px;
-      --font-display: 'Outfit', sans-serif; --font-body: 'DM Sans', sans-serif;
+      --bg:#08080a; --surface:#111114; --surface-2:#19191d; --surface-3:#222226;
+      --border:rgba(255,255,255,0.06); --border-light:rgba(255,255,255,0.1);
+      --text:#ededef; --text-dim:#b0b0b6; --text-muted:#6b6b73;
+      --amber:#f59e0b; --amber-dim:rgba(245,158,11,0.1); --amber-glow:rgba(245,158,11,0.3);
+      --green:#34d399; --green-dim:rgba(52,211,153,0.1); --red:#ef4444;
+      --radius:16px; --radius-sm:10px;
+      --font-display:'Outfit',sans-serif; --font-body:'DM Sans',sans-serif;
     }
-    body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.5; -webkit-font-smoothing: antialiased; padding-bottom: 40px; }
-    body::before { content: ''; position: fixed; top: -120px; left: 50%; transform: translateX(-50%); width: 600px; height: 320px; background: radial-gradient(ellipse, rgba(245,158,11,0.07) 0%, transparent 70%); pointer-events: none; z-index: 0; }
-    .container { max-width: 560px; margin: 0 auto; padding: 20px 16px; position: relative; z-index: 1; }
+    body { background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased; padding-bottom:44px; }
+    body::before { content:''; position:fixed; top:-120px; left:50%; transform:translateX(-50%); width:600px; height:320px; background:radial-gradient(ellipse,rgba(245,158,11,0.07) 0%,transparent 70%); pointer-events:none; z-index:0; }
+    .container { max-width:560px; margin:0 auto; padding:20px 16px; position:relative; z-index:1; }
 
-    /* Header */
-    .head-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 20px; margin-bottom: 14px; text-align: center; }
-    .brand { font-family: var(--font-display); font-weight: 800; font-size: 26px; letter-spacing: 1px; }
-    .brand .dot { color: var(--amber); }
-    .brand-sub { font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: 4px; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
-    .id-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; text-align: left; }
-    .id-item { background: var(--surface-2); border-radius: var(--radius-sm); padding: 10px 14px; }
-    .id-item.full { grid-column: 1 / -1; }
-    .id-label { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); }
-    .id-value { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--text); margin-top: 2px; }
+    /* Header + aluno */
+    .top { text-align:center; margin-bottom:16px; }
+    .brand { font-family:var(--font-display); font-weight:800; font-size:24px; letter-spacing:1px; }
+    .brand .dot { color:var(--amber); }
+    .brand-sub { font-family:var(--font-display); font-size:10px; font-weight:600; letter-spacing:4px; color:var(--text-muted); text-transform:uppercase; margin-top:3px; }
+    .aluno { font-family:var(--font-display); font-weight:700; font-size:19px; margin-top:14px; }
+    .aluno-meta { font-size:12px; color:var(--text-muted); margin-top:2px; }
+
+    /* Mode switch */
+    .modebar { display:flex; gap:6px; background:var(--surface); border:1px solid var(--border); border-radius:999px; padding:5px; margin:16px 0 14px; }
+    .modebar button { flex:1; border:none; background:transparent; color:var(--text-dim); font-family:var(--font-display); font-weight:700; font-size:13px; padding:10px; border-radius:999px; cursor:pointer; transition:all .18s; }
+    .modebar button.active { background:linear-gradient(135deg,#fcd34d,var(--amber)); color:#08080a; box-shadow:0 3px 12px rgba(245,158,11,0.3); }
+
+    /* Picker (chips de datas) */
+    .picker-label { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); margin:4px 0 8px; }
+    .chips { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+    .chip { background:var(--surface-2); border:1px solid var(--border); color:var(--text-dim); font-family:var(--font-display); font-weight:600; font-size:13px; padding:9px 15px; border-radius:999px; cursor:pointer; transition:all .15s; }
+    .chip:hover { border-color:var(--border-light); }
+    .chip.active { background:var(--amber-dim); border-color:var(--amber); color:var(--amber); }
+    .chip.a { background:rgba(245,158,11,0.14); border-color:var(--amber); color:var(--amber); }
+    .chip.b { background:rgba(52,211,153,0.14); border-color:var(--green); color:var(--green); }
+    .chip .tag { font-size:9px; font-weight:800; letter-spacing:0.5px; margin-left:6px; opacity:.85; }
+    .compare-hint { font-size:11px; color:var(--text-muted); margin:-4px 0 12px; }
 
     /* Section */
-    .section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 18px 20px; margin-bottom: 14px; }
-    .section-title { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--amber); margin-bottom: 14px; }
-    .section-title .unit { margin-left: auto; font-size: 9px; letter-spacing: 1px; color: var(--text-muted); }
+    .section { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:18px 18px 20px; margin-bottom:14px; }
+    .section-title { display:flex; align-items:center; gap:8px; font-family:var(--font-display); font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--amber); margin-bottom:14px; }
+    .section-title .unit { margin-left:auto; font-size:9px; letter-spacing:1px; color:var(--text-muted); }
 
-    /* Basic values (altura/peso) */
-    .basics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .basic { background: var(--surface-2); border-radius: var(--radius-sm); padding: 14px; text-align: center; }
-    .basic .bv { font-family: var(--font-display); font-size: 24px; font-weight: 800; }
-    .basic .bl { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-top: 3px; }
+    .basics { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .basic { background:var(--surface-2); border-radius:var(--radius-sm); padding:14px; text-align:center; }
+    .basic .bv { font-family:var(--font-display); font-size:24px; font-weight:800; }
+    .basic .bl { font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); margin-top:3px; }
 
-    /* Perimetria tronco grid */
-    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-    .cell { background: var(--surface-2); border-radius: var(--radius-sm); padding: 11px 12px; }
-    .cell .cl { font-size: 9px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: var(--text-muted); }
-    .cell .cv { font-family: var(--font-display); font-size: 17px; font-weight: 700; margin-top: 2px; }
-    .cell .cv .u { font-size: 10px; color: var(--text-muted); font-weight: 600; }
+    .grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+    .cell { background:var(--surface-2); border-radius:var(--radius-sm); padding:11px 12px; }
+    .cell .cl { font-size:9px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:var(--text-muted); }
+    .cell .cv { font-family:var(--font-display); font-size:17px; font-weight:700; margin-top:2px; }
+    .cell .cv .u { font-size:10px; color:var(--text-muted); font-weight:600; }
 
-    /* Membros bilateral */
-    .limb { display: grid; grid-template-columns: 1.1fr 1fr 1fr auto; align-items: center; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--border); }
-    .limb:last-child { border-bottom: none; }
-    .limb-name { font-size: 12px; color: var(--text-dim); font-weight: 500; }
-    .limb-side { background: var(--surface-2); border-radius: 8px; padding: 8px; text-align: center; }
-    .limb-side .ls-tag { font-size: 8px; font-weight: 700; letter-spacing: 1px; color: var(--text-muted); }
-    .limb-side .ls-val { font-family: var(--font-display); font-size: 15px; font-weight: 700; margin-top: 1px; }
-    .limb-diff { font-family: var(--font-display); font-size: 12px; font-weight: 700; text-align: right; min-width: 44px; }
-    .limb-diff.ok { color: var(--text-muted); }
-    .limb-diff.warn { color: var(--amber); }
-    .limb-note { font-size: 11px; color: var(--text-muted); margin-top: 12px; display: flex; gap: 6px; align-items: flex-start; }
+    .limb { display:grid; grid-template-columns:1.1fr 1fr 1fr auto; align-items:center; gap:8px; padding:10px 0; border-bottom:1px solid var(--border); }
+    .limb:last-child { border-bottom:none; }
+    .limb-name { font-size:12px; color:var(--text-dim); font-weight:500; }
+    .limb-side { background:var(--surface-2); border-radius:8px; padding:8px; text-align:center; }
+    .limb-side .ls-tag { font-size:8px; font-weight:700; letter-spacing:1px; color:var(--text-muted); }
+    .limb-side .ls-val { font-family:var(--font-display); font-size:15px; font-weight:700; margin-top:1px; }
+    .limb-diff { font-family:var(--font-display); font-size:12px; font-weight:700; text-align:right; min-width:44px; }
+    .limb-diff.ok { color:var(--text-muted); } .limb-diff.warn { color:var(--amber); }
+    .limb-note { font-size:11px; color:var(--text-muted); margin-top:12px; display:flex; gap:6px; align-items:flex-start; }
 
-    /* Composição */
-    .donut-wrap { display: flex; flex-direction: column; align-items: center; padding: 8px 0 18px; }
-    .donut { position: relative; width: 176px; height: 176px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-    .donut::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(var(--amber) 0% var(--fat-pct), #2a2a30 var(--fat-pct) 100%); }
-    .donut::after { content: ''; position: absolute; inset: 26px; border-radius: 50%; background: var(--surface); }
-    .donut-inner { position: relative; z-index: 1; text-align: center; }
-    .donut-inner .dp { font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--amber); }
-    .donut-inner .dl { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
-    .donut-side { margin-top: 14px; display: flex; gap: 24px; }
-    .donut-side .ds { text-align: center; }
-    .donut-side .ds-v { font-family: var(--font-display); font-size: 16px; font-weight: 700; }
-    .donut-side .ds-l { font-size: 9px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
-    .donut-side .ds.fat .ds-v { color: var(--amber); }
-    .donut-side .ds.lean .ds-v { color: var(--green); }
+    .donut-wrap { display:flex; flex-direction:column; align-items:center; padding:8px 0 18px; }
+    .donut { position:relative; width:176px; height:176px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+    .donut::before { content:''; position:absolute; inset:0; border-radius:50%; background:conic-gradient(var(--amber) 0% var(--fat-pct),#2a2a30 var(--fat-pct) 100%); }
+    .donut::after { content:''; position:absolute; inset:26px; border-radius:50%; background:var(--surface); }
+    .donut-inner { position:relative; z-index:1; text-align:center; }
+    .donut-inner .dp { font-family:var(--font-display); font-size:32px; font-weight:800; color:var(--amber); }
+    .donut-inner .dl { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); }
+    .donut-side { margin-top:14px; display:flex; gap:24px; }
+    .donut-side .ds { text-align:center; }
+    .donut-side .ds-v { font-family:var(--font-display); font-size:16px; font-weight:700; }
+    .donut-side .ds-l { font-size:9px; letter-spacing:0.5px; text-transform:uppercase; color:var(--text-muted); margin-top:2px; }
+    .donut-side .ds.fat .ds-v { color:var(--amber); } .donut-side .ds.lean .ds-v { color:var(--green); }
 
-    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
-    .stat { background: var(--surface-2); border-radius: var(--radius-sm); padding: 13px 14px; }
-    .stat .st-l { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); }
-    .stat .st-v { font-family: var(--font-display); font-size: 22px; font-weight: 800; margin-top: 3px; }
-    .stat .st-v .u { font-size: 11px; color: var(--text-muted); font-weight: 600; }
-    .stat .st-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 3px; }
-    .st-tag.green { color: var(--green); } .st-tag.amber { color: var(--amber); } .st-tag.red { color: var(--red); }
+    .stats { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px; }
+    .stat { background:var(--surface-2); border-radius:var(--radius-sm); padding:13px 14px; }
+    .stat .st-l { font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); }
+    .stat .st-v { font-family:var(--font-display); font-size:22px; font-weight:800; margin-top:3px; }
+    .stat .st-v .u { font-size:11px; color:var(--text-muted); font-weight:600; }
+    .stat .st-tag { font-size:10px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; margin-top:3px; }
+    .st-tag.green { color:var(--green); } .st-tag.amber { color:var(--amber); } .st-tag.red { color:var(--red); }
 
-    /* Ponto de partida (1ª avaliação) */
-    .baseline { margin-top: 14px; background: linear-gradient(165deg, rgba(245,158,11,0.09), var(--surface) 60%); border: 1px solid var(--amber-glow); border-radius: var(--radius); padding: 26px 22px; text-align: center; position: relative; overflow: hidden; }
-    .baseline::before { content:''; position:absolute; top:-50px; left:50%; transform:translateX(-50%); width:240px; height:140px; background:radial-gradient(ellipse, rgba(245,158,11,0.2), transparent 70%); pointer-events:none; }
+    /* Fotos (view) */
+    .photos { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+    .photo { position:relative; aspect-ratio:3/4; border-radius:var(--radius-sm); overflow:hidden; background:var(--surface-2); border:1px solid var(--border); }
+    .photo img { width:100%; height:100%; object-fit:cover; display:block; }
+    .photo .ph-tag { position:absolute; bottom:0; left:0; right:0; font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; text-align:center; padding:5px; background:linear-gradient(transparent,rgba(0,0,0,0.75)); color:var(--text-dim); }
+    .photo.empty { display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px; color:var(--text-muted); font-size:10px; }
+    .photo.empty .ico { font-size:22px; opacity:.5; }
+
+    /* Ponto de partida */
+    .baseline { margin-top:14px; background:linear-gradient(165deg,rgba(245,158,11,0.09),var(--surface) 60%); border:1px solid var(--amber-glow); border-radius:var(--radius); padding:26px 22px; text-align:center; position:relative; overflow:hidden; }
+    .baseline::before { content:''; position:absolute; top:-50px; left:50%; transform:translateX(-50%); width:240px; height:140px; background:radial-gradient(ellipse,rgba(245,158,11,0.2),transparent 70%); pointer-events:none; }
     .baseline-badge { position:relative; display:inline-flex; align-items:center; gap:8px; font-family:var(--font-display); font-weight:800; font-size:14px; letter-spacing:0.4px; color:#08080a; background:linear-gradient(135deg,#fcd34d,var(--amber)); padding:12px 22px; border-radius:999px; box-shadow:0 6px 20px rgba(245,158,11,0.4); }
-    .baseline-title { position:relative; font-family:var(--font-display); font-weight:700; font-size:16px; color:var(--text); margin-top:16px; }
+    .baseline-title { position:relative; font-family:var(--font-display); font-weight:700; font-size:16px; margin-top:16px; }
     .baseline-text { position:relative; font-size:12.5px; color:var(--text-dim); line-height:1.65; margin-top:8px; max-width:380px; margin:8px auto 0; }
     .baseline-text b { color:var(--amber); font-weight:700; }
-    .baseline-next { position:relative; display:inline-block; margin-top:16px; font-size:11px; font-weight:600; letter-spacing:0.3px; color:var(--text-muted); background:var(--surface-2); border:1px solid var(--border); border-radius:999px; padding:7px 16px; }
+    .baseline-next { position:relative; display:inline-block; margin-top:16px; font-size:11px; font-weight:600; color:var(--text-muted); background:var(--surface-2); border:1px solid var(--border); border-radius:999px; padding:7px 16px; }
 
-    /* Evolução (2+ avaliações) */
-    .evo { margin-top: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 18px 20px; }
-    .evo-head { display:flex; align-items:center; gap:8px; font-family:var(--font-display); font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--amber); margin-bottom:4px; }
-    .evo-period { font-size:11px; color:var(--text-muted); margin-bottom:14px; }
+    /* Comparação */
+    .cmp-head { display:flex; gap:8px; margin-bottom:12px; }
+    .cmp-col { flex:1; text-align:center; background:var(--surface-2); border-radius:var(--radius-sm); padding:10px; }
+    .cmp-col.a { border:1px solid var(--amber); } .cmp-col.b { border:1px solid var(--green); }
+    .cmp-col .cc-tag { font-size:9px; font-weight:800; letter-spacing:1px; }
+    .cmp-col.a .cc-tag { color:var(--amber); } .cmp-col.b .cc-tag { color:var(--green); }
+    .cmp-col .cc-date { font-family:var(--font-display); font-weight:700; font-size:14px; margin-top:2px; }
     .evo-hi { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:14px; }
     .evo-hi-item { background:var(--surface-2); border-radius:var(--radius-sm); padding:14px 10px; text-align:center; }
     .evo-hi-val { font-family:var(--font-display); font-size:20px; font-weight:800; }
     .evo-hi-val.green { color:var(--green); } .evo-hi-val.red { color:var(--red); } .evo-hi-val.flat { color:var(--text-dim); }
     .evo-hi-lbl { font-size:9px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; color:var(--text-muted); margin-top:4px; }
+    .evo-colhead { display:grid; grid-template-columns:1.1fr 1fr 1fr auto; gap:8px; font-size:8.5px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); padding-bottom:6px; }
+    .evo-colhead span:nth-child(2),.evo-colhead span:nth-child(3){ text-align:center; } .evo-colhead span:last-child{ text-align:right; }
     .evo-row { display:grid; grid-template-columns:1.1fr 1fr 1fr auto; align-items:center; gap:8px; padding:9px 0; border-bottom:1px solid var(--border); font-size:12px; }
     .evo-row:last-child { border-bottom:none; }
     .evo-lbl { color:var(--text-dim); }
@@ -115,232 +133,235 @@
     .evo-new { color:var(--text); font-family:var(--font-display); font-weight:700; text-align:center; }
     .evo-delta { font-family:var(--font-display); font-weight:700; font-size:12px; text-align:right; min-width:52px; }
     .evo-delta.green { color:var(--green); } .evo-delta.red { color:var(--red); } .evo-delta.flat { color:var(--text-muted); }
-    .evo-colhead { display:grid; grid-template-columns:1.1fr 1fr 1fr auto; gap:8px; font-size:8.5px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); padding-bottom:6px; }
-    .evo-colhead span:nth-child(2),.evo-colhead span:nth-child(3){ text-align:center; } .evo-colhead span:last-child{ text-align:right; }
 
-    .footer { text-align: center; font-size: 11px; color: var(--text-muted); margin-top: 24px; line-height: 1.7; }
-    .footer .fb { color: var(--amber); font-weight: 700; }
+    /* Comparação de fotos: slider antes/depois */
+    .ba-angles { display:flex; gap:6px; margin-bottom:12px; }
+    .ba-angles button { flex:1; background:var(--surface-2); border:1px solid var(--border); color:var(--text-dim); font-family:var(--font-display); font-weight:600; font-size:12px; padding:8px; border-radius:8px; cursor:pointer; }
+    .ba-angles button.active { border-color:var(--amber); color:var(--amber); background:var(--amber-dim); }
+    .ba { position:relative; width:100%; aspect-ratio:3/4; border-radius:var(--radius-sm); overflow:hidden; background:var(--surface-2); border:1px solid var(--border); user-select:none; }
+    .ba img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .ba .ba-after-wrap { position:absolute; inset:0; overflow:hidden; width:50%; }
+    .ba .ba-after-wrap img { width:100vw; max-width:560px; }
+    .ba-divider { position:absolute; top:0; bottom:0; left:50%; width:3px; background:var(--amber); box-shadow:0 0 12px rgba(245,158,11,0.6); transform:translateX(-50%); pointer-events:none; }
+    .ba-divider::after { content:'⟷'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:32px; height:32px; border-radius:50%; background:var(--amber); color:#08080a; font-size:15px; font-weight:800; display:flex; align-items:center; justify-content:center; }
+    .ba-lbl { position:absolute; top:8px; font-size:9px; font-weight:800; letter-spacing:1px; padding:4px 8px; border-radius:6px; background:rgba(0,0,0,0.6); }
+    .ba-lbl.l { left:8px; color:var(--amber); } .ba-lbl.r { right:8px; color:var(--green); }
+    .ba-range { width:100%; margin-top:12px; -webkit-appearance:none; height:4px; border-radius:2px; background:var(--surface-3); }
+    .ba-range::-webkit-slider-thumb { -webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:var(--amber); cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.4); }
+    .ba-empty { text-align:center; color:var(--text-muted); font-size:12px; padding:30px 10px; }
+
+    .footer { text-align:center; font-size:11px; color:var(--text-muted); margin-top:24px; line-height:1.7; }
+    .footer .fb { color:var(--amber); font-weight:700; }
   </style>
 </head>
 <body>
-<div class="container" id="app"></div>
+<div class="container">
+  <div class="top">
+    <div class="brand">MaxRe<span class="dot">.</span>sults</div>
+    <div class="brand-sub">Avaliação Física</div>
+    <div class="aluno" id="alunoNome"></div>
+    <div class="aluno-meta" id="alunoMeta"></div>
+  </div>
+  <div class="modebar">
+    <button id="mView" class="active" onclick="setMode('view')">📄 Ver avaliação</button>
+    <button id="mCmp" onclick="setMode('compare')">🔀 Comparar</button>
+  </div>
+  <div id="pickerArea"></div>
+  <div id="body"></div>
+  <div class="footer"><span class="fb">MaxResults</span> · Avaliação Física<br>Luisão Ribeiro · CREF 040847-G/PR</div>
+</div>
 
 <script>
 /* ═══════════════════════════════════════════════════════════════
-   MAXRESULTS · AVALIAÇÃO FÍSICA — TEMPLATE
-   Para uma nova avaliação: copie esta pasta, troque só o objeto DATA
-   abaixo (medidas cruas). A página calcula composição, IMC, RCQ, TMB
-   e classificações sozinha (Pollock 7 + Siri + Mifflin-St Jeor).
+   MAXRESULTS · AVALIAÇÃO FÍSICA — HISTÓRICO CLICÁVEL + COMPARATIVO
+   Para um aluno: edite ALUNO + a lista AVALIACOES (uma entrada por
+   avaliação, ordem cronológica). A página calcula tudo (Pollock 7 +
+   Siri + Mifflin), deixa clicar em cada avaliação e comparar duas
+   (números + fotos antes/depois).
    ═══════════════════════════════════════════════════════════════ */
-const DATA = {
-  nome: "Luciana Manhães",
-  data: "05/06/2026",
-  proxima: "05/09/2026",           // +3 meses
-  sexo: "F",                       // CORRIGIDO (PDF veio "Masculino" por erro)
-  idade: 44,
-  altura: 169.0,                   // cm
-  peso: 66.85,                     // kg
-  tronco: { pescoco: null, ombro: 103.0, peitoral: 83.0, cintura: 69.0, abdomen: 83.0, quadril: 101.5 },
-  membros: {
-    "Braço relaxado": { e: 29.5, d: 29.0 },   // rotulado "contraído" no PDF; é o relaxado
-    "Antebraço":      null,
-    "Coxa proximal":  { e: 60.0, d: 60.0 },
-    "Panturrilha":    { e: 41.0, d: 41.0 },
+const ALUNO = { nome: "Luciana Manhães", sexo: "F" };   // sexo corrigido (PDF veio "Masculino" por erro)
+
+const AVALIACOES = [
+  {
+    data: "05/06/2026", idade: 44, altura: 169.0, peso: 66.85,
+    tronco: { pescoco:null, ombro:103.0, peitoral:83.0, cintura:69.0, abdomen:83.0, quadril:101.5 },
+    membros: { "Braço relaxado":{e:29.5,d:29.0}, "Antebraço":null, "Coxa proximal":{e:60.0,d:60.0}, "Panturrilha":{e:41.0,d:41.0} },
+    dobras: { Tricipital:16.3, Subescapular:10.1, Peitoral:4.0, "Axilar méd.":5.6, "Suprailíaca":7.8, Abdominal:13.1, Coxa:27.4 },
+    fotos: { frente:"", lado:"", costas:"" },
+    obs: ""
   },
-  dobras: { Tricipital: 16.3, Subescapular: 10.1, Peitoral: 4.0, "Axilar méd.": 5.6, "Suprailíaca": 7.8, Abdominal: 13.1, Coxa: 27.4 },
-  obs: "",
-  // Avaliações ANTERIORES (mesmo formato: {data, sexo, idade, altura, peso, tronco, dobras}).
-  // Vazio = primeira avaliação → mostra o marcador "Ponto de Partida".
-  // Com 1+ → mostra a EVOLUÇÃO (antes/depois) comparando a mais recente com esta.
-  historico: [],
-};
+];
 
-/* ── Cálculos (validados contra o app oficial, batem no decimal) ── */
-function calc(d) {
-  const s7 = Object.values(d.dobras).reduce((a,b)=>a+b, 0);
-  const age = d.idade, h = d.altura/100;
-  let bd;
-  if (d.sexo === "F")
-    bd = 1.0970 - 0.00046971*s7 + 0.00000056*s7*s7 - 0.00012828*age;   // Jackson/Pollock/Ward mulheres
-  else
-    bd = 1.112 - 0.00043499*s7 + 0.00000055*s7*s7 - 0.00028826*age;    // Jackson/Pollock homens
-  const fat = 495/bd - 450;                                            // Siri
-  const fatMass = d.peso * fat/100;
-  const leanMass = d.peso - fatMass;
-  const imc = d.peso / (h*h);
-  const rcq = d.tronco.cintura && d.tronco.quadril ? d.tronco.cintura/d.tronco.quadril : null;
-  const tmb = d.sexo === "F"
-    ? 10*d.peso + 6.25*d.altura - 5*age - 161
-    : 10*d.peso + 6.25*d.altura - 5*age + 5;                           // Mifflin-St Jeor
-  const idealMin = 18.5*h*h, idealMax = 24.9*h*h;
-  return { s7, fat, fatMass, leanMass, imc, rcq, tmb, idealMin, idealMax };
+/* ── Cálculos (batem no decimal com o app oficial) ── */
+function calc(av) {
+  const s7 = Object.values(av.dobras).reduce((a,b)=>a+b,0);
+  const age = av.idade, h = av.altura/100;
+  const bd = ALUNO.sexo === "F"
+    ? 1.0970 - 0.00046971*s7 + 0.00000056*s7*s7 - 0.00012828*age
+    : 1.112  - 0.00043499*s7 + 0.00000055*s7*s7 - 0.00028826*age;
+  const fat = 495/bd - 450;
+  const fatMass = av.peso*fat/100, leanMass = av.peso - fatMass;
+  const imc = av.peso/(h*h);
+  const rcq = (av.tronco.cintura && av.tronco.quadril) ? av.tronco.cintura/av.tronco.quadril : null;
+  const tmb = ALUNO.sexo === "F" ? 10*av.peso+6.25*av.altura-5*age-161 : 10*av.peso+6.25*av.altura-5*age+5;
+  return { s7, fat, fatMass, leanMass, imc, rcq, tmb, idealMin:18.5*h*h, idealMax:24.9*h*h };
 }
-function fatClass(pct, sexo) {
-  const bands = sexo === "F"
-    ? [[13,"Baixa","amber"],[20,"Atlético","green"],[24,"Bom","green"],[31,"Aceitável","amber"],[999,"Elevado","red"]]
-    : [[5,"Baixa","amber"],[13,"Atlético","green"],[17,"Bom","green"],[24,"Aceitável","amber"],[999,"Elevado","red"]];
-  for (const [max,label,color] of bands) if (pct <= max) return {label,color};
-}
-function imcClass(v) {
-  if (v < 18.5) return {label:"Abaixo",color:"amber"};
-  if (v < 25)   return {label:"Normal",color:"green"};
-  if (v < 30)   return {label:"Sobrepeso",color:"amber"};
-  return {label:"Obesidade",color:"red"};
-}
-function rcqClass(v, sexo) {
-  if (v == null) return {label:"",color:""};
-  const lim = sexo === "F" ? [0.80,0.85,0.90] : [0.90,0.95,1.00];
-  if (v < lim[0]) return {label:"Baixo risco",color:"green"};
-  if (v < lim[1]) return {label:"Risco moderado",color:"amber"};
-  if (v < lim[2]) return {label:"Risco alto",color:"amber"};
-  return {label:"Risco muito alto",color:"red"};
-}
-const nf = (v,dp=1) => v.toLocaleString('pt-BR',{minimumFractionDigits:dp,maximumFractionDigits:dp});
-const thousand = v => Math.round(v).toLocaleString('pt-BR');
+function fatClass(pct){ const b = ALUNO.sexo==="F"
+  ? [[13,"Baixa","amber"],[20,"Atlético","green"],[24,"Bom","green"],[31,"Aceitável","amber"],[999,"Elevado","red"]]
+  : [[5,"Baixa","amber"],[13,"Atlético","green"],[17,"Bom","green"],[24,"Aceitável","amber"],[999,"Elevado","red"]];
+  for(const[m,l,c] of b) if(pct<=m) return{label:l,color:c}; }
+function imcClass(v){ if(v<18.5)return{label:"Abaixo",color:"amber"}; if(v<25)return{label:"Normal",color:"green"}; if(v<30)return{label:"Sobrepeso",color:"amber"}; return{label:"Obesidade",color:"red"}; }
+function rcqClass(v){ if(v==null)return{label:"",color:""}; const l=ALUNO.sexo==="F"?[0.80,0.85,0.90]:[0.90,0.95,1.00];
+  if(v<l[0])return{label:"Baixo risco",color:"green"}; if(v<l[1])return{label:"Risco moderado",color:"amber"}; if(v<l[2])return{label:"Risco alto",color:"amber"}; return{label:"Risco muito alto",color:"red"}; }
+const nf = (v,dp=1)=>v.toLocaleString('pt-BR',{minimumFractionDigits:dp,maximumFractionDigits:dp});
+const thousand = v=>Math.round(v).toLocaleString('pt-BR');
 
-/* ── Evolução entre avaliações ── */
-function evoDelta(oldV, newV, lowerIsBetter, unit, dp=1) {
-  const d = newV - oldV;
-  const flat = Math.abs(d) < 0.05;
-  const improved = lowerIsBetter ? d < 0 : d > 0;
-  const cls = flat ? 'flat' : (improved ? 'green' : 'red');
-  const arrow = flat ? '→' : (d < 0 ? '↓' : '↑');
-  const sign = d > 0 ? '+' : (d < 0 ? '−' : '');
-  return `<span class="evo-delta ${cls}">${arrow} ${sign}${nf(Math.abs(d),dp)}${unit}</span>`;
-}
-function renderEvolution(d, cur) {
-  const prev = d.historico[d.historico.length - 1];
-  const p = calc(prev);
-  const hiCls = v => Math.abs(v) < 0.05 ? 'flat' : (v > 0 ? 'green' : 'red');
-  const fatLost = p.fatMass - cur.fatMass;                 // + = perdeu gordura (bom)
-  const leanGain = cur.leanMass - p.leanMass;              // + = ganhou magra (bom)
-  const rows = [
-    ['% Gordura', p.fat, cur.fat, true, '%'],
-    ['Massa Magra', p.leanMass, cur.leanMass, false, ' kg'],
-    ['Massa Gorda', p.fatMass, cur.fatMass, true, ' kg'],
-    ['Σ Dobras', p.s7, cur.s7, true, ' mm'],
-  ];
-  const pt = prev.tronco, ct = d.tronco;
-  [['Cintura','cintura'],['Abdômen','abdomen'],['Quadril','quadril']].forEach(([lbl,k]) => {
-    if (pt[k] != null && ct[k] != null) rows.push([lbl, pt[k], ct[k], true, ' cm']);
-  });
-  const rowsHtml = rows.map(([lbl,o,n,low,u]) =>
-    `<div class="evo-row"><span class="evo-lbl">${lbl}</span><span class="evo-old">${nf(o,u===' mm'||u==='%'?1:1)}${u}</span><span class="evo-new">${nf(n,1)}${u}</span>${evoDelta(o,n,low,u)}</div>`
-  ).join('');
-  return `
-    <div class="evo">
-      <div class="evo-head">📈 Evolução</div>
-      <div class="evo-period">${prev.data} → ${d.data}</div>
-      <div class="evo-hi">
-        <div class="evo-hi-item"><div class="evo-hi-val ${hiCls(fatLost)}">${fatLost>=0?'−':'+'}${nf(Math.abs(fatLost))}</div><div class="evo-hi-lbl">kg gordura</div></div>
-        <div class="evo-hi-item"><div class="evo-hi-val ${hiCls(leanGain)}">${leanGain>=0?'+':'−'}${nf(Math.abs(leanGain))}</div><div class="evo-hi-lbl">kg massa magra</div></div>
-        <div class="evo-hi-item"><div class="evo-hi-val ${hiCls(p.fat-cur.fat)}">${(cur.fat-p.fat)>=0?'+':'−'}${nf(Math.abs(cur.fat-p.fat))}</div><div class="evo-hi-lbl">% gordura</div></div>
-      </div>
-      <div class="evo-colhead"><span>Medida</span><span>Antes</span><span>Agora</span><span>Δ</span></div>
-      ${rowsHtml}
-    </div>`;
-}
-
-/* ── Render ── */
-function render(d) {
-  const r = calc(d);
-  const fc = fatClass(r.fat, d.sexo), ic = imcClass(r.imc), rc = rcqClass(r.rcq, d.sexo);
-  const sexoLabel = d.sexo === "F" ? "Feminino" : "Masculino";
-
-  const troncoLabels = { pescoco:"Pescoço", ombro:"Ombro", peitoral:"Peitoral", cintura:"Cintura", abdomen:"Abdômen", quadril:"Quadril" };
-  const troncoCells = Object.entries(d.tronco).filter(([k,v])=>v!=null)
-    .map(([k,v])=>`<div class="cell"><div class="cl">${troncoLabels[k]}</div><div class="cv">${nf(v)}<span class="u"> cm</span></div></div>`).join('');
-
-  const membroRows = Object.entries(d.membros).map(([name,m])=>{
-    if (!m) return `<div class="limb"><span class="limb-name">${name}</span><div class="limb-side" style="grid-column:2/4;color:var(--text-muted);font-size:11px;padding:8px;">não medido</div><span></span></div>`;
-    const diff = m.d - m.e, adiff = Math.abs(diff);
-    const cls = adiff > 1 ? 'warn' : 'ok';
-    const sign = diff>0?'+':(diff<0?'−':'');
-    return `<div class="limb">
-      <span class="limb-name">${name}</span>
+/* ── Detalhe de UMA avaliação ── */
+function renderDetail(av) {
+  const r = calc(av), fc = fatClass(r.fat), ic = imcClass(r.imc), rc = rcqClass(r.rcq);
+  const TL = { pescoco:"Pescoço", ombro:"Ombro", peitoral:"Peitoral", cintura:"Cintura", abdomen:"Abdômen", quadril:"Quadril" };
+  const tronco = Object.entries(av.tronco).filter(([k,v])=>v!=null)
+    .map(([k,v])=>`<div class="cell"><div class="cl">${TL[k]}</div><div class="cv">${nf(v)}<span class="u"> cm</span></div></div>`).join('');
+  const membros = Object.entries(av.membros).map(([name,m])=>{
+    if(!m) return `<div class="limb"><span class="limb-name">${name}</span><div class="limb-side" style="grid-column:2/4;color:var(--text-muted);font-size:11px;padding:8px;">não medido</div><span></span></div>`;
+    const diff=m.d-m.e, ad=Math.abs(diff), cls=ad>1?'warn':'ok', sg=diff>0?'+':(diff<0?'−':'');
+    return `<div class="limb"><span class="limb-name">${name}</span>
       <div class="limb-side"><div class="ls-tag">ESQ</div><div class="ls-val">${nf(m.e)}</div></div>
       <div class="limb-side"><div class="ls-tag">DIR</div><div class="ls-val">${nf(m.d)}</div></div>
-      <span class="limb-diff ${cls}">${diff===0?'0.0':sign+nf(adiff)}</span>
-    </div>`;
+      <span class="limb-diff ${cls}">${diff===0?'0.0':sg+nf(ad)}</span></div>`;
+  }).join('');
+  const dobras = Object.entries(av.dobras).map(([k,v])=>`<div class="cell"><div class="cl">${k}</div><div class="cv">${nf(v)}<span class="u"> mm</span></div></div>`).join('');
+  const angles = [["frente","Frente"],["lado","Lado"],["costas","Costas"]];
+  const fotos = angles.map(([k,l])=>{
+    const src = av.fotos && av.fotos[k];
+    return src ? `<div class="photo"><img src="${src}" alt="${l}"><div class="ph-tag">${l}</div></div>`
+               : `<div class="photo empty"><span class="ico">📷</span><span>${l}</span></div>`;
   }).join('');
 
-  const dobraCells = Object.entries(d.dobras)
-    .map(([k,v])=>`<div class="cell"><div class="cl">${k}</div><div class="cv">${nf(v)}<span class="u"> mm</span></div></div>`).join('');
-
-  document.getElementById('app').innerHTML = `
-    <div class="head-card">
-      <div class="brand">MaxRe<span class="dot">.</span>sults</div>
-      <div class="brand-sub">Avaliação Física</div>
-      <div class="id-grid">
-        <div class="id-item full"><div class="id-label">Nome do Aluno</div><div class="id-value">${d.nome}</div></div>
-        <div class="id-item"><div class="id-label">Data</div><div class="id-value">${d.data}</div></div>
-        <div class="id-item"><div class="id-label">Próxima Avaliação</div><div class="id-value">${d.proxima}</div></div>
-        <div class="id-item"><div class="id-label">Gênero</div><div class="id-value">${sexoLabel}</div></div>
-        <div class="id-item"><div class="id-label">Idade</div><div class="id-value">${d.idade} anos</div></div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">📏 Dados Básicos</div>
+  return `
+    <div class="section"><div class="section-title">📏 Dados Básicos</div>
       <div class="basics">
-        <div class="basic"><div class="bv">${nf(d.altura)}<span class="u"></span></div><div class="bl">Altura · cm</div></div>
-        <div class="basic"><div class="bv">${nf(d.peso,2)}</div><div class="bl">Peso · kg</div></div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">📐 Perimetria · Tronco <span class="unit">cm</span></div>
-      <div class="grid3">${troncoCells}</div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">💪 Perimetria · Membros <span class="unit">cm · esq / dir</span></div>
-      ${membroRows}
-      <div class="limb-note">💡 <span>Diferenças &gt; 1 cm entre os lados podem indicar assimetria — atenção no treino.</span></div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">🤏 Dobras Cutâneas · Pollock 7 <span class="unit">mm</span></div>
-      <div class="grid3">${dobraCells}</div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">📊 Composição Corporal</div>
+        <div class="basic"><div class="bv">${nf(av.altura)}</div><div class="bl">Altura · cm</div></div>
+        <div class="basic"><div class="bv">${nf(av.peso,2)}</div><div class="bl">Peso · kg</div></div>
+      </div></div>
+    <div class="section"><div class="section-title">📊 Composição Corporal</div>
       <div class="donut-wrap">
-        <div class="donut" style="--fat-pct:${r.fat.toFixed(1)}%">
-          <div class="donut-inner"><div class="dp">${nf(r.fat)}%</div><div class="dl">Gordura</div></div>
-        </div>
-        <div class="donut-side">
-          <div class="ds fat"><div class="ds-v">${nf(r.fatMass)} kg</div><div class="ds-l">Massa Gorda</div></div>
-          <div class="ds lean"><div class="ds-v">${nf(r.leanMass)} kg</div><div class="ds-l">Massa Magra</div></div>
-        </div>
+        <div class="donut" style="--fat-pct:${r.fat.toFixed(1)}%"><div class="donut-inner"><div class="dp">${nf(r.fat)}%</div><div class="dl">Gordura</div></div></div>
+        <div class="donut-side"><div class="ds fat"><div class="ds-v">${nf(r.fatMass)} kg</div><div class="ds-l">Massa Gorda</div></div><div class="ds lean"><div class="ds-v">${nf(r.leanMass)} kg</div><div class="ds-l">Massa Magra</div></div></div>
       </div>
       <div class="stats">
         <div class="stat"><div class="st-l">IMC</div><div class="st-v">${nf(r.imc)}</div><div class="st-tag ${ic.color}">${ic.label}</div></div>
         <div class="stat"><div class="st-l">% Gordura</div><div class="st-v">${nf(r.fat)}<span class="u">%</span></div><div class="st-tag ${fc.color}">${fc.label}</div></div>
         <div class="stat"><div class="st-l">RCQ (cint/quad)</div><div class="st-v">${r.rcq?nf(r.rcq,2):'—'}</div><div class="st-tag ${rc.color}">${rc.label}</div></div>
-        <div class="stat"><div class="st-l">Σ Dobras</div><div class="st-v">${nf(r.s7)}<span class="u"> mm</span></div><div class="st-tag" style="color:var(--text-muted)">7/7 preenchidas</div></div>
+        <div class="stat"><div class="st-l">Σ Dobras</div><div class="st-v">${nf(r.s7)}<span class="u"> mm</span></div><div class="st-tag" style="color:var(--text-muted)">7/7</div></div>
         <div class="stat"><div class="st-l">Peso Ideal</div><div class="st-v" style="font-size:18px">${nf(r.idealMin)}–${nf(r.idealMax)}</div><div class="st-tag" style="color:var(--text-muted)">kg · IMC saudável</div></div>
         <div class="stat"><div class="st-l">TMB (basal)</div><div class="st-v">${thousand(r.tmb)}</div><div class="st-tag" style="color:var(--text-muted)">kcal/dia</div></div>
-      </div>
-      ${d.obs ? `<div class="limb-note" style="margin-top:16px">📝 <span>${d.obs}</span></div>` : ''}
-    </div>
-
-    ${(d.historico && d.historico.length >= 1) ? renderEvolution(d, r) : `
-    <div class="baseline">
-      <div class="baseline-badge">📍 Primeira Avaliação Física</div>
-      <div class="baseline-title">Seu ponto de partida</div>
-      <div class="baseline-text">Esta é a sua <b>avaliação de referência</b>. A partir da próxima, você vê aqui a sua <b>evolução</b> — gordura, medidas e massa magra — lado a lado. 📈</div>
-      <div class="baseline-next">Próxima avaliação sugerida · ${d.proxima}</div>
-    </div>`}
-
-    <div class="footer">
-      <span class="fb">MaxResults</span> · Avaliação Física<br>
-      Luisão Ribeiro · CREF 040847-G/PR
-    </div>
-  `;
+      </div></div>
+    <div class="section"><div class="section-title">📸 Fotos</div><div class="photos">${fotos}</div></div>
+    <div class="section"><div class="section-title">📐 Perimetria · Tronco <span class="unit">cm</span></div><div class="grid3">${tronco}</div></div>
+    <div class="section"><div class="section-title">💪 Perimetria · Membros <span class="unit">cm · esq / dir</span></div>${membros}
+      <div class="limb-note">💡 <span>Diferenças &gt; 1 cm entre os lados podem indicar assimetria — atenção no treino.</span></div></div>
+    <div class="section"><div class="section-title">🤏 Dobras Cutâneas · Pollock 7 <span class="unit">mm</span></div><div class="grid3">${dobras}</div></div>`;
 }
-render(DATA);
+
+/* ── Marcador da 1ª avaliação ── */
+function baselineBlock(av){ return `
+  <div class="baseline">
+    <div class="baseline-badge">📍 Primeira Avaliação Física</div>
+    <div class="baseline-title">Seu ponto de partida</div>
+    <div class="baseline-text">Esta é a sua <b>avaliação de referência</b>. Quando você fizer a próxima, dá pra <b>comparar as duas aqui</b> — números e fotos, lado a lado. 📈</div>
+  </div>`; }
+
+/* ── Comparação de duas avaliações ── */
+function evoDelta(o,n,low,u){ const d=n-o, flat=Math.abs(d)<0.05, imp=low?d<0:d>0, cls=flat?'flat':(imp?'green':'red'), ar=flat?'→':(d<0?'↓':'↑'), sg=d>0?'+':(d<0?'−':''); return `<span class="evo-delta ${cls}">${ar} ${sg}${nf(Math.abs(d),1)}${u}</span>`; }
+let baAngle = 'frente';
+function renderCompare(ia, ib) {
+  const A=AVALIACOES[ia], B=AVALIACOES[ib], ra=calc(A), rb=calc(B);
+  const hiCls=v=>Math.abs(v)<0.05?'flat':(v>0?'green':'red');
+  const fatLost=ra.fatMass-rb.fatMass, leanGain=rb.leanMass-ra.leanMass, fatPctD=rb.fat-ra.fat;
+  const rows=[['% Gordura',ra.fat,rb.fat,true,'%'],['Massa Magra',ra.leanMass,rb.leanMass,false,' kg'],['Massa Gorda',ra.fatMass,rb.fatMass,true,' kg'],['Σ Dobras',ra.s7,rb.s7,true,' mm']];
+  [['Cintura','cintura'],['Abdômen','abdomen'],['Quadril','quadril']].forEach(([lbl,k])=>{ if(A.tronco[k]!=null&&B.tronco[k]!=null) rows.push([lbl,A.tronco[k],B.tronco[k],true,' cm']); });
+  const rowsHtml=rows.map(([lbl,o,n,low,u])=>`<div class="evo-row"><span class="evo-lbl">${lbl}</span><span class="evo-old">${nf(o)}${u}</span><span class="evo-new">${nf(n)}${u}</span>${evoDelta(o,n,low,u)}</div>`).join('');
+
+  // fotos antes/depois
+  const angles=[["frente","Frente"],["lado","Lado"],["costas","Costas"]];
+  const hasAny = angles.some(([k])=>A.fotos&&A.fotos[k]&&B.fotos&&B.fotos[k]);
+  const angBtns = angles.filter(([k])=>A.fotos&&A.fotos[k]&&B.fotos&&B.fotos[k])
+    .map(([k,l])=>`<button class="${baAngle===k?'active':''}" onclick="baAngle='${k}';draw()">${l}</button>`).join('');
+  const fa=A.fotos&&A.fotos[baAngle], fb=B.fotos&&B.fotos[baAngle];
+  const photoBlock = hasAny && fa && fb ? `
+    <div class="ba-angles">${angBtns}</div>
+    <div class="ba" id="ba">
+      <img src="${fa}" alt="antes">
+      <div class="ba-after-wrap" id="baAfter"><img src="${fb}" alt="depois"></div>
+      <div class="ba-divider" id="baDiv"></div>
+      <span class="ba-lbl l">ANTES</span><span class="ba-lbl r">DEPOIS</span>
+    </div>
+    <input type="range" class="ba-range" id="baRange" min="0" max="100" value="50" oninput="moveBA(this.value)">`
+    : `<div class="ba-empty">📷 Comparativo de fotos aparece quando as duas avaliações tiverem foto do mesmo ângulo.</div>`;
+
+  return `
+    <div class="cmp-head">
+      <div class="cmp-col a"><div class="cc-tag">ANTES</div><div class="cc-date">${A.data}</div></div>
+      <div class="cmp-col b"><div class="cc-tag">DEPOIS</div><div class="cc-date">${B.data}</div></div>
+    </div>
+    <div class="section"><div class="section-title">📸 Comparativo de Fotos</div>${photoBlock}</div>
+    <div class="section"><div class="section-title">📈 Comparativo de Números</div>
+      <div class="evo-hi">
+        <div class="evo-hi-item"><div class="evo-hi-val ${hiCls(fatLost)}">${fatLost>=0?'−':'+'}${nf(Math.abs(fatLost))}</div><div class="evo-hi-lbl">kg gordura</div></div>
+        <div class="evo-hi-item"><div class="evo-hi-val ${hiCls(leanGain)}">${leanGain>=0?'+':'−'}${nf(Math.abs(leanGain))}</div><div class="evo-hi-lbl">kg massa magra</div></div>
+        <div class="evo-hi-item"><div class="evo-hi-val ${hiCls(-fatPctD)}">${fatPctD>=0?'+':'−'}${nf(Math.abs(fatPctD))}</div><div class="evo-hi-lbl">% gordura</div></div>
+      </div>
+      <div class="evo-colhead"><span>Medida</span><span>${A.data.slice(0,5)}</span><span>${B.data.slice(0,5)}</span><span>Δ</span></div>
+      ${rowsHtml}
+    </div>`;
+}
+function moveBA(v){ const w=document.getElementById('baAfter'), d=document.getElementById('baDiv'); if(w){w.style.width=v+'%';} if(d){d.style.left=v+'%';} }
+
+/* ── Estado + navegação ── */
+let mode='view', selView=AVALIACOES.length-1, selA=0, selB=AVALIACOES.length-1;
+function setMode(m){ mode=m; document.getElementById('mView').classList.toggle('active',m==='view'); document.getElementById('mCmp').classList.toggle('active',m==='compare'); draw(); }
+function pickView(i){ selView=i; draw(); }
+function pickCmp(i){ // alterna papel: se não é A nem B, vira B (mantém A); clique em A/B limpa
+  if(i===selA){ return; } if(i===selB){ return; } // manter simples: escolhe A depois B por ordem
+  if(selA===null){ selA=i; } else { selB=i; }
+  draw();
+}
+function draw(){
+  document.getElementById('mView').classList.toggle('active', mode==='view');
+  document.getElementById('mCmp').classList.toggle('active', mode==='compare');
+  document.getElementById('alunoNome').textContent = ALUNO.nome;
+  const pa=document.getElementById('pickerArea'), bd=document.getElementById('body');
+  if(!AVALIACOES.length){ pa.innerHTML=''; bd.innerHTML='<div class="ba-empty">Nenhuma avaliação cadastrada ainda.</div>'; return; }
+  document.getElementById('alunoMeta').textContent = `${AVALIACOES.length} avaliaç${AVALIACOES.length>1?'ões':'ão'} · ${AVALIACOES[AVALIACOES.length-1].idade} anos`;
+
+  if(mode==='view'){
+    const chips = AVALIACOES.map((a,i)=>`<div class="chip ${i===selView?'active':''}" onclick="pickView(${i})">${a.data}${i===AVALIACOES.length-1?'<span class="tag">ATUAL</span>':''}</div>`).join('');
+    pa.innerHTML = `<div class="picker-label">Escolha a avaliação</div><div class="chips">${chips}</div>`;
+    let html = renderDetail(AVALIACOES[selView]);
+    if(AVALIACOES.length===1) html += baselineBlock(AVALIACOES[selView]);
+    bd.innerHTML = html;
+  } else {
+    if(AVALIACOES.length<2){
+      pa.innerHTML=''; bd.innerHTML=`<div class="baseline"><div class="baseline-badge">📍 Primeira Avaliação Física</div><div class="baseline-title">Ainda não dá pra comparar</div><div class="baseline-text">Você tem <b>uma</b> avaliação até agora. Quando fizer a próxima, o comparativo <b>antes/depois</b> — números e fotos — aparece aqui automaticamente. 📈</div></div>`;
+      return;
+    }
+    const chips = AVALIACOES.map((a,i)=>{ let c='chip'; if(i===selA)c+=' a'; else if(i===selB)c+=' b'; return `<div class="${c}" onclick="setCmp(${i})">${a.data}${i===selA?'<span class="tag">ANTES</span>':(i===selB?'<span class="tag">DEPOIS</span>':'')}</div>`; }).join('');
+    pa.innerHTML = `<div class="picker-label">Toque em duas avaliações</div><div class="chips">${chips}</div><div class="compare-hint">Primeiro toque = ANTES · segundo = DEPOIS · toque de novo pra trocar.</div>`;
+    bd.innerHTML = renderCompare(selA, selB);
+    moveBA(50);
+  }
+}
+let cmpNext='a';
+function setCmp(i){
+  if(i===selA){ selA=null; cmpNext='a'; if(selB===null){} draw(); return; }
+  if(i===selB){ selB=null; cmpNext='b'; draw(); return; }
+  if(selA===null){ selA=i; } else if(selB===null){ selB=i; } else { // ambos setados: substitui o mais antigo escolhido
+    selB=i;
+  }
+  draw();
+}
+draw();
 </script>
 </body>
 </html>
