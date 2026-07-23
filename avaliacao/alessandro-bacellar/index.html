@@ -90,6 +90,34 @@
     .stat .st-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 3px; }
     .st-tag.green { color: var(--green); } .st-tag.amber { color: var(--amber); } .st-tag.red { color: var(--red); }
 
+    /* Ponto de partida (1ª avaliação) */
+    .baseline { margin-top: 14px; background: linear-gradient(165deg, rgba(245,158,11,0.09), var(--surface) 60%); border: 1px solid var(--amber-glow); border-radius: var(--radius); padding: 26px 22px; text-align: center; position: relative; overflow: hidden; }
+    .baseline::before { content:''; position:absolute; top:-50px; left:50%; transform:translateX(-50%); width:240px; height:140px; background:radial-gradient(ellipse, rgba(245,158,11,0.2), transparent 70%); pointer-events:none; }
+    .baseline-badge { position:relative; display:inline-flex; align-items:center; gap:8px; font-family:var(--font-display); font-weight:800; font-size:14px; letter-spacing:0.4px; color:#08080a; background:linear-gradient(135deg,#fcd34d,var(--amber)); padding:12px 22px; border-radius:999px; box-shadow:0 6px 20px rgba(245,158,11,0.4); }
+    .baseline-title { position:relative; font-family:var(--font-display); font-weight:700; font-size:16px; color:var(--text); margin-top:16px; }
+    .baseline-text { position:relative; font-size:12.5px; color:var(--text-dim); line-height:1.65; margin-top:8px; max-width:380px; margin:8px auto 0; }
+    .baseline-text b { color:var(--amber); font-weight:700; }
+    .baseline-next { position:relative; display:inline-block; margin-top:16px; font-size:11px; font-weight:600; letter-spacing:0.3px; color:var(--text-muted); background:var(--surface-2); border:1px solid var(--border); border-radius:999px; padding:7px 16px; }
+
+    /* Evolução (2+ avaliações) */
+    .evo { margin-top: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 18px 20px; }
+    .evo-head { display:flex; align-items:center; gap:8px; font-family:var(--font-display); font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--amber); margin-bottom:4px; }
+    .evo-period { font-size:11px; color:var(--text-muted); margin-bottom:14px; }
+    .evo-hi { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:14px; }
+    .evo-hi-item { background:var(--surface-2); border-radius:var(--radius-sm); padding:14px 10px; text-align:center; }
+    .evo-hi-val { font-family:var(--font-display); font-size:20px; font-weight:800; }
+    .evo-hi-val.green { color:var(--green); } .evo-hi-val.red { color:var(--red); } .evo-hi-val.flat { color:var(--text-dim); }
+    .evo-hi-lbl { font-size:9px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; color:var(--text-muted); margin-top:4px; }
+    .evo-row { display:grid; grid-template-columns:1.1fr 1fr 1fr auto; align-items:center; gap:8px; padding:9px 0; border-bottom:1px solid var(--border); font-size:12px; }
+    .evo-row:last-child { border-bottom:none; }
+    .evo-lbl { color:var(--text-dim); }
+    .evo-old { color:var(--text-muted); font-family:var(--font-display); font-weight:600; text-align:center; }
+    .evo-new { color:var(--text); font-family:var(--font-display); font-weight:700; text-align:center; }
+    .evo-delta { font-family:var(--font-display); font-weight:700; font-size:12px; text-align:right; min-width:52px; }
+    .evo-delta.green { color:var(--green); } .evo-delta.red { color:var(--red); } .evo-delta.flat { color:var(--text-muted); }
+    .evo-colhead { display:grid; grid-template-columns:1.1fr 1fr 1fr auto; gap:8px; font-size:8.5px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--text-muted); padding-bottom:6px; }
+    .evo-colhead span:nth-child(2),.evo-colhead span:nth-child(3){ text-align:center; } .evo-colhead span:last-child{ text-align:right; }
+
     .footer { text-align: center; font-size: 11px; color: var(--text-muted); margin-top: 24px; line-height: 1.7; }
     .footer .fb { color: var(--amber); font-weight: 700; }
   </style>
@@ -107,23 +135,24 @@
 const DATA = {
   nome: "Alessandro Bacellar",
   data: "05/06/2026",
-  proxima: "05/09/2026",          // +3 meses
-  sexo: "M",                       // "M" | "F"
+  proxima: "05/09/2026",           // +3 meses
+  sexo: "M",
   idade: 48,
   altura: 171.0,                   // cm
   peso: 71.3,                      // kg
-  // Perimetria tronco (cm) — null = não medido (some da página)
   tronco: { pescoco: null, ombro: 112.0, peitoral: 99.5, cintura: 79.0, abdomen: 82.0, quadril: 93.0 },
-  // Perimetria membros (cm) — {e, d}; null = não medido
   membros: {
     "Braço relaxado": { e: 35.5, d: 35.5 },
     "Antebraço":      null,
     "Coxa":           { e: 54.5, d: 54.0 },
     "Panturrilha":    { e: 37.0, d: 37.5 },
   },
-  // Dobras cutâneas Pollock 7 (mm)
   dobras: { Tricipital: 5.3, Subescapular: 11.3, Peitoral: 3.9, "Axilar méd.": 8.0, "Suprailíaca": 7.6, Abdominal: 20.3, Coxa: 7.9 },
-  obs: "",                         // observações do avaliador (opcional)
+  obs: "",
+  // Avaliações ANTERIORES (mesmo formato: {data, sexo, idade, altura, peso, tronco, dobras}).
+  // Vazio = primeira avaliação → mostra o marcador "Ponto de Partida".
+  // Com 1+ → mostra a EVOLUÇÃO (antes/depois) comparando a mais recente com esta.
+  historico: [],
 };
 
 /* ── Cálculos (validados contra o app oficial, batem no decimal) ── */
@@ -168,6 +197,49 @@ function rcqClass(v, sexo) {
 }
 const nf = (v,dp=1) => v.toLocaleString('pt-BR',{minimumFractionDigits:dp,maximumFractionDigits:dp});
 const thousand = v => Math.round(v).toLocaleString('pt-BR');
+
+/* ── Evolução entre avaliações ── */
+function evoDelta(oldV, newV, lowerIsBetter, unit, dp=1) {
+  const d = newV - oldV;
+  const flat = Math.abs(d) < 0.05;
+  const improved = lowerIsBetter ? d < 0 : d > 0;
+  const cls = flat ? 'flat' : (improved ? 'green' : 'red');
+  const arrow = flat ? '→' : (d < 0 ? '↓' : '↑');
+  const sign = d > 0 ? '+' : (d < 0 ? '−' : '');
+  return `<span class="evo-delta ${cls}">${arrow} ${sign}${nf(Math.abs(d),dp)}${unit}</span>`;
+}
+function renderEvolution(d, cur) {
+  const prev = d.historico[d.historico.length - 1];
+  const p = calc(prev);
+  const hiCls = v => Math.abs(v) < 0.05 ? 'flat' : (v > 0 ? 'green' : 'red');
+  const fatLost = p.fatMass - cur.fatMass;                 // + = perdeu gordura (bom)
+  const leanGain = cur.leanMass - p.leanMass;              // + = ganhou magra (bom)
+  const rows = [
+    ['% Gordura', p.fat, cur.fat, true, '%'],
+    ['Massa Magra', p.leanMass, cur.leanMass, false, ' kg'],
+    ['Massa Gorda', p.fatMass, cur.fatMass, true, ' kg'],
+    ['Σ Dobras', p.s7, cur.s7, true, ' mm'],
+  ];
+  const pt = prev.tronco, ct = d.tronco;
+  [['Cintura','cintura'],['Abdômen','abdomen'],['Quadril','quadril']].forEach(([lbl,k]) => {
+    if (pt[k] != null && ct[k] != null) rows.push([lbl, pt[k], ct[k], true, ' cm']);
+  });
+  const rowsHtml = rows.map(([lbl,o,n,low,u]) =>
+    `<div class="evo-row"><span class="evo-lbl">${lbl}</span><span class="evo-old">${nf(o,u===' mm'||u==='%'?1:1)}${u}</span><span class="evo-new">${nf(n,1)}${u}</span>${evoDelta(o,n,low,u)}</div>`
+  ).join('');
+  return `
+    <div class="evo">
+      <div class="evo-head">📈 Evolução</div>
+      <div class="evo-period">${prev.data} → ${d.data}</div>
+      <div class="evo-hi">
+        <div class="evo-hi-item"><div class="evo-hi-val ${hiCls(fatLost)}">${fatLost>=0?'−':'+'}${nf(Math.abs(fatLost))}</div><div class="evo-hi-lbl">kg gordura</div></div>
+        <div class="evo-hi-item"><div class="evo-hi-val ${hiCls(leanGain)}">${leanGain>=0?'+':'−'}${nf(Math.abs(leanGain))}</div><div class="evo-hi-lbl">kg massa magra</div></div>
+        <div class="evo-hi-item"><div class="evo-hi-val ${hiCls(p.fat-cur.fat)}">${(cur.fat-p.fat)>=0?'+':'−'}${nf(Math.abs(cur.fat-p.fat))}</div><div class="evo-hi-lbl">% gordura</div></div>
+      </div>
+      <div class="evo-colhead"><span>Medida</span><span>Antes</span><span>Agora</span><span>Δ</span></div>
+      ${rowsHtml}
+    </div>`;
+}
 
 /* ── Render ── */
 function render(d) {
@@ -253,6 +325,14 @@ function render(d) {
       </div>
       ${d.obs ? `<div class="limb-note" style="margin-top:16px">📝 <span>${d.obs}</span></div>` : ''}
     </div>
+
+    ${(d.historico && d.historico.length >= 1) ? renderEvolution(d, r) : `
+    <div class="baseline">
+      <div class="baseline-badge">📍 Primeira Avaliação Física</div>
+      <div class="baseline-title">Seu ponto de partida</div>
+      <div class="baseline-text">Esta é a sua <b>avaliação de referência</b>. A partir da próxima, você vê aqui a sua <b>evolução</b> — gordura, medidas e massa magra — lado a lado. 📈</div>
+      <div class="baseline-next">Próxima avaliação sugerida · ${d.proxima}</div>
+    </div>`}
 
     <div class="footer">
       <span class="fb">MaxResults</span> · Avaliação Física<br>
