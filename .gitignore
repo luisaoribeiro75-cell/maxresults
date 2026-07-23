@@ -1,1 +1,7 @@
 treino/teste*
+
+# TRAVA DE SEGURANCA (23/07): NUNCA versionar foto de aluno no site publico
+avaliacao/**/*.jpg
+avaliacao/**/*.jpeg
+avaliacao/**/*.png
+avaliacao/**/*.webp
