@@ -196,6 +196,16 @@ const ALUNO = { nome: "Alessandro Bacellar", sexo: "M" };
 
 const AVALIACOES = [
   {
+    // Avaliação MFit — 07/01/2026 (Pollock 1984, 7 dobras)
+    data: "07/01/2026", idade: 48, altura: 171.0, peso: 68.8,
+    tronco: { pescoco:null, ombro:107.6, peitoral:null, cintura:78.0, abdomen:82.0, quadril:92.0 },
+    membros: { "Braço relaxado":{e:33.8,d:33.8}, "Antebraço":null, "Coxa":{e:52.5,d:53.0}, "Panturrilha":{e:36.0,d:37.0} },
+    dobras: { Tricipital:5.1, Subescapular:10.0, Peitoral:5.3, "Axilar méd.":8.5, "Suprailíaca":7.8, Abdominal:20.3, Coxa:8.7 },
+    fotos: { frente:"", lado:"", costas:"" },
+    obs: "Avaliação MFit"
+  },
+  {
+    // Avaliação MaxResults — 05/06/2026 (PDF)
     data: "05/06/2026", idade: 48, altura: 171.0, peso: 71.3,
     tronco: { pescoco:null, ombro:112.0, peitoral:99.5, cintura:79.0, abdomen:82.0, quadril:93.0 },
     membros: { "Braço relaxado":{e:35.5,d:35.5}, "Antebraço":null, "Coxa":{e:54.5,d:54.0}, "Panturrilha":{e:37.0,d:37.5} },
@@ -286,15 +296,16 @@ function baselineBlock(av){ return `
   </div>`; }
 
 /* ── Comparação de duas avaliações ── */
-function evoDelta(o,n,low,u){ const d=n-o, flat=Math.abs(d)<0.05, imp=low?d<0:d>0, cls=flat?'flat':(imp?'green':'red'), ar=flat?'→':(d<0?'↓':'↑'), sg=d>0?'+':(d<0?'−':''); return `<span class="evo-delta ${cls}">${ar} ${sg}${nf(Math.abs(d),1)}${u}</span>`; }
+function evoDelta(o,n,dir,u){ const d=n-o, flat=Math.abs(d)<0.05; let cls; if(dir==='neutral'||flat){cls='flat';} else {cls=(dir==='low'?d<0:d>0)?'green':'red';} const ar=flat?'→':(d<0?'↓':'↑'), sg=d>0?'+':(d<0?'−':''); return `<span class="evo-delta ${cls}">${ar} ${sg}${nf(Math.abs(d),1)}${u}</span>`; }
 let baAngle = 'frente';
 function renderCompare(ia, ib) {
   const A=AVALIACOES[ia], B=AVALIACOES[ib], ra=calc(A), rb=calc(B);
   const hiCls=v=>Math.abs(v)<0.05?'flat':(v>0?'green':'red');
   const fatLost=ra.fatMass-rb.fatMass, leanGain=rb.leanMass-ra.leanMass, fatPctD=rb.fat-ra.fat;
-  const rows=[['% Gordura',ra.fat,rb.fat,true,'%'],['Massa Magra',ra.leanMass,rb.leanMass,false,' kg'],['Massa Gorda',ra.fatMass,rb.fatMass,true,' kg'],['Σ Dobras',ra.s7,rb.s7,true,' mm']];
-  [['Cintura','cintura'],['Abdômen','abdomen'],['Quadril','quadril']].forEach(([lbl,k])=>{ if(A.tronco[k]!=null&&B.tronco[k]!=null) rows.push([lbl,A.tronco[k],B.tronco[k],true,' cm']); });
-  const rowsHtml=rows.map(([lbl,o,n,low,u])=>`<div class="evo-row"><span class="evo-lbl">${lbl}</span><span class="evo-old">${nf(o)}${u}</span><span class="evo-new">${nf(n)}${u}</span>${evoDelta(o,n,low,u)}</div>`).join('');
+  const rows=[['% Gordura',ra.fat,rb.fat,'low','%'],['Massa Magra',ra.leanMass,rb.leanMass,'high',' kg'],['Massa Gorda',ra.fatMass,rb.fatMass,'low',' kg'],['Σ Dobras',ra.s7,rb.s7,'low',' mm']];
+  [['Cintura','cintura','low'],['Abdômen','abdomen','low'],['Quadril','quadril','neutral']].forEach(([lbl,k,dir])=>{ if(A.tronco[k]!=null&&B.tronco[k]!=null) rows.push([lbl,A.tronco[k],B.tronco[k],dir,' cm']); });
+  Object.keys(B.membros).forEach(name=>{ const ma=A.membros[name], mb=B.membros[name]; if(ma&&mb) rows.push([name,(ma.e+ma.d)/2,(mb.e+mb.d)/2,'neutral',' cm']); });
+  const rowsHtml=rows.map(([lbl,o,n,dir,u])=>`<div class="evo-row"><span class="evo-lbl">${lbl}</span><span class="evo-old">${nf(o)}${u}</span><span class="evo-new">${nf(n)}${u}</span>${evoDelta(o,n,dir,u)}</div>`).join('');
 
   // fotos antes/depois
   const angles=[["frente","Frente"],["lado","Lado"],["costas","Costas"]];
