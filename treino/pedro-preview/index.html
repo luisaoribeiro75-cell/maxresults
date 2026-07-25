@@ -334,7 +334,7 @@ const ATHLETE = 'Pedro';
 
 const WEEKLY_GOALS = [
   { icon: '🏋️', type: 'strength', text: '<strong>Treino:</strong> A (superior) · B (inferior) · C (full body) — 45min, força e condicionamento' },
-  { icon: '🏃', type: 'fat', text: '<strong>Cardio:</strong> planilha de corrida 25min (intermediário) no fim de cada treino' },
+  { icon: '🏃', type: 'fat', text: '<strong>Cardio:</strong> planilha de corrida V2 25min (intermediário+, mais intensa) no fim de cada treino' },
   { icon: '💡', type: 'strength', text: '<strong>Carga sugerida:</strong> é uma referência — pode variar conforme o tipo de equipamento da academia. Teste e ajuste conforme a sua execução.' },
 ];
 
@@ -356,7 +356,7 @@ const V = {
   alongFlexor: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/5e9lix657lb_opt.mp4',
   alongPeitoral: 'https://vd.mfitpersonal.com.br/v2/1168/mp4/1168_opt.mp4',
   alongGluteos: 'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',
-  handToToes: 'yt:eFGc-g-HudQ',
+  handToToes: 'https://player.mediadelivery.net/play/655450/4da9137c-0986-45e3-a1da-4d532732f48f',
   legPress: 'https://vd.mfitpersonal.com.br/495/mp4/495.mp4',
   supinoBarra: 'https://vd.mfitpersonal.com.br/203/mp4/203.mp4',
   supinoHalter: 'https://vd.mfitpersonal.com.br/201/mp4/201.mp4',
@@ -374,6 +374,8 @@ const V = {
   remadaCurvada: 'https://vd.mfitpersonal.com.br/221/mp4/221.mp4',
   gluteosCoice: 'https://vd.mfitpersonal.com.br/457/mp4/457.mp4',
   gluteos4apoios: 'https://vd.mfitpersonal.com.br/240/mp4/240.mp4',
+  bulgaroCarga: 'https://d2vfutiy2j6sqj.cloudfront.net/1/mp4/xrajhhmrm9_opt.mp4',
+  terraLevant: 'https://d2vfutiy2j6sqj.cloudfront.net/1/mp4/t9n5jfxgzxk_opt.mp4',
   roscaDireta: 'https://vd.mfitpersonal.com.br/109/mp4/109.mp4',
   tricepsCorda: 'https://vd.mfitpersonal.com.br/418/mp4/418.mp4',
   abdomSupra: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
@@ -518,16 +520,15 @@ const CARDIO_MAXCYCLE = {
 
 const CARDIO_CORRIDA = {
   type: 'cardio', label: 'Cardio Final — Corrida',
-  title: 'Planilha de Corrida — 25 min (Intermediário)', duration: '25 min',
-  meta: 'Intervalado 3:1 na esteira ou rua. Corrida "moderada" = ritmo em que você fala só frases curtas (~7-8/10 de esforço). Progrida a velocidade quando ficar fácil.',
+  title: 'Planilha de Corrida V2 — 25 min (Intermediário+)', duration: '25 min',
+  meta: 'Versão 2 — mais intensa. Intervalado 4:1 (mais corrida, menos caminhada) com tiros nos blocos finais. Corrida "forte" = ritmo em que você só solta 1-2 palavras (~8-9/10 de esforço). Progrida a velocidade quando ficar fácil.',
   exercises: [
-    { name: 'Aquecimento', muscle: 'Cardio', duration: '3 min', equipment: 'Esteira / rua', tip: 'Caminhada rápida evoluindo pra trote leve. Sobe a frequência cardíaca aos poucos.', video: '' },
-    { name: 'Bloco 1 — Corrida + Caminhada', muscle: 'Cardio', duration: '4 min', equipment: 'Esteira / rua', tip: '3 min corrida moderada + 1 min caminhada de recuperação.', video: '' },
-    { name: 'Bloco 2 — Corrida + Caminhada', muscle: 'Cardio', duration: '4 min', equipment: 'Esteira / rua', tip: '3 min corrida moderada + 1 min caminhada. Mantém o ritmo do bloco 1.', video: '' },
-    { name: 'Bloco 3 — Corrida + Caminhada', muscle: 'Cardio', duration: '4 min', equipment: 'Esteira / rua', tip: '3 min corrida moderada + 1 min caminhada. Metade da planilha — segura o ritmo.', video: '' },
-    { name: 'Bloco 4 — Corrida + Caminhada', muscle: 'Cardio', duration: '4 min', equipment: 'Esteira / rua', tip: '3 min corrida moderada + 1 min caminhada. Se sobrar gás, acelera um pouco a corrida.', video: '' },
-    { name: 'Bloco 5 — Corrida + Caminhada', muscle: 'Cardio', duration: '4 min', equipment: 'Esteira / rua', tip: '3 min corrida (última — pode fechar mais forte) + 1 min caminhada.', video: '' },
-    { name: 'Desaceleração', muscle: 'Cardio', duration: '2 min', equipment: 'Esteira / rua', tip: 'Caminhada leve, respiração controlada. Baixa a frequência cardíaca.', video: '' },
+    { name: 'Aquecimento (corrida)', muscle: 'Cardio', duration: '3 min', equipment: 'Esteira / rua', tip: 'Caminhada rápida evoluindo pra trote. Sobe a frequência cardíaca aos poucos — na V2 o corpo precisa entrar já ativado.', video: '' },
+    { name: 'Bloco 1 — Corrida + Caminhada', muscle: 'Cardio', duration: '5 min', equipment: 'Esteira / rua', tip: '4 min corrida moderada-forte + 1 min caminhada de recuperação. Já um pouco acima do ritmo da V1.', video: '' },
+    { name: 'Bloco 2 — Corrida + Tiros', muscle: 'Cardio', duration: '5 min', equipment: 'Esteira / rua', tip: '4 min corrida forte com 2x 20s acelerando (tiro) no meio + 1 min caminhada. Os tiros elevam o esforço sem cansar de uma vez.', video: '' },
+    { name: 'Bloco 3 — Corrida + Tiros', muscle: 'Cardio', duration: '5 min', equipment: 'Esteira / rua', tip: '4 min corrida forte com 2x 30s de tiro + 1 min caminhada. Metade da planilha — segura o ritmo, não deixa cair.', video: '' },
+    { name: 'Bloco 4 — Fechamento Forte', muscle: 'Cardio', duration: '5 min', equipment: 'Esteira / rua', tip: '4 min corrida forte (última — fecha no seu ritmo mais alto que aguentar 4 min) + 1 min caminhada. Se sobrar gás, tiro final de 30s.', video: '' },
+    { name: 'Desaceleração (corrida)', muscle: 'Cardio', duration: '2 min', equipment: 'Esteira / rua', tip: 'Caminhada leve, respiração controlada. Baixa a frequência cardíaca com calma depois do esforço mais alto.', video: '' },
   ]
 };
 
@@ -536,7 +537,7 @@ const RELAX_FINAL = {
   title: 'Respiração + Relaxamento', duration: '~3 min',
   meta: 'Fim de treino — baixa o estresse e a ansiedade',
   exercises: [
-    { name: 'Respiração 4-7-8', muscle: 'Sistema nervoso', duration: '~3 min', equipment: 'Nenhum', tip: 'Sentada ou deitada. Inspire 4s pelo nariz, segure 7s, expire 8s pela boca. 4 ciclos. Ajuda a desligar o modo estresse depois do treino.', video: V.respiracao },
+    { name: 'Respiração 4-7-8', muscle: 'Sistema nervoso', duration: '~3 min', equipment: 'Nenhum', tip: 'Sentado ou deitado. Inspire 4s pelo nariz, segure 7s, expire 8s pela boca. 4 ciclos. Ajuda a desligar o modo estresse depois do treino.', video: '' },
   ]
 };
 
@@ -547,10 +548,10 @@ const TREINO_A = [
   MOBILIDADE_A,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Supino Reto Barra ↔ Puxada Frontal', duration: '3x10-12 · descanso 45-60s',
+    title: 'Supino Reto Halteres ↔ Puxada Frontal', duration: '3x10-12 · descanso 45-60s',
     meta: 'Empurrar + puxar (peito/costas)',
     exercises: [
-      { name: 'Supino Reto com Barra', muscle: 'Peitoral', duration: '3x10-12', equipment: 'Barra + banco', tip: 'Desça à linha do peito e empurre controlando. Pés firmes no chão.', video: V.supinoBarra },
+      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '3x10-12', equipment: 'Halteres + banco', tip: 'Desça à linha do peito e empurre controlando. Pés firmes no chão.', video: V.supinoHalter },
       { name: 'Puxada Frontal', muscle: 'Costas (dorsal)', duration: '3x10-12', equipment: 'Puxador', tip: 'Pegada aberta, puxe à linha do peito fechando as escápulas.', video: V.puxadaFrontal },
     ]
   },
@@ -601,11 +602,11 @@ const TREINO_B = [
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Flexora ↔ Glúteos 4 Apoios', duration: '3x10-12 · descanso 45-60s',
-    meta: 'Posterior + glúteo',
+    title: 'Cadeira Flexora ↔ Agachamento Búlgaro', duration: '3x10-12 · descanso 45-60s',
+    meta: 'Posterior + quadríceps/glúteo',
     exercises: [
       { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x10-12', equipment: 'Máquina flexora', tip: 'Controle a excêntrica, quadril no banco.', video: V.cadeiraFlexora },
-      { name: 'Glúteos 4 Apoios c/ Caneleira', muscle: 'Glúteos', duration: '3x12 cada lado', equipment: 'Colchonete + caneleira', tip: 'Estende a perna pra trás contraindo o glúteo.', video: V.gluteos4apoios },
+      { name: 'Agachamento Búlgaro com Carga', muscle: 'Quadríceps / Glúteos', duration: '3x12 cada perna', equipment: 'Halteres + banco (pé de trás apoiado)', tip: 'Pé de trás no banco, desce controlado empurrando pelo calcanhar da frente. Tronco levemente à frente pra pegar glúteo.', video: V.bulgaroCarga },
     ]
   },
   {
@@ -619,10 +620,10 @@ const TREINO_B = [
   },
   {
     type: 'lift', label: 'Bi-Set 4',
-    title: 'Hip Thrust ↔ Adução Máquina', duration: '3x10-12 · descanso 45-60s',
-    meta: 'Glúteo + adutor',
+    title: 'Levantamento Terra ↔ Adução Máquina', duration: '3x10-12 · descanso 45-60s',
+    meta: 'Posterior/glúteo + adutor',
     exercises: [
-      { name: 'Elevação Pélvica / Hip Thrust', muscle: 'Glúteos', duration: '3x10-12', equipment: 'Banco + barra', tip: 'Costas no banco, barra no quadril, sobe contraindo o glúteo sem hiperestender a lombar.', video: V.hipThrust },
+      { name: 'Levantamento Terra', muscle: 'Posterior / Glúteos', duration: '3x10-12', equipment: 'Barra ou halteres', tip: 'Coluna neutra, barra rente às pernas, empurra o chão e estende o quadril. Não arredonda a lombar.', video: V.terraLevant },
       { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Fecha as pernas com controle, segura 1s.', video: V.aducao },
     ]
   },
