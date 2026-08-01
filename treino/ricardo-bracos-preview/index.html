@@ -348,7 +348,6 @@ const V = {
   alongOmbros: 'https://vd.mfitpersonal.com.br/89/mp4/89.mp4',
   supinoReto: 'https://vd.mfitpersonal.com.br/472/mp4/472.mp4',
   supinoInclinado: 'https://vd.mfitpersonal.com.br/470/mp4/470.mp4',
-  tricepsPolia: 'https://vd.mfitpersonal.com.br/415/mp4/415.mp4',
   esteira: 'https://vd.mfitpersonal.com.br/521/mp4/521.mp4',
   crucifixoInvHalter: 'https://vd.mfitpersonal.com.br/215/mp4/215.mp4',
   handToToes: 'yt:eFGc-g-HudQ',
@@ -378,15 +377,14 @@ const V = {
   legPress: 'https://vd.mfitpersonal.com.br/496/mp4/496.mp4',
   panturrilha: 'https://vd.mfitpersonal.com.br/493/mp4/493.mp4',
   bike: 'https://vd.mfitpersonal.com.br/518/mp4/518.mp4',
-  // ── Bíceps & Tríceps (provisório) ──
+  // ── Bíceps & Tríceps (provisório) — Pedroni treina em CASA: barra/anilha/halteres/banco/argolas, SEM polia ──
   roscaHalter: 'https://vd.mfitpersonal.com.br/109/mp4/109.mp4',
   roscaAltHalt: 'https://vd.mfitpersonal.com.br/110/mp4/110.mp4',
   roscaMartelo: 'https://vd.mfitpersonal.com.br/106/mp4/106.mp4',
-  roscaPoliaReta: 'https://vd.mfitpersonal.com.br/409/mp4/409.mp4',
-  tricepsCorda: 'https://vd.mfitpersonal.com.br/418/mp4/418.mp4',
+  tricepsBanco: 'https://vd.mfitpersonal.com.br/143/mp4/143.mp4',
   tricepsTesta: 'https://vd.mfitpersonal.com.br/139/mp4/139.mp4',
   tricepsFrances: 'https://vd.mfitpersonal.com.br/137/mp4/137.mp4',
-  tricepsPoliaReta: 'https://vd.mfitpersonal.com.br/415/mp4/415.mp4',
+  tricepsMergulho: 'https://vd.mfitpersonal.com.br/874/mp4/874.mp4',
 };
 
 // ─── Shared blocks ───
@@ -436,11 +434,11 @@ const TREINO_BRACOS = [
   ALONG_PEITO,
   {
     type: 'lift', label: 'Bi-Set',
-    title: 'Rosca Direta Halteres ↔ Tríceps na Polia c/ Corda', duration: '3x12',
+    title: 'Rosca Direta Halteres ↔ Tríceps Banco', duration: '3x12',
     meta: 'Antagonistas — 3 séries de 12 cada, sem descanso entre os dois',
     exercises: [
       { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos fixos ao lado do corpo. Sem balançar o tronco, suba controlando os dois braços.', video: V.roscaHalter },
-      { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x12', equipment: 'Polia + corda', tip: 'Cotovelos colados no corpo. Estenda até o final abrindo a corda.', video: V.tricepsCorda },
+      { name: 'Tríceps Banco com Pernas Esticadas', muscle: 'Tríceps', duration: '3x12', equipment: 'Banco (peso do corpo)', tip: 'Mãos na borda do banco, quadril à frente. Desça flexionando os cotovelos e empurre pra cima. Pernas esticadas pra dificultar.', video: V.tricepsBanco },
     ]
   },
   {
@@ -470,18 +468,18 @@ const TREINO_BRACOS = [
   },
   {
     type: 'lift', label: 'Simples',
-    title: 'Rosca Direta na Polia Baixa', duration: '12/10/8',
+    title: 'Rosca Direta com Barra', duration: '12/10/8',
     meta: 'Pirâmide: 12→10→8 (aumentando carga) — finaliza o bíceps',
     exercises: [
-      { name: 'Rosca Direta na Polia Baixa (Barra Reta)', muscle: 'Bíceps', duration: '12/10/8', equipment: 'Polia baixa + barra reta', tip: 'Cotovelos fixos ao lado do corpo. Tensão contínua do cabo — não deixe a carga bater embaixo.', video: V.roscaPoliaReta },
+      { name: 'Rosca Direta Barra Reta', muscle: 'Bíceps', duration: '12/10/8', equipment: 'Barra reta + anilhas', tip: 'Cotovelos fixos ao lado do corpo. Suba sem balançar o tronco e controle a descida.', video: V.roscaBarra },
     ]
   },
   {
     type: 'lift', label: 'Simples',
-    title: 'Tríceps na Polia com Barra Reta', duration: '12/10/8',
-    meta: 'Pirâmide: 12→10→8 (aumentando carga) — finaliza o tríceps',
+    title: 'Paralela / Ring Dips (Mergulho)', duration: '12/10/8',
+    meta: 'Pirâmide: 12→10→8 — finaliza o tríceps (progride com anilha no colo/cinto)',
     exercises: [
-      { name: 'Tríceps na Polia com Barra Reta', muscle: 'Tríceps', duration: '12/10/8', equipment: 'Polia + barra reta', tip: 'Cotovelos fixos ao lado do corpo. Estenda completamente e segure 1s embaixo.', video: V.tricepsPoliaReta },
+      { name: 'Tríceps Mergulho na Cadeira', muscle: 'Tríceps', duration: '12/10/8', equipment: 'Argolas (ring dips) ou banco/apoios — peso do corpo', tip: 'Nas argolas (ring dips) ou entre dois apoios: desça controlando até ~90° no cotovelo e empurre pra cima. Pra progredir a pirâmide, prenda uma anilha no colo/cinto.', video: V.tricepsMergulho },
     ]
   },
 ];
