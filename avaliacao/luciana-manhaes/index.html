@@ -194,14 +194,40 @@
    ═══════════════════════════════════════════════════════════════ */
 const ALUNO = { nome: "Luciana Manhães", sexo: "F" };   // sexo corrigido (PDF veio "Masculino" por erro)
 
+// Fotos: caminho relativo — preenchido com URL assinada do Bunny ao publicar
+// (fonte original: MFit /user/physical-evaluation, guardadas em students/luciana-manhaes-marins/avaliacoes/<data>/).
 const AVALIACOES = [
+  {
+    data: "15/08/2025", idade: 44, altura: 167.2, peso: 66.25,
+    tronco: { pescoco:null, ombro:97.0, peitoral:86.0, cintura:69.0, abdomen:83.5, quadril:101.5 },
+    membros: { "Braço relaxado":{e:30.0,d:29.5}, "Antebraço":null, "Coxa proximal":{e:60.5,d:60.5}, "Panturrilha":{e:42.0,d:42.0} },
+    dobras: { Tricipital:23.0, Subescapular:10.7, Peitoral:6.4, "Axilar méd.":5.3, "Suprailíaca":7.1, Abdominal:17.8, Coxa:28.4 },
+    fotos: {
+      frente:"",
+      lado:"",
+      costas:""
+    },
+    obs: "MFit · objetivo: qualidade de vida e emagrecimento"
+  },
+  {
+    data: "21/11/2025", idade: 44, altura: 164.2, peso: 65.0,
+    tronco: { pescoco:null, ombro:100.0, peitoral:83.0, cintura:69.0, abdomen:78.0, quadril:97.0 },
+    membros: { "Braço relaxado":{e:29.5,d:29.0}, "Antebraço":null, "Coxa proximal":{e:58.5,d:58.5}, "Panturrilha":{e:41.0,d:41.0} },
+    dobras: { Tricipital:19.3, Subescapular:10.6, Peitoral:4.3, "Axilar méd.":5.2, "Suprailíaca":6.9, Abdominal:11.7, Coxa:25.4 },
+    fotos: {
+      frente:"",
+      lado:"",
+      costas:""
+    },
+    obs: "MFit · objetivo: emagrecimento"
+  },
   {
     data: "05/06/2026", idade: 44, altura: 169.0, peso: 66.85,
     tronco: { pescoco:null, ombro:103.0, peitoral:83.0, cintura:69.0, abdomen:83.0, quadril:101.5 },
     membros: { "Braço relaxado":{e:29.5,d:29.0}, "Antebraço":null, "Coxa proximal":{e:60.0,d:60.0}, "Panturrilha":{e:41.0,d:41.0} },
     dobras: { Tricipital:16.3, Subescapular:10.1, Peitoral:4.0, "Axilar méd.":5.6, "Suprailíaca":7.8, Abdominal:13.1, Coxa:27.4 },
     fotos: { frente:"", lado:"", costas:"" },
-    obs: ""
+    obs: "Form MaxResults (PDF) · sexo corrigido p/ Feminino"
   },
 ];
 
