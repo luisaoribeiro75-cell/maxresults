@@ -355,8 +355,8 @@ const ATHLETE = 'Ian';
 const WEEKLY_GOALS = [
   { icon: '🏋️', type: 'strength', text: '<strong>Objetivo:</strong> ganho de massa muscular — Hipertrofia, <strong>5x/semana</strong> (Upper / Lower)' },
   { icon: '🎯', type: 'strength', text: '<strong>Ênfase:</strong> peito e braços — <strong>3 dias de Upper</strong> (mais volume de tronco) e 2 de Lower' },
+  { icon: '🔁', type: 'assessment', text: '<strong>Estrutura:</strong> básico pesado SOLO com <strong>mobilidade do segmento oposto no descanso</strong>, intercalando com bi-sets de músculo (Regra 8)' },
   { icon: '🔥', type: 'fat', text: '<strong>Abdômen 3x/semana</strong> — no fim de cada dia de Upper (Seg · Qua · Sex)' },
-  { icon: '📈', type: 'assessment', text: '<strong>Progressão:</strong> cargas testadas na hora com o Luisão (treino presencial) — fechou as reps com boa execução, sobe na próxima' },
   { icon: '🏃', type: 'cardio', text: '<strong>Cardio:</strong> leve, 15–20min zona aeróbica no fim da sessão — cumpre o método sem atrapalhar o ganho de massa' },
 ];
 
@@ -414,7 +414,6 @@ const V = {
   alongGluteos: 'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',
   alongPanturrilha: 'https://vd.mfitpersonal.com.br/764/mp4/764.mp4',
   crossoverAlta: 'https://vd.mfitpersonal.com.br/382/mp4/382.mp4',
-  desenvHalteres: 'https://vd.mfitpersonal.com.br/155/mp4/155.mp4',
   remadaBaixaPronada: 'https://vd.mfitpersonal.com.br/577/mp4/577.mp4',
   roscaScottHalteres: 'https://vd.mfitpersonal.com.br/226/mp4/226.mp4',
   afundoHalteres: 'https://vd.mfitpersonal.com.br/32/mp4/32.mp4',
@@ -437,6 +436,8 @@ const CARDIO_LEVE = {
   ]
 };
 
+// Helpers de descanso ativo: básico pesado SOLO + mobilidade do segmento OPOSTO (Regra 8).
+
 // ══ UPPER A — Peito + Costas + Abdômen ══
 const UPPER_A = [
   {
@@ -450,25 +451,13 @@ const UPPER_A = [
     ]
   },
   {
-    type: 'warmup', label: 'Mobilidade',
-    title: 'Torácica + Ombro', duration: '30s cada',
-    meta: 'Prepara coluna e ombro para o dia',
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Supino Reto com Barra ↔ Mobilidade de Quadril', duration: '4x8–10 · descanso ativo',
+    meta: 'Básico pesado SOLO (Regra 8). No descanso, mobilidade do segmento oposto (perna). Recuperação real do supino: 2–4 min entre séries.',
     exercises: [
-      { name: 'Mobilidade Torácica', muscle: 'Coluna torácica', duration: '1x30s', equipment: 'Nenhum', tip: 'Abre a torácica pro supino e as puxadas. 30 segundos respirando fundo.', video: V.mobToracica },
-      { name: 'Mobilidade de Ombro', muscle: 'Ombros', duration: '1x30s', equipment: 'Nenhum', tip: 'Círculos amplos e controlados de ombro. 30 segundos.', video: V.mobOmbro },
+      { name: 'Supino Reto com Barra', muscle: 'Peitoral', duration: '4x8–10', equipment: 'Barra + banco', tip: 'Base do dia. Desce controlando até o peito e sobe forte sem travar o cotovelo. Escápulas encaixadas.', video: V.supinoBarra },
+      { name: 'Mobilidade de Quadril Dinâmica', muscle: 'Mobilidade (oposto)', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: solta o quadril enquanto o peito recupera. É mobilidade, não fadiga.', video: V.mobQuadrilDin },
     ]
-  },
-  {
-    type: 'lift', label: 'Solo 1',
-    title: 'Supino Reto com Barra', duration: '4x8–10',
-    meta: 'Básico pesado SOLO (Regra 8) — performance máxima de peito. Descanso 2–3 min.',
-    exercises: [ { name: 'Supino Reto com Barra', muscle: 'Peitoral', duration: '4x8–10', equipment: 'Barra + banco', tip: 'Base do dia. Desce controlando até o peito e sobe forte sem travar o cotovelo. Escápulas encaixadas.', video: V.supinoBarra }, ]
-  },
-  {
-    type: 'lift', label: 'Solo 2',
-    title: 'Barra Fixa Gráviton (Assistida)', duration: '4x8–10',
-    meta: 'Básico pesado de costas SOLO. Descanso 90s–2min.',
-    exercises: [ { name: 'Barra Fixa Gráviton (Assistida)', muscle: 'Costas (dorsal)', duration: '4x8–10', equipment: 'Gráviton / assistida', tip: 'Use a assistência pra completar as reps com boa execução. Puxe levando o peito à barra.', video: V.barraFixaGraviton }, ]
   },
   {
     type: 'lift', label: 'Bi-Set · Agonista ↔ Antagonista',
@@ -480,16 +469,22 @@ const UPPER_A = [
     ]
   },
   {
-    type: 'lift', label: 'Solo 3',
-    title: 'Crucifixo Inclinado com Halteres', duration: '3x12',
-    meta: 'Isolador de peito. Descanso 90s.',
-    exercises: [ { name: 'Crucifixo Inclinado com Halteres', muscle: 'Peitoral (superior)', duration: '3x12', equipment: 'Halteres + banco inclinado', tip: 'Cotovelos levemente flexionados e fixos, abra sentindo o peito alongar.', video: V.crucifixoInclHalter }, ]
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Barra Fixa Gráviton ↔ Mobilidade de Tornozelo', duration: '4x8–10 · descanso ativo',
+    meta: 'Básico pesado de costas SOLO. No descanso, mobilidade do segmento oposto (perna). Recuperação: 90s–2min entre séries.',
+    exercises: [
+      { name: 'Barra Fixa Gráviton (Assistida)', muscle: 'Costas (dorsal)', duration: '4x8–10', equipment: 'Gráviton / assistida', tip: 'Use a assistência pra completar as reps com boa execução. Puxe levando o peito à barra.', video: V.barraFixaGraviton },
+      { name: 'Mobilidade de Tornozelo', muscle: 'Mobilidade (oposto)', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: ganha amplitude de tornozelo enquanto as costas recuperam.', video: V.mobTornozelo },
+    ]
   },
   {
-    type: 'lift', label: 'Solo 4',
-    title: 'Remada Baixa (Pegada Pronada)', duration: '3x10–12',
-    meta: 'Espessura de dorsal — carga progressiva. Descanso 90s.',
-    exercises: [ { name: 'Remada Baixa (Pegada Pronada)', muscle: 'Costas', duration: '3x10–12', equipment: 'Polia baixa + triângulo/barra', tip: 'Tronco firme, puxe até o abdômen fechando as escápulas. Não balance o tronco.', video: V.remadaBaixaPronada }, ]
+    type: 'lift', label: 'Bi-Set · Agonista ↔ Antagonista',
+    title: 'Crucifixo Inclinado com Halteres ↔ Remada Baixa', duration: '3x12 · Sem descanso no par',
+    meta: 'Peito (isolado) ↔ costas. Halteres ao lado da polia: uma estação fixa só (Regra 2). Descanso 60–90s ao fim do par.',
+    exercises: [
+      { name: 'Crucifixo Inclinado com Halteres', muscle: 'Peitoral (superior)', duration: '3x12', equipment: 'Halteres + banco inclinado', tip: 'Cotovelos levemente flexionados e fixos, abra sentindo o peito alongar.', video: V.crucifixoInclHalter },
+      { name: 'Remada Baixa (Pegada Pronada)', muscle: 'Costas', duration: '3x12', equipment: 'Polia baixa + triângulo/barra', tip: 'Tronco firme, puxe até o abdômen fechando as escápulas. Não balance.', video: V.remadaBaixaPronada },
+    ]
   },
   {
     type: 'lift', label: 'Core / Abdômen',
@@ -520,30 +515,18 @@ const LOWER_A = [
     meta: 'Perna precisa de mais aquecimento — ativa quadril, joelho e tornozelo',
     exercises: [
       { name: 'Mobilidade de Quadril Dinâmica', muscle: 'Quadril', duration: '1x10', equipment: 'Nenhum', tip: 'Balanços e círculos de quadril pra soltar antes de agachar. 10 cada lado.', video: V.mobQuadrilDin },
-      { name: 'Mobilidade de Tornozelo', muscle: 'Tornozelo', duration: '1x10', equipment: 'Nenhum', tip: 'Joelho à frente sobre o pé sem tirar o calcanhar, ganhando amplitude. 10 cada lado.', video: V.mobTornozelo },
-      { name: 'Agachamento Livre (Peso do Corpo)', muscle: 'Pernas / Glúteos', duration: '2x15', equipment: 'Peso do corpo', tip: 'Sem carga, amplitude confortável, aquecendo o padrão. 2 séries de 15.', video: V.agachLivreCorpo },
+      { name: 'Mobilidade de Tornozelo', muscle: 'Tornozelo', duration: '1x10', equipment: 'Nenhum', tip: 'Joelho à frente sobre o pé sem tirar o calcanhar. 10 cada lado.', video: V.mobTornozelo },
+      { name: 'Agachamento Livre (Peso do Corpo)', muscle: 'Pernas / Glúteos', duration: '2x15', equipment: 'Peso do corpo', tip: 'Sem carga, aquecendo o padrão. 2 séries de 15.', video: V.agachLivreCorpo },
     ]
   },
   {
-    type: 'warmup', label: 'Mobilidade',
-    title: 'Quadril + Tornozelo', duration: '30s cada',
-    meta: 'Prepara pra agachar com amplitude',
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Agachamento Livre com Barra ↔ Mobilidade de Ombro', duration: '4x8–10 · descanso ativo',
+    meta: 'Básico pesado SOLO (Regra 8). No descanso, mobilidade do segmento oposto (tronco/ombro). Recuperação real: 2–4 min entre séries.',
     exercises: [
-      { name: 'Mobilidade de Quadril em Pé', muscle: 'Quadril', duration: '1x30s/lado', equipment: 'Nenhum', tip: 'Base aberta, leva o quadril de um lado ao outro sem tirar os pés. 30s cada lado.', video: V.mobQuadril },
-      { name: 'Mobilidade de Tornozelo', muscle: 'Tornozelo', duration: '1x30s/lado', equipment: 'Nenhum', tip: 'Ganha dorsiflexão pro agachamento profundo. 30s cada lado.', video: V.mobTornozelo },
+      { name: 'Agachamento Livre com Barra', muscle: 'Quadríceps / Glúteos', duration: '4x8–10', equipment: 'Barra + suporte', tip: 'Base do dia — carga progressiva. Desce com o peito alto e joelhos alinhados aos pés.', video: V.agachBarra },
+      { name: 'Mobilidade de Ombro', muscle: 'Mobilidade (oposto)', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: círculos de ombro enquanto a perna recupera do agachamento.', video: V.mobOmbro },
     ]
-  },
-  {
-    type: 'lift', label: 'Solo 1',
-    title: 'Agachamento Livre com Barra', duration: '4x8–10',
-    meta: 'Básico pesado SOLO (Regra 8). Descanso 2–3 min.',
-    exercises: [ { name: 'Agachamento Livre com Barra', muscle: 'Quadríceps / Glúteos', duration: '4x8–10', equipment: 'Barra + suporte', tip: 'Base do dia — carga progressiva. Desce com o peito alto e joelhos alinhados aos pés.', video: V.agachBarra }, ]
-  },
-  {
-    type: 'lift', label: 'Solo 2',
-    title: 'Leg Press 45°', duration: '4x10–12',
-    meta: 'Composto pesado — descanso 90s–2min.',
-    exercises: [ { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '4x10–12', equipment: 'Máquina Leg Press 45', tip: 'Volume de quadríceps e glúteo. Empurre pelo calcanhar, sem travar o joelho.', video: V.legPress45 }, ]
   },
   {
     type: 'lift', label: 'Bi-Set · Agonista ↔ Antagonista',
@@ -555,13 +538,25 @@ const LOWER_A = [
     ]
   },
   {
-    type: 'lift', label: 'Solo 3',
-    title: 'Afundo com Halteres', duration: '3x12 cada perna',
-    meta: 'Unilateral de quadríceps/glúteo — carga progressiva. Descanso 90s.',
-    exercises: [ { name: 'Afundo com Halteres', muscle: 'Quadríceps / Glúteos', duration: '3x12 cada perna', equipment: 'Halteres', tip: 'Passo firme, desce o joelho de trás em direção ao chão, tronco ereto. Empurra pelo calcanhar da frente.', video: V.afundoHalteres }, ]
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Leg Press 45° ↔ Mobilidade Torácica', duration: '4x10–12 · descanso ativo',
+    meta: 'Composto pesado SOLO. No descanso, mobilidade do segmento oposto (tronco). Recuperação: 90s–2min entre séries.',
+    exercises: [
+      { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '4x10–12', equipment: 'Máquina Leg Press 45', tip: 'Volume de quadríceps e glúteo. Empurre pelo calcanhar, sem travar o joelho.', video: V.legPress45 },
+      { name: 'Mobilidade Torácica', muscle: 'Mobilidade (oposto)', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: abre a torácica enquanto a perna recupera.', video: V.mobToracica },
+    ]
   },
   {
-    type: 'lift', label: 'Solo 4',
+    type: 'lift', label: 'Bi-Set · Agonista ↔ Antagonista',
+    title: 'Afundo com Halteres ↔ Mesa Flexora', duration: '3x12 · Sem descanso no par',
+    meta: 'Quadríceps/glúteo ↔ posterior (antagonistas). Halteres ao lado da mesa flexora: uma estação fixa só (Regra 2). Descanso 60–90s ao fim do par.',
+    exercises: [
+      { name: 'Afundo com Halteres', muscle: 'Quadríceps / Glúteos', duration: '3x12 cada perna', equipment: 'Halteres', tip: 'Passo firme, desce o joelho de trás em direção ao chão, tronco ereto. Empurra pelo calcanhar da frente.', video: V.afundoHalteres },
+      { name: 'Mesa Flexora', muscle: 'Posterior de coxa', duration: '3x12', equipment: 'Mesa flexora', tip: 'Quadril colado no banco, sobe controlando e desce em 2s. Antagonista do afundo.', video: V.mesaFlexora },
+    ]
+  },
+  {
+    type: 'lift', label: 'Solo',
     title: 'Panturrilha em Pé (Máquina)', duration: '4x15–20',
     meta: 'Gastrocnêmio — descanso 45–60s.',
     exercises: [ { name: 'Panturrilha em Pé (Máquina)', muscle: 'Panturrilha (gastrocnêmio)', duration: '4x15–20', equipment: 'Máquina panturrilha em pé', tip: 'Amplitude completa: desce alongando e sobe na ponta do pé segurando 1s.', video: V.panturrilhaPeMaq }, ]
@@ -569,7 +564,7 @@ const LOWER_A = [
   CARDIO_LEVE,
   {
     type: 'warmup', label: 'Soltura / Alongamento Final',
-    title: 'Quadríceps + Posterior + Glúteo + Panturrilha', duration: '≤10s cada',
+    title: 'Quadríceps + Posterior + Glúteo', duration: '≤10s cada',
     meta: 'Só a musculatura do dia',
     exercises: [
       { name: 'Alongamento de Quadríceps', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Nenhum', tip: 'Em pé, puxe o calcanhar em direção ao glúteo com os joelhos juntos. 10s cada lado.', video: V.alongQuad },
@@ -587,56 +582,53 @@ const UPPER_B = [
     meta: 'Ativa deltoides e braços antes das cargas',
     exercises: [
       { name: 'Mobilidade de Ombro', muscle: 'Ombros', duration: '1x10', equipment: 'Nenhum', tip: 'Círculos amplos de ombro pra preparar o desenvolvimento. 10 repetições.', video: V.mobOmbro },
-      { name: 'Mobilidade de Escápula', muscle: 'Escápula', duration: '1x10', equipment: 'Nenhum', tip: 'Controle escapular pra estabilizar o ombro nas elevações. 10 repetições.', video: V.mobEscapula },
-      { name: 'Elevação Lateral Leve', muscle: 'Deltoide médio', duration: '1x15', equipment: 'Halteres leves', tip: 'Halteres bem leves, só pra aquecer o deltoide. 15 repetições controladas.', video: V.elevLateral },
+      { name: 'Mobilidade de Escápula', muscle: 'Escápula', duration: '1x10', equipment: 'Nenhum', tip: 'Controle escapular pra estabilizar o ombro. 10 repetições.', video: V.mobEscapula },
+      { name: 'Elevação Lateral Leve', muscle: 'Deltoide médio', duration: '1x15', equipment: 'Halteres leves', tip: 'Halteres bem leves, só pra aquecer o deltoide. 15 repetições.', video: V.elevLateral },
     ]
   },
   {
-    type: 'warmup', label: 'Mobilidade',
-    title: 'Torácica + Punho', duration: '30s cada',
-    meta: 'Prepara coluna e punho (braço) para o dia',
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Desenvolvimento Militar com Barra ↔ Mobilidade de Quadril', duration: '4x8–10 · descanso ativo',
+    meta: 'Básico pesado de ombro SOLO (Regra 8). No descanso, mobilidade do segmento oposto (perna). Recuperação: 2–3 min entre séries.',
     exercises: [
-      { name: 'Mobilidade Torácica', muscle: 'Coluna torácica', duration: '1x30s', equipment: 'Nenhum', tip: 'Abre a torácica pro desenvolvimento acima da cabeça. 30 segundos.', video: V.mobToracica },
-      { name: 'Mobilidade de Punho', muscle: 'Punho / Antebraço', duration: '1x30s', equipment: 'Nenhum', tip: 'Prepara o punho pras roscas e tríceps. 30 segundos.', video: V.mobPunho },
+      { name: 'Desenvolvimento Militar com Barra', muscle: 'Ombros', duration: '4x8–10', equipment: 'Barra', tip: 'Base de ombros. Empurre a barra acima da cabeça sem hiperestender a lombar. Core firme.', video: V.desenvBarra },
+      { name: 'Mobilidade de Quadril Dinâmica', muscle: 'Mobilidade (oposto)', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: solta o quadril enquanto o ombro recupera.', video: V.mobQuadrilDin },
     ]
   },
   {
-    type: 'lift', label: 'Solo 1',
-    title: 'Desenvolvimento Militar com Barra', duration: '4x8–10',
-    meta: 'Básico pesado de ombro SOLO (Regra 8). Descanso 2–3 min.',
-    exercises: [ { name: 'Desenvolvimento Militar com Barra', muscle: 'Ombros', duration: '4x8–10', equipment: 'Barra', tip: 'Base de ombros. Empurre a barra acima da cabeça sem hiperestender a lombar. Core firme.', video: V.desenvBarra }, ]
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Elevação Lateral com Halteres ↔ Mobilidade de Tornozelo', duration: '4x12 · descanso ativo',
+    meta: 'Deltoide médio (largura). No descanso, mobilidade do segmento oposto (perna).',
+    exercises: [
+      { name: 'Elevação Lateral com Halteres', muscle: 'Deltoide médio', duration: '4x12', equipment: 'Halteres', tip: 'Suba até a linha dos ombros liderando com o cotovelo, sem balançar. Segura a contração.', video: V.elevLateral },
+      { name: 'Mobilidade de Tornozelo', muscle: 'Mobilidade (oposto)', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: ganha amplitude de tornozelo entre as séries.', video: V.mobTornozelo },
+    ]
   },
   {
-    type: 'lift', label: 'Solo 2',
-    title: 'Elevação Lateral com Halteres', duration: '4x12',
-    meta: 'Deltoide médio (largura do ombro). Descanso 60s.',
-    exercises: [ { name: 'Elevação Lateral com Halteres', muscle: 'Deltoide médio', duration: '4x12', equipment: 'Halteres', tip: 'Suba até a linha dos ombros liderando com o cotovelo, sem balançar. Segura a contração.', video: V.elevLateral }, ]
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Crucifixo Inverso na Máquina ↔ Mobilidade de Quadril em Pé', duration: '3x12–15 · descanso ativo',
+    meta: 'Deltoide posterior. No descanso, mobilidade do segmento oposto (perna).',
+    exercises: [
+      { name: 'Crucifixo Inverso na Máquina', muscle: 'Deltoide posterior', duration: '3x12–15', equipment: 'Máquina crucifixo', tip: 'Abra os braços pra trás e segure a contração no final. Trabalha o deltoide posterior.', video: V.crucifixoInvMaq },
+      { name: 'Mobilidade de Quadril em Pé', muscle: 'Mobilidade (oposto)', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: quadril lado a lado enquanto o ombro recupera.', video: V.mobQuadril },
+    ]
   },
   {
-    type: 'lift', label: 'Solo 3',
-    title: 'Elevação Frontal Alternada', duration: '3x12',
-    meta: 'Deltoide anterior. Descanso 60s.',
-    exercises: [ { name: 'Elevação Frontal Alternada', muscle: 'Deltoide anterior', duration: '3x12', equipment: 'Halteres', tip: 'Um braço de cada vez à frente até a linha do ombro, controlando a descida.', video: V.elevFrontalAlt }, ]
-  },
-  {
-    type: 'lift', label: 'Solo 4',
-    title: 'Crucifixo Inverso na Máquina', duration: '3x12–15',
-    meta: 'Deltoide posterior. Descanso 60s.',
-    exercises: [ { name: 'Crucifixo Inverso na Máquina', muscle: 'Deltoide posterior', duration: '3x12–15', equipment: 'Máquina crucifixo', tip: 'Abra os braços pra trás e segure a contração no final. Trabalha o deltoide posterior.', video: V.crucifixoInvMaq }, ]
-  },
-  {
-    type: 'lift', label: 'Solo 5',
-    title: 'Rosca Scott com Halteres', duration: '3x12',
-    meta: '1ª dose de bíceps — isolador. Descanso 60s.',
-    exercises: [ { name: 'Rosca Scott com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Banco Scott + halteres', tip: 'Braço apoiado no banco Scott, sobe sem tirar o cotovelo do apoio. Isolador do bíceps.', video: V.roscaScottHalteres }, ]
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Rosca Scott com Halteres ↔ Mobilidade de Punho', duration: '3x12 · descanso ativo',
+    meta: '1ª dose de bíceps — isolador. No descanso, mobilidade de punho/antebraço.',
+    exercises: [
+      { name: 'Rosca Scott com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Banco Scott + halteres', tip: 'Braço apoiado no banco Scott, sobe sem tirar o cotovelo do apoio. Isolador do bíceps.', video: V.roscaScottHalteres },
+      { name: 'Mobilidade de Punho', muscle: 'Mobilidade', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: solta o punho e o antebraço entre as séries.', video: V.mobPunho },
+    ]
   },
   {
     type: 'lift', label: 'Bi-Set · Agonista ↔ Antagonista',
     title: 'Rosca Alternada com Halteres ↔ Tríceps na Polia com Corda', duration: '3x10–12 · Sem descanso no par',
-    meta: 'Bíceps ↔ tríceps (dois isolados, antagonistas). Halteres ao lado da polia: uma estação só. Descanso 60–90s ao fim do par.',
+    meta: 'Bíceps ↔ tríceps (dois isolados, antagonistas). Halteres ao lado da polia: uma estação só. Tríceps por último (Regra 7). Descanso 60–90s ao fim do par.',
     exercises: [
       { name: 'Rosca Alternada com Halteres', muscle: 'Bíceps', duration: '3x10–12', equipment: 'Halteres', tip: 'Um braço de cada vez, cotovelo fixo ao lado do corpo.', video: V.roscaAlternada },
-      { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x10–12', equipment: 'Polia alta + corda', tip: 'Cotovelos colados ao corpo, estenda e abra a corda no final. Tríceps por último (Regra 7).', video: V.tricepsCorda },
+      { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x10–12', equipment: 'Polia alta + corda', tip: 'Cotovelos colados ao corpo, estenda e abra a corda no final.', video: V.tricepsCorda },
     ]
   },
   {
@@ -644,8 +636,8 @@ const UPPER_B = [
     title: 'Canivete + Oblíquo', duration: '3x15 · transição curta',
     meta: 'Abdômen 2/3 da semana. Descanso 45–60s ao fim do par.',
     exercises: [
-      { name: 'Abdominal Canivete', muscle: 'Abdômen (reto)', duration: '3x15', equipment: 'Peso do corpo', tip: 'Tronco e pernas sobem juntos formando um V, tocando (ou quase) os pés. Controle na volta.', video: V.abCanivete },
-      { name: 'Abdominal Oblíquo com Halteres', muscle: 'Oblíquos', duration: '3x15 (cada lado)', equipment: 'Halter', tip: 'Em pé, halter numa mão, incline o tronco pro lado carregado e volte contraindo o oblíquo oposto.', video: V.abObliquoHalteres },
+      { name: 'Abdominal Canivete', muscle: 'Abdômen (reto)', duration: '3x15', equipment: 'Peso do corpo', tip: 'Tronco e pernas sobem juntos formando um V. Controle na volta.', video: V.abCanivete },
+      { name: 'Abdominal Oblíquo com Halteres', muscle: 'Oblíquos', duration: '3x15 (cada lado)', equipment: 'Halter', tip: 'Em pé, halter numa mão, incline pro lado carregado e volte contraindo o oblíquo oposto.', video: V.abObliquoHalteres },
     ]
   },
   CARDIO_LEVE,
@@ -668,48 +660,48 @@ const LOWER_B = [
     meta: 'Ativa quadril, posterior e tornozelo antes das cargas',
     exercises: [
       { name: 'Mobilidade de Quadril Dinâmica', muscle: 'Quadril', duration: '1x10', equipment: 'Nenhum', tip: 'Balanços e círculos de quadril pra soltar a articulação. 10 cada lado.', video: V.mobQuadrilDin },
-      { name: 'Mobilidade de Tornozelo', muscle: 'Tornozelo', duration: '1x10', equipment: 'Nenhum', tip: 'Ganha amplitude de tornozelo pros movimentos de perna. 10 cada lado.', video: V.mobTornozelo },
+      { name: 'Mobilidade de Tornozelo', muscle: 'Tornozelo', duration: '1x10', equipment: 'Nenhum', tip: 'Ganha amplitude de tornozelo. 10 cada lado.', video: V.mobTornozelo },
       { name: 'Agachamento Livre (Peso do Corpo)', muscle: 'Pernas / Glúteos', duration: '2x15', equipment: 'Peso do corpo', tip: 'Sem carga, aquecendo quadril e joelho. 2 séries de 15.', video: V.agachLivreCorpo },
     ]
   },
   {
-    type: 'warmup', label: 'Mobilidade',
-    title: 'Quadril + Tornozelo', duration: '30s cada',
-    meta: 'Prepara posterior e quadril',
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Stiff com Barra ↔ Mobilidade de Ombro', duration: '4x8–10 · descanso ativo',
+    meta: 'Básico pesado de posterior SOLO (Regra 8). No descanso, mobilidade do segmento oposto (ombro). Recuperação: 2–4 min entre séries.',
     exercises: [
-      { name: 'Mobilidade de Quadril em Pé', muscle: 'Quadril', duration: '1x30s/lado', equipment: 'Nenhum', tip: 'Base aberta, leva o quadril lado a lado sem tirar os pés. 30s cada lado.', video: V.mobQuadril },
-      { name: 'Mobilidade de Tornozelo', muscle: 'Tornozelo', duration: '1x30s/lado', equipment: 'Nenhum', tip: 'Amplitude de dorsiflexão. 30s cada lado.', video: V.mobTornozelo },
+      { name: 'Stiff com Barra', muscle: 'Posterior de coxa / Glúteos', duration: '4x8–10', equipment: 'Barra', tip: 'Pés próximos, quadril pra trás, coluna neutra. Desce a barra rente às pernas sentindo o posterior alongar.', video: V.stiffBarra },
+      { name: 'Mobilidade de Ombro', muscle: 'Mobilidade (oposto)', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: círculos de ombro enquanto o posterior recupera.', video: V.mobOmbro },
     ]
   },
   {
-    type: 'lift', label: 'Solo 1',
-    title: 'Stiff com Barra', duration: '4x8–10',
-    meta: 'Básico pesado de posterior SOLO (Regra 8). Descanso 2–3 min.',
-    exercises: [ { name: 'Stiff com Barra', muscle: 'Posterior de coxa / Glúteos', duration: '4x8–10', equipment: 'Barra', tip: 'Pés próximos, quadril pra trás, coluna neutra. Desce a barra rente às pernas sentindo o posterior alongar.', video: V.stiffBarra }, ]
-  },
-  {
-    type: 'lift', label: 'Solo 2',
-    title: 'Mesa Flexora', duration: '4x10–12',
-    meta: 'Posterior na máquina — carga progressiva (Regra 16). Descanso 90s.',
-    exercises: [ { name: 'Mesa Flexora', muscle: 'Posterior de coxa', duration: '4x10–12', equipment: 'Mesa flexora', tip: 'Quadril colado no banco, sobe controlando e desce em 2s. Progride a carga quando fechar as 12.', video: V.mesaFlexora }, ]
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Cadeira Extensora ↔ Mobilidade Torácica', duration: '4x12 · descanso ativo',
+    meta: 'Quadríceps pra equilibrar o dia posterior. No descanso, mobilidade do segmento oposto (tronco).',
+    exercises: [
+      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '4x12', equipment: 'Máquina extensora', tip: 'Isolador de quadríceps. Segure 1s no topo.', video: V.cadeiraExt },
+      { name: 'Mobilidade Torácica', muscle: 'Mobilidade (oposto)', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: abre a torácica entre as séries.', video: V.mobToracica },
+    ]
   },
   {
     type: 'lift', label: 'Bi-Set · Agonista ↔ Antagonista',
-    title: 'Cadeira Extensora ↔ Stiff com Halteres', duration: '3x12 · Sem descanso no par',
-    meta: 'Quadríceps ↔ posterior (antagonistas). Halteres ao lado da extensora: uma estação só (Regra 2). Descanso 60–90s ao fim do par.',
+    title: 'Passada com Halteres ↔ Mesa Flexora', duration: '3x12 · Sem descanso no par',
+    meta: 'Glúteo/quadríceps ↔ posterior (antagonistas). Halteres ao lado da mesa flexora: uma estação fixa só (Regra 2). Descanso 60–90s ao fim do par.',
     exercises: [
-      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12', equipment: 'Máquina extensora', tip: 'Isolador de quadríceps pra equilibrar o dia posterior. Segure 1s no topo.', video: V.cadeiraExt },
-      { name: 'Stiff com Halteres', muscle: 'Posterior de coxa / Glúteos', duration: '3x12', equipment: 'Halteres (ao lado da extensora)', tip: 'Quadril pra trás, halteres deslizando na coxa. Antagonista direto da extensora.', video: V.stiffHalteres },
+      { name: 'Passada com Halteres', muscle: 'Glúteos / Quadríceps', duration: '3x12 cada perna', equipment: 'Halteres', tip: 'Passo à frente controlado, tronco levemente inclinado pra ênfase no glúteo. Empurra pelo calcanhar da frente.', video: V.passadaHalteres },
+      { name: 'Mesa Flexora', muscle: 'Posterior de coxa', duration: '3x12', equipment: 'Mesa flexora', tip: 'Quadril colado no banco, sobe controlando e desce em 2s. Antagonista da passada.', video: V.mesaFlexora },
     ]
   },
   {
-    type: 'lift', label: 'Solo 3',
-    title: 'Passada com Halteres', duration: '3x12 cada perna',
-    meta: 'Glúteo/posterior unilateral — carga progressiva. Descanso 90s.',
-    exercises: [ { name: 'Passada com Halteres', muscle: 'Glúteos / Quadríceps', duration: '3x12 cada perna', equipment: 'Halteres', tip: 'Passo à frente controlado, tronco levemente inclinado pra ênfase no glúteo. Empurra pelo calcanhar da frente.', video: V.passadaHalteres }, ]
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Agachamento Búlgaro com Carga ↔ Mobilidade de Escápula', duration: '3x12 · descanso ativo',
+    meta: 'Glúteo/quadríceps unilateral. No descanso, mobilidade do segmento oposto (escápula).',
+    exercises: [
+      { name: 'Agachamento Búlgaro com Carga', muscle: 'Glúteos / Quadríceps', duration: '3x12 cada perna', equipment: 'Halteres + banco (pé de trás apoiado)', tip: 'Tronco levemente inclinado à frente pra ênfase no glúteo. Desce controlado, empurra pelo calcanhar da frente.', video: V.bulgaroCarga },
+      { name: 'Mobilidade de Escápula', muscle: 'Mobilidade (oposto)', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: solta as escápulas enquanto a perna recupera.', video: V.mobEscapula },
+    ]
   },
   {
-    type: 'lift', label: 'Solo 4',
+    type: 'lift', label: 'Solo',
     title: 'Panturrilha Sentado', duration: '4x15–20',
     meta: 'Sóleo — descanso 45–60s.',
     exercises: [ { name: 'Panturrilha Sentado', muscle: 'Panturrilha (sóleo)', duration: '4x15–20', equipment: 'Máquina panturrilha sentado', tip: 'Trabalha o sóleo. Amplitude completa e controle na descida.', video: V.panturrilhaSentado }, ]
@@ -740,37 +732,40 @@ const UPPER_C = [
     ]
   },
   {
-    type: 'warmup', label: 'Mobilidade',
-    title: 'Torácica + Ombro', duration: '30s cada',
-    meta: 'Prepara coluna e ombro para o dia',
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Supino Inclinado com Halteres ↔ Mobilidade de Quadril', duration: '4x10–12 · descanso ativo',
+    meta: 'Peito (parte alta) abre o dia. No descanso, mobilidade do segmento oposto (perna). Recuperação: 90s–2min.',
     exercises: [
-      { name: 'Mobilidade Torácica', muscle: 'Coluna torácica', duration: '1x30s', equipment: 'Nenhum', tip: 'Abre a torácica pro supino. 30 segundos respirando fundo.', video: V.mobToracica },
-      { name: 'Mobilidade de Ombro', muscle: 'Ombros', duration: '1x30s', equipment: 'Nenhum', tip: 'Círculos amplos e controlados de ombro. 30 segundos.', video: V.mobOmbro },
+      { name: 'Supino Inclinado com Halteres', muscle: 'Peitoral (superior)', duration: '4x10–12', equipment: 'Halteres + banco inclinado', tip: 'Controle a descida, junte os halteres no topo sem bater. Ênfase na parte alta do peito.', video: V.supinoInclHalter },
+      { name: 'Mobilidade de Quadril Dinâmica', muscle: 'Mobilidade (oposto)', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: solta o quadril enquanto o peito recupera.', video: V.mobQuadrilDin },
     ]
   },
   {
-    type: 'lift', label: 'Solo 1',
-    title: 'Supino Inclinado com Halteres', duration: '4x10–12',
-    meta: 'Peito (parte alta) — abre o dia de pump. Descanso 90s–2min.',
-    exercises: [ { name: 'Supino Inclinado com Halteres', muscle: 'Peitoral (superior)', duration: '4x10–12', equipment: 'Halteres + banco inclinado', tip: 'Controle a descida, junte os halteres no topo sem bater. Ênfase na parte alta do peito.', video: V.supinoInclHalter }, ]
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Crossover na Polia Alta ↔ Mobilidade de Tornozelo', duration: '3x12–15 · descanso ativo',
+    meta: 'Peito — tensão contínua. No descanso, mobilidade do segmento oposto (perna).',
+    exercises: [
+      { name: 'Crossover na Polia Alta', muscle: 'Peitoral', duration: '3x12–15', equipment: 'Polias altas (crossover)', tip: 'Cotovelos levemente flexionados, traga as mãos à frente do quadril juntando o peito. Segura 1s.', video: V.crossoverAlta },
+      { name: 'Mobilidade de Tornozelo', muscle: 'Mobilidade (oposto)', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: ganha amplitude de tornozelo entre as séries.', video: V.mobTornozelo },
+    ]
   },
   {
-    type: 'lift', label: 'Solo 2',
-    title: 'Crossover na Polia Alta', duration: '3x12–15',
-    meta: 'Peito — isolador com tensão contínua. Descanso 60–90s.',
-    exercises: [ { name: 'Crossover na Polia Alta', muscle: 'Peitoral', duration: '3x12–15', equipment: 'Polias altas (crossover)', tip: 'Cotovelos levemente flexionados, traga as mãos à frente do quadril juntando o peito. Segura 1s.', video: V.crossoverAlta }, ]
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Peck Deck (Voador) ↔ Mobilidade de Quadril em Pé', duration: '3x15 · descanso ativo',
+    meta: 'Finalização de peito (pump). No descanso, mobilidade do segmento oposto (perna).',
+    exercises: [
+      { name: 'Peck Deck (Voador)', muscle: 'Peitoral', duration: '3x15', equipment: 'Máquina Peck Deck', tip: 'Junte com controle e segure 1s na contração. Bomba de sangue no peito.', video: V.peckDeck },
+      { name: 'Mobilidade de Quadril em Pé', muscle: 'Mobilidade (oposto)', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: quadril lado a lado enquanto o peito recupera.', video: V.mobQuadril },
+    ]
   },
   {
-    type: 'lift', label: 'Solo 3',
-    title: 'Peck Deck (Voador)', duration: '3x15',
-    meta: 'Finalização de peito (pump). Descanso 60s.',
-    exercises: [ { name: 'Peck Deck (Voador)', muscle: 'Peitoral', duration: '3x15', equipment: 'Máquina Peck Deck', tip: 'Junte com controle e segure 1s na contração. Bomba de sangue no peito.', video: V.peckDeck }, ]
-  },
-  {
-    type: 'lift', label: 'Solo 4',
-    title: 'Rosca Direta com Barra W', duration: '4x10–12',
-    meta: 'Massa de bíceps. Descanso 60–90s.',
-    exercises: [ { name: 'Rosca Direta com Barra W', muscle: 'Bíceps', duration: '4x10–12', equipment: 'Barra W', tip: 'Cotovelos fixos ao lado do corpo, suba sem balançar o tronco.', video: V.roscaDiretaW }, ]
+    type: 'lift', label: 'Solo + Mobilidade',
+    title: 'Rosca Direta com Barra W ↔ Mobilidade de Tornozelo', duration: '4x10–12 · descanso ativo',
+    meta: 'Massa de bíceps. No descanso, mobilidade do segmento oposto (perna).',
+    exercises: [
+      { name: 'Rosca Direta com Barra W', muscle: 'Bíceps', duration: '4x10–12', equipment: 'Barra W', tip: 'Cotovelos fixos ao lado do corpo, suba sem balançar o tronco.', video: V.roscaDiretaW },
+      { name: 'Mobilidade de Tornozelo', muscle: 'Mobilidade (oposto)', duration: 'no descanso', equipment: 'Nenhum', tip: 'Descanso ATIVO: solta o tornozelo entre as séries de rosca.', video: V.mobTornozelo },
+    ]
   },
   {
     type: 'lift', label: 'Bi-Set · Agonista ↔ Antagonista',
@@ -778,11 +773,11 @@ const UPPER_C = [
     meta: 'Bíceps ↔ tríceps (dois isolados com halteres, antagonistas). Uma estação só. Descanso 60–90s ao fim do par.',
     exercises: [
       { name: 'Rosca Martelo com Halteres', muscle: 'Bíceps / Braquial', duration: '3x12', equipment: 'Halteres', tip: 'Pegada neutra (martelo), sobe controlado. Pega braquial e antebraço.', video: V.roscaMartelo },
-      { name: 'Tríceps Francês Unilateral', muscle: 'Tríceps', duration: '3x12 (cada)', equipment: 'Halter', tip: 'Braço na vertical, desce o halter atrás da cabeça controlando e estende. Um braço de cada vez.', video: V.tricepsFrancesUni },
+      { name: 'Tríceps Francês Unilateral', muscle: 'Tríceps', duration: '3x12 (cada)', equipment: 'Halter', tip: 'Braço na vertical, desce o halter atrás da cabeça controlando e estende.', video: V.tricepsFrancesUni },
     ]
   },
   {
-    type: 'lift', label: 'Solo 5',
+    type: 'lift', label: 'Solo',
     title: 'Tríceps na Polia com Corda', duration: '3x15',
     meta: 'Tríceps por último (Regra 7) — pump final. Descanso 45–60s.',
     exercises: [ { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x15', equipment: 'Polia alta + corda', tip: 'Cotovelos colados, estende até embaixo abrindo a corda. Fecha o dia de braço com bomba.', video: V.tricepsCorda }, ]
