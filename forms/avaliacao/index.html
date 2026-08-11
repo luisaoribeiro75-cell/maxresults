@@ -485,6 +485,16 @@
           <div class="measure-unit">cm</div>
         </div>
         <div class="measure-item">
+          <label>Antebraço Esquerdo</label>
+          <input type="number" name="antebraco_esq" step="0.1" placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+        <div class="measure-item">
+          <label>Antebraço Direito</label>
+          <input type="number" name="antebraco_dir" step="0.1" placeholder="0.0">
+          <div class="measure-unit">cm</div>
+        </div>
+        <div class="measure-item">
           <label>Cintura</label>
           <input type="number" name="cintura" step="0.1" placeholder="0.0">
           <div class="measure-unit">cm</div>
@@ -608,7 +618,7 @@ function previewPhoto(input, containerId) {
 
 function updateProgress() {
   const required = ['nome', 'peso', 'altura'];
-  const measures = ['pescoco', 'ombro', 'torax', 'braco_esq', 'braco_dir', 'cintura', 'abdomen', 'quadril', 'coxa_esq', 'coxa_dir', 'perna_esq', 'perna_dir'];
+  const measures = ['pescoco', 'ombro', 'torax', 'braco_esq', 'braco_dir', 'antebraco_esq', 'antebraco_dir', 'cintura', 'abdomen', 'quadril', 'coxa_esq', 'coxa_dir', 'perna_esq', 'perna_dir'];
   const photos = ['photoFront', 'photoCostas', 'photoLateral'];
 
   let filled = 0;
@@ -653,6 +663,7 @@ document.getElementById('avaliacaoForm').addEventListener('submit', function(e) 
   const medidas = [
     ['Pescoço', d.pescoco], ['Ombro', d.ombro], ['Tórax', d.torax],
     ['Braço Esq.', d.braco_esq], ['Braço Dir.', d.braco_dir],
+    ['Antebraço Esq.', d.antebraco_esq], ['Antebraço Dir.', d.antebraco_dir],
     ['Cintura', d.cintura], ['Abdômen', d.abdomen], ['Quadril', d.quadril],
     ['Coxa Esq.', d.coxa_esq], ['Coxa Dir.', d.coxa_dir],
     ['Perna Esq.', d.perna_esq], ['Perna Dir.', d.perna_dir],
