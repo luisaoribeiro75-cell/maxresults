@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Avaliação Física | MaxResults</title>
+  <title>Avaliação Física Presencial | MaxResults</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#08080a">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -233,6 +233,35 @@
       resize: vertical;
     }
 
+    select {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+
+    .calc-result {
+      margin-top: 14px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-light);
+      border-left: 3px solid var(--green);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+    }
+    .calc-result.dim { border-left-color: var(--text-muted); opacity: 0.7; }
+    .calc-row { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; }
+    .calc-row .k { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .calc-row .v { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--text); }
+    .calc-row.big .v { font-size: 22px; color: var(--green); }
+    .calc-note { font-size: 11px; color: var(--text-muted); margin-top: 8px; }
+
     .measure-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -415,8 +444,8 @@
 <div class="container">
   <div class="header">
     <div class="brand">MaxResults</div>
-    <h1>📏 Avaliação Física</h1>
-    <p>Meça com cuidado — esses dados vão ajudar a acompanhar sua evolução!</p>
+    <h1>📋 Avaliação Física — Presencial</h1>
+    <p>Uso do avaliador. Perimetria bilateral + dobras Pollock 7 com cálculo automático de %gordura.</p>
     <div class="progress-bar">
       <div class="progress-track">
         <div class="progress-fill" id="progressFill"></div>
@@ -433,7 +462,20 @@
 
       <div class="field">
         <label>Nome completo <span class="required">*</span></label>
-        <input type="text" name="nome" required placeholder="Seu nome completo">
+        <input type="text" name="nome" required placeholder="Nome do aluno">
+      </div>
+
+      <div class="measure-grid">
+        <div class="measure-item">
+          <label>Data da avaliação</label>
+          <input type="date" name="data_avaliacao">
+          <div class="measure-unit">&nbsp;</div>
+        </div>
+        <div class="measure-item">
+          <label>Objetivo</label>
+          <input type="text" name="objetivo" placeholder="Ex.: emagrecer">
+          <div class="measure-unit">&nbsp;</div>
+        </div>
       </div>
 
       <div class="measure-grid">
@@ -447,6 +489,20 @@
           <input type="number" name="altura" step="0.1" required placeholder="0.0">
           <div class="measure-unit">cm</div>
         </div>
+        <div class="measure-item">
+          <label>Idade</label>
+          <input type="number" name="idade" step="1" placeholder="0">
+          <div class="measure-unit">anos</div>
+        </div>
+        <div class="measure-item">
+          <label>Sexo</label>
+          <select name="sexo">
+            <option value="">—</option>
+            <option value="f">Feminino</option>
+            <option value="m">Masculino</option>
+          </select>
+          <div class="measure-unit">p/ cálculo de %gordura</div>
+        </div>
       </div>
     </div>
 
@@ -455,7 +511,7 @@
       <div class="section-title">📐 Perimetria</div>
 
       <div class="section-hint">
-        💡 <strong>Como medir:</strong> Use uma fita métrica flexível. Meça rente à pele, sem apertar. Mantenha a fita horizontal e o corpo relaxado. Na dúvida, meça 2x e use a média.
+        💡 <strong>Perimetria:</strong> fita inelástica, rente à pele sem comprimir. Membros SEMPRE bilaterais (E/D). Braço = <strong>relaxado</strong> (sem contraído). 2 medidas por ponto, usar a média.
       </div>
 
       <div class="measure-grid">
@@ -532,12 +588,70 @@
       </div>
     </div>
 
+    <!-- DOBRAS CUTÂNEAS (PRESENCIAL — POLLOCK 7) -->
+    <div class="section">
+      <div class="section-title">🔬 Dobras Cutâneas — Pollock 7</div>
+
+      <div class="section-hint">
+        💡 <strong>Presencial (adipômetro).</strong> 7 dobras, lado direito, 2 a 3 medidas por ponto (usar a média). Cálculo de %gordura é automático — precisa de <strong>Idade</strong> e <strong>Sexo</strong> preenchidos acima.
+      </div>
+
+      <div class="measure-grid">
+        <div class="measure-item">
+          <label>Tricipital</label>
+          <input type="number" name="db_tricipital" step="0.1" placeholder="0.0">
+          <div class="measure-unit">mm</div>
+        </div>
+        <div class="measure-item">
+          <label>Subescapular</label>
+          <input type="number" name="db_subescapular" step="0.1" placeholder="0.0">
+          <div class="measure-unit">mm</div>
+        </div>
+        <div class="measure-item">
+          <label>Peitoral</label>
+          <input type="number" name="db_peitoral" step="0.1" placeholder="0.0">
+          <div class="measure-unit">mm</div>
+        </div>
+        <div class="measure-item">
+          <label>Axilar Média</label>
+          <input type="number" name="db_axilar" step="0.1" placeholder="0.0">
+          <div class="measure-unit">mm</div>
+        </div>
+        <div class="measure-item">
+          <label>Supra-ilíaca</label>
+          <input type="number" name="db_suprailiaca" step="0.1" placeholder="0.0">
+          <div class="measure-unit">mm</div>
+        </div>
+        <div class="measure-item">
+          <label>Abdominal</label>
+          <input type="number" name="db_abdominal" step="0.1" placeholder="0.0">
+          <div class="measure-unit">mm</div>
+        </div>
+        <div class="measure-item">
+          <label>Coxa</label>
+          <input type="number" name="db_coxa" step="0.1" placeholder="0.0">
+          <div class="measure-unit">mm</div>
+        </div>
+      </div>
+
+      <div class="calc-result dim" id="calcBox">
+        <div class="calc-row"><span class="k">Σ 7 dobras</span><span class="v" id="calcSoma">—</span></div>
+        <div class="calc-row"><span class="k">Densidade corporal</span><span class="v" id="calcDens">—</span></div>
+        <div class="calc-row big"><span class="k">% Gordura (Siri)</span><span class="v" id="calcGord">—</span></div>
+        <div class="calc-row"><span class="k">Massa gorda</span><span class="v" id="calcMG">—</span></div>
+        <div class="calc-row"><span class="k">Massa magra</span><span class="v" id="calcMM">—</span></div>
+        <div class="calc-row"><span class="k">IMC</span><span class="v" id="calcIMC">—</span></div>
+        <div class="calc-row"><span class="k">RCQ (cintura/quadril)</span><span class="v" id="calcRCQ">—</span></div>
+        <div class="calc-note" id="calcNote">Preencha as 7 dobras + idade + sexo p/ o cálculo automático.</div>
+      </div>
+    </div>
+
     <!-- FOTOS -->
     <div class="section">
       <div class="section-title">📸 Fotos Corporais</div>
 
       <div class="section-hint">
-        💡 <strong>Dicas para as fotos:</strong> Vista roupa justa ou de academia. Boa iluminação, fundo limpo. Corpo inteiro, dos pés à cabeça. Peça para alguém tirar se possível.
+        💡 <strong>Fotos (opcional):</strong> frente, costas e perfil. Roupa justa, fundo limpo, boa luz, corpo inteiro. Dado sensível (LGPD) — só com consentimento.
       </div>
 
       <div class="photo-section">
@@ -643,8 +757,55 @@ function updateProgress() {
   document.getElementById('progressLabel').textContent = pct + '%';
 }
 
-document.querySelectorAll('input, textarea').forEach(el => {
+// --- Composição corporal: Pollock/Jackson-Ward 7 dobras + Siri ---
+// Validado contra MFit no decimal: Alessandro(M)=11,77% · Daíne(F)=39,24%.
+const DOBRAS = ['db_tricipital','db_subescapular','db_peitoral','db_axilar','db_suprailiaca','db_abdominal','db_coxa'];
+function num(name){ const el = document.querySelector(`[name="${name}"]`); const v = el ? parseFloat(el.value.replace(',','.')) : NaN; return isNaN(v) ? null : v; }
+function calcComposicao(){
+  const box = document.getElementById('calcBox');
+  const vals = DOBRAS.map(num);
+  const soma = vals.reduce((a,b)=> a + (b||0), 0);
+  const todas = vals.every(v => v !== null && v > 0);
+  const idade = num('idade');
+  const sexoEl = document.querySelector('[name="sexo"]');
+  const sexo = sexoEl ? sexoEl.value : '';
+  const peso = num('peso');
+  const set = (id,t)=>{ const e=document.getElementById(id); if(e) e.textContent = t; };
+  // IMC e RCQ — independentes das dobras
+  const altura = num('altura'), cintura = num('cintura'), quadril = num('quadril');
+  if(peso && altura){ const h = altura/100; set('calcIMC', (peso/(h*h)).toFixed(1).replace('.',',')); } else set('calcIMC','—');
+  if(cintura && quadril){ set('calcRCQ', (cintura/quadril).toFixed(2).replace('.',',')); } else set('calcRCQ','—');
+  document.getElementById('calcSoma').textContent = soma ? soma.toFixed(1)+' mm' : '—';
+  if(!todas || !idade || !sexo){
+    box.classList.add('dim');
+    set('calcDens','—'); set('calcGord','—'); set('calcMG','—'); set('calcMM','—');
+    const falta = [];
+    if(!todas) falta.push('as 7 dobras');
+    if(!idade) falta.push('idade');
+    if(!sexo) falta.push('sexo');
+    document.getElementById('calcNote').textContent = 'Falta: ' + falta.join(', ') + '.';
+    return;
+  }
+  let bd;
+  if(sexo === 'm') bd = 1.112 - 0.00043499*soma + 0.00000055*soma*soma - 0.00028826*idade;
+  else            bd = 1.0970 - 0.00046971*soma + 0.00000056*soma*soma - 0.00012828*idade;
+  const gord = 495/bd - 450;
+  box.classList.remove('dim');
+  set('calcDens', bd.toFixed(4)+' g/mL');
+  set('calcGord', gord.toFixed(2).replace('.',',')+'%');
+  if(peso){
+    const mg = peso*gord/100, mm = peso - mg;
+    set('calcMG', mg.toFixed(1).replace('.',',')+' kg');
+    set('calcMM', mm.toFixed(1).replace('.',',')+' kg');
+  } else { set('calcMG','—'); set('calcMM','— (informe o peso)'); }
+  document.getElementById('calcNote').textContent = (sexo==='m'?'Fórmula MASCULINA':'Fórmula FEMININA') + ' — Jackson-Pollock-Ward 7 dobras + Siri.';
+}
+
+document.querySelectorAll('input, textarea, select').forEach(el => {
   el.addEventListener('input', updateProgress);
+  el.addEventListener('change', updateProgress);
+  el.addEventListener('input', calcComposicao);
+  el.addEventListener('change', calcComposicao);
 });
 
 document.getElementById('avaliacaoForm').addEventListener('submit', function(e) {
@@ -654,10 +815,15 @@ document.getElementById('avaliacaoForm').addEventListener('submit', function(e) 
   const d = {};
   fd.forEach((v, k) => { d[k] = v; });
 
-  let msg = '📏 *AVALIAÇÃO FÍSICA MAXRESULTS*\n\n';
+  let msg = '📋 *AVALIAÇÃO FÍSICA PRESENCIAL — MAXRESULTS*\n\n';
   msg += `*Nome:* ${d.nome || '—'}\n`;
+  if (d.data_avaliacao) msg += `*Data:* ${d.data_avaliacao}\n`;
+  if (d.objetivo) msg += `*Objetivo:* ${d.objetivo}\n`;
   msg += `*Peso:* ${d.peso || '—'} kg\n`;
-  msg += `*Altura:* ${d.altura || '—'} cm\n\n`;
+  msg += `*Altura:* ${d.altura || '—'} cm\n`;
+  if (d.idade) msg += `*Idade:* ${d.idade} anos\n`;
+  if (d.sexo) msg += `*Sexo:* ${d.sexo === 'm' ? 'Masculino' : 'Feminino'}\n`;
+  msg += '\n';
 
   msg += '📐 *PERIMETRIA (cm)*\n';
   const medidas = [
@@ -671,6 +837,44 @@ document.getElementById('avaliacaoForm').addEventListener('submit', function(e) 
   medidas.forEach(([label, val]) => {
     if (val) msg += `${label}: ${val}\n`;
   });
+
+  // Dobras + composição (Pollock 7)
+  const dobras = [
+    ['Tricipital', d.db_tricipital], ['Subescapular', d.db_subescapular],
+    ['Peitoral', d.db_peitoral], ['Axilar Média', d.db_axilar],
+    ['Supra-ilíaca', d.db_suprailiaca], ['Abdominal', d.db_abdominal], ['Coxa', d.db_coxa],
+  ];
+  const dobrasPreenchidas = dobras.filter(([,v]) => v);
+  if (dobrasPreenchidas.length) {
+    msg += '\n🔬 *DOBRAS (Pollock 7, mm)*\n';
+    let somaD = 0;
+    dobrasPreenchidas.forEach(([label, val]) => { msg += `${label}: ${val}\n`; somaD += parseFloat(String(val).replace(',','.'))||0; });
+    msg += `Σ: ${somaD.toFixed(1)}\n`;
+    const idade = parseFloat(String(d.idade||'').replace(',','.'));
+    const peso = parseFloat(String(d.peso||'').replace(',','.'));
+    if (dobrasPreenchidas.length === 7 && idade && d.sexo) {
+      let bd = d.sexo === 'm'
+        ? 1.112 - 0.00043499*somaD + 0.00000055*somaD*somaD - 0.00028826*idade
+        : 1.0970 - 0.00046971*somaD + 0.00000056*somaD*somaD - 0.00012828*idade;
+      const gord = 495/bd - 450;
+      msg += `\n📊 *COMPOSIÇÃO* (${d.sexo === 'm' ? 'fórm. masc.' : 'fórm. fem.'})\n`;
+      msg += `% Gordura: ${gord.toFixed(2)}%\n`;
+      if (peso) {
+        msg += `Massa gorda: ${(peso*gord/100).toFixed(1)} kg\n`;
+        msg += `Massa magra: ${(peso - peso*gord/100).toFixed(1)} kg\n`;
+      }
+    }
+  }
+
+  // IMC / RCQ
+  const pesoN = parseFloat(String(d.peso||'').replace(',','.'));
+  const alturaN = parseFloat(String(d.altura||'').replace(',','.'));
+  const cinturaN = parseFloat(String(d.cintura||'').replace(',','.'));
+  const quadrilN = parseFloat(String(d.quadril||'').replace(',','.'));
+  let idx = '';
+  if (pesoN && alturaN) { const h = alturaN/100; idx += `IMC: ${(pesoN/(h*h)).toFixed(1)}\n`; }
+  if (cinturaN && quadrilN) idx += `RCQ: ${(cinturaN/quadrilN).toFixed(2)}\n`;
+  if (idx) msg += `\n📐 *ÍNDICES*\n${idx}`;
 
   msg += '\n📸 *Fotos:* ';
   const photoCount = Object.keys(photoFiles).length;
@@ -690,7 +894,7 @@ document.getElementById('avaliacaoForm').addEventListener('submit', function(e) 
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify({ tipo: 'avaliacao', aluna: (d.nome || 'Aluno'), conteudo: discordMsg })
+    body: JSON.stringify({ tipo: 'avaliacao-presencial', aluna: (d.nome || 'Aluno'), conteudo: discordMsg })
   }).then(() => {
     const phone = '5541999775758';
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
