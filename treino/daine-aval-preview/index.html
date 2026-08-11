@@ -1023,38 +1023,36 @@ render();
 setTimeout(() => document.getElementById('workoutContent').classList.remove('initial-load'), 600);
 
 // ─── Assessment ───
-const ASSESSMENTS = [
-  {
-    date: '09/09/2025', label: 'Avaliação Inicial',
-    basics: { age: 38, height: 168, weight: 108.9 },
-    results: { imc: 38.58, fatPercent: 40.06, leanPercent: 59.94, leanMass: 65.27, fatMass: 43.63, idealWeight: 85, sumSkinfolds: 248.0 },
-    perimetry: { cintura: 99.5, abdomen: 119, quadril: 130.5, coxaE: 81, coxaD: 80.5, bracoE: 40, bracoD: 40 },
-  },
-  {
-    date: '17/11/2025', label: 'Renovação',
-    basics: { age: 38, height: 168, weight: 104.6 },
-    results: { imc: 37.06, fatPercent: 39.24, leanPercent: 60.76, leanMass: 63.55, fatMass: 41.05, idealWeight: 85, sumSkinfolds: 239.4 },
-    perimetry: { cintura: 95.01, abdomen: 117, quadril: 127, coxaE: 78.5, coxaD: 78.5, bracoE: 39, bracoD: 39 },
-  },
-  {
-    date: '25/03/2026', label: 'Reavaliação (MFit)',
-    basics: { age: 38, height: 169, weight: 105.8 },
-    results: { imc: 37.04, fatPercent: 40.41, leanPercent: 59.59, leanMass: 63.05, fatMass: 42.75, idealWeight: 85, sumSkinfolds: null },
-    perimetry: { cintura: 98, abdomen: 120.2, quadril: 129, coxaE: 77.5, coxaD: 78, bracoE: 39.5, bracoD: 39.5 },
-  },
-  {
-    date: '16/06/2026', label: 'MFit',
-    basics: { age: 38, height: 169, weight: 100.4 },
-    results: { imc: 35.15, fatPercent: 36.14, leanPercent: 63.86, leanMass: 64.12, fatMass: 36.28, idealWeight: 85, sumSkinfolds: null },
-    perimetry: { cintura: 95, abdomen: 115, quadril: 124, coxaE: 75, coxaD: 75.5, bracoE: 38.5, bracoD: 38 },
-  },
-  {
-    date: '11/08/2026', label: 'Atual (Pollock)',
-    basics: { age: 39, height: 169, weight: 98.4 },
-    results: { imc: 34.5, fatPercent: 38.07, leanPercent: 61.93, leanMass: 60.9, fatMass: 37.5, idealWeight: 85, sumSkinfolds: 227.1 },
-    perimetry: { cintura: 91, abdomen: 114, quadril: 121.5, coxaE: 75, coxaD: 75, bracoE: 36.7, bracoD: 36.5 },
-  }
+// Histórico COMPLETO de avaliações (fonte do comparador interativo). Ordem cronológica.
+// proto: 'pollock' (7 dobras) ou 'mfit' (bioimpedância) — protocolos NÃO comparáveis em %G/massa.
+const AVALIACOES = [
+  { date:'09/09/2025', label:'Avaliação Inicial', protocol:'Pollock 7 dobras', proto:'pollock',
+    basics:{age:38,height:168,weight:108.9}, rcq:0.762,
+    results:{imc:38.58, imcClass:'Obesidade grau II', fatPercent:40.06, leanPercent:59.94, leanMass:65.27, fatMass:43.63, idealWeight:85, idealFat:17, sumSkinfolds:248.0},
+    perimetry:{ombro:null,torax:null,bracoE:40,bracoD:40,antebracoE:null,antebracoD:null,cintura:99.5,abdomen:119,quadril:130.5,coxaE:81,coxaD:80.5,pernaE:null,pernaD:null},
+    skinfolds:null },
+  { date:'17/11/2025', label:'Renovação', protocol:'Pollock 7 dobras', proto:'pollock',
+    basics:{age:38,height:168,weight:104.6}, rcq:0.748,
+    results:{imc:37.06, imcClass:'Obesidade grau II', fatPercent:39.24, leanPercent:60.76, leanMass:63.55, fatMass:41.05, idealWeight:85, idealFat:17, sumSkinfolds:239.4},
+    perimetry:{ombro:114.5,torax:111.5,bracoE:39,bracoD:39,antebracoE:null,antebracoD:null,cintura:95.01,abdomen:117,quadril:127,coxaE:78.5,coxaD:78.5,pernaE:49,pernaD:46.5},
+    skinfolds:{tricipital:31.3,subescapular:29.5,peitoral:14.5,axilar:28.5,abdominal:49.6,supra:28.9,coxa:57.1} },
+  { date:'25/03/2026', label:'Reavaliação', protocol:'MFit (bioimpedância)', proto:'mfit',
+    basics:{age:38,height:169,weight:105.8}, rcq:0.760,
+    results:{imc:37.04, imcClass:'Obesidade grau II', fatPercent:40.41, leanPercent:59.59, leanMass:63.05, fatMass:42.75, idealWeight:85, idealFat:17, sumSkinfolds:null},
+    perimetry:{ombro:115.5,torax:113,bracoE:39.5,bracoD:39.5,antebracoE:null,antebracoD:null,cintura:98,abdomen:120.2,quadril:129,coxaE:77.5,coxaD:78,pernaE:50,pernaD:48},
+    skinfolds:null },
+  { date:'16/06/2026', label:'Reavaliação', protocol:'MFit (bioimpedância)', proto:'mfit',
+    basics:{age:38,height:169,weight:100.4}, rcq:0.766,
+    results:{imc:35.15, imcClass:'Obesidade grau II', fatPercent:36.14, leanPercent:63.86, leanMass:64.12, fatMass:36.28, idealWeight:85, idealFat:17, sumSkinfolds:null},
+    perimetry:{ombro:115,torax:108,bracoE:38.5,bracoD:38,antebracoE:null,antebracoD:null,cintura:95,abdomen:115,quadril:124,coxaE:75,coxaD:75.5,pernaE:48.5,pernaD:46},
+    skinfolds:null },
+  { date:'11/08/2026', label:'Atual', protocol:'Pollock 7 dobras', proto:'pollock', nextAssessment:'11/11/2026',
+    basics:{age:39,height:169,weight:98.4}, rcq:0.75,
+    results:{imc:34.5, imcClass:'Obesidade grau I', fatPercent:38.07, leanPercent:61.93, leanMass:60.9, fatMass:37.5, idealWeight:85, idealFat:17, sumSkinfolds:227.1},
+    perimetry:{ombro:114,torax:106,bracoE:36.7,bracoD:36.5,antebracoE:27.2,antebracoD:27.2,cintura:91,abdomen:114,quadril:121.5,coxaE:75,coxaD:75,pernaE:48,pernaD:46},
+    skinfolds:{tricipital:28.4,subescapular:28.4,peitoral:11.4,axilar:24.6,abdominal:51.5,supra:28.5,coxa:54.3} },
 ];
+const OBJETIVO = 'Emagrecimento', ENFASE = 'Adaptações para protrusão discal L5 e escoliose';
 
 const ASSESSMENT = {
   date: '11/08/2026',
@@ -1178,7 +1176,148 @@ function renderEvolution(assessments) {
     </div>`;
 }
 
-document.getElementById('assessPanel').innerHTML = renderAssessment(ASSESSMENT) + renderEvolution(ASSESSMENTS);
+// ─── Comparador interativo de avaliações (substitui a evolução fixa) ───
+const PERI_ORDER = [
+  ['ombro','Ombro'],['torax','Tórax'],['bracoE','Braço Esq.'],['bracoD','Braço Dir.'],
+  ['antebracoE','Antebraço Esq.'],['antebracoD','Antebraço Dir.'],['cintura','Cintura'],
+  ['abdomen','Abdômen'],['quadril','Quadril'],['coxaE','Coxa Esq.'],['coxaD','Coxa Dir.'],
+  ['pernaE','Perna Esq.'],['pernaD','Perna Dir.'],
+];
+const SKIN_ORDER = [
+  ['tricipital','Tricipital'],['subescapular','Subescapular'],['peitoral','Peitoral'],
+  ['axilar','Axilar Média'],['supra','Supra-ilíaca'],['abdominal','Abdominal'],['coxa','Coxa'],
+];
+
+function renderDetail(a){
+  const r=a.results;
+  const peri = PERI_ORDER.filter(([k])=>a.perimetry[k]!=null)
+    .map(([k,l])=>`<div class="assess-grid-item"><span class="agi-label">${l}</span><span class="agi-value">${a.perimetry[k]}</span></div>`).join('');
+  const skin = a.skinfolds ? SKIN_ORDER.filter(([k])=>a.skinfolds[k]!=null)
+    .map(([k,l])=>`<div class="assess-grid-item"><span class="agi-label">${l}</span><span class="agi-value">${a.skinfolds[k]}</span></div>`).join('') : '';
+  return `
+    <div class="assess-section"><div class="assess-section-title">Dados Básicos</div>
+      <div class="assess-card"><div class="assess-basics">
+        <div class="ab-item"><div class="ab-value">${a.basics.age}</div><div class="ab-label">Idade</div></div>
+        <div class="ab-item"><div class="ab-value">${a.basics.height}<span class="ab-unit">cm</span></div><div class="ab-label">Altura</div></div>
+        <div class="ab-item"><div class="ab-value">${a.basics.weight}<span class="ab-unit">kg</span></div><div class="ab-label">Peso</div></div>
+      </div></div>
+      <div class="assess-card">
+        <div class="assess-meta-row"><span class="assess-meta-label">Data da Avaliação</span><span class="assess-meta-value">${a.date}</span></div>
+        <div class="assess-meta-row"><span class="assess-meta-label">Protocolo</span><span class="assess-meta-value">${a.protocol}</span></div>
+        <div class="assess-meta-row"><span class="assess-meta-label">Objetivo</span><span class="assess-meta-value">${OBJETIVO}</span></div>
+        <div class="assess-meta-row"><span class="assess-meta-label">Ênfase</span><span class="assess-meta-value">${ENFASE}</span></div>
+        ${a.nextAssessment?`<div class="assess-meta-row"><span class="assess-meta-label">Próxima Avaliação</span><span class="assess-meta-value">${a.nextAssessment}</span></div>`:''}
+      </div></div>
+    <div class="assess-section"><div class="assess-section-title">Perimetria (cm)</div>
+      <div class="assess-card"><div class="assess-grid">${peri}</div></div></div>
+    ${skin?`<div class="assess-section"><div class="assess-section-title">Dobras Cutâneas (mm)</div>
+      <div class="assess-card"><div class="assess-grid">${skin}</div></div></div>`:''}
+    <div class="assess-section"><div class="assess-section-title">Composição Corporal</div>
+      <div class="assess-card"><div class="assess-donut-wrap">
+        <div class="assess-donut" style="--fat-pct: ${r.fatPercent}%"><div class="assess-donut-inner"><div class="adi-pct">${r.fatPercent}%</div><div class="adi-label">Gordura</div></div></div>
+        <div class="assess-donut-legend"><span><span class="dot fat"></span>Gordura ${r.fatPercent}%</span><span><span class="dot lean"></span>Magra ${r.leanPercent}%</span></div>
+      </div></div>
+      <div class="assess-card"><div class="assess-stats">
+        <div class="assess-stat"><div class="as-value">${r.imc}</div><div class="as-sub">${r.imcClass}</div><div class="as-label">IMC</div></div>
+        ${r.sumSkinfolds!=null?`<div class="assess-stat"><div class="as-value">${r.sumSkinfolds}<span class="ab-unit">mm</span></div><div class="as-label">Σ Dobras</div></div>`:`<div class="assess-stat"><div class="as-value">${r.leanMass}<span class="ab-unit">kg</span></div><div class="as-label">Massa Magra</div></div>`}
+        <div class="assess-stat"><div class="as-value">${r.idealWeight}<span class="ab-unit">kg</span></div><div class="as-label">Peso Ideal</div></div>
+        <div class="assess-stat"><div class="as-value">${r.idealFat}%</div><div class="as-sub">Meta</div><div class="as-label">% Gordura Ideal</div></div>
+      </div></div></div>`;
+}
+
+const CMP_METRICS = [
+  {label:'Peso', unit:' kg', low:true, get:x=>x.basics.weight},
+  {label:'IMC', unit:'', low:true, get:x=>x.results.imc},
+  {label:'% Gordura', unit:'%', low:true, proto:true, get:x=>x.results.fatPercent},
+  {label:'Massa Gorda', unit:' kg', low:true, proto:true, get:x=>x.results.fatMass},
+  {label:'Massa Magra', unit:' kg', low:false, proto:true, get:x=>x.results.leanMass},
+  {label:'RCQ', unit:'', low:true, get:x=>x.rcq},
+  {label:'Σ Dobras', unit:' mm', low:true, get:x=>x.results.sumSkinfolds},
+];
+
+function deltaCell(oldV,newV,unit,low,mixed){
+  if(oldV==null||newV==null) return '<td class="cmp-d-neutral">—</td>';
+  const diff=newV-oldV;
+  if(Math.abs(diff)<0.01) return '<td class="cmp-d-neutral">—</td>';
+  const sign=diff>0?'+':'';
+  if(mixed) return `<td class="cmp-d-neutral">${sign}${diff.toFixed(1)}${unit}*</td>`;
+  const cls = low?(diff<0?'cmp-d-good':'cmp-d-bad'):(diff>0?'cmp-d-good':'cmp-d-bad');
+  return `<td class="${cls}">${sign}${diff.toFixed(1)}${unit}</td>`;
+}
+
+function renderCompare(sel){
+  if(!sel.length) return {table:'<div class="cmp-hint">Selecione ao menos uma avaliação acima.</div>', warn:''};
+  const items=sel.map(i=>AVALIACOES[i]);
+  const showDelta = items.length===2;
+  const mixed = items.some(x=>x.proto==='pollock') && items.some(x=>x.proto==='mfit');
+  const head = `<tr><th>Métrica</th>${items.map(x=>`<th>${x.date}<br><span style="font-weight:600;text-transform:none;letter-spacing:0">${x.proto==='pollock'?'Pollock':'MFit'}</span></th>`).join('')}${showDelta?'<th>Δ</th>':''}</tr>`;
+  function row(m){
+    const vals=items.map(x=>{const v=m.get(x); return `<td>${v==null?'—':v+m.unit}</td>`;}).join('');
+    const d = showDelta ? deltaCell(m.get(items[0]), m.get(items[1]), m.unit, m.low, mixed&&m.proto) : '';
+    return `<tr><td>${m.label}${mixed&&m.proto?'*':''}</td>${vals}${d}</tr>`;
+  }
+  const metricRows = CMP_METRICS.map(row).join('');
+  const periUsed = PERI_ORDER.filter(([k])=>items.some(x=>x.perimetry[k]!=null));
+  const periRows = periUsed.map(([k,l])=>row({label:l, unit:' cm', low:true, get:x=>x.perimetry[k]})).join('');
+  const colspan = items.length + (showDelta?2:1);
+  const table = `<table class="cmp-table"><thead>${head}</thead><tbody>${metricRows}<tr class="cmp-sub"><td colspan="${colspan}">Perimetria (cm)</td></tr>${periRows}</tbody></table>`;
+  const warn = mixed ? `<div class="cmp-warn">⚠️ Você misturou protocolos (Pollock × MFit). Peso e perimetria são comparáveis; <strong>% Gordura, Massa Gorda e Massa Magra (marcadas com *)</strong> usam métodos diferentes e não devem ser comparadas diretamente.</div>` : '';
+  return {table, warn};
+}
+
+function onCmpChange(){
+  const sel=[...document.querySelectorAll('#cmpChips input:checked')].map(b=>+b.value).sort((x,y)=>x-y);
+  const {table,warn}=renderCompare(sel);
+  document.getElementById('cmpTable').innerHTML=table;
+  document.getElementById('cmpWarn').innerHTML=warn;
+}
+function renderDetailInto(i){ document.getElementById('detailBox').innerHTML=renderDetail(AVALIACOES[i]); }
+function printAssess(){ const p=document.getElementById('assessPanel'); p.classList.add('open'); setTimeout(function(){ window.print(); }, 120); }
+
+(function buildAssessPanel(){
+  const lastIdx=AVALIACOES.length-1;
+  const opts=AVALIACOES.map((a,i)=>`<option value="${i}"${i===lastIdx?' selected':''}>${a.date} — ${a.label}</option>`).join('');
+  const chips=AVALIACOES.map((a,i)=>`<label class="cmp-chip"><input type="checkbox" value="${i}" checked onchange="onCmpChange()"> ${a.date}<span class="cmp-chip-tag">${a.proto==='pollock'?'Pollock':'MFit'}</span></label>`).join('');
+  const style=`<style>
+  .cmp-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+  .cmp-select{background:var(--card,#16181d);color:var(--text,#fff);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;max-width:62%}
+  .cmp-hint{font-size:12.5px;color:var(--text-muted,#9a9a9a);line-height:1.5;margin-bottom:12px}
+  .cmp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+  .cmp-chip{display:inline-flex;align-items:center;gap:6px;background:var(--card,#16181d);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:6px 12px;font-size:12.5px;cursor:pointer;user-select:none}
+  .cmp-chip input{accent-color:#e11d48;margin:0;cursor:pointer}
+  .cmp-chip-tag{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted,#9a9a9a);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:1px 5px}
+  .cmp-print{display:block;width:100%;padding:11px;margin:0 0 12px;border:1px solid rgba(255,255,255,.2);border-radius:10px;background:transparent;color:var(--text,#fff);font-family:inherit;font-weight:700;font-size:13px;cursor:pointer}
+  .cmp-print:active{transform:scale(.98)}
+  .cmp-warn{background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.4);border-radius:10px;padding:10px 12px;font-size:12px;line-height:1.5;color:#eab308;margin-bottom:12px}
+  .cmp-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid rgba(255,255,255,.08);border-radius:10px}
+  .cmp-table{border-collapse:collapse;width:100%;font-size:12.5px;min-width:300px}
+  .cmp-table th,.cmp-table td{padding:9px 12px;text-align:right;white-space:nowrap;border-bottom:1px solid rgba(255,255,255,.07)}
+  .cmp-table th:first-child,.cmp-table td:first-child{text-align:left;position:sticky;left:0;background:var(--bg,#0f1115)}
+  .cmp-table thead th{font-family:var(--font-display,inherit);font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted,#9a9a9a);font-weight:800;line-height:1.35}
+  .cmp-table tbody tr:last-child td{border-bottom:none}
+  .cmp-sub td{font-family:var(--font-display,inherit);font-size:9.5px;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted,#9a9a9a);padding-top:14px !important;text-align:left !important}
+  .cmp-d-good{color:#22c55e;font-weight:800}.cmp-d-bad{color:#ef4444;font-weight:800}.cmp-d-neutral{color:var(--text-muted,#9a9a9a)}
+  @media print{ body *{visibility:hidden !important;} #assessPanel,#assessPanel *{visibility:visible !important;} #assessPanel{position:absolute;left:0;top:0;width:100%;max-height:none !important;overflow:visible !important;display:block !important;} .no-print{display:none !important;} .cmp-table th:first-child,.cmp-table td:first-child{position:static;} }
+  </style>`;
+  const html = style + `
+    <div class="assess-section">
+      <div class="cmp-head"><div class="assess-section-title" style="margin:0">Avaliação Detalhada</div>
+        <select id="detailSel" class="cmp-select no-print">${opts}</select></div>
+      <div id="detailBox"></div>
+    </div>
+    <div class="evo-section">
+      <div class="evo-title">📊 Comparar Avaliações</div>
+      <div class="cmp-hint">Marque as avaliações para ver lado a lado. Selecione <strong>exatamente 2</strong> pra ver a diferença (Δ). Toque em 🖨️ pra imprimir ou salvar em PDF (pra levar ao médico).</div>
+      <div id="cmpChips" class="cmp-chips no-print">${chips}</div>
+      <button class="cmp-print no-print" onclick="printAssess()">🖨️ Imprimir / Salvar PDF</button>
+      <div id="cmpWarn"></div>
+      <div id="cmpTable" class="cmp-table-wrap"></div>
+    </div>`;
+  document.getElementById('assessPanel').innerHTML = html;
+  renderDetailInto(lastIdx);
+  onCmpChange();
+  document.getElementById('detailSel').addEventListener('change', function(e){ renderDetailInto(+e.target.value); });
+})();
 document.getElementById('assessToggle').addEventListener('click', function() { this.classList.toggle('open'); document.getElementById('assessPanel').classList.toggle('open'); });
 
 // ─── Session Timer ───
