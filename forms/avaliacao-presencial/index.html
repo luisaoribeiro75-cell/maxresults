@@ -205,6 +205,7 @@
     input[type="text"],
     input[type="number"],
     input[type="tel"],
+    input[type="date"],
     textarea {
       width: 100%;
       padding: 12px 16px;
@@ -218,6 +219,10 @@
       transition: border-color 0.2s, box-shadow 0.2s;
       -webkit-appearance: none;
     }
+    input[type="date"] { min-height: 46px; }
+    input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.7); cursor: pointer; }
+    input[type="date"]::-webkit-datetime-edit { color: var(--text); }
+    input[type="date"]:invalid::-webkit-datetime-edit { color: var(--text-muted); }
 
     input:focus, textarea:focus {
       border-color: var(--accent);
