@@ -310,7 +310,7 @@
   <div class="day-modal-overlay" id="dayModal">
     <div class="day-modal">
       <h3>⚙️ Dias de Treino</h3>
-      <p>Escolha 3 dias para treinar esta semana</p>
+      <p>Escolha até 4 dias para treinar esta semana</p>
       <div id="dayOptions"></div>
       <div class="day-modal-actions">
         <button class="cancel-btn" onclick="closeDayModal()">Cancelar</button>
@@ -333,8 +333,8 @@
 const ATHLETE = 'Pedro';
 
 const WEEKLY_GOALS = [
-  { icon: '🏋️', type: 'strength', text: '<strong>Treino:</strong> A (superior) · B (inferior) · C (full body) — 45min, força e condicionamento' },
-  { icon: '🏃', type: 'fat', text: '<strong>Cardio:</strong> planilha de corrida V2 25min (intermediário+, mais intensa) no fim de cada treino' },
+  { icon: '🏋️', type: 'strength', text: '<strong>Treino:</strong> 4x/semana — A (superiores) e B (inferiores), cada um 2x. 45min, força + condicionamento pra secar' },
+  { icon: '🏃', type: 'fat', text: '<strong>Cardio:</strong> planilha de corrida V2 (intervalado 4:1 + tiros, 25-30min) no fim de cada treino — é o motor do emagrecimento' },
   { icon: '💡', type: 'strength', text: '<strong>Carga sugerida:</strong> é uma referência — pode variar conforme o tipo de equipamento da academia. Teste e ajuste conforme a sua execução.' },
 ];
 
@@ -709,11 +709,14 @@ function buildWeek() {
 }
 
 const TRAINING_SLOTS = [
-  { label: 'Treino Único — Full Body 45min', blocks: TREINO_C },
+  { label: 'Treino A — Superiores', blocks: TREINO_A },
+  { label: 'Treino B — Inferiores', blocks: TREINO_B },
+  { label: 'Treino A — Superiores', blocks: TREINO_A },
+  { label: 'Treino B — Inferiores', blocks: TREINO_B },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-const DAY_CONFIG_KEY = 'maxresults-pedro-preview-days-v1';
-const DEFAULT_DAYS = ['Ter', 'Qui', 'Sáb'];
+const DAY_CONFIG_KEY = 'maxresults-pedro-preview-days-v2';
+const DEFAULT_DAYS = ['Seg', 'Ter', 'Qui', 'Sex'];
 
 function loadDayConfig() {
   try { return JSON.parse(localStorage.getItem(DAY_CONFIG_KEY)) || DEFAULT_DAYS; }
@@ -928,13 +931,13 @@ function closeDayModal() { document.getElementById('dayModal').classList.remove(
 function limitDaySelection() {
   const checked = document.querySelectorAll('#dayOptions input:checked');
   const unchecked = document.querySelectorAll('#dayOptions input:not(:checked)');
-  unchecked.forEach(cb => cb.disabled = checked.length >= 3);
+  unchecked.forEach(cb => cb.disabled = checked.length >= 4);
 }
 
 function saveDayConfig() {
   const checked = [...document.querySelectorAll('#dayOptions input:checked')].map(cb => cb.value);
   if (checked.length < 1) { alert('Selecione pelo menos 1 dia!'); return; }
-  if (checked.length > 3) { alert('Máximo 3 dias!'); return; }
+  if (checked.length > 4) { alert('Máximo 4 dias!'); return; }
   localStorage.setItem(DAY_CONFIG_KEY, JSON.stringify(checked));
   WEEK_SCHEDULE = buildSchedule();
   WEEK = buildWeek();
