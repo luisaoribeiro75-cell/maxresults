@@ -365,6 +365,7 @@ const V = {
   roscaDireta: 'https://vd.mfitpersonal.com.br/109/mp4/109.mp4',
   abducaoMaquina: 'https://vd.mfitpersonal.com.br/515/mp4/515.mp4',
   pranchaIso: 'https://vd.mfitpersonal.com.br/852/mp4/852.mp4',
+  maxCicle: 'https://player.mediadelivery.net/play/655450/dcf2c03a-4a77-4012-8cc0-f9fe51782bd4',
 };
 
 // ─── TREINO A — SUPERIORES (Peito · Costas · Ombro · Bíceps · Tríceps · Abdômen) ───
@@ -519,10 +520,21 @@ const TREINO_B = [
   },
 ];
 
+// ─── Variante da Quinta: Superiores com a aula MaxCicle no lugar do cardio de esteira ───
+const CARDIO_MAXCICLE = {
+  type: 'cardio', label: 'Aula MaxResults',
+  title: 'MaxCicle', duration: '25-30 min',
+  meta: 'Aula de bike no ritmo da música — fecha o treino com um cardio puxado e divertido',
+  exercises: [
+    { name: 'MaxCicle', muscle: 'Cardiovascular', duration: '25-30 min', equipment: 'Bike indoor', tip: 'Segue o comando da aula: alterna sentada e em pé, subidas e sprints. Ajusta a carga da bike pra manter o ritmo sem perder a postura. Faz os 25-30 min no seu ritmo.', video: V.maxCicle },
+  ]
+};
+const TREINO_A_CICLE = TREINO_A.map(b => b.type === 'cardio' ? CARDIO_MAXCICLE : b);
+
 const TRAINING_SLOTS = [
   { day: 'Segunda', label: 'Treino A — Superiores', blocks: TREINO_A },
   { day: 'Terça', label: 'Treino B — Inferiores', blocks: TREINO_B },
-  { day: 'Quinta', label: 'Treino A — Superiores', blocks: TREINO_A },
+  { day: 'Quinta', label: 'Treino A — Superiores + MaxCicle', blocks: TREINO_A_CICLE },
   { day: 'Sexta', label: 'Treino B — Inferiores', blocks: TREINO_B },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
