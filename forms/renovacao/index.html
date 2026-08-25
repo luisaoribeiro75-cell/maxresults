@@ -85,6 +85,15 @@
   <form id="renovacaoForm">
 
     <div class="section">
+      <div class="section-title">👤 Identificação</div>
+
+      <div class="field">
+        <label>Seu nome completo <span class="required">*</span></label>
+        <input type="text" name="nome" required placeholder="Seu nome completo">
+      </div>
+    </div>
+
+    <div class="section">
       <div class="section-title">📊 Feedback do Treino Anterior</div>
 
       <div class="field">
@@ -377,7 +386,7 @@ function selectRadio(el) {
 }
 
 function updateProgress() {
-  const required = ['objetivo'];
+  const required = ['nome', 'objetivo'];
   const radios = ['dificuldade', 'resultados'];
   let filled = 0;
   const total = required.length + radios.length + 3; // +3 for other fields
@@ -410,6 +419,8 @@ document.getElementById('renovacaoForm').addEventListener('submit', function(e) 
   d.estresse = document.querySelector('input[name="estresse"]').value + '/10';
 
   let msg = '🔄 *RENOVAÇÃO DE TREINO MAXRESULTS*\n\n';
+  msg += `*Nome:* ${d.nome || '—'}\n\n`;
+
   msg += '📊 *FEEDBACK*\n';
   msg += `*Dificuldade:* ${d.dificuldade || '—'}`;
   if (d.dificuldade_detalhe) msg += ` — ${d.dificuldade_detalhe}`;
