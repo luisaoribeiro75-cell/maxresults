@@ -342,7 +342,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 17/07/2026</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 26/08/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -353,8 +353,8 @@
 const ATHLETE = 'Liliana';
 
 const WEEKLY_GOALS = [
-  { icon: '🏋️', type: 'strength', text: '<strong>Objetivo:</strong> condicionamento físico com treinos enxutos de 30min' },
-  { icon: '🎯', type: 'strength', text: '<strong>Ênfase:</strong> adutores + core em todos os treinos' },
+  { icon: '🏋️', type: 'strength', text: '<strong>Objetivo:</strong> condicionamento físico + força com treinos enxutos de 30min' },
+  { icon: '🎯', type: 'strength', text: '<strong>Ênfase:</strong> core em todos os treinos, mantendo adutores no rodízio' },
   { icon: '📈', type: 'assessment', text: '<strong>Progressão:</strong> quando fechar 12 reps com boa execução, sobe a carga na semana seguinte' },
   { icon: '⚡', type: 'cardio', text: '<strong>Formato:</strong> séries simples + 1 bi-set por treino — fluido mesmo com a academia cheia, sem depender de dois aparelhos' },
   { icon: '🔥', type: 'fat', text: '<strong>Ritmo:</strong> intensidade moderada — retomando o pique, sem empilhar carga' },
@@ -372,10 +372,13 @@ const V = {
   alongGluteos: 'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',
   handToToes: 'https://vd.mfitpersonal.com.br/316/mp4/316.mp4',
   legPress: 'https://vd.mfitpersonal.com.br/491/mp4/491.mp4',
+  legPress45: 'https://vd.mfitpersonal.com.br/495/mp4/495.mp4',
   supinoBarra: 'https://vd.mfitpersonal.com.br/203/mp4/203.mp4',
   supinoHalter: 'https://vd.mfitpersonal.com.br/201/mp4/201.mp4',
+  supinoInclinadoHalter: 'https://vd.mfitpersonal.com.br/195/mp4/195.mp4',
   cadeiraExt: 'https://vd.mfitpersonal.com.br/504/mp4/504.mp4',
   cadeiraFlexora: 'https://vd.mfitpersonal.com.br/502/mp4/502.mp4',
+  mesaFlexora: 'https://vd.mfitpersonal.com.br/555/mp4/555.mp4',
   crucifixoMaq: 'https://vd.mfitpersonal.com.br/530/mp4/530.mp4',
   crucifixoInv: 'https://vd.mfitpersonal.com.br/531/mp4/531.mp4',
   aducao: 'https://vd.mfitpersonal.com.br/514/mp4/514.mp4',
@@ -389,18 +392,21 @@ const V = {
   roscaDireta: 'https://vd.mfitpersonal.com.br/109/mp4/109.mp4',
   tricepsCorda: 'https://vd.mfitpersonal.com.br/418/mp4/418.mp4',
   abdomSupra: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
+  abdomBike: 'https://vd.mfitpersonal.com.br/770/mp4/770.mp4',
+  abdomInfraFlex: 'https://vd.mfitpersonal.com.br/774/mp4/774.mp4',
   bike: 'https://vd.mfitpersonal.com.br/529/mp4/529.mp4',
   panturrilhaParede: 'https://vd.mfitpersonal.com.br/762/mp4/762.mp4',
   bomDia: 'https://vd.mfitpersonal.com.br/269/mp4/269.mp4',
   agachLivre: 'https://vd.mfitpersonal.com.br/50/mp4/50.mp4',
   agachSmith: 'https://vd.mfitpersonal.com.br/73/mp4/73.mp4',
   agachSumoHalter: 'https://vd.mfitpersonal.com.br/78/mp4/78.mp4',
-  elevLateral: 'https://vd.mfitpersonal.com.br/153/mp4/153.mp4',
+  elevLateral: 'https://vd.mfitpersonal.com.br/131/mp4/131.mp4',
   tricepsFrances: 'https://vd.mfitpersonal.com.br/135/mp4/135.mp4',
   desenvHalteres: 'https://vd.mfitpersonal.com.br/155/mp4/155.mp4',
   hipThrust: 'https://vd.mfitpersonal.com.br/367/mp4/367.mp4',
   stiffHalteres: 'https://vd.mfitpersonal.com.br/267/mp4/267.mp4',
   prancha: 'https://vd.mfitpersonal.com.br/852/mp4/852.mp4',
+  pranchaAlta: 'https://vd.mfitpersonal.com.br/15/mp4/15.mp4',
   pranchaLateral: 'https://vd.mfitpersonal.com.br/181/mp4/181.mp4',
 };
 
@@ -524,26 +530,26 @@ const CARDIO_C = {
   ]
 };
 
-// ─── Treino A — Posterior de coxa + Costas + Adutores/Core (30min) ───
+// ─── Treino A — Costas + Posterior + Core (30min) ───
 // Estrutura simples → bi-set → simples (Luisão 17/07): academia lotada + retomada de energia.
 const TREINO_A = [
   AQUEC_MUSCULAR_A,
   MOBILIDADE_A,
   {
     type: 'lift', label: 'Série Simples 1',
-    title: 'Elevação Pélvica (Hip Thrust)', duration: '3x12 · Descanso 45–60s',
+    title: 'Puxada Aberta Barra Reta', duration: '3x12 · Descanso 45–60s',
     meta: 'Série simples — no seu ritmo, uma estação só',
     exercises: [
-      { name: 'Elevação Pélvica (Hip Thrust)', muscle: 'Glúteos', duration: '3x12', equipment: 'Banco + barra', tip: 'Suba forte contraindo o glúteo no topo. Segure 1s antes de descer. Descansa 45–60s entre as séries. Alvo: fechar 12 com boa execução.', video: V.hipThrust },
+      { name: 'Puxada Aberta Barra reta', muscle: 'Costas', duration: '3x12', equipment: 'Polia alta', tip: 'Puxe a barra em direção ao alto do peito, fechando as escápulas antes de dobrar os cotovelos. Descansa 45–60s entre as séries. Alvo: fechar 12 com boa execução.', video: V.puxadaFrontal },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set · Condicionamento',
-    title: 'Cadeira Flexora ↔ Remada Unilateral (Halteres)', duration: '3x12 · Sem descanso no par',
-    meta: 'O bi-set do dia: mantém o coração acelerado — halter fica ao lado da flexora, uma estação só',
+    title: 'Mesa Flexora ↔ Elevação Lateral', duration: '3x12 · Sem descanso no par',
+    meta: 'O bi-set do dia: posterior + ombro, halteres ao lado da mesa, uma estação só',
     exercises: [
-      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12', equipment: 'Máquina flexora', tip: 'Controle a volta e evite tirar o quadril do banco. Emenda direto na remada — é isso que acelera o cardio.', video: V.cadeiraFlexora },
-      { name: 'Remada Unilateral com Halteres (Neutra)', muscle: 'Costas (dorsal/meio)', duration: '3x12 cada lado', equipment: 'Halter + banco (ao lado da flexora)', tip: 'Uma mão e um joelho no banco, tronco paralelo ao chão, pegada neutra. Puxa o halter à cintura fechando a escápula. Leva o halter pro lado da flexora — sem ocupar outra máquina.', video: V.remadaUniHalter },
+      { name: 'Mesa Flexora', muscle: 'Posterior de coxa', duration: '3x12', equipment: 'Mesa flexora', tip: 'Controle a volta e não tire o quadril do apoio. Emenda direto na elevação lateral — é o bloco que mantém o ritmo do treino.', video: V.mesaFlexora },
+      { name: 'Elevação Lateral com Halteres', muscle: 'Ombros', duration: '3x12', equipment: 'Halteres (ao lado da mesa)', tip: 'Braços sobem até a linha dos ombros, cotovelos levemente flexionados. Use halteres ao lado da mesa flexora, sem ocupar outra máquina.', video: V.elevLateral },
     ]
   },
   {
@@ -556,52 +562,52 @@ const TREINO_A = [
   },
   {
     type: 'lift', label: 'Série Simples 3 · Core',
-    title: 'Prancha Frontal', duration: '3x30s · Descanso 30s',
+    title: 'Abdominal Bicicleta', duration: '3x20 alternado · Descanso 30s',
     meta: 'Ênfase core — fecha o bloco principal',
     exercises: [
-      { name: 'Prancha Frontal', muscle: 'Core / Abdômen', duration: '3x30s', equipment: 'Colchonete', tip: 'Antebraços no chão, corpo alinhado dos ombros aos calcanhares. Não deixa o quadril cair nem subir. 30s firme, descansa 30s e repete.', video: V.prancha },
+      { name: 'Abdominal Bicicleta', muscle: 'Core / Abdômen', duration: '3x20 alternado', equipment: 'Colchonete', tip: 'Alterne cotovelo e joelho opostos sem puxar o pescoço. Mantém o abdômen firme e o movimento controlado.', video: V.abdomBike },
     ]
   },
   CARDIO_A,
   ALONG_FINAL_A,
 ];
 
-// ─── Treino B — Quadríceps/Glúteo (SEM Smith) + Adutores/Core (30min) ───
+// ─── Treino B — Quadríceps/Glúteo + Core (30min) ───
 // Estrutura simples → bi-set → simples (Luisão 17/07): academia lotada + retomada de energia.
 const TREINO_B = [
   AQUEC_MUSCULAR_B,
   MOBILIDADE_B,
   {
     type: 'lift', label: 'Série Simples 1',
-    title: 'Leg Press Horizontal', duration: '3x12 · Descanso 45–60s',
+    title: 'Leg Press 45', duration: '3x12 · Descanso 45–60s',
     meta: 'Série simples — no seu ritmo, uma estação só',
     exercises: [
-      { name: 'Leg Press Horizontal', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press', tip: 'Amplitude confortável, sem forçar o quadril. Empurre pelo calcanhar. Descansa 45–60s entre as séries.', video: V.legPress },
+      { name: 'Leg Press 45', muscle: 'Quadríceps / Glúteos', duration: '3x12', equipment: 'Máquina Leg Press', tip: 'Pés firmes na plataforma, amplitude confortável e controle na descida. Descansa 45–60s entre as séries.', video: V.legPress45 },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set · Condicionamento',
-    title: 'Cadeira Extensora ↔ Glúteos 4 Apoios', duration: '3x12 · Sem descanso no par',
-    meta: 'O bi-set do dia: mantém o coração acelerado — colchonete ao lado da extensora, uma estação só',
+    title: 'Cadeira Extensora ↔ Prancha Alta', duration: '3x12 · Sem descanso no par',
+    meta: 'O bi-set do dia: quadríceps + core ao lado da extensora, uma estação só',
     exercises: [
-      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12', equipment: 'Máquina extensora', tip: 'Segure 1 segundo no topo de cada repetição. Emenda direto no glúteo 4 apoios — é isso que acelera o cardio.', video: V.cadeiraExt },
-      { name: 'Glúteos 4 Apoios c/ Caneleira', muscle: 'Glúteos', duration: '3x12 (cada lado)', equipment: 'Colchonete + caneleira (ao lado)', tip: 'No colchonete ao lado da extensora. Estende a perna pra trás contraindo o glúteo, sem compensar na lombar.', video: V.gluteos4 },
+      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12', equipment: 'Máquina extensora', tip: 'Segure 1 segundo no topo de cada repetição. Emenda direto na prancha alta no colchonete ao lado.', video: V.cadeiraExt },
+      { name: 'Prancha Alta', muscle: 'Core / Abdômen', duration: '3x30s', equipment: 'Colchonete (ao lado)', tip: 'Mãos no chão, corpo alinhado dos ombros aos calcanhares. Segure firme sem deixar o quadril cair.', video: V.pranchaAlta },
     ]
   },
   {
     type: 'lift', label: 'Série Simples 2 · Ênfase',
-    title: 'Cadeira Adutora', duration: '3x15 · Descanso 45–60s',
-    meta: 'Ênfase adutores — série simples (depois do leg press, como manda a ordem)',
+    title: 'Abdução de Quadril Máquina', duration: '3x15 · Descanso 45–60s',
+    meta: 'Glúteo médio e estabilidade de quadril — série simples',
     exercises: [
-      { name: 'Cadeira Adutora', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Feche as pernas com controle e segure 1s na contração. Ênfase do treino. Descansa 45–60s entre as séries.', video: V.aducao },
+      { name: 'Abdução de Quadril Máquina', muscle: 'Glúteos / Quadril', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abra as pernas com controle, sem jogar o tronco. Segure 1s na abertura e volte devagar.', video: V.abdQuadril },
     ]
   },
   {
     type: 'lift', label: 'Série Simples 3 · Core',
-    title: 'Abdominal Supra', duration: '3x15 · Descanso 30s',
+    title: 'Abdominal Infra Pernas Flexionadas', duration: '3x15 · Descanso 30s',
     meta: 'Ênfase core — fecha o bloco principal',
     exercises: [
-      { name: 'Abdominal Supra', muscle: 'Core / Abdômen', duration: '3x15', equipment: 'Colchonete', tip: 'Suba contraindo o abdômen, sem puxar o pescoço. Descansa 30s entre as séries.', video: V.abdomSupra },
+      { name: 'Abdominal Infra Pernas Flexionadas', muscle: 'Core / Abdômen', duration: '3x15', equipment: 'Colchonete', tip: 'Quadril encaixado, joelhos flexionados e movimento curto, sem embalar. Descansa 30s entre as séries.', video: V.abdomInfraFlex },
     ]
   },
   CARDIO_B,
@@ -623,11 +629,11 @@ const TREINO_C = [
   },
   {
     type: 'lift', label: 'Bi-Set · Condicionamento',
-    title: 'Stiff Halteres ↔ Supino Reto com Halteres', duration: '3x12 · Sem descanso no par',
-    meta: 'O bi-set do dia: perna + peito mantém o coração acelerado — mesmo banco e halteres, uma estação só',
+    title: 'Remada Curvada ↔ Supino Inclinado', duration: '3x12 · Sem descanso no par',
+    meta: 'O bi-set do dia: costas + peito, mesmo banco e halteres, uma estação só',
     exercises: [
-      { name: 'Stiff com Halteres', muscle: 'Posterior de coxa / Glúteos', duration: '3x12', equipment: 'Halteres (ao lado do banco)', tip: 'Quadril para trás e coluna neutra. Sinta alongar a posterior. Emenda direto no supino — é isso que acelera o cardio.', video: V.stiffHalteres },
-      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '3x12', equipment: 'Halteres + banco', tip: 'Controle a descida e sobe forte sem perder a postura. Mesmo banco e halteres do stiff — sem trocar de aparelho.', video: V.supinoHalter },
+      { name: 'Remada Curvada com Halteres (Pegada Neutra)', muscle: 'Costas', duration: '3x12', equipment: 'Halteres', tip: 'Quadril para trás, coluna neutra e halteres subindo em direção à cintura. Emenda direto no supino inclinado com os mesmos halteres.', video: V.remadaCurvada },
+      { name: 'Supino Inclinado com Halteres', muscle: 'Peitoral', duration: '3x12', equipment: 'Halteres + banco', tip: 'Banco inclinado, controle a descida e empurre sem perder a postura. Mesmo banco e halteres da remada — sem trocar de aparelho.', video: V.supinoInclinadoHalter },
     ]
   },
   {
@@ -640,10 +646,10 @@ const TREINO_C = [
   },
   {
     type: 'lift', label: 'Série Simples 3 · Core',
-    title: 'Prancha Lateral', duration: '3x20s cada lado · Descanso 30s',
+    title: 'Prancha Alta', duration: '3x30s · Descanso 30s',
     meta: 'Ênfase core — fecha o bloco principal',
     exercises: [
-      { name: 'Prancha Lateral', muscle: 'Core / Oblíquos', duration: '3x20s cada lado', equipment: 'Colchonete', tip: 'Apoiada no antebraço e no pé de baixo, corpo alinhado. Quadril não desce. 20s de um lado, 20s do outro, descansa 30s.', video: V.pranchaLateral },
+      { name: 'Prancha Alta', muscle: 'Core / Abdômen', duration: '3x30s', equipment: 'Colchonete', tip: 'Mãos no chão, corpo alinhado. Ombros longe das orelhas, abdômen firme e respiração controlada.', video: V.pranchaAlta },
     ]
   },
   CARDIO_C,
@@ -681,12 +687,12 @@ function buildWeek() {
 }
 
 const TRAINING_SLOTS = [
-  { label: 'Treino A — Posterior + Costas + Adutores/Core', blocks: TREINO_A },
-  { label: 'Treino B — Quadríceps/Glúteo + Adutores/Core', blocks: TREINO_B },
+  { label: 'Treino A — Costas + Posterior + Adutores/Core', blocks: TREINO_A },
+  { label: 'Treino B — Quadríceps/Glúteo + Core', blocks: TREINO_B },
   { label: 'Treino C — Full Body Metabólico + Adutores/Core', blocks: TREINO_C },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-const DAY_CONFIG_KEY = 'maxresults-liliana-days-v1';
+const DAY_CONFIG_KEY = 'maxresults-liliana-days-v2';
 const DEFAULT_DAYS = ['Seg', 'Qua', 'Sex'];
 
 function loadDayConfig() {
@@ -716,7 +722,7 @@ function getWeekKey() {
 }
 
 
-const STORAGE_KEY = 'maxresults-liliana-' + getWeekKey() + '-v1';
+const STORAGE_KEY = 'maxresults-liliana-' + getWeekKey() + '-v2';
 let currentDayIndex = 0;
 let completedExercises = loadProgress();
 
@@ -1224,7 +1230,7 @@ function stopSession() {
   document.getElementById('timerBar').classList.remove('active');
   document.getElementById('stopBtn').classList.add('hidden');
   document.getElementById('timerDisplay').textContent = '00:00';
-  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'✅ **Liliana** finalizou treino!\n📅 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') — '+day.label+'\n⏱️ Tempo: '+formatDuration(elapsed)+'\n📊 Exercícios: '+pct+'% ('+done+'/'+total+')',username:'Frequência — Liliana',embeds:[{fields:[{name:'studentSlug',value:'liliana',inline:true},{name:'cycleId',value:'liliana-2026-07-09',inline:true},{name:'slotId',value:(day.label||'').includes('Treino A')?'A':(day.label||'').includes('Treino B')?'B':'C',inline:true},{name:'slotLabel',value:day.label||'',inline:false},{name:'loads',value:JSON.stringify(loadLoads()).slice(0,1000),inline:false}]}]})}).catch(function(){});}catch(e){}alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
+  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'✅ **Liliana** finalizou treino!\n📅 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') — '+day.label+'\n⏱️ Tempo: '+formatDuration(elapsed)+'\n📊 Exercícios: '+pct+'% ('+done+'/'+total+')',username:'Frequência — Liliana',embeds:[{fields:[{name:'studentSlug',value:'liliana',inline:true},{name:'cycleId',value:'liliana-2026-08-26-c4',inline:true},{name:'slotId',value:(day.label||'').includes('Treino A')?'A':(day.label||'').includes('Treino B')?'B':'C',inline:true},{name:'slotLabel',value:day.label||'',inline:false},{name:'loads',value:JSON.stringify(loadLoads()).slice(0,1000),inline:false}]}]})}).catch(function(){});}catch(e){}alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
 }
 
 function restoreTimer() {
