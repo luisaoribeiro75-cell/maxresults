@@ -353,9 +353,10 @@
 const ATHLETE = 'Daíne';
 
 const WEEKLY_GOALS = [
-  { icon: '🏋️', type: 'strength', text: '<strong>Mix#6 (renovação ago/26):</strong> 3x/sem, mais exercícios de força e menos tempo de mobilidade — alongamento agora no FIM do treino. Foco em preservar massa magra.' },
+  { icon: '🏋️', type: 'strength', text: '<strong>Mix#6 (renovação ago/26):</strong> 3x/sem, FOCO EM FORÇA — cargas mais desafiadoras, 9 a 12 repetições, pra RECUPERAR massa magra. Chega de treino de resistência (repetição alta). Menos mobilidade, mais exercício de força.' },
   { icon: '💊', type: 'assessment', text: '<strong>Nutrição / energia:</strong> não treinar em jejum longo, hidratar bem; se sentir tontura, náusea ou fadiga, reduzir o volume e avisar o Luisão' },
-  { icon: '💪', type: 'strength', text: '<strong>Estratégia (Mounjaro):</strong> como o Mounjaro já está cuidando do emagrecimento, o foco do seu treino agora é FORÇA — pra preservar sua massa magra. Por isso tiramos o aeróbico do fim e o tempo virou mais exercício de força. O cardio a gente controla por fora.' },
+  { icon: '💪', type: 'strength', text: '<strong>Estratégia (Mounjaro):</strong> como o Mounjaro já cuida do emagrecimento, o foco agora é FORÇA pra RECUPERAR massa magra. Por isso tiramos o aeróbico do fim e o tempo virou mais força. O cardio a gente controla por fora.' },
+  { icon: '🥩', type: 'assessment', text: '<strong>Proteína importa (leia!):</strong> parte da massa magra caiu por proteína baixa na dieta. Pra o treino de força funcionar, precisamos corrigir a alimentação — alvo de proteína ~1,6 g por kg de peso/dia. Alinhe com a nutricionista.' },
   { icon: '🛡️', type: 'assessment', text: '<strong>Coluna:</strong> sem terra, barra nas costas, búlgaro ou flexão/rotação excessiva de tronco' },
   { icon: '📊', type: 'assessment', text: '<strong>Avaliação física:</strong> reavaliada em 11/08 — em ~11 meses: −10,5 kg e cintura −8,5 cm 👏; foco em preservar massa magra; próxima em nov/26' },
 ];
@@ -562,31 +563,31 @@ const TREINO_A = [
   MOBILIDADE_LOMBAR,
   {
     type: 'lift', label: 'Circuito 1',
-    title: 'Leg Press 45° → Remada Curvada → Abdominal', duration: '3-4 voltas · 15-20 reps · descanso só no fim da volta',
-    meta: '1ª volta com carga leve pra aquecer o movimento. Circuito metabólico: emenda os 3, descanso ~60s só ao fim de cada volta. Máquina + halteres + core, sem carga na coluna.',
+    title: 'Leg Press 45° → Remada Curvada → Abdominal', duration: '3-4 séries · 9-12 reps · descanso 60-90s entre as voltas',
+    meta: '1ª volta com carga leve pra aquecer o movimento. Foco em FORÇA: 9-12 reps com carga desafiadora (recuperar massa magra). Descanso 60-90s entre as voltas. Máquina + halteres + core, sem carga na coluna.',
     exercises: [
-      { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '3-4x15-20', equipment: 'Máquina Leg Press', tip: 'Costas e lombar 100% apoiadas. Empurra pelo calcanhar, sem travar o joelho. Amplitude confortável, sem descer demais.', video: V.legPress },
-      { name: 'Remada Curvada com Halteres', muscle: 'Costas (dorsal)', duration: '3-4x12-15', equipment: 'Halteres', tip: 'Tronco inclinado com a coluna NEUTRA (nunca arredondada), joelhos semiflexionados. Puxa os halteres à cintura fechando as escápulas.', video: V.remadaCurvada },
-      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3-4x15-20', equipment: 'Colchonete', tip: 'Sobe só o suficiente pra contrair. Sem forçar a lombar.', video: V.abdomSupra },
+      { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '3-4x9-12', equipment: 'Máquina Leg Press', tip: 'Costas e lombar 100% apoiadas. Empurra pelo calcanhar, sem travar o joelho. Amplitude confortável, sem descer demais.', video: V.legPress },
+      { name: 'Remada Curvada com Halteres', muscle: 'Costas (dorsal)', duration: '3-4x9-12', equipment: 'Halteres', tip: 'Tronco inclinado com a coluna NEUTRA (nunca arredondada), joelhos semiflexionados. Puxa os halteres à cintura fechando as escápulas.', video: V.remadaCurvada },
+      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3-4x9-12', equipment: 'Colchonete', tip: 'Sobe só o suficiente pra contrair. Sem forçar a lombar.', video: V.abdomSupra },
     ]
   },
   {
     type: 'lift', label: 'Circuito 2 · SOLO (sala separada)',
-    title: 'Supino Halteres (no step) → Adução no chão → Prancha', duration: '3-4 voltas · 15-20 reps · descanso só no fim da volta',
+    title: 'Supino Halteres (no step) → Adução no chão → Prancha', duration: '3-4 séries · 9-12 reps · descanso 60-90s entre as voltas',
     meta: 'Circuito no SOLO — zero máquina. Monta o step, pega os halteres e a caneleira e faz os 3 emendados no colchonete. Ritmo não cai.',
     exercises: [
-      { name: 'Supino Reto com Halteres (no step)', muscle: 'Peitoral', duration: '3-4x12-15', equipment: 'Step + halteres', tip: 'Deitada no step, empurra os halteres controlando. Pés no chão, lombar neutra.', video: V.supinoHalter },
-      { name: 'Adução de Pernas no Chão (Caneleira)', muscle: 'Adutores', duration: '3-4x15-20 cada lado', equipment: 'Colchonete + caneleira', tip: 'Deitada de lado no colchonete, caneleira no tornozelo: sobe a perna de baixo cruzando à frente da de cima, contrai o adutor e desce controlando. Troca de lado.', video: V.aducaoCaneleira },
+      { name: 'Supino Reto com Halteres (no step)', muscle: 'Peitoral', duration: '3-4x9-12', equipment: 'Step + halteres', tip: 'Deitada no step, empurra os halteres controlando. Pés no chão, lombar neutra.', video: V.supinoHalter },
+      { name: 'Adução de Pernas no Chão (Caneleira)', muscle: 'Adutores', duration: '3-4x9-12 cada lado', equipment: 'Colchonete + caneleira', tip: 'Deitada de lado no colchonete, caneleira no tornozelo: sobe a perna de baixo cruzando à frente da de cima, contrai o adutor e desce controlando. Troca de lado.', video: V.aducaoCaneleira },
       { name: 'Prancha', muscle: 'Core', duration: '3-4x 30-40s', equipment: 'Colchonete', tip: 'Cotovelos no chão, corpo alinhado, abdômen firme. Fecha a volta.', video: V.prancha },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3 (novo)',
-    title: 'Cadeira Extensora ↔ Crucifixo com Halteres', duration: '3-4 voltas · 12-20 reps · descanso só no fim da volta',
-    meta: 'Estímulo novo do ciclo: quadríceps na máquina emendado com peito nos halteres (perna e superior alternam). Descanso ~60s só ao fim da volta.',
+    title: 'Cadeira Extensora ↔ Crucifixo com Halteres', duration: '3-4 séries · 9-12 reps · descanso 60-90s entre as voltas',
+    meta: 'Estímulo novo do ciclo: quadríceps na máquina emendado com peito nos halteres (perna e superior alternam). Descanso 60-90s entre as voltas (9-12 reps, foco força).',
     exercises: [
-      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3-4x15-20', equipment: 'Máquina extensora', tip: 'Sobe controlando, segura 1s no topo.', video: V.cadeiraExt },
-      { name: 'Crucifixo com Halteres', muscle: 'Peitoral', duration: '3-4x12-15', equipment: 'Halteres + banco', tip: 'Deitada, abre os braços num arco com cotovelos levemente flexionados; sente o peito alongar e fecha contraindo. Carga moderada.', video: V.crucifixoHalter },
+      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3-4x9-12', equipment: 'Máquina extensora', tip: 'Sobe controlando, segura 1s no topo.', video: V.cadeiraExt },
+      { name: 'Crucifixo com Halteres', muscle: 'Peitoral', duration: '3-4x9-12', equipment: 'Halteres + banco', tip: 'Deitada, abre os braços num arco com cotovelos levemente flexionados; sente o peito alongar e fecha contraindo. Carga moderada.', video: V.crucifixoHalter },
     ]
   },
   RELAX_FINAL,
@@ -598,31 +599,31 @@ const TREINO_B = [
   MOBILIDADE_LOMBAR,
   {
     type: 'lift', label: 'Circuito 1',
-    title: 'Cadeira Flexora → Desenvolvimento Halteres → Prancha', duration: '3-4 voltas · 15-20 reps · descanso só no fim da volta',
-    meta: '1ª volta com carga leve pra aquecer o movimento. Circuito metabólico: emenda os 3, descanso ~60s só ao fim da volta. Perna na máquina, ombro nos halteres, core.',
+    title: 'Cadeira Flexora → Desenvolvimento Halteres → Prancha', duration: '3-4 séries · 9-12 reps · descanso 60-90s entre as voltas',
+    meta: '1ª volta com carga leve pra aquecer o movimento. Foco em FORÇA: 9-12 reps com carga desafiadora (recuperar massa magra). Descanso 60-90s entre as voltas. Perna na máquina, ombro nos halteres, core.',
     exercises: [
-      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3-4x15-20', equipment: 'Máquina flexora', tip: 'Controle a excêntrica, quadril no banco.', video: V.cadeiraFlexora },
-      { name: 'Desenvolvimento com Halteres (Neutro)', muscle: 'Ombros', duration: '3-4x12-15', equipment: 'Halteres + banco', tip: 'Sentada com apoio nas costas, pegada neutra, empurra sem travar o cotovelo.', video: V.desenvNeutro },
+      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3-4x9-12', equipment: 'Máquina flexora', tip: 'Controle a excêntrica, quadril no banco.', video: V.cadeiraFlexora },
+      { name: 'Desenvolvimento com Halteres (Neutro)', muscle: 'Ombros', duration: '3-4x9-12', equipment: 'Halteres + banco', tip: 'Sentada com apoio nas costas, pegada neutra, empurra sem travar o cotovelo.', video: V.desenvNeutro },
       { name: 'Prancha', muscle: 'Core', duration: '3-4x 30-40s', equipment: 'Colchonete', tip: 'Cotovelos no chão, corpo alinhado, abdômen firme. Fecha a volta.', video: V.prancha },
     ]
   },
   {
     type: 'lift', label: 'Circuito 2',
-    title: 'Puxada Frontal → Crucifixo Inverso → Prancha Lateral', duration: '3-4 voltas · 15-20 reps · descanso só no fim da volta',
-    meta: 'Costas + postura de ombro + core lateral (ótimo pra escoliose). Emenda os 3, descanso só no fim da volta.',
+    title: 'Puxada Frontal → Crucifixo Inverso → Prancha Lateral', duration: '3-4 séries · 9-12 reps · descanso 60-90s entre as voltas',
+    meta: 'Costas + postura de ombro + core lateral (ótimo pra escoliose). 9-12 reps com carga desafiadora, descanso 60-90s entre as voltas.',
     exercises: [
-      { name: 'Puxada Frontal', muscle: 'Costas (dorsal)', duration: '3-4x12-15', equipment: 'Puxador', tip: 'Pegada aberta, puxa à linha do peito fechando as escápulas.', video: V.puxadaFrontal },
-      { name: 'Crucifixo Inverso com Halteres', muscle: 'Post. de ombro / Postura', duration: '3-4x12-15', equipment: 'Halteres (ao lado do puxador)', tip: 'Tronco inclinado, abre os braços contraindo as escápulas. Postural.', video: V.crucifixoInvHalter },
+      { name: 'Puxada Frontal', muscle: 'Costas (dorsal)', duration: '3-4x9-12', equipment: 'Puxador', tip: 'Pegada aberta, puxa à linha do peito fechando as escápulas.', video: V.puxadaFrontal },
+      { name: 'Crucifixo Inverso com Halteres', muscle: 'Post. de ombro / Postura', duration: '3-4x9-12', equipment: 'Halteres (ao lado do puxador)', tip: 'Tronco inclinado, abre os braços contraindo as escápulas. Postural.', video: V.crucifixoInvHalter },
       { name: 'Prancha Lateral', muscle: 'Core lateral', duration: '3-4x 20-30s cada lado', equipment: 'Colchonete', tip: 'Quadril alto, corpo em linha. Ótima pra escoliose/estabilidade lateral.', video: V.pranchaLateral },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3 (novo)',
-    title: 'Cadeira Extensora ↔ Rosca Direta Halteres', duration: '3-4 voltas · 12-20 reps · descanso só no fim da volta',
-    meta: 'Estímulo novo do ciclo: quadríceps na máquina emendado com bíceps nos halteres. Descanso ~60s só ao fim da volta.',
+    title: 'Cadeira Extensora ↔ Rosca Direta Halteres', duration: '3-4 séries · 9-12 reps · descanso 60-90s entre as voltas',
+    meta: 'Estímulo novo do ciclo: quadríceps na máquina emendado com bíceps nos halteres. Descanso 60-90s entre as voltas (9-12 reps, foco força).',
     exercises: [
-      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3-4x15-20', equipment: 'Máquina extensora', tip: 'Sobe controlando, segura 1s no topo.', video: V.cadeiraExt },
-      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3-4x12-15', equipment: 'Halteres', tip: 'Cotovelos fixos ao lado do corpo, sobe sem balançar o tronco.', video: V.roscaDireta },
+      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3-4x9-12', equipment: 'Máquina extensora', tip: 'Sobe controlando, segura 1s no topo.', video: V.cadeiraExt },
+      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3-4x9-12', equipment: 'Halteres', tip: 'Cotovelos fixos ao lado do corpo, sobe sem balançar o tronco.', video: V.roscaDireta },
     ]
   },
   RELAX_FINAL,
@@ -634,30 +635,30 @@ const TREINO_C = [
   MOBILIDADE_LOMBAR,
   {
     type: 'lift', label: 'Circuito 1',
-    title: 'Cadeira Extensora → Rosca Direta → Abdominal', duration: '3-4 voltas · 15-20 reps · descanso só no fim da volta',
-    meta: '1ª volta com carga leve pra aquecer o movimento. Circuito metabólico: emenda os 3, descanso ~60s só ao fim da volta.',
+    title: 'Cadeira Extensora → Rosca Direta → Abdominal', duration: '3-4 séries · 9-12 reps · descanso 60-90s entre as voltas',
+    meta: '1ª volta com carga leve pra aquecer o movimento. Foco em FORÇA: 9-12 reps com carga desafiadora (recuperar massa magra). Descanso 60-90s entre as voltas.',
     exercises: [
-      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3-4x15-20', equipment: 'Máquina extensora', tip: 'Sobe controlando, segura 1s no topo.', video: V.cadeiraExt },
-      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3-4x12-15', equipment: 'Halteres', tip: 'Cotovelos fixos ao lado do corpo, sobe sem balançar o tronco.', video: V.roscaDireta },
-      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3-4x15-20', equipment: 'Colchonete', tip: 'Sobe só o suficiente pra contrair. Sem forçar a lombar.', video: V.abdomSupra },
+      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3-4x9-12', equipment: 'Máquina extensora', tip: 'Sobe controlando, segura 1s no topo.', video: V.cadeiraExt },
+      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3-4x9-12', equipment: 'Halteres', tip: 'Cotovelos fixos ao lado do corpo, sobe sem balançar o tronco.', video: V.roscaDireta },
+      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3-4x9-12', equipment: 'Colchonete', tip: 'Sobe só o suficiente pra contrair. Sem forçar a lombar.', video: V.abdomSupra },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Abdução em Pé (Caneleira) ↔ Hip Thrust', duration: '3-4 voltas · 12-20 reps · descanso só no fim da volta',
-    meta: 'Foco glúteo: abdutor em pé emendado com elevação de quadril. Descanso ~60s só ao fim da volta.',
+    title: 'Abdução em Pé (Caneleira) ↔ Hip Thrust', duration: '3-4 séries · 9-12 reps · descanso 60-90s entre as voltas',
+    meta: 'Foco glúteo: abdutor em pé emendado com elevação de quadril. Descanso 60-90s entre as voltas (9-12 reps, foco força).',
     exercises: [
-      { name: 'Abdução de Pernas em Pé (Caneleira)', muscle: 'Glúteo médio / Abdutores', duration: '3-4x15-20 cada lado', equipment: 'Caneleira (em pé, com apoio)', tip: 'Em pé, caneleira no tornozelo, segura num apoio (parede/máquina). Abre a perna pro lado contraindo o glúteo médio, sem inclinar o tronco. Troca de lado.', video: V.abducaoPeCaneleira },
-      { name: 'Elevação Pélvica / Hip Thrust', muscle: 'Glúteos', duration: '3-4x12-15', equipment: 'Banco + barra', tip: 'Costas no banco, barra no quadril (carga leve/moderada). Sobe o quadril contraindo o glúteo, sem hiperestender a lombar.', video: V.hipThrust },
+      { name: 'Abdução de Pernas em Pé (Caneleira)', muscle: 'Glúteo médio / Abdutores', duration: '3-4x9-12 cada lado', equipment: 'Caneleira (em pé, com apoio)', tip: 'Em pé, caneleira no tornozelo, segura num apoio (parede/máquina). Abre a perna pro lado contraindo o glúteo médio, sem inclinar o tronco. Troca de lado.', video: V.abducaoPeCaneleira },
+      { name: 'Elevação Pélvica / Hip Thrust', muscle: 'Glúteos', duration: '3-4x9-12', equipment: 'Banco + barra', tip: 'Costas no banco, barra no quadril (carga leve/moderada). Sobe o quadril contraindo o glúteo, sem hiperestender a lombar.', video: V.hipThrust },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3 (novo)',
-    title: 'Cadeira Flexora ↔ Crucifixo Inverso Halteres', duration: '3-4 voltas · 12-20 reps · descanso só no fim da volta',
-    meta: 'Estímulo novo do ciclo: posterior de coxa na máquina emendado com postura de ombro (postural, ótimo pra quem trabalha sentada). Descanso ~60s só ao fim da volta.',
+    title: 'Cadeira Flexora ↔ Crucifixo Inverso Halteres', duration: '3-4 séries · 9-12 reps · descanso 60-90s entre as voltas',
+    meta: 'Estímulo novo do ciclo: posterior de coxa na máquina emendado com postura de ombro (postural, ótimo pra quem trabalha sentada). Descanso 60-90s entre as voltas (9-12 reps, foco força).',
     exercises: [
-      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3-4x15-20', equipment: 'Máquina flexora', tip: 'Controle a excêntrica, quadril no banco.', video: V.cadeiraFlexora },
-      { name: 'Crucifixo Inverso com Halteres', muscle: 'Post. de ombro / Postura', duration: '3-4x12-15', equipment: 'Halteres', tip: 'Tronco inclinado, abre os braços contraindo as escápulas. Postural.', video: V.crucifixoInvHalter },
+      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3-4x9-12', equipment: 'Máquina flexora', tip: 'Controle a excêntrica, quadril no banco.', video: V.cadeiraFlexora },
+      { name: 'Crucifixo Inverso com Halteres', muscle: 'Post. de ombro / Postura', duration: '3-4x9-12', equipment: 'Halteres', tip: 'Tronco inclinado, abre os braços contraindo as escápulas. Postural.', video: V.crucifixoInvHalter },
     ]
   },
   RELAX_FINAL,
