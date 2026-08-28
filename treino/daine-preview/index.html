@@ -355,7 +355,7 @@ const ATHLETE = 'Daíne';
 const WEEKLY_GOALS = [
   { icon: '🏋️', type: 'strength', text: '<strong>Mix#6 (renovação ago/26):</strong> 3x/sem, mais exercícios de força e menos tempo de mobilidade — alongamento agora no FIM do treino. Foco em preservar massa magra.' },
   { icon: '💊', type: 'assessment', text: '<strong>Nutrição / energia:</strong> não treinar em jejum longo, hidratar bem; se sentir tontura, náusea ou fadiga, reduzir o volume e avisar o Luisão' },
-  { icon: '🔥', type: 'fat', text: '<strong>Emagrecimento:</strong> cardio compacto dentro dos 45min; avaliar cardio extra se o objetivo exigir mais' },
+  { icon: '💪', type: 'strength', text: '<strong>Estratégia (Mounjaro):</strong> como o Mounjaro já está cuidando do emagrecimento, o foco do seu treino agora é FORÇA — pra preservar sua massa magra. Por isso tiramos o aeróbico do fim e o tempo virou mais exercício de força. O cardio a gente controla por fora.' },
   { icon: '🛡️', type: 'assessment', text: '<strong>Coluna:</strong> sem terra, barra nas costas, búlgaro ou flexão/rotação excessiva de tronco' },
   { icon: '📊', type: 'assessment', text: '<strong>Avaliação física:</strong> reavaliada em 11/08 — em ~11 meses: −10,5 kg e cintura −8,5 cm 👏; foco em preservar massa magra; próxima em nov/26' },
 ];
@@ -546,10 +546,20 @@ const RELAX_FINAL = {
   ]
 };
 
+const MOBILIDADE_LOMBAR = {
+  type: 'warmup', label: 'Mobilidade',
+  title: 'Mobilidade de Quadril + Lombar', duration: '25s cada',
+  meta: 'Mobilidade essencial pra proteger a lombar (protrusão L5 + escoliose) — mantida mesmo com o treino mais enxuto. Sem forçar, sem dor.',
+  exercises: [
+    { name: 'Mobilidade de Quadril Dinâmico', muscle: 'Flexor do quadril / Lombar', duration: '25s/lado', equipment: 'Nenhum', tip: 'Ajoelhada, avance uma perna à frente. Empurre o quadril para frente suavemente. 25 segundos cada lado.', video: V.alongFlexor },
+    { name: 'Alongamento de Glúteos', muscle: 'Glúteos / Quadril', duration: '25s/lado', equipment: 'Nenhum', tip: 'Deitada, cruze uma perna sobre a outra e puxe em direção ao peito. 25 segundos cada lado. Solta a lombar.', video: V.alongGluteos },
+  ]
+};
+
 // ─── Treino A — Anterior (Mix#6) ───
 const TREINO_A = [
   AQUEC_ARTICULAR,
-  MOBILIDADE_A,
+  MOBILIDADE_LOMBAR,
   {
     type: 'lift', label: 'Circuito 1',
     title: 'Leg Press 45° → Remada Curvada → Abdominal', duration: '3-4 voltas · 15-20 reps · descanso só no fim da volta',
@@ -579,16 +589,13 @@ const TREINO_A = [
       { name: 'Crucifixo com Halteres', muscle: 'Peitoral', duration: '3-4x12-15', equipment: 'Halteres + banco', tip: 'Deitada, abre os braços num arco com cotovelos levemente flexionados; sente o peito alongar e fecha contraindo. Carga moderada.', video: V.crucifixoHalter },
     ]
   },
-  MAXLIFT_BT,
-  CARDIO_MAXCYCLE,
-  ALONG_FINAL_A,
   RELAX_FINAL,
 ];
 
 // ─── Treino B — Posterior (Mix#6) ───
 const TREINO_B = [
   AQUEC_ARTICULAR,
-  MOBILIDADE_B,
+  MOBILIDADE_LOMBAR,
   {
     type: 'lift', label: 'Circuito 1',
     title: 'Cadeira Flexora → Desenvolvimento Halteres → Prancha', duration: '3-4 voltas · 15-20 reps · descanso só no fim da volta',
@@ -618,15 +625,13 @@ const TREINO_B = [
       { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3-4x12-15', equipment: 'Halteres', tip: 'Cotovelos fixos ao lado do corpo, sobe sem balançar o tronco.', video: V.roscaDireta },
     ]
   },
-  CARDIO_MAXCYCLE,
-  ALONG_FINAL_B,
   RELAX_FINAL,
 ];
 
 // ─── Treino C — Full/Glúteo (Mix#6) ───
 const TREINO_C = [
   AQUEC_ARTICULAR,
-  MOBILIDADE_C,
+  MOBILIDADE_LOMBAR,
   {
     type: 'lift', label: 'Circuito 1',
     title: 'Cadeira Extensora → Rosca Direta → Abdominal', duration: '3-4 voltas · 15-20 reps · descanso só no fim da volta',
@@ -655,8 +660,6 @@ const TREINO_C = [
       { name: 'Crucifixo Inverso com Halteres', muscle: 'Post. de ombro / Postura', duration: '3-4x12-15', equipment: 'Halteres', tip: 'Tronco inclinado, abre os braços contraindo as escápulas. Postural.', video: V.crucifixoInvHalter },
     ]
   },
-  CARDIO_MAXCYCLE,
-  ALONG_FINAL_C,
   RELAX_FINAL,
 ];
 
