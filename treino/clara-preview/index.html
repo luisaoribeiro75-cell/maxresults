@@ -352,7 +352,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">PREVIEW Renovação Ciclo 3 &middot; Metodologia MaxResults &middot; Luisão Ribeiro<br>Atualizado em 17/07/2026</footer>
+  <footer class="footer">PREVIEW Renovação Ciclo 4 &middot; Metodologia MaxResults &middot; Luisão Ribeiro<br>Atualizado em 29/08/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -363,10 +363,10 @@
 const ATHLETE = 'Clara';
 
 const WEEKLY_GOALS = [
-  { icon: '🎯', type: 'strength', text: '<strong>Preview Ciclo 3:</strong> definição muscular com intensidade moderada e 5 treinos na semana' },
+  { icon: '🎯', type: 'strength', text: '<strong>Preview Ciclo 4:</strong> definição de cintura, abdômen, braços e costas com 5 treinos na semana' },
   { icon: '⚠️', type: 'assessment', text: '<strong>Condromalácia permanente:</strong> amplitude controlada em leg press/extensora/smith, sem impacto agressivo' },
-  { icon: '💪', type: 'strength', text: '<strong>Ênfase:</strong> glúteos, braços e abdômen; braços entram com mais volume no ciclo' },
-  { icon: '⏱️', type: 'assessment', text: '<strong>Fluxo:</strong> bi-sets com aparelhos próximos sempre que possível para não perder tempo na academia' },
+  { icon: '💪', type: 'strength', text: '<strong>Ênfase:</strong> costas, braços, glúteos e abdômen; cintura entra com core em todos os treinos' },
+  { icon: '⏱️', type: 'assessment', text: '<strong>Cardio:</strong> bike/MaxCicle priorizada na segunda, quarta e sexta para coincidir com as aulas' },
   { icon: '💪', type: 'assessment', text: '<strong>Cotovelo:</strong> antebraços verticais no supino/desenvolvimento e tríceps na corda — sem sobrecarregar a articulação' },
 ];
 
@@ -539,10 +539,10 @@ const ALONG_FINAL_C = {
 
 const CARDIO_BIKE = {
   type: 'cardio', label: 'Cardio',
-  title: 'Bike', duration: '20 min',
-  meta: '20 minutos em ritmo moderado',
+  title: 'Bike / MaxCicle', duration: '25-30 min',
+  meta: '25-30 minutos em ritmo moderado a intenso',
   exercises: [
-    { name: 'Bike', muscle: 'Cardiovascular', duration: '20 min', equipment: 'Bike ergométrica', tip: 'Ritmo moderado. Mantenha a frequência cardíaca elevada.', video: V.bike },
+    { name: 'Bike', muscle: 'Cardiovascular', duration: '25-30 min', equipment: 'Bike ergométrica', tip: 'Segunda, quarta e sexta: preferir a aula de bike. Nos outros dias, manter bike contínua em ritmo moderado a intenso.', video: V.bike },
   ]
 };
 
@@ -593,10 +593,10 @@ const TREINO_A = [
   },
   {
     type: 'lift', label: 'Bi-Set 5',
-    title: 'Abdômen', duration: '', meta: '',
+    title: 'Cintura / Abdômen', duration: '', meta: 'Core final para reforçar abdômen e cintura sem impacto no joelho.',
     exercises: [
       { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3x15-20', equipment: 'Colchonete', tip: 'Sobe com o abdômen, sem puxar o pescoço.', video: V.abdomSupra },
-      { name: 'Prancha', muscle: 'Core', duration: '3x 30-40s', equipment: 'Colchonete', tip: 'Corpo alinhado, abdômen firme.', video: V.prancha },
+      { name: 'Abdominal Bicicleta', muscle: 'Core / Oblíquos', duration: '3x20 alternado', equipment: 'Colchonete', tip: 'Alterna cotovelo no joelho oposto em ritmo controlado. Foco na cintura.', video: V.abdomBicicleta },
     ]
   },
   CARDIO_BIKE,
@@ -641,10 +641,11 @@ const TREINO_B = [
   },
   {
     type: 'lift', label: 'Bi-Set 5',
-    title: 'Elevação Frontal ↔ Tríceps Testa', duration: '', meta: '',
+    title: 'Elevação Frontal ↔ Tríceps Testa + Core', duration: '', meta: 'Fecha braço/ombro e acrescenta core curto para a ênfase de cintura.',
     exercises: [
       { name: 'Elevação Frontal com Halteres', muscle: 'Ombro (anterior)', duration: '3x12', equipment: 'Halteres', tip: 'Sobe até a linha dos olhos.', video: V.elevFrontal },
       { name: 'Tríceps Testa Barra Reta', muscle: 'Tríceps', duration: '3x12', equipment: 'Barra', tip: 'Desce à testa e estende, cotovelos parados.', video: V.tricepsTesta },
+      { name: 'Prancha Lateral', muscle: 'Core / Oblíquos', duration: '3x20-30s cada lado', equipment: 'Colchonete', tip: 'Quadril alto e corpo alinhado. Se o cotovelo incomodar, apoiar a mão no banco.', video: V.pranchaLateral },
     ]
   },
   CARDIO_BIKE,
@@ -673,18 +674,19 @@ const TREINO_C = [
       { name: 'Corda Naval', muscle: 'Cardio / Ombros (cardio)', duration: '20s', equipment: 'Corda naval', tip: 'Ondas rápidas e contínuas com os braços. Sobe a FC sem impacto no joelho. Se não tiver corda, faz socos no ar (shadow boxing) no mesmo ritmo.', video: V.cordaNaval },
     ]
   },
+  CARDIO_BIKE,
   ALONG_FINAL_C,
 ];
 
 const TRAINING_SLOTS = [
-  { label: 'Treino A — Glúteo/Posterior/Costas/Bíceps/Abd', blocks: TREINO_A },
-  { label: 'Treino B — Coxa/Peito/Tríceps/Ombro', blocks: TREINO_B },
-  { label: 'Treino C — HIIT (AMRAP + Tabata)', blocks: TREINO_C },
+  { label: 'Treino A — Glúteo/Posterior/Costas/Bíceps/Cintura', blocks: TREINO_A },
+  { label: 'Treino B — Coxa/Peito/Ombro/Tríceps/Core', blocks: TREINO_B },
+  { label: 'Treino C — HIIT + Bike (AMRAP + Tabata)', blocks: TREINO_C },
   { label: 'Treino D — repete o A', blocks: TREINO_A },
   { label: 'Treino E — repete o B', blocks: TREINO_B },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-const DAY_CONFIG_KEY = 'maxresults-clara-preview-days-v1';
+const DAY_CONFIG_KEY = 'maxresults-clara-preview-days-v2';
 const DEFAULT_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
 
 function getMonday(d) {
@@ -741,7 +743,7 @@ function getWeekKey() {
 }
 
 
-const STORAGE_KEY = 'maxresults-clara-preview-' + getWeekKey() + '-v1';
+const STORAGE_KEY = 'maxresults-clara-preview-' + getWeekKey() + '-v2';
 let currentDayIndex = 0;
 let completedExercises = loadProgress();
 
@@ -1265,7 +1267,7 @@ function stopSession() {
   document.getElementById('timerBar').classList.remove('active');
   document.getElementById('stopBtn').classList.add('hidden');
   document.getElementById('timerDisplay').textContent = '00:00';
-  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'✅ **Clara** finalizou treino!\n📅 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') — '+day.label+'\n⏱️ Tempo: '+formatDuration(elapsed)+'\n📊 Exercícios: '+pct+'% ('+done+'/'+total+')',username:'Frequência — Clara',embeds:[{fields:[{name:'studentSlug',value:'clara',inline:true},{name:'cycleId',value:'clara-2026-07-13',inline:true},{name:'slotId',value:(day.label||'').includes('Treino A')?'A':(day.label||'').includes('Treino B')?'B':(day.label||'').includes('Treino C')?'C':(day.label||'').includes('Treino D')?'D':'E',inline:true},{name:'slotLabel',value:day.label||'',inline:false},{name:'loads',value:JSON.stringify(loadLoads()).slice(0,1000),inline:false}]}]})}).catch(function(){});}catch(e){}alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
+  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'✅ **Clara** finalizou treino!\n📅 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') — '+day.label+'\n⏱️ Tempo: '+formatDuration(elapsed)+'\n📊 Exercícios: '+pct+'% ('+done+'/'+total+')',username:'Frequência — Clara',embeds:[{fields:[{name:'studentSlug',value:'clara',inline:true},{name:'cycleId',value:'clara-2026-08-29-c4-preview',inline:true},{name:'slotId',value:(day.label||'').includes('Treino A')?'A':(day.label||'').includes('Treino B')?'B':(day.label||'').includes('Treino C')?'C':(day.label||'').includes('Treino D')?'D':'E',inline:true},{name:'slotLabel',value:day.label||'',inline:false},{name:'loads',value:JSON.stringify(loadLoads()).slice(0,1000),inline:false}]}]})}).catch(function(){});}catch(e){}alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
 }
 
 function restoreTimer() {
