@@ -346,7 +346,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Renovação Ciclo 6 · Gerado em 01/09/2026</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Renovação Ciclo 5 · Gerado em 10/07/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -400,16 +400,6 @@ const V = {
   ponte: 'https://vd.mfitpersonal.com.br/243/mp4/243.mp4',
   bike: 'https://vd.mfitpersonal.com.br/518/mp4/518.mp4',
   esteira: 'https://vd.mfitpersonal.com.br/522/mp4/522.mp4',
-  // --- Ciclo 6 (novos) ---
-  peckDeck: 'https://vd.mfitpersonal.com.br/v2/1135/mp4/1135_opt.mp4',
-  desenvMaquina: 'https://vd.mfitpersonal.com.br/507/mp4/507.mp4',
-  tricepsCoice: 'https://vd.mfitpersonal.com.br/146/mp4/146.mp4',
-  abducaoMaq: 'https://vd.mfitpersonal.com.br/515/mp4/515.mp4',
-  remadaUniHalter: 'https://vd.mfitpersonal.com.br/210/mp4/210.mp4',
-  roscaDireta: 'https://vd.mfitpersonal.com.br/109/mp4/109.mp4',
-  gluteoCoicePolia: 'https://vd.mfitpersonal.com.br/457/mp4/457.mp4',
-  extQuadril: 'https://vd.mfitpersonal.com.br/v2/1155/mp4/1155_opt.mp4',
-  ativGluteoPelvica: 'https://vd.mfitpersonal.com.br/v2/1065/mp4/1065_opt.mp4',
 };
 
 const AQUEC_ARTICULAR = {
@@ -480,22 +470,14 @@ const TREINO_A = [
   MOBILIDADE_LOMBAR_A,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Peck Deck ↔ Prancha', duration: '', meta: 'Coluna (protrusão L4-L5): sem carga axial, dorso neutro sempre. Se doer a lombar ou irradiar pra perna, para e avisa.',
+    title: 'Supino Inclinado ↔ Prancha', duration: '', meta: 'Coluna (protrusão L4-L5): sem carga axial, dorso neutro sempre. Se doer a lombar ou irradiar pra perna, para e avisa.',
     exercises: [
-      { name: 'Peck Deck', muscle: 'Peitoral', duration: '3x12-15', equipment: 'Máquina Peck Deck', tip: 'Costas apoiadas no encosto, junta os braços contraindo o peito. Sem estufar a lombar.', video: V.peckDeck },
+      { name: 'Supino Inclinado com Halteres', muscle: 'Peitoral superior', duration: '3x12-15', equipment: 'Halteres + banco 30-45°', tip: 'Empurra controlando, sem descer demais.', video: V.supinoInclinado },
       { name: 'Prancha Frontal', muscle: 'Core', duration: '3x 30-40s', equipment: 'Colchonete', tip: 'Corpo alinhado, abdômen e glúteo firmes.', video: V.prancha },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Desenvolvimento Máquina ↔ Dead Bug', duration: '', meta: '',
-    exercises: [
-      { name: 'Desenvolvimento Máquina (Pegada Neutra)', muscle: 'Ombros', duration: '3x12-15', equipment: 'Máquina de desenvolvimento', tip: 'Encosto apoiando a lombar. Empurra sem travar o cotovelo.', video: V.desenvMaquina },
-      { name: 'Dead Bug', muscle: 'Core anti-extensão', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Lombar colada no chão, alterna devagar. Protege L4-L5.', video: V.deadBug },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 3',
     title: 'Leg Press ↔ Elevação Lateral', duration: '', meta: '',
     exercises: [
       { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '3x12-15', equipment: 'Máquina Leg Press', tip: 'Pés um pouco mais altos (reduz stress lombar). Costas apoiadas, amplitude confortável.', video: V.legPress },
@@ -503,19 +485,26 @@ const TREINO_A = [
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 4',
-    title: 'Cadeira Extensora ↔ Tríceps Coice', duration: '', meta: '',
+    type: 'lift', label: 'Bi-Set 3',
+    title: 'Cadeira Extensora ↔ Bird Dog', duration: '', meta: '',
     exercises: [
       { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12-15', equipment: 'Máquina extensora', tip: 'Sobe controlando, sem solavancos.', video: V.cadeiraExt },
-      { name: 'Tríceps Coice com Halteres', muscle: 'Tríceps', duration: '3x12 cada braço', equipment: 'Halter', tip: 'Cotovelo alto e fixo, estende só o antebraço. Tronco apoiado no banco pra poupar a lombar.', video: V.tricepsCoice },
+      { name: 'Bird Dog', muscle: 'Core / Estabilidade lombar', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Braço e perna opostos, coluna neutra.', video: V.birdDog },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 4',
+    title: 'Adução ↔ Dead Bug', duration: '', meta: '',
+    exercises: [
+      { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Fecha as pernas com controle.', video: V.aducao },
+      { name: 'Dead Bug', muscle: 'Core anti-extensão', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Lombar colada no chão, alterna devagar. Protege L4-L5.', video: V.deadBug },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 5',
-    title: 'Abdução de Quadril ↔ Bird Dog', duration: '', meta: '',
+    title: 'Desenvolvimento Sentado (encosto)', duration: '', meta: '',
     exercises: [
-      { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abre as pernas com controle, sem jogar o tronco pra trás.', video: V.abducaoMaq },
-      { name: 'Bird Dog', muscle: 'Core / Estabilidade lombar', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Braço e perna opostos, coluna neutra.', video: V.birdDog },
+      { name: 'Desenvolvimento com Halteres Sentado', muscle: 'Ombros', duration: '3x12-15', equipment: 'Halteres + banco com encosto', tip: 'Encosto OBRIGATÓRIO — protege a lombar. Empurra sem travar o cotovelo.', video: V.desenvHalteres },
     ]
   },
   CARDIO_BAIXO_IMPACTO,
@@ -527,42 +516,41 @@ const TREINO_B = [
   MOBILIDADE_LOMBAR_B,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Puxada Frontal ↔ Ponte de Glúteo', duration: '', meta: 'Coluna (protrusão L4-L5): sem carga axial, dorso neutro sempre. Se sentir dor lombar ou irradiar pra perna, para e avisa.',
+    title: 'Ponte de Glúteo ↔ Puxada Frontal', duration: '', meta: 'Coluna (protrusão L4-L5): sem carga axial, dorso neutro sempre. Se sentir dor lombar ou irradiar pra perna, para e avisa.',
     exercises: [
-      { name: 'Puxada Frontal', muscle: 'Costas (dorsal)', duration: '3x12-15', equipment: 'Puxador', tip: 'Puxa à linha do peito fechando as escápulas, sem jogar o tronco muito pra trás.', video: V.puxadaFrontal },
-      { name: 'Ponte de Glúteo', muscle: 'Glúteos', duration: '3x15', equipment: 'Peso do corpo', tip: 'Sobe o quadril contraindo o glúteo, sem hiperestender a lombar. Ativa o glúteo pra proteger a coluna.', video: V.ponte },
+      { name: 'Ponte de Glúteo', muscle: 'Glúteos', duration: '3x15', equipment: 'Peso do corpo / barra leve', tip: 'Sobe o quadril contraindo o glúteo, sem hiperestender a lombar. Ativa o glúteo pra proteger a coluna.', video: V.ponte },
+      { name: 'Puxada Frontal Neutra', muscle: 'Costas (dorsal)', duration: '3x12-15', equipment: 'Puxador (pegada neutra)', tip: 'Puxa à linha do peito fechando as escápulas.', video: V.puxadaNeutra },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Remada Unilateral ↔ Prancha Lateral', duration: '', meta: '',
+    title: 'Remada Baixa ↔ Bird Dog', duration: '', meta: '',
     exercises: [
-      { name: 'Remada Unilateral com Halteres (Pegada Neutra)', muscle: 'Costas (meio)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Um joelho e uma mão no banco, coluna NEUTRA (paralela ao chão). Puxa o cotovelo pra trás sem torcer o tronco.', video: V.remadaUniHalter },
-      { name: 'Prancha Lateral', muscle: 'Core lateral', duration: '3x 20s cada lado', equipment: 'Colchonete', tip: 'Quadril alto, corpo em linha.', video: V.pranchaLateral },
+      { name: 'Remada Baixa Máquina (Neutra)', muscle: 'Costas (meio)', duration: '3x12-15', equipment: 'Máquina remada (peito apoiado)', tip: 'Peito apoiado evita compensar com a lombar. Puxa fechando escápulas.', video: V.remadaBaixa },
+      { name: 'Bird Dog', muscle: 'Core / Estabilidade lombar', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Braço e perna opostos, coluna neutra.', video: V.birdDog },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3',
-    title: 'Mesa Flexora ↔ Rosca Direta', duration: '', meta: '',
+    title: 'Cadeira Flexora ↔ Rosca Alternada', duration: '', meta: '',
     exercises: [
-      { name: 'Mesa Flexora', muscle: 'Posterior de coxa', duration: '3x12-15', equipment: 'Máquina mesa flexora', tip: 'Quadril apoiado, controla a volta. Sem tirar o quadril da mesa.', video: V.mesaFlexora },
-      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos junto ao corpo, sem balançar o tronco.', video: V.roscaDireta },
+      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12-15', equipment: 'Máquina flexora', tip: 'Controle a volta, quadril no banco.', video: V.cadeiraFlexora },
+      { name: 'Rosca Alternada com Halteres', muscle: 'Bíceps', duration: '3x12 cada braço', equipment: 'Halteres', tip: 'Alterna os braços, sem balançar o tronco.', video: V.roscaAlt },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 4',
-    title: 'Glúteos Coice na Polia ↔ Dead Bug', duration: '', meta: '',
+    title: 'Elevação Pélvica ↔ Prancha', duration: '', meta: '',
     exercises: [
-      { name: 'Glúteos Coice na Polia', muscle: 'Glúteos', duration: '3x15 cada lado', equipment: 'Polia baixa (caneleira)', tip: 'Tronco firme e levemente inclinado, empurra a perna pra trás com o glúteo. Sem arquear a lombar.', video: V.gluteoCoicePolia },
-      { name: 'Dead Bug', muscle: 'Core anti-extensão', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Lombar colada no chão, alterna devagar.', video: V.deadBug },
+      { name: 'Elevação Pélvica / Hip Thrust', muscle: 'Glúteos', duration: '3x15', equipment: 'Banco + barra/halter', tip: 'Costas no banco, sobe o quadril contraindo o glúteo. Sem hiperestender a lombar.', video: V.elevPelvica },
+      { name: 'Prancha Frontal', muscle: 'Core', duration: '3x 30-40s', equipment: 'Colchonete', tip: 'Corpo alinhado, core firme.', video: V.prancha },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 5',
-    title: 'Extensão de Quadril ↔ Bird Dog', duration: '', meta: '',
+    title: 'Stiff no Smith (dorso neutro)', duration: '', meta: '',
     exercises: [
-      { name: 'Extensão de Quadril', muscle: 'Glúteos / Posterior', duration: '3x15 cada lado', equipment: 'Máquina de extensão de quadril', tip: 'Empurra pra trás com o glúteo, tronco apoiado. Movimento pelo quadril, não pela lombar.', video: V.extQuadril },
-      { name: 'Bird Dog', muscle: 'Core / Estabilidade lombar', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Braço e perna opostos, coluna neutra.', video: V.birdDog },
+      { name: 'Stiff no Smith', muscle: 'Posterior de coxa', duration: '3x12', equipment: 'Smith (barra guiada, carga leve/moderada)', tip: '⚠️ Protrusão L4-L5: barra guiada + DORSO NEUTRO + carga leve. Se doer, troca por Mesa Flexora.', video: V.stiffSmith },
     ]
   },
   CARDIO_BAIXO_IMPACTO,
@@ -574,9 +562,9 @@ const TREINO_C = [
   MOBILIDADE_LOMBAR_A,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Ativação de Glúteo ↔ Clamshell', duration: '', meta: 'Dia leve (descarga): core/glúteo + mobilidade + cardio steady. Ritmo tranquilo.',
+    title: 'Ponte de Glúteo ↔ Clamshell', duration: '', meta: 'Dia leve (descarga): core/glúteo + mobilidade + cardio steady. Ritmo tranquilo.',
     exercises: [
-      { name: 'Ativação de Glúteo com Elevação Pélvica', muscle: 'Glúteos', duration: '3x20', equipment: 'Peso do corpo', tip: 'Sobe o quadril contraindo o glúteo, controlado. Sem hiperestender a lombar.', video: V.ativGluteoPelvica },
+      { name: 'Ponte de Glúteo', muscle: 'Glúteos', duration: '3x20', equipment: 'Peso do corpo', tip: 'Sobe o quadril contraindo o glúteo, controlado.', video: V.ponte },
       { name: 'Clamshell com Mini-band', muscle: 'Glúteo médio', duration: '3x15 cada lado', equipment: 'Mini-band', tip: 'Deitada de lado, abre o joelho sem girar o tronco.', video: V.clamshell },
     ]
   },
