@@ -272,6 +272,21 @@
     .stop-btn { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; margin-top: 8px; }
     .stop-btn:active { transform: scale(0.98); }
     .stop-btn.hidden { display: none; }
+    /* ── Aviso de avaliação vencida (padrão 18/07 — aviso-avaliacao-vencida.md) ── */
+    .assess-alert { margin-top: 16px; padding: 16px; border-radius: var(--radius); position: relative; overflow: hidden;
+      background: linear-gradient(135deg, rgba(239,68,68,0.14), rgba(245,158,11,0.10));
+      border: 2px solid rgba(239,68,68,0.55); animation: alertPulse 1.6s ease-in-out infinite; }
+    @keyframes alertPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.45); border-color: rgba(239,68,68,0.55); }
+      50% { box-shadow: 0 0 22px 4px rgba(239,68,68,0.35); border-color: rgba(239,68,68,0.95); } }
+    .assess-alert .aa-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .assess-alert .aa-icon { font-size: 26px; display: inline-block; animation: alertShake 1.1s ease-in-out infinite; }
+    @keyframes alertShake { 0%,100% { transform: rotate(0); } 15% { transform: rotate(-14deg) scale(1.1); } 30% { transform: rotate(12deg) scale(1.15); } 45% { transform: rotate(-8deg); } 60% { transform: rotate(6deg); } 75% { transform: rotate(0); } }
+    .assess-alert .aa-title { font-family: var(--font-display); font-size: 13px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: #ef4444; }
+    .assess-alert .aa-msg { font-size: 13.5px; line-height: 1.55; color: var(--text); margin-bottom: 12px; }
+    .assess-alert .aa-cta { display: block; text-align: center; padding: 12px; border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, #ef4444, #f59e0b); color: #fff; font-family: var(--font-display);
+      font-size: 14px; font-weight: 800; text-decoration: none; letter-spacing: 0.3px; }
+    .assess-alert .aa-cta:active { transform: scale(0.98); }
     .video-overlay { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.92); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px; }
     .video-overlay.active { display: flex; }
     .video-overlay video, .video-overlay iframe { max-width: 100%; max-height: 80vh; border-radius: 12px; border: none; }
@@ -293,6 +308,11 @@
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
       <div class="progress-label" id="progressLabel">0%</div>
     </div>
+  </div>
+  <div class="assess-alert" id="assessAlert">
+    <div class="aa-head"><span class="aa-icon">🚨</span><span class="aa-title">Avaliação Física VENCIDA</span></div>
+    <div class="aa-msg" id="assessAlertMsg"></div>
+    <a class="aa-cta" href="https://wa.me/5541999775758?text=Oi%20Lu%C3%ADs%C3%A3o!%20Quero%20agendar%20minha%20avalia%C3%A7%C3%A3o%20f%C3%ADsica%20%F0%9F%8F%8B%EF%B8%8F" target="_blank" rel="noopener">🗓️ Agendar minha avaliação agora</a>
   </div>
   <div class="week-goal" id="weekGoal"></div>
   <div class="elbow-alert"><strong>Coluna — Protrusão discal L4-L5.</strong> Plano conservador com liberação médica confirmada: zero carga axial pesada, zero impacto e core/glúteo em toda sessão. <strong>Pare na hora</strong> se sentir dor lombar, dor/formigamento irradiando pra perna ou glúteo, ou fraqueza na perna — e avise o Luisão.</div>
@@ -326,7 +346,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Renovação Ciclo 5 · Gerado em 10/07/2026</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>PREVIEW Renovação Ciclo 6 · Gerado em 01/09/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -380,6 +400,16 @@ const V = {
   ponte: 'https://vd.mfitpersonal.com.br/243/mp4/243.mp4',
   bike: 'https://vd.mfitpersonal.com.br/518/mp4/518.mp4',
   esteira: 'https://vd.mfitpersonal.com.br/522/mp4/522.mp4',
+  // --- Ciclo 6 (novos) ---
+  peckDeck: 'https://vd.mfitpersonal.com.br/v2/1135/mp4/1135_opt.mp4',
+  desenvMaquina: 'https://vd.mfitpersonal.com.br/507/mp4/507.mp4',
+  tricepsCoice: 'https://vd.mfitpersonal.com.br/146/mp4/146.mp4',
+  abducaoMaq: 'https://vd.mfitpersonal.com.br/515/mp4/515.mp4',
+  remadaUniHalter: 'https://vd.mfitpersonal.com.br/210/mp4/210.mp4',
+  roscaDireta: 'https://vd.mfitpersonal.com.br/109/mp4/109.mp4',
+  gluteoCoicePolia: 'https://vd.mfitpersonal.com.br/457/mp4/457.mp4',
+  extQuadril: 'https://vd.mfitpersonal.com.br/v2/1155/mp4/1155_opt.mp4',
+  ativGluteoPelvica: 'https://vd.mfitpersonal.com.br/v2/1065/mp4/1065_opt.mp4',
 };
 
 const AQUEC_ARTICULAR = {
@@ -450,14 +480,22 @@ const TREINO_A = [
   MOBILIDADE_LOMBAR_A,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Supino Inclinado ↔ Prancha', duration: '', meta: 'Coluna (protrusão L4-L5): sem carga axial, dorso neutro sempre. Se doer a lombar ou irradiar pra perna, para e avisa.',
+    title: 'Peck Deck ↔ Prancha', duration: '', meta: 'Coluna (protrusão L4-L5): sem carga axial, dorso neutro sempre. Se doer a lombar ou irradiar pra perna, para e avisa.',
     exercises: [
-      { name: 'Supino Inclinado com Halteres', muscle: 'Peitoral superior', duration: '3x12-15', equipment: 'Halteres + banco 30-45°', tip: 'Empurra controlando, sem descer demais.', video: V.supinoInclinado },
+      { name: 'Peck Deck', muscle: 'Peitoral', duration: '3x12-15', equipment: 'Máquina Peck Deck', tip: 'Costas apoiadas no encosto, junta os braços contraindo o peito. Sem estufar a lombar.', video: V.peckDeck },
       { name: 'Prancha Frontal', muscle: 'Core', duration: '3x 30-40s', equipment: 'Colchonete', tip: 'Corpo alinhado, abdômen e glúteo firmes.', video: V.prancha },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
+    title: 'Desenvolvimento Máquina ↔ Dead Bug', duration: '', meta: '',
+    exercises: [
+      { name: 'Desenvolvimento Máquina (Pegada Neutra)', muscle: 'Ombros', duration: '3x12-15', equipment: 'Máquina de desenvolvimento', tip: 'Encosto apoiando a lombar. Empurra sem travar o cotovelo.', video: V.desenvMaquina },
+      { name: 'Dead Bug', muscle: 'Core anti-extensão', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Lombar colada no chão, alterna devagar. Protege L4-L5.', video: V.deadBug },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 3',
     title: 'Leg Press ↔ Elevação Lateral', duration: '', meta: '',
     exercises: [
       { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '3x12-15', equipment: 'Máquina Leg Press', tip: 'Pés um pouco mais altos (reduz stress lombar). Costas apoiadas, amplitude confortável.', video: V.legPress },
@@ -465,26 +503,19 @@ const TREINO_A = [
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 3',
-    title: 'Cadeira Extensora ↔ Bird Dog', duration: '', meta: '',
+    type: 'lift', label: 'Bi-Set 4',
+    title: 'Cadeira Extensora ↔ Tríceps Coice', duration: '', meta: '',
     exercises: [
       { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12-15', equipment: 'Máquina extensora', tip: 'Sobe controlando, sem solavancos.', video: V.cadeiraExt },
-      { name: 'Bird Dog', muscle: 'Core / Estabilidade lombar', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Braço e perna opostos, coluna neutra.', video: V.birdDog },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 4',
-    title: 'Adução ↔ Dead Bug', duration: '', meta: '',
-    exercises: [
-      { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Fecha as pernas com controle.', video: V.aducao },
-      { name: 'Dead Bug', muscle: 'Core anti-extensão', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Lombar colada no chão, alterna devagar. Protege L4-L5.', video: V.deadBug },
+      { name: 'Tríceps Coice com Halteres', muscle: 'Tríceps', duration: '3x12 cada braço', equipment: 'Halter', tip: 'Cotovelo alto e fixo, estende só o antebraço. Tronco apoiado no banco pra poupar a lombar.', video: V.tricepsCoice },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 5',
-    title: 'Desenvolvimento Sentado (encosto)', duration: '', meta: '',
+    title: 'Abdução de Quadril ↔ Bird Dog', duration: '', meta: '',
     exercises: [
-      { name: 'Desenvolvimento com Halteres Sentado', muscle: 'Ombros', duration: '3x12-15', equipment: 'Halteres + banco com encosto', tip: 'Encosto OBRIGATÓRIO — protege a lombar. Empurra sem travar o cotovelo.', video: V.desenvHalteres },
+      { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abre as pernas com controle, sem jogar o tronco pra trás.', video: V.abducaoMaq },
+      { name: 'Bird Dog', muscle: 'Core / Estabilidade lombar', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Braço e perna opostos, coluna neutra.', video: V.birdDog },
     ]
   },
   CARDIO_BAIXO_IMPACTO,
@@ -496,41 +527,42 @@ const TREINO_B = [
   MOBILIDADE_LOMBAR_B,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Ponte de Glúteo ↔ Puxada Frontal', duration: '', meta: 'Coluna (protrusão L4-L5): sem carga axial, dorso neutro sempre. Se sentir dor lombar ou irradiar pra perna, para e avisa.',
+    title: 'Puxada Frontal ↔ Ponte de Glúteo', duration: '', meta: 'Coluna (protrusão L4-L5): sem carga axial, dorso neutro sempre. Se sentir dor lombar ou irradiar pra perna, para e avisa.',
     exercises: [
-      { name: 'Ponte de Glúteo', muscle: 'Glúteos', duration: '3x15', equipment: 'Peso do corpo / barra leve', tip: 'Sobe o quadril contraindo o glúteo, sem hiperestender a lombar. Ativa o glúteo pra proteger a coluna.', video: V.ponte },
-      { name: 'Puxada Frontal Neutra', muscle: 'Costas (dorsal)', duration: '3x12-15', equipment: 'Puxador (pegada neutra)', tip: 'Puxa à linha do peito fechando as escápulas.', video: V.puxadaNeutra },
+      { name: 'Puxada Frontal', muscle: 'Costas (dorsal)', duration: '3x12-15', equipment: 'Puxador', tip: 'Puxa à linha do peito fechando as escápulas, sem jogar o tronco muito pra trás.', video: V.puxadaFrontal },
+      { name: 'Ponte de Glúteo', muscle: 'Glúteos', duration: '3x15', equipment: 'Peso do corpo', tip: 'Sobe o quadril contraindo o glúteo, sem hiperestender a lombar. Ativa o glúteo pra proteger a coluna.', video: V.ponte },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Remada Baixa ↔ Bird Dog', duration: '', meta: '',
+    title: 'Remada Unilateral ↔ Prancha Lateral', duration: '', meta: '',
     exercises: [
-      { name: 'Remada Baixa Máquina (Neutra)', muscle: 'Costas (meio)', duration: '3x12-15', equipment: 'Máquina remada (peito apoiado)', tip: 'Peito apoiado evita compensar com a lombar. Puxa fechando escápulas.', video: V.remadaBaixa },
-      { name: 'Bird Dog', muscle: 'Core / Estabilidade lombar', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Braço e perna opostos, coluna neutra.', video: V.birdDog },
+      { name: 'Remada Unilateral com Halteres (Pegada Neutra)', muscle: 'Costas (meio)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Um joelho e uma mão no banco, coluna NEUTRA (paralela ao chão). Puxa o cotovelo pra trás sem torcer o tronco.', video: V.remadaUniHalter },
+      { name: 'Prancha Lateral', muscle: 'Core lateral', duration: '3x 20s cada lado', equipment: 'Colchonete', tip: 'Quadril alto, corpo em linha.', video: V.pranchaLateral },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3',
-    title: 'Cadeira Flexora ↔ Rosca Alternada', duration: '', meta: '',
+    title: 'Mesa Flexora ↔ Rosca Direta', duration: '', meta: '',
     exercises: [
-      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12-15', equipment: 'Máquina flexora', tip: 'Controle a volta, quadril no banco.', video: V.cadeiraFlexora },
-      { name: 'Rosca Alternada com Halteres', muscle: 'Bíceps', duration: '3x12 cada braço', equipment: 'Halteres', tip: 'Alterna os braços, sem balançar o tronco.', video: V.roscaAlt },
+      { name: 'Mesa Flexora', muscle: 'Posterior de coxa', duration: '3x12-15', equipment: 'Máquina mesa flexora', tip: 'Quadril apoiado, controla a volta. Sem tirar o quadril da mesa.', video: V.mesaFlexora },
+      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos junto ao corpo, sem balançar o tronco.', video: V.roscaDireta },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 4',
-    title: 'Elevação Pélvica ↔ Prancha', duration: '', meta: '',
+    title: 'Glúteos Coice na Polia ↔ Dead Bug', duration: '', meta: '',
     exercises: [
-      { name: 'Elevação Pélvica / Hip Thrust', muscle: 'Glúteos', duration: '3x15', equipment: 'Banco + barra/halter', tip: 'Costas no banco, sobe o quadril contraindo o glúteo. Sem hiperestender a lombar.', video: V.elevPelvica },
-      { name: 'Prancha Frontal', muscle: 'Core', duration: '3x 30-40s', equipment: 'Colchonete', tip: 'Corpo alinhado, core firme.', video: V.prancha },
+      { name: 'Glúteos Coice na Polia', muscle: 'Glúteos', duration: '3x15 cada lado', equipment: 'Polia baixa (caneleira)', tip: 'Tronco firme e levemente inclinado, empurra a perna pra trás com o glúteo. Sem arquear a lombar.', video: V.gluteoCoicePolia },
+      { name: 'Dead Bug', muscle: 'Core anti-extensão', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Lombar colada no chão, alterna devagar.', video: V.deadBug },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 5',
-    title: 'Stiff no Smith (dorso neutro)', duration: '', meta: '',
+    title: 'Extensão de Quadril ↔ Bird Dog', duration: '', meta: '',
     exercises: [
-      { name: 'Stiff no Smith', muscle: 'Posterior de coxa', duration: '3x12', equipment: 'Smith (barra guiada, carga leve/moderada)', tip: '⚠️ Protrusão L4-L5: barra guiada + DORSO NEUTRO + carga leve. Se doer, troca por Mesa Flexora.', video: V.stiffSmith },
+      { name: 'Extensão de Quadril', muscle: 'Glúteos / Posterior', duration: '3x15 cada lado', equipment: 'Máquina de extensão de quadril', tip: 'Empurra pra trás com o glúteo, tronco apoiado. Movimento pelo quadril, não pela lombar.', video: V.extQuadril },
+      { name: 'Bird Dog', muscle: 'Core / Estabilidade lombar', duration: '3x10 cada lado', equipment: 'Colchonete', tip: 'Braço e perna opostos, coluna neutra.', video: V.birdDog },
     ]
   },
   CARDIO_BAIXO_IMPACTO,
@@ -542,9 +574,9 @@ const TREINO_C = [
   MOBILIDADE_LOMBAR_A,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Ponte de Glúteo ↔ Clamshell', duration: '', meta: 'Dia leve (descarga): core/glúteo + mobilidade + cardio steady. Ritmo tranquilo.',
+    title: 'Ativação de Glúteo ↔ Clamshell', duration: '', meta: 'Dia leve (descarga): core/glúteo + mobilidade + cardio steady. Ritmo tranquilo.',
     exercises: [
-      { name: 'Ponte de Glúteo', muscle: 'Glúteos', duration: '3x20', equipment: 'Peso do corpo', tip: 'Sobe o quadril contraindo o glúteo, controlado.', video: V.ponte },
+      { name: 'Ativação de Glúteo com Elevação Pélvica', muscle: 'Glúteos', duration: '3x20', equipment: 'Peso do corpo', tip: 'Sobe o quadril contraindo o glúteo, controlado. Sem hiperestender a lombar.', video: V.ativGluteoPelvica },
       { name: 'Clamshell com Mini-band', muscle: 'Glúteo médio', duration: '3x15 cada lado', equipment: 'Mini-band', tip: 'Deitada de lado, abre o joelho sem girar o tronco.', video: V.clamshell },
     ]
   },
@@ -577,7 +609,7 @@ const TRAINING_SLOTS = [
   { slotId: 'B', label: 'Treino B — Posterior', blocks: TREINO_B },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-const DAY_CONFIG_KEY = 'maxresults-daniele-days-v2';
+const DAY_CONFIG_KEY = 'maxresults-daniele-preview-days-v2';
 const DEFAULT_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
 const MAX_TRAINING_DAYS = 5;
 
@@ -638,7 +670,7 @@ function getWeekKey() {
 }
 
 
-const STORAGE_KEY = 'maxresults-daniele-' + getWeekKey() + '-v1';
+const STORAGE_KEY = 'maxresults-daniele-preview-' + getWeekKey() + '-v1';
 let currentDayIndex = 0;
 let completedExercises = loadProgress();
 
@@ -656,7 +688,7 @@ function findCurrentDay() {
   return 0;
 }
 
-const AMRAP_KEY = 'maxresults-daniele-amrap-' + getWeekKey() + '-v1';
+const AMRAP_KEY = 'maxresults-daniele-preview-amrap-' + getWeekKey() + '-v1';
 function loadAmrap() { try { return JSON.parse(localStorage.getItem(AMRAP_KEY) || '{}'); } catch { return {}; } }
 function saveAmrapScore(input) { const scores=loadAmrap(); const k=input.dataset.amrapKey; input.value.trim() ? scores[k]=input.value.trim() : delete scores[k]; localStorage.setItem(AMRAP_KEY, JSON.stringify(scores)); }
 function restoreAmrap() { const scores=loadAmrap(); document.querySelectorAll('.amrap-score-input, .amrap-score-reps').forEach(i => { const k=i.dataset.amrapKey; if (scores[k]) i.value=scores[k]; }); }
@@ -863,7 +895,7 @@ function saveDayConfig() {
 }
 
 // ─── Finish Workout (partial) ───
-const FINISH_KEY = 'maxresults-daniele-finished-v1';
+const FINISH_KEY = 'maxresults-daniele-preview-finished-v1';
 
 function loadFinished() { try { return JSON.parse(localStorage.getItem(FINISH_KEY)||'{}'); } catch { return {}; } }
 
@@ -953,8 +985,8 @@ function updateFinishButton() {
   }
 }
 
-const LOAD_KEY = 'maxresults-daniele-loads-v1';
-const REST_KEY = 'maxresults-daniele-rest-v1';
+const LOAD_KEY = 'maxresults-daniele-preview-loads-v1';
+const REST_KEY = 'maxresults-daniele-preview-rest-v1';
 function loadLoads() { try { return JSON.parse(localStorage.getItem(LOAD_KEY)||'{}'); } catch { return {}; } }
 function saveLoad(input) { const loads=loadLoads(); const k=input.dataset.loadKey; input.value.trim() ? loads[k]=input.value.trim() : delete loads[k]; localStorage.setItem(LOAD_KEY, JSON.stringify(loads)); }
 function restoreLoads() { const loads=loadLoads(); document.querySelectorAll('.load-input').forEach(i => { const k=i.dataset.loadKey; if (loads[k]) i.value=loads[k]; }); }
@@ -986,7 +1018,34 @@ setTimeout(() => document.getElementById('workoutContent').classList.remove('ini
 // ─── Assessment ───
 const ASSESSMENTS = [];
 
-const ASSESSMENT = null;
+const ASSESSMENT = {
+  date: '18/12/2025',
+  protocol: 'Pollock, 1984 — 7 Dobras',
+  nextAssessment: 'A agendar (venceu 18/03/2026)',
+  basics: { age: 44, height: 158, weight: 98.15 },
+  perimetry: [
+    { label: 'Ombro', value: 120 }, { label: 'Tórax', value: 101.5 },
+    { label: 'Braço Esq.', value: 36 }, { label: 'Braço Dir.', value: 35.4 },
+    { label: 'Cintura', value: 92.5 }, { label: 'Abdômen', value: 98 },
+    { label: 'Quadril', value: 134.5 },
+    { label: 'Coxa Esq.', value: 80.5 }, { label: 'Coxa Dir.', value: 81.5 },
+    { label: 'Perna Esq.', value: 52 }, { label: 'Perna Dir.', value: 52.5 },
+  ],
+  skinfolds: [
+    { label: 'Tricipital', value: 30.5 }, { label: 'Subescapular', value: 35.3 },
+    { label: 'Supra-ilíaca', value: 21 }, { label: 'Peitoral', value: 15.4 },
+    { label: 'Axilar Média', value: 23 }, { label: 'Abdominal', value: 43.5 },
+    { label: 'Coxa', value: 60.5 },
+  ],
+  results: {
+    imc: { value: 39.32, classification: 'Ponto de partida 💪' },
+    idealFat: 20, fatPercent: 38.59, leanPercent: 61.41,
+    leanMass: 60.27, fatMass: 37.88, idealWeight: 75,
+    sumSkinfolds: 229.2,
+  },
+  objective: 'Emagrecimento',
+  emphasis: 'Todo o corpo',
+};
 
 function renderAssessment(a) {
   const r = a.results;
@@ -1083,8 +1142,8 @@ document.getElementById('assessPanel').innerHTML = ASSESSMENT ? renderAssessment
 document.getElementById('assessToggle').addEventListener('click', function() { this.classList.toggle('open'); document.getElementById('assessPanel').classList.toggle('open'); });
 
 // ─── Session Timer ───
-const TIMER_KEY = 'maxresults-daniele-timer-v1';
-const HISTORY_KEY = 'maxresults-daniele-history-v1';
+const TIMER_KEY = 'maxresults-daniele-preview-timer-v1';
+const HISTORY_KEY = 'maxresults-daniele-preview-history-v1';
 let timerInterval = null;
 let sessionStartTime = null;
 
@@ -1164,7 +1223,7 @@ function restoreTimer() {
 restoreTimer();
 
 // ─── Avatar photo ───
-const AVATAR_KEY = 'maxresults-daniele-avatar-v1';
+const AVATAR_KEY = 'maxresults-daniele-preview-avatar-v1';
 function loadAvatar() {
   const data = localStorage.getItem(AVATAR_KEY);
   const circle = document.getElementById('avatarCircle');
@@ -1197,6 +1256,26 @@ document.getElementById('avatarInput').addEventListener('change', function(e) {
   if (e.target.files && e.target.files[0]) saveAvatar(e.target.files[0]);
 });
 loadAvatar();
+
+// ── Aviso de avaliação vencida: frase rotativa mensal (aviso-avaliacao-vencida.md) ──
+(function(){
+  const F = [
+    '{n}, seu treino está sendo montado com dados VENCIDOS. Sem avaliação nova, eu prescrevo no escuro — e você deixa resultado na mesa.',
+    'Treino genérico é pra quem não tem dados. Os seus venceram, {n} — bora medir de novo e treinar com precisão cirúrgica?',
+    '{n}, cada semana sem avaliação é um ciclo montado na estimativa. Seus músculos mudaram — seu treino ainda não sabe disso.',
+    'Sem medidas novas eu não sei o que cresceu, o que reduziu e onde apertar. Sua avaliação venceu, {n} — me dá os dados e eu te dou o treino exato.',
+    '{n}, seu corpo de hoje não é o da última avaliação. Treinar com dados velhos = progresso mais lento. Agenda comigo e destrava.',
+    'Resultado de verdade se MEDE. A sua avaliação está vencida, {n} — sem ela, a progressão de cargas vira chute.',
+    '⚠️ {n}, estou montando seus ciclos sem saber seu % de gordura atual. É como dirigir de olhos fechados. Reavaliação: 35 minutos que mudam TODO o próximo treino.',
+    'O seu plano é personalizado — mas personalização exige dado FRESCO. Avaliação vencida, {n}: bora atualizar e turbinar o próximo ciclo?',
+    '{n}, quem não mede, não gerencia. Sua evolução merece números novos — a avaliação venceu e o próximo treino depende dela.',
+    'Cada ciclo sem avaliação nova é um ciclo menos eficiente, {n}. Seus dados venceram — 35 minutos comigo e seu treino volta a ser feito SOB MEDIDA.',
+    '{n}, o fim de ano chega e eu quero fechar sua evolução com números — não com achismo. Reavaliação em atraso: bora agendar?',
+    'Ano acabando, {n}! Última chance de medir a evolução de 2026 e começar o ano com um treino calibrado nos SEUS números atuais.',
+  ];
+  const el = document.getElementById('assessAlertMsg');
+  if (el) el.textContent = F[new Date().getMonth()].split('{n}').join(ATHLETE);
+})();
 </script>
 </body>
 </html>
