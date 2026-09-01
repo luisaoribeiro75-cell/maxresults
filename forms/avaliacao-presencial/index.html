@@ -895,29 +895,27 @@ document.getElementById('avaliacaoForm').addEventListener('submit', function(e) 
   const submitBtn = document.querySelector('[type="submit"]');
   if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando...'; }
 
-  fetch(WEBHOOK_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify({ tipo: 'avaliacao-presencial', aluna: (d.nome || 'Aluno'), conteudo: discordMsg })
-  }).then(() => {
-    const phone = '5541999775758';
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
-    if (photoCount > 0) {
-      setTimeout(() => {
-        alert('Agora envie as ' + photoCount + ' foto(s) na mesma conversa do WhatsApp com o Luisão! 📸');
-      }, 1500);
-    }
-    this.style.display = 'none';
-    document.getElementById('successScreen').classList.add('visible');
-  }).catch(() => {
-    const phone = '5541999775758';
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
-    this.style.display = 'none';
-    document.getElementById('successScreen').classList.add('visible');
-  });
+  // sendBeacon sobrevive ao teardown do webview quando o WhatsApp abre no celular
+  // (fetch fire-and-forget morria nesse instante em navegadores in-app). fix 01/09
+  const payload = JSON.stringify({ tipo: 'avaliacao-presencial', aluna: (d.nome || 'Aluno'), conteudo: discordMsg });
+  let enviado = false;
+  try {
+    if (navigator.sendBeacon) { enviado = navigator.sendBeacon(WEBHOOK_URL, new Blob([payload], { type: 'text/plain' })); }
+  } catch (e) { enviado = false; }
+  if (!enviado) {
+    try { fetch(WEBHOOK_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: payload, keepalive: true }); } catch (e) {}
+  }
+
+  const phone = '5541999775758';
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+  if (photoCount > 0) {
+    setTimeout(() => {
+      alert('Agora envie as ' + photoCount + ' foto(s) na mesma conversa do WhatsApp com o Luisão! 📸');
+    }, 1500);
+  }
+  this.style.display = 'none';
+  document.getElementById('successScreen').classList.add('visible');
 });
 
 updateProgress();

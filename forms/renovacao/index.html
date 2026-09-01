@@ -453,29 +453,34 @@ document.getElementById('renovacaoForm').addEventListener('submit', function(e) 
   msg += `*Nutricionista:* ${d.nutricionista || '—'}\n`;
   if (d.observacoes) msg += `*Obs:* ${d.observacoes}\n`;
 
-  // Send to Discord webhook (automatic)
-  const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxVIwFvx1TpgvbEoI8jUDnY4pCRAKDaSwpxnsamHEyNuwEKumuqLYH1zby1C-jW-e6jaA/exec'; // planilha Google (fonte da verdade) — ela repassa pro Discord
+  // Envio para a planilha (fonte da verdade → repassa pro Discord).
+  // sendBeacon sobrevive ao teardown do webview quando o WhatsApp abre no celular;
+  // o fetch fire-and-forget morria nesse instante em navegadores in-app (Insta/WhatsApp),
+  // por isso a msg chegava no WhatsApp mas some da planilha. (fix 01/09 — casos Dani/Clara)
+  const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxVIwFvx1TpgvbEoI8jUDnY4pCRAKDaSwpxnsamHEyNuwEKumuqLYH1zby1C-jW-e6jaA/exec';
   const discordMsg = msg.replace(/\*/g, '**');
+  const payload = JSON.stringify({ tipo: 'renovacao', aluna: (d.nome || 'Aluno'), conteudo: discordMsg });
 
   const submitBtn = document.querySelector('[type="submit"]');
   if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando...'; }
 
-  fetch(WEBHOOK_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify({ tipo: 'renovacao', aluna: (d.nome || 'Aluno'), conteudo: discordMsg })
-  }).then(() => {
-    const phone = '5541999775758';
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-    this.style.display = 'none';
-    document.getElementById('successScreen').classList.add('visible');
-  }).catch(() => {
-    const phone = '5541999775758';
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-    this.style.display = 'none';
-    document.getElementById('successScreen').classList.add('visible');
-  });
+  let enviado = false;
+  try {
+    if (navigator.sendBeacon) {
+      enviado = navigator.sendBeacon(WEBHOOK_URL, new Blob([payload], { type: 'text/plain' }));
+    }
+  } catch (e) { enviado = false; }
+  if (!enviado) {
+    // fallback: fetch com keepalive (também sobrevive ao unload/navegação)
+    try {
+      fetch(WEBHOOK_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: payload, keepalive: true });
+    } catch (e) {}
+  }
+
+  const phone = '5541999775758';
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+  this.style.display = 'none';
+  document.getElementById('successScreen').classList.add('visible');
 });
 
 updateProgress();

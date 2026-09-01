@@ -1016,28 +1016,25 @@ document.getElementById('anamneseForm').addEventListener('submit', function(e) {
   submitBtn.disabled = true;
   submitBtn.textContent = 'Enviando...';
 
-  fetch(WEBHOOK_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify({ tipo: 'anamnese-renovacao', aluna: (data.nome || 'Aluno'), conteudo: discordMsg })
-  }).then(() => {
-    // Also open WhatsApp as backup
-    const phone = '5541999775758';
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(whatsappMsg)}`;
-    window.open(url, '_blank');
+  // sendBeacon sobrevive ao teardown do webview quando o WhatsApp abre no celular
+  // (fetch fire-and-forget morria nesse instante em navegadores in-app). fix 01/09
+  const payload = JSON.stringify({ tipo: 'anamnese-renovacao', aluna: (data.nome || 'Aluno'), conteudo: discordMsg });
+  let enviado = false;
+  try {
+    if (navigator.sendBeacon) { enviado = navigator.sendBeacon(WEBHOOK_URL, new Blob([payload], { type: 'text/plain' })); }
+  } catch (e) { enviado = false; }
+  if (!enviado) {
+    try { fetch(WEBHOOK_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: payload, keepalive: true }); } catch (e) {}
+  }
 
-    // Show success
-    this.style.display = 'none';
-    document.getElementById('successScreen').classList.add('visible');
-  }).catch(() => {
-    // Fallback to WhatsApp only
-    const phone = '5541999775758';
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(whatsappMsg)}`;
-    window.open(url, '_blank');
-    this.style.display = 'none';
-    document.getElementById('successScreen').classList.add('visible');
-  });
+  // Also open WhatsApp as backup
+  const phone = '5541999775758';
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(whatsappMsg)}`;
+  window.open(url, '_blank');
+
+  // Show success
+  this.style.display = 'none';
+  document.getElementById('successScreen').classList.add('visible');
 });
 
 updateProgress();
