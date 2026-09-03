@@ -320,7 +320,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Ciclo 3 · Gerado em 17/07/2026</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Ciclo 4 · Gerado em 03/09/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -331,11 +331,11 @@
 const ATHLETE = 'Rosane';
 
 const WEEKLY_GOALS = [
-  { icon: '🌱', type: 'strength', text: '<strong>Objetivo do ciclo:</strong> saúde e qualidade de vida — constância vale mais que carga' },
-  { icon: '🧩', type: 'strength', text: '<strong>Estrutura:</strong> 4x/semana — A (anterior) e B (posterior), cada um 2x. Tudo em bi-set, intensidade moderada' },
+  { icon: '🌱', type: 'strength', text: '<strong>Objetivo do ciclo:</strong> definir interna da coxa e glúteos sem irritar lombar' },
+  { icon: '🧩', type: 'strength', text: '<strong>Estrutura:</strong> 4x/semana — A (anterior) e B (posterior), cada um 2x. Tudo em bi-set, 60 min, intensidade moderada' },
   { icon: '💗', type: 'assessment', text: '<strong>Fibromialgia:</strong> nada de ir à exaustão. Dia ruim? Faz aquecimento + mobilidade + cardio leve e vai embora — não pula, só ajusta.' },
   { icon: '🛡️', type: 'assessment', text: '<strong>Coluna:</strong> zero carga axial, sempre sentada/apoiada. Se a lombar ou o quadril reclamarem, reduz amplitude e avisa o Luisão.' },
-  { icon: '🎯', type: 'assessment', text: '<strong>Ênfases:</strong> glúteos, abdômen, parte interna da coxa e braços — todas cobertas nos dois treinos' },
+  { icon: '🎯', type: 'assessment', text: '<strong>Ênfases:</strong> parte interna da coxa, glúteos e braços — cobertas nos dois treinos' },
 ];
 
 const V = {
@@ -363,7 +363,7 @@ const V = {
   pranchaIso: 'https://vd.mfitpersonal.com.br/852/mp4/852.mp4',
   puxadaAberta: 'https://vd.mfitpersonal.com.br/565/mp4/565.mp4',
   flexaoCaneleira: 'https://vd.mfitpersonal.com.br/248/mp4/248.mp4',
-  elevQuadrilMaq: 'https://vd.mfitpersonal.com.br/473/mp4/473.mp4',
+  gluteoCoicePolia: 'https://vd.mfitpersonal.com.br/545/mp4/545.mp4',
   remadaSerrote: 'https://vd.mfitpersonal.com.br/210/mp4/210.mp4',
   gluteoGraviton: 'https://vd.mfitpersonal.com.br/513/mp4/513.mp4',
   roscaAlternada: 'https://vd.mfitpersonal.com.br/110/mp4/110.mp4',
@@ -430,10 +430,10 @@ const TREINO_A = [
   },
   {
     type: 'cardio', label: 'Cardio',
-    title: 'Bike', duration: '15 min',
+    title: 'Bike', duration: '10-12 min',
     meta: 'Baixo impacto — zero solavanco na coluna',
     exercises: [
-      { name: 'Bicicleta', muscle: 'Cardiovascular', duration: '15 min', equipment: 'Bike ergométrica', tip: 'Intensidade moderada: dá pra conversar enquanto pedala. Se hoje o corpo pesar, reduz e segue.', video: V.bike },
+      { name: 'Bicicleta', muscle: 'Cardiovascular', duration: '10-12 min', equipment: 'Bike ergométrica', tip: 'Intensidade moderada: dá pra conversar enquanto pedala. Se hoje o corpo pesar, reduz e segue.', video: V.bike },
     ]
   },
   {
@@ -480,11 +480,11 @@ const TREINO_B = [
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Elevação de Quadril ↔ Remada Serrote', duration: '3x12-15 · Sem descanso',
-    meta: '⭐ Glúteo (tua ênfase) + costas — máquina apoiada, sem carga na coluna',
+    title: 'Glúteos Coice Polia ↔ Remada Serrote', duration: '3x12-15 · Sem descanso',
+    meta: '⭐ Glúteo (tua ênfase) + costas — troca da elevação pélvica por uma variação guiada e apoiada',
     exercises: [
-      { name: 'Elevação de Quadril na Máquina', muscle: 'Glúteos', duration: '3x15', equipment: 'Máquina de elevação de quadril', tip: 'Costas apoiadas na máquina. Sobe o quadril contraindo o glúteo e segura 1s. Não hiperestende a lombar no topo.', video: V.elevQuadrilMaq },
-      { name: 'Remada Unilateral Halteres (Serrote)', muscle: 'Costas (meio)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Uma mão e um joelho no banco ao lado da máquina. Puxa na direção da cintura, sem girar o tronco.', video: V.remadaSerrote },
+      { name: 'Glúteos 4 Apoios Coice com Banco na Polia', muscle: 'Glúteos', duration: '3x12-15 cada lado', equipment: 'Polia baixa + banco', tip: 'Apoia bem o tronco no banco e faz o coice curto, controlado, sem arquear a lombar. É a substituição da elevação pélvica deste ciclo.', video: V.gluteoCoicePolia },
+      { name: 'Remada Unilateral Halteres (Serrote)', muscle: 'Costas (meio)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Uma mão e um joelho no banco ao lado. Puxa na direção da cintura, sem girar o tronco.', video: V.remadaSerrote },
     ]
   },
   {
@@ -507,10 +507,10 @@ const TREINO_B = [
   },
   {
     type: 'cardio', label: 'Cardio',
-    title: 'Elíptico', duration: '15 min',
+    title: 'Elíptico', duration: '10-12 min',
     meta: 'Baixo impacto — zero solavanco na coluna',
     exercises: [
-      { name: 'Elíptico', muscle: 'Cardiovascular', duration: '15 min', equipment: 'Elíptico', tip: 'Intensidade moderada: dá pra conversar. Se hoje o corpo pesar, reduz e segue.', video: V.eliptico },
+      { name: 'Elíptico', muscle: 'Cardiovascular', duration: '10-12 min', equipment: 'Elíptico', tip: 'Intensidade moderada: dá pra conversar. Se hoje o corpo pesar, reduz e segue.', video: V.eliptico },
     ]
   },
   {
