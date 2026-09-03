@@ -342,7 +342,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Ciclo 3 · Mês 1 (Volume) · Gerado em 10/07/2026</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Ciclo 4 · Mês 2 (Intensificação) · Gerado em 27/08/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -353,9 +353,9 @@
 const ATHLETE = 'Rafael';
 
 const WEEKLY_GOALS = [
-  { icon: '🎯', type: 'strength', text: '<strong>Objetivo:</strong> definição muscular (misto), com ênfase em <strong>braços + postura</strong>' },
-  { icon: '🌱', type: 'strength', text: '<strong>Retomada consciente:</strong> 1ª semana em intensidade moderada-baixa. Foco em execução e sensação de progresso — sem pressa.' },
-  { icon: '📈', type: 'strength', text: '<strong>Progressão:</strong> comece leve, domine o movimento. Fez todas as reps com folga? sobe a carga só na próxima semana.' },
+  { icon: '🎯', type: 'strength', text: '<strong>Objetivo:</strong> emagrecer e definir, mantendo 3x/semana com ênfase em <strong>abdômen + braços + postura</strong>' },
+  { icon: '🔥', type: 'strength', text: '<strong>Intensidade:</strong> agora sobe para intenso controlado. Carga boa, execução limpa e descanso cronometrado.' },
+  { icon: '📈', type: 'strength', text: '<strong>Meta do ciclo:</strong> completar mais treinos inteiros. Se bater todas as reps com técnica, sobe pouco a carga na semana seguinte.' },
   { icon: '💧', type: 'assessment', text: '<strong>Medicação (hidratação):</strong> beba água antes/durante/depois. Levante do banco <strong>devagar</strong> (tontura ao levantar). Sentiu tontura? senta, hidrata e avisa.' },
   { icon: '❤️', type: 'fat', text: '<strong>Cardio zona aeróbica, sem picos:</strong> ritmo de conversa. Falta de ar desproporcional, tontura ou dor no peito → <strong>pare</strong> e reporte.' },
   { icon: '🩺', type: 'assessment', text: '<strong>Avaliação física vencida (20/03/2026):</strong> vamos reagendar pra medir seu progresso. <a href="https://wa.me/5541999775758?text=Oi%20Luis%C3%A3o!%20Quero%20reagendar%20minha%20avalia%C3%A7%C3%A3o%20f%C3%ADsica%20🏋️" target="_blank" style="color:var(--accent-lift);">Agendar com Luisão</a>' },
@@ -412,6 +412,9 @@ const V = {
   bomDia: 'https://vd.mfitpersonal.com.br/269/mp4/269.mp4',
   bulgaroCarga: 'https://vd.mfitpersonal.com.br/789/mp4/789.mp4',
   abdomSupra: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
+  abdomInfra: 'https://vd.mfitpersonal.com.br/375/mp4/375.mp4',
+  abdomCanivete: 'https://player.mediadelivery.net/play/655450/9b1d98af-ba64-4237-aba8-a8db6109e6b9',
+  pranchaLateral: 'https://vd.mfitpersonal.com.br/181/mp4/181.mp4',
   alongColuna1: 'https://vd.mfitpersonal.com.br/96/mp4/96.mp4',
   alongColuna2: 'https://vd.mfitpersonal.com.br/97/mp4/97.mp4',
   // Aquecimento de ombro (acervo MFit — substituem os "sem vídeo" 18/07)
@@ -497,29 +500,29 @@ const BISET_A_2 = {
 
 const ISO_A_1 = {
   type: 'lift', label: 'Bi-Set 3',
-  title: 'Tríceps na Polia com Corda ↔ Elevação Lateral', duration: '3x12–15 · Sem descanso no par',
-  meta: 'Dois isolados independentes (refino Regra 1, 18/07) — halteres ao lado da polia, uma estação só. Descanso 60–90s ao fim do par.',
+  title: 'Tríceps na Polia com Corda ↔ Abdominal Canivete', duration: '3x12–15 · Sem descanso no par',
+  meta: 'Braço + abdômen no colchonete ao lado da polia. Descanso 60–75s ao fim do par.',
   exercises: [
     { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x12–15', equipment: 'Polia alta + corda', tip: 'Ênfase braço. Cotovelos fixos ao lado do corpo, estenda até o fim abrindo a corda.', video: V.tricepsCorda },
-    { name: 'Elevação Lateral com Halteres', muscle: 'Ombro (deltoide medial)', duration: '3x12–15', equipment: 'Halteres (ao lado da polia)', tip: 'Cotovelos levemente flexionados, sobe até a linha dos ombros sem balançar o tronco. Halteres ao lado da polia — sem ocupar outra estação.', video: V.elevLateral },
+    { name: 'Abdominal Canivete', muscle: 'Core / Abdômen', duration: '3x12–15', equipment: 'Colchonete (ao lado da polia)', tip: 'Sobe tronco e pernas ao mesmo tempo, formando um V. Desce controlando sem relaxar no chão.', video: V.abdomCanivete },
   ]
 };
 
 const ISO_A_2 = {
   type: 'lift', label: 'Isolado 1',
-  title: 'Tríceps Francês (Testa) com Halteres', duration: '3x10–12',
-  meta: 'Finalização — ênfase braço. Descanso 60s.',
+  title: 'Elevação Lateral com Halteres', duration: '3x12–15',
+  meta: 'Finalização de ombro/postura. Descanso 45–60s.',
   exercises: [
-    { name: 'Tríceps Francês (Testa) com Halteres', muscle: 'Tríceps', duration: '3x10–12', equipment: 'Halteres (ou barra W)', tip: 'Ênfase braço. Cotovelos apontando pra cima e fixos, desça o peso atrás da cabeça e estenda.', video: V.tricepsFrances },
+    { name: 'Elevação Lateral com Halteres', muscle: 'Ombro (deltoide medial)', duration: '3x12–15', equipment: 'Halteres', tip: 'Cotovelos levemente flexionados, sobe até a linha dos ombros sem balançar o tronco.', video: V.elevLateral },
   ]
 };
 
 const CARDIO_A = {
   type: 'cardio', label: 'Cardio',
-  title: 'Esteira Inclinada — Zona Aeróbica', duration: '25–30 min',
+  title: 'Esteira Inclinada — Zona Aeróbica', duration: '15–20 min',
   meta: 'Ritmo de conversa. Sem picos.',
   exercises: [
-    { name: 'Esteira Caminhada Inclinada', muscle: 'Cardiovascular', duration: '25–30 min', equipment: 'Esteira (ou bike)', tip: 'Inclinação 5–8%, ritmo confortável de conversa (~65–70% FCmax). Alternativa: bike ergométrica leve. ⚠️ Tontura/falta de ar/dor no peito → pare, sente e hidrate.', video: V.esteiraInclinada },
+    { name: 'Esteira Caminhada Inclinada', muscle: 'Cardiovascular', duration: '15–20 min', equipment: 'Esteira (ou bike)', tip: 'Inclinação 5–8%, ritmo confortável de conversa (~65–70% FCmax). Alternativa: bike ergométrica leve. ⚠️ Tontura/falta de ar/dor no peito → pare, sente e hidrate.', video: V.esteiraInclinada },
   ]
 };
 
@@ -603,11 +606,11 @@ const BISET_B_2 = {
 
 const BISET_B_3 = {
   type: 'lift', label: 'Bi-Set 3',
-  title: 'Remada Curvada com Halteres ↔ Prancha Abdominal', duration: '3x10–12 / 30–45s · Sem descanso no par',
-  meta: 'Costas grande + core (postural). Descanso 60–90s ao fim do par.',
+  title: 'Remada Curvada com Halteres ↔ Abdominal Infra', duration: '3x10–12 / 15 reps · Sem descanso no par',
+  meta: 'Costas grande + abdômen inferior. Colchonete ao lado do banco. Descanso 60–75s ao fim do par.',
   exercises: [
     { name: 'Remada Curvada com Halteres (unilateral)', muscle: 'Costas', duration: '3x10–12/lado', equipment: 'Halter + banco', tip: 'Uma mão e um joelho no banco, tronco paralelo ao chão. Puxe o halter em direção ao quadril. 10–12 cada lado.', video: V.remadaCurvada },
-    { name: 'Prancha Abdominal (isometria)', muscle: 'Core / Abdômen', duration: '3x30–45s', equipment: 'Colchonete', tip: 'Postural/core. Antebraços no chão, corpo reto, abdômen e glúteo firmes. Segure 30–45s.', video: V.pranchaAbdominal },
+    { name: 'Abdominal Infra no chão', muscle: 'Core / Abdômen inferior', duration: '3x15', equipment: 'Colchonete', tip: 'Suba as pernas com controle, lombar apoiada e sem embalar.', video: V.abdomInfra },
   ]
 };
 
@@ -622,19 +625,19 @@ const ISO_B_1 = {
 
 const ISO_B_2 = {
   type: 'lift', label: 'Isolado 2',
-  title: 'Rosca Martelo com Halteres', duration: '3x10–12',
-  meta: 'Finalização — ênfase braço. Descanso 45–60s.',
+  title: 'Prancha Lateral', duration: '3x20–30s cada lado',
+  meta: 'Finalização de core lateral. Descanso 30–45s.',
   exercises: [
-    { name: 'Rosca Martelo com Halteres', muscle: 'Bíceps / Antebraço', duration: '3x10–12', equipment: 'Halteres', tip: 'Ênfase braço. Pegada neutra (polegar pra cima), suba sem girar o punho. Controle na descida.', video: V.roscaMartelo },
+    { name: 'Prancha Lateral', muscle: 'Core / Oblíquos', duration: '3x20–30s cada lado', equipment: 'Colchonete', tip: 'Corpo em linha, quadril alto, ombro longe da orelha. Troque de lado mantendo controle.', video: V.pranchaLateral },
   ]
 };
 
 const CARDIO_B = {
   type: 'cardio', label: 'Cardio',
-  title: 'Esteira Inclinada — Zona Aeróbica', duration: '25–30 min',
+  title: 'Esteira Inclinada — Zona Aeróbica', duration: '15–20 min',
   meta: 'Ritmo de conversa. Sem picos.',
   exercises: [
-    { name: 'Esteira Caminhada Inclinada', muscle: 'Cardiovascular', duration: '25–30 min', equipment: 'Esteira (ou bike)', tip: 'Inclinação 5–8%, ritmo confortável de conversa (~65–70% FCmax). Alternativa: bike ergométrica leve. ⚠️ Tontura/falta de ar/dor no peito → pare, sente e hidrate.', video: V.esteiraInclinada },
+    { name: 'Esteira Caminhada Inclinada', muscle: 'Cardiovascular', duration: '15–20 min', equipment: 'Esteira (ou bike)', tip: 'Inclinação 5–8%, ritmo confortável de conversa (~65–70% FCmax). Alternativa: bike ergométrica leve. ⚠️ Tontura/falta de ar/dor no peito → pare, sente e hidrate.', video: V.esteiraInclinada },
   ]
 };
 
@@ -661,7 +664,7 @@ const TRAINING_SLOTS = [
   { label: 'Treino A — Anterior', blocks: TREINO_A },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-const DAY_CONFIG_KEY = 'maxresults-rafael-days-v1';
+const DAY_CONFIG_KEY = 'maxresults-rafael-days-c4-v1';
 const DEFAULT_DAYS = ['Seg', 'Qua', 'Sex'];
 
 function getMonday(d) {
@@ -710,7 +713,7 @@ function getWeekKey() {
   return m.getFullYear() + '-' + pad(m.getMonth()+1) + '-' + pad(m.getDate());
 }
 
-const STORAGE_KEY = 'maxresults-rafael-' + getWeekKey() + '-v1';
+const STORAGE_KEY = 'maxresults-rafael-' + getWeekKey() + '-c4-v1';
 let currentDayIndex = 0;
 let completedExercises = loadProgress();
 
@@ -899,7 +902,7 @@ function saveDayConfig() {
   closeDayModal();
 }
 
-const FINISH_KEY = 'maxresults-rafael-finished-v1';
+const FINISH_KEY = 'maxresults-rafael-finished-c4-v1';
 function loadFinished() { try { return JSON.parse(localStorage.getItem(FINISH_KEY)||'{}'); } catch { return {}; } }
 
 function finishWorkout() {
@@ -959,8 +962,8 @@ function updateFinishButton() {
   }
 }
 
-const LOAD_KEY = 'maxresults-rafael-loads-v1';
-const REST_KEY = 'maxresults-rafael-rest-v1';
+const LOAD_KEY = 'maxresults-rafael-loads-c4-v1';
+const REST_KEY = 'maxresults-rafael-rest-c4-v1';
 function loadLoads() { try { return JSON.parse(localStorage.getItem(LOAD_KEY)||'{}'); } catch { return {}; } }
 function saveLoad(input) { const loads=loadLoads(); const k=input.dataset.loadKey; input.value.trim() ? loads[k]=input.value.trim() : delete loads[k]; localStorage.setItem(LOAD_KEY, JSON.stringify(loads)); }
 function restoreLoads() { const loads=loadLoads(); document.querySelectorAll('.load-input').forEach(i => { const k=i.dataset.loadKey; if (loads[k]) i.value=loads[k]; }); }
@@ -1074,8 +1077,8 @@ document.getElementById('assessPanel').innerHTML = renderAssessment(ASSESSMENT) 
 document.getElementById('assessToggle').addEventListener('click', function() { this.classList.toggle('open'); document.getElementById('assessPanel').classList.toggle('open'); });
 
 // ─── Session Timer ───
-const TIMER_KEY = 'maxresults-rafael-timer-v1';
-const HISTORY_KEY = 'maxresults-rafael-history-v1';
+const TIMER_KEY = 'maxresults-rafael-timer-c4-v1';
+const HISTORY_KEY = 'maxresults-rafael-history-c4-v1';
 let timerInterval = null;
 let sessionStartTime = null;
 
@@ -1122,7 +1125,7 @@ function recordSession() {
   day.blocks.forEach((b, bi) => { b.exercises.forEach((_, ei) => { total++; if (completedExercises[exerciseKey(currentDayIndex, bi, ei)]) done++; }); });
   const pct = total > 0 ? Math.round((done / total) * 100) : 0;
   const slotId = (day.label||'').includes('Treino A') ? 'A' : (day.label||'').includes('Treino B') ? 'B' : '?';
-  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'\u2705 **Rafael** finalizou treino!\n\ud83d\udcc5 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') \u2014 '+day.label+'\n\ud83d\udcca Exerc\u00edcios: '+pct+'% ('+done+'/'+total+')',username:'Frequ\u00eancia \u2014 Rafael',embeds:[{fields:[{name:'studentSlug',value:'rafael',inline:true},{name:'cycleId',value:'rafael-2026-07-10',inline:true},{name:'slotId',value:slotId,inline:true},{name:'slotLabel',value:day.label||'',inline:false},{name:'loads',value:JSON.stringify(loadLoads()).slice(0,1000),inline:false}]}]})}).catch(function(){});}catch(e){}
+  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'\u2705 **Rafael** finalizou treino!\n\ud83d\udcc5 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') \u2014 '+day.label+'\n\ud83d\udcca Exerc\u00edcios: '+pct+'% ('+done+'/'+total+')',username:'Frequ\u00eancia \u2014 Rafael',embeds:[{fields:[{name:'studentSlug',value:'rafael',inline:true},{name:'cycleId',value:'rafael-2026-08-27-c4',inline:true},{name:'slotId',value:slotId,inline:true},{name:'slotLabel',value:day.label||'',inline:false},{name:'loads',value:JSON.stringify(loadLoads()).slice(0,1000),inline:false}]}]})}).catch(function(){});}catch(e){}
 }
 
 function stopSession() {
@@ -1146,7 +1149,7 @@ function stopSession() {
   document.getElementById('stopBtn').classList.add('hidden');
   document.getElementById('timerDisplay').textContent = '00:00';
   const slotId = (day.label||'').includes('Treino A') ? 'A' : (day.label||'').includes('Treino B') ? 'B' : '?';
-  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'\u2705 **Rafael** finalizou treino!\n\ud83d\udcc5 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') \u2014 '+day.label+'\n\u23f1\ufe0f Tempo: '+formatDuration(elapsed)+'\n\ud83d\udcca Exerc\u00edcios: '+pct+'% ('+done+'/'+total+')',username:'Frequ\u00eancia \u2014 Rafael',embeds:[{fields:[{name:'studentSlug',value:'rafael',inline:true},{name:'cycleId',value:'rafael-2026-07-10',inline:true},{name:'slotId',value:slotId,inline:true},{name:'slotLabel',value:day.label||'',inline:false},{name:'loads',value:JSON.stringify(loadLoads()).slice(0,1000),inline:false}]}]})}).catch(function(){});}catch(e){}alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
+  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'\u2705 **Rafael** finalizou treino!\n\ud83d\udcc5 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') \u2014 '+day.label+'\n\u23f1\ufe0f Tempo: '+formatDuration(elapsed)+'\n\ud83d\udcca Exerc\u00edcios: '+pct+'% ('+done+'/'+total+')',username:'Frequ\u00eancia \u2014 Rafael',embeds:[{fields:[{name:'studentSlug',value:'rafael',inline:true},{name:'cycleId',value:'rafael-2026-08-27-c4',inline:true},{name:'slotId',value:slotId,inline:true},{name:'slotLabel',value:day.label||'',inline:false},{name:'loads',value:JSON.stringify(loadLoads()).slice(0,1000),inline:false}]}]})}).catch(function(){});}catch(e){}alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
 }
 
 function restoreTimer() {
@@ -1166,7 +1169,7 @@ function restoreTimer() {
 restoreTimer();
 
 // ─── Avatar photo ───
-const AVATAR_KEY = 'maxresults-rafael-avatar-v1';
+const AVATAR_KEY = 'maxresults-rafael-avatar-c4-v1';
 function loadAvatar() {
   const data = localStorage.getItem(AVATAR_KEY);
   const circle = document.getElementById('avatarCircle');
