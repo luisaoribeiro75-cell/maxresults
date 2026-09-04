@@ -383,6 +383,7 @@ const V = {
   tricepsTestaHalter: 'https://vd.mfitpersonal.com.br/139/mp4/139.mp4',
   tricepsCoiceHalter: 'https://vd.mfitpersonal.com.br/146/mp4/146.mp4',
   elevPelvicaCadeira: 'https://vd.mfitpersonal.com.br/898/mp4/898.mp4',
+  afundoHalter: 'https://vd.mfitpersonal.com.br/32/mp4/32.mp4',
   abdomSupra: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
   bike: 'https://vd.mfitpersonal.com.br/518/mp4/518.mp4',
   maxCicle: 'https://player.mediadelivery.net/play/655450/dcf2c03a-4a77-4012-8cc0-f9fe51782bd4',
@@ -565,57 +566,51 @@ const CARDIO_LUCIANA = {
   ]
 };
 
-// ─── Treino A — ANTERIORES (Quadríceps · Peito · Ombro · Tríceps [ênfase] · Core) — solo/pirâmide ───
+// ─── Treino A — ANTERIORES (Quadríceps · Peito · Ombro · Tríceps [ênfase] · Core) — solo pirâmide + bi-set ───
 const TREINO_A = [
   AQUEC_ARTICULAR,
   AQUEC_MUSCULAR_A,
   MOBILIDADE_A,
   {
-    type: 'lift', label: 'Exercício 1',
+    type: 'lift', label: 'Solo 1 · Pirâmide',
     title: 'Agachamento com Halter na Frente', duration: '4x 12·10·8·6 · descanso 90-120s',
-    meta: 'Pirâmide crescente — sobe a carga e cai a repetição a cada série. Quadríceps e glúteo.',
+    meta: 'Básico pesado SOLO. Pirâmide crescente — sobe a carga e cai a repetição a cada série. Quadríceps e glúteo.',
     exercises: [
       { name: 'Agachamento com Halter na Frente', muscle: 'Quadríceps / Glúteos', duration: '4x 12·10·8·6', equipment: 'Halter (ou Leg Press / peso do corpo)', tip: 'Segure um halter na vertical à frente do peito, cotovelos pra baixo. Pés na largura dos ombros, desce controlando até ~90° no joelho com o tronco ereto e o abdômen firme, sobe empurrando pelo calcanhar. Aumente a carga a cada série (última é a mais pesada, sempre com técnica). Alternativa: Leg Press ou, sem carga, peso do corpo.', video: V.agachHalterFrente },
     ]
   },
   {
-    type: 'lift', label: 'Exercício 2',
+    type: 'lift', label: 'Solo 2 · Pirâmide',
     title: 'Supino Reto com Halteres', duration: '4x 12·10·8·6 · descanso 90s',
-    meta: 'Pirâmide crescente. Peitoral.',
+    meta: 'Básico pesado SOLO. Pirâmide crescente. Peitoral.',
     exercises: [
       { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '4x 12·10·8·6', equipment: 'Halteres + banco (ou máquina / flexão)', tip: 'Deite no banco, desça os halteres à linha do peito e empurre controlando, pés firmes no chão. Sobe a carga a cada série. Alternativa: máquina Chest Press ou flexão de braço no solo (joelhos apoiados se precisar).', video: V.supinoHalter },
     ]
   },
   {
-    type: 'lift', label: 'Exercício 3',
-    title: 'Desenvolvimento com Halteres', duration: '3x 12·10·8 · descanso 90s',
-    meta: 'Pirâmide crescente. Ombros — entra depois do peito do dia.',
+    type: 'lift', label: 'Bi-Set 1',
+    title: 'Desenvolvimento com Halteres ↔ Afundo com Halteres', duration: '3x12 · descanso 60-90s',
+    meta: 'Ombro (MMSS) ↔ perna (MMII), alternando segmento — tudo com halteres no mesmo canto, sem trocar de estação. Ombro entra depois do peito do dia.',
     exercises: [
-      { name: 'Desenvolvimento com Halteres', muscle: 'Ombros', duration: '3x 12·10·8', equipment: 'Halteres + banco (ou máquina)', tip: 'Sentada com apoio nas costas, empurre os halteres pra cima sem travar o cotovelo e sem arquear a lombar. Sobe a carga a cada série. Alternativa: máquina de desenvolvimento.', video: V.desenvNeutro },
+      { name: 'Desenvolvimento com Halteres', muscle: 'Ombros', duration: '3x12', equipment: 'Halteres (+ banco)', tip: 'Sentada com apoio nas costas, empurre os halteres pra cima sem travar o cotovelo e sem arquear a lombar.', video: V.desenvNeutro },
+      { name: 'Afundo com Halteres', muscle: 'Quadríceps / Glúteos', duration: '3x12 cada perna', equipment: 'Halteres', tip: 'Um halter em cada mão, dê um passo à frente e desça o joelho de trás em direção ao chão sem encostar, tronco ereto. Empurre pelo calcanhar da frente pra voltar. Troque de perna.', video: V.afundoHalter },
     ]
   },
   {
-    type: 'lift', label: 'Exercício 4 · Tríceps (ênfase)',
-    title: 'Tríceps Testa com Halteres', duration: '3x 12·10·8 · descanso 60-90s',
-    meta: 'Ênfase de tríceps (1/2). Pirâmide crescente. Tríceps por último (depois de peito e ombro).',
+    type: 'lift', label: 'Bi-Set 2 · Tríceps (ênfase)',
+    title: 'Tríceps Testa com Halteres ↔ Prancha', duration: '3x · descanso 60s',
+    meta: 'Ênfase de tríceps (1/2) + core — tríceps por último (depois de peito e ombro). Ancorado no mesmo colchonete/banco.',
     exercises: [
-      { name: 'Tríceps Testa com Halteres', muscle: 'Tríceps', duration: '3x 12·10·8', equipment: 'Halteres + banco', tip: 'Deitada no banco, halteres acima do peito, cotovelos apontando pro teto. Desça os halteres em direção à testa flexionando só o cotovelo e estenda de volta. Sobe a carga a cada série.', video: V.tricepsTestaHalter },
+      { name: 'Tríceps Testa com Halteres', muscle: 'Tríceps', duration: '3x 12·10·8', equipment: 'Halteres + banco', tip: 'Deitada no banco, halteres acima do peito, cotovelos apontando pro teto. Desça os halteres em direção à testa flexionando só o cotovelo e estenda de volta. Pode subir a carga a cada série.', video: V.tricepsTestaHalter },
+      { name: 'Prancha', muscle: 'Core / Abdômen', duration: '3x 30-45s', equipment: 'Colchonete', tip: 'Antebraços e pontas dos pés no chão, corpo em linha reta, abdômen e glúteo firmes. Não deixe o quadril cair. Respire.', video: V.prancha },
     ]
   },
   {
-    type: 'lift', label: 'Exercício 5 · Tríceps (ênfase)',
+    type: 'lift', label: 'Solo 3 · Tríceps (ênfase)',
     title: 'Tríceps Coice com Halteres', duration: '3x12 · descanso 60s',
-    meta: 'Ênfase de tríceps (2/2). Fecha o trabalho de braço.',
+    meta: 'Ênfase de tríceps (2/2). 2ª dose de braço — fecha o dia.',
     exercises: [
       { name: 'Tríceps Coice com Halteres', muscle: 'Tríceps', duration: '3x12 cada braço', equipment: 'Halteres (+ banco de apoio)', tip: 'Tronco inclinado à frente com apoio, braço colado ao corpo. Estenda o cotovelo levando o halter pra trás e segure 1s no final. Controle a volta.', video: V.tricepsCoiceHalter },
-    ]
-  },
-  {
-    type: 'lift', label: 'Exercício 6 · Core',
-    title: 'Prancha', duration: '3x 30-45s · descanso 30-45s',
-    meta: 'Core — fecha o dia.',
-    exercises: [
-      { name: 'Prancha', muscle: 'Core / Abdômen', duration: '3x 30-45s', equipment: 'Colchonete', tip: 'Apoie antebraços e pontas dos pés, corpo em linha reta da cabeça ao calcanhar, abdômen e glúteo firmes. Não deixe o quadril cair nem subir. Respire.', video: V.prancha },
     ]
   },
   CARDIO_LUCIANA,
@@ -623,56 +618,42 @@ const TREINO_A = [
   RELAX_FINAL,
 ];
 
-// ─── Treino B — POSTERIORES (Glúteos [ênfase] · Posterior de coxa · Costas · Bíceps · Core) — solo/pirâmide ───
+// ─── Treino B — POSTERIORES (Glúteos [ênfase] · Posterior de coxa · Costas · Bíceps · Core) — solo pirâmide + bi-set ───
 const TREINO_B = [
   AQUEC_ARTICULAR,
   AQUEC_MUSCULAR_B,
   MOBILIDADE_B,
   {
-    type: 'lift', label: 'Exercício 1 · Glúteo (ênfase)',
+    type: 'lift', label: 'Solo 1 · Pirâmide · Glúteo (ênfase)',
     title: 'Elevação Pélvica na Cadeira (Hip Thrust)', duration: '4x 12·10·8·6 · descanso 90-120s',
-    meta: 'Ênfase de glúteo (1/3). Pirâmide crescente — sobe a carga e cai a repetição.',
+    meta: 'Básico pesado SOLO. Ênfase de glúteo (1/3). Pirâmide crescente — sobe a carga e cai a repetição.',
     exercises: [
       { name: 'Elevação Pélvica na Cadeira', muscle: 'Glúteos', duration: '4x 12·10·8·6', equipment: 'Banco + halter/barra sobre o quadril', tip: 'Costas apoiadas na borda de um banco, pés no chão na largura do quadril. Apoie um halter/barra sobre o quadril, suba empurrando pelo calcanhar e contraia forte o glúteo no topo. Desça controlando. Aumente a carga a cada série. Sem banco/carga: ponte de glúteo no solo, mais repetições.', video: V.elevPelvicaCadeira },
     ]
   },
   {
-    type: 'lift', label: 'Exercício 2',
+    type: 'lift', label: 'Solo 2 · Pirâmide',
     title: 'Stiff com Halteres', duration: '4x 12·10·8·6 · descanso 90s',
-    meta: 'Pirâmide crescente. Posterior de coxa e glúteo.',
+    meta: 'Básico pesado SOLO. Pirâmide crescente. Posterior de coxa e glúteo.',
     exercises: [
       { name: 'Stiff com Halteres', muscle: 'Posterior de coxa / Glúteos', duration: '4x 12·10·8·6', equipment: 'Halteres (ou barra)', tip: 'Joelhos levemente flexionados, empurre o quadril pra trás descendo os halteres rente às pernas com a coluna neutra (não arredonda a lombar). Sente o posterior alongar e volte contraindo o glúteo. Sobe a carga a cada série.', video: V.stiffHalter },
     ]
   },
   {
-    type: 'lift', label: 'Exercício 3 · Glúteo (ênfase)',
-    title: 'Agachamento Búlgaro com Carga', duration: '3x10-12 cada perna · descanso 60-90s',
-    meta: 'Ênfase de glúteo (2/3) — unilateral. Quadríceps e glúteo.',
+    type: 'lift', label: 'Bi-Set 1 · Glúteo (ênfase)',
+    title: 'Remada Curvada com Halteres ↔ Agachamento Búlgaro com Carga', duration: '3x12 · descanso 60-90s',
+    meta: 'Costas (MMSS) ↔ glúteo/perna (MMII), alternando segmento — halteres no mesmo canto. Búlgaro reforça o glúteo (ênfase 2/3).',
     exercises: [
+      { name: 'Remada Curvada com Halteres', muscle: 'Costas (dorsal)', duration: '3x12', equipment: 'Halteres', tip: 'Tronco inclinado à frente com a coluna neutra, puxe os halteres em direção à cintura fechando as escápulas, sem girar o tronco.', video: V.remadaCurvada },
       { name: 'Agachamento Búlgaro com Carga', muscle: 'Glúteos / Quadríceps', duration: '3x10-12 cada perna', equipment: 'Halteres + banco (pé de trás apoiado)', tip: 'Pé de trás apoiado no banco, um halter em cada mão. Desça controlado empurrando pelo calcanhar da frente, tronco levemente à frente pra pegar mais glúteo. Troque de perna.', video: V.bulgaroCarga },
     ]
   },
   {
-    type: 'lift', label: 'Exercício 4',
-    title: 'Remada Curvada com Halteres', duration: '4x 12·10·8·6 · descanso 90s',
-    meta: 'Pirâmide crescente. Costas.',
-    exercises: [
-      { name: 'Remada Curvada com Halteres', muscle: 'Costas (dorsal)', duration: '4x 12·10·8·6', equipment: 'Halteres', tip: 'Tronco inclinado à frente com a coluna neutra, puxe os halteres em direção à cintura fechando as escápulas, sem girar o tronco. Sobe a carga a cada série.', video: V.remadaCurvada },
-    ]
-  },
-  {
-    type: 'lift', label: 'Exercício 5',
-    title: 'Rosca Direta com Halteres', duration: '3x12 · descanso 60s',
-    meta: 'Bíceps — só depois de todas as costas do dia.',
+    type: 'lift', label: 'Bi-Set 2',
+    title: 'Rosca Direta com Halteres ↔ Abdominal Supra no chão', duration: '3x · descanso 60s',
+    meta: 'Bíceps + core — bíceps só depois de todas as costas do dia. Ancorado no mesmo canto/colchonete.',
     exercises: [
       { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos fixos ao lado do corpo, suba os halteres sem balançar o tronco e desça controlando.', video: V.roscaDireta },
-    ]
-  },
-  {
-    type: 'lift', label: 'Exercício 6 · Core',
-    title: 'Abdominal Supra no chão', duration: '3x15-20 · descanso 30-45s',
-    meta: 'Core — fecha o dia.',
-    exercises: [
       { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3x15-20', equipment: 'Colchonete', tip: 'Deitada, joelhos flexionados, suba o tronco com o abdômen sem puxar o pescoço com as mãos. Desça controlando sem relaxar totalmente no chão.', video: V.abdomSupra },
     ]
   },
