@@ -662,6 +662,60 @@ const TREINO_B = [
   RELAX_FINAL,
 ];
 
+// ─── Treino Único — FERIADO (full-body, sessão avulsa pra treinar por conta) — mix A+B enxuto em bi-sets ───
+const TREINO_UNICO = [
+  AQUEC_ARTICULAR,
+  AQUEC_MUSCULAR_A,
+  MOBILIDADE_A,
+  {
+    type: 'lift', label: 'Solo · Pirâmide',
+    title: 'Agachamento com Halter na Frente', duration: '4x 12·10·8·6 · descanso 90-120s',
+    meta: 'Básico pesado SOLO pra abrir. Pirâmide crescente — sobe a carga e cai a repetição a cada série. Quadríceps e glúteo.',
+    exercises: [
+      { name: 'Agachamento com Halter na Frente', muscle: 'Quadríceps / Glúteos', duration: '4x 12·10·8·6', equipment: 'Halter (ou peso do corpo)', tip: 'Segure um halter na vertical à frente do peito, cotovelos pra baixo. Pés na largura dos ombros, desce controlando até ~90° no joelho com o tronco ereto e o abdômen firme, sobe empurrando pelo calcanhar. Aumente a carga a cada série (última é a mais pesada, sempre com técnica). Sem carga: peso do corpo.', video: V.agachHalterFrente },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 1',
+    title: 'Supino Reto com Halteres ↔ Remada Curvada com Halteres', duration: '3x12 · descanso 60-90s',
+    meta: 'Peito (empurra) ↔ costas (puxa), antagonistas — halteres no mesmo canto, sem trocar de estação.',
+    exercises: [
+      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '3x12', equipment: 'Halteres + banco (ou flexão)', tip: 'Deite no banco, desça os halteres à linha do peito e empurre controlando, pés firmes no chão. Sem banco: flexão de braço no solo (joelhos apoiados se precisar).', video: V.supinoHalter },
+      { name: 'Remada Curvada com Halteres', muscle: 'Costas (dorsal)', duration: '3x12', equipment: 'Halteres', tip: 'Tronco inclinado à frente com a coluna neutra, puxe os halteres em direção à cintura fechando as escápulas, sem girar o tronco.', video: V.remadaCurvada },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 2',
+    title: 'Desenvolvimento com Halteres ↔ Stiff com Halteres', duration: '3x12 · descanso 60-90s',
+    meta: 'Ombro (MMSS) ↔ posterior de coxa/glúteo (MMII), alternando segmento. Ombro entra depois do peito.',
+    exercises: [
+      { name: 'Desenvolvimento com Halteres', muscle: 'Ombros', duration: '3x12', equipment: 'Halteres (+ banco)', tip: 'Sentada com apoio nas costas, empurre os halteres pra cima sem travar o cotovelo e sem arquear a lombar.', video: V.desenvNeutro },
+      { name: 'Stiff com Halteres', muscle: 'Posterior de coxa / Glúteos', duration: '3x12', equipment: 'Halteres', tip: 'Joelhos levemente flexionados, empurre o quadril pra trás descendo os halteres rente às pernas com a coluna neutra (não arredonda a lombar). Sente o posterior alongar e volte contraindo o glúteo.', video: V.stiffHalter },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 3',
+    title: 'Tríceps Testa com Halteres ↔ Rosca Direta com Halteres', duration: '3x12 · descanso 60s',
+    meta: 'Tríceps ↔ bíceps, antagonistas de braço — braço só depois de peito, ombro e costas. Ancorado no mesmo canto.',
+    exercises: [
+      { name: 'Tríceps Testa com Halteres', muscle: 'Tríceps', duration: '3x12', equipment: 'Halteres + banco', tip: 'Deitada no banco, halteres acima do peito, cotovelos apontando pro teto. Desça os halteres em direção à testa flexionando só o cotovelo e estenda de volta.', video: V.tricepsTestaHalter },
+      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos fixos ao lado do corpo, suba os halteres sem balançar o tronco e desça controlando.', video: V.roscaDireta },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 4 · Glúteo (ênfase)',
+    title: 'Elevação Pélvica na Cadeira ↔ Prancha', duration: '3x · descanso 60s',
+    meta: 'Glúteo com carga sobre o quadril ↔ core — fecha o dia. Ancorado no mesmo banco/colchonete.',
+    exercises: [
+      { name: 'Elevação Pélvica na Cadeira', muscle: 'Glúteos', duration: '3x 12·10·8', equipment: 'Banco + halter/barra sobre o quadril', tip: 'Costas apoiadas na borda de um banco, pés no chão na largura do quadril. Apoie um halter/barra sobre o quadril, suba empurrando pelo calcanhar e contraia forte o glúteo no topo. Desça controlando. Sem banco/carga: ponte de glúteo no solo, mais repetições.', video: V.elevPelvicaCadeira },
+      { name: 'Prancha', muscle: 'Core / Abdômen', duration: '3x 30-45s', equipment: 'Colchonete', tip: 'Antebraços e pontas dos pés no chão, corpo em linha reta, abdômen e glúteo firmes. Não deixe o quadril cair. Respire.', video: V.prancha },
+    ]
+  },
+  CARDIO_LUCIANA,
+  ALONG_FINAL_A,
+  RELAX_FINAL,
+];
+
 
 
 // ─── Dynamic week dates ───
@@ -695,8 +749,7 @@ function buildWeek() {
 }
 
 const TRAINING_SLOTS = [
-  { label: 'Treino A — Anteriores', blocks: TREINO_A },
-  { label: 'Treino B — Posteriores', blocks: TREINO_B },
+  { label: 'Treino Único — Feriado', blocks: TREINO_UNICO },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 const DAY_CONFIG_KEY = 'maxresults-luciana-days-v2';
@@ -719,12 +772,11 @@ function buildSchedule() {
   });
 }
 
-// ─── Data única: Terça, 08/09/2026 — Treino A e B ancorados nesta data (sem grade semanal) ───
+// ─── Data única: Terça, 08/09/2026 — Treino Único (feriado, sessão avulsa) ───
 const DATA_UNICA = '2026-09-08';
 let WEEK_SCHEDULE = TRAINING_SLOTS.map(slot => ({ dayName: 'Ter', rest: false, label: slot.label, blocks: slot.blocks }));
 let WEEK = [
-  { day: 'Treino A', date: DATA_UNICA, num: 8, rest: false, label: 'Treino A — Anteriores', blocks: TREINO_A },
-  { day: 'Treino B', date: DATA_UNICA, num: 8, rest: false, label: 'Treino B — Posteriores', blocks: TREINO_B },
+  { day: 'Ter', date: DATA_UNICA, num: 8, rest: false, label: 'Treino Único — Feriado', blocks: TREINO_UNICO },
 ];
 
 // Dynamic storage key based on current week
