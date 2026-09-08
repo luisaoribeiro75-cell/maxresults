@@ -641,11 +641,11 @@ const TREINO_B = [
   },
   {
     type: 'lift', label: 'Bi-Set 1 · Glúteo (ênfase)',
-    title: 'Remada Curvada com Halteres ↔ Agachamento Búlgaro com Carga', duration: '3x12 · descanso 60-90s',
-    meta: 'Costas (MMSS) ↔ glúteo/perna (MMII), alternando segmento — halteres no mesmo canto. Búlgaro reforça o glúteo (ênfase 2/3).',
+    title: 'Remada Curvada com Halteres ↔ Afundo com Halteres', duration: '3x12 · descanso 60-90s',
+    meta: 'Costas (MMSS) ↔ glúteo/perna (MMII), alternando segmento — halteres no mesmo canto. Afundo reforça o glúteo (ênfase 2/3).',
     exercises: [
       { name: 'Remada Curvada com Halteres', muscle: 'Costas (dorsal)', duration: '3x12', equipment: 'Halteres', tip: 'Tronco inclinado à frente com a coluna neutra, puxe os halteres em direção à cintura fechando as escápulas, sem girar o tronco.', video: V.remadaCurvada },
-      { name: 'Agachamento Búlgaro com Carga', muscle: 'Glúteos / Quadríceps', duration: '3x10-12 cada perna', equipment: 'Halteres + banco (pé de trás apoiado)', tip: 'Pé de trás apoiado no banco, um halter em cada mão. Desça controlado empurrando pelo calcanhar da frente, tronco levemente à frente pra pegar mais glúteo. Troque de perna.', video: V.bulgaroCarga },
+      { name: 'Afundo com Halteres', muscle: 'Glúteos / Quadríceps', duration: '3x10-12 cada perna', equipment: 'Halteres', tip: 'Um halter em cada mão, dê um passo à frente e desça o joelho de trás em direção ao chão sem encostar, tronco levemente à frente pra pegar mais glúteo. Empurre pelo calcanhar da frente pra voltar. Troque de perna.', video: V.afundoHalter },
     ]
   },
   {
@@ -719,8 +719,13 @@ function buildSchedule() {
   });
 }
 
-let WEEK_SCHEDULE = buildSchedule();
-let WEEK = buildWeek();
+// ─── Data única: Terça, 08/09/2026 — Treino A e B ancorados nesta data (sem grade semanal) ───
+const DATA_UNICA = '2026-09-08';
+let WEEK_SCHEDULE = TRAINING_SLOTS.map(slot => ({ dayName: 'Ter', rest: false, label: slot.label, blocks: slot.blocks }));
+let WEEK = [
+  { day: 'Treino A', date: DATA_UNICA, num: 8, rest: false, label: 'Treino A — Anteriores', blocks: TREINO_A },
+  { day: 'Treino B', date: DATA_UNICA, num: 8, rest: false, label: 'Treino B — Posteriores', blocks: TREINO_B },
+];
 
 // Dynamic storage key based on current week
 function getWeekKey() {
@@ -759,8 +764,8 @@ function renderWeekGoal() {
 function renderDaySwitcher() {
   document.getElementById('daySwitcher').innerHTML = WEEK.map((d, i) => {
     const cl = ['day-btn']; if (i === currentDayIndex) cl.push('active'); if (d.rest) cl.push('rest'); if (!d.rest && (isDayComplete(i) || isWorkoutFinished(i))) cl.push('completed-day');
-    return `<button class="${cl.join(' ')}" ${d.rest?'disabled':''} onclick="selectDay(${i})">${d.day}<span class="day-num">${d.num}</span></button>`;
-  }).join('') + `<button class="day-config-btn" onclick="openDayModal()" title="Alterar dias de treino">⚙️</button>`;
+    return `<button class="${cl.join(' ')}" ${d.rest?'disabled':''} onclick="selectDay(${i})">${d.day}<span class="day-num">${d.num}/09</span></button>`;
+  }).join('');
 }
 
 function renderWorkout() {
