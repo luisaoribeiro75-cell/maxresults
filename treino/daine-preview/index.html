@@ -330,7 +330,7 @@
   <div class="day-modal-overlay" id="dayModal">
     <div class="day-modal">
       <h3>⚙️ Dias de Treino</h3>
-      <p>Escolha 3 dias para treinar esta semana</p>
+      <p>Escolha 4 dias para treinar esta semana</p>
       <div id="dayOptions"></div>
       <div class="day-modal-actions">
         <button class="cancel-btn" onclick="closeDayModal()">Cancelar</button>
@@ -342,7 +342,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">PREVIEW Renovação Mix#5 &middot; Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 13/07/2026</footer>
+  <footer class="footer">PREVIEW Mix#6 &middot; 4x/semana &middot; Metodologia MaxResults &middot; Luisão Ribeiro<br>Ajuste 4x/sem em 15/09/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -353,7 +353,7 @@
 const ATHLETE = 'Daíne';
 
 const WEEKLY_GOALS = [
-  { icon: '🏋️', type: 'strength', text: '<strong>Mix#6 (renovação ago/26):</strong> 3x/sem, FOCO EM FORÇA — cargas mais desafiadoras, 9 a 12 repetições, pra RECUPERAR massa magra. Chega de treino de resistência (repetição alta). Menos mobilidade, mais exercício de força.' },
+  { icon: '🏋️', type: 'strength', text: '<strong>Mix#6 (renovação ago/26 · agora 4x/sem):</strong> 4x/sem, FOCO EM FORÇA — cargas mais desafiadoras, 9 a 12 repetições, pra RECUPERAR massa magra. Chega de treino de resistência (repetição alta). Menos mobilidade, mais exercício de força.' },
   { icon: '💊', type: 'assessment', text: '<strong>Nutrição / energia:</strong> não treinar em jejum longo, hidratar bem; se sentir tontura, náusea ou fadiga, reduzir o volume e avisar o Luisão' },
   { icon: '💪', type: 'strength', text: '<strong>Estratégia (Mounjaro):</strong> como o Mounjaro já cuida do emagrecimento, o foco agora é FORÇA pra RECUPERAR massa magra. Por isso tiramos o aeróbico do fim e o tempo virou mais força. O cardio a gente controla por fora.' },
   { icon: '🥩', type: 'assessment', text: '<strong>Proteína importa (leia!):</strong> parte da massa magra caiu por proteína baixa na dieta. Pra o treino de força funcionar, precisamos corrigir a alimentação — alvo de proteína ~1,6 g por kg de peso/dia. Alinhe com a nutricionista.' },
@@ -664,6 +664,42 @@ const TREINO_C = [
   RELAX_FINAL,
 ];
 
+// ─── Treino D — Full Body 4 (Mix#6 · 4x/sem) ───
+const TREINO_D = [
+  AQUEC_ARTICULAR,
+  MOBILIDADE_LOMBAR,
+  {
+    type: 'lift', label: 'Circuito 1',
+    title: 'Leg Press 45° → Remada Unilateral com Halteres → Prancha', duration: '3-4 séries · 9-12 reps · descanso 60-90s entre as voltas',
+    meta: '1ª volta com carga leve pra aquecer o movimento. Foco em FORÇA: 9-12 reps com carga desafiadora (recuperar massa magra). Descanso 60-90s entre as voltas. Perna na máquina, costas nos halteres, core — zero carga na coluna.',
+    exercises: [
+      { name: 'Leg Press 45°', muscle: 'Quadríceps / Glúteos', duration: '3-4x9-12', equipment: 'Máquina Leg Press', tip: 'Costas e lombar 100% apoiadas. Empurra pelo calcanhar, sem travar o joelho. Amplitude confortável, sem descer demais.', video: V.legPress },
+      { name: 'Remada Unilateral com Halteres', muscle: 'Costas (dorsal)', duration: '3-4x9-12 cada lado', equipment: 'Halteres + banco', tip: 'Um joelho e uma mão no banco, coluna neutra. Puxa o halter à cintura fechando a escápula. Troca de lado.', video: V.remadaUniHalter },
+      { name: 'Prancha', muscle: 'Core', duration: '3-4x 30-40s', equipment: 'Colchonete', tip: 'Cotovelos no chão, corpo alinhado, abdômen firme. Fecha a volta.', video: V.prancha },
+    ]
+  },
+  {
+    type: 'lift', label: 'Circuito 2',
+    title: 'Cadeira Flexora → Desenvolvimento Halteres → Abdominal', duration: '3-4 séries · 9-12 reps · descanso 60-90s entre as voltas',
+    meta: 'Posterior de coxa na máquina, ombro nos halteres, core. 9-12 reps com carga desafiadora, descanso 60-90s entre as voltas.',
+    exercises: [
+      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3-4x9-12', equipment: 'Máquina flexora', tip: 'Controle a excêntrica, quadril no banco.', video: V.cadeiraFlexora },
+      { name: 'Desenvolvimento com Halteres (Neutro)', muscle: 'Ombros', duration: '3-4x9-12', equipment: 'Halteres + banco', tip: 'Sentada com apoio nas costas, pegada neutra, empurra sem travar o cotovelo.', video: V.desenvNeutro },
+      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3-4x9-12', equipment: 'Colchonete', tip: 'Sobe só o suficiente pra contrair. Sem forçar a lombar.', video: V.abdomSupra },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 3',
+    title: 'Abdução em Pé (Caneleira) ↔ Rosca Direta Halteres', duration: '3-4 séries · 9-12 reps · descanso 60-90s entre as voltas',
+    meta: 'Foco glúteo médio emendado com bíceps (perna e superior alternam). Descanso 60-90s entre as voltas (9-12 reps, foco força).',
+    exercises: [
+      { name: 'Abdução de Pernas em Pé (Caneleira)', muscle: 'Glúteo médio / Abdutores', duration: '3-4x9-12 cada lado', equipment: 'Caneleira (em pé, com apoio)', tip: 'Em pé, caneleira no tornozelo, segura num apoio (parede/máquina). Abre a perna pro lado contraindo o glúteo médio, sem inclinar o tronco. Troca de lado.', video: V.abducaoPeCaneleira },
+      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3-4x9-12', equipment: 'Halteres', tip: 'Cotovelos fixos ao lado do corpo, sobe sem balançar o tronco.', video: V.roscaDireta },
+    ]
+  },
+  RELAX_FINAL,
+];
+
 // ─── Dynamic week dates ───
 function getMonday(d) {
   const dt = new Date(d);
@@ -695,13 +731,14 @@ function buildWeek() {
 }
 
 const TRAINING_SLOTS = [
-  { label: 'Treino A — Metabólico Full Body 1', blocks: TREINO_A },
-  { label: 'Treino B — Metabólico Full Body 2', blocks: TREINO_B },
-  { label: 'Treino C — Metabólico Full Body 3', blocks: TREINO_C },
+  { label: 'Treino A — Full Body 1', blocks: TREINO_A },
+  { label: 'Treino B — Full Body 2', blocks: TREINO_B },
+  { label: 'Treino C — Full Body 3', blocks: TREINO_C },
+  { label: 'Treino D — Full Body 4', blocks: TREINO_D },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-const DAY_CONFIG_KEY = 'maxresults-daine-preview-days-v1';
-const DEFAULT_DAYS = ['Ter', 'Qui', 'Sáb'];
+const DAY_CONFIG_KEY = 'maxresults-daine-preview-days-v2';
+const DEFAULT_DAYS = ['Seg', 'Ter', 'Qui', 'Sex'];
 
 function loadDayConfig() {
   try { return JSON.parse(localStorage.getItem(DAY_CONFIG_KEY)) || DEFAULT_DAYS; }
@@ -915,13 +952,13 @@ function closeDayModal() { document.getElementById('dayModal').classList.remove(
 function limitDaySelection() {
   const checked = document.querySelectorAll('#dayOptions input:checked');
   const unchecked = document.querySelectorAll('#dayOptions input:not(:checked)');
-  unchecked.forEach(cb => cb.disabled = checked.length >= 3);
+  unchecked.forEach(cb => cb.disabled = checked.length >= 4);
 }
 
 function saveDayConfig() {
   const checked = [...document.querySelectorAll('#dayOptions input:checked')].map(cb => cb.value);
   if (checked.length < 1) { alert('Selecione pelo menos 1 dia!'); return; }
-  if (checked.length > 3) { alert('Máximo 3 dias!'); return; }
+  if (checked.length > 4) { alert('Máximo 4 dias!'); return; }
   localStorage.setItem(DAY_CONFIG_KEY, JSON.stringify(checked));
   WEEK_SCHEDULE = buildSchedule();
   WEEK = buildWeek();
