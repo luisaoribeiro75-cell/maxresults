@@ -320,8 +320,6 @@
   </div>
   <button class="week-toggle" id="weekToggle">Ver semana completa<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="week-overview" id="weekOverview"></div>
-  <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
-  <div class="assess-panel" id="assessPanel"></div>
   <footer class="footer">Treino Ricardo Gomes &middot; Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 23/09/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
@@ -1178,7 +1176,7 @@ function renderEvolution(assessments) {
 }
 
 if (ASSESSMENT) { document.getElementById('assessPanel').innerHTML = renderAssessment(ASSESSMENT) + renderEvolution(ASSESSMENTS); } else { var _at=document.getElementById('assessToggle'); if(_at) _at.style.display='none'; var _ap=document.getElementById('assessPanel'); if(_ap) _ap.innerHTML=''; }
-document.getElementById('assessToggle').addEventListener('click', function() { this.classList.toggle('open'); document.getElementById('assessPanel').classList.toggle('open'); });
+var _atg=document.getElementById('assessToggle'); if(_atg){ _atg.addEventListener('click', function(){ this.classList.toggle('open'); var _p=document.getElementById('assessPanel'); if(_p) _p.classList.toggle('open'); }); }
 
 // ─── Session Timer ───
 const TIMER_KEY = 'maxresults-ricardo-gomes-timer-v1';
