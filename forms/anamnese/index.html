@@ -503,8 +503,9 @@
       </div>
 
       <div class="field">
-        <label>E-mail</label>
-        <input type="email" name="email" placeholder="seu@email.com">
+        <label>E-mail <span class="required">*</span></label>
+        <div class="hint">É por aqui que chegam o link do seu treino e os avisos</div>
+        <input type="email" name="email" required placeholder="seu@email.com">
       </div>
     </div>
 
@@ -575,22 +576,22 @@
         <label>Modalidades de interesse</label>
         <div class="hint">Marque as modalidades que você quer incluir no treino</div>
         <div class="checkbox-group">
-          <label class="checkbox-option" onclick="toggleCheckbox(this)">
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
             <input type="checkbox" name="modalidade_musculacao" value="Musculação">
             <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
             <span class="option-text">Musculação</span>
           </label>
-          <label class="checkbox-option" onclick="toggleCheckbox(this)">
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
             <input type="checkbox" name="modalidade_lpo" value="LPO">
             <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
             <span class="option-text">LPO (Levantamento Olímpico)</span>
           </label>
-          <label class="checkbox-option" onclick="toggleCheckbox(this)">
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
             <input type="checkbox" name="modalidade_powerlifting" value="Powerlifting">
             <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
             <span class="option-text">Powerlifting</span>
           </label>
-          <label class="checkbox-option" onclick="toggleCheckbox(this)">
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
             <input type="checkbox" name="modalidade_strongman" value="Strongman">
             <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
             <span class="option-text">Strongman</span>
@@ -603,25 +604,20 @@
         <label>Preferência de Cardio (aulas MaxResults)</label>
         <div class="hint">Marque as aulas que você mais gosta</div>
         <div class="checkbox-group">
-          <label class="checkbox-option" onclick="toggleCheckbox(this)">
-            <input type="checkbox" name="cardio_maxstep" value="MaxStep">
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+            <input type="checkbox" name="cardio_maxstep" value="Max Step">
             <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
-            <span class="option-text">MaxStep</span>
+            <span class="option-text">Max Step</span>
           </label>
-          <label class="checkbox-option" onclick="toggleCheckbox(this)">
-            <input type="checkbox" name="cardio_maxfight" value="MaxFight">
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+            <input type="checkbox" name="cardio_maxfight" value="Max Combat">
             <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
-            <span class="option-text">MaxFight</span>
+            <span class="option-text">Max Combat</span>
           </label>
-          <label class="checkbox-option" onclick="toggleCheckbox(this)">
-            <input type="checkbox" name="cardio_maxcicle" value="MaxCicle">
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+            <input type="checkbox" name="cardio_maxcicle" value="Max Cycle">
             <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
-            <span class="option-text">MaxCicle</span>
-          </label>
-          <label class="checkbox-option" onclick="toggleCheckbox(this)">
-            <input type="checkbox" name="cardio_maxjump" value="MaxJump">
-            <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
-            <span class="option-text">MaxJump</span>
+            <span class="option-text">Max Cycle</span>
           </label>
         </div>
       </div>
@@ -637,6 +633,27 @@
     <!-- ROTINA DE TREINO -->
     <div class="section">
       <div class="section-title">🏋️ Rotina de Treino</div>
+
+      <div class="field" data-req="perfil">
+        <label>Que tipo de treino você quer? <span class="required">*</span></label>
+        <div class="radio-group" data-name="perfil">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="perfil" value="Mix: musculação + aulas">
+            <span class="radio-dot"></span>
+            <span class="option-text">Mix: musculação + aulas (MaxLift, Step, Cycle, Combat)</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="perfil" value="Só musculação">
+            <span class="radio-dot"></span>
+            <span class="option-text">Só musculação</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="perfil" value="Só aulas">
+            <span class="radio-dot"></span>
+            <span class="option-text">Só aulas (MaxLift, Step, Cycle, Combat)</span>
+          </label>
+        </div>
+      </div>
 
       <div class="field">
         <label>Quantas vezes por semana pode treinar? <span class="required">*</span></label>
@@ -717,6 +734,43 @@
       </div>
 
       <div class="field">
+        <label>Que equipamento você tem fora da academia?</label>
+        <div class="hint">Se treina só na academia, pode pular</div>
+        <div class="checkbox-group">
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+            <input type="checkbox" name="equip_halteres" value="Halteres">
+            <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            <span class="option-text">Halteres</span>
+          </label>
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+            <input type="checkbox" name="equip_barra" value="Barra e anilhas">
+            <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            <span class="option-text">Barra e anilhas</span>
+          </label>
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+            <input type="checkbox" name="equip_step" value="Step">
+            <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            <span class="option-text">Step</span>
+          </label>
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+            <input type="checkbox" name="equip_bike" value="Bike (ergométrica ou spinning)">
+            <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            <span class="option-text">Bike (ergométrica ou spinning)</span>
+          </label>
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+            <input type="checkbox" name="equip_elastico" value="Elástico / faixa">
+            <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            <span class="option-text">Elástico / faixa</span>
+          </label>
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+            <input type="checkbox" name="equip_nenhum" value="Nenhum">
+            <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            <span class="option-text">Nenhum</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
         <label>Intensidade desejada</label>
         <div class="radio-group" data-name="intensidade">
           <label class="radio-option" onclick="selectRadio(this)">
@@ -746,19 +800,19 @@
             <span class="option-text">Nunca treinei</span>
           </label>
           <label class="radio-option" onclick="selectRadio(this)">
-            <input type="radio" name="experiencia" value="Iniciante (menos de 6 meses)">
+            <input type="radio" name="experiencia" value="Iniciante (menos de 3 meses)">
             <span class="radio-dot"></span>
-            <span class="option-text">Iniciante (menos de 6 meses)</span>
+            <span class="option-text">Iniciante (menos de 3 meses)</span>
           </label>
           <label class="radio-option" onclick="selectRadio(this)">
-            <input type="radio" name="experiencia" value="Intermediário (6 meses a 2 anos)">
+            <input type="radio" name="experiencia" value="Intermediário (3 meses a 1 ano)">
             <span class="radio-dot"></span>
-            <span class="option-text">Intermediário (6 meses a 2 anos)</span>
+            <span class="option-text">Intermediário (3 meses a 1 ano)</span>
           </label>
           <label class="radio-option" onclick="selectRadio(this)">
-            <input type="radio" name="experiencia" value="Avançado (2+ anos)">
+            <input type="radio" name="experiencia" value="Avançado (mais de 1 ano)">
             <span class="radio-dot"></span>
-            <span class="option-text">Avançado (2+ anos)</span>
+            <span class="option-text">Avançado (mais de 1 ano)</span>
           </label>
         </div>
       </div>
@@ -787,6 +841,158 @@
       <div class="field" id="lesaoDetalhe" style="display:none">
         <label>Descreva a lesão/dor/restrição</label>
         <textarea name="lesao_detalhe" placeholder="Ex: Dor no joelho direito, hérnia de disco, tendinite no ombro..."></textarea>
+      </div>
+
+      <div class="field" data-req="remedio">
+        <label>Toma algum remédio de uso contínuo? <span class="required">*</span></label>
+        <div class="radio-group" data-name="remedio">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="remedio" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="remedio" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" id="remedioDetalhe" style="display:none">
+        <label>Quais remédios?</label>
+        <textarea name="remedio_detalhe" placeholder="Nome e para que serve. Ex: remédio de pressão, tireoide, diabetes..."></textarea>
+      </div>
+
+      <div class="field" data-req="remedio_emagrecer">
+        <label>Está em tratamento com remédio para emagrecer? <span class="required">*</span></label>
+        <div class="hint">Injeção semanal ou comprimido receitado pelo médico. Isso muda a forma de montar o seu treino, para você perder gordura sem perder músculo.</div>
+        <div class="radio-group" data-name="remedio_emagrecer">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="remedio_emagrecer" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="remedio_emagrecer" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" id="gravidaField" style="display:none">
+        <label>Está grávida ou teve bebê nos últimos 6 meses?</label>
+        <div class="radio-group" data-name="gravida">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="gravida" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="gravida" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="hint" style="margin:18px 0 10px">Questionário de prontidão para atividade física (PAR-Q). Responda com sinceridade: qualquer "sim" pede liberação do seu médico antes de começar.</div>
+
+      <div class="field" data-req="parq_cardiaco">
+        <label>Algum médico já disse que você tem problema no coração e que só deveria fazer atividade física com orientação médica? <span class="required">*</span></label>
+        <div class="radio-group" data-name="parq_cardiaco">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_cardiaco" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_cardiaco" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" data-req="parq_dor_exercicio">
+        <label>Você sente dor no peito quando faz atividade física? <span class="required">*</span></label>
+        <div class="radio-group" data-name="parq_dor_exercicio">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_dor_exercicio" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_dor_exercicio" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" data-req="parq_dor_repouso">
+        <label>No último mês, sentiu dor no peito sem estar fazendo atividade física? <span class="required">*</span></label>
+        <div class="radio-group" data-name="parq_dor_repouso">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_dor_repouso" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_dor_repouso" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" data-req="parq_tontura">
+        <label>Já perdeu o equilíbrio por tontura ou perdeu a consciência? <span class="required">*</span></label>
+        <div class="radio-group" data-name="parq_tontura">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_tontura" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_tontura" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" data-req="parq_pressao">
+        <label>Toma remédio para pressão arterial ou para o coração? <span class="required">*</span></label>
+        <div class="radio-group" data-name="parq_pressao">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_pressao" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_pressao" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" data-req="parq_outra_razao">
+        <label>Sabe de alguma outra razão pela qual não deveria fazer atividade física? <span class="required">*</span></label>
+        <div class="radio-group" data-name="parq_outra_razao">
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_outra_razao" value="Sim">
+            <span class="radio-dot"></span>
+            <span class="option-text">Sim</span>
+          </label>
+          <label class="radio-option" onclick="selectRadio(this)">
+            <input type="radio" name="parq_outra_razao" value="Não">
+            <span class="radio-dot"></span>
+            <span class="option-text">Não</span>
+          </label>
+        </div>
       </div>
 
       <div class="field">
@@ -852,6 +1058,16 @@
       </div>
     </div>
 
+    <div class="section">
+      <div class="checkbox-group" data-req="veracidade">
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+            <input type="checkbox" name="veracidade" value="Sim">
+            <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            <span class="option-text">Declaro que as informações acima são verdadeiras <span class="required">*</span></span>
+          </label>
+      </div>
+    </div>
+
     <button type="submit" class="submit-btn" id="submitBtn">
       Enviar Anamnese 📨
       <div class="btn-sub">Suas respostas serão enviadas para o Luisão</div>
@@ -883,6 +1099,16 @@ function selectRadio(el) {
     detail.style.display = el.querySelector('input').value === 'Sim' ? 'block' : 'none';
   }
 
+  // Show/hide detalhe do remédio
+  if (el.querySelector('input[name="remedio"]')) {
+    document.getElementById('remedioDetalhe').style.display = el.querySelector('input').value === 'Sim' ? 'block' : 'none';
+  }
+
+  // Gravidez só aparece para gênero feminino
+  if (el.querySelector('input[name="genero"]')) {
+    document.getElementById('gravidaField').style.display = el.querySelector('input').value === 'Feminino' ? 'block' : 'none';
+  }
+
   // Show/hide conditional fields based on objetivo
   if (el.querySelector('input[name="objetivo"]')) {
     updateConditionalFields(el.querySelector('input').value);
@@ -891,10 +1117,13 @@ function selectRadio(el) {
   updateProgress();
 }
 
-function toggleCheckbox(el) {
+function toggleCheckbox(e, el) {
+  // Impede o toggle nativo do label (evita duplo-toggle; mesmo fix do form de renovação)
+  if (e) e.preventDefault();
   el.classList.toggle('selected');
   const input = el.querySelector('input[type="checkbox"]');
-  input.checked = !input.checked;
+  input.checked = el.classList.contains('selected');
+  updateProgress();
 }
 
 function updateConditionalFields(objetivo) {
@@ -922,9 +1151,12 @@ function updateConditionalFields(objetivo) {
   }
 }
 
+const PARQ = ['parq_cardiaco', 'parq_dor_exercicio', 'parq_dor_repouso', 'parq_tontura', 'parq_pressao', 'parq_outra_razao'];
+const REQUIRED_RADIOS = ['objetivo', 'perfil', 'frequencia', 'lesao', 'remedio', 'remedio_emagrecer'].concat(PARQ);
+
 function updateProgress() {
   const fields = document.querySelectorAll('input[required], select[required]');
-  const radios = ['objetivo', 'frequencia', 'lesao'];
+  const radios = REQUIRED_RADIOS;
   let filled = 0;
   let total = fields.length + radios.length;
 
@@ -946,6 +1178,16 @@ document.querySelectorAll('input, textarea, select').forEach(el => {
 
 document.getElementById('anamneseForm').addEventListener('submit', function(e) {
   e.preventDefault();
+
+  // Campos obrigatórios que o navegador não confere sozinho (grupos de opção + declaração)
+  const faltando = REQUIRED_RADIOS.filter(n => !document.querySelector(`input[name="${n}"]:checked`));
+  if (!document.querySelector('input[name="veracidade"]').checked) faltando.push('veracidade');
+  if (faltando.length) {
+    const alvo = document.querySelector(`[data-req="${faltando[0]}"]`) || document.querySelector(`[data-name="${faltando[0]}"]`);
+    if (alvo) { alvo.scrollIntoView({ behavior: 'smooth', block: 'center' }); alvo.style.outline = '2px solid #e5484d'; alvo.style.borderRadius = '8px'; setTimeout(() => { alvo.style.outline = ''; }, 4000); }
+    alert('Falta responder uma pergunta obrigatória (marcada em vermelho).');
+    return;
+  }
 
   const fd = new FormData(this);
   const data = {};
@@ -979,10 +1221,9 @@ document.getElementById('anamneseForm').addEventListener('submit', function(e) {
 
   // Add cardio preferences if selected
   const cardio = [];
-  if (data.cardio_maxstep) cardio.push('MaxStep');
-  if (data.cardio_maxfight) cardio.push('MaxFight');
-  if (data.cardio_maxcicle) cardio.push('MaxCicle');
-  if (data.cardio_maxjump) cardio.push('MaxJump');
+  if (data.cardio_maxstep) cardio.push('Max Step');
+  if (data.cardio_maxfight) cardio.push('Max Combat');
+  if (data.cardio_maxcicle) cardio.push('Max Cycle');
   if (cardio.length > 0) {
     msg += `*Preferência Cardio:* ${cardio.join(', ')}\n`;
   }
@@ -995,9 +1236,12 @@ document.getElementById('anamneseForm').addEventListener('submit', function(e) {
   msg += '\n';
 
   msg += '🏋️ *ROTINA*\n';
+  msg += `*Tipo de treino (perfil):* ${data.perfil || '—'}\n`;
   msg += `*Frequência:* ${data.frequencia || '—'}\n`;
   msg += `*Tempo/treino:* ${data.tempo || '—'}\n`;
   msg += `*Local:* ${data.local || '—'}\n`;
+  const equip = [['equip_halteres','Halteres'],['equip_barra','Barra e anilhas'],['equip_step','Step'],['equip_bike','Bike'],['equip_elastico','Elástico'],['equip_nenhum','Nenhum']].filter(([k]) => data[k]).map(([, v]) => v);
+  msg += `*Equipamento fora da academia:* ${equip.length ? equip.join(', ') : '—'}\n`;
   msg += `*Intensidade:* ${data.intensidade || '—'}\n`;
   msg += `*Experiência:* ${data.experiencia || '—'}\n\n`;
 
@@ -1005,6 +1249,16 @@ document.getElementById('anamneseForm').addEventListener('submit', function(e) {
   msg += `*Lesão/restrição:* ${data.lesao || '—'}`;
   if (data.lesao_detalhe) msg += ` — ${data.lesao_detalhe}`;
   msg += '\n';
+  msg += `*Remédio contínuo:* ${data.remedio || '—'}`;
+  if (data.remedio_detalhe) msg += ` — ${data.remedio_detalhe}`;
+  msg += '\n';
+  msg += `*Remédio para emagrecer:* ${data.remedio_emagrecer || '—'}`;
+  if (data.remedio_emagrecer === 'Sim') msg += ' ⚠️ Regra 21: parar e perguntar ao Luisão';
+  msg += '\n';
+  if (data.gravida) msg += `*Grávida / bebê há menos de 6 meses:* ${data.gravida}${data.gravida === 'Sim' ? ' ⚠️ sempre pergunta' : ''}\n`;
+  const PARQ_TXT = { parq_cardiaco: 'problema cardíaco', parq_dor_exercicio: 'dor no peito no exercício', parq_dor_repouso: 'dor no peito em repouso', parq_tontura: 'tontura/desmaio', parq_pressao: 'remédio de pressão/coração', parq_outra_razao: 'outra razão' };
+  const parqSim = PARQ.filter(n => data[n] === 'Sim').map(n => PARQ_TXT[n]);
+  msg += `*PAR-Q:* ${parqSim.length ? '⚠️ POSITIVO (' + parqSim.join(', ') + ') — exige liberação médica antes do treino' : 'todas as respostas Não'}\n`;
   msg += `*Exercício difícil:* ${data.exercicio_dificuldade || '—'}\n`;
   msg += `*Nutricionista:* ${data.nutricionista || '—'}\n`;
   msg += `*Estresse:* ${data.estresse}\n\n`;
@@ -1013,6 +1267,7 @@ document.getElementById('anamneseForm').addEventListener('submit', function(e) {
   msg += `*Motivacional:* ${data.motivacional || '—'}\n`;
   msg += `*Música:* ${data.musica || '—'}\n`;
   if (data.observacoes) msg += `*Obs:* ${data.observacoes}\n`;
+  msg += `\n*Declarou veracidade:* ${data.veracidade ? 'Sim' : 'Não'}\n`;
 
   // Send to Discord webhook (automatic)
   const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxVIwFvx1TpgvbEoI8jUDnY4pCRAKDaSwpxnsamHEyNuwEKumuqLYH1zby1C-jW-e6jaA/exec'; // planilha Google (fonte da verdade) — ela repassa pro Discord
