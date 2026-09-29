@@ -410,11 +410,10 @@ const AQUEC_MUSC_POST = {
 
 const AQUEC_MUSC_INF = {
   type: 'warmup', label: 'Aquecimento Muscular',
-  title: 'Agachamento + Extensora (leve)', duration: '2x15 cada',
+  title: 'Agachamento Livre (leve)', duration: '2x15',
   meta: 'Carga bem leve — aquecer pernas e joelhos',
   exercises: [
-    { name: 'Agachamento Livre', muscle: 'Quadríceps / Glúteos', duration: '2x15', equipment: 'Peso do corpo', tip: 'Sem carga — só aquecer. Desce controlando, joelhos alinhados com os pés.', video: V.agachLivre },
-    { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '2x15', equipment: 'Máquina extensora (leve)', tip: 'Carga bem leve — aquecer o joelho e o quadríceps. Sobe e desce controlando.', video: V.cadeiraExt },
+    { name: 'Agachamento Livre', muscle: 'Quadríceps / Glúteos', duration: '2x15', equipment: 'Peso do corpo', tip: 'Amplitude menor, com o objetivo de aquecer. Sem carga, desce controlando com os joelhos alinhados com os pés.', video: V.agachLivre },
   ]
 };
 
@@ -510,20 +509,20 @@ const TREINO_B = [
   MOBILIDADE,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Cadeira Flexora ↔ Remada Curvada com Halteres', duration: '3x12-15 · descanso 60s',
-    meta: 'Posterior de coxa e costas (MMII ↔ MMSS) — máquina + halteres ao lado',
+    title: 'Cadeira Flexora ↔ Remada Unilateral Serrote', duration: '3x12-15 · descanso 60s',
+    meta: 'Posterior de coxa e costas (MMII ↔ MMSS) — máquina + halter ao lado',
     exercises: [
       { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12-15', equipment: 'Máquina flexora', tip: 'Traz o calcanhar em direção ao glúteo controlando, segura 1s e volta devagar. Quadril firme no apoio.', video: V.cadeiraFlexora },
-      { name: 'Remada Curvada com Halteres (Pegada Neutra)', muscle: 'Costas', duration: '3x12', equipment: 'Halteres', tip: 'Tronco inclinado, coluna neutra, puxa os halteres à cintura sem girar o tronco. Fecha as escápulas.', video: V.remadaCurvadaHalter },
+      { name: 'Remada Unilateral Halteres - Pegada Pronada (Serrote)', muscle: 'Costas', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Mão e joelho no banco, tronco paralelo, puxa o halter à cintura com a palma virada pra trás. Troca de lado.', video: V.remadaUniPronada },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Abdução de Quadril Máquina ↔ Remada Unilateral Halteres', duration: '3x15 · descanso 60s',
+    title: 'Abdução de Quadril Máquina ↔ Puxada Aberta Barra Reta', duration: '3x15 · descanso 60s',
     meta: 'Glúteo médio + costas',
     exercises: [
       { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abre com controle e segura 1s no fim. Foco no glúteo.', video: V.abducaoMaq },
-      { name: 'Remada Unilateral Halteres - Pegada Neutra (Serrote)', muscle: 'Costas (dorsal)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Mão e joelho no banco, tronco paralelo ao chão, puxa o halter à cintura. Troca de lado.', video: V.remadaUniNeutra },
+      { name: 'Puxada Aberta Barra reta', muscle: 'Costas (dorsal)', duration: '3x12', equipment: 'Puxador (barra reta)', tip: 'Pegada aberta pronada, puxa a barra até a parte alta do peito abrindo as escápulas. Sobe controlando sem soltar.', video: V.puxadaAberta },
     ]
   },
   {
