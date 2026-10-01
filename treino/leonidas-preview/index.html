@@ -380,6 +380,7 @@ const V = {
   // — Cardio —
   esteira: 'https://vd.mfitpersonal.com.br/522/mp4/522.mp4',
   maxCicle: 'https://player.mediadelivery.net/play/655450/dcf2c03a-4a77-4012-8cc0-f9fe51782bd4',
+  bikeErgo: 'https://vd.mfitpersonal.com.br/518/mp4/518.mp4',
 };
 
 // ─── Shared blocks ───
@@ -442,12 +443,12 @@ const CARDIO_ESTEIRA = {
   ]
 };
 
-const CARDIO_MAXCICLE = {
-  type: 'cardio', label: 'Aula MaxResults',
-  title: 'MaxCicle', duration: '25-30 min',
-  meta: 'Aula de bike indoor no ritmo da música — cardio aeróbico que trabalha pernas e glúteo com baixo impacto (ótimo pra sua ênfase). Ritmo moderado e contínuo, no seu tempo.',
+const CARDIO_BIKE = {
+  type: 'cardio', label: 'Cardio Final',
+  title: 'Bicicleta Ergométrica', duration: '30 min',
+  meta: '30 min de bicicleta ergométrica pra fechar o treino — cardio aeróbico de baixo impacto que trabalha pernas e glúteo. A CARGA da bike é testada e ajustada presencialmente com o Luisão.',
   exercises: [
-    { name: 'MaxCicle', muscle: 'Cardiovascular / MMII', duration: '25-30 min', equipment: 'Bike indoor', tip: 'Aeróbico moderado: mantém a pedalada constante e confortável os 25-30 min — você tá começando, então NADA de sprint/explosão. Ajusta a carga da bike pra pedalar contínuo sem perder a postura. Se a aula pedir tiro ou ficar em pé, você segue sentado pedalando leve/moderado. O importante é completar o tempo no ritmo aeróbico.', video: V.maxCicle },
+    { name: 'Bicicleta', muscle: 'Cardiovascular / MMII', duration: '30 min', equipment: 'Bicicleta ergométrica', tip: 'Pedala contínuo por 30 min num ritmo firme e constante. A CARGA (resistência) a gente testa e ajusta junto, presencial — começa na carga que o Luisão definir e mantém a pedalada o tempo todo, sem parar. Sem sprint/explosão; é aeróbico constante.', video: V.bikeErgo },
   ]
 };
 
@@ -564,7 +565,7 @@ const TREINO_B = [
       { name: 'Abdominal Canivete', muscle: 'Core', duration: '3x12-15', equipment: 'Colchonete', tip: 'Deitado, sobe tronco e pernas ao mesmo tempo tocando as mãos nos pés. Desce controlando sem relaxar no chão.', video: V.abdomCanivete },
     ]
   },
-  CARDIO_MAXCICLE,
+  CARDIO_BIKE,
   ALONG_FINAL,
 ];
 
