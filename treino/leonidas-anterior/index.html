@@ -322,7 +322,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Treino Iniciante &middot; Anterior/Posterior &middot; Atualizado em 27/09/2026</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Treino Iniciante &middot; Gerado em 01/09/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -333,9 +333,9 @@
 const ATHLETE = 'Leônidas';
 
 const WEEKLY_GOALS = [
-  { icon: '🏋️', type: 'strength', text: '<strong>Treino:</strong> modelo <strong>Anterior / Posterior</strong> — Seg e Qui = Treino A (anterior), Ter e Sex = Treino B (posterior). Você tá começando: <strong>capricha na técnica e na execução</strong> antes de subir carga.' },
+  { icon: '🏋️', type: 'strength', text: '<strong>Treino:</strong> 5x/semana — 3 dias de perna/glúteo + 2 de superiores, 60min. Você tá começando: <strong>capricha na técnica e na execução</strong> antes de subir carga.' },
   { icon: '🦵', type: 'strength', text: '<strong>Ênfase:</strong> pernas e glúteo — o foco do seu treino de definição. A carga sobe aos poucos, no seu tempo.' },
-  { icon: '🏃', type: 'cardio', text: '<strong>Aeróbico:</strong> 25-30min ao fim de cada treino de musculação + <strong>2 dias só de aeróbico</strong>: Quarta na academia (esteira/bike) e Sábado <strong>caminhada no parque</strong>. Sempre ritmo <strong>moderado e contínuo</strong> (nada de tiro/explosão).' },
+  { icon: '🏃', type: 'cardio', text: '<strong>Cardio aeróbico:</strong> 25-30min ao fim de cada treino, ritmo <strong>moderado e contínuo</strong> (nada de tiro/explosão) — aula de <strong>MaxCicle</strong> (bike indoor) nos dias B e D, esteira inclinada nos dias A, C e E. Ajuda a definir e melhora o condicionamento.' },
   { icon: '💡', type: 'strength', text: '<strong>Carga:</strong> os campos são uma referência pra você anotar. Começa leve, aprende bem o movimento e sobe quando ficar fácil.' },
 ];
 
@@ -457,7 +457,7 @@ const ALONG_FINAL = {
   ]
 };
 
-// ─── Treino A — ANTERIOR (Quadríceps · Peito · Ombro · Tríceps · Panturrilha · Core) ───
+// ─── Treino A — INFERIORES (Quadríceps) + PEITO ───
 const TREINO_A = [
   AQUEC_ARTICULAR,
   AQUEC_MUSC_ANT,
@@ -473,29 +473,29 @@ const TREINO_A = [
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Extensora ↔ Desenvolvimento com Halteres', duration: '3x12-15 · descanso 60s',
-    meta: 'Quadríceps e ombro (MMII ↔ MMSS) — máquina + halteres ao lado',
+    title: 'Cadeira Extensora ↔ Crucifixo com Halteres', duration: '3x12-15 · descanso 60s',
+    meta: 'Quadríceps e peito — segue alternando perna e superior',
     exercises: [
       { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12-15', equipment: 'Máquina extensora', tip: 'Costas apoiadas. Sobe estendendo o joelho e segura 1s no topo, desce controlando. Carga leve-moderada.', video: V.cadeiraExt },
-      { name: 'Desenvolvimento com Halteres (Pegada Neutra)', muscle: 'Ombros', duration: '3x12', equipment: 'Halteres + banco', tip: 'Sentado com apoio nas costas, empurra os halteres pra cima sem travar o cotovelo e sem arquear a lombar.', video: V.desenvHalter },
+      { name: 'Crucifixo com Halteres', muscle: 'Peitoral', duration: '3x12', equipment: 'Halteres + banco', tip: 'Braços levemente flexionados, abre e fecha os halteres num arco controlado, sentindo o peito. Sem descer demais os ombros.', video: V.crucifixoHalter },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 3',
-    title: 'Abdução de Quadril Máquina ↔ Tríceps Francês com Halteres', duration: '3x12-15 · descanso 60s',
-    meta: 'Glúteo médio + tríceps — tríceps por último (depois do peito e do ombro do dia)',
+    title: 'Abdução de Quadril Máquina ↔ Abdominal Supra Solo', duration: '3x15 · descanso 45-60s',
+    meta: 'Glúteo médio + core (abdominal no colchonete ao lado)',
     exercises: [
       { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abre as pernas com controle e segura 1s. Foco no glúteo, sem jogar o tronco pra trás.', video: V.abducaoMaq },
-      { name: 'Tríceps Francês com Halteres', muscle: 'Tríceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos apontando pra cima e fixos, desce o halter atrás da cabeça e estende. Movimento só do cotovelo.', video: V.tricepsFrances },
+      { name: 'Abdominal Supra Solo', muscle: 'Abdômen / Core', duration: '3x15-20', equipment: 'Colchonete', tip: 'Sobe com o abdômen sem puxar o pescoço. Desce controlando.', video: V.abdomSupra },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 4',
-    title: 'Extensão de Panturrilha Máquina ↔ Abdominal Canivete', duration: '3x15-20 · descanso 45s',
-    meta: 'Panturrilha + core — fecha o trabalho de força',
+    title: 'Extensão de Panturrilha Máquina ↔ Prancha Isométrica', duration: '3x15-20 + isometria · descanso 45s',
+    meta: 'Panturrilha + core — fecha o dia',
     exercises: [
       { name: 'Extensão de Panturrilha Maquina', muscle: 'Panturrilha', duration: '3x15-20', equipment: 'Máquina de panturrilha', tip: 'Sobe na ponta dos pés o máximo, segura 1s no topo e desce alongando a panturrilha.', video: V.panturrilhaMaq },
-      { name: 'Abdominal Canivete', muscle: 'Core', duration: '3x12-15', equipment: 'Colchonete', tip: 'Deitado, sobe tronco e pernas ao mesmo tempo tocando as mãos nos pés. Desce controlando sem relaxar no chão.', video: V.abdomCanivete },
+      { name: 'Prancha Isométrica', muscle: 'Core', duration: '3x 20-30s', equipment: 'Colchonete', tip: 'Corpo em linha reta, abdômen firme, quadril nem alto nem caído. Segura pelo tempo.', video: V.prancha },
     ]
   },
   CARDIO_ESTEIRA,
@@ -547,27 +547,141 @@ const TREINO_B = [
   ALONG_FINAL,
 ];
 
-// ─── Qua — dia de AERÓBICO (bloco único, sem musculação) ───
-const CARDIO_QUA = [
+// ─── Treino C — INFERIORES (Quadríceps/Glúteo) + OMBRO/TRÍCEPS ───
+const TREINO_C = [
+  AQUEC_ARTICULAR,
+  AQUEC_MUSC_ANT,
+  MOBILIDADE,
   {
-    type: 'cardio', label: 'Dia de Aeróbico', title: 'Aeróbico Contínuo', duration: '35-45 min',
-    meta: 'Dia dedicado ao aeróbico — esteira inclinada OU MaxCicle (bike), ritmo moderado e contínuo. Comece os primeiros 3-5 min bem leve, só pra aquecer.',
+    type: 'lift', label: 'Bi-Set 1',
+    title: 'Leg Press 45 ↔ Desenvolvimento com Halteres', duration: '3x12-15 · descanso 60s',
+    meta: 'Perna e ombro (MMII ↔ MMSS) — máquina + halteres ao lado',
     exercises: [
-      { name: 'Esteira com Inclinação', muscle: 'Cardiovascular / MMII', duration: '35-45 min', equipment: 'Esteira (ou bike / MaxCicle)', tip: 'Aeróbico contínuo e moderado: inclinação leve/moderada, num ritmo em que você consegue conversar soltando poucas palavras (sem ofegar). Comece leve pra aquecer e mantém constante os 35-45 min, sem tiro nem corrida forte. Se preferir, pode trocar por uma aula de MaxCicle (bike) no mesmo tempo e ritmo. O importante é completar o tempo no aeróbico.', video: V.esteira },
+      { name: 'Leg Press 45', muscle: 'Quadríceps / Glúteos', duration: '3x12-15', equipment: 'Máquina leg press 45', tip: 'Desce controlando até ~90° no joelho e empurra pelo calcanhar. Carga leve-moderada.', video: V.legPress },
+      { name: 'Desenvolvimento com Halteres (Pegada Neutra)', muscle: 'Ombros', duration: '3x12', equipment: 'Halteres + banco', tip: 'Sentado com apoio nas costas, empurra os halteres pra cima sem travar o cotovelo e sem arquear a lombar.', video: V.desenvHalter },
     ]
   },
+  {
+    type: 'lift', label: 'Bi-Set 2',
+    title: 'Cadeira Extensora ↔ Elevação Lateral com Halteres', duration: '3x12-15 · descanso 60s',
+    meta: 'Quadríceps e ombro',
+    exercises: [
+      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12-15', equipment: 'Máquina extensora', tip: 'Sobe segurando 1s no topo, desce controlando. Costas apoiadas.', video: V.cadeiraExt },
+      { name: 'Elevação Lateral com Halteres', muscle: 'Ombros (lateral)', duration: '3x12-15', equipment: 'Halteres leves', tip: 'Cotovelos levemente flexionados, sobe os halteres até a linha dos ombros e desce controlando. Carga leve — a execução manda.', video: V.elevLateral },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 3',
+    title: 'Abdução de Quadril Máquina ↔ Tríceps Francês com Halteres', duration: '3x12-15 · descanso 60s',
+    meta: 'Glúteo médio + tríceps — tríceps por último (depois do ombro do dia)',
+    exercises: [
+      { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abre com controle, segura 1s. Foco no glúteo.', video: V.abducaoMaq },
+      { name: 'Tríceps Francês com Halteres', muscle: 'Tríceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos apontando pra cima e fixos, desce o halter atrás da cabeça e estende. Movimento só do cotovelo.', video: V.tricepsFrances },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 4',
+    title: 'Adução de Quadril Máquina ↔ Abdominal Supra Solo', duration: '3x15 · descanso 45-60s',
+    meta: 'Adutor + core (adutor depois do leg press do dia)',
+    exercises: [
+      { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Fecha as pernas com controle e segura 1s. Sem tranco.', video: V.aducaoMaq },
+      { name: 'Abdominal Supra Solo', muscle: 'Abdômen / Core', duration: '3x15-20', equipment: 'Colchonete', tip: 'Sobe com o abdômen sem puxar o pescoço.', video: V.abdomSupra },
+    ]
+  },
+  CARDIO_ESTEIRA,
+  ALONG_FINAL,
 ];
 
-// ─── Sáb — AERÓBICO ao ar livre (caminhada no parque, bloco único) ───
-const CARDIO_SAB = [
+// ─── Treino D — POSTERIOR / GLÚTEO + COSTAS / BÍCEPS ───
+const TREINO_D = [
+  AQUEC_ARTICULAR,
+  AQUEC_MUSC_POST,
+  MOBILIDADE,
   {
-    type: 'cardio', label: 'Aeróbico ao Ar Livre', title: 'Caminhada no Parque', duration: '40-50 min',
-    meta: 'Caminhada ao ar livre, ritmo moderado e contínuo — um aeróbico leve e gostoso pra fechar a semana.',
+    type: 'lift', label: 'Bi-Set 1',
+    title: 'Cadeira Flexora ↔ Remada Unilateral Halteres', duration: '3x12-15 · descanso 60s',
+    meta: 'Posterior de coxa e costas (MMII ↔ MMSS)',
     exercises: [
-      { name: 'Caminhada no Parque', muscle: 'Cardiovascular', duration: '40-50 min', equipment: 'Nenhum (ar livre)', tip: 'Caminhada em ritmo moderado e contínuo, num passo em que você consegue conversar. 40-50 min. Aproveita pra relaxar e curtir — conta como treino aeróbico da semana.', video: '' },
+      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12-15', equipment: 'Máquina flexora', tip: 'Traz o calcanhar ao glúteo controlando, segura 1s. Quadril firme no apoio.', video: V.cadeiraFlexora },
+      { name: 'Remada Unilateral Halteres - Pegada Pronada (Serrote)', muscle: 'Costas (dorsal)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Mão e joelho no banco, tronco paralelo, puxa o halter à cintura com a palma virada pra trás. Troca de lado.', video: V.remadaUniPronada },
     ]
   },
+  {
+    type: 'lift', label: 'Bi-Set 2',
+    title: 'Puxada Aberta Barra reta ↔ Abdominal Infra Solo', duration: '3x12 · descanso 60s',
+    meta: 'Costas (dorsal) + core (abdominal no colchonete ao lado)',
+    exercises: [
+      { name: 'Puxada Aberta Barra reta', muscle: 'Costas (dorsal)', duration: '3x12', equipment: 'Puxador (polia alta)', tip: 'Pegada aberta, puxa a barra até a linha do peito fechando as escápulas. Tronco firme, sem jogar pra trás.', video: V.puxadaAberta },
+      { name: 'Abdominal Infra Solo', muscle: 'Abdômen (inferior)', duration: '3x12-15', equipment: 'Colchonete', tip: 'Deitado, sobe as pernas controlando e desce sem encostar os pés no chão. Lombar apoiada.', video: V.abdomInfra },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 3',
+    title: 'Abdução de Quadril Máquina ↔ Rosca Direta com Halteres', duration: '3x12-15 · descanso 60s',
+    meta: 'Glúteo médio + bíceps — bíceps depois de todas as costas do dia',
+    exercises: [
+      { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abre com controle e segura 1s. Foco no glúteo.', video: V.abducaoMaq },
+      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Halteres', tip: 'Os dois halteres ao mesmo tempo (simultânea), palmas pra cima, cotovelos fixos, sobe sem balançar o tronco.', video: V.roscaDireta },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 4',
+    title: 'Extensão de Panturrilha Máquina ↔ Abdominal Supra Solo', duration: '3x15-20 · descanso 45s',
+    meta: 'Panturrilha + core (abdominal supra)',
+    exercises: [
+      { name: 'Extensão de Panturrilha Maquina', muscle: 'Panturrilha', duration: '3x15-20', equipment: 'Máquina de panturrilha', tip: 'Sobe na ponta dos pés o máximo, segura 1s no topo.', video: V.panturrilhaMaq },
+      { name: 'Abdominal Supra Solo', muscle: 'Abdômen / Core', duration: '3x15-20', equipment: 'Colchonete', tip: 'Sobe com o abdômen sem puxar o pescoço. Desce controlando.', video: V.abdomSupra },
+    ]
+  },
+  CARDIO_MAXCICLE,
+  ALONG_FINAL,
 ];
+
+// ─── Treino E — INFERIORES COMPLETO + CORE (dia de ênfase perna/glúteo) ───
+const TREINO_E = [
+  AQUEC_ARTICULAR,
+  AQUEC_MUSC_INF,
+  MOBILIDADE,
+  {
+    type: 'lift', label: 'Bi-Set 1',
+    title: 'Leg Press 45 ↔ Abdominal Supra Solo', duration: '3x12-15 · descanso 60s',
+    meta: 'Quadríceps/glúteo + core (abdominal no colchonete ao lado)',
+    exercises: [
+      { name: 'Leg Press 45', muscle: 'Quadríceps / Glúteos', duration: '3x12-15', equipment: 'Máquina leg press 45', tip: 'Desce controlando até ~90° no joelho e empurra pelo calcanhar. Carga leve-moderada, foco na execução.', video: V.legPress },
+      { name: 'Abdominal Supra Solo', muscle: 'Abdômen / Core', duration: '3x15-20', equipment: 'Colchonete', tip: 'Sobe com o abdômen sem puxar o pescoço.', video: V.abdomSupra },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 2',
+    title: 'Cadeira Flexora ↔ Abdominal Canivete', duration: '3x12-15 · descanso 60s',
+    meta: 'Posterior de coxa + core',
+    exercises: [
+      { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x12-15', equipment: 'Máquina flexora', tip: 'Traz o calcanhar ao glúteo controlando, segura 1s.', video: V.cadeiraFlexora },
+      { name: 'Abdominal Canivete', muscle: 'Core', duration: '3x12-15', equipment: 'Colchonete', tip: 'Deitado, sobe tronco e pernas ao mesmo tempo tocando as mãos nos pés. Desce controlando.', video: V.abdomCanivete },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 3',
+    title: 'Abdução de Quadril Máquina ↔ Prancha Isométrica', duration: '3x15 + isometria · descanso 45-60s',
+    meta: 'Glúteo médio + core',
+    exercises: [
+      { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abre com controle, segura 1s no fim. Foco no glúteo.', video: V.abducaoMaq },
+      { name: 'Prancha Isométrica', muscle: 'Core', duration: '3x 20-30s', equipment: 'Colchonete', tip: 'Corpo em linha reta, abdômen firme. Segura pelo tempo.', video: V.prancha },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 4',
+    title: 'Adução de Quadril Máquina ↔ Prancha Isométrica Lateral', duration: '3x15 + isometria · descanso 45-60s',
+    meta: 'Adutor + core lateral (adutor depois do leg press do dia)',
+    exercises: [
+      { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Fecha as pernas com controle e segura 1s. Sem tranco.', video: V.aducaoMaq },
+      { name: 'Prancha Isometrica Lateral Baixa', muscle: 'Core / Oblíquos', duration: '3x 20-30s cada lado', equipment: 'Colchonete', tip: 'Apoio no antebraço e no pé, quadril elevado sem cair. Troca de lado.', video: V.pranchaLateral },
+    ]
+  },
+  CARDIO_ESTEIRA,
+  ALONG_FINAL,
+];
+
 
 // ─── Dynamic week dates ───
 function getMonday(d) {
@@ -599,19 +713,16 @@ function buildWeek() {
   });
 }
 
-// Plano semanal FIXO — Anterior/Posterior + aeróbico (definido pelo Luisão 27/09/2026):
-// Seg = Treino A · Ter = Treino B · Qua = aeróbico · Qui = Treino A · Sex = Treino B · Sáb = caminhada no parque · Dom = descanso
-const WEEK_PLAN = [
-  { dayName: 'Seg', rest: false, label: 'Treino A — Anterior',  blocks: TREINO_A },
-  { dayName: 'Ter', rest: false, label: 'Treino B — Posterior', blocks: TREINO_B },
-  { dayName: 'Qua', rest: false, label: 'Aeróbico',             blocks: CARDIO_QUA },
-  { dayName: 'Qui', rest: false, label: 'Treino A — Anterior',  blocks: TREINO_A },
-  { dayName: 'Sex', rest: false, label: 'Treino B — Posterior', blocks: TREINO_B },
-  { dayName: 'Sáb', rest: false, label: 'Aeróbico no Parque',   blocks: CARDIO_SAB },
+const TRAINING_SLOTS = [
+  { label: 'Treino A — Inferiores (Quadríceps) + Peito', blocks: TREINO_A },
+  { label: 'Treino B — Posterior/Glúteo + Costas', blocks: TREINO_B },
+  { label: 'Treino C — Inferiores + Ombro/Tríceps', blocks: TREINO_C },
+  { label: 'Treino D — Posterior/Glúteo + Costas/Bíceps', blocks: TREINO_D },
+  { label: 'Treino E — Inferiores completo + Core', blocks: TREINO_E },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 const DAY_CONFIG_KEY = 'maxresults-leonidas-days-v1';
-const DEFAULT_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+const DEFAULT_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
 
 function loadDayConfig() {
   try { return JSON.parse(localStorage.getItem(DAY_CONFIG_KEY)) || DEFAULT_DAYS; }
@@ -619,7 +730,15 @@ function loadDayConfig() {
 }
 
 function buildSchedule() {
-  return WEEK_PLAN.map(x => ({ dayName: x.dayName, rest: x.rest, label: x.label, blocks: x.blocks }));
+  const chosen = loadDayConfig();
+  let slotIdx = 0;
+  return ALL_DAYS.map(day => {
+    if (chosen.includes(day) && slotIdx < TRAINING_SLOTS.length) {
+      const slot = TRAINING_SLOTS[slotIdx++];
+      return { dayName: day, rest: false, label: slot.label, blocks: slot.blocks };
+    }
+    return { dayName: day, rest: true, label: 'Descanso' };
+  });
 }
 
 let WEEK_SCHEDULE = buildSchedule();
@@ -663,7 +782,7 @@ function renderDaySwitcher() {
   document.getElementById('daySwitcher').innerHTML = WEEK.map((d, i) => {
     const cl = ['day-btn']; if (i === currentDayIndex) cl.push('active'); if (d.rest) cl.push('rest'); if (!d.rest && (isDayComplete(i) || isWorkoutFinished(i))) cl.push('completed-day');
     return `<button class="${cl.join(' ')}" ${d.rest?'disabled':''} onclick="selectDay(${i})">${d.day}<span class="day-num">${d.num}</span></button>`;
-  }).join('');
+  }).join('') + `<button class="day-config-btn" onclick="openDayModal()" title="Alterar dias de treino">⚙️</button>`;
 }
 
 function renderWorkout() {
