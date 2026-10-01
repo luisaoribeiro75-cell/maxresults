@@ -361,6 +361,11 @@ const V = {
   desenvHalter: 'https://vd.mfitpersonal.com.br/155/mp4/155.mp4',
   elevLateral: 'https://vd.mfitpersonal.com.br/131/mp4/131.mp4',
   tricepsFrances: 'https://vd.mfitpersonal.com.br/137/mp4/137.mp4',
+  supinoBarra: 'https://vd.mfitpersonal.com.br/203/mp4/203.mp4',
+  crucifixoMaq: 'https://vd.mfitpersonal.com.br/530/mp4/530.mp4',
+  desenvBarra: 'https://vd.mfitpersonal.com.br/152/mp4/152.mp4',
+  tricepsPolia: 'https://vd.mfitpersonal.com.br/415/mp4/415.mp4',
+  flexaoBracos: 'https://vd.mfitpersonal.com.br/238/mp4/238.mp4',
   remadaCurvadaHalter: 'https://vd.mfitpersonal.com.br/221/mp4/221.mp4',
   remadaUniNeutra: 'https://vd.mfitpersonal.com.br/210/mp4/210.mp4',
   remadaUniPronada: 'https://vd.mfitpersonal.com.br/223/mp4/223.mp4',
@@ -390,11 +395,11 @@ const AQUEC_ARTICULAR = {
 
 const AQUEC_MUSC_ANT = {
   type: 'warmup', label: 'Aquecimento Muscular',
-  title: 'Agachamento + Supino (leve)', duration: '2x15 cada',
+  title: 'Agachamento + Flexão de Braços (leve)', duration: '2x15 cada',
   meta: 'Carga bem leve — só aquecer o padrão de movimento do dia',
   exercises: [
     { name: 'Agachamento Livre', muscle: 'Quadríceps / Glúteos', duration: '2x15', equipment: 'Peso do corpo', tip: 'Sem carga — só aquecer. Pés na largura dos ombros, desce com amplitude confortável mantendo o tronco ereto. Foco na execução.', video: V.agachLivre },
-    { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '2x15', equipment: 'Halteres leves + banco', tip: 'Carga bem leve — apenas para aquecer o peito. Movimento controlado.', video: V.supinoHalter },
+    { name: 'Flexão de Braços', muscle: 'Peitoral / Tríceps', duration: '2x15', equipment: 'Peso do corpo', tip: 'Só pra aquecer o peito e os braços. Se for pesado, apoia os joelhos no chão. Corpo alinhado, desce controlando até o peito perto do chão e sobe.', video: V.flexaoBracos },
   ]
 };
 
@@ -457,45 +462,61 @@ const ALONG_FINAL = {
   ]
 };
 
-// ─── Treino A — ANTERIOR (Quadríceps · Peito · Ombro · Tríceps · Panturrilha · Core) ───
+// ─── Treino A — ANTERIOR (Peito · Quadríceps · Ombro · Tríceps) — ditado Luisão 01/10/2026 ───
 const TREINO_A = [
   AQUEC_ARTICULAR,
   AQUEC_MUSC_ANT,
   MOBILIDADE,
   {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Leg Press 45 ↔ Supino Reto com Halteres', duration: '3x12-15 · descanso 60s',
-    meta: 'Perna e peito alternados (MMII ↔ MMSS) — máquina + halteres no mesmo canto, sem trocar de estação',
+    type: 'lift', label: 'Exercício 1 (solo)',
+    title: 'Supino Reto com Barra Reta', duration: '3x12 · descanso 90s',
+    meta: 'Básico de peito SOLO — foco na técnica e na execução antes de subir carga. No descanso, faça um alongamento de perna (quadríceps/posterior).',
     exercises: [
-      { name: 'Leg Press 45', muscle: 'Quadríceps / Glúteos', duration: '3x12-15', equipment: 'Máquina leg press 45', tip: 'Pés na largura dos ombros na plataforma. Desce controlando até ~90° no joelho e empurra pelo calcanhar sem travar o joelho no fim. Carga leve-moderada — foco na execução.', video: V.legPress },
-      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '3x12', equipment: 'Halteres + banco', tip: 'Desce os halteres à linha do peito e empurra controlando. Pés firmes no chão, sem arquear a lombar.', video: V.supinoHalter },
+      { name: 'Supino Reto com Barra Reta', muscle: 'Peitoral', duration: '3x12', equipment: 'Barra + banco (com rack)', tip: 'Deitado no banco, pés firmes no chão. Desce a barra controlando até a linha do peito e empurra sem travar o cotovelo. Começa leve, capricha na execução. Treino presencial — o Luisão ajusta a carga.', video: V.supinoBarra },
+      { name: 'Alongamento de Coxa', muscle: 'Quadríceps (no descanso)', duration: '25s/lado', equipment: 'Nenhum', tip: 'No intervalo das séries do supino: em pé, puxe o pé em direção ao glúteo. 25s cada lado — aproveita o descanso pra soltar a perna.', video: V.alongCoxa },
+    ]
+  },
+  {
+    type: 'lift', label: 'Bi-Set 1',
+    title: 'Cadeira Extensora ↔ Crucifixo Máquina', duration: '3x12-15 · descanso 60s',
+    meta: 'Quadríceps e peito alternados (MMII ↔ MMSS). Treino presencial supervisionado — as duas máquinas ficam lado a lado.',
+    exercises: [
+      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12-15', equipment: 'Máquina extensora', tip: 'Costas apoiadas. Sobe estendendo o joelho e segura 1s no topo, desce controlando. Carga leve-moderada.', video: V.cadeiraExt },
+      { name: 'Crucifixo Máquina', muscle: 'Peitoral', duration: '3x12', equipment: 'Máquina crucifixo (voador)', tip: 'Sentado, costas apoiadas. Junta os braços à frente com controle apertando o peito, segura 1s e abre devagar sem bater os pesos.', video: V.crucifixoMaq },
+    ]
+  },
+  {
+    type: 'lift', label: 'Exercício 2 (solo)',
+    title: 'Agachamento Livre', duration: '3x12-15 · descanso 90s',
+    meta: 'Agachamento SEM barra nas costas por enquanto (peso do corpo) — foco no padrão de movimento. No descanso, um alongamento de membros superiores.',
+    exercises: [
+      { name: 'Agachamento Livre', muscle: 'Quadríceps / Glúteos', duration: '3x12-15', equipment: 'Peso do corpo', tip: 'Por enquanto sem barra nas costas. Pés na largura dos ombros, desce controlando até onde consegue manter o tronco ereto e sobe pelo calcanhar. Prioriza a execução.', video: V.agachLivre },
+      { name: 'Alongamento Peitoral', muscle: 'MMSS (no descanso)', duration: '25s', equipment: 'Nenhum', tip: 'No intervalo do agachamento: alonga o peito/ombro (braço apoiado na parede, gira o tronco pro lado oposto). Aproveita o descanso.', video: V.alongPeitoral },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Extensora ↔ Desenvolvimento com Halteres', duration: '3x12-15 · descanso 60s',
-    meta: 'Quadríceps e ombro (MMII ↔ MMSS) — máquina + halteres ao lado',
+    title: 'Cadeira Adutora ↔ Elevação Lateral com Halteres', duration: '3x12-15 · descanso 60s',
+    meta: 'Adutor + ombro (MMII ↔ MMSS) — máquina + halteres ao lado, sem trocar de estação.',
     exercises: [
-      { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12-15', equipment: 'Máquina extensora', tip: 'Costas apoiadas. Sobe estendendo o joelho e segura 1s no topo, desce controlando. Carga leve-moderada.', video: V.cadeiraExt },
-      { name: 'Desenvolvimento com Halteres (Pegada Neutra)', muscle: 'Ombros', duration: '3x12', equipment: 'Halteres + banco', tip: 'Sentado com apoio nas costas, empurra os halteres pra cima sem travar o cotovelo e sem arquear a lombar.', video: V.desenvHalter },
+      { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3x15', equipment: 'Máquina adutora', tip: 'Fecha as pernas com controle e segura 1s. Movimento suave, sem tranco.', video: V.aducaoMaq },
+      { name: 'Elevação Lateral com Halteres', muscle: 'Ombros (deltoide lateral)', duration: '3x12-15', equipment: 'Halteres leves', tip: 'Cotovelos levemente flexionados, sobe os halteres até a linha dos ombros (não passa) e desce controlando. Carga leve — a execução é o que conta.', video: V.elevLateral },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 3',
-    title: 'Abdução de Quadril Máquina ↔ Tríceps Francês com Halteres', duration: '3x12-15 · descanso 60s',
-    meta: 'Glúteo médio + tríceps — tríceps por último (depois do peito e do ombro do dia)',
+    type: 'lift', label: 'Exercício 3 (solo)',
+    title: 'Desenvolvimento Barra Reta', duration: '3x12 · descanso 90s',
+    meta: 'Desenvolvimento militar em pé com barra — ombro composto, solo. Vem depois do peito (Regra 7).',
     exercises: [
-      { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio', duration: '3x15', equipment: 'Máquina abdutora', tip: 'Abre as pernas com controle e segura 1s. Foco no glúteo, sem jogar o tronco pra trás.', video: V.abducaoMaq },
-      { name: 'Tríceps Francês com Halteres', muscle: 'Tríceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos apontando pra cima e fixos, desce o halter atrás da cabeça e estende. Movimento só do cotovelo.', video: V.tricepsFrances },
+      { name: 'Desenvolvimento Barra Reta', muscle: 'Ombros', duration: '3x12', equipment: 'Barra', tip: 'Em pé, barra na frente na linha dos ombros, abdômen contraído pra proteger a lombar. Empurra pra cima sem travar o cotovelo e desce controlando. Começa leve.', video: V.desenvBarra },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 4',
-    title: 'Extensão de Panturrilha Máquina ↔ Abdominal Canivete', duration: '3x15-20 · descanso 45s',
-    meta: 'Panturrilha + core — fecha o trabalho de força',
+    type: 'lift', label: 'Exercício 4 (solo)',
+    title: 'Tríceps na Polia com Barra Reta', duration: '3x12-15 · descanso 60s',
+    meta: 'Tríceps na polia pra fechar o treino — isolado por último (depois do peito e do ombro do dia).',
     exercises: [
-      { name: 'Extensão de Panturrilha Maquina', muscle: 'Panturrilha', duration: '3x15-20', equipment: 'Máquina de panturrilha', tip: 'Sobe na ponta dos pés o máximo, segura 1s no topo e desce alongando a panturrilha.', video: V.panturrilhaMaq },
-      { name: 'Abdominal Canivete', muscle: 'Core', duration: '3x12-15', equipment: 'Colchonete', tip: 'Deitado, sobe tronco e pernas ao mesmo tempo tocando as mãos nos pés. Desce controlando sem relaxar no chão.', video: V.abdomCanivete },
+      { name: 'Tríceps na Polia com Barra Reta', muscle: 'Tríceps', duration: '3x12-15', equipment: 'Polia alta + barra reta', tip: 'Cotovelos fixos ao lado do corpo. Estende a barra pra baixo até esticar o braço e volta controlando só pela metade de cima. Tronco firme, sem balançar.', video: V.tricepsPolia },
     ]
   },
   CARDIO_ESTEIRA,
