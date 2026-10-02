@@ -270,6 +270,21 @@
       margin-top: 4px;
     }
 
+    .m-list { display: grid; gap: 12px; }
+    .m-card { display: grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px 12px 10px; }
+    .m-fig { width: 78px; height: auto; display: block; }
+    .m-name { font-family: var(--font-display); font-size: 17px; font-weight: 700; letter-spacing: -0.2px; }
+    .m-how { font-size: 13px; color: var(--text-dim); line-height: 1.45; margin: 2px 0 10px; }
+    .m-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .m-inputs.one { grid-template-columns: minmax(0, 150px); }
+    .m-in label { display: block; font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-bottom: 4px; }
+    .m-in .m-box { position: relative; }
+    .m-in input { padding: 9px 34px 9px 12px; font-family: var(--font-display); font-size: 16px; font-weight: 700; background: var(--surface-2); }
+    .m-in .m-cm { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--text-muted); pointer-events: none; }
+    .m-rules { margin: 6px 0 0 18px; padding: 0; }
+    .m-rules li { margin: 2px 0; }
+    .m-tip { font-size: 12px; color: var(--text-muted); margin-top: 6px; line-height: 1.4; text-align: left; }
+
     .photo-section {
       display: flex;
       flex-direction: column;
@@ -416,7 +431,7 @@
   <div class="header">
     <div class="brand">MaxResults</div>
     <h1>📏 Avaliação Física</h1>
-    <p>Meça com cuidado — esses dados vão ajudar a acompanhar sua evolução!</p>
+    <p>Leva uns 10 minutos. Você só precisa de uma fita métrica e de uma balança. Cada medida tem o desenho mostrando onde a fita passa.</p>
     <div class="progress-bar">
       <div class="progress-track">
         <div class="progress-fill" id="progressFill"></div>
@@ -441,11 +456,13 @@
           <label>Peso <span class="required">*</span></label>
           <input type="number" name="peso" step="0.1" required placeholder="0.0">
           <div class="measure-unit">kg</div>
+          <div class="m-tip">De manhã, em jejum, depois de ir ao banheiro e com pouca roupa.</div>
         </div>
         <div class="measure-item">
           <label>Altura <span class="required">*</span></label>
           <input type="number" name="altura" step="0.1" required placeholder="0.0">
           <div class="measure-unit">cm</div>
+          <div class="m-tip">Descalça, encostada na parede, olhando pra frente.</div>
         </div>
       </div>
     </div>
@@ -455,79 +472,142 @@
       <div class="section-title">📐 Perimetria</div>
 
       <div class="section-hint">
-        💡 <strong>Como medir:</strong> Use uma fita métrica flexível. Meça rente à pele, sem apertar. Mantenha a fita horizontal e o corpo relaxado. Na dúvida, meça 2x e use a média.
+        💡 <strong>Antes de começar:</strong>
+        <ul class="m-rules"><li>Use fita métrica de costura, daquelas flexíveis.</li><li>Fita rente à pele, sem apertar, e reta (paralela ao chão).</li><li>Na dúvida, meça duas vezes.</li><li>Meça sempre no mesmo horário, de preferência de manhã.</li></ul>
       </div>
 
-      <div class="measure-grid">
-        <div class="measure-item">
-          <label>Pescoço</label>
-          <input type="number" name="pescoco" step="0.1" placeholder="0.0">
-          <div class="measure-unit">cm</div>
+      <div class="m-list">
+        <div class="m-card">
+          <svg class="m-fig" viewBox="0 0 120 262" aria-hidden="true"><circle cx="60" cy="21" r="14" fill="#4a4a52"/><rect x="54" y="32" width="12" height="13" rx="4" fill="#4a4a52"/><path d="M40 45 Q60 41 80 45 Q88 47 87 57 L83 80 Q79 98 77.5 106 Q84 122 87.5 137 L87.5 146 Q60 152 32.5 146 L32.5 137 Q36 122 42.5 106 Q41 98 37 80 L33 57 Q32 47 40 45 Z" fill="#4a4a52"/><path d="M61 136 L87.5 136 Q90 168 83 196 Q86.5 214 79 244 Q79 249 74.5 249 Q70 249 70 244 Q64.5 214 66.5 196 Q60.5 170 61 150 Z" fill="#4a4a52"/><path d="M59 136 L32.5 136 Q30 168 37 196 Q33.5 214 41 244 Q41 249 45.5 249 Q50 249 50 244 Q55.5 214 53.5 196 Q59.5 170 59 150 Z" fill="#4a4a52"/><line x1="88" y1="53" x2="98" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="98" y1="98" x2="103" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="104" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="74.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><line x1="32" y1="53" x2="22" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="22" y1="98" x2="17" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="16" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="45.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><path d="M52.5 38.5 Q60.0 41.5 67.5 38.5" fill="none" stroke="#F2B705" stroke-width="4.6" stroke-linecap="round"/></svg>
+          <div>
+            <div class="m-name">Pescoço</div>
+            <div class="m-how">Fita no meio do pescoço, logo abaixo do gogó. Olhe pra frente.</div>
+            <div class="m-inputs one">
+            <div class="m-in">
+              <div class="m-box"><input type="number" name="pescoco" step="0.1" inputmode="decimal" placeholder="0.0" aria-label="Pescoço"><span class="m-cm">cm</span></div>
+            </div>
+            </div>
+          </div>
         </div>
-        <div class="measure-item">
-          <label>Ombro</label>
-          <input type="number" name="ombro" step="0.1" placeholder="0.0">
-          <div class="measure-unit">cm</div>
+        <div class="m-card">
+          <svg class="m-fig" viewBox="0 0 120 262" aria-hidden="true"><circle cx="60" cy="21" r="14" fill="#4a4a52"/><rect x="54" y="32" width="12" height="13" rx="4" fill="#4a4a52"/><path d="M40 45 Q60 41 80 45 Q88 47 87 57 L83 80 Q79 98 77.5 106 Q84 122 87.5 137 L87.5 146 Q60 152 32.5 146 L32.5 137 Q36 122 42.5 106 Q41 98 37 80 L33 57 Q32 47 40 45 Z" fill="#4a4a52"/><path d="M61 136 L87.5 136 Q90 168 83 196 Q86.5 214 79 244 Q79 249 74.5 249 Q70 249 70 244 Q64.5 214 66.5 196 Q60.5 170 61 150 Z" fill="#4a4a52"/><path d="M59 136 L32.5 136 Q30 168 37 196 Q33.5 214 41 244 Q41 249 45.5 249 Q50 249 50 244 Q55.5 214 53.5 196 Q59.5 170 59 150 Z" fill="#4a4a52"/><line x1="88" y1="53" x2="98" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="98" y1="98" x2="103" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="104" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="74.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><line x1="32" y1="53" x2="22" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="22" y1="98" x2="17" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="16" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="45.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><path d="M27.5 55.5 Q60 60.0 92.5 55.5" fill="none" stroke="#F2B705" stroke-width="4.6" stroke-linecap="round"/></svg>
+          <div>
+            <div class="m-name">Ombro</div>
+            <div class="m-how">Braços soltos ao lado do corpo. Fita em volta dos dois ombros, na parte mais larga.</div>
+            <div class="m-inputs one">
+            <div class="m-in">
+              <div class="m-box"><input type="number" name="ombro" step="0.1" inputmode="decimal" placeholder="0.0" aria-label="Ombro"><span class="m-cm">cm</span></div>
+            </div>
+            </div>
+          </div>
         </div>
-        <div class="measure-item">
-          <label>Tórax</label>
-          <input type="number" name="torax" step="0.1" placeholder="0.0">
-          <div class="measure-unit">cm</div>
+        <div class="m-card">
+          <svg class="m-fig" viewBox="0 0 120 262" aria-hidden="true"><circle cx="60" cy="21" r="14" fill="#4a4a52"/><rect x="54" y="32" width="12" height="13" rx="4" fill="#4a4a52"/><path d="M40 45 Q60 41 80 45 Q88 47 87 57 L83 80 Q79 98 77.5 106 Q84 122 87.5 137 L87.5 146 Q60 152 32.5 146 L32.5 137 Q36 122 42.5 106 Q41 98 37 80 L33 57 Q32 47 40 45 Z" fill="#4a4a52"/><path d="M61 136 L87.5 136 Q90 168 83 196 Q86.5 214 79 244 Q79 249 74.5 249 Q70 249 70 244 Q64.5 214 66.5 196 Q60.5 170 61 150 Z" fill="#4a4a52"/><path d="M59 136 L32.5 136 Q30 168 37 196 Q33.5 214 41 244 Q41 249 45.5 249 Q50 249 50 244 Q55.5 214 53.5 196 Q59.5 170 59 150 Z" fill="#4a4a52"/><line x1="88" y1="53" x2="98" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="98" y1="98" x2="103" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="104" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="74.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><line x1="32" y1="53" x2="22" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="22" y1="98" x2="17" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="16" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="45.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><path d="M34.5 69 Q60 73.5 85.5 69" fill="none" stroke="#F2B705" stroke-width="4.6" stroke-linecap="round"/></svg>
+          <div>
+            <div class="m-name">Tórax</div>
+            <div class="m-how">Fita na linha dos mamilos, passando por baixo das axilas. Solte o ar normalmente.</div>
+            <div class="m-inputs one">
+            <div class="m-in">
+              <div class="m-box"><input type="number" name="torax" step="0.1" inputmode="decimal" placeholder="0.0" aria-label="Tórax"><span class="m-cm">cm</span></div>
+            </div>
+            </div>
+          </div>
         </div>
-        <div class="measure-item">
-          <label>Braço Esquerdo</label>
-          <input type="number" name="braco_esq" step="0.1" placeholder="0.0">
-          <div class="measure-unit">cm</div>
+        <div class="m-card">
+          <svg class="m-fig" viewBox="0 0 120 262" aria-hidden="true"><circle cx="60" cy="21" r="14" fill="#4a4a52"/><rect x="54" y="32" width="12" height="13" rx="4" fill="#4a4a52"/><path d="M40 45 Q60 41 80 45 Q88 47 87 57 L83 80 Q79 98 77.5 106 Q84 122 87.5 137 L87.5 146 Q60 152 32.5 146 L32.5 137 Q36 122 42.5 106 Q41 98 37 80 L33 57 Q32 47 40 45 Z" fill="#4a4a52"/><path d="M61 136 L87.5 136 Q90 168 83 196 Q86.5 214 79 244 Q79 249 74.5 249 Q70 249 70 244 Q64.5 214 66.5 196 Q60.5 170 61 150 Z" fill="#4a4a52"/><path d="M59 136 L32.5 136 Q30 168 37 196 Q33.5 214 41 244 Q41 249 45.5 249 Q50 249 50 244 Q55.5 214 53.5 196 Q59.5 170 59 150 Z" fill="#4a4a52"/><line x1="88" y1="53" x2="98" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="98" y1="98" x2="103" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="104" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="74.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><line x1="32" y1="53" x2="22" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="22" y1="98" x2="17" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="16" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="45.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><line x1="101.4" y1="73.6" x2="84.6" y2="77.4" stroke="#F2B705" stroke-width="4.6" stroke-linecap="round"/><line x1="35.4" y1="77.4" x2="18.6" y2="73.6" stroke="#F2B705" stroke-width="4.6" stroke-linecap="round"/></svg>
+          <div>
+            <div class="m-name">Braços</div>
+            <div class="m-how">Braço contraído, fazendo força no bíceps. Meça na parte mais grossa.</div>
+            <div class="m-inputs">
+            <div class="m-in"><label>Esquerdo</label>
+              <div class="m-box"><input type="number" name="braco_esq" step="0.1" inputmode="decimal" placeholder="0.0" aria-label="Braços Esquerdo"><span class="m-cm">cm</span></div>
+            </div>
+            <div class="m-in"><label>Direito</label>
+              <div class="m-box"><input type="number" name="braco_dir" step="0.1" inputmode="decimal" placeholder="0.0" aria-label="Braços Direito"><span class="m-cm">cm</span></div>
+            </div>
+            </div>
+          </div>
         </div>
-        <div class="measure-item">
-          <label>Braço Direito</label>
-          <input type="number" name="braco_dir" step="0.1" placeholder="0.0">
-          <div class="measure-unit">cm</div>
+        <div class="m-card">
+          <svg class="m-fig" viewBox="0 0 120 262" aria-hidden="true"><circle cx="60" cy="21" r="14" fill="#4a4a52"/><rect x="54" y="32" width="12" height="13" rx="4" fill="#4a4a52"/><path d="M40 45 Q60 41 80 45 Q88 47 87 57 L83 80 Q79 98 77.5 106 Q84 122 87.5 137 L87.5 146 Q60 152 32.5 146 L32.5 137 Q36 122 42.5 106 Q41 98 37 80 L33 57 Q32 47 40 45 Z" fill="#4a4a52"/><path d="M61 136 L87.5 136 Q90 168 83 196 Q86.5 214 79 244 Q79 249 74.5 249 Q70 249 70 244 Q64.5 214 66.5 196 Q60.5 170 61 150 Z" fill="#4a4a52"/><path d="M59 136 L32.5 136 Q30 168 37 196 Q33.5 214 41 244 Q41 249 45.5 249 Q50 249 50 244 Q55.5 214 53.5 196 Q59.5 170 59 150 Z" fill="#4a4a52"/><line x1="88" y1="53" x2="98" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="98" y1="98" x2="103" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="104" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="74.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><line x1="32" y1="53" x2="22" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="22" y1="98" x2="17" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="16" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="45.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><line x1="106.7" y1="108.0" x2="92.1" y2="109.9" stroke="#F2B705" stroke-width="4.6" stroke-linecap="round"/><line x1="27.9" y1="109.9" x2="13.3" y2="108.0" stroke="#F2B705" stroke-width="4.6" stroke-linecap="round"/></svg>
+          <div>
+            <div class="m-name">Antebraços</div>
+            <div class="m-how">Braço esticado, mão fechada. Meça na parte mais grossa, perto do cotovelo.</div>
+            <div class="m-inputs">
+            <div class="m-in"><label>Esquerdo</label>
+              <div class="m-box"><input type="number" name="antebraco_esq" step="0.1" inputmode="decimal" placeholder="0.0" aria-label="Antebraços Esquerdo"><span class="m-cm">cm</span></div>
+            </div>
+            <div class="m-in"><label>Direito</label>
+              <div class="m-box"><input type="number" name="antebraco_dir" step="0.1" inputmode="decimal" placeholder="0.0" aria-label="Antebraços Direito"><span class="m-cm">cm</span></div>
+            </div>
+            </div>
+          </div>
         </div>
-        <div class="measure-item">
-          <label>Antebraço Esquerdo</label>
-          <input type="number" name="antebraco_esq" step="0.1" placeholder="0.0">
-          <div class="measure-unit">cm</div>
+        <div class="m-card">
+          <svg class="m-fig" viewBox="0 0 120 262" aria-hidden="true"><circle cx="60" cy="21" r="14" fill="#4a4a52"/><rect x="54" y="32" width="12" height="13" rx="4" fill="#4a4a52"/><path d="M40 45 Q60 41 80 45 Q88 47 87 57 L83 80 Q79 98 77.5 106 Q84 122 87.5 137 L87.5 146 Q60 152 32.5 146 L32.5 137 Q36 122 42.5 106 Q41 98 37 80 L33 57 Q32 47 40 45 Z" fill="#4a4a52"/><path d="M61 136 L87.5 136 Q90 168 83 196 Q86.5 214 79 244 Q79 249 74.5 249 Q70 249 70 244 Q64.5 214 66.5 196 Q60.5 170 61 150 Z" fill="#4a4a52"/><path d="M59 136 L32.5 136 Q30 168 37 196 Q33.5 214 41 244 Q41 249 45.5 249 Q50 249 50 244 Q55.5 214 53.5 196 Q59.5 170 59 150 Z" fill="#4a4a52"/><line x1="88" y1="53" x2="98" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="98" y1="98" x2="103" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="104" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="74.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><line x1="32" y1="53" x2="22" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="22" y1="98" x2="17" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="16" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="45.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><path d="M41 104.5 Q60 109.0 79 104.5" fill="none" stroke="#F2B705" stroke-width="4.6" stroke-linecap="round"/></svg>
+          <div>
+            <div class="m-name">Cintura</div>
+            <div class="m-how">Na parte mais fina do tronco, acima do umbigo. Sem encolher a barriga.</div>
+            <div class="m-inputs one">
+            <div class="m-in">
+              <div class="m-box"><input type="number" name="cintura" step="0.1" inputmode="decimal" placeholder="0.0" aria-label="Cintura"><span class="m-cm">cm</span></div>
+            </div>
+            </div>
+          </div>
         </div>
-        <div class="measure-item">
-          <label>Antebraço Direito</label>
-          <input type="number" name="antebraco_dir" step="0.1" placeholder="0.0">
-          <div class="measure-unit">cm</div>
+        <div class="m-card">
+          <svg class="m-fig" viewBox="0 0 120 262" aria-hidden="true"><circle cx="60" cy="21" r="14" fill="#4a4a52"/><rect x="54" y="32" width="12" height="13" rx="4" fill="#4a4a52"/><path d="M40 45 Q60 41 80 45 Q88 47 87 57 L83 80 Q79 98 77.5 106 Q84 122 87.5 137 L87.5 146 Q60 152 32.5 146 L32.5 137 Q36 122 42.5 106 Q41 98 37 80 L33 57 Q32 47 40 45 Z" fill="#4a4a52"/><path d="M61 136 L87.5 136 Q90 168 83 196 Q86.5 214 79 244 Q79 249 74.5 249 Q70 249 70 244 Q64.5 214 66.5 196 Q60.5 170 61 150 Z" fill="#4a4a52"/><path d="M59 136 L32.5 136 Q30 168 37 196 Q33.5 214 41 244 Q41 249 45.5 249 Q50 249 50 244 Q55.5 214 53.5 196 Q59.5 170 59 150 Z" fill="#4a4a52"/><line x1="88" y1="53" x2="98" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="98" y1="98" x2="103" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="104" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="74.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><line x1="32" y1="53" x2="22" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="22" y1="98" x2="17" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="16" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="45.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><path d="M38.5 117 Q60 121.5 81.5 117" fill="none" stroke="#F2B705" stroke-width="4.6" stroke-linecap="round"/><circle cx="60" cy="116.5" r="2" fill="#0A0A0B"/></svg>
+          <div>
+            <div class="m-name">Abdômen</div>
+            <div class="m-how">Fita passando em cima do umbigo. Barriga relaxada.</div>
+            <div class="m-inputs one">
+            <div class="m-in">
+              <div class="m-box"><input type="number" name="abdomen" step="0.1" inputmode="decimal" placeholder="0.0" aria-label="Abdômen"><span class="m-cm">cm</span></div>
+            </div>
+            </div>
+          </div>
         </div>
-        <div class="measure-item">
-          <label>Cintura</label>
-          <input type="number" name="cintura" step="0.1" placeholder="0.0">
-          <div class="measure-unit">cm</div>
+        <div class="m-card">
+          <svg class="m-fig" viewBox="0 0 120 262" aria-hidden="true"><circle cx="60" cy="21" r="14" fill="#4a4a52"/><rect x="54" y="32" width="12" height="13" rx="4" fill="#4a4a52"/><path d="M40 45 Q60 41 80 45 Q88 47 87 57 L83 80 Q79 98 77.5 106 Q84 122 87.5 137 L87.5 146 Q60 152 32.5 146 L32.5 137 Q36 122 42.5 106 Q41 98 37 80 L33 57 Q32 47 40 45 Z" fill="#4a4a52"/><path d="M61 136 L87.5 136 Q90 168 83 196 Q86.5 214 79 244 Q79 249 74.5 249 Q70 249 70 244 Q64.5 214 66.5 196 Q60.5 170 61 150 Z" fill="#4a4a52"/><path d="M59 136 L32.5 136 Q30 168 37 196 Q33.5 214 41 244 Q41 249 45.5 249 Q50 249 50 244 Q55.5 214 53.5 196 Q59.5 170 59 150 Z" fill="#4a4a52"/><line x1="88" y1="53" x2="98" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="98" y1="98" x2="103" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="104" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="74.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><line x1="32" y1="53" x2="22" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="22" y1="98" x2="17" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="16" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="45.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><path d="M31 138.5 Q60 143.0 89 138.5" fill="none" stroke="#F2B705" stroke-width="4.6" stroke-linecap="round"/></svg>
+          <div>
+            <div class="m-name">Quadril</div>
+            <div class="m-how">Pés juntos. Fita na parte mais larga do bumbum.</div>
+            <div class="m-inputs one">
+            <div class="m-in">
+              <div class="m-box"><input type="number" name="quadril" step="0.1" inputmode="decimal" placeholder="0.0" aria-label="Quadril"><span class="m-cm">cm</span></div>
+            </div>
+            </div>
+          </div>
         </div>
-        <div class="measure-item">
-          <label>Abdômen</label>
-          <input type="number" name="abdomen" step="0.1" placeholder="0.0">
-          <div class="measure-unit">cm</div>
+        <div class="m-card">
+          <svg class="m-fig" viewBox="0 0 120 262" aria-hidden="true"><circle cx="60" cy="21" r="14" fill="#4a4a52"/><rect x="54" y="32" width="12" height="13" rx="4" fill="#4a4a52"/><path d="M40 45 Q60 41 80 45 Q88 47 87 57 L83 80 Q79 98 77.5 106 Q84 122 87.5 137 L87.5 146 Q60 152 32.5 146 L32.5 137 Q36 122 42.5 106 Q41 98 37 80 L33 57 Q32 47 40 45 Z" fill="#4a4a52"/><path d="M61 136 L87.5 136 Q90 168 83 196 Q86.5 214 79 244 Q79 249 74.5 249 Q70 249 70 244 Q64.5 214 66.5 196 Q60.5 170 61 150 Z" fill="#4a4a52"/><path d="M59 136 L32.5 136 Q30 168 37 196 Q33.5 214 41 244 Q41 249 45.5 249 Q50 249 50 244 Q55.5 214 53.5 196 Q59.5 170 59 150 Z" fill="#4a4a52"/><line x1="88" y1="53" x2="98" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="98" y1="98" x2="103" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="104" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="74.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><line x1="32" y1="53" x2="22" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="22" y1="98" x2="17" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="16" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="45.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><path d="M59.5 161 Q74.75 164 90 161" fill="none" stroke="#F2B705" stroke-width="4.6" stroke-linecap="round"/><path d="M30 161 Q45.25 164 60.5 161" fill="none" stroke="#F2B705" stroke-width="4.6" stroke-linecap="round"/></svg>
+          <div>
+            <div class="m-name">Coxas</div>
+            <div class="m-how">Em pé, peso nas duas pernas. Fita logo abaixo da dobra do bumbum.</div>
+            <div class="m-inputs">
+            <div class="m-in"><label>Esquerda</label>
+              <div class="m-box"><input type="number" name="coxa_esq" step="0.1" inputmode="decimal" placeholder="0.0" aria-label="Coxas Esquerda"><span class="m-cm">cm</span></div>
+            </div>
+            <div class="m-in"><label>Direita</label>
+              <div class="m-box"><input type="number" name="coxa_dir" step="0.1" inputmode="decimal" placeholder="0.0" aria-label="Coxas Direita"><span class="m-cm">cm</span></div>
+            </div>
+            </div>
+          </div>
         </div>
-        <div class="measure-item">
-          <label>Quadril</label>
-          <input type="number" name="quadril" step="0.1" placeholder="0.0">
-          <div class="measure-unit">cm</div>
-        </div>
-        <div class="measure-item">
-          <label>Coxa Esquerda</label>
-          <input type="number" name="coxa_esq" step="0.1" placeholder="0.0">
-          <div class="measure-unit">cm</div>
-        </div>
-        <div class="measure-item">
-          <label>Coxa Direita</label>
-          <input type="number" name="coxa_dir" step="0.1" placeholder="0.0">
-          <div class="measure-unit">cm</div>
-        </div>
-        <div class="measure-item">
-          <label>Perna Esquerda</label>
-          <input type="number" name="perna_esq" step="0.1" placeholder="0.0">
-          <div class="measure-unit">cm</div>
-        </div>
-        <div class="measure-item">
-          <label>Perna Direita</label>
-          <input type="number" name="perna_dir" step="0.1" placeholder="0.0">
-          <div class="measure-unit">cm</div>
+        <div class="m-card">
+          <svg class="m-fig" viewBox="0 0 120 262" aria-hidden="true"><circle cx="60" cy="21" r="14" fill="#4a4a52"/><rect x="54" y="32" width="12" height="13" rx="4" fill="#4a4a52"/><path d="M40 45 Q60 41 80 45 Q88 47 87 57 L83 80 Q79 98 77.5 106 Q84 122 87.5 137 L87.5 146 Q60 152 32.5 146 L32.5 137 Q36 122 42.5 106 Q41 98 37 80 L33 57 Q32 47 40 45 Z" fill="#4a4a52"/><path d="M61 136 L87.5 136 Q90 168 83 196 Q86.5 214 79 244 Q79 249 74.5 249 Q70 249 70 244 Q64.5 214 66.5 196 Q60.5 170 61 150 Z" fill="#4a4a52"/><path d="M59 136 L32.5 136 Q30 168 37 196 Q33.5 214 41 244 Q41 249 45.5 249 Q50 249 50 244 Q55.5 214 53.5 196 Q59.5 170 59 150 Z" fill="#4a4a52"/><line x1="88" y1="53" x2="98" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="98" y1="98" x2="103" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="104" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="74.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><line x1="32" y1="53" x2="22" y2="98" stroke="#4a4a52" stroke-width="13" stroke-linecap="round"/><line x1="22" y1="98" x2="17" y2="137" stroke="#4a4a52" stroke-width="10.5" stroke-linecap="round"/><circle cx="16" cy="145" r="5.6" fill="#4a4a52"/><ellipse cx="45.5" cy="252" rx="7.5" ry="4" fill="#4a4a52"/><path d="M63.5 213 Q75.25 216 87 213" fill="none" stroke="#F2B705" stroke-width="4.6" stroke-linecap="round"/><path d="M33 213 Q44.75 216 56.5 213" fill="none" stroke="#F2B705" stroke-width="4.6" stroke-linecap="round"/></svg>
+          <div>
+            <div class="m-name">Panturrilhas</div>
+            <div class="m-how">Em pé. Fita na parte mais grossa da panturrilha.</div>
+            <div class="m-inputs">
+            <div class="m-in"><label>Esquerda</label>
+              <div class="m-box"><input type="number" name="perna_esq" step="0.1" inputmode="decimal" placeholder="0.0" aria-label="Panturrilhas Esquerda"><span class="m-cm">cm</span></div>
+            </div>
+            <div class="m-in"><label>Direita</label>
+              <div class="m-box"><input type="number" name="perna_dir" step="0.1" inputmode="decimal" placeholder="0.0" aria-label="Panturrilhas Direita"><span class="m-cm">cm</span></div>
+            </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -537,7 +617,7 @@
       <div class="section-title">📸 Fotos Corporais</div>
 
       <div class="section-hint">
-        💡 <strong>Dicas para as fotos:</strong> Vista roupa justa ou de academia. Boa iluminação, fundo limpo. Corpo inteiro, dos pés à cabeça. Peça para alguém tirar se possível.
+        💡 <strong>Dicas para as fotos:</strong> Roupa curta ou de academia. Boa luz, fundo limpo, corpo inteiro dos pés à cabeça. Peça pra alguém tirar ou apoie o celular na altura do umbigo. Nas próximas avaliações, repita o mesmo lugar e a mesma roupa pra comparar.
       </div>
 
       <div class="photo-section">
