@@ -1188,6 +1188,19 @@ document.getElementById('assessToggle').addEventListener('click', function() { t
   rebuild();
 })();
 
+
+// ─── Voltar do celular fecha o vídeo, não a página (06/10/2026) ───
+(function(){
+  const ov = document.getElementById('videoOverlay'); if (!ov) return;
+  const fecha = (typeof closeVideo === 'function') ? closeVideo : null; if (!fecha) return;
+  const mo = new MutationObserver(() => {
+    if (ov.classList.contains('active') && !(history.state && history.state.mrVideo)) history.pushState({ mrVideo: 1 }, '');
+  });
+  mo.observe(ov, { attributes: true, attributeFilter: ['class'] });
+  window.addEventListener('popstate', () => { if (ov.classList.contains('active')) fecha(); });
+  const origClose = closeVideo;
+  closeVideo = function() { origClose(); if (history.state && history.state.mrVideo) history.back(); };
+})();
 </script>
 </body>
 </html>
