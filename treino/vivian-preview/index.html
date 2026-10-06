@@ -312,7 +312,7 @@ const V = {
   crucifixoInv: 'https://vd.mfitpersonal.com.br/215/mp4/215.mp4',
   abducaoMaq: 'https://vd.mfitpersonal.com.br/515/mp4/515.mp4',
   remadaSerrote: 'https://vd.mfitpersonal.com.br/210/mp4/210.mp4',
-  cadeiraExt: 'https://vd.mfitpersonal.com.br/504/mp4/504.mp4',
+  elevQuadrilMaq: 'https://vd.mfitpersonal.com.br/473/mp4/473.mp4',
   cadeiraFlexora: 'https://vd.mfitpersonal.com.br/502/mp4/502.mp4',
   legPress: 'https://vd.mfitpersonal.com.br/495/mp4/495.mp4',
   abdomSupra: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
@@ -343,24 +343,24 @@ const MUSC_A2 = {
 };
 
 const MUSC_B1 = {
-  type: 'lift', label: 'Musculação · Coxa + Costas',
-  title: 'Cadeira Extensora ↔ Remada Unilateral Halteres - Pegada Neutra (Serrote)', role: 'forca', min: 6,
-  meta: 'Bi-set ancorado: extensora + halter ao lado. 3 voltas; 60–90s entre as voltas. Sugestão inicial: extensora 25 kg · remada 10 kg.',
+  type: 'lift', label: 'Musculação · Posterior de coxa + Costas',
+  title: 'Cadeira Flexora ↔ Remada Unilateral Halteres - Pegada Neutra (Serrote)', role: 'forca', min: 6,
+  meta: 'Bi-set ancorado: flexora + halter ao lado. 3 voltas; 60–90s entre as voltas. Sugestão inicial: flexora 25 kg · remada 10 kg.',
   exercises: [
-    { name: 'Cadeira Extensora', muscle: 'Quadríceps', biset: true, reps: '3x12', loadLabel: 'Extensora',
-      tip: 'Sobe controlando, segura 1 s no topo, desce em 2 s. Solta o ar subindo.', video: V.cadeiraExt },
+    { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', biset: true, reps: '3x12', loadLabel: 'Flexora',
+      tip: 'Puxa o calcanhar ao glúteo e volta controlando, quadril apoiado. Solta o ar puxando.', video: V.cadeiraFlexora },
     { name: 'Remada Unilateral Halteres - Pegada Neutra (Serrote)', muscle: 'Costas', biset: true, reps: '3x12 cada lado', loadLabel: 'Remada',
       tip: 'Mão e joelho apoiados, coluna reta, puxa o halter até a cintura. Solta o ar ao puxar.', video: V.remadaSerrote },
   ],
 };
 
 const MUSC_B2 = {
-  type: 'lift', label: 'Musculação · Pernas + Ombro posterior',
-  title: 'Leg Press 45 ↔ Crucifixo Inverso com Halteres', role: 'forca', min: 6,
-  meta: 'Bi-set ancorado: leg press + halteres leves ao lado. 3 voltas; 60–90s entre as voltas. Sugestão inicial: leg press 50 kg · halteres 3 kg.',
+  type: 'lift', label: 'Musculação · Glúteo + Ombro posterior',
+  title: 'Elevação de Quadril na Maquina ↔ Crucifixo Inverso com Halteres', role: 'forca', min: 6,
+  meta: 'Bi-set ancorado: máquina de elevação de quadril + halteres leves ao lado. 3 voltas; 60–90s entre as voltas. Sugestão inicial: máquina 30 kg · halteres 3 kg.',
   exercises: [
-    { name: 'Leg Press 45 ', muscle: 'Quadríceps / Glúteos', biset: true, reps: '3x12', loadLabel: 'Leg Press',
-      tip: 'Lombar colada no encosto, desce até ~90°, empurra pelo calcanhar sem travar o joelho. Solta o ar empurrando, sem prender.', video: V.legPress },
+    { name: 'Elevação de Quadril na Maquina', muscle: 'Glúteos', biset: true, reps: '3x12', loadLabel: 'Elevação de quadril',
+      tip: 'Sobe o quadril apertando o glúteo 1 s no topo, desce controlando. Sem arquear a lombar; solta o ar subindo.', video: V.elevQuadrilMaq },
     { name: 'Crucifixo Inverso com Halteres', muscle: 'Ombro (posterior)', biset: true, reps: '3x12', loadLabel: 'Crucifixo inverso',
       tip: 'Tronco inclinado com a coluna reta, abre os braços até a linha dos ombros, leve e sem balançar.', video: V.crucifixoInv },
   ],
@@ -379,14 +379,14 @@ const MUSC_C1 = {
 };
 
 const MUSC_C2 = {
-  type: 'lift', label: 'Musculação · Posterior de coxa + Ombro',
-  title: 'Cadeira Flexora ↔ Elevação Lateral com Halteres', role: 'forca', min: 6,
-  meta: 'Bi-set ancorado: flexora + halteres ao lado. 3 voltas; 60–90s entre as voltas. Sugestão inicial: flexora 25 kg · elevação 4 kg.',
+  type: 'lift', label: 'Musculação · Pernas + Costas (grandes)',
+  title: 'Leg Press 45 ↔ Remada Unilateral Halteres - Pegada Neutra (Serrote)', role: 'forca', min: 6,
+  meta: 'Bi-set ancorado: leg press + halter ao lado. 3 voltas; 60–90s entre as voltas. Sugestão inicial: leg press 50 kg · remada 10 kg.',
   exercises: [
-    { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', biset: true, reps: '3x12', loadLabel: 'Flexora',
-      tip: 'Puxa o calcanhar ao glúteo e volta controlando, quadril apoiado.', video: V.cadeiraFlexora },
-    { name: 'Elevação Lateral com Halteres', muscle: 'Ombro', biset: true, reps: '3x12', loadLabel: 'Elevação Lateral',
-      tip: 'Leve, até a linha do ombro, sem balançar o tronco.', video: V.elevLateral },
+    { name: 'Leg Press 45 ', muscle: 'Quadríceps / Glúteos', biset: true, reps: '3x12', loadLabel: 'Leg Press',
+      tip: 'Lombar colada no encosto, desce até ~90°, empurra pelo calcanhar sem travar o joelho. Solta o ar empurrando, sem prender.', video: V.legPress },
+    { name: 'Remada Unilateral Halteres - Pegada Neutra (Serrote)', muscle: 'Costas', biset: true, reps: '3x12 cada lado', loadLabel: 'Remada',
+      tip: 'Mão e joelho apoiados, coluna reta, puxa o halter até a cintura. Solta o ar ao puxar.', video: V.remadaSerrote },
   ],
 };
 
@@ -395,12 +395,12 @@ const MUSC_C2 = {
    Tempo: aquec 6 + tracks ~14 + bi-sets ~14 + cardio 20–30 + soltura 5 ≈ 60–70 min (Regra 19). */
 const AULA_A = [ TRK_AQUEC3, TRK_PEITO3, MUSC_A1, TRK_PERNAS3, MUSC_A2, TRK_CARDIO, TRK_ALONG3 ];
 const AULA_B = [ TRK_AQUEC3, TRK_POST3, MUSC_B1, TRK_GLUTEOS, MUSC_B2, TRK_CARDIO, TRK_ALONG3 ];
-const AULA_C = [ TRK_AQUEC3, TRK_PERNAS3, MUSC_C1, TRK_GLUTEOS, MUSC_C2, TRK_CARDIO, TRK_ALONG3 ];
+const AULA_C = [ TRK_AQUEC3, TRK_PERNAS3, MUSC_C1, TRK_PEITO3, MUSC_C2, TRK_CARDIO, TRK_ALONG3 ];
 
 const TRAINING_SLOTS = [
-  { label: 'Treino A — Peito + Pernas (+ costas, ombro, quadril, core)', blocks: AULA_A },
-  { label: 'Treino B — Posteriores + Glúteos (+ coxa, costas, ombro)', blocks: AULA_B },
-  { label: 'Treino C — Pernas + Glúteos (+ costas, core, ombro)', blocks: AULA_C },
+  { label: 'Treino A — Segunda · Anteriores (MaxLift + sala)', blocks: AULA_A },
+  { label: 'Treino B — Quarta · Posteriores (MaxLift + sala)', blocks: AULA_B },
+  { label: 'Treino C — Sexta · Full Body, só os grandes (MaxLift + sala)', blocks: AULA_C },
 ];
 const DAY_CONFIG_KEY = 'maxresults-' + 'vivian' + '-days-v1';
 
