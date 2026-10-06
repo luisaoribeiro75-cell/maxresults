@@ -213,7 +213,7 @@ const MIX_GOALS = [
   { icon: '🎯', text: '<strong>Objetivo:</strong> perder gordura com ênfase em quadril e coxa. Perna entra todo dia (via aula MaxLift) e o cardio fecha a sessão.' },
   { icon: '🎬', text: '<strong>Como funciona (Mix = aula + musculação):</strong> 3x por semana, ~60 min. Cada dia = aquecimento (aula) → track MaxLift → bi-set de musculação → track MaxLift → bi-set → cardio → soltura. Toca o vídeo e acompanha; no bi-set, é o seu treino de sala.' },
   { icon: '🫁', text: '<strong>Ritmo deste ciclo:</strong> moderado. Nunca prende a respiração na força (solta o ar no esforço), não segura posição parada por muito tempo e o cardio é no "ritmo de conversa". Tontura ou mal-estar: para e me avisa.' },
-  { icon: '🏃‍♀️', text: '<strong>Cardio progressivo:</strong> semanas 1–2 = 20 min · 3–4 = 25 min · 5–6 = 30 min. Esteira (caminhada rápida/inclinada) ou bike. Quando o Max Step estiver gravado, ele entra aqui.' },
+  { icon: '💃', text: '<strong>Cardio:</strong> segunda e quarta é a sua aula de dança à noite (não precisa de esteira depois do peso). Sexta: 20 min de esteira ou bike aqui, subindo pra 25 e 30 ao longo do ciclo. Quando o Max Step estiver gravado, ele entra na sexta.' },
   { icon: '📈', text: '<strong>Cargas:</strong> anota o peso de cada track e do bi-set no campo kg. Na volta do mix (a cada 2 semanas) sobe o que fechou bem.' },
   { icon: '📊', text: '<strong>Avaliação 06/10:</strong> 67,4 kg · 28,6% de gordura · cintura 74,5 · quadril 108,5 · coxa 63,5. Reavaliação em ~jan/27 pra medir a mudança.' },
 ];
@@ -241,6 +241,15 @@ const TRK_POST3 = {
   bunny: 'https://iframe.mediadelivery.net/embed/655450/6895cd36-19b3-4959-ab27-647eb7f2ae9c',
   tip: 'Cadeia posterior (costas + posterior de coxa). Coluna neutra no stiff, escápula fechando na remada. Respira: solta o ar no esforço.',
   loads: [ { label: 'Stiff (barra/halteres)', placeholder: '—' }, { label: 'Remada (halteres)', placeholder: '—' } ],
+};
+
+const TRK_CARDIO_DANCA = {
+  type: 'track', group: 'cardio', role: 'cardio',
+  label: 'Cardio de hoje · sua aula de dança (à noite)', title: 'Aula de dança à noite = cardio do dia', min: 25,
+  duration: 'a aula', tag: 'Aeróbico',
+  bunny: 'https://iframe.mediadelivery.net/embed/655450/dcf2c03a-4a77-4012-8cc0-f9fe51782bd4',
+  tip: 'Segunda e quarta o seu cardio é a aula de dança da noite: depois do peso, não precisa de esteira. Só marca aqui quando fizer a aula. Se um dia faltar à dança, faz 20 min de esteira ou bike (ou o MaxCicle #1 no vídeo) no lugar.',
+  loads: [ { label: 'Fez a aula? (sim/não)', placeholder: 'sim' } ],
 };
 
 const TRK_ALONG3 = {
@@ -393,8 +402,8 @@ const MUSC_C2 = {
 /* MISTO Full Body 3x/sem (Regra 17): "Mix = musculação + aulas" (anamnese). UM mix por ciclo (Mix #3; renovação troca pro #2 — Regra 18).
    Cada dia: aquec (track) → track grande → bi-set → track grande → bi-set → cardio → soltura (track). Perna todo dia (ênfase), costas via musculação.
    Tempo: aquec 6 + tracks ~14 + bi-sets ~14 + cardio 20–30 + soltura 5 ≈ 60–70 min (Regra 19). */
-const AULA_A = [ TRK_AQUEC3, TRK_PEITO3, MUSC_A1, TRK_PERNAS3, MUSC_A2, TRK_CARDIO, TRK_ALONG3 ];
-const AULA_B = [ TRK_AQUEC3, TRK_POST3, MUSC_B1, TRK_GLUTEOS, MUSC_B2, TRK_CARDIO, TRK_ALONG3 ];
+const AULA_A = [ TRK_AQUEC3, TRK_PEITO3, MUSC_A1, TRK_PERNAS3, MUSC_A2, TRK_CARDIO_DANCA, TRK_ALONG3 ];
+const AULA_B = [ TRK_AQUEC3, TRK_POST3, MUSC_B1, TRK_GLUTEOS, MUSC_B2, TRK_CARDIO_DANCA, TRK_ALONG3 ];
 const AULA_C = [ TRK_AQUEC3, TRK_PERNAS3, MUSC_C1, TRK_PEITO3, MUSC_C2, TRK_CARDIO, TRK_ALONG3 ];
 
 const TRAINING_SLOTS = [
