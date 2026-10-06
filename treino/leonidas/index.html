@@ -276,7 +276,17 @@
     .video-overlay.active { display: flex; }
     .video-overlay video, .video-overlay iframe { max-width: 100%; max-height: 80vh; border-radius: 12px; border: none; }
     .video-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); border: none; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-  </style>
+      /* dias flexíveis (06/10/2026) */
+    .day-btn.rest { opacity: 0.45; cursor: pointer; }
+    .day-btn.rest .day-num { color: var(--text-muted); }
+    .day-btn.moved::before { opacity: 0.5; }
+    .day-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 2px 0 14px; }
+    .day-actions select, .day-actions button { font-family: var(--font-body); font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-light); background: var(--surface); color: var(--text); cursor: pointer; }
+    .day-actions select { -webkit-appearance: none; appearance: none; padding-right: 28px; background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%), linear-gradient(135deg, var(--text-muted) 50%, transparent 50%); background-position: calc(100% - 15px) 55%, calc(100% - 10px) 55%; background-size: 5px 5px; background-repeat: no-repeat; }
+    .day-actions button.primary { background: var(--accent-lift); color: #000; border-color: transparent; }
+    .day-actions .hint { width: 100%; font-size: 11px; color: var(--text-muted); }
+    .rest-message .day-actions { justify-content: center; margin-top: 18px; }
+</style>
 </head>
 <body>
 <div class="container">
@@ -1125,6 +1135,74 @@ document.getElementById('avatarInput').addEventListener('change', function(e) {
   if (e.target.files && e.target.files[0]) saveAvatar(e.target.files[0]);
 });
 loadAvatar();
+
+// ─── Dias flexíveis (06/10/2026): trocar o treino do dia, treinar num dia de descanso, adiar pra amanhã. Vale só pra semana atual. ───
+(function(){
+  const OV_KEY = DAY_CONFIG_KEY + '-ov-' + getWeekKey();
+  function loadOv() { try { return JSON.parse(localStorage.getItem(OV_KEY) || '{}'); } catch { return {}; } }
+  function saveOv(o) { localStorage.setItem(OV_KEY, JSON.stringify(o)); }
+  // treinos disponíveis: TRAINING_SLOTS (páginas com engrenagem) ou os blocos únicos de WEEK_PLAN (páginas de semana fixa)
+  const SLOTS = (typeof TRAINING_SLOTS !== 'undefined') ? TRAINING_SLOTS
+    : WEEK_PLAN.filter(x => !x.rest).filter((x, i, a) => a.findIndex(y => y.label === x.label) === i).map(x => ({ label: x.label, blocks: x.blocks }));
+  const basePattern = buildSchedule;              // padrão da engrenagem
+  buildSchedule = function() {
+    const base = basePattern(); const ov = loadOv();
+    return base.map(d => {
+      if (!(d.dayName in ov)) return d;
+      const v = ov[d.dayName];
+      if (v === 'rest') return { dayName: d.dayName, rest: true, label: 'Descanso', moved: true };
+      const slot = SLOTS[v]; if (!slot) return d;
+      return { dayName: d.dayName, rest: false, label: slot.label, blocks: slot.blocks, moved: true };
+    });
+  };
+  function slotIndexOf(day) { return day.rest ? null : SLOTS.findIndex(s => s.label === day.label); }
+  function rebuild() { WEEK_SCHEDULE = buildSchedule(); WEEK = buildWeek(); render(); }
+  window.setDayOverride = function(di, value) {
+    const ov = loadOv(); const name = WEEK[di].day;
+    if (value === 'default') delete ov[name]; else ov[name] = value === 'rest' ? 'rest' : Number(value);
+    saveOv(ov); rebuild();
+  };
+  window.postponeDay = function(di) {
+    const names = WEEK.map(d => d.day);
+    const slots = []; for (let j = di; j < WEEK.length; j++) { const s = slotIndexOf(WEEK[j]); if (s !== null) slots.push(s); }
+    if (!slots.length) return;
+    const room = WEEK.length - (di + 1);
+    if (slots.length > room && !confirm('Não cabe tudo até sábado: o último treino da semana ficaria de fora. Adiar mesmo assim?')) return;
+    const ov = loadOv();
+    ov[names[di]] = 'rest';
+    for (let j = di + 1, k = 0; j < WEEK.length; j++, k++) ov[names[j]] = k < slots.length ? slots[k] : 'rest';
+    saveOv(ov); rebuild();
+  };
+  window.resetWeekOverrides = function() { localStorage.removeItem(OV_KEY); rebuild(); };
+  // dia de descanso também abre
+  selectDay = function(i) { currentDayIndex = i; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const baseSwitcher = renderDaySwitcher;
+  renderDaySwitcher = function() {
+    baseSwitcher();
+    document.querySelectorAll('#daySwitcher .day-btn').forEach((b, i) => { b.disabled = false; if (WEEK[i] && WEEK[i].moved) b.classList.add('moved'); });
+  };
+  const baseWorkout = renderWorkout;
+  renderWorkout = function() {
+    baseWorkout();
+    const day = WEEK[currentDayIndex]; const content = document.getElementById('workoutContent'); if (!content) return;
+    const cur = slotIndexOf(day); const hasOv = Object.keys(loadOv()).length > 0;
+    const opts = SLOTS.map((s, k) => `<option value="${k}" ${k === cur ? 'selected' : ''}>${s.label}</option>`).join('');
+    const today = new Date().toISOString().split('T')[0]; const isPast = day.date < today;
+    let html;
+    if (day.rest) {
+      html = `<div class="day-actions"><select onchange="if(this.value!=='')setDayOverride(${currentDayIndex}, this.value)"><option value="">Treinar neste dia? Escolha o treino…</option>${opts}</select>${hasOv ? '<button onclick="resetWeekOverrides()">Voltar ao padrão da semana</button>' : ''}</div>`;
+      const box = content.querySelector('.rest-message'); if (box) box.insertAdjacentHTML('beforeend', html); else content.insertAdjacentHTML('afterbegin', html);
+    } else {
+      html = `<div class="day-actions"><select onchange="setDayOverride(${currentDayIndex}, this.value)">${opts}<option value="rest">Descansar neste dia</option></select>` +
+        (currentDayIndex < WEEK.length - 1 ? `<button onclick="postponeDay(${currentDayIndex})" title="Empurra este treino e os seguintes um dia pra frente">Adiar pra amanhã →</button>` : '') +
+        (hasOv ? '<button onclick="resetWeekOverrides()">Voltar ao padrão</button>' : '') +
+        `<span class="hint">${isPast ? 'Perdeu este dia? ' : ''}Troca só esta semana. ${typeof TRAINING_SLOTS !== 'undefined' ? 'Pra mudar os dias fixos, use a engrenagem ⚙️.' : ''}</span></div>`;
+      content.insertAdjacentHTML('afterbegin', html);
+    }
+  };
+  rebuild();
+})();
+
 </script>
 </body>
 </html>
