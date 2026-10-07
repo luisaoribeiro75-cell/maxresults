@@ -290,13 +290,13 @@
     .video-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); border: none; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
       /* dias flexíveis (06/10/2026) */
     .day-btn.rest { opacity: 0.45; cursor: pointer; }
-    .day-btn.rest .day-num { color: var(--text-muted); }
+    .day-btn.rest .day-num { color: var(--text-muted, #71717a); }
     .day-btn.moved::before { opacity: 0.5; }
     .day-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 2px 0 14px; }
-    .day-actions select, .day-actions button { font-family: var(--font-body); font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-light); background: var(--surface); color: var(--text); cursor: pointer; }
-    .day-actions select { -webkit-appearance: none; appearance: none; padding-right: 28px; background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%), linear-gradient(135deg, var(--text-muted) 50%, transparent 50%); background-position: calc(100% - 15px) 55%, calc(100% - 10px) 55%; background-size: 5px 5px; background-repeat: no-repeat; }
-    .day-actions button.primary { background: var(--accent-lift); color: #000; border-color: transparent; }
-    .day-actions .hint { width: 100%; font-size: 11px; color: var(--text-muted); }
+    .day-actions select, .day-actions button { font-family: var(--font-body, inherit); font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-light, var(--border, #2a2a2e)); background: var(--surface, #141416); color: var(--text, #f4f4f5); cursor: pointer; -webkit-appearance: none; appearance: none; }
+    .day-actions select { padding-right: 28px; background-image: linear-gradient(45deg, transparent 50%, var(--text-muted, #71717a) 50%), linear-gradient(135deg, var(--text-muted, #71717a) 50%, transparent 50%); background-position: calc(100% - 15px) 55%, calc(100% - 10px) 55%; background-size: 5px 5px; background-repeat: no-repeat; max-width: 100%; }
+    .day-actions button.primary { background: var(--accent-lift, #f59e0b); color: #000; border-color: transparent; }
+    .day-actions .hint { width: 100%; font-size: 11px; color: var(--text-muted, #71717a); }
     .rest-message .day-actions { justify-content: center; margin-top: 18px; }
 </style>
 </head>

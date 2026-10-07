@@ -410,7 +410,8 @@ const V = {
   // Substitutos 18/07 (lista negra masculina + supino-barra-e-solo)
   mobQuadrilDin: 'https://vd.mfitpersonal.com.br/v2/1062/mp4/1062_opt.mp4',
   bomDia: 'https://vd.mfitpersonal.com.br/269/mp4/269.mp4',
-  bulgaroCarga: 'https://vd.mfitpersonal.com.br/789/mp4/789.mp4',
+  afundoHalteres: 'https://vd.mfitpersonal.com.br/32/mp4/32.mp4',
+  crucifixoPowerBand: 'https://player.mediadelivery.net/play/655450/16ee2831-901a-4b04-96ae-9e1bd8b9ffb4',
   abdomSupra: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
   abdomInfra: 'https://vd.mfitpersonal.com.br/375/mp4/375.mp4',
   abdomCanivete: 'https://player.mediadelivery.net/play/655450/9b1d98af-ba64-4237-aba8-a8db6109e6b9',
@@ -577,20 +578,20 @@ const SOLO_B_1 = {
 
 const BISET_B_1 = {
   type: 'lift', label: 'Bi-Set 1',
-  title: 'Puxada Frontal ↔ Flexão de Joelhos com Caneleiras', duration: '3x10–15 · Sem descanso no par',
-  meta: 'Costas grande + posterior isolado (livre). Âncora no puxador — nórdica feita ao lado no colchonete, sem ocupar outra máquina. Descanso 60–90s ao fim do par.',
+  title: 'Puxada Frontal ↔ Crucifixo com Power Band (mobilidade)', duration: '3x10–12 / 12–15 · Sem descanso no par',
+  meta: 'Costas grande + MOBILIDADE do antagonista (peito/ombro anterior — encurtamento). O Power Band abre o peito no intervalo da puxada, ancorado no próprio puxador. Descanso 60–90s ao fim do par.',
   exercises: [
     { name: 'Puxada Frontal (pegada aberta)', muscle: 'Costas (dorsal)', duration: '3x10–12', equipment: 'Polia alta / puxador', tip: 'Pegada aberta. Puxe a barra até o peito levando as escápulas "pro bolso". Sem jogar o tronco.', video: V.puxadaFrontal },
-    { name: 'Flexão de Joelhos com Caneleiras', muscle: 'Posterior de coxa', duration: '3x12 cada perna', equipment: 'Caneleira + colchonete (ao lado do puxador)', tip: 'Deitado de bruços no colchonete ao lado do puxador, dobra o joelho trazendo o calcanhar ao glúteo com a caneleira, desce controlando. Dá pra fazer sozinho — sem precisar de parceiro.', video: V.flexaoJoelhosCaneleira },
+    { name: 'Crucifixo com Power Band', muscle: 'Mobilidade — Peito / Ombro ant.', duration: '3x12–15', equipment: 'Power Band (faixa elástica)', tip: 'Mobilidade do antagonista: abra os braços contra a faixa alongando o peito e a frente do ombro, controlando na volta. Trata o encurtamento de peitoral/ombro anterior enquanto descansa da puxada. Sem carga pesada — é mobilidade.', video: V.crucifixoPowerBand },
   ]
 };
 
 const SOLO_B_2 = {
   type: 'lift', label: 'Solo 2',
-  title: 'Agachamento Búlgaro com Carga', duration: '3x10–12 cada perna',
-  meta: 'Composto de glúteo unilateral (Regra 9 — substitui a ênfase pélvica). Descanso 90s.',
+  title: 'Afundo com Halteres', duration: '3x10–12 cada perna',
+  meta: 'Composto de glúteo/quadríceps unilateral (Regra 9 — substitui a ênfase pélvica). Trocado do Búlgaro por dificuldade de execução (03/09). Descanso 90s.',
   exercises: [
-    { name: 'Agachamento Búlgaro com Carga', muscle: 'Glúteos / Quadríceps', duration: '3x10–12 cada perna', equipment: 'Halteres + banco (pé de trás apoiado)', tip: 'Peito do pé de trás no banco, tronco levemente inclinado à frente pra jogar a carga no glúteo. Desce controlado e empurra pelo calcanhar da frente.', video: V.bulgaroCarga },
+    { name: 'Afundo com Halteres', muscle: 'Glúteos / Quadríceps', duration: '3x10–12 cada perna', equipment: 'Halteres', tip: 'Passo firme à frente, desça o joelho de trás em direção ao chão (sem tocar forte), tronco ereto. Empurra pelo calcanhar da frente pra subir. Execução mais estável que o búlgaro.', video: V.afundoHalteres },
   ]
 };
 
@@ -611,6 +612,15 @@ const BISET_B_3 = {
   exercises: [
     { name: 'Remada Curvada com Halteres (unilateral)', muscle: 'Costas', duration: '3x10–12/lado', equipment: 'Halter + banco', tip: 'Uma mão e um joelho no banco, tronco paralelo ao chão. Puxe o halter em direção ao quadril. 10–12 cada lado.', video: V.remadaCurvada },
     { name: 'Abdominal Infra no chão', muscle: 'Core / Abdômen inferior', duration: '3x15', equipment: 'Colchonete', tip: 'Suba as pernas com controle, lombar apoiada e sem embalar.', video: V.abdomInfra },
+  ]
+};
+
+const ISO_B_3 = {
+  type: 'lift', label: 'Isolado — Posterior',
+  title: 'Flexão de Joelhos com Caneleiras', duration: '3x12 cada perna',
+  meta: 'Isolado de posterior de coxa (realocado do Bi-Set 1 quando entrou a mobilidade). Descanso 45–60s.',
+  exercises: [
+    { name: 'Flexão de Joelhos com Caneleiras', muscle: 'Posterior de coxa', duration: '3x12 cada perna', equipment: 'Caneleira + colchonete', tip: 'Deitado de bruços, dobra o joelho trazendo o calcanhar ao glúteo com a caneleira, desce controlando. Dá pra fazer sozinho — sem parceiro.', video: V.flexaoJoelhosCaneleira },
   ]
 };
 
@@ -655,7 +665,7 @@ const SOLTURA_B = {
 };
 
 const TREINO_A = [ AQUEC_A, MOBIL_A, SOLO_A_1, BISET_A_1, SOLO_A_SUPINO, SOLO_A_2, BISET_A_2, ISO_A_1, ISO_A_2, CARDIO_A, SOLTURA_A ];
-const TREINO_B = [ AQUEC_B, MOBIL_B, SOLO_B_1, BISET_B_1, SOLO_B_2, BISET_B_2, BISET_B_3, ISO_B_1, ISO_B_2, CARDIO_B, SOLTURA_B ];
+const TREINO_B = [ AQUEC_B, MOBIL_B, SOLO_B_1, BISET_B_1, SOLO_B_2, BISET_B_2, BISET_B_3, ISO_B_3, ISO_B_1, ISO_B_2, CARDIO_B, SOLTURA_B ];
 
 // 3x/sem alternando A · B · A (Semana 1). Descanso mínimo de 48h entre repetições.
 const TRAINING_SLOTS = [

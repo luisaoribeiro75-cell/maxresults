@@ -232,22 +232,26 @@
     .assess-donut-legend .dot.fat { background: #f59e0b; }
     .assess-donut-legend .dot.lean { background: var(--green); }
     .assess-alert { margin-top: 16px; padding: 16px; border-radius: var(--radius); position: relative; overflow: hidden;
+      background: linear-gradient(135deg, rgba(239,68,68,0.14), rgba(245,158,11,0.10));
+      border: 2px solid rgba(239,68,68,0.55); animation: alertPulse 1.6s ease-in-out infinite; }
     .assess-alert .aa-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
     .assess-alert .aa-icon { font-size: 26px; display: inline-block; animation: alertShake 1.1s ease-in-out infinite; }
     .assess-alert .aa-title { font-family: var(--font-display); font-size: 13px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: #ef4444; }
     .assess-alert .aa-msg { font-size: 13.5px; line-height: 1.55; color: var(--text); margin-bottom: 12px; }
     .assess-alert .aa-cta { display: block; text-align: center; padding: 12px; border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, #ef4444, #f59e0b); color: #fff; font-family: var(--font-display);
+      font-size: 14px; font-weight: 800; text-decoration: none; letter-spacing: 0.3px; }
     .assess-alert .aa-cta:active { transform: scale(0.98); }
   @media print{ body *{visibility:hidden !important;} #assessPanel,#assessPanel *{visibility:visible !important;} #assessPanel{position:absolute;left:0;top:0;width:100%;max-height:none !important;overflow:visible !important;display:block !important;} .no-print{display:none !important;} .cmp-table th:first-child,.cmp-table td:first-child{position:static;} }
       /* dias flexíveis (06/10/2026) */
     .day-btn.rest { opacity: 0.45; cursor: pointer; }
-    .day-btn.rest .day-num { color: var(--text-muted); }
+    .day-btn.rest .day-num { color: var(--text-muted, #71717a); }
     .day-btn.moved::before { opacity: 0.5; }
     .day-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 2px 0 14px; }
-    .day-actions select, .day-actions button { font-family: var(--font-body); font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-light); background: var(--surface); color: var(--text); cursor: pointer; }
-    .day-actions select { -webkit-appearance: none; appearance: none; padding-right: 28px; background-image: linear-gradient(45deg, transparent 50%, var(--text-muted) 50%), linear-gradient(135deg, var(--text-muted) 50%, transparent 50%); background-position: calc(100% - 15px) 55%, calc(100% - 10px) 55%; background-size: 5px 5px; background-repeat: no-repeat; }
-    .day-actions button.primary { background: var(--accent-lift); color: #000; border-color: transparent; }
-    .day-actions .hint { width: 100%; font-size: 11px; color: var(--text-muted); }
+    .day-actions select, .day-actions button { font-family: var(--font-body, inherit); font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-light, var(--border, #2a2a2e)); background: var(--surface, #141416); color: var(--text, #f4f4f5); cursor: pointer; -webkit-appearance: none; appearance: none; }
+    .day-actions select { padding-right: 28px; background-image: linear-gradient(45deg, transparent 50%, var(--text-muted, #71717a) 50%), linear-gradient(135deg, var(--text-muted, #71717a) 50%, transparent 50%); background-position: calc(100% - 15px) 55%, calc(100% - 10px) 55%; background-size: 5px 5px; background-repeat: no-repeat; max-width: 100%; }
+    .day-actions button.primary { background: var(--accent-lift, #f59e0b); color: #000; border-color: transparent; }
+    .day-actions .hint { width: 100%; font-size: 11px; color: var(--text-muted, #71717a); }
     .rest-message .day-actions { justify-content: center; margin-top: 18px; }
 </style>
 </head>
@@ -1145,6 +1149,19 @@ document.getElementById('assessToggle').addEventListener('click', function() { t
 
 
 
+// ─── Voltar do celular fecha o vídeo, não a página (06/10/2026) ───
+(function(){
+  const ov = document.getElementById('videoOverlay'); if (!ov) return;
+  const fecha = (typeof closeVideo === 'function') ? closeVideo : null; if (!fecha) return;
+  const mo = new MutationObserver(() => {
+    if (ov.classList.contains('active') && !(history.state && history.state.mrVideo)) history.pushState({ mrVideo: 1 }, '');
+  });
+  mo.observe(ov, { attributes: true, attributeFilter: ['class'] });
+  window.addEventListener('popstate', () => { if (ov.classList.contains('active')) fecha(); });
+  const origClose = closeVideo;
+  closeVideo = function() { origClose(); if (history.state && history.state.mrVideo) history.back(); };
+})();
+
 // ─── Dias flexíveis (06/10/2026): trocar o treino do dia, treinar num dia de descanso, adiar pra amanhã. Vale só pra semana atual. ───
 (function(){
   const OV_KEY = DAY_CONFIG_KEY + '-ov-' + getWeekKey();
@@ -1212,19 +1229,6 @@ document.getElementById('assessToggle').addEventListener('click', function() { t
   rebuild();
 })();
 
-
-// ─── Voltar do celular fecha o vídeo, não a página (06/10/2026) ───
-(function(){
-  const ov = document.getElementById('videoOverlay'); if (!ov) return;
-  const fecha = (typeof closeVideo === 'function') ? closeVideo : null; if (!fecha) return;
-  const mo = new MutationObserver(() => {
-    if (ov.classList.contains('active') && !(history.state && history.state.mrVideo)) history.pushState({ mrVideo: 1 }, '');
-  });
-  mo.observe(ov, { attributes: true, attributeFilter: ['class'] });
-  window.addEventListener('popstate', () => { if (ov.classList.contains('active')) fecha(); });
-  const origClose = closeVideo;
-  closeVideo = function() { origClose(); if (history.state && history.state.mrVideo) history.back(); };
-})();
 </script>
 </body>
 </html>
