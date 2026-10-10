@@ -264,7 +264,7 @@
       <div class="header-date" id="headerDate"></div>
     </div>
     <div class="header-title">
-      <div><div class="avatar-wrap"><div class="avatar-circle" id="avatarCircle" onclick="document.getElementById('avatarInput').click()"><span class="avatar-placeholder">📸</span><span class="avatar-hint">+</span></div><span class="athlete">Sheila</span></div><span class="profile-badge">Mix · Ciclo 1</span><span class="separator">/</span><span class="day" id="headerDay"></span></div>
+      <div><div class="avatar-wrap"><div class="avatar-circle" id="avatarCircle" onclick="document.getElementById('avatarInput').click()"><span class="avatar-placeholder">📸</span><span class="avatar-hint">+</span></div><span class="athlete">Camila</span></div><span class="profile-badge">Mix · Ciclo 1</span><span class="separator">/</span><span class="day" id="headerDay"></span></div>
     </div>
     <div class="progress-bar-container">
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
@@ -578,7 +578,7 @@ function render() { renderMixGoal(); renderDaySwitcher(); renderWorkout(); updat
 
 function renderMixGoal() {
   document.getElementById('mixGoal').innerHTML = `
-    <div class="mix-goal-header"><span class="mix-goal-label">Meta da Semana</span><span class="mix-goal-badge">Ciclo 1 · Massa Magra · Mix #3</span></div>
+    <div class="mix-goal-header"><span class="mix-goal-label">Meta da Semana</span><span class="mix-goal-badge">Ciclo 1 · Força + Condicionamento</span></div>
     <div class="mix-goal-items">${MIX_GOALS.map(g => `<div class="mix-goal-item"><div class="mix-goal-icon">${g.icon}</div><div class="mix-goal-text">${g.text}</div></div>`).join('')}</div>`;
 }
 
