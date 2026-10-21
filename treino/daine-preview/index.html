@@ -365,7 +365,7 @@ const ATHLETE = 'Daíne';
 const WEEKLY_GOALS = [
   { icon: '🏋️', type: 'strength', text: '<strong>Mix#7 — Anterior / Posterior (4x/sem):</strong> treino NOVO. Agora os dias se dividem em <strong>frente do corpo</strong> (A e C: perna da frente, peito, ombro, tríceps, abdômen) e <strong>parte de trás</strong> (B e D: posterior de coxa, glúteo, costas, bíceps, postura). Cada músculo treina 2x por semana com mais descanso entre um e outro.' },
   { icon: '💪', type: 'strength', text: '<strong>Continua o foco em FORÇA:</strong> 9 a 12 repetições com carga desafiadora, descanso de 60 a 90s entre as voltas. Funcionou: na última avaliação você <strong>ganhou massa magra e perdeu gordura</strong> 👏. Sem aeróbico no fim — o tempo é todo de força.' },
-  { icon: '⏱️', type: 'strength', text: '<strong>Cabe em ~45 min:</strong> aquecimento + mobilidade rápidos → 4 bi-sets → soltura. Tudo em bi-set e no mesmo lugar: termina um exercício e faz o par ali do lado, sem sair da estação.' },
+  { icon: '⏱️', type: 'strength', text: '<strong>Cabe em ~45 min:</strong> aquecimento + mobilidade rápidos → 4 bi-sets → soltura. <strong>Com pouco tempo, faça 3 voltas</strong> em todos os bi-sets. Tudo em bi-set e no mesmo lugar: termina um exercício e faz o par ali do lado, sem sair da estação.' },
   { icon: '📈', type: 'strength', text: '<strong>Cargas:</strong> abra o exercício pra ver a carga sugerida (tirada do que você anotou no ciclo passado). Teste, anote no campo kg e, se fechar as 12 com boa técnica, sobe um pouco na semana seguinte.' },
   { icon: '🥩', type: 'assessment', text: '<strong>Proteína continua importando:</strong> alvo de ~1,6 g de proteína por kg de peso por dia, alinhado com a sua nutricionista. É ela que transforma o treino de força em massa magra.' },
   { icon: '💊', type: 'assessment', text: '<strong>Energia:</strong> não treine em jejum longo e hidrate bem. Se sentir tontura, náusea ou fadiga fora do normal, reduza o volume e me avise.' },
@@ -406,14 +406,13 @@ const V = {
   elevQuadrilUni: 'https://vd.mfitpersonal.com.br/255/mp4/255.mp4',
   roscaMarteloAlt: 'https://vd.mfitpersonal.com.br/107/mp4/107.mp4',
   roscaAlternada: 'https://vd.mfitpersonal.com.br/110/mp4/110.mp4',
-  abdomSupraSolo: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
   abdomSupraPernasDobradas: 'https://vd.mfitpersonal.com.br/727/mp4/727.mp4',
   prancha: 'https://vd.mfitpersonal.com.br/852/mp4/852.mp4',
   pranchaAlta: 'https://vd.mfitpersonal.com.br/853/mp4/853.mp4',
   pranchaLateral: 'https://vd.mfitpersonal.com.br/181/mp4/181.mp4',
 };
 
-const REPS = '3-4 séries · 9-12 reps · descanso 60-90s entre as voltas';
+const REPS = '3-4 séries (com pouco tempo, faça 3 voltas) · 9-12 reps · descanso 60-90s entre as voltas';
 const REPS3 = '3 séries · 9-12 reps · descanso 60s entre as voltas';
 
 // ─── Blocos compartilhados (aquecimento · mobilidade protetora · soltura) ───
@@ -470,11 +469,11 @@ const TREINO_A = [
   },
   {
     type: 'lift', label: 'Bi-Set 3',
-    title: 'Adução de Quadril Máquina ↔ Abdominal Supra Solo', duration: REPS3,
-    meta: 'Parte interna da coxa na máquina + abdômen no colchonete ao lado. Descanso 60s ao fim do par.',
+    title: 'Adução de Quadril Máquina ↔ Prancha Isometrica Lateral Baixa', duration: REPS3,
+    meta: 'Parte interna da coxa na máquina + core lateral no colchonete ao lado (sem flexão de tronco — protege a coluna). Descanso 60s ao fim do par.',
     exercises: [
       { name: 'Adução de Quadril Máquina', muscle: 'Adutores', duration: '3x9-12', equipment: 'Máquina adutora', tip: 'Costas apoiadas, fecha as pernas contraindo a parte interna da coxa e volta devagar, sem deixar a placa bater.', video: V.aducaoMaq, carga: '30 a 35 kg — teste e ajuste' },
-      { name: 'Abdominal Supra Solo', muscle: 'Abdômen', duration: '3x12', equipment: 'Colchonete (no chão, do lado)', tip: 'Sobe só até tirar as escápulas do chão, contrai e desce. Lombar no chão, sem puxar o pescoço.', video: V.abdomSupraSolo, carga: 'Peso do corpo' },
+      { name: 'Prancha Isometrica Lateral Baixa', muscle: 'Core lateral', duration: '3x 20-30s cada lado', equipment: 'Colchonete (no chão, do lado)', tip: 'Apoio no antebraço, corpo em linha, quadril alto. Respira normal.', video: V.pranchaLateral, carga: 'Peso do corpo' },
     ]
   },
   {
@@ -581,20 +580,20 @@ const TREINO_D = [
   MOBILIDADE_LOMBAR,
   {
     type: 'lift', label: 'Bi-Set 1',
-    title: 'Puxada Aberta Barra reta ↔ Elevação de Quadril Unilateral', duration: REPS,
+    title: 'Puxada Aberta Barra reta ↔ Elevação de Quadril Unilateral', duration: REPS3,
     meta: '1ª volta LEVE pra aquecer. Costas no puxador + glúteo no colchonete ao lado. Descanso 60-90s ao fim do par.',
     exercises: [
-      { name: 'Puxada Aberta Barra reta', muscle: 'Costas (dorsal)', duration: '3-4x9-12', equipment: 'Puxador', tip: 'Pegada aberta, puxa a barra até a parte de cima do peito fechando as escápulas. Sem jogar o tronco pra trás.', video: V.puxadaAberta, carga: '45 a 47 kg (você anotou 45)' },
-      { name: 'Elevação de Quadril Unilateral', muscle: 'Glúteos', duration: '3-4x10 cada lado', equipment: 'Colchonete (ao lado do puxador)', tip: 'Deitada, um pé no chão e a outra perna estendida. Sobe o quadril contraindo o glúteo, segura 1s e desce. Sem hiperestender a lombar.', video: V.elevQuadrilUni, carga: 'Peso do corpo — ficou fácil? apoia um halter no quadril' },
+      { name: 'Puxada Aberta Barra reta', muscle: 'Costas (dorsal)', duration: '3x9-12', equipment: 'Puxador', tip: 'Pegada aberta, puxa a barra até a parte de cima do peito fechando as escápulas. Sem jogar o tronco pra trás.', video: V.puxadaAberta, carga: '45 a 47 kg (você anotou 45)' },
+      { name: 'Elevação de Quadril Unilateral', muscle: 'Glúteos', duration: '3x10 cada lado', equipment: 'Colchonete (ao lado do puxador)', tip: 'Deitada, um pé no chão e a outra perna estendida. Sobe o quadril contraindo o glúteo, segura 1s e desce. Sem hiperestender a lombar.', video: V.elevQuadrilUni, carga: 'Peso do corpo — ficou fácil? apoia um halter no quadril' },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set 2',
-    title: 'Cadeira Flexora Unilateral ↔ Remada Unilateral Halteres - Pegada Neutra (Serrote)', duration: REPS,
+    title: 'Cadeira Flexora Unilateral ↔ Remada Unilateral Halteres - Pegada Neutra (Serrote)', duration: REPS3,
     meta: 'Posterior de coxa uma perna de cada vez + costas com joelho e mão APOIADOS no banco ao lado. Descanso 60-90s ao fim do par.',
     exercises: [
-      { name: 'Cadeira Flexora Unilateral', muscle: 'Posterior de coxa', duration: '3-4x10 cada perna', equipment: 'Máquina flexora', tip: 'Uma perna de cada vez, quadril colado no banco, controla a volta.', video: V.cadeiraFlexoraUni, carga: '20 kg (metade do que você faz com as duas)' },
-      { name: 'Remada Unilateral Halteres - Pegada Neutra (Serrote)', muscle: 'Costas (dorsal)', duration: '3-4x10 cada lado', equipment: 'Halter + banco (ao lado da flexora)', tip: 'Um joelho e uma mão no banco, coluna neutra. Puxa o halter até a cintura fechando a escápula. Troca de lado.', video: V.remadaUniSerrote, carga: '14 a 16 kg (você anotou 16)' },
+      { name: 'Cadeira Flexora Unilateral', muscle: 'Posterior de coxa', duration: '3x10 cada perna', equipment: 'Máquina flexora', tip: 'Uma perna de cada vez, quadril colado no banco, controla a volta.', video: V.cadeiraFlexoraUni, carga: '20 kg (metade do que você faz com as duas)' },
+      { name: 'Remada Unilateral Halteres - Pegada Neutra (Serrote)', muscle: 'Costas (dorsal)', duration: '3x10 cada lado', equipment: 'Halter + banco (ao lado da flexora)', tip: 'Um joelho e uma mão no banco, coluna neutra. Puxa o halter até a cintura fechando a escápula. Troca de lado.', video: V.remadaUniSerrote, carga: '14 a 16 kg (você anotou 16)' },
     ]
   },
   {
