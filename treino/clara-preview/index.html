@@ -375,11 +375,11 @@ const ATHLETE = 'Clara';
 const WEEKLY_GOALS = [
   { icon: '🎯', type: 'strength', text: '<strong>Ciclo 6 — método novo: PIRÂMIDE.</strong> Definição com ênfase em cintura, glúteos, braços e costas · 5 treinos/semana · ~1h por treino.' },
   { icon: '📈', type: 'strength', text: '<strong>Como funciona a pirâmide:</strong> 3 séries de 15 → 12 → 10 repetições, <strong>subindo a carga a cada série</strong>. A última é a pesada: termina sentindo que faria só mais 1 ou 2.' },
-  { icon: '⏱️', type: 'assessment', text: '<strong>Treino de ~1h:</strong> aquecimento rápido → 4 bi-sets (3 no Treino C) → 25 min de bike → soltura. Dentro do par sem descanso; 60s ao fim de cada par.' },
+  { icon: '⏱️', type: 'assessment', text: '<strong>Treino de ~1h, na conta:</strong> aquecimento + mobilidade ~6 min → 3 bi-sets ~25 min → bike 25 min → soltura ~2 min. Dentro do par sem descanso; 45–60s ao fim de cada par.' },
   { icon: '🔥', type: 'fat', text: '<strong>Cintura:</strong> abdômen em todos os treinos + bike no fim. É a soma dos dias que afina a cintura.' },
   { icon: '🌅', type: 'assessment', text: '<strong>Dia de cansaço:</strong> faz o treino inteiro, mas na 3ª série repete a carga da 2ª. Treino feito com carga menor vale mais que treino pulado.' },
   { icon: '🛡️', type: 'assessment', text: '<strong>Proteções de sempre:</strong> extensora só parada (isometria), leg press sem descer demais, nada de salto · antebraços na vertical no supino/desenvolvimento e tríceps só na polia.' },
-  { icon: '🚴', type: 'assessment', text: '<strong>Bike:</strong> segunda, quarta e sexta, se der, encaixa a aula de bike no lugar dos 25 min.' },
+  { icon: '🚴', type: 'assessment', text: '<strong>Aula de bike (seg, qua, sex):</strong> ela SUBSTITUI os 25 min de bike, não soma. Faz ~25 min da aula e encerra — o treino todo fica em ~1h.' },
   { icon: '🏋️', type: 'strength', text: '<strong>Cargas:</strong> cada exercício traz uma sugestão de partida. Teste, anote no campo kg e, quando fechar as 3 séries com folga, sobe um pouco na semana seguinte.' },
 ];
 
@@ -431,6 +431,13 @@ const V = {
   abdSupraCarga: 'https://vd.mfitpersonal.com.br/905/mp4/905.mp4',
   tricepsUniPoliaNeutra: 'https://vd.mfitpersonal.com.br/429/mp4/429.mp4',
   abdObliquoAlt: 'https://vd.mfitpersonal.com.br/778/mp4/778.mp4',
+  // Ajuste pós-revisor 21/10 (MFit)
+  remadaFechadaIncl: 'https://vd.mfitpersonal.com.br/212/mp4/212.mp4',
+  roscaMartelo: 'https://vd.mfitpersonal.com.br/106/mp4/106.mp4',
+  desenvHalteresNeutra: 'https://vd.mfitpersonal.com.br/155/mp4/155.mp4',
+  elevQuadrilMaq: 'https://vd.mfitpersonal.com.br/473/mp4/473.mp4',
+  roscaBarraW: 'https://vd.mfitpersonal.com.br/117/mp4/117.mp4',
+  tricepsBarraW: 'https://vd.mfitpersonal.com.br/417/mp4/417.mp4',
   // Cardio (MFit)
   bike: 'https://vd.mfitpersonal.com.br/518/mp4/518.mp4',
 };
@@ -453,7 +460,7 @@ const CARDIO_BIKE = {
   title: 'Bike', duration: '25 min',
   meta: 'Ritmo moderado a forte — bike é amiga do joelho',
   exercises: [
-    { name: 'Bicicleta', muscle: 'Cardiovascular', duration: '25 min', equipment: 'Bike ergométrica', tip: 'Seg, Qua e Sex: se der, troca pela aula de bike. Nos outros dias: 5 min leve + 20 min em ritmo forte, em que dá pra falar frases curtas. Banco na altura do quadril, joelho sem esticar todo embaixo.', video: V.bike },
+    { name: 'Bicicleta', muscle: 'Cardiovascular', duration: '25 min', equipment: 'Bike ergométrica', tip: 'Seg, Qua e Sex: a aula de bike pode ENTRAR NO LUGAR destes 25 min (não soma) — faz ~25 min da aula e encerra, pro treino todo ficar em ~1h. Nos outros dias: 5 min leve + 20 min em ritmo forte, em que dá pra falar frases curtas. Banco na altura do quadril, joelho sem esticar todo embaixo.', video: V.bike },
   ]
 };
 
@@ -473,7 +480,7 @@ const MOBILIDADE_A = {
   title: 'Quadril · Ombro · Antebraço', duration: '~3 min',
   meta: 'Prepara o dia e cuida do cotovelo',
   exercises: [
-    { name: 'Mobilidade de Quadril Dinâmico', muscle: 'Quadril', duration: '8 reps/lado', equipment: 'Colchonete', tip: 'Em afundo com o joelho de trás apoiado no colchonete, leva o quadril à frente e volta. Joelho da frente sem passar da ponta do pé.', video: V.mobQuadrilDin },
+    { name: 'Mobilidade de Quadril Dinâmico', muscle: 'Quadril', duration: '8 reps/lado', equipment: 'Colchonete', tip: 'Se incomodar o joelho apoiado, faça EM PÉ (passo à frente, segurando num apoio). Em afundo com o joelho de trás apoiado no colchonete, leva o quadril à frente e volta. Joelho da frente sem passar da ponta do pé.', video: V.mobQuadrilDin },
     { name: 'Mobilidade de Ombro com Cabo de Vassoura', muscle: 'Ombros', duration: '10 reps', equipment: 'Bastão', tip: 'Mãos bem afastadas, leva o bastão da frente pra trás da cabeça sem dobrar os cotovelos. Sem forçar.', video: V.mobOmbroBastao },
     { name: 'Alongamento de Punho e antebraço I', muscle: 'Antebraço / Cotovelo', duration: '20s/lado', equipment: 'Nenhum', tip: 'Braço estendido, puxa os dedos pra trás com a outra mão. Prepara o cotovelo pra puxada e pra rosca.', video: V.alongPunhoAntebraco },
   ]
@@ -491,31 +498,21 @@ const BISET_A_1 = {
 
 const BISET_A_2 = {
   type: 'lift', label: 'Bi-Set 2',
-  title: 'Remada Unilateral Halteres - Pegada Neutra (Serrote) ↔ Elevação de Quadril com Barra', duration: '3x 15·12·10 · Sem descanso no par',
-  meta: 'Costas + glúteo no MESMO banco: faz o serrote apoiada no banco e, em seguida, encosta as costas no banco pra elevação de quadril. Descanso 60s ao fim do par.',
+  title: 'Remada Fechada com Halteres no Banco Inclinado ↔ Elevação de Quadril com Barra', duration: '3x 15·12·10 · Sem descanso no par',
+  meta: 'Costas + glúteo, os dois nos dois lados ao mesmo tempo (mais rápido). Banco inclinado e banco reto lado a lado, halteres e barra no chão. Descanso 60s ao fim do par.',
   exercises: [
-    { name: 'Remada Unilateral Halteres - Pegada Neutra (Serrote)', muscle: 'Costas (meio/dorsal)', duration: '3x 15·12·10 cada lado', equipment: 'Halter + banco', tip: 'Joelho e mão apoiados no banco, coluna reta. Puxa o halter em direção ao quadril com o cotovelo rente ao corpo. ' + PIR, video: V.serroteNeutra, carga: '8 → 10 → 12 kg' },
-    { name: 'Elevação de Quadril com Barra', muscle: 'Glúteos', duration: '3x 15·12·10', equipment: 'Banco + barra', tip: 'Costas apoiadas no banco, barra (com proteção) sobre o quadril. Sobe até o tronco ficar alinhado e aperta o glúteo 1 segundo em cima, sem arquear a lombar. ' + PIR, video: V.hipThrust, carga: 'Parte da carga que você já usava no ciclo 5 e sobe a cada série — anote' },
+    { name: 'Remada Fechada com Halteres no Banco Inclinado', muscle: 'Costas (meio/dorsal)', duration: '3x 15·12·10', equipment: 'Halteres + banco inclinado', tip: 'Deitada de bruços no banco inclinado (peito apoiado poupa a lombar). Puxa os dois halteres ao lado do corpo, cotovelos rentes, fechando as escápulas. ' + PIR, video: V.remadaFechadaIncl, carga: '6 → 8 → 10 kg cada halter' },
+    { name: 'Elevação de Quadril com Barra', muscle: 'Glúteos', duration: '3x 15·12·10', equipment: 'Banco + barra', tip: 'Costas apoiadas no banco, barra (com proteção) sobre o quadril. Sobe até o tronco ficar alinhado e aperta o glúteo 1 segundo em cima, sem arquear a lombar. ' + PIR, video: V.hipThrust, carga: '20 → 30 → 40 kg (barra + anilhas) — se no ciclo 5 você já usava mais, parte da sua carga' },
   ]
 };
 
 const BISET_A_3 = {
   type: 'lift', label: 'Bi-Set 3',
-  title: 'Abdução de Quadril na Polia Baixa Unilateral ↔ Rosca Martelo Alternada com Halteres', duration: '3x 15·12·10 · Sem descanso no par',
-  meta: 'Glúteo médio + braço (segmentos alternados). Halteres ao lado da polia. Descanso 60s ao fim do par.',
+  title: 'Rosca Martelo com Halteres ↔ Abdominal Infra Pernas Flexionadas', duration: '3x 15·12·10 / 15 · Sem descanso no par',
+  meta: 'Braço + cintura. Halteres e colchonete no mesmo cantinho. Descanso 45s ao fim do par.',
   exercises: [
-    { name: 'Abdução de Quadril na Polia Baixa Unilateral', muscle: 'Glúteo médio', duration: '3x 15·12·10 cada lado', equipment: 'Polia baixa + tornozeleira', tip: 'De lado pra polia, segura no aparelho e afasta a perna de fora lateralmente, sem inclinar o tronco. Volta devagar. ' + PIR, video: V.abducaoPolia, carga: '5 → 7,5 → 10 kg' },
-    { name: 'Rosca Martelo Alternada com Halteres', muscle: 'Bíceps / Antebraço', duration: '3x 15·12·10 cada lado', equipment: 'Halteres (ao lado da polia)', tip: 'Pegada neutra (palmas viradas pro corpo), cotovelo colado no tronco. Sobe sem embalo e desce controlando. ' + PIR, video: V.roscaMarteloAlt, carga: '5 → 6 → 7 kg cada halter' },
-  ]
-};
-
-const BISET_A_4 = {
-  type: 'lift', label: 'Bi-Set 4',
-  title: 'Mesa Flexora ↔ Abdominal Infra Pernas Flexionadas', duration: '3x 15·12·10 / 15 · Sem descanso no par',
-  meta: 'Posterior de coxa + cintura. Colchonete ao lado da mesa. Descanso 60s ao fim do par.',
-  exercises: [
-    { name: 'Mesa Flexora', muscle: 'Posterior de coxa', duration: '3x 15·12·10', equipment: 'Mesa flexora', tip: 'Quadril colado no banco. Puxa o rolo em direção ao glúteo e desce em 2–3 segundos. Sem dor no joelho. ' + PIR, video: V.mesaFlexora, carga: '20 → 25 → 30 kg' },
-    { name: 'Abdominal Infra Pernas Flexionadas', muscle: 'Abdômen (parte de baixo)', duration: '3x15', equipment: 'Colchonete (ao lado da mesa)', tip: 'Deitada, joelhos dobrados. Traz os joelhos em direção ao peito tirando o quadril do chão e desce devagar, sem bater os pés. Lombar sempre no colchonete.', video: V.abdInfraFlex, carga: 'Peso do corpo' },
+    { name: 'Rosca Martelo com Halteres', muscle: 'Bíceps / Antebraço', duration: '3x 15·12·10', equipment: 'Halteres', tip: 'Os dois braços juntos, pegada neutra (palmas viradas pro corpo), cotovelos colados no tronco. Sobe sem embalo e desce controlando. ' + PIR, video: V.roscaMartelo, carga: '5 → 6 → 7 kg cada halter' },
+    { name: 'Abdominal Infra Pernas Flexionadas', muscle: 'Abdômen (parte de baixo)', duration: '3x15', equipment: 'Colchonete', tip: 'Deitada, joelhos dobrados. Traz os joelhos em direção ao peito tirando o quadril do chão e desce devagar, sem bater os pés. Lombar sempre no colchonete.', video: V.abdInfraFlex, carga: 'Peso do corpo' },
   ]
 };
 
@@ -548,48 +545,38 @@ const MOBILIDADE_B = {
   meta: 'Abre o peito, solta o quadril e cuida do cotovelo',
   exercises: [
     { name: 'Alongamento de Peitoral Espaldar', muscle: 'Peitoral / Ombro', duration: '20s/lado', equipment: 'Espaldar ou batente de porta', tip: 'Antebraço apoiado, gira o tronco pro lado oposto abrindo o peito. Sem forçar.', video: V.alongPeitoralEsp },
-    { name: 'Mobilidade de Quadril Dinâmico', muscle: 'Quadril', duration: '8 reps/lado', equipment: 'Colchonete', tip: 'Em afundo com o joelho de trás no colchonete, leva o quadril à frente e volta. Sem dor no joelho.', video: V.mobQuadrilDin },
+    { name: 'Mobilidade de Quadril Dinâmico', muscle: 'Quadril', duration: '8 reps/lado', equipment: 'Colchonete', tip: 'Se incomodar o joelho apoiado, faça EM PÉ (passo à frente, segurando num apoio). Em afundo com o joelho de trás no colchonete, leva o quadril à frente e volta. Sem dor no joelho.', video: V.mobQuadrilDin },
     { name: 'Alongamento de Punho e antebraço I', muscle: 'Antebraço / Cotovelo', duration: '20s/lado', equipment: 'Nenhum', tip: 'Braço estendido, puxa os dedos pra trás com a outra mão. Prepara o cotovelo pro supino e pro tríceps.', video: V.alongPunhoAntebraco },
   ]
 };
 
 const BISET_B_1 = {
   type: 'lift', label: 'Bi-Set 1',
-  title: 'Leg Press Horizontal ↔ Prancha Isométrica Alternando Membros Inferiores', duration: '3x 15·12·10 / 30s · Sem descanso no par',
-  meta: 'Perna grande + cintura. Colchonete ao lado do leg press. Descanso 60–90s ao fim do par.',
+  title: 'Cadeira Extensora ISOMETRIA ↔ Supino Inclinado com Halteres', duration: '3x 30–45s / 3x 15·12·10 · Sem descanso no par',
+  meta: 'Coxa (só isometria) + peito com halteres no banco ao lado da extensora. 3 voltas. Descanso 60s ao fim do par.',
   exercises: [
-    { name: 'Leg Press Horizontal', muscle: 'Quadríceps / Glúteos', duration: '3x 15·12·10', equipment: 'Leg Press Horizontal', tip: 'AMPLITUDE CONTROLADA: dobra os joelhos só até ~90°, sem tirar a lombar do encosto, e empurra sem travar o joelho no final. Qualquer dor no joelho → diminui a amplitude. ' + PIR, video: V.legPressHoriz, carga: '40 → 50 → 60 kg (depende da máquina) — teste e anote' },
-    { name: 'Prancha Isométrica Alternando Membros Inferiores', muscle: 'Core / Glúteos', duration: '3x30s', equipment: 'Colchonete (ao lado do leg press)', tip: 'Prancha nos antebraços, corpo alinhado. Tira uma perna do chão de cada vez, devagar, sem girar o quadril. Abdômen firme o tempo todo.', video: V.pranchaAltMMII, carga: 'Peso do corpo' },
+    { name: 'Cadeira Extensora — ISOMETRIA', muscle: 'Quadríceps (isométrico)', duration: '3x 30–45s', equipment: 'Cadeira extensora', tip: 'SÓ ISOMETRIA: sobe até o joelho ficar em ~60° de flexão (NÃO estica até o fim) e segura parada 30–45s, com ~70% de esforço. Sem dor. Nada de repetições. Pode subir a carga aos poucos se segurar fácil.', video: V.cadeiraExt, carga: 'Carga que dá pra segurar 30–45s com ~70% de esforço' },
+    { name: 'Supino Inclinado com Halteres', muscle: 'Peitoral (parte de cima)', duration: '3x 15·12·10', equipment: 'Halteres + banco inclinado (ao lado da extensora)', tip: 'Banco a ~30°. ANTEBRAÇOS NA VERTICAL na descida e halteres sem encostar um no outro em cima (poupa o cotovelo). Desce até a linha do peito e empurra. ' + PIR, video: V.supinoInclHalteres, carga: '6 → 8 → 10 kg cada halter' },
   ]
 };
 
 const BISET_B_2 = {
   type: 'lift', label: 'Bi-Set 2',
-  title: 'Cadeira Extensora ISOMETRIA ↔ Supino Inclinado com Halteres', duration: '4x 30–45s / 3x 15·12·10 · Sem descanso no par',
-  meta: 'Coxa (só isometria) + peito com halteres no banco ao lado da extensora. Descanso 60s ao fim do par.',
+  title: 'Leg Press Horizontal ↔ Desenvolvimento com Halteres (Pegada Neutra)', duration: '3x 15·12·10 · Sem descanso no par',
+  meta: 'Perna grande + ombro (segmentos alternados). Halteres e um banco ao lado do leg press. Descanso 60–90s ao fim do par.',
   exercises: [
-    { name: 'Cadeira Extensora — ISOMETRIA', muscle: 'Quadríceps (isométrico)', duration: '4x 30–45s', equipment: 'Cadeira extensora', tip: 'SÓ ISOMETRIA: sobe até o joelho ficar em ~60° de flexão (NÃO estica até o fim) e segura parada 30–45s, com ~70% de esforço. Sem dor. Nada de repetições. Pode subir a carga aos poucos se segurar fácil.', video: V.cadeiraExt, carga: 'Carga que dá pra segurar 30–45s com ~70% de esforço' },
-    { name: 'Supino Inclinado com Halteres', muscle: 'Peitoral (parte de cima)', duration: '3x 15·12·10', equipment: 'Halteres + banco inclinado (ao lado da extensora)', tip: 'Banco a ~30°. ANTEBRAÇOS NA VERTICAL na descida e halteres sem encostar um no outro em cima (poupa o cotovelo). Desce até a linha do peito e empurra. ' + PIR, video: V.supinoInclHalteres, carga: '6 → 8 → 10 kg cada halter' },
+    { name: 'Leg Press Horizontal', muscle: 'Quadríceps / Glúteos', duration: '3x 15·12·10', equipment: 'Leg Press Horizontal', tip: 'AMPLITUDE CONTROLADA: dobra os joelhos só até ~90°, sem tirar a lombar do encosto, e empurra sem travar o joelho no final. Qualquer dor no joelho → diminui a amplitude. ' + PIR, video: V.legPressHoriz, carga: '40 → 50 → 60 kg (depende da máquina) — teste e anote' },
+    { name: 'Desenvolvimento com Halteres (Pegada Neutra)', muscle: 'Ombros', duration: '3x 15·12·10', equipment: 'Halteres + banco (ao lado do leg press)', tip: 'Sentada com apoio nas costas, palmas viradas uma pra outra e ANTEBRAÇOS NA VERTICAL. Empurra sem travar o cotovelo lá em cima e desce controlando. ' + PIR, video: V.desenvHalteresNeutra, carga: '4 → 5 → 6 kg cada halter' },
   ]
 };
 
 const BISET_B_3 = {
   type: 'lift', label: 'Bi-Set 3',
-  title: 'Desenvolvimento Máquina (Pegada Neutra) ↔ Adução de Quadril com Caneleira', duration: '3x 15·12·10 · Sem descanso no par',
-  meta: 'Ombro + parte interna da coxa (segmentos alternados). Caneleira no colchonete ao lado da máquina. Descanso 60s ao fim do par.',
+  title: 'Tríceps na Polia com Corda ↔ Prancha Isométrica Alternando Membros Inferiores', duration: '3x 15·12·10 / 30s · Sem descanso no par',
+  meta: 'Braço + cintura. Colchonete ao lado da polia. Descanso 45s ao fim do par.',
   exercises: [
-    { name: 'Desenvolvimento Máquina (Pegada Neutra)', muscle: 'Ombros', duration: '3x 15·12·10', equipment: 'Máquina de desenvolvimento', tip: 'Pegada neutra (palmas viradas uma pra outra), antebraços na vertical. Empurra sem travar o cotovelo lá em cima e desce controlando. ' + PIR, video: V.desenvMaqNeutra, carga: '10 → 15 → 20 kg' },
-    { name: 'Adução de Quadril com Caneleira', muscle: 'Adutores', duration: '3x 15·12·10 cada lado', equipment: 'Caneleira + colchonete (ao lado da máquina)', tip: 'Deitada de lado, perna de cima apoiada à frente. Sobe a perna de baixo (com a caneleira) e desce devagar. Sobe a caneleira a cada série. ' + PIR, video: V.aducaoCaneleira, carga: '2 → 3 → 4 kg' },
-  ]
-};
-
-const BISET_B_4 = {
-  type: 'lift', label: 'Bi-Set 4',
-  title: 'Elevacão Lateral Sentado com Halteres ↔ Tríceps na Polia com Corda', duration: '3x 15·12·10 · Sem descanso no par',
-  meta: 'Dois isolados (ombro + tríceps) — par permitido. Banco com os halteres ao lado da polia. Descanso 60s ao fim do par.',
-  exercises: [
-    { name: 'Elevacão Lateral Sentado com Halteres', muscle: 'Ombro (lateral)', duration: '3x 15·12·10', equipment: 'Halteres + banco (ao lado da polia)', tip: 'Sentada, coluna apoiada. Sobe os halteres até a linha dos ombros com os cotovelos levemente dobrados, sem embalo. ' + PIR, video: V.elevLateralSentado, carga: '2 → 3 → 4 kg cada halter' },
     { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x 15·12·10', equipment: 'Polia alta + corda', tip: 'Cotovelos colados no corpo e parados; só o antebraço se move. Abre a corda embaixo. Movimento amigo do cotovelo — se incomodar, diminui a carga. ' + PIR, video: V.tricepsCorda, carga: '10 → 12,5 → 15 kg' },
+    { name: 'Prancha Isométrica Alternando Membros Inferiores', muscle: 'Core / Glúteos', duration: '3x30s', equipment: 'Colchonete (ao lado da polia)', tip: 'Prancha nos antebraços, corpo alinhado. Tira uma perna do chão de cada vez, devagar, sem girar o quadril. Abdômen firme o tempo todo.', video: V.pranchaAltMMII, carga: 'Peso do corpo' },
   ]
 };
 
@@ -620,7 +607,7 @@ const MOBILIDADE_C = {
   title: 'Quadril · Posterior · Glúteo', duration: '~3 min',
   meta: 'Solta o quadril antes do glúteo',
   exercises: [
-    { name: 'Mobilidade de Quadril Dinâmico', muscle: 'Quadril', duration: '8 reps/lado', equipment: 'Colchonete', tip: 'Em afundo com o joelho de trás no colchonete, leva o quadril à frente e volta.', video: V.mobQuadrilDin },
+    { name: 'Mobilidade de Quadril Dinâmico', muscle: 'Quadril', duration: '8 reps/lado', equipment: 'Colchonete', tip: 'Se incomodar o joelho apoiado, faça EM PÉ (passo à frente, segurando num apoio). Em afundo com o joelho de trás no colchonete, leva o quadril à frente e volta.', video: V.mobQuadrilDin },
     { name: 'Posterior de Coxa', muscle: 'Posterior de coxa', duration: '15 reps', equipment: 'Nenhum', tip: 'Desce tocando em direção aos pés e volta, joelhos soltos. Sem forçar.', video: V.posteriorCoxa },
     { name: 'Alongamento de Glúteos II', muscle: 'Glúteos', duration: '20s/lado', equipment: 'Colchonete', tip: 'Deitada, cruza uma perna sobre a outra e puxa em direção ao peito.', video: V.alongGluteos },
   ]
@@ -628,11 +615,11 @@ const MOBILIDADE_C = {
 
 const BISET_C_1 = {
   type: 'lift', label: 'Bi-Set 1',
-  title: 'Gluteos 4 Apoios Coice com Banco na Polia ↔ Rosca Alternada com Halteres', duration: '3x 15·12·10 · Sem descanso no par',
-  meta: 'Glúteo + bíceps. Halteres ao lado da polia. Descanso 60s ao fim do par.',
+  title: 'Elevação de Quadril na Maquina ↔ Rosca Direta Barra W', duration: '3x 15·12·10 · Sem descanso no par',
+  meta: 'Glúteo + bíceps. Barra W no chão ao lado da máquina. Descanso 60s ao fim do par.',
   exercises: [
-    { name: 'Gluteos 4 Apoios Coice com Banco na Polia', muscle: 'Glúteos', duration: '3x 15·12·10 cada lado', equipment: 'Polia baixa + banco + tornozeleira', tip: 'Apoiada no banco, empurra a perna pra trás e pra cima apertando o glúteo; volta devagar. Joelho de apoio no banco acolchoado. Sem arquear a lombar. ' + PIR, video: V.coiceBancoPolia, carga: '5 → 7,5 → 10 kg' },
-    { name: 'Rosca Alternada com Halteres', muscle: 'Bíceps', duration: '3x 15·12·10 cada lado', equipment: 'Halteres (ao lado da polia)', tip: 'Cotovelo colado no tronco, gira a palma pra cima enquanto sobe. Sem embalo. ' + PIR, video: V.roscaAlternada, carga: '5 → 6 → 7 kg cada halter' },
+    { name: 'Elevação de Quadril na Maquina', muscle: 'Glúteos', duration: '3x 15·12·10', equipment: 'Máquina de elevação de quadril', tip: 'Costas apoiadas, pés firmes na plataforma. Sobe o quadril apertando o glúteo 1 segundo em cima, sem arquear a lombar. Se a academia não tiver a máquina: Elevação de Quadril com Barra no banco. ' + PIR, video: V.elevQuadrilMaq, carga: '20 → 30 → 40 kg' },
+    { name: 'Rosca Direta Barra W', muscle: 'Bíceps', duration: '3x 15·12·10', equipment: 'Barra W (ao lado da máquina)', tip: 'A barra W deixa o punho e o cotovelo mais confortáveis. Cotovelos colados no tronco, sobe sem embalo e desce controlando. ' + PIR, video: V.roscaBarraW, carga: '8 → 10 → 12 kg (barra + anilhas)' },
   ]
 };
 
@@ -648,20 +635,20 @@ const BISET_C_2 = {
 
 const BISET_C_3 = {
   type: 'lift', label: 'Bi-Set 3',
-  title: 'Triceps Unilateral na Polia Alta (Pegada Neutra) ↔ Abdominal Obliquo Alternado', duration: '3x 15·12·10 / 20 · Sem descanso no par',
-  meta: 'Tríceps + lateral da cintura. Colchonete ao lado da polia. Descanso 45–60s ao fim do par.',
+  title: 'Tríceps na Polia Barra W ↔ Abdominal Obliquo Alternado', duration: '3x 15·12·10 / 20 · Sem descanso no par',
+  meta: 'Tríceps + lateral da cintura. Colchonete ao lado da polia. Descanso 45s ao fim do par.',
   exercises: [
-    { name: 'Triceps Unilateral na Polia Alta (Pegada Neutra)', muscle: 'Tríceps', duration: '3x 15·12·10 cada lado', equipment: 'Polia alta + pegador', tip: 'Um braço de cada vez, cotovelo colado no corpo e parado, estende só o antebraço pra baixo. Amigo do cotovelo — no lugar do coice com halteres. ' + PIR, video: V.tricepsUniPoliaNeutra, carga: '5 → 7,5 → 10 kg' },
+    { name: 'Tríceps na Polia Barra W', muscle: 'Tríceps', duration: '3x 15·12·10', equipment: 'Polia alta + barra W', tip: 'Cotovelos colados no corpo e parados, estende só o antebraço pra baixo. Na polia o cotovelo fica protegido (no lugar do coice com halteres). Se incomodar, troca pela corda. ' + PIR, video: V.tricepsBarraW, carga: '10 → 12,5 → 15 kg' },
     { name: 'Abdominal Obliquo Alternado', muscle: 'Oblíquos (cintura)', duration: '3x20 alternado', equipment: 'Colchonete (ao lado da polia)', tip: 'Leva o ombro em direção ao joelho oposto, alternando, sem puxar o pescoço. Ritmo controlado.', video: V.abdObliquoAlt, carga: 'Peso do corpo' },
   ]
 };
 
 const CARDIO_BIKE_C = {
   type: 'cardio', label: 'Cardio',
-  title: 'Bike', duration: '25–30 min',
-  meta: 'Dia de quarta: ideal é a aula de bike',
+  title: 'Bike', duration: '25 min',
+  meta: 'Aula de bike vale — mas só ~25 min dela',
   exercises: [
-    { name: 'Bicicleta', muscle: 'Cardiovascular', duration: '25–30 min', equipment: 'Bike ergométrica', tip: 'Se for quarta, encaixa a aula de bike. Fora da aula: 5 min leve + 20–25 min em ritmo forte, alternando 1 min mais puxado / 1 min moderado se estiver disposta. Joelho sem esticar todo embaixo.', video: V.bike },
+    { name: 'Bicicleta', muscle: 'Cardiovascular', duration: '25 min', equipment: 'Bike ergométrica', tip: 'Se for dia de aula de bike, ela ENTRA NO LUGAR destes 25 min (não soma): faz ~25 min da aula e encerra, pro treino todo ficar em ~1h. Fora da aula: 5 min leve + 20 min forte, alternando 1 min mais puxado / 1 min moderado se estiver disposta. Joelho sem esticar todo embaixo.', video: V.bike },
   ]
 };
 
@@ -677,8 +664,8 @@ const SOLTURA_C = {
   ]
 };
 
-const TREINO_A = [ AQUEC_ARTICULAR, AQUEC_MUSCULAR_A, MOBILIDADE_A, BISET_A_1, BISET_A_2, BISET_A_3, BISET_A_4, CARDIO_BIKE, SOLTURA_A ];
-const TREINO_B = [ AQUEC_ARTICULAR, AQUEC_MUSCULAR_B, MOBILIDADE_B, BISET_B_1, BISET_B_2, BISET_B_3, BISET_B_4, CARDIO_BIKE, SOLTURA_B ];
+const TREINO_A = [ AQUEC_ARTICULAR, AQUEC_MUSCULAR_A, MOBILIDADE_A, BISET_A_1, BISET_A_2, BISET_A_3, CARDIO_BIKE, SOLTURA_A ];
+const TREINO_B = [ AQUEC_ARTICULAR, AQUEC_MUSCULAR_B, MOBILIDADE_B, BISET_B_1, BISET_B_2, BISET_B_3, CARDIO_BIKE, SOLTURA_B ];
 const TREINO_C = [ AQUEC_ARTICULAR, AQUEC_MUSCULAR_C, MOBILIDADE_C, BISET_C_1, BISET_C_2, BISET_C_3, CARDIO_BIKE_C, SOLTURA_C ];
 
 // Ciclo 6 — A · B · C · A · B (5x/sem). Método: pirâmide crescente.
@@ -788,7 +775,7 @@ function renderWorkout() {
   document.getElementById('headerDate').textContent = document.getElementById('weekBadge')?.textContent || '';
   if (day.rest) { content.innerHTML = `<div class="rest-message"><h2>Dia de Descanso 😴</h2><p>Recuperação é parte do treino. Alongue e descanse.</p></div>`; document.getElementById('sessionComplete').classList.remove('visible'); return; }
 
-  content.innerHTML = `<div class="elbow-alert">⚠️ <strong>Condromalacia Patelar</strong> — Amplitude controlada nos exercícios de perna (~90°). Não travar joelhos na extensão. Se sentir dor, <em>pare imediatamente</em> e avise o Luisão.</div>` + day.blocks.map((block, bi) => {
+  content.innerHTML = `<div class="elbow-alert">⚠️ <strong>Joelhos</strong> — Amplitude controlada nos exercícios de perna (~90°). Não travar os joelhos na extensão. Se sentir dor, <em>pare imediatamente</em> e avise o Luisão.</div>` + day.blocks.map((block, bi) => {
     const doneCount = block.exercises.filter((_, ei) => completedExercises[exerciseKey(currentDayIndex, bi, ei)]).length;
     const total = block.exercises.length;
     const blockDone = doneCount === total;
