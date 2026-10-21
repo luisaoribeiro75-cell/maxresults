@@ -397,7 +397,7 @@ const V = {
   prancha: 'https://vd.mfitpersonal.com.br/14/mp4/14.mp4',
   legPressHoriz: 'https://vd.mfitpersonal.com.br/491/mp4/491.mp4',
   elevLateralSentado: 'https://vd.mfitpersonal.com.br/v2/1070/mp4/1070_opt.mp4',
-  extensoraUni: 'https://vd.mfitpersonal.com.br/505/mp4/505.mp4',
+  extensora: 'https://vd.mfitpersonal.com.br/504/mp4/504.mp4',
   tricepsTestaHalteres: 'https://vd.mfitpersonal.com.br/139/mp4/139.mp4',
   aducaoMaq: 'https://vd.mfitpersonal.com.br/514/mp4/514.mp4',
   pranchaLateral: 'https://vd.mfitpersonal.com.br/181/mp4/181.mp4',
@@ -417,11 +417,11 @@ const CARDIO_TIP = 'Ritmo em que dá pra conversar. Sem corrida e sem impacto. S
 // ══════════════════ TREINO A — Anterior ══════════════════
 const AQUEC_A = {
   type: 'warmup', label: 'Aquecimento',
-  title: 'Bike + Articular', duration: '~4 min',
+  title: 'Bike + Articular', duration: '~3 min',
   meta: 'Rápido — esquenta perna, peito e ombro do dia',
   exercises: [
-    { name: 'Bicicleta', muscle: 'Corpo todo', duration: '3 min leve', equipment: 'Bike ergométrica', tip: 'Ritmo leve, só pra subir a temperatura.', video: V.bike },
-    { name: 'Balanço de Perna (lateral + anterior)', muscle: 'Quadril', duration: '10 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna com controle, sem forçar amplitude e sem mexer a lombar.', video: V.balancoPerna },
+    { name: 'Bicicleta', muscle: 'Corpo todo', duration: '2 min leve', equipment: 'Bike ergométrica', tip: 'Ritmo leve, só pra subir a temperatura.', video: V.bike },
+    { name: 'Balanço Frontal das Pernas', muscle: 'Quadril', duration: '10 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna pra frente e pra trás com controle, sem forçar amplitude e sem mexer a lombar.', video: V.balancoPerna },
     { name: 'Flexão de Braços na Parede', muscle: 'Peito / Ombro', duration: '1x12', equipment: 'Parede', tip: 'Mãos na parede na altura do peito, corpo reto e abdômen firme. Aquece o peito pro supino.', video: V.flexaoParede },
   ]
 };
@@ -433,7 +433,7 @@ const MOBIL_A = {
   exercises: [
     { name: 'Mobilidade de Quadril Dinâmico', muscle: 'Quadril (frente)', duration: '8 reps/lado', equipment: 'Colchonete', tip: 'Em afundo com o joelho de trás apoiado, leva o quadril à frente devagar e volta. Tronco alto, sem arquear a lombar.', video: V.mobQuadrilDin },
     { name: 'Mobilidade Torácica I', muscle: 'Coluna torácica', duration: '8 reps/lado', equipment: 'Colchonete', tip: 'Gira a parte de cima das costas com controle; o quadril fica parado.', video: V.mobToracica },
-    { name: 'Alongamento de Glúteos II', muscle: 'Glúteos', duration: '20s/lado', equipment: 'Colchonete', tip: 'Deitada, cruza o tornozelo sobre o joelho oposto e puxa a coxa sem tirar a lombar do chão.', video: V.alongGluteos },
+    { name: 'Alongamento de Glúteos II', muscle: 'Glúteos', duration: '15s/lado', equipment: 'Colchonete', tip: 'Deitada, cruza o tornozelo sobre o joelho oposto e puxa a coxa sem tirar a lombar do chão.', video: V.alongGluteos },
   ]
 };
 
@@ -459,21 +459,21 @@ const BISET_A_2 = {
 
 const BISET_A_3 = {
   type: 'lift', label: 'Bi-Set 3',
-  title: 'Cadeira Extensora Unilateral ↔ Tríceps Testa com Halteres', duration: '3x12/perna / 12 · Sem descanso no par',
+  title: 'Cadeira Extensora ↔ Tríceps Testa com Halteres', duration: '3x12-15 / 12 · Sem descanso no par',
   meta: 'Coxa + braço (segmentos alternados). O tríceps é deitada num banco ao lado da extensora. Descanso 60s ao fim do par.',
   exercises: [
-    { name: 'Cadeira Extensora Unilateral', muscle: 'Quadríceps', duration: '3x12 cada perna', equipment: 'Cadeira extensora', tip: 'Uma perna de cada vez, costas apoiadas. Sobe controlando, segura 1s em cima e desce devagar.', video: V.extensoraUni, carga: 'Cerca de metade do que você usava com as duas pernas — teste e anote' },
+    { name: 'Cadeira Extensora', muscle: 'Quadríceps', duration: '3x12-15', equipment: 'Cadeira extensora', tip: 'Costas apoiadas. Sobe controlando, segura 1s em cima e desce devagar.', video: V.extensora, carga: '8 a 10 kg (a última que você anotou)' },
     { name: 'Tríceps Testa com Halteres', muscle: 'Tríceps', duration: '3x12', equipment: 'Halteres + banco reto', tip: 'Deitada no banco com os pés apoiados no banco (lombar encostada). Cotovelos apontando pro teto, desce os halteres ao lado da cabeça e estende.', video: V.tricepsTestaHalteres, carga: '3 a 4 kg cada halter (no tríceps coice você anotou 3,6)' },
   ]
 };
 
 const BISET_A_4 = {
   type: 'lift', label: 'Bi-Set 4',
-  title: 'Adução de Quadril Máquina ↔ Prancha Isometrica Lateral Baixa', duration: '3x15 / 20-30s/lado · Sem descanso no par',
+  title: 'Adução de Quadril Máquina ↔ Prancha Isometrica Lateral Baixa', duration: '3x15 / 20s/lado · Sem descanso no par',
   meta: 'Parte interna da coxa + abdômen lateral. Prancha no colchonete ao lado da máquina. Descanso 45-60s ao fim do par.',
   exercises: [
     { name: 'Adução de Quadril Máquina', muscle: 'Adutores (parte interna da coxa)', duration: '3x15', equipment: 'Máquina adutora', tip: 'Costas apoiadas, fecha as pernas com controle e volta devagar, sem bater os pesos.', video: V.aducaoMaq, carga: 'Comece com a carga que você usava na abdução (~9 kg) e ajuste' },
-    { name: 'Prancha Isometrica Lateral Baixa', muscle: 'Core lateral', duration: '3x 20-30s cada lado', equipment: 'Colchonete', tip: 'Antebraço embaixo do ombro, quadril alto e corpo em linha. Pode apoiar o joelho de baixo pra começar.', video: V.pranchaLateral, carga: 'Peso do corpo' },
+    { name: 'Prancha Isometrica Lateral Baixa', muscle: 'Core lateral', duration: '3x 20s cada lado', equipment: 'Colchonete', tip: 'Antebraço embaixo do ombro, quadril alto e corpo em linha. Pode apoiar o joelho de baixo pra começar.', video: V.pranchaLateral, carga: 'Peso do corpo' },
   ]
 };
 
@@ -500,11 +500,11 @@ const SOLTURA_A = {
 // ══════════════════ TREINO B — Posterior ══════════════════
 const AQUEC_B = {
   type: 'warmup', label: 'Aquecimento',
-  title: 'Bike + Articular', duration: '~4 min',
+  title: 'Bike + Articular', duration: '~3 min',
   meta: 'Rápido — esquenta quadril, costas e ombro do dia',
   exercises: [
-    { name: 'Bicicleta', muscle: 'Corpo todo', duration: '3 min leve', equipment: 'Bike ergométrica', tip: 'Ritmo leve, só pra subir a temperatura.', video: V.bike },
-    { name: 'Balanço de Perna (lateral + anterior)', muscle: 'Quadril', duration: '10 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna com controle, sem forçar amplitude e sem mexer a lombar.', video: V.balancoPerna },
+    { name: 'Bicicleta', muscle: 'Corpo todo', duration: '2 min leve', equipment: 'Bike ergométrica', tip: 'Ritmo leve, só pra subir a temperatura.', video: V.bike },
+    { name: 'Balanço Frontal das Pernas', muscle: 'Quadril', duration: '10 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna pra frente e pra trás com controle, sem forçar amplitude e sem mexer a lombar.', video: V.balancoPerna },
     { name: 'Mobilidade de Ombro I', muscle: 'Ombro / Escápula', duration: '10 reps', equipment: 'Nenhum', tip: 'Movimento amplo e controlado, preparando ombro e escápula pras puxadas.', video: V.mobOmbro1 },
   ]
 };
@@ -514,19 +514,19 @@ const MOBIL_B = {
   title: 'Coluna + Tórax + Posterior', duration: '~4 min',
   meta: 'Bloco fixo de cuidado da coluna — movimento suave, sem dor',
   exercises: [
-    { name: 'Mobilidade de Quadril X', muscle: 'Coluna / Quadril', duration: '1x10', equipment: 'Colchonete', tip: 'Em 4 apoios, movimento lento e pequeno, respirando. Sem procurar amplitude máxima e sem dor.', video: V.mobQuadrilX },
+    { name: 'Mobilidade de Quadril X', muscle: 'Coluna / Quadril', duration: '1x10', equipment: 'Colchonete', tip: 'Deitada de barriga pra cima, joelhos dobrados e pés no chão. Movimento PEQUENO e lento, só até onde a lombar fica confortável, respirando. Sem dor e sem forçar amplitude.', video: V.mobQuadrilX },
     { name: 'Mobilidade Dorsal I', muscle: 'Coluna torácica', duration: '8 reps/lado', equipment: 'Colchonete', tip: 'Em 4 apoios, passa um braço por baixo do corpo e volta abrindo pro teto. Gira a parte de cima das costas; a lombar fica quieta.', video: V.mobDorsal },
-    { name: 'Alongamento de Posterior I', muscle: 'Posterior de coxa', duration: '20s/lado', equipment: 'Nenhum', tip: 'Coluna reta: inclina o tronco a partir do quadril, sem enrolar as costas.', video: V.alongPosterior },
+    { name: 'Alongamento de Posterior I', muscle: 'Posterior de coxa', duration: '15s/lado', equipment: 'Nenhum', tip: 'Coluna reta: inclina o tronco a partir do quadril, sem enrolar as costas.', video: V.alongPosterior },
   ]
 };
 
 const BISET_B_1 = {
   type: 'lift', label: 'Bi-Set 1',
-  title: 'Puxada Neutra triangulo ↔ Glúteos 4 Apoios Perna Flexionada com Caneleira', duration: '3x12-15 / 12-15/lado · Sem descanso no par',
+  title: 'Puxada Neutra triangulo ↔ Glúteos 4 Apoios Perna Flexionada com Caneleira', duration: '3x12-15 / 12/lado · Sem descanso no par',
   meta: COLUNA_META + ' Glúteo no colchonete ao lado do puxador. Descanso 60s ao fim do par.',
   exercises: [
-    { name: 'Puxada Neutra triangulo', muscle: 'Costas (dorsal)', duration: '3x12-15', equipment: 'Puxador + triângulo', tip: 'Sentada com as coxas presas, tronco quase reto. Puxa o triângulo até o peito levando os cotovelos pra baixo e volta devagar.', video: V.puxadaTriangulo, carga: 'Comece um pouco abaixo da carga da sua puxada anterior e ajuste — anote' },
-    { name: 'Glúteos 4 Apoios Perna Flexionada com Caneleira', muscle: 'Glúteos', duration: '3x12-15 cada perna', equipment: 'Caneleira + colchonete', tip: 'Abdômen firme, empurra o calcanhar pro teto só até a coxa ficar na linha do quadril. Não arqueie a lombar.', video: V.gluteo4ApoiosCaneleira, carga: 'Caneleira 2 a 3 kg' },
+    { name: 'Puxada Neutra triangulo', muscle: 'Costas (dorsal)', duration: '3x12-15', equipment: 'Puxador + triângulo', tip: 'Sentada com as coxas presas, tronco quase reto. Puxa o triângulo até o peito levando os cotovelos pra baixo e volta devagar.', video: V.puxadaTriangulo, carga: '50 a 60 kg (na puxada do ciclo passado você anotou 60) — teste e anote' },
+    { name: 'Glúteos 4 Apoios Perna Flexionada com Caneleira', muscle: 'Glúteos', duration: '3x12 cada perna', equipment: 'Caneleira + colchonete', tip: 'Abdômen firme, empurra o calcanhar pro teto só até a coxa ficar na linha do quadril. Não arqueie a lombar.', video: V.gluteo4ApoiosCaneleira, carga: 'Caneleira 4 a 5 kg (ou a mais pesada da academia). Fechou as 12 fácil com a lombar parada? Sobe 1 kg' },
   ]
 };
 
@@ -545,7 +545,7 @@ const BISET_B_3 = {
   title: 'Elevação de Quadril na Maquina ↔ Rosca Martelo Sentado com Halteres', duration: '3x12-15 / 12 · Sem descanso no par',
   meta: 'Glúteo + braço (segmentos alternados). Halteres ao lado da máquina. Descanso 60s ao fim do par.',
   exercises: [
-    { name: 'Elevação de Quadril na Maquina', muscle: 'Glúteos', duration: '3x12-15', equipment: 'Máquina de elevação de quadril (sem ela: no banco, sem carga)', tip: 'Costas apoiadas no encosto, sobe o quadril apertando o glúteo e para quando o corpo ficar reto — sem arquear a lombar.', video: V.elevQuadrilMaq, carga: 'Leve pra começar — teste e anote' },
+    { name: 'Elevação de Quadril na Maquina', muscle: 'Glúteos', duration: '3x12-15', equipment: 'Máquina de elevação de quadril (sem ela: costas no banco, com anilha ou halter sobre o quadril)', tip: 'Costas apoiadas no encosto, sobe o quadril apertando o glúteo e para quando o corpo ficar reto — sem arquear a lombar.', video: V.elevQuadrilMaq, carga: '15 a 20 kg na máquina (na Extensão de Quadril você anotou 20) — no banco: anilha/halter de 8 a 10 kg' },
     { name: 'Rosca Martelo Sentado com Halteres', muscle: 'Bíceps / Antebraço', duration: '3x12', equipment: 'Halteres + banco com encosto', tip: 'Sentada com as costas apoiadas, palmas viradas uma pra outra, sobe sem balançar o tronco.', video: V.roscaMarteloSentado, carga: '4 kg cada halter (a última que você anotou)' },
   ]
 };
