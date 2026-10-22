@@ -898,6 +898,7 @@ function toggleCheckbox(e, el) {
   el.classList.toggle('selected');
   const input = el.querySelector('input[type="checkbox"]');
   input.checked = el.classList.contains('selected'); // classe = fonte da verdade
+  if (input.name === 'veracidade' && input.checked) { const a = document.getElementById('avisoVeracidade'); if (a) a.remove(); el.style.borderColor = ''; }
   updateProgress();
 }
 
@@ -957,6 +958,14 @@ document.getElementById('anamneseForm').addEventListener('submit', function(e) {
   if (!veracidade.checked) {
     const box = veracidade.closest('.checkbox-option');
     box.style.borderColor = '#ef4444';
+    let aviso = document.getElementById('avisoVeracidade');
+    if (!aviso) {
+      aviso = document.createElement('div');
+      aviso.id = 'avisoVeracidade';
+      aviso.style.cssText = 'color:#ef4444;font-weight:700;font-size:15px;margin-top:10px;text-align:center';
+      box.insertAdjacentElement('afterend', aviso);
+    }
+    aviso.textContent = '👆 Falta só marcar esta confirmação pra enviar!';
     box.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
