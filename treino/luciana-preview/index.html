@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Luciana — Treino | MaxResults</title>
+  <title>Luciana — Treino de Viagem | MaxResults</title>
   <meta name="robots" content="noindex, nofollow">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -276,7 +276,17 @@
     .video-overlay.active { display: flex; }
     .video-overlay video, .video-overlay iframe { max-width: 100%; max-height: 80vh; border-radius: 12px; border: none; }
     .video-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); border: none; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-  </style>
+      /* dias flexíveis (06/10/2026) */
+    .day-btn.rest { opacity: 0.45; cursor: pointer; }
+    .day-btn.rest .day-num { color: var(--text-muted, #71717a); }
+    .day-btn.moved::before { opacity: 0.5; }
+    .day-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 2px 0 14px; }
+    .day-actions select, .day-actions button { font-family: var(--font-body, inherit); font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-light, var(--border, #2a2a2e)); background: var(--surface, #141416); color: var(--text, #f4f4f5); cursor: pointer; -webkit-appearance: none; appearance: none; }
+    .day-actions select { padding-right: 28px; background-image: linear-gradient(45deg, transparent 50%, var(--text-muted, #71717a) 50%), linear-gradient(135deg, var(--text-muted, #71717a) 50%, transparent 50%); background-position: calc(100% - 15px) 55%, calc(100% - 10px) 55%; background-size: 5px 5px; background-repeat: no-repeat; max-width: 100%; }
+    .day-actions button.primary { background: var(--accent-lift, #f59e0b); color: #000; border-color: transparent; }
+    .day-actions .hint { width: 100%; font-size: 11px; color: var(--text-muted, #71717a); }
+    .rest-message .day-actions { justify-content: center; margin-top: 18px; }
+</style>
 </head>
 <body>
 <div class="container">
@@ -322,7 +332,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Treino Luciana &middot; Metodologia MaxResults &middot; Luisão Ribeiro<br>Gerado em 04/09/2026</footer>
+  <footer class="footer">Treino Luciana &middot; Metodologia MaxResults &middot; Luisão Ribeiro<br>Treino de viagem · Gerado em 24/10/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -333,397 +343,121 @@
 const ATHLETE = 'Luciana';
 
 const WEEKLY_GOALS = [
-  { icon: '🏋️', type: 'strength', text: '<strong>Treino:</strong> 2x/semana — A (Anteriores) e B (Posteriores). Força no modelo <strong>pirâmide</strong>: a cada série você sobe a carga e cai a repetição.' },
-  { icon: '🎯', type: 'strength', text: '<strong>Ênfase:</strong> tríceps no dia A e glúteos no dia B — cada um leva volume extra.' },
-  { icon: '🏃', type: 'fat', text: '<strong>Cardio:</strong> 20-30 min de esteira ou bike em ritmo moderado ao fim de cada treino.' },
-  { icon: '💡', type: 'strength', text: '<strong>Equipamento:</strong> como a academia do condomínio pode variar, cada exercício tem alternativas na dica (máquina / peso livre / peso do corpo). Use o que tiver e ajuste a carga conforme a sua execução.' },
+  { icon: '✈️', type: 'strength', text: '<strong>Treino de viagem (~50 min):</strong> só com o <strong>peso do corpo</strong>, sem nenhum equipamento — dá pra fazer no quarto do hotel, na praia ou numa praça. Força em <strong>3 bi-sets</strong> + abdômen, cardio e alongamento.' },
+  { icon: '🔺', type: 'strength', text: '<strong>Pirâmide sem peso:</strong> 3 séries de <strong>15 · 12 · 10</strong> repetições. A cada série as repetições caem, mas a descida fica <strong>mais lenta</strong> (2s → 3s → 4s). Menos repetição, mais tempo sob tensão — é assim que o exercício fica mais pesado sem halter.' },
+  { icon: '🎯', type: 'strength', text: '<strong>Ênfase:</strong> glúteos e tríceps continuam em destaque — elevação de quadril unilateral, abdução e tríceps no banco/cadeira.' },
+  { icon: '💡', type: 'strength', text: '<strong>Carga sugerida:</strong> é o peso do corpo. Ficou fácil? Desça ainda mais devagar e segure 1s embaixo. Ficou difícil? Diminua a amplitude e mantenha a postura.' },
 ];
 
 const V = {
-  stiffHalter: 'https://vd.mfitpersonal.com.br/267/mp4/267.mp4',
-  abducaoPeCaneleira: 'https://vd.mfitpersonal.com.br/249/mp4/249.mp4',
-  aducaoCaneleira: 'https://vd.mfitpersonal.com.br/26/mp4/26.mp4',
-  legPressHoriz: 'https://vd.mfitpersonal.com.br/491/mp4/491.mp4',
-  remadaUniHalter: 'https://vd.mfitpersonal.com.br/210/mp4/210.mp4',
-  abdomCanivete: 'https://player.mediadelivery.net/play/655450/9b1d98af-ba64-4237-aba8-a8db6109e6b9',
-  birdDog: 'https://vd.mfitpersonal.com.br/310/mp4/310.mp4',
-  prancha: 'https://vd.mfitpersonal.com.br/852/mp4/852.mp4',
-  pranchaLateral: 'https://vd.mfitpersonal.com.br/181/mp4/181.mp4',
-  hipThrust: 'https://vd.mfitpersonal.com.br/367/mp4/367.mp4',
-  giros: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/8d76rg3vbsm_opt.mp4',
   balanco: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/d508q2wlkh_opt.mp4',
-  maxlift2bt: 'https://player.mediadelivery.net/play/618688/1d971a9d-3a34-465d-a47a-ff1d4f7ae027',
-  alongCoxa: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/lpgl41gg1op_opt.mp4',
+  giros: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/8d76rg3vbsm_opt.mp4',
+  agachLivre: 'https://vd.mfitpersonal.com.br/50/mp4/50.mp4',
+  flexaoParede: 'https://vd.mfitpersonal.com.br/833/mp4/833.mp4',
   alongFlexor: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/5e9lix657lb_opt.mp4',
   alongPeitoral: 'https://vd.mfitpersonal.com.br/v2/1168/mp4/1168_opt.mp4',
+  alongPosterior: 'https://vd.mfitpersonal.com.br/91/mp4/91.mp4',
+  bulgaro: 'https://vd.mfitpersonal.com.br/788/mp4/788.mp4',
+  flexaoBracos: 'https://vd.mfitpersonal.com.br/238/mp4/238.mp4',
+  elevQuadrilUni: 'https://vd.mfitpersonal.com.br/625/mp4/625.mp4',
+  tricepsBanco: 'https://vd.mfitpersonal.com.br/144/mp4/144.mp4',
+  swimming: 'https://vd.mfitpersonal.com.br/945/mp4/945.mp4',
+  abducaoLateral: 'https://vd.mfitpersonal.com.br/615/mp4/615.mp4',
+  pranchaToque: 'https://vd.mfitpersonal.com.br/17/mp4/17.mp4',
+  polichinelo: 'https://vd.mfitpersonal.com.br/848/mp4/848.mp4',
+  skipping: 'https://vd.mfitpersonal.com.br/816/mp4/816.mp4',
+  corridaEstac: 'https://vd.mfitpersonal.com.br/812/mp4/812.mp4',
   alongGluteos: 'https://vd.mfitpersonal.com.br/83/mp4/83.mp4',
-  handToToes: 'https://player.mediadelivery.net/play/655450/4da9137c-0986-45e3-a1da-4d532732f48f',
-  legPress: 'https://vd.mfitpersonal.com.br/495/mp4/495.mp4',
-  agachHalterFrente: 'https://vd.mfitpersonal.com.br/v2/1093/mp4/1093_opt.mp4',
-  supinoBarra: 'https://vd.mfitpersonal.com.br/203/mp4/203.mp4',
-  supinoHalter: 'https://vd.mfitpersonal.com.br/201/mp4/201.mp4',
-  cadeiraExt: 'https://vd.mfitpersonal.com.br/504/mp4/504.mp4',
-  cadeiraFlexora: 'https://vd.mfitpersonal.com.br/502/mp4/502.mp4',
-  crucifixoMaq: 'https://vd.mfitpersonal.com.br/530/mp4/530.mp4',
-  crucifixoHalter: 'https://vd.mfitpersonal.com.br/202/mp4/202.mp4',
-  crucifixoInv: 'https://vd.mfitpersonal.com.br/531/mp4/531.mp4',
-  crucifixoInvHalter: 'https://vd.mfitpersonal.com.br/215/mp4/215.mp4',
-  aducao: 'https://vd.mfitpersonal.com.br/514/mp4/514.mp4',
-  abdQuadril: 'https://vd.mfitpersonal.com.br/515/mp4/515.mp4',
-  desenvNeutro: 'https://vd.mfitpersonal.com.br/155/mp4/155.mp4',
-  puxadaFrontal: 'https://vd.mfitpersonal.com.br/565/mp4/565.mp4',
-  remadaBaixa: 'https://vd.mfitpersonal.com.br/403/mp4/403.mp4',
-  remadaCurvada: 'https://vd.mfitpersonal.com.br/221/mp4/221.mp4',
-  gluteosCoice: 'https://vd.mfitpersonal.com.br/457/mp4/457.mp4',
-  gluteos4apoios: 'https://vd.mfitpersonal.com.br/240/mp4/240.mp4',
-  bulgaroCarga: 'https://d2vfutiy2j6sqj.cloudfront.net/1/mp4/xrajhhmrm9_opt.mp4',
-  terraLevant: 'https://d2vfutiy2j6sqj.cloudfront.net/1/mp4/t9n5jfxgzxk_opt.mp4',
-  roscaDireta: 'https://vd.mfitpersonal.com.br/109/mp4/109.mp4',
-  tricepsCorda: 'https://vd.mfitpersonal.com.br/418/mp4/418.mp4',
-  tricepsTestaHalter: 'https://vd.mfitpersonal.com.br/139/mp4/139.mp4',
-  tricepsCoiceHalter: 'https://vd.mfitpersonal.com.br/146/mp4/146.mp4',
-  elevPelvicaCadeira: 'https://vd.mfitpersonal.com.br/898/mp4/898.mp4',
-  afundoHalter: 'https://vd.mfitpersonal.com.br/32/mp4/32.mp4',
-  abdomSupra: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
-  bike: 'https://vd.mfitpersonal.com.br/518/mp4/518.mp4',
-  maxCicle: 'https://player.mediadelivery.net/play/655450/dcf2c03a-4a77-4012-8cc0-f9fe51782bd4',
-  bomDia: 'https://vd.mfitpersonal.com.br/269/mp4/269.mp4',
-  agachLivre: 'https://vd.mfitpersonal.com.br/50/mp4/50.mp4',
-  maxlift3aq: 'https://player.mediadelivery.net/play/655450/effaba34-672c-422b-8b5b-e69432b5a636',
-  respiracao: 'yt:LiUnFJ8P4gM',
+  alongTriceps: 'https://vd.mfitpersonal.com.br/595/mp4/595.mp4',
+  alongQuadriceps: 'https://vd.mfitpersonal.com.br/90/mp4/90.mp4',
 };
 
-// ─── Shared blocks ───
-const AQUEC_ARTICULAR = {
-  type: 'warmup', label: 'Aquecimento Articular',
-  title: 'Balanço + Giros', duration: '1x12 cada',
-  meta: '1 série de 12 repetições cada',
-  exercises: [
-    { name: 'Balanço Frontal das Pernas', muscle: 'Quadril / Pernas', duration: '1x12', equipment: 'Nenhum', tip: 'Segure em um apoio. Balance a perna para frente e para trás com controle. 12 cada lado.', video: V.balanco },
-    { name: 'Giros dos Braços', muscle: 'Ombros', duration: '1x12', equipment: 'Nenhum', tip: 'Braços estendidos, gire em círculos amplos. 12 para frente, 12 para trás.', video: V.giros },
-  ]
-};
-
-const AQUEC_MUSCULAR_A = {
-  type: 'warmup', label: 'Aquecimento Muscular',
-  title: 'Supino + Agachamento (leve)', duration: '2x20 cada',
-  meta: 'Carga leve — apenas para aquecer',
-  exercises: [
-    { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '2x20', equipment: 'Halteres + banco', tip: 'Carga leve — apenas para aquecer. Foco no movimento controlado.', video: V.supinoHalter },
-    { name: 'Agachamento com Halter na Frente (leve)', muscle: 'Quadríceps / Glúteos', duration: '2x20', equipment: 'Halter', tip: 'Carga leve — apenas para aquecer o padrão do agachamento. Segure um halter leve à frente do peito e desça com amplitude confortável.', video: V.agachHalterFrente },
-  ]
-};
-
-const AQUEC_MUSCULAR_B = {
-  type: 'warmup', label: 'Aquecimento Muscular',
-  title: 'Inclinação Frontal + Remada (leve)', duration: '1x15 cada',
-  meta: 'Carga leve — apenas para aquecer',
-  exercises: [
-    { name: 'Inclinação Frontal do Tronco c/ Halteres', muscle: 'Post. coxa / Lombar', duration: '1x15', equipment: 'Halteres', tip: 'Carga leve — apenas para aquecer. Desça o tronco controlando sem forçar a coluna.', video: V.bomDia },
-    { name: 'Remada Curvada (leve)', muscle: 'Costas', duration: '1x15', equipment: 'Halteres', tip: 'Carga leve — apenas para aquecer. Tronco inclinado, puxe os halteres em direção ao abdômen.', video: V.remadaCurvada },
-  ]
-};
-
-const AQUEC_MUSCULAR_C = {
-  type: 'warmup', label: 'Aquecimento Muscular',
-  title: 'Supino + Inclinação + Agachamento (leve)', duration: 'Leve',
-  meta: 'Carga leve — apenas para aquecer',
-  exercises: [
-    { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '2x20', equipment: 'Halteres + banco', tip: 'Carga leve — apenas para aquecer.', video: V.supinoHalter },
-    { name: 'Inclinação Frontal do Tronco c/ Halteres', muscle: 'Post. coxa', duration: '1x15', equipment: 'Halteres', tip: 'Carga leve — apenas para aquecer.', video: V.bomDia },
-    { name: 'Agachamento Livre com Braços Estendidos', muscle: 'Pernas', duration: '2x20', equipment: 'Nenhum (usar banco)', tip: 'Amplitude menor — sente no banco como referência. Sem barra. Controle a descida.', video: V.agachLivre },
-  ]
-};
-
-const MOBILIDADE_A = {
-  type: 'warmup', label: 'Mobilidade',
-  title: 'Alongamento Anterior', duration: '25s cada',
-  meta: 'Mantenha cada posição por 25 segundos',
-  exercises: [
-    { name: 'Alongamento Peitoral', muscle: 'Peitoral', duration: '25s', equipment: 'Nenhum', tip: 'Alongue o peitoral por 25 segundos. Respire profundamente.', video: V.alongPeitoral },
-    { name: 'Alongamento de Coxa', muscle: 'Quadríceps', duration: '25s/lado', equipment: 'Nenhum', tip: 'Em pé, puxe o pé em direção ao glúteo. 25 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Alongamento Flexor do Quadril', muscle: 'Flexor do quadril', duration: '25s/lado', equipment: 'Nenhum', tip: 'Ajoelhada, avance uma perna à frente. Empurre o quadril para frente suavemente. 25 segundos cada lado.', video: V.alongFlexor },
-  ]
-};
-
-const MOBILIDADE_B = {
-  type: 'warmup', label: 'Mobilidade',
-  title: 'Hand to Toes + Glúteo', duration: '25 reps + 25s',
-  meta: '25 repetições + segurar embaixo',
-  exercises: [
-    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '25 reps + 20s', equipment: 'Nenhum', tip: '25 repetições tocando os pés, depois segure 20 segundos na posição inferior.', video: V.handToToes },
-    { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '25s/lado', equipment: 'Nenhum', tip: 'Deitada, cruze uma perna sobre a outra e puxe em direção ao peito. 25 segundos cada lado.', video: V.alongGluteos },
-  ]
-};
-
-const MOBILIDADE_C = {
-  type: 'warmup', label: 'Mobilidade',
-  title: 'Mobilidade Full Body', duration: '25s cada',
-  meta: 'Todos os alongamentos — 25 segundos cada',
-  exercises: [
-    { name: 'Alongamento Peitoral', muscle: 'Peitoral', duration: '25s', equipment: 'Nenhum', tip: 'Alongue o peitoral por 25 segundos.', video: V.alongPeitoral },
-    { name: 'Alongamento de Coxa', muscle: 'Quadríceps', duration: '25s/lado', equipment: 'Nenhum', tip: 'Em pé, puxe o pé em direção ao glúteo. 25 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '25 reps + 20s', equipment: 'Nenhum', tip: '25 repetições tocando os pés, depois segure 20 segundos na posição inferior.', video: V.handToToes },
-    { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '25s/lado', equipment: 'Nenhum', tip: 'Deitada, cruze uma perna sobre a outra e puxe em direção ao peito.', video: V.alongGluteos },
-  ]
-};
-
-const ALONG_FINAL_A = {
-  type: 'warmup', label: 'Alongamento Final',
-  title: 'Alongamento Anterior', duration: '10s cada',
-  meta: '10 segundos cada alongamento',
-  exercises: [
-    { name: 'Alongamento Peitoral', muscle: 'Peitoral', duration: '10s', equipment: 'Nenhum', tip: '10 segundos. Alongue e relaxe.', video: V.alongPeitoral },
-    { name: 'Alongamento de Coxa', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Alongamento Flexor do Quadril', muscle: 'Flexor do quadril', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongFlexor },
-  ]
-};
-
-const ALONG_FINAL_B = {
-  type: 'warmup', label: 'Alongamento Final',
-  title: 'Alongamento Posterior', duration: '10s cada',
-  meta: '10 segundos cada alongamento',
-  exercises: [
-    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '10s', equipment: 'Nenhum', tip: '10 segundos na posição inferior.', video: V.handToToes },
-    { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongGluteos },
-  ]
-};
-
-const ALONG_FINAL_C = {
-  type: 'warmup', label: 'Alongamento Final',
-  title: 'Alongamento Full Body', duration: '10s cada',
-  meta: '10 segundos cada alongamento',
-  exercises: [
-    { name: 'Alongamento Peitoral', muscle: 'Peitoral', duration: '10s', equipment: 'Nenhum', tip: '10 segundos.', video: V.alongPeitoral },
-    { name: 'Alongamento de Coxa', muscle: 'Quadríceps', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongCoxa },
-    { name: 'Hand to Toes', muscle: 'Post. coxa', duration: '10s', equipment: 'Nenhum', tip: '10 segundos na posição.', video: V.handToToes },
-    { name: 'Alongamento de Glúteos', muscle: 'Glúteos', duration: '10s/lado', equipment: 'Nenhum', tip: '10 segundos cada lado.', video: V.alongGluteos },
-  ]
-};
-
-const MAXLIFT_BT = {
-  type: 'warmup', label: 'Aula MaxLift',
-  title: 'MaxLift Mix 2 — Bíceps e Tríceps', duration: '~10 min',
-  exercises: [
-    { name: 'MaxLift Mix 2 – Bíceps e Tríceps', muscle: 'Bíceps / Tríceps', duration: '~10 min', equipment: 'Aula em vídeo', tip: 'Siga o vídeo MaxLift Mix 2. Foco em bíceps e tríceps com ritmo da aula.', video: V.maxlift2bt },
-  ]
-};
-
-const MAXLIFT_AQ = {
-  type: 'warmup', label: 'Aula MaxLift',
-  title: 'MaxLift Mix 3 — Aquecimento', duration: '~5 min',
-  exercises: [
-    { name: 'MaxLift Mix 3 – Aquecimento', muscle: 'Corpo todo', duration: '~5 min', equipment: 'Aula em vídeo', tip: 'Siga o vídeo da aula MaxLift Mix 3. Foco em aquecer e elevar a frequência cardíaca.', video: V.maxlift3aq },
-  ]
-};
-
-const CARDIO_MAXCYCLE = {
-  type: 'cardio', label: 'Cardio Final',
-  title: 'MaxCycle Presencial', duration: '~55 min',
-  exercises: [
-    { name: 'MaxCycle (Spinning)', muscle: 'Cardiovascular / MMII', duration: '55 min', equipment: 'Bike spinning (presencial)', tip: '🔥 Aula presencial com o Luisão. Ritmo guiado, resistências variadas. Zero impacto na lombar.', video: V.bike },
-  ]
-};
-
-const CARDIO_CORRIDA = {
-  type: 'cardio', label: 'Cardio Final — Corrida',
-  title: 'Planilha de Corrida V2 — 25 min (Intermediário+)', duration: '25 min',
-  meta: 'Versão 2 — mais intensa. Intervalado 4:1 (mais corrida, menos caminhada) com tiros nos blocos finais. Corrida "forte" = ritmo em que você só solta 1-2 palavras (~8-9/10 de esforço). Progrida a velocidade quando ficar fácil.',
-  exercises: [
-    { name: 'Aquecimento (corrida)', muscle: 'Cardio', duration: '3 min', equipment: 'Esteira / rua', tip: 'Caminhada rápida evoluindo pra trote. Sobe a frequência cardíaca aos poucos — na V2 o corpo precisa entrar já ativado.', video: '' },
-    { name: 'Bloco 1 — Corrida + Caminhada', muscle: 'Cardio', duration: '5 min', equipment: 'Esteira / rua', tip: '4 min corrida moderada-forte + 1 min caminhada de recuperação. Já um pouco acima do ritmo da V1.', video: '' },
-    { name: 'Bloco 2 — Corrida + Tiros', muscle: 'Cardio', duration: '5 min', equipment: 'Esteira / rua', tip: '4 min corrida forte com 2x 20s acelerando (tiro) no meio + 1 min caminhada. Os tiros elevam o esforço sem cansar de uma vez.', video: '' },
-    { name: 'Bloco 3 — Corrida + Tiros', muscle: 'Cardio', duration: '5 min', equipment: 'Esteira / rua', tip: '4 min corrida forte com 2x 30s de tiro + 1 min caminhada. Metade da planilha — segura o ritmo, não deixa cair.', video: '' },
-    { name: 'Bloco 4 — Fechamento Forte', muscle: 'Cardio', duration: '5 min', equipment: 'Esteira / rua', tip: '4 min corrida forte (última — fecha no seu ritmo mais alto que aguentar 4 min) + 1 min caminhada. Se sobrar gás, tiro final de 30s.', video: '' },
-    { name: 'Desaceleração (corrida)', muscle: 'Cardio', duration: '2 min', equipment: 'Esteira / rua', tip: 'Caminhada leve, respiração controlada. Baixa a frequência cardíaca com calma depois do esforço mais alto.', video: '' },
-  ]
-};
-
-const CARDIO_MAXCICLE = {
-  type: 'cardio', label: 'Aula MaxResults',
-  title: 'MaxCicle', duration: '25-30 min',
-  meta: 'Aula de bike no ritmo da música — cardio puxado que acelera o emagrecimento. Faz no seu ritmo.',
-  exercises: [
-    { name: 'MaxCicle', muscle: 'Cardiovascular / MMII', duration: '25-30 min', equipment: 'Bike', tip: 'Segue o comando da aula: alterna sentado e em pé, subidas e sprints. Ajusta a carga da bike pra manter o ritmo sem perder a postura.', video: V.maxCicle },
-  ]
-};
-
-const RELAX_FINAL = {
-  type: 'warmup', label: 'Respiração',
-  title: 'Respiração + Relaxamento', duration: '~3 min',
-  meta: 'Fim de treino — baixa o estresse e a ansiedade',
-  exercises: [
-    { name: 'Respiração 4-7-8', muscle: 'Sistema nervoso', duration: '~3 min', equipment: 'Nenhum', tip: 'Sentado ou deitado. Inspire 4s pelo nariz, segure 7s, expire 8s pela boca. 4 ciclos. Ajuda a desligar o modo estresse depois do treino.', video: '' },
-  ]
-};
-
-const CARDIO_LUCIANA = {
-  type: 'cardio', label: 'Cardio Final',
-  title: 'Esteira ou Bike — 20 a 30 min', duration: '20-30 min',
-  meta: 'Ritmo moderado (você consegue falar só frases curtas). Fecha o treino ativando o cardiovascular.',
-  exercises: [
-    { name: 'Caminhada/Corrida na Esteira ou Bike', muscle: 'Cardiovascular', duration: '20-30 min', equipment: 'Esteira ou Bike', tip: '20 a 30 minutos em ritmo moderado e constante. Se não tiver esteira nem bike no local, faça uma caminhada externa puxada.', video: V.bike },
-  ]
-};
-
-// ─── Treino A — ANTERIORES (Quadríceps · Peito · Ombro · Tríceps [ênfase] · Core) — solo pirâmide + bi-set ───
-const TREINO_A = [
-  AQUEC_ARTICULAR,
-  AQUEC_MUSCULAR_A,
-  MOBILIDADE_A,
+// ═══════════ SESSÃO DE VIAGEM (peso do corpo) ═══════════
+const TREINO_VIAGEM = [
   {
-    type: 'lift', label: 'Solo 1 · Pirâmide',
-    title: 'Agachamento com Halter na Frente', duration: '4x 12·10·8·6 · descanso 90-120s',
-    meta: 'Básico pesado SOLO. Pirâmide crescente — sobe a carga e cai a repetição a cada série. Quadríceps e glúteo.',
+    type: 'warmup', label: 'Aquecimento Articular',
+    title: 'Balanço + Giros', duration: '1x12 cada',
+    meta: '1 série de 12 repetições cada — solta as articulações depois da viagem.',
     exercises: [
-      { name: 'Agachamento com Halter na Frente', muscle: 'Quadríceps / Glúteos', duration: '4x 12·10·8·6', equipment: 'Halter (ou Leg Press / peso do corpo)', tip: 'Segure um halter na vertical à frente do peito, cotovelos pra baixo. Pés na largura dos ombros, desce controlando até ~90° no joelho com o tronco ereto e o abdômen firme, sobe empurrando pelo calcanhar. Aumente a carga a cada série (última é a mais pesada, sempre com técnica). Alternativa: Leg Press ou, sem carga, peso do corpo.', video: V.agachHalterFrente },
+      { name: 'Balanço Frontal das Pernas', muscle: 'Quadril / Pernas', duration: '1x12', equipment: 'Nenhum', tip: 'Segure numa parede ou cadeira. Balance a perna para frente e para trás com controle. 12 cada lado.', video: V.balanco },
+      { name: 'Giros dos Braços', muscle: 'Ombros', duration: '1x12', equipment: 'Nenhum', tip: 'Braços estendidos, gire em círculos amplos. 12 para frente, 12 para trás.', video: V.giros },
     ]
   },
   {
-    type: 'lift', label: 'Solo 2 · Pirâmide',
-    title: 'Supino Reto com Halteres', duration: '4x 12·10·8·6 · descanso 90s',
-    meta: 'Básico pesado SOLO. Pirâmide crescente. Peitoral.',
+    type: 'warmup', label: 'Aquecimento Muscular',
+    title: 'Ativação leve — perna e peito', duration: '2x12 leve',
+    meta: 'Bem leve, só pra aquecer o músculo antes dos bi-sets.',
     exercises: [
-      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '4x 12·10·8·6', equipment: 'Halteres + banco (ou máquina / flexão)', tip: 'Deite no banco, desça os halteres à linha do peito e empurre controlando, pés firmes no chão. Sobe a carga a cada série. Alternativa: máquina Chest Press ou flexão de braço no solo (joelhos apoiados se precisar).', video: V.supinoHalter },
+      { name: 'Agachamento Livre', muscle: 'Quadríceps / Glúteos', duration: '2x12 leve', equipment: 'Peso do corpo', carga: 'Peso do corpo', tip: 'Amplitude menor, só pra aquecer — desce até a metade, movimento leve e controlado.', video: V.agachLivre },
+      { name: 'Flexão de Braços na Parede', muscle: 'Peitoral / Tríceps', duration: '2x12 leve', equipment: 'Parede', carga: 'Peso do corpo', tip: 'Mãos na parede na linha do peito, corpo reto. Leve e controlado — prepara o peito e o tríceps.', video: V.flexaoParede },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Desenvolvimento com Halteres ↔ Afundo com Halteres', duration: '3x12 · descanso 60-90s',
-    meta: 'Ombro (MMSS) ↔ perna (MMII), alternando segmento — tudo com halteres no mesmo canto, sem trocar de estação. Ombro entra depois do peito do dia.',
+    type: 'warmup', label: 'Mobilidade',
+    title: 'Quadril · Peitoral · Posterior', duration: '20s cada',
+    meta: 'Depois de avião/carro o quadril vem travado. 20 segundos cada, sem forçar.',
     exercises: [
-      { name: 'Desenvolvimento com Halteres', muscle: 'Ombros', duration: '3x12', equipment: 'Halteres (+ banco)', tip: 'Sentada com apoio nas costas, empurre os halteres pra cima sem travar o cotovelo e sem arquear a lombar.', video: V.desenvNeutro },
-      { name: 'Afundo com Halteres', muscle: 'Quadríceps / Glúteos', duration: '3x12 cada perna', equipment: 'Halteres', tip: 'Um halter em cada mão, dê um passo à frente e desça o joelho de trás em direção ao chão sem encostar, tronco ereto. Empurre pelo calcanhar da frente pra voltar. Troque de perna.', video: V.afundoHalter },
+      { name: 'Alongamento Flexor do Quadril', muscle: 'Flexores do quadril', duration: '20s/lado', equipment: 'Nenhum', tip: 'Joelho de trás no chão (use uma toalha), quadril pra frente, tronco alto. 20s cada lado.', video: V.alongFlexor },
+      { name: 'Alongamento de Peitoral', muscle: 'Peitoral / Ombro', duration: '20s', equipment: 'Parede', tip: 'Antebraço apoiado num batente ou parede, gire o tronco pro lado oposto. 20 segundos.', video: V.alongPeitoral },
+      { name: 'Alongamento de Posterior I', muscle: 'Posterior de coxa', duration: '20s/lado', equipment: 'Nenhum', tip: 'Dobre pelo quadril, coluna longa, sem forçar. 20s cada lado.', video: V.alongPosterior },
     ]
   },
   {
-    type: 'lift', label: 'Bi-Set 2 · Tríceps (ênfase)',
-    title: 'Tríceps Testa com Halteres ↔ Prancha', duration: '3x · descanso 60s',
-    meta: 'Ênfase de tríceps (1/2) + core — tríceps por último (depois de peito e ombro). Ancorado no mesmo colchonete/banco.',
+    type: 'lift', label: 'Bi-Set',
+    title: 'Agachamento Bulgaro ↔ Flexão de Braços', duration: '3 séries · 15·12·10 · descanso 60s',
+    meta: 'Perna ↔ peito (MMII ↔ MMSS). Faz o búlgaro nas duas pernas, emenda a flexão e descansa 60s. Pirâmide: 15 → 12 → 10 repetições, descida 2s → 3s → 4s.',
     exercises: [
-      { name: 'Tríceps Testa com Halteres', muscle: 'Tríceps', duration: '3x 12·10·8', equipment: 'Halteres + banco', tip: 'Deitada no banco, halteres acima do peito, cotovelos apontando pro teto. Desça os halteres em direção à testa flexionando só o cotovelo e estenda de volta. Pode subir a carga a cada série.', video: V.tricepsTestaHalter },
-      { name: 'Prancha', muscle: 'Core / Abdômen', duration: '3x 30-45s', equipment: 'Colchonete', tip: 'Antebraços e pontas dos pés no chão, corpo em linha reta, abdômen e glúteo firmes. Não deixe o quadril cair. Respire.', video: V.prancha },
+      { name: 'Agachamento Bulgaro', muscle: 'Quadríceps / Glúteos', duration: '3x 15·12·10 (cada perna)', equipment: 'Cadeira, cama ou banco de praça', carga: 'Peso do corpo', tip: 'Peito do pé de trás apoiado na cadeira/cama, pé da frente bem à frente. Desce reto até o joelho de trás quase tocar o chão e sobe empurrando pelo calcanhar da frente. Tronco levemente inclinado pra frente = mais glúteo.', video: V.bulgaro },
+      { name: 'Flexão de Braços', muscle: 'Peitoral / Tríceps', duration: '3x 15·12·10', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Mãos um pouco mais abertas que os ombros, corpo reto da cabeça ao calcanhar, abdômen firme. Não completou as repetições? Termine a série com os joelhos apoiados no chão — sem perder a postura.', video: V.flexaoBracos },
     ]
   },
   {
-    type: 'lift', label: 'Solo 3 · Tríceps (ênfase)',
-    title: 'Tríceps Coice com Halteres', duration: '3x12 · descanso 60s',
-    meta: 'Ênfase de tríceps (2/2). 2ª dose de braço — fecha o dia.',
+    type: 'lift', label: 'Bi-Set',
+    title: 'Elevação de Quadril Unilateral ↔ Tríceps Banco com Pernas Dobradas', duration: '3 séries · 15·12·10 · descanso 60s',
+    meta: 'Glúteo ↔ tríceps — a sua ênfase. Faz a elevação nas duas pernas, emenda o tríceps e descansa. Na elevação, segure 1 segundo lá em cima apertando o glúteo.',
     exercises: [
-      { name: 'Tríceps Coice com Halteres', muscle: 'Tríceps', duration: '3x12 cada braço', equipment: 'Halteres (+ banco de apoio)', tip: 'Tronco inclinado à frente com apoio, braço colado ao corpo. Estenda o cotovelo levando o halter pra trás e segure 1s no final. Controle a volta.', video: V.tricepsCoiceHalter },
+      { name: 'Elevação de Quadril Unilateral', muscle: 'Glúteos / Posterior', duration: '3x 15·12·10 (cada perna)', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Deitada de barriga pra cima, um pé no chão perto do glúteo e a outra perna estendida no ar. Sobe o quadril empurrando pelo calcanhar até alinhar joelho-quadril-ombro, segura 1s e desce devagar. Ficou fácil: apoie os ombros na beira da cama/sofá.', video: V.elevQuadrilUni },
+      { name: 'Tríceps Banco com Pernas Dobradas', muscle: 'Tríceps', duration: '3x 15·12·10', equipment: 'Cadeira firme, cama ou banco de praça', carga: 'Peso do corpo', tip: 'Mãos na beira da cadeira (encostada na parede pra não escorregar), dedos pra frente, joelhos dobrados. Desce dobrando os cotovelos pra trás até ~90° e sobe estendendo. Ombros longe das orelhas. Ficou fácil: afaste mais os pés.', video: V.tricepsBanco },
     ]
   },
-  CARDIO_LUCIANA,
-  ALONG_FINAL_A,
-  RELAX_FINAL,
+  {
+    type: 'lift', label: 'Bi-Set',
+    title: 'Swimming ↔ Abdução Decúbito Lateral', duration: '3 séries · 15·12·10 · descanso 45-60s',
+    meta: 'Costas ↔ glúteo médio. Os dois no chão, sem levantar: faz o swimming, vira de lado e emenda a abdução nas duas pernas.',
+    exercises: [
+      { name: 'Swimming', muscle: 'Costas / Lombar / Glúteos', duration: '3x 15·12·10 (cada lado)', equipment: 'Chão (toalha)', carga: 'Peso do corpo', tip: 'De barriga pra baixo, braços estendidos à frente. Tire braços e pernas do chão e alterne braço e perna opostos, como se nadasse, olhando pro chão (pescoço neutro). Movimento controlado, sem jogar.', video: V.swimming },
+      { name: 'Abdução Decúbito Lateral', muscle: 'Glúteo médio', duration: '3x 15·12·10 (cada perna)', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Deitada de lado, corpo alinhado, perna de baixo levemente dobrada. Sobe a perna de cima esticada, pé apontando pra frente (não pro teto), e desce devagar sem encostar.', video: V.abducaoLateral },
+    ]
+  },
+  {
+    type: 'lift', label: 'Core',
+    title: 'Prancha Toque no Ombros', duration: '3x 20 toques · descanso 30s',
+    meta: 'Fecha a força com o abdômen e vai pro cardio.',
+    exercises: [
+      { name: 'Prancha Toque no Ombros', muscle: 'Abdômen / Core', duration: '3x20 toques (alternados)', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Prancha alta (braços estendidos), pés um pouco afastados. Toque a mão no ombro oposto alternando, sem deixar o quadril balançar. Ficou difícil: joelhos no chão.', video: V.pranchaToque },
+    ]
+  },
+  {
+    type: 'cardio', label: 'Cardio',
+    title: 'Circuito aeróbico sem equipamento (~24 min)', duration: '6 voltas · ~24 min',
+    meta: '6 voltas de 4 min sem parar: 1 min Polichinelo → 1 min Skipping → 2 min Corrida Estacionária (mais leve, recupera). Ritmo moderado: dá pra falar frases curtas. No quarto (vizinho embaixo): pé leve, sem saltar. Na orla ou praça: pode trocar tudo por 25-30 min de caminhada rápida ou trote leve no mesmo ritmo.',
+    exercises: [
+      { name: 'Polichinelo', muscle: 'Cardiovascular', duration: '1 min por volta', equipment: 'Nenhum', carga: 'Peso do corpo', tip: 'Abre e fecha braços e pernas no ritmo. Sem impacto: troque o salto por um passo lateral de cada vez, com os braços subindo.', video: V.polichinelo },
+      { name: 'Skipping', muscle: 'Cardiovascular / MMII', duration: '1 min por volta', equipment: 'Nenhum', carga: 'Peso do corpo', tip: 'Joelhos subindo alternados até perto da linha do quadril, braços acompanhando, aterrissa na ponta do pé. Moderado — não é tiro.', video: V.skipping },
+      { name: 'Corrida Estacionária', muscle: 'Cardiovascular', duration: '2 min por volta', equipment: 'Nenhum', carga: 'Peso do corpo', tip: 'Corrida leve no lugar pra recuperar o fôlego antes da próxima volta. Na orla: substitui o circuito inteiro por 25-30 min de caminhada rápida/trote.', video: V.corridaEstac },
+    ]
+  },
+  {
+    type: 'warmup', label: 'Alongamento Final',
+    title: 'Soltura — Glúteos · Tríceps · Quadríceps', duration: '10s cada · 2x',
+    meta: 'Volta à calma. Alongamento curto: 10 segundos cada, 2 vezes, respirando fundo.',
+    exercises: [
+      { name: 'Alongamento de Glúteos II', muscle: 'Glúteos', duration: '2x10s/lado', equipment: 'Chão', tip: 'Deitada, cruze o tornozelo sobre o joelho oposto e puxe a perna em direção ao peito. 10s cada lado.', video: V.alongGluteos },
+      { name: 'Alongamento de Tríceps', muscle: 'Tríceps', duration: '2x10s/lado', equipment: 'Nenhum', tip: 'Mão nas costas por trás da cabeça, a outra mão empurra o cotovelo de leve. 10s cada lado.', video: V.alongTriceps },
+      { name: 'Alongamento de Quadríceps I', muscle: 'Quadríceps', duration: '2x10s/lado', equipment: 'Nenhum', tip: 'Em pé, segure o pé atrás levando o calcanhar ao glúteo, joelhos juntos. Apoie na parede se precisar. 10s cada lado.', video: V.alongQuadriceps },
+    ]
+  },
 ];
-
-// ─── Treino B — POSTERIORES (Glúteos [ênfase] · Posterior de coxa · Costas · Bíceps · Core) — solo pirâmide + bi-set ───
-const TREINO_B = [
-  AQUEC_ARTICULAR,
-  AQUEC_MUSCULAR_B,
-  MOBILIDADE_B,
-  {
-    type: 'lift', label: 'Solo 1 · Pirâmide · Glúteo (ênfase)',
-    title: 'Elevação Pélvica na Cadeira (Hip Thrust)', duration: '4x 12·10·8·6 · descanso 90-120s',
-    meta: 'Básico pesado SOLO. Ênfase de glúteo (1/3). Pirâmide crescente — sobe a carga e cai a repetição.',
-    exercises: [
-      { name: 'Elevação Pélvica na Cadeira', muscle: 'Glúteos', duration: '4x 12·10·8·6', equipment: 'Banco + halter/barra sobre o quadril', tip: 'Costas apoiadas na borda de um banco, pés no chão na largura do quadril. Apoie um halter/barra sobre o quadril, suba empurrando pelo calcanhar e contraia forte o glúteo no topo. Desça controlando. Aumente a carga a cada série. Sem banco/carga: ponte de glúteo no solo, mais repetições.', video: V.elevPelvicaCadeira },
-    ]
-  },
-  {
-    type: 'lift', label: 'Solo 2 · Pirâmide',
-    title: 'Stiff com Halteres', duration: '4x 12·10·8·6 · descanso 90s',
-    meta: 'Básico pesado SOLO. Pirâmide crescente. Posterior de coxa e glúteo.',
-    exercises: [
-      { name: 'Stiff com Halteres', muscle: 'Posterior de coxa / Glúteos', duration: '4x 12·10·8·6', equipment: 'Halteres (ou barra)', tip: 'Joelhos levemente flexionados, empurre o quadril pra trás descendo os halteres rente às pernas com a coluna neutra (não arredonda a lombar). Sente o posterior alongar e volte contraindo o glúteo. Sobe a carga a cada série.', video: V.stiffHalter },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 1 · Glúteo (ênfase)',
-    title: 'Remada Curvada com Halteres ↔ Afundo com Halteres', duration: '3x12 · descanso 60-90s',
-    meta: 'Costas (MMSS) ↔ glúteo/perna (MMII), alternando segmento — halteres no mesmo canto. Afundo reforça o glúteo (ênfase 2/3).',
-    exercises: [
-      { name: 'Remada Curvada com Halteres', muscle: 'Costas (dorsal)', duration: '3x12', equipment: 'Halteres', tip: 'Tronco inclinado à frente com a coluna neutra, puxe os halteres em direção à cintura fechando as escápulas, sem girar o tronco.', video: V.remadaCurvada },
-      { name: 'Afundo com Halteres', muscle: 'Glúteos / Quadríceps', duration: '3x10-12 cada perna', equipment: 'Halteres', tip: 'Um halter em cada mão, dê um passo à frente e desça o joelho de trás em direção ao chão sem encostar, tronco levemente à frente pra pegar mais glúteo. Empurre pelo calcanhar da frente pra voltar. Troque de perna.', video: V.afundoHalter },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 2',
-    title: 'Rosca Direta com Halteres ↔ Abdominal Supra no chão', duration: '3x · descanso 60s',
-    meta: 'Bíceps + core — bíceps só depois de todas as costas do dia. Ancorado no mesmo canto/colchonete.',
-    exercises: [
-      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos fixos ao lado do corpo, suba os halteres sem balançar o tronco e desça controlando.', video: V.roscaDireta },
-      { name: 'Abdominal Supra no chão', muscle: 'Abdômen', duration: '3x15-20', equipment: 'Colchonete', tip: 'Deitada, joelhos flexionados, suba o tronco com o abdômen sem puxar o pescoço com as mãos. Desça controlando sem relaxar totalmente no chão.', video: V.abdomSupra },
-    ]
-  },
-  CARDIO_LUCIANA,
-  ALONG_FINAL_B,
-  RELAX_FINAL,
-];
-
-// ─── Treino Único — FERIADO (full-body, sessão avulsa pra treinar por conta) — mix A+B enxuto em bi-sets ───
-const TREINO_UNICO = [
-  AQUEC_ARTICULAR,
-  AQUEC_MUSCULAR_A,
-  MOBILIDADE_A,
-  {
-    type: 'lift', label: 'Single 1 · Pirâmide',
-    title: 'Agachamento com Halter na Frente', duration: '4x 12·10·8·6 · descanso 90-120s',
-    meta: 'Single (solo) pra abrir. Pirâmide crescente — sobe a carga e cai a repetição a cada série. Quadríceps e glúteo.',
-    exercises: [
-      { name: 'Agachamento com Halter na Frente', muscle: 'Quadríceps / Glúteos', duration: '4x 12·10·8·6', equipment: 'Halter (ou peso do corpo)', tip: 'Segure um halter na vertical à frente do peito, cotovelos pra baixo. Pés na largura dos ombros, desce controlando até ~90° no joelho com o tronco ereto e o abdômen firme, sobe empurrando pelo calcanhar. Aumente a carga a cada série (última é a mais pesada, sempre com técnica). Sem carga: peso do corpo.', video: V.agachHalterFrente },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 1',
-    title: 'Supino Reto com Halteres ↔ Remada Curvada com Halteres', duration: '3x12 · descanso 60-90s',
-    meta: 'Peito (empurra) ↔ costas (puxa), antagonistas — halteres no mesmo canto, sem trocar de estação.',
-    exercises: [
-      { name: 'Supino Reto com Halteres', muscle: 'Peitoral', duration: '3x12', equipment: 'Halteres + banco (ou flexão)', tip: 'Deite no banco, desça os halteres à linha do peito e empurre controlando, pés firmes no chão. Sem banco: flexão de braço no solo (joelhos apoiados se precisar).', video: V.supinoHalter },
-      { name: 'Remada Curvada com Halteres', muscle: 'Costas (dorsal)', duration: '3x12', equipment: 'Halteres', tip: 'Tronco inclinado à frente com a coluna neutra, puxe os halteres em direção à cintura fechando as escápulas, sem girar o tronco.', video: V.remadaCurvada },
-    ]
-  },
-  {
-    type: 'lift', label: 'Single 2 · Pirâmide · Glúteo (ênfase)',
-    title: 'Elevação Pélvica na Cadeira', duration: '4x 12·10·8·6 · descanso 90-120s',
-    meta: 'Single (solo) de glúteo com carga sobre o quadril. Pirâmide crescente — sobe a carga e cai a repetição.',
-    exercises: [
-      { name: 'Elevação Pélvica na Cadeira', muscle: 'Glúteos', duration: '4x 12·10·8·6', equipment: 'Banco + halter/barra sobre o quadril', tip: 'Costas apoiadas na borda de um banco, pés no chão na largura do quadril. Apoie um halter/barra sobre o quadril, suba empurrando pelo calcanhar e contraia forte o glúteo no topo. Desça controlando. Aumente a carga a cada série. Sem banco/carga: ponte de glúteo no solo, mais repetições.', video: V.elevPelvicaCadeira },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 2',
-    title: 'Desenvolvimento com Halteres ↔ Stiff com Halteres', duration: '3x12 · descanso 60-90s',
-    meta: 'Ombro (MMSS) ↔ posterior de coxa/glúteo (MMII), alternando segmento. Ombro entra depois do peito.',
-    exercises: [
-      { name: 'Desenvolvimento com Halteres', muscle: 'Ombros', duration: '3x12', equipment: 'Halteres (+ banco)', tip: 'Sentada com apoio nas costas, empurre os halteres pra cima sem travar o cotovelo e sem arquear a lombar.', video: V.desenvNeutro },
-      { name: 'Stiff com Halteres', muscle: 'Posterior de coxa / Glúteos', duration: '3x12', equipment: 'Halteres', tip: 'Joelhos levemente flexionados, empurre o quadril pra trás descendo os halteres rente às pernas com a coluna neutra (não arredonda a lombar). Sente o posterior alongar e volte contraindo o glúteo.', video: V.stiffHalter },
-    ]
-  },
-  {
-    type: 'lift', label: 'Single 3 · Core',
-    title: 'Prancha', duration: '3x 30-45s · descanso 45-60s',
-    meta: 'Single (solo) de core pra estabilizar o tronco antes do fecho de braço.',
-    exercises: [
-      { name: 'Prancha', muscle: 'Core / Abdômen', duration: '3x 30-45s', equipment: 'Colchonete', tip: 'Antebraços e pontas dos pés no chão, corpo em linha reta, abdômen e glúteo firmes. Não deixe o quadril cair. Respire.', video: V.prancha },
-    ]
-  },
-  {
-    type: 'lift', label: 'Bi-Set 3',
-    title: 'Tríceps Testa com Halteres ↔ Rosca Direta com Halteres', duration: '3x12 · descanso 60s',
-    meta: 'Tríceps ↔ bíceps, antagonistas de braço — braço só depois de peito, ombro e costas. Ancorado no mesmo canto.',
-    exercises: [
-      { name: 'Tríceps Testa com Halteres', muscle: 'Tríceps', duration: '3x12', equipment: 'Halteres + banco', tip: 'Deitada no banco, halteres acima do peito, cotovelos apontando pro teto. Desça os halteres em direção à testa flexionando só o cotovelo e estenda de volta.', video: V.tricepsTestaHalter },
-      { name: 'Rosca Direta com Halteres', muscle: 'Bíceps', duration: '3x12', equipment: 'Halteres', tip: 'Cotovelos fixos ao lado do corpo, suba os halteres sem balançar o tronco e desça controlando.', video: V.roscaDireta },
-    ]
-  },
-  CARDIO_LUCIANA,
-  ALONG_FINAL_A,
-  RELAX_FINAL,
-];
-
-
 
 // ─── Dynamic week dates ───
 function getMonday(d) {
@@ -756,11 +490,12 @@ function buildWeek() {
 }
 
 const TRAINING_SLOTS = [
-  { label: 'Treino Único — Feriado', blocks: TREINO_UNICO },
+  { label: 'Treino de Viagem — Sessão 1', blocks: TREINO_VIAGEM },
+  { label: 'Treino de Viagem — Sessão 2', blocks: TREINO_VIAGEM },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
-const DAY_CONFIG_KEY = 'maxresults-luciana-days-v2';
-const DEFAULT_DAYS = ['Seg', 'Qui'];
+const DAY_CONFIG_KEY = 'maxresults-luciana-viagem-days-v2';
+const DEFAULT_DAYS = ['Ter', 'Qui'];
 
 function loadDayConfig() {
   try { return JSON.parse(localStorage.getItem(DAY_CONFIG_KEY)) || DEFAULT_DAYS; }
@@ -779,12 +514,8 @@ function buildSchedule() {
   });
 }
 
-// ─── Data única: Terça, 08/09/2026 — Treino Único (feriado, sessão avulsa) ───
-const DATA_UNICA = '2026-09-08';
-let WEEK_SCHEDULE = TRAINING_SLOTS.map(slot => ({ dayName: 'Ter', rest: false, label: slot.label, blocks: slot.blocks }));
-let WEEK = [
-  { day: 'Ter', date: DATA_UNICA, num: 8, rest: false, label: 'Treino Único — Feriado', blocks: TREINO_UNICO },
-];
+let WEEK_SCHEDULE = buildSchedule();
+let WEEK = buildWeek();
 
 // Dynamic storage key based on current week
 function getWeekKey() {
@@ -793,7 +524,7 @@ function getWeekKey() {
 }
 
 
-const STORAGE_KEY = 'maxresults-luciana-' + getWeekKey() + '-v1';
+const STORAGE_KEY = 'maxresults-luciana-viagem-' + getWeekKey() + '-v1';
 let currentDayIndex = 0;
 let completedExercises = loadProgress();
 
@@ -995,7 +726,7 @@ function saveDayConfig() {
 }
 
 // ─── Finish Workout (partial) ───
-const FINISH_KEY = 'maxresults-luciana-finished-v1';
+const FINISH_KEY = 'maxresults-luciana-viagem-finished-v1';
 
 function loadFinished() { try { return JSON.parse(localStorage.getItem(FINISH_KEY)||'{}'); } catch { return {}; } }
 
@@ -1085,8 +816,8 @@ function updateFinishButton() {
   }
 }
 
-const LOAD_KEY = 'maxresults-luciana-loads-v1';
-const REST_KEY = 'maxresults-luciana-rest-v1';
+const LOAD_KEY = 'maxresults-luciana-viagem-loads-v1';
+const REST_KEY = 'maxresults-luciana-viagem-rest-v1';
 function loadLoads() { try { return JSON.parse(localStorage.getItem(LOAD_KEY)||'{}'); } catch { return {}; } }
 function saveLoad(input) { const loads=loadLoads(); const k=input.dataset.loadKey; input.value.trim() ? loads[k]=input.value.trim() : delete loads[k]; localStorage.setItem(LOAD_KEY, JSON.stringify(loads)); }
 function restoreLoads() { const loads=loadLoads(); document.querySelectorAll('.load-input').forEach(i => { const k=i.dataset.loadKey; if (loads[k]) i.value=loads[k]; }); }
@@ -1215,8 +946,8 @@ if (ASSESSMENT) { document.getElementById('assessPanel').innerHTML = renderAsses
 document.getElementById('assessToggle').addEventListener('click', function() { this.classList.toggle('open'); document.getElementById('assessPanel').classList.toggle('open'); });
 
 // ─── Session Timer ───
-const TIMER_KEY = 'maxresults-luciana-timer-v1';
-const HISTORY_KEY = 'maxresults-luciana-history-v1';
+const TIMER_KEY = 'maxresults-luciana-viagem-timer-v1';
+const HISTORY_KEY = 'maxresults-luciana-viagem-history-v1';
 let timerInterval = null; let sessionStartTime = null;
 function loadTimerState() { try { return JSON.parse(localStorage.getItem(TIMER_KEY) || 'null'); } catch { return null; } }
 function saveTimerState(state) { if (state) localStorage.setItem(TIMER_KEY, JSON.stringify(state)); else localStorage.removeItem(TIMER_KEY); }
@@ -1231,7 +962,7 @@ function restoreTimer() { const state=loadTimerState(); if(state&&state.start){ 
 restoreTimer();
 
 // ─── Avatar photo ───
-const AVATAR_KEY = 'maxresults-luciana-avatar-v1';
+const AVATAR_KEY = 'maxresults-luciana-viagem-avatar-v1';
 function loadAvatar() {
   const data = localStorage.getItem(AVATAR_KEY);
   const circle = document.getElementById('avatarCircle');
@@ -1264,6 +995,84 @@ document.getElementById('avatarInput').addEventListener('change', function(e) {
   if (e.target.files && e.target.files[0]) saveAvatar(e.target.files[0]);
 });
 loadAvatar();
+
+// ─── Dias flexíveis (06/10/2026): trocar o treino do dia, treinar num dia de descanso, adiar pra amanhã. Vale só pra semana atual. ───
+(function(){
+  const OV_KEY = DAY_CONFIG_KEY + '-ov-' + getWeekKey();
+  function loadOv() { try { return JSON.parse(localStorage.getItem(OV_KEY) || '{}'); } catch { return {}; } }
+  function saveOv(o) { localStorage.setItem(OV_KEY, JSON.stringify(o)); }
+  const basePattern = buildSchedule;              // padrão da engrenagem
+  buildSchedule = function() {
+    const base = basePattern(); const ov = loadOv();
+    return base.map(d => {
+      if (!(d.dayName in ov)) return d;
+      const v = ov[d.dayName];
+      if (v === 'rest') return { dayName: d.dayName, rest: true, label: 'Descanso', moved: true };
+      const slot = TRAINING_SLOTS[v]; if (!slot) return d;
+      return { dayName: d.dayName, rest: false, label: slot.label, blocks: slot.blocks, moved: true };
+    });
+  };
+  function slotIndexOf(day) { return day.rest ? null : TRAINING_SLOTS.findIndex(s => s.label === day.label); }
+  function rebuild() { WEEK_SCHEDULE = buildSchedule(); WEEK = buildWeek(); render(); }
+  window.setDayOverride = function(di, value) {
+    const ov = loadOv(); const name = WEEK[di].day;
+    if (value === 'default') delete ov[name]; else ov[name] = value === 'rest' ? 'rest' : Number(value);
+    saveOv(ov); rebuild();
+  };
+  window.postponeDay = function(di) {
+    const names = WEEK.map(d => d.day);
+    const slots = []; for (let j = di; j < WEEK.length; j++) { const s = slotIndexOf(WEEK[j]); if (s !== null) slots.push(s); }
+    if (!slots.length) return;
+    const room = WEEK.length - (di + 1);
+    if (slots.length > room && !confirm('Não cabe tudo até sábado: o último treino da semana ficaria de fora. Adiar mesmo assim?')) return;
+    const ov = loadOv();
+    ov[names[di]] = 'rest';
+    for (let j = di + 1, k = 0; j < WEEK.length; j++, k++) ov[names[j]] = k < slots.length ? slots[k] : 'rest';
+    saveOv(ov); rebuild();
+  };
+  window.resetWeekOverrides = function() { localStorage.removeItem(OV_KEY); rebuild(); };
+  // dia de descanso também abre
+  selectDay = function(i) { currentDayIndex = i; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const baseSwitcher = renderDaySwitcher;
+  renderDaySwitcher = function() {
+    baseSwitcher();
+    document.querySelectorAll('#daySwitcher .day-btn').forEach((b, i) => { b.disabled = false; if (WEEK[i] && WEEK[i].moved) b.classList.add('moved'); });
+  };
+  const baseWorkout = renderWorkout;
+  renderWorkout = function() {
+    baseWorkout();
+    const day = WEEK[currentDayIndex]; const content = document.getElementById('workoutContent'); if (!content) return;
+    const cur = slotIndexOf(day); const hasOv = Object.keys(loadOv()).length > 0;
+    const opts = TRAINING_SLOTS.map((s, k) => `<option value="${k}" ${k === cur ? 'selected' : ''}>${s.label}</option>`).join('');
+    const today = new Date().toISOString().split('T')[0]; const isPast = day.date < today;
+    let html;
+    if (day.rest) {
+      html = `<div class="day-actions"><select onchange="if(this.value!=='')setDayOverride(${currentDayIndex}, this.value)"><option value="">Treinar neste dia? Escolha o treino…</option>${opts}</select>${hasOv ? '<button onclick="resetWeekOverrides()">Voltar ao padrão da semana</button>' : ''}</div>`;
+      const box = content.querySelector('.rest-message'); if (box) box.insertAdjacentHTML('beforeend', html); else content.insertAdjacentHTML('afterbegin', html);
+    } else {
+      html = `<div class="day-actions"><select onchange="setDayOverride(${currentDayIndex}, this.value)">${opts}<option value="rest">Descansar neste dia</option></select>` +
+        (currentDayIndex < WEEK.length - 1 ? `<button onclick="postponeDay(${currentDayIndex})" title="Empurra este treino e os seguintes um dia pra frente">Adiar pra amanhã →</button>` : '') +
+        (hasOv ? '<button onclick="resetWeekOverrides()">Voltar ao padrão</button>' : '') +
+        `<span class="hint">${isPast ? 'Perdeu este dia? ' : ''}Troca só esta semana. Pra mudar os dias fixos, use a engrenagem ⚙️.</span></div>`;
+      content.insertAdjacentHTML('afterbegin', html);
+    }
+  };
+  rebuild();
+})();
+
+
+// ─── Voltar do celular fecha o vídeo, não a página (06/10/2026) ───
+(function(){
+  const ov = document.getElementById('videoOverlay'); if (!ov) return;
+  const fecha = (typeof closeVideo === 'function') ? closeVideo : null; if (!fecha) return;
+  const mo = new MutationObserver(() => {
+    if (ov.classList.contains('active') && !(history.state && history.state.mrVideo)) history.pushState({ mrVideo: 1 }, '');
+  });
+  mo.observe(ov, { attributes: true, attributeFilter: ['class'] });
+  window.addEventListener('popstate', () => { if (ov.classList.contains('active')) fecha(); });
+  const origClose = closeVideo;
+  closeVideo = function() { origClose(); if (history.state && history.state.mrVideo) history.back(); };
+})();
 </script>
 </body>
 </html>
