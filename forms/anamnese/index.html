@@ -551,6 +551,22 @@
       </div>
 
       <div class="field">
+        <label>O que te fez buscar um treino agora? O que mais te incomoda hoje?</label>
+        <div class="hint">Com as suas palavras, do jeito que você contaria pra um amigo</div>
+        <textarea name="dor_motivo" placeholder="Ex: canso fácil, dor nas costas no fim do dia, quero voltar a me sentir bem com a roupa..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Daqui a 3 meses, o que você quer conseguir fazer ou sentir que hoje não consegue?</label>
+        <textarea name="dor_resultado" placeholder="Ex: subir a escada sem cansar, brincar com meu filho, entrar na calça jeans, dormir melhor..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Já treinou antes? O que fez você parar?</label>
+        <textarea name="dor_historico" placeholder="Ex: falta de tempo, treino chato, me machuquei, não via resultado..."></textarea>
+      </div>
+
+      <div class="field">
         <label>Prazo de expectativa</label>
         <div class="radio-group" data-name="prazo">
           <label class="radio-option" onclick="selectRadio(this)">
@@ -761,6 +777,26 @@
             <input type="checkbox" name="equip_elastico" value="Elástico / faixa">
             <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
             <span class="option-text">Elástico / faixa</span>
+          </label>
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+            <input type="checkbox" name="equip_caneleira" value="Caneleira">
+            <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            <span class="option-text">Caneleira</span>
+          </label>
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+            <input type="checkbox" name="equip_kettlebell" value="Kettlebell">
+            <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            <span class="option-text">Kettlebell</span>
+          </label>
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+            <input type="checkbox" name="equip_banco" value="Banco">
+            <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            <span class="option-text">Banco</span>
+          </label>
+          <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
+            <input type="checkbox" name="equip_colchonete" value="Colchonete / tapete">
+            <span class="check-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+            <span class="option-text">Colchonete / tapete</span>
           </label>
           <label class="checkbox-option" onclick="toggleCheckbox(event, this)">
             <input type="checkbox" name="equip_nenhum" value="Nenhum">
@@ -1235,12 +1271,17 @@ document.getElementById('anamneseForm').addEventListener('submit', function(e) {
   
   msg += '\n';
 
+  msg += '💬 *HISTÓRIA (palavras dela — base pra venda e pro depoimento)*\n';
+  msg += `*O que incomoda / por que agora:* ${data.dor_motivo || '—'}\n`;
+  msg += `*Em 3 meses quer:* ${data.dor_resultado || '—'}\n`;
+  msg += `*Já treinou / por que parou:* ${data.dor_historico || '—'}\n\n`;
+
   msg += '🏋️ *ROTINA*\n';
   msg += `*Tipo de treino (perfil):* ${data.perfil || '—'}\n`;
   msg += `*Frequência:* ${data.frequencia || '—'}\n`;
   msg += `*Tempo/treino:* ${data.tempo || '—'}\n`;
   msg += `*Local:* ${data.local || '—'}\n`;
-  const equip = [['equip_halteres','Halteres'],['equip_barra','Barra e anilhas'],['equip_step','Step'],['equip_bike','Bike'],['equip_elastico','Elástico'],['equip_nenhum','Nenhum']].filter(([k]) => data[k]).map(([, v]) => v);
+  const equip = [['equip_halteres','Halteres'],['equip_barra','Barra e anilhas'],['equip_step','Step'],['equip_bike','Bike'],['equip_elastico','Elástico'],['equip_caneleira','Caneleira'],['equip_kettlebell','Kettlebell'],['equip_banco','Banco'],['equip_colchonete','Colchonete'],['equip_nenhum','Nenhum']].filter(([k]) => data[k]).map(([, v]) => v);
   msg += `*Equipamento fora da academia:* ${equip.length ? equip.join(', ') : '—'}\n`;
   msg += `*Intensidade:* ${data.intensidade || '—'}\n`;
   msg += `*Experiência:* ${data.experiencia || '—'}\n\n`;
