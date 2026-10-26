@@ -306,7 +306,7 @@ const ATHLETE = 'Fernanda';
 const MIX_GOALS = [
   { icon: '🎯', text: '<strong>Objetivo:</strong> perder gordura, com atenção especial ao abdômen. 3x por semana, corpo inteiro em todos os treinos: <strong>seg = Treino 1 · qua = Treino 2 · sex = Treino 3</strong>. Tudo gravado: treina no horário que for melhor aí.' },
   { icon: '🏠', text: '<strong>Em casa, com o que você tem:</strong> kettlebell + colchonete. Nos vídeos do MaxLift o pessoal usa barra e halteres: você faz o mesmo movimento segurando o kettlebell pelos dois lados da alça. Em cada vídeo eu explico a adaptação.' },
-  { icon: '🎬', text: '<strong>Como funciona (Mix = aula + exercícios):</strong> aquecimento do MaxLift → mobilidade → tracks MaxLift e bi-sets de casa (a ordem muda por dia) → MaxStep → alongamento. No bi-set, os 2 exercícios em sequência, sem descanso entre eles.' },
+  { icon: '🎬', text: '<strong>Como funciona (Mix = aula + exercícios):</strong> aquecimento do MaxLift → mobilidade → track MaxLift → bi-set → track MaxLift → bi-set → MaxStep → alongamento. No bi-set, os 2 exercícios em sequência, sem descanso entre eles.' },
   { icon: '🛡️', text: '<strong>Quadril protegido:</strong> sem corrida e sem salto. Agachamento e stiff só até onde o quadril fica confortável. Incomodou na virilha ou na lateral do quadril? Diminui a amplitude ou o peso e me avisa.' },
   { icon: '👟', text: '<strong>Cardio = MaxStep:</strong> step, degrau baixo da escada ou só no chão marcando os passos, sempre sem salto. Começa leve: os primeiros minutos já são o aquecimento do cardio.' },
   { icon: '📈', text: '<strong>Cargas:</strong> a sugestão parte de um kettlebell de 8 kg. Usa o seu e anota o peso no campo kg. Da próxima vez ele aparece e você decide se mantém ou aumenta as repetições.' },
@@ -353,7 +353,7 @@ const TRK_POST3 = {
   label: 'Track · Posteriores', title: 'Posteriores · MaxLift Mix #3', min: 5,
   duration: '~5 min · grande', tag: 'Costas / posterior de coxa',
   bunny: 'https://iframe.mediadelivery.net/embed/655450/6895cd36-19b3-4959-ab27-647eb7f2ae9c',
-  tip: 'Terra e stiff com o kettlebell nas duas mãos: joelhos destravados, coluna neutra, desce só até o meio da canela nos dois (menos que no vídeo, pra poupar o quadril). Na remada, tronco inclinado e o kettlebell sobe até a barriga, fechando as escápulas. Nos trechos de arremesso ou desenvolvimento acima da cabeça: PULA e fica em pé respirando até voltar o terra/remada (ombro tem track próprio logo depois).',
+  tip: 'Terra e stiff com o kettlebell nas duas mãos: joelhos destravados, coluna neutra, desce só até o meio da canela nos dois (menos que no vídeo, pra poupar o quadril). Na remada, tronco inclinado e o kettlebell sobe até a barriga, fechando as escápulas. Nos trechos de arremesso ou desenvolvimento acima da cabeça: PULA e fica em pé respirando até voltar o terra/remada (o ombro entra depois do peito, no track próprio).',
   loads: [ { label: 'Kettlebell', placeholder: '8' } ],
 };
 
@@ -434,8 +434,6 @@ const V = {
   elevQuadril: 'https://vd.mfitpersonal.com.br/817/mp4/817.mp4',
   tricepsTestaCarga: 'https://vd.mfitpersonal.com.br/891/mp4/891.mp4',
   perdigueiro: 'https://vd.mfitpersonal.com.br/846/mp4/846.mp4',
-  agachSumoKb: 'https://vd.mfitpersonal.com.br/184/mp4/184.mp4',
-  pranchaRemada: 'https://vd.mfitpersonal.com.br/912/mp4/912.mp4',
   elevFrontalKb: 'https://vd.mfitpersonal.com.br/159/mp4/159.mp4',
   elevQuadrilUni: 'https://vd.mfitpersonal.com.br/255/mp4/255.mp4',
   panturrilhaUniParede: 'https://vd.mfitpersonal.com.br/763/mp4/763.mp4',
@@ -550,18 +548,6 @@ const MUSC_3G = {
   ],
 };
 
-const MUSC_3A = {
-  type: 'lift', label: 'Bi-set · Perna + Costas/Core',
-  title: 'Agachamento Sumo com Kettlebell ↔ Prancha com Remada', role: 'forca', min: 5,
-  meta: 'Bi-set: os 2 em sequência, sem descanso entre eles. 3 voltas; 60–90s entre as voltas. Sugestão: kettlebell de 8 kg.',
-  exercises: [
-    { name: 'Agachamento Sumo com Kettlebell', muscle: 'Pernas / glúteos', biset: true, reps: '3x12', loadLabel: 'Agachamento (kettlebell)',
-      tip: 'Pés um pouco mais abertos que o quadril, pontas levemente pra fora, kettlebell pendurado entre as pernas. Desce só até onde o quadril fica confortável e sobe apertando o glúteo. Se a lateral do quadril reclamar, fecha um pouco a base.', video: V.agachSumoKb },
-    { name: 'Prancha com Remada', muscle: 'Costas / abdômen', biset: true, reps: '3x8 cada lado', loadLabel: 'Remada (kettlebell)',
-      tip: 'Em prancha com os joelhos apoiados, uma mão no chão e a outra no kettlebell. Puxa o kettlebell até a cintura sem girar o quadril e devolve devagar. Troca de lado.', video: V.pranchaRemada },
-  ],
-};
-
 const MUSC_3B = {
   type: 'lift', label: 'Bi-set · Ombro + Abdômen',
   title: 'Elevação Frontal com Kettlebell ↔ Abdominal Supra Solo', role: 'forca', min: 5,
@@ -578,13 +564,13 @@ const MUSC_3B = {
    Cada dia: aquec (track) → mobilidade (Regra 24) → track → bi-set → track → bi-set → MaxStep (3 vídeos) → soltura (track).
    Quadril: 1 bloco com flexão de quadril carregada por dia (T1 Pernas · T2 Posteriores · T3 Agachamento Sumô). */
 const AULA_1 = [ TRK_AQUEC3, MOB_1, TRK_PERNAS3, MUSC_1A, TRK_PEITO3, MUSC_1B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
-const AULA_2 = [ TRK_AQUEC3, MOB_2, MUSC_2A, TRK_POST3, TRK_OMBROS3, MUSC_2B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
-const AULA_3 = [ TRK_AQUEC3, MOB_3, MUSC_3G, MUSC_3A, TRK_TRICEPS3, MUSC_3B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
+const AULA_2 = [ TRK_AQUEC3, MOB_2, TRK_POST3, MUSC_2A, TRK_OMBROS3, MUSC_2B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
+const AULA_3 = [ TRK_AQUEC3, MOB_3, TRK_PERNAS3, MUSC_3G, TRK_TRICEPS3, MUSC_3B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
 
 const TRAINING_SLOTS = [
   { label: 'Treino 1 — Full Body (pernas, costas, peito, bíceps)', blocks: AULA_1 },
   { label: 'Treino 2 — Full Body (posteriores, peito, ombros, tríceps)', blocks: AULA_2 },
-  { label: 'Treino 3 — Full Body (glúteos, pernas, costas, tríceps, ombro)', blocks: AULA_3 },
+  { label: 'Treino 3 — Full Body (pernas, glúteos, tríceps, ombro)', blocks: AULA_3 },
 ];
 const DAY_CONFIG_KEY = 'maxresults-' + 'fernanda' + '-days-v1';
 
