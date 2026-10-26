@@ -332,7 +332,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Treino Luciana &middot; Metodologia MaxResults &middot; Luisão Ribeiro<br>Treino de viagem · Gerado em 24/10/2026</footer>
+  <footer class="footer">Treino Luciana &middot; Metodologia MaxResults &middot; Luisão Ribeiro<br>Treino de viagem · Gerado em 26/10/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -343,9 +343,11 @@
 const ATHLETE = 'Luciana';
 
 const WEEKLY_GOALS = [
-  { icon: '✈️', type: 'strength', text: '<strong>Treino de viagem (~50 min):</strong> só com o <strong>peso do corpo</strong>, sem nenhum equipamento — dá pra fazer no quarto do hotel, na praia ou numa praça. Força em <strong>3 bi-sets</strong> + abdômen, cardio e alongamento.' },
-  { icon: '🔺', type: 'strength', text: '<strong>Pirâmide sem peso:</strong> 3 séries de <strong>15 · 12 · 10</strong> repetições. A cada série as repetições caem, mas a descida fica <strong>mais lenta</strong> (2s → 3s → 4s). Menos repetição, mais tempo sob tensão — é assim que o exercício fica mais pesado sem halter.' },
-  { icon: '🎯', type: 'strength', text: '<strong>Ênfase:</strong> glúteos e tríceps continuam em destaque — elevação de quadril unilateral, abdução e tríceps no banco/cadeira.' },
+  { icon: '✈️', type: 'strength', text: '<strong>Treino de viagem — terça e quinta, ~60 min:</strong> só com o <strong>peso do corpo</strong>, no quarto ou na sala. São <strong>2 treinos diferentes</strong> (A na terça, B na quinta): aquecimento, força em 3 bi-sets + abdômen, 20 min de cardio e alongamento.' },
+  { icon: '🔺', type: 'strength', text: '<strong>Pirâmide sem peso:</strong> 3 séries de <strong>15 · 12 · 10</strong> repetições (nos exercícios de uma perna só: <strong>12 · 10 · 8 cada lado</strong>). A cada série as repetições caem e a descida fica <strong>mais lenta</strong> (2s → 3s → 4s). Menos repetição, mais tempo sob tensão — é assim que fica pesado sem halter.' },
+  { icon: '🏖️', type: 'cardio', text: '<strong>Nos outros dias — caminhada na areia, 30 a 45 min:</strong> os <strong>5 primeiros minutos bem leves</strong>, depois ritmo firme em que dá pra falar só frases curtas (esforço 5–6 de 10). Areia dura, perto da água, é a base; a areia fofa pesa muito mais — use em trechos de 2–3 min e volte pra dura. Termine com 3 min mais devagar. Se o corpo pedir, um desses dias pode ser de descanso total.' },
+  { icon: '🌧️', type: 'cardio', text: '<strong>Choveu?</strong> Faça no quarto o <strong>cardio do treino</strong> (o último bloco: corrida estacionária, skipping e polichinelo) por 20–25 min, começando leve. Pra não incomodar o vizinho de baixo: <strong>sem saltar</strong> — polichinelo com passo lateral e skipping baixo, pisando leve.' },
+  { icon: '🎯', type: 'strength', text: '<strong>Ênfase:</strong> glúteos e tríceps continuam em destaque nos dois treinos.' },
   { icon: '💡', type: 'strength', text: '<strong>Carga sugerida:</strong> é o peso do corpo. Ficou fácil? Desça ainda mais devagar e segure 1s embaixo. Ficou difícil? Diminua a amplitude e mantenha a postura.' },
 ];
 
@@ -354,6 +356,7 @@ const V = {
   giros: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/8d76rg3vbsm_opt.mp4',
   agachLivre: 'https://vd.mfitpersonal.com.br/50/mp4/50.mp4',
   flexaoParede: 'https://vd.mfitpersonal.com.br/833/mp4/833.mp4',
+  elevQuadril: 'https://vd.mfitpersonal.com.br/817/mp4/817.mp4',
   alongFlexor: 'https://d2vfutiy2j6sqj.cloudfront.net/13341/mp4/5e9lix657lb_opt.mp4',
   alongPeitoral: 'https://vd.mfitpersonal.com.br/v2/1168/mp4/1168_opt.mp4',
   alongPosterior: 'https://vd.mfitpersonal.com.br/91/mp4/91.mp4',
@@ -364,6 +367,13 @@ const V = {
   swimming: 'https://vd.mfitpersonal.com.br/945/mp4/945.mp4',
   abducaoLateral: 'https://vd.mfitpersonal.com.br/615/mp4/615.mp4',
   pranchaToque: 'https://vd.mfitpersonal.com.br/17/mp4/17.mp4',
+  afundo: 'https://vd.mfitpersonal.com.br/786/mp4/786.mp4',
+  flexaoFechada: 'https://vd.mfitpersonal.com.br/728/mp4/728.mp4',
+  elevQuadrilSofaUni: 'https://vd.mfitpersonal.com.br/823/mp4/823.mp4',
+  tricepsBancoEstic: 'https://vd.mfitpersonal.com.br/143/mp4/143.mp4',
+  lombarSolo: 'https://vd.mfitpersonal.com.br/840/mp4/840.mp4',
+  coice: 'https://vd.mfitpersonal.com.br/242/mp4/242.mp4',
+  pranchaLateral: 'https://vd.mfitpersonal.com.br/857/mp4/857.mp4',
   polichinelo: 'https://vd.mfitpersonal.com.br/848/mp4/848.mp4',
   skipping: 'https://vd.mfitpersonal.com.br/816/mp4/816.mp4',
   corridaEstac: 'https://vd.mfitpersonal.com.br/812/mp4/812.mp4',
@@ -372,91 +382,151 @@ const V = {
   alongQuadriceps: 'https://vd.mfitpersonal.com.br/90/mp4/90.mp4',
 };
 
-// ═══════════ SESSÃO DE VIAGEM (peso do corpo) ═══════════
-const TREINO_VIAGEM = [
+// ═══════════ BLOCOS COMUNS ═══════════
+const AQUEC_ARTICULAR = {
+  type: 'warmup', label: 'Aquecimento Articular',
+  title: 'Balanço + Giros', duration: '1x12 cada · ~2 min',
+  meta: 'Solta quadril e ombros — as articulações que o treino de hoje usa. Nada de correr ou pular pra aquecer: o aquecimento é o próprio movimento, leve.',
+  exercises: [
+    { name: 'Balanço Frontal das Pernas', muscle: 'Quadril / Pernas', duration: '1x12', equipment: 'Nenhum', tip: 'Segure numa parede ou cadeira. Balance a perna para frente e para trás com controle. 12 cada lado.', video: V.balanco },
+    { name: 'Giros dos Braços', muscle: 'Ombros', duration: '1x12', equipment: 'Nenhum', tip: 'Braços estendidos, gire em círculos amplos. 12 para frente, 12 para trás.', video: V.giros },
+  ]
+};
+const MOBILIDADE = {
+  type: 'warmup', label: 'Mobilidade',
+  title: 'Quadril · Peitoral · Posterior', duration: '20s cada · ~2 min',
+  meta: 'Depois de avião/carro o quadril vem travado. 20 segundos cada, sem forçar.',
+  exercises: [
+    { name: 'Alongamento Flexor do Quadril', muscle: 'Flexores do quadril', duration: '20s/lado', equipment: 'Nenhum', tip: 'Joelho de trás no chão (use uma toalha), quadril pra frente, tronco alto. 20s cada lado.', video: V.alongFlexor },
+    { name: 'Alongamento de Peitoral', muscle: 'Peitoral / Ombro', duration: '20s', equipment: 'Parede', tip: 'Antebraço apoiado num batente ou parede, gire o tronco pro lado oposto. 20 segundos.', video: V.alongPeitoral },
+    { name: 'Alongamento de Posterior I', muscle: 'Posterior de coxa', duration: '20s/lado', equipment: 'Nenhum', tip: 'Dobre pelo quadril, coluna longa, sem forçar. 20s cada lado.', video: V.alongPosterior },
+  ]
+};
+const CARDIO = {
+  type: 'cardio', label: 'Cardio',
+  title: 'Cardio no quarto — 20 min, começando leve', duration: '20 min',
+  meta: 'Os 3 primeiros minutos são o aquecimento do cardio: Corrida Estacionária BEM leve. Depois 4 voltas de 4 min: 1 min Polichinelo → 1 min Skipping → 2 min Corrida Estacionária (recupera). Último minuto: marcha no lugar, desacelerando. Ritmo moderado: dá pra falar frases curtas. Sem saltar (vizinho de baixo): polichinelo com passo lateral, skipping baixo. Sem chuva e com a praia perto? Pode trocar este bloco por 20–25 min de caminhada na areia — também começando devagar.',
+  exercises: [
+    { name: 'Corrida Estacionária', muscle: 'Cardiovascular', duration: '3 min leve + 2 min por volta', equipment: 'Nenhum', carga: 'Peso do corpo', tip: 'Começa bem leve, quase uma marcha, e vai soltando o passo nos 3 primeiros minutos. Nas voltas, é o momento de recuperar o fôlego.', video: V.corridaEstac },
+    { name: 'Polichinelo', muscle: 'Cardiovascular', duration: '1 min por volta', equipment: 'Nenhum', carga: 'Peso do corpo', tip: 'Sem salto: um pé vai pro lado de cada vez enquanto os braços sobem, depois volta. Ritmo constante.', video: V.polichinelo },
+    { name: 'Skipping', muscle: 'Cardiovascular / MMII', duration: '1 min por volta', equipment: 'Nenhum', carga: 'Peso do corpo', tip: 'Joelhos subindo alternados, braços acompanhando, pisando leve na ponta do pé. Moderado — não é tiro.', video: V.skipping },
+  ]
+};
+const SOLTURA = {
+  type: 'warmup', label: 'Alongamento Final',
+  title: 'Soltura — Glúteos · Tríceps · Quadríceps', duration: '10s cada · 2x · ~3 min',
+  meta: 'Volta à calma. Alongamento curto: 10 segundos cada, 2 vezes, respirando fundo.',
+  exercises: [
+    { name: 'Alongamento de Glúteos II', muscle: 'Glúteos', duration: '2x10s/lado', equipment: 'Chão', tip: 'Deitada, cruze o tornozelo sobre o joelho oposto e puxe a perna em direção ao peito. 10s cada lado.', video: V.alongGluteos },
+    { name: 'Alongamento de Tríceps', muscle: 'Tríceps', duration: '2x10s/lado', equipment: 'Nenhum', tip: 'Mão nas costas por trás da cabeça, a outra mão empurra o cotovelo de leve. 10s cada lado.', video: V.alongTriceps },
+    { name: 'Alongamento de Quadríceps I', muscle: 'Quadríceps', duration: '2x10s/lado', equipment: 'Nenhum', tip: 'Em pé, segure o pé atrás levando o calcanhar ao glúteo, joelhos juntos. Apoie na parede se precisar. 10s cada lado.', video: V.alongQuadriceps },
+  ]
+};
+
+// ═══════════ TREINO A (terça) ═══════════
+const TREINO_VIAGEM_A = [
+  AQUEC_ARTICULAR,
   {
-    type: 'warmup', label: 'Aquecimento Articular',
-    title: 'Balanço + Giros', duration: '1x12 cada',
-    meta: '1 série de 12 repetições cada — solta as articulações depois da viagem.',
+    type: 'warmup', label: 'Aquecimento Específico',
+    title: 'Séries leves dos movimentos de hoje', duration: '1–2x10 leve · ~3 min',
+    meta: 'Aquece fazendo o que vai treinar, só que leve: agachamento (prepara o búlgaro), elevação de quadril (prepara o glúteo) e flexão na parede (prepara peito e tríceps).',
     exercises: [
-      { name: 'Balanço Frontal das Pernas', muscle: 'Quadril / Pernas', duration: '1x12', equipment: 'Nenhum', tip: 'Segure numa parede ou cadeira. Balance a perna para frente e para trás com controle. 12 cada lado.', video: V.balanco },
-      { name: 'Giros dos Braços', muscle: 'Ombros', duration: '1x12', equipment: 'Nenhum', tip: 'Braços estendidos, gire em círculos amplos. 12 para frente, 12 para trás.', video: V.giros },
+      { name: 'Agachamento Livre', muscle: 'Quadríceps / Glúteos', duration: '2x10 leve', equipment: 'Peso do corpo', carga: 'Peso do corpo', tip: 'Amplitude menor na 1ª série, completa na 2ª. Leve e controlado — é aquecimento.', video: V.agachLivre },
+      { name: 'Elevação de Quadril', muscle: 'Glúteos', duration: '1x12 leve', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Com os dois pés no chão. Sobe apertando o glúteo e desce devagar — só pra acordar o glúteo.', video: V.elevQuadril },
+      { name: 'Flexão de Braços na Parede', muscle: 'Peitoral / Tríceps', duration: '2x10 leve', equipment: 'Parede', carga: 'Peso do corpo', tip: 'Mãos na parede na linha do peito, corpo reto. Leve e controlado — prepara peito e tríceps.', video: V.flexaoParede },
     ]
   },
-  {
-    type: 'warmup', label: 'Aquecimento Muscular',
-    title: 'Ativação leve — perna e peito', duration: '2x12 leve',
-    meta: 'Bem leve, só pra aquecer o músculo antes dos bi-sets.',
-    exercises: [
-      { name: 'Agachamento Livre', muscle: 'Quadríceps / Glúteos', duration: '2x12 leve', equipment: 'Peso do corpo', carga: 'Peso do corpo', tip: 'Amplitude menor, só pra aquecer — desce até a metade, movimento leve e controlado.', video: V.agachLivre },
-      { name: 'Flexão de Braços na Parede', muscle: 'Peitoral / Tríceps', duration: '2x12 leve', equipment: 'Parede', carga: 'Peso do corpo', tip: 'Mãos na parede na linha do peito, corpo reto. Leve e controlado — prepara o peito e o tríceps.', video: V.flexaoParede },
-    ]
-  },
-  {
-    type: 'warmup', label: 'Mobilidade',
-    title: 'Quadril · Peitoral · Posterior', duration: '20s cada',
-    meta: 'Depois de avião/carro o quadril vem travado. 20 segundos cada, sem forçar.',
-    exercises: [
-      { name: 'Alongamento Flexor do Quadril', muscle: 'Flexores do quadril', duration: '20s/lado', equipment: 'Nenhum', tip: 'Joelho de trás no chão (use uma toalha), quadril pra frente, tronco alto. 20s cada lado.', video: V.alongFlexor },
-      { name: 'Alongamento de Peitoral', muscle: 'Peitoral / Ombro', duration: '20s', equipment: 'Parede', tip: 'Antebraço apoiado num batente ou parede, gire o tronco pro lado oposto. 20 segundos.', video: V.alongPeitoral },
-      { name: 'Alongamento de Posterior I', muscle: 'Posterior de coxa', duration: '20s/lado', equipment: 'Nenhum', tip: 'Dobre pelo quadril, coluna longa, sem forçar. 20s cada lado.', video: V.alongPosterior },
-    ]
-  },
+  MOBILIDADE,
   {
     type: 'lift', label: 'Bi-Set',
-    title: 'Agachamento Bulgaro ↔ Flexão de Braços', duration: '3 séries · 15·12·10 · descanso 60s',
-    meta: 'Perna ↔ peito (MMII ↔ MMSS). Faz o búlgaro nas duas pernas, emenda a flexão e descansa 60s. Pirâmide: 15 → 12 → 10 repetições, descida 2s → 3s → 4s.',
+    title: 'Agachamento Bulgaro ↔ Flexão de Braços', duration: '3 séries · pirâmide · descanso 60s · ~10 min',
+    meta: 'Perna ↔ peito. Faz o búlgaro nas duas pernas, emenda a flexão e descansa 60s. Pirâmide: búlgaro 12 → 10 → 8 cada perna · flexão 15 → 12 → 10 · descida 2s → 3s → 4s.',
     exercises: [
-      { name: 'Agachamento Bulgaro', muscle: 'Quadríceps / Glúteos', duration: '3x 15·12·10 (cada perna)', equipment: 'Cadeira, cama ou banco de praça', carga: 'Peso do corpo', tip: 'Peito do pé de trás apoiado na cadeira/cama, pé da frente bem à frente. Desce reto até o joelho de trás quase tocar o chão e sobe empurrando pelo calcanhar da frente. Tronco levemente inclinado pra frente = mais glúteo.', video: V.bulgaro },
+      { name: 'Agachamento Bulgaro', muscle: 'Quadríceps / Glúteos', duration: '3x 12·10·8 (cada perna)', equipment: 'Cadeira, cama ou sofá', carga: 'Peso do corpo', tip: 'Peito do pé de trás apoiado na cadeira/cama, pé da frente bem à frente. Desce reto até o joelho de trás quase tocar o chão e sobe empurrando pelo calcanhar da frente. Tronco levemente inclinado pra frente = mais glúteo.', video: V.bulgaro },
       { name: 'Flexão de Braços', muscle: 'Peitoral / Tríceps', duration: '3x 15·12·10', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Mãos um pouco mais abertas que os ombros, corpo reto da cabeça ao calcanhar, abdômen firme. Não completou as repetições? Termine a série com os joelhos apoiados no chão — sem perder a postura.', video: V.flexaoBracos },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set',
-    title: 'Elevação de Quadril Unilateral ↔ Tríceps Banco com Pernas Dobradas', duration: '3 séries · 15·12·10 · descanso 60s',
-    meta: 'Glúteo ↔ tríceps — a sua ênfase. Faz a elevação nas duas pernas, emenda o tríceps e descansa. Na elevação, segure 1 segundo lá em cima apertando o glúteo.',
+    title: 'Elevação de Quadril Unilateral ↔ Tríceps Banco com Pernas Dobradas', duration: '3 séries · pirâmide · descanso 60s · ~11 min',
+    meta: 'Glúteo ↔ tríceps — a sua ênfase. Faz a elevação nas duas pernas, emenda o tríceps e descansa. Pirâmide: elevação 12 → 10 → 8 cada perna · tríceps 15 → 12 → 10 · descida 2s → 3s → 4s.',
     exercises: [
-      { name: 'Elevação de Quadril Unilateral', muscle: 'Glúteos / Posterior', duration: '3x 15·12·10 (cada perna)', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Deitada de barriga pra cima, um pé no chão perto do glúteo e a outra perna estendida no ar. Sobe o quadril empurrando pelo calcanhar até alinhar joelho-quadril-ombro, segura 1s e desce devagar. Ficou fácil: apoie os ombros na beira da cama/sofá.', video: V.elevQuadrilUni },
-      { name: 'Tríceps Banco com Pernas Dobradas', muscle: 'Tríceps', duration: '3x 15·12·10', equipment: 'Cadeira firme, cama ou banco de praça', carga: 'Peso do corpo', tip: 'Mãos na beira da cadeira (encostada na parede pra não escorregar), dedos pra frente, joelhos dobrados. Desce dobrando os cotovelos pra trás até ~90° e sobe estendendo. Ombros longe das orelhas. Ficou fácil: afaste mais os pés.', video: V.tricepsBanco },
+      { name: 'Elevação de Quadril Unilateral', muscle: 'Glúteos / Posterior', duration: '3x 12·10·8 (cada perna)', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Deitada de barriga pra cima, um pé no chão perto do glúteo e a outra perna estendida no ar. Sobe o quadril empurrando pelo calcanhar até alinhar joelho-quadril-ombro, aperta o glúteo lá em cima e desce devagar.', video: V.elevQuadrilUni },
+      { name: 'Tríceps Banco com Pernas Dobradas', muscle: 'Tríceps', duration: '3x 15·12·10', equipment: 'Cadeira firme, cama ou sofá', carga: 'Peso do corpo', tip: 'Mãos na beira da cadeira (encostada na parede pra não escorregar), dedos pra frente, joelhos dobrados. Desce dobrando os cotovelos pra trás até ~90° e sobe estendendo. Ombros longe das orelhas. Ficou fácil: afaste mais os pés.', video: V.tricepsBanco },
     ]
   },
   {
     type: 'lift', label: 'Bi-Set',
-    title: 'Swimming ↔ Abdução Decúbito Lateral', duration: '3 séries · 15·12·10 · descanso 45-60s',
+    title: 'Swimming ↔ Abdução Decúbito Lateral', duration: '2 séries · 12 cada lado · descanso 45s · ~5 min',
     meta: 'Costas ↔ glúteo médio. Os dois no chão, sem levantar: faz o swimming, vira de lado e emenda a abdução nas duas pernas.',
     exercises: [
-      { name: 'Swimming', muscle: 'Costas / Lombar / Glúteos', duration: '3x 15·12·10 (cada lado)', equipment: 'Chão (toalha)', carga: 'Peso do corpo', tip: 'De barriga pra baixo, braços estendidos à frente. Tire braços e pernas do chão e alterne braço e perna opostos, como se nadasse, olhando pro chão (pescoço neutro). Movimento controlado, sem jogar.', video: V.swimming },
-      { name: 'Abdução Decúbito Lateral', muscle: 'Glúteo médio', duration: '3x 15·12·10 (cada perna)', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Deitada de lado, corpo alinhado, perna de baixo levemente dobrada. Sobe a perna de cima esticada, pé apontando pra frente (não pro teto), e desce devagar sem encostar.', video: V.abducaoLateral },
+      { name: 'Swimming', muscle: 'Costas / Lombar', duration: '2x12 (cada lado)', equipment: 'Chão (toalha)', carga: 'Peso do corpo', tip: 'De barriga pra baixo, braços estendidos à frente. Tire braços e pernas do chão e alterne braço e perna opostos, como se nadasse, olhando pro chão (pescoço neutro). Controlado, sem jogar.', video: V.swimming },
+      { name: 'Abdução Decúbito Lateral', muscle: 'Glúteo médio', duration: '2x12 (cada perna)', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Deitada de lado, corpo alinhado, perna de baixo levemente dobrada. Sobe a perna de cima esticada, pé apontando pra frente (não pro teto), e desce devagar sem encostar.', video: V.abducaoLateral },
     ]
   },
   {
     type: 'lift', label: 'Core',
-    title: 'Prancha Toque no Ombros', duration: '3x 20 toques · descanso 30s',
+    title: 'Prancha Toque no Ombros', duration: '2x 20 toques · descanso 30s · ~2 min',
     meta: 'Fecha a força com o abdômen e vai pro cardio.',
     exercises: [
-      { name: 'Prancha Toque no Ombros', muscle: 'Abdômen / Core', duration: '3x20 toques (alternados)', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Prancha alta (braços estendidos), pés um pouco afastados. Toque a mão no ombro oposto alternando, sem deixar o quadril balançar. Ficou difícil: joelhos no chão.', video: V.pranchaToque },
+      { name: 'Prancha Toque no Ombros', muscle: 'Abdômen / Core', duration: '2x20 toques (alternados)', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Prancha alta (braços estendidos), pés um pouco afastados. Toque a mão no ombro oposto alternando, sem deixar o quadril balançar. Ficou difícil: joelhos no chão.', video: V.pranchaToque },
+    ]
+  },
+  CARDIO,
+  SOLTURA,
+];
+
+// ═══════════ TREINO B (quinta) ═══════════
+const TREINO_VIAGEM_B = [
+  AQUEC_ARTICULAR,
+  {
+    type: 'warmup', label: 'Aquecimento Específico',
+    title: 'Séries leves dos movimentos de hoje', duration: '1–2x10 leve · ~3 min',
+    meta: 'Aquece fazendo o que vai treinar, só que leve: agachamento (prepara o afundo), elevação de quadril (prepara o glúteo) e flexão na parede (prepara peito e tríceps).',
+    exercises: [
+      { name: 'Agachamento Livre', muscle: 'Quadríceps / Glúteos', duration: '2x10 leve', equipment: 'Peso do corpo', carga: 'Peso do corpo', tip: 'Amplitude menor na 1ª série, completa na 2ª. Leve e controlado — é aquecimento.', video: V.agachLivre },
+      { name: 'Elevação de Quadril', muscle: 'Glúteos', duration: '1x12 leve', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Com os dois pés no chão. Sobe apertando o glúteo e desce devagar — só pra acordar o glúteo.', video: V.elevQuadril },
+      { name: 'Flexão de Braços na Parede', muscle: 'Peitoral / Tríceps', duration: '2x10 leve', equipment: 'Parede', carga: 'Peso do corpo', tip: 'Mãos na parede na linha do peito, cotovelos perto do corpo (como vai ser na flexão fechada). Leve e controlado.', video: V.flexaoParede },
+    ]
+  },
+  MOBILIDADE,
+  {
+    type: 'lift', label: 'Bi-Set',
+    title: 'Afundo ↔ Flexão de Braço (Pegada Fechada)', duration: '3 séries · pirâmide · descanso 60s · ~10 min',
+    meta: 'Perna ↔ peito/tríceps. Faz o afundo nas duas pernas, emenda a flexão fechada e descansa 60s. Pirâmide: afundo 12 → 10 → 8 cada perna · flexão 15 → 12 → 10 · descida 2s → 3s → 4s.',
+    exercises: [
+      { name: 'Afundo', muscle: 'Quadríceps / Glúteos', duration: '3x 12·10·8 (cada perna)', equipment: 'Nenhum', carga: 'Peso do corpo', tip: 'Passo largo, pés na largura do quadril (como trilhos, não numa linha só). Desce o joelho de trás em direção ao chão, tronco alto, e sobe empurrando pelo pé da frente. Faz todas de uma perna e troca.', video: V.afundo },
+      { name: 'Flexão de Braço (Pegada Fechada)', muscle: 'Peitoral / Tríceps', duration: '3x 15·12·10', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Mãos na largura dos ombros, cotovelos raspando o corpo na descida — mais tríceps. Corpo reto, abdômen firme. Não completou? Termine com os joelhos apoiados.', video: V.flexaoFechada },
     ]
   },
   {
-    type: 'cardio', label: 'Cardio',
-    title: 'Circuito aeróbico sem equipamento (~24 min)', duration: '6 voltas · ~24 min',
-    meta: '6 voltas de 4 min sem parar: 1 min Polichinelo → 1 min Skipping → 2 min Corrida Estacionária (mais leve, recupera). Ritmo moderado: dá pra falar frases curtas. No quarto (vizinho embaixo): pé leve, sem saltar. Na orla ou praça: pode trocar tudo por 25-30 min de caminhada rápida ou trote leve no mesmo ritmo.',
+    type: 'lift', label: 'Bi-Set',
+    title: 'Elevação de Quadril na Cadeira/Sofá unilateral ↔ Tríceps Banco com Pernas Esticadas', duration: '3 séries · pirâmide · descanso 60s · ~11 min',
+    meta: 'Glúteo ↔ tríceps — a sua ênfase, numa versão um pouco mais difícil que a de terça. Os dois usam o sofá/cadeira: faz a elevação nas duas pernas, vira e emenda o tríceps. Pirâmide: elevação 12 → 10 → 8 cada perna · tríceps 15 → 12 → 10 · descida 2s → 3s → 4s.',
     exercises: [
-      { name: 'Polichinelo', muscle: 'Cardiovascular', duration: '1 min por volta', equipment: 'Nenhum', carga: 'Peso do corpo', tip: 'Abre e fecha braços e pernas no ritmo. Sem impacto: troque o salto por um passo lateral de cada vez, com os braços subindo.', video: V.polichinelo },
-      { name: 'Skipping', muscle: 'Cardiovascular / MMII', duration: '1 min por volta', equipment: 'Nenhum', carga: 'Peso do corpo', tip: 'Joelhos subindo alternados até perto da linha do quadril, braços acompanhando, aterrissa na ponta do pé. Moderado — não é tiro.', video: V.skipping },
-      { name: 'Corrida Estacionária', muscle: 'Cardiovascular', duration: '2 min por volta', equipment: 'Nenhum', carga: 'Peso do corpo', tip: 'Corrida leve no lugar pra recuperar o fôlego antes da próxima volta. Na orla: substitui o circuito inteiro por 25-30 min de caminhada rápida/trote.', video: V.corridaEstac },
+      { name: 'Elevação de Quadril na Cadeira/Sofá unilateral', muscle: 'Glúteos / Posterior', duration: '3x 12·10·8 (cada perna)', equipment: 'Sofá, cama ou cadeira firme', carga: 'Peso do corpo', tip: 'Parte de cima das costas apoiada na beira do sofá/cama, um pé no chão e a outra perna no ar. Sobe o quadril até alinhar com o tronco, aperta o glúteo e desce devagar. Mais amplitude que no chão = mais glúteo.', video: V.elevQuadrilSofaUni },
+      { name: 'Tríceps Banco com Pernas Esticadas', muscle: 'Tríceps', duration: '3x 15·12·10', equipment: 'Cadeira firme, cama ou sofá', carga: 'Peso do corpo', tip: 'Igual ao de terça, mas com as pernas esticadas — mais peso nos braços. Cadeira encostada na parede, cotovelos apontando pra trás, desce até ~90°. Pesou demais? Dobre um pouco os joelhos.', video: V.tricepsBancoEstic },
     ]
   },
   {
-    type: 'warmup', label: 'Alongamento Final',
-    title: 'Soltura — Glúteos · Tríceps · Quadríceps', duration: '10s cada · 2x',
-    meta: 'Volta à calma. Alongamento curto: 10 segundos cada, 2 vezes, respirando fundo.',
+    type: 'lift', label: 'Bi-Set',
+    title: 'Lombar Solo Dinâmico ↔ Glúteos 4 Apoios Coice', duration: '2 séries · 12 (cada lado no coice) · descanso 45s · ~5 min',
+    meta: 'Costas ↔ glúteo. Os dois no chão, sem levantar: faz a lombar de barriga pra baixo, sobe pra 4 apoios e emenda o coice nas duas pernas.',
     exercises: [
-      { name: 'Alongamento de Glúteos II', muscle: 'Glúteos', duration: '2x10s/lado', equipment: 'Chão', tip: 'Deitada, cruze o tornozelo sobre o joelho oposto e puxe a perna em direção ao peito. 10s cada lado.', video: V.alongGluteos },
-      { name: 'Alongamento de Tríceps', muscle: 'Tríceps', duration: '2x10s/lado', equipment: 'Nenhum', tip: 'Mão nas costas por trás da cabeça, a outra mão empurra o cotovelo de leve. 10s cada lado.', video: V.alongTriceps },
-      { name: 'Alongamento de Quadríceps I', muscle: 'Quadríceps', duration: '2x10s/lado', equipment: 'Nenhum', tip: 'Em pé, segure o pé atrás levando o calcanhar ao glúteo, joelhos juntos. Apoie na parede se precisar. 10s cada lado.', video: V.alongQuadriceps },
+      { name: 'Lombar Solo Dinâmico', muscle: 'Costas / Lombar', duration: '2x12', equipment: 'Chão (toalha)', carga: 'Peso do corpo', tip: 'De barriga pra baixo, mãos perto das orelhas. Tira o peito do chão devagar, segura 1s e desce. Olhar pro chão, sem jogar a cabeça pra trás. Amplitude pequena e controlada.', video: V.lombarSolo },
+      { name: 'Glúteos 4 Apoios Coice', muscle: 'Glúteos', duration: '2x12 (cada perna)', equipment: 'Chão (toalha nos joelhos)', carga: 'Peso do corpo', tip: 'Em 4 apoios, joelho dobrado a 90°, empurra o calcanhar pro teto sem arquear a lombar. Aperta o glúteo em cima e desce devagar.', video: V.coice },
     ]
   },
+  {
+    type: 'lift', label: 'Core',
+    title: 'Prancha Isométrica Lateral Baixa', duration: '2x 20-30s cada lado · ~2 min',
+    meta: 'Fecha a força com o abdômen (lateral) e vai pro cardio.',
+    exercises: [
+      { name: 'Prancha Isométrica Lateral Baixa', muscle: 'Abdômen / Oblíquos', duration: '2x 20-30s (cada lado)', equipment: 'Chão', carga: 'Peso do corpo', tip: 'Apoiada no antebraço, cotovelo embaixo do ombro, corpo em linha reta. Quadril alto, sem cair. Ficou difícil: joelho de baixo no chão.', video: V.pranchaLateral },
+    ]
+  },
+  CARDIO,
+  SOLTURA,
 ];
 
 // ─── Dynamic week dates ───
@@ -490,8 +560,8 @@ function buildWeek() {
 }
 
 const TRAINING_SLOTS = [
-  { label: 'Treino de Viagem — Sessão 1', blocks: TREINO_VIAGEM },
-  { label: 'Treino de Viagem — Sessão 2', blocks: TREINO_VIAGEM },
+  { label: 'Treino de Viagem A', blocks: TREINO_VIAGEM_A },
+  { label: 'Treino de Viagem B', blocks: TREINO_VIAGEM_B },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
 const DAY_CONFIG_KEY = 'maxresults-luciana-viagem-days-v2';
