@@ -356,7 +356,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Renovação Ciclo 7 · Gerado em 21/10/2026</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Renovação Ciclo 7 · Gerado em 21/10/2026 · aquecimento ajustado 26/10/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -368,11 +368,11 @@ const ATHLETE = 'Daniele';
 
 const WEEKLY_GOALS = [
   { icon: '🎯', type: 'strength', text: '<strong>Ciclo 7 — 4x/semana:</strong> Treino A (frente: peito, ombro, coxa, tríceps) e Treino B (trás: costas, posterior, glúteo, bíceps), 2x cada. Abdômen e estabilidade da coluna nos dois.' },
-  { icon: '⏱️', type: 'strength', text: '<strong>Treino mais enxuto pra caber em ~60 min:</strong> aquecimento rápido → mobilidade → 4 bi-sets → 25 min de cardio → soltura. A meta é <strong>terminar o treino inteiro</strong> nos 4 dias da semana.' },
+  { icon: '⏱️', type: 'strength', text: '<strong>Treino mais enxuto pra caber em ~60 min:</strong> aquecimento específico (articulações + 1 série leve dos músculos do dia) → mobilidade → 4 bi-sets → 25 min de cardio → soltura. A meta é <strong>terminar o treino inteiro</strong> nos 4 dias da semana.' },
   { icon: '📅', type: 'strength', text: '<strong>Meta do ciclo (45 dias):</strong> 4 treinos por semana ≈ 25 treinos. O mínimo pra renovar é <strong>20</strong>. Aperte <strong>Finalizar Treino</strong> no fim de cada sessão — é assim que eu vejo sua frequência.' },
   { icon: '🛡️', type: 'assessment', text: '<strong>Coluna protegida:</strong> tudo sentada ou apoiada, sem carga nas costas e sem impacto. Lombar sempre neutra.' },
   { icon: '📈', type: 'strength', text: '<strong>Cargas:</strong> cada exercício traz uma carga sugerida (a última que você anotou). Mantenha a carga e capriche na execução; anote no campo kg.' },
-  { icon: '🏃', type: 'cardio', text: '<strong>Cardio:</strong> 25 min de bike ou elíptico em ritmo de conversa, no fim de todo treino.' },
+  { icon: '🏃', type: 'cardio', text: '<strong>Cardio:</strong> 25 min de bike ou elíptico em ritmo de conversa, no fim de todo treino. Os 2–3 primeiros minutos bem leves — já é o aquecimento dele.' },
 ];
 
 // NOTA: valores em linha limpa (chave: 'url',) — SEM comentário inline, senão o gate
@@ -381,7 +381,6 @@ const V = {
   balancoPerna: 'https://player.mediadelivery.net/play/655450/30003f8b-5e6b-474b-a920-d9a788692ea2',
   bike: 'https://vd.mfitpersonal.com.br/518/mp4/518.mp4',
   eliptico: 'https://vd.mfitpersonal.com.br/562/mp4/562.mp4',
-  flexaoParede: 'https://vd.mfitpersonal.com.br/760/mp4/760.mp4',
   mobOmbro1: 'https://vd.mfitpersonal.com.br/285/mp4/285.mp4',
   mobQuadrilDin: 'https://vd.mfitpersonal.com.br/v2/1062/mp4/1062_opt.mp4',
   mobQuadrilX: 'https://vd.mfitpersonal.com.br/282/mp4/282.mp4',
@@ -412,17 +411,18 @@ const V = {
 };
 
 const COLUNA_META = 'Coluna sempre neutra e apoiada. Se doer a lombar ou formigar/irradiar pra perna, pare e me avise.';
-const CARDIO_TIP = 'Ritmo em que dá pra conversar. Sem corrida e sem impacto. Se a lombar incomodar, troque de aparelho ou pare e me avise.';
+const CARDIO_TIP = 'Os 2–3 primeiros minutos bem leves — já é o aquecimento dele. Depois, ritmo em que dá pra conversar. Sem corrida e sem impacto. Se a lombar incomodar, troque de aparelho ou pare e me avise.';
 
 // ══════════════════ TREINO A — Anterior ══════════════════
 const AQUEC_A = {
   type: 'warmup', label: 'Aquecimento',
-  title: 'Bike + Articular', duration: '~3 min',
-  meta: 'Rápido — esquenta perna, peito e ombro do dia',
+  title: 'Articular + Séries Leves do Dia', duration: '~3 min',
+  meta: 'Específico do treino de hoje: solta quadril e ombro e faz 1 série leve de perna e de peito. Termina já no supino do Bi-Set 1.',
   exercises: [
-    { name: 'Bicicleta', muscle: 'Corpo todo', duration: '2 min leve', equipment: 'Bike ergométrica', tip: 'Ritmo leve, só pra subir a temperatura.', video: V.bike },
     { name: 'Balanço Frontal das Pernas', muscle: 'Quadril', duration: '10 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna pra frente e pra trás com controle, sem forçar amplitude e sem mexer a lombar.', video: V.balancoPerna },
-    { name: 'Flexão de Braços na Parede', muscle: 'Peito / Ombro', duration: '1x12', equipment: 'Parede', tip: 'Mãos na parede na altura do peito, corpo reto e abdômen firme. Aquece o peito pro supino.', video: V.flexaoParede },
+    { name: 'Mobilidade de Ombro I', muscle: 'Ombro / Escápula', duration: '10 reps', equipment: 'Nenhum', tip: 'Movimento amplo e controlado, preparando o ombro pro supino e pra elevação lateral.', video: V.mobOmbro1 },
+    { name: 'Leg Press Horizontal', muscle: 'Quadríceps / Glúteos', duration: '1x15 leve', equipment: 'Leg Press horizontal', tip: 'Série de aquecimento: carga leve, movimento lento, lombar e quadril colados no encosto. Não é pra cansar.', video: V.legPressHoriz, carga: 'Leve: mais ou menos metade da carga do Bi-Set 2 (~25-30 kg)' },
+    { name: 'Supino Reto Maquina', muscle: 'Peitoral', duration: '1x15 leve', equipment: 'Máquina de supino', tip: 'Série de aquecimento: carga leve, costas apoiadas, sem travar o cotovelo. Daqui você já emenda no Bi-Set 1.', video: V.supinoMaq, carga: 'Leve: mais ou menos metade da carga do Bi-Set 1 (~5-7 kg)' },
   ]
 };
 
@@ -500,12 +500,13 @@ const SOLTURA_A = {
 // ══════════════════ TREINO B — Posterior ══════════════════
 const AQUEC_B = {
   type: 'warmup', label: 'Aquecimento',
-  title: 'Bike + Articular', duration: '~3 min',
-  meta: 'Rápido — esquenta quadril, costas e ombro do dia',
+  title: 'Articular + Séries Leves do Dia', duration: '~3 min',
+  meta: 'Específico do treino de hoje: solta quadril e ombro e faz 1 série leve de posterior de coxa e de costas. Termina já no puxador do Bi-Set 1.',
   exercises: [
-    { name: 'Bicicleta', muscle: 'Corpo todo', duration: '2 min leve', equipment: 'Bike ergométrica', tip: 'Ritmo leve, só pra subir a temperatura.', video: V.bike },
     { name: 'Balanço Frontal das Pernas', muscle: 'Quadril', duration: '10 reps/perna', equipment: 'Apoio', tip: 'Segure num apoio e balance a perna pra frente e pra trás com controle, sem forçar amplitude e sem mexer a lombar.', video: V.balancoPerna },
     { name: 'Mobilidade de Ombro I', muscle: 'Ombro / Escápula', duration: '10 reps', equipment: 'Nenhum', tip: 'Movimento amplo e controlado, preparando ombro e escápula pras puxadas.', video: V.mobOmbro1 },
+    { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '1x15 leve', equipment: 'Cadeira flexora', tip: 'Série de aquecimento: carga leve, costas apoiadas, movimento lento. Não é pra cansar.', video: V.cadeiraFlexora, carga: 'Leve: mais ou menos metade da carga do Bi-Set 2' },
+    { name: 'Puxada Neutra triangulo', muscle: 'Costas (dorsal)', duration: '1x15 leve', equipment: 'Puxador + triângulo', tip: 'Série de aquecimento: carga leve, tronco quase reto, cotovelos pra baixo. Daqui você já emenda no Bi-Set 1.', video: V.puxadaTriangulo, carga: 'Leve: mais ou menos metade da carga do Bi-Set 1 (~25-30 kg)' },
   ]
 };
 
