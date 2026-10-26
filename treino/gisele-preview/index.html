@@ -331,7 +331,7 @@
   <main id="workoutContent" class="initial-load"></main>
   <div class="session-complete" id="sessionComplete">
     <h3>Sessão Concluída! 💪</h3>
-    <p>Ótimo treino, Dani! Descanse, hidrate e cuide da coluna.</p>
+    <p>Ótimo treino, Gisele! Descanse, hidrate e cuide da coluna.</p>
   </div>
   <button class="finish-btn" id="finishBtn" onclick="finishWorkout()">✅ Finalizar Treino</button>
   <div id="skippedInfo"></div>
@@ -362,7 +362,7 @@
 const ATHLETE = 'Gisele';
 
 const WEEKLY_GOALS = [
-  { icon: '🎯', type: 'strength', text: '<strong>4x por semana, ~50 min:</strong> Treino A (frente: peito, coxa, ombro, tríceps) e Treino B (trás: costas, posterior de coxa, glúteo, bíceps), 2x cada. Abdômen e estabilidade da coluna nos dois.' },
+  { icon: '🎯', type: 'strength', text: '<strong>4x por semana, ~55 min:</strong> Treino A (frente: peito, coxa, ombro, tríceps) e Treino B (trás: costas, posterior de coxa, glúteo, bíceps), 2x cada. Abdômen e estabilidade da coluna nos dois.' },
   { icon: '⏱️', type: 'strength', text: '<strong>Como é cada treino:</strong> aquecimento específico (articulações + 1 série leve dos músculos do dia) → mobilidade de quadril e coluna → 3 bi-sets → 20 min de cardio → soltura. Sobrou tempo num dia? Estica o cardio pra 30 min.' },
   { icon: '💪', type: 'strength', text: '<strong>Força de volta:</strong> 3 séries de 10–12 em tudo. A carga certa é a que deixa as 2 últimas repetições difíceis, mas com a postura perfeita. Fechou as 12 fácil em todas as séries? Sobe um pouco na próxima.' },
   { icon: '🛡️', type: 'assessment', text: '<strong>Lombar protegida:</strong> nada de barra nas costas nem agachamento pesado; perna e glúteo em máquina, ombro sentada com encosto. Em todo exercício: abdômen firme e quadril "encaixado" (sem empinar o bumbum), costelas pra baixo.' },
@@ -426,7 +426,7 @@ const MOBIL_A = {
   title: 'Quadril + Coluna + Glúteo + Posterior', duration: '~5 min',
   meta: 'Bloco fixo de mobilidade — movimento suave, respirando, sem dor e sem forçar amplitude',
   exercises: [
-    { name: 'Mobilidade de Quadril Dinâmico', muscle: 'Quadril (frente)', duration: '8 reps/lado', equipment: 'Colchonete', tip: 'Em afundo com o joelho de trás apoiado, aperta o glúteo de trás e leva o quadril à frente devagar. Tronco alto, costelas pra baixo — a lombar não arqueia.', video: V.mobQuadrilDin },
+    { name: 'Mobilidade de Quadril Dinâmico', muscle: 'Quadril (rotação) / Glúteo', duration: '5 reps/lado', equipment: 'Colchonete', tip: 'Sentada no chão com as duas pernas dobradas em 90° (uma na frente, outra do lado — posição 90/90). Tronco alto, inclina devagar por cima da perna da frente, levando as mãos à frente, e volta. Troca o lado girando os joelhos. Sente o glúteo alongar, sem forçar.', video: V.mobQuadrilDin },
     { name: 'Mobilidade Torárica X', muscle: 'Coluna (gato-camelo)', duration: '10 reps', equipment: 'Colchonete', tip: 'Gato-camelo: em 4 apoios, arredonda as costas pro teto soltando o ar e encaixando o quadril; depois volta só até a coluna reta, sem afundar a lombar. Devagar.', video: V.gatoCamelo },
     { name: 'Alongamento de Glúteos II', muscle: 'Glúteos', duration: '20s/lado', equipment: 'Colchonete', tip: 'Deitada, cruza o tornozelo sobre o joelho oposto e puxa a coxa em direção ao peito. Lombar no chão, respira fundo.', video: V.alongGluteos2 },
     { name: 'Hand to Toes', muscle: 'Posterior de coxa / Coluna', duration: '8 reps + 10s embaixo', equipment: 'Nenhum', tip: 'Em pé, joelhos levemente dobrados: desce enrolando a coluna, vértebra por vértebra, até onde as mãos chegarem nos pés (ou canelas). Sobe devagar enrolando de volta. Sem tranco.', video: V.handToToes },
@@ -501,10 +501,11 @@ const MOBIL_B = {
   title: 'Quadril + Coluna + Glúteo + Posterior', duration: '~5 min',
   meta: 'Bloco fixo de mobilidade — movimento suave, respirando, sem dor e sem forçar amplitude',
   exercises: [
-    { name: 'Mobilidade de Quadril X', muscle: 'Quadril / Lombar', duration: '10 reps', equipment: 'Colchonete', tip: 'Deitada de barriga pra cima, joelhos dobrados e pés no chão. Encaixa o quadril encostando a lombar no chão (soltando o ar) e solta devagar. Movimento pequeno, sem dor.', video: V.mobQuadrilX },
-    { name: 'Mobilidade Torácica VI', muscle: 'Coluna torácica (rotação)', duration: '8 reps/lado', equipment: 'Colchonete', tip: 'Deitada, joelhos dobrados caídos pro lado: abre o braço de cima pro outro lado, girando a parte de cima das costas. Os joelhos ficam no chão.', video: V.mobToracica6 },
-    { name: 'Alongamento de Glúteos III', muscle: 'Glúteos', duration: '20s/lado', equipment: 'Colchonete', tip: 'Deitada, cruza uma perna sobre a outra e puxa a coxa de baixo em direção ao peito. Lombar no chão, respira fundo.', video: V.alongGluteos3 },
-    { name: 'Hand to Toes', muscle: 'Posterior de coxa / Coluna', duration: '8 reps + 10s embaixo', equipment: 'Nenhum', tip: 'Em pé, joelhos levemente dobrados: desce enrolando a coluna, vértebra por vértebra, até onde as mãos chegarem nos pés (ou canelas). Sobe devagar enrolando de volta. Sem tranco.', video: V.handToToes },
+    { name: 'Mobilidade de Quadril X', muscle: 'Quadril / Lombar', duration: '8 reps', equipment: 'Colchonete', tip: 'Deitada de barriga pra cima, joelhos dobrados e pés no chão. Encaixa o quadril (lombar encosta no chão) e tira o quadril só um pouco do chão — uma ponte pequena —, segura 2s e desce devagar. Quem sobe é o glúteo, não a lombar.', video: V.mobQuadrilX },
+    { name: 'Mobilidade de Quadril Dinâmico', muscle: 'Quadril (rotação) / Glúteo', duration: '4 reps/lado', equipment: 'Colchonete', tip: 'Sentada no chão com as duas pernas dobradas em 90° (uma na frente, outra do lado — posição 90/90). Tronco alto, inclina devagar por cima da perna da frente, levando as mãos à frente, e volta. Troca o lado girando os joelhos. Sente o glúteo alongar, sem forçar.', video: V.mobQuadrilDin },
+    { name: 'Mobilidade Torácica VI', muscle: 'Coluna torácica (rotação)', duration: '6 reps/lado', equipment: 'Colchonete', tip: 'Deitada, joelhos dobrados caídos pro lado: abre o braço de cima pro outro lado, girando a parte de cima das costas. Os joelhos ficam no chão.', video: V.mobToracica6 },
+    { name: 'Alongamento de Glúteos III', muscle: 'Glúteos', duration: '15s/lado', equipment: 'Colchonete', tip: 'Deitada, cruza uma perna sobre a outra e puxa a coxa de baixo em direção ao peito. Lombar no chão, respira fundo.', video: V.alongGluteos3 },
+    { name: 'Hand to Toes', muscle: 'Posterior de coxa / Coluna', duration: '6 reps + 10s embaixo', equipment: 'Nenhum', tip: 'Em pé, joelhos levemente dobrados: desce enrolando a coluna, vértebra por vértebra, até onde as mãos chegarem nos pés (ou canelas). Sobe devagar enrolando de volta. Sem tranco.', video: V.handToToes },
   ]
 };
 
@@ -524,7 +525,7 @@ const BISET_B_2 = {
   meta: 'Posterior de coxa + costas (segmentos alternados). O banco com o halter fica ao lado da flexora. Descanso 60s ao fim do par.',
   exercises: [
     { name: 'Cadeira Flexora', muscle: 'Posterior de coxa', duration: '3x10-12', equipment: 'Cadeira flexora', tip: 'Sentada, costas apoiadas e coxas presas. Traz o calcanhar pra baixo e volta devagar.', video: V.cadeiraFlexora, carga: '20 a 25 kg — teste e anote' },
-    { name: 'Remada Unilateral Halteres - Pegada Neutra (Serrote)', muscle: 'Costas (meio)', duration: '3x10-12 cada lado', equipment: 'Halter + banco', tip: 'Mão e joelho apoiados no banco, coluna reta (nem arredondada nem afundada). Puxa o halter até a cintura e volta controlando.', video: V.remadaSerrote, carga: '8 a 10 kg' },
+    { name: 'Remada Unilateral Halteres - Pegada Neutra (Serrote)', muscle: 'Costas (meio)', duration: '3x10-12 cada lado', equipment: 'Halter + banco', tip: 'Em pé, pernas afastadas (uma à frente), tronco inclinado com uma mão apoiada no banco. Coluna reta — nem arredondada nem afundada — e abdômen firme. Puxa o halter até a cintura e volta controlando.', video: V.remadaSerrote, carga: '8 a 10 kg' },
   ]
 };
 
