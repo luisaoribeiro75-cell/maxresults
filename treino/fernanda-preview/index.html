@@ -305,12 +305,12 @@ const ATHLETE = 'Fernanda';
    ═══════════════════════════════════════════════════════════════════════ */
 const MIX_GOALS = [
   { icon: '🎯', text: '<strong>Objetivo:</strong> perder gordura, com atenção especial ao abdômen. 3x por semana, corpo inteiro em todos os treinos: <strong>seg = Treino 1 · qua = Treino 2 · sex = Treino 3</strong>. Tudo gravado: treina no horário que for melhor aí.' },
-  { icon: '🏠', text: '<strong>Em casa, com o que você tem:</strong> kettlebell + colchonete. Nos vídeos do MaxLift o pessoal usa barra e halteres: você faz o mesmo movimento segurando o kettlebell pelas alças. Em cada vídeo eu explico a adaptação.' },
-  { icon: '🎬', text: '<strong>Como funciona (Mix = aula + exercícios):</strong> aquecimento do MaxLift → mobilidade → track MaxLift → bi-set → track MaxLift → bi-set → MaxStep → alongamento. No bi-set, os 2 exercícios em sequência, sem descanso entre eles.' },
+  { icon: '🏠', text: '<strong>Em casa, com o que você tem:</strong> kettlebell + colchonete. Nos vídeos do MaxLift o pessoal usa barra e halteres: você faz o mesmo movimento segurando o kettlebell pelos dois lados da alça. Em cada vídeo eu explico a adaptação.' },
+  { icon: '🎬', text: '<strong>Como funciona (Mix = aula + exercícios):</strong> aquecimento do MaxLift → mobilidade → tracks MaxLift e bi-sets de casa (a ordem muda por dia) → MaxStep → alongamento. No bi-set, os 2 exercícios em sequência, sem descanso entre eles.' },
   { icon: '🛡️', text: '<strong>Quadril protegido:</strong> sem corrida e sem salto. Agachamento e stiff só até onde o quadril fica confortável. Incomodou na virilha ou na lateral do quadril? Diminui a amplitude ou o peso e me avisa.' },
   { icon: '👟', text: '<strong>Cardio = MaxStep:</strong> step, degrau baixo da escada ou só no chão marcando os passos, sempre sem salto. Começa leve: os primeiros minutos já são o aquecimento do cardio.' },
   { icon: '📈', text: '<strong>Cargas:</strong> a sugestão parte de um kettlebell de 8 kg. Usa o seu e anota o peso no campo kg. Da próxima vez ele aparece e você decide se mantém ou aumenta as repetições.' },
-  { icon: '⏱️', text: '<strong>Tempo:</strong> ~50–55 min (peso ~28 · cardio ~22 · alongamento ~4). Dia corrido? Encurta o fim do cardio, nunca o aquecimento nem a mobilidade.' },
+  { icon: '⏱️', text: '<strong>Tempo:</strong> ~55 min (aquecimento + força ~28–30 · cardio ~22 · alongamento ~4).' },
   { icon: '📊', text: '<strong>Avaliação física:</strong> ainda não recebi as suas medidas. Quando puder, manda pelo link que te passei: é com ela que eu acompanho a sua evolução.' },
 ];
 
@@ -326,7 +326,7 @@ const TRK_AQUEC3 = {
   label: 'Track 1 · Aquecimento', title: 'Aquecimento · MaxLift Mix #3', min: 5,
   duration: '~5 min · no ritmo', tag: 'Preparação',
   bunny: 'https://iframe.mediadelivery.net/embed/655450/effaba34-672c-422b-8b5b-e69432b5a636',
-  tip: 'É o aquecimento específico do dia: acompanha a coreografia do início ao fim sem peso ou com o kettlebell segurado pelas alças, bem leve. Agachamento curto, sem forçar o quadril.',
+  tip: 'É o aquecimento específico do dia: acompanha a coreografia do início ao fim sem peso ou com o kettlebell segurado pelos dois lados da alça, bem leve. Agachamento curto, sem forçar o quadril.',
   loads: [],
 };
 
@@ -335,7 +335,7 @@ const TRK_PERNAS3 = {
   label: 'Track · Pernas (Agachamento)', title: 'Pernas · MaxLift Mix #3', min: 6,
   duration: '~6 min · grande', tag: 'Perna (quadríceps/glúteo)',
   bunny: 'https://iframe.mediadelivery.net/embed/655450/fbea751a-8118-4167-aff2-91b797300953',
-  tip: 'Kettlebell na frente do peito, segurando pelas alças, cotovelos pra baixo. Desce só até onde o quadril continua confortável, joelho na linha do pé, sobe soltando o ar. Se o vídeo pedir salto ou afundo, troca por agachamento curto sem salto.',
+  tip: 'Kettlebell na frente do peito, segurando pelos dois lados da alça, cotovelos pra baixo. Não desça fundo: só até onde o quadril continua confortável (coxa acima da linha do joelho), joelho na linha do pé, sobe soltando o ar. Se o vídeo pedir salto ou afundo, troca por agachamento curto sem salto.',
   loads: [ { label: 'Kettlebell', placeholder: '8' } ],
 };
 
@@ -344,7 +344,7 @@ const TRK_PEITO3 = {
   label: 'Track · Peitoral', title: 'Peitoral · MaxLift Mix #3', min: 6,
   duration: '~6 min · grande', tag: 'Peitoral',
   bunny: 'https://iframe.mediadelivery.net/embed/655450/8a0b67f7-f75c-4125-8239-c9b2a92733ee',
-  tip: 'Deitada no colchonete, joelhos dobrados. Supino: kettlebell segurado pelas alças com as duas mãos, empurra pro teto e desce até o cotovelo encostar no chão. Na parte do crucifixo, faz flexão de braço com os joelhos apoiados, no ritmo da música.',
+  tip: 'Deitada no colchonete, joelhos dobrados. Supino: kettlebell segurado pelos dois lados da alça com as duas mãos, empurra pro teto e desce até o cotovelo encostar no chão. Na parte do crucifixo, faz flexão de braço com os joelhos apoiados, no ritmo da música.',
   loads: [ { label: 'Kettlebell (supino no chão)', placeholder: '8' } ],
 };
 
@@ -353,7 +353,7 @@ const TRK_POST3 = {
   label: 'Track · Posteriores', title: 'Posteriores · MaxLift Mix #3', min: 5,
   duration: '~5 min · grande', tag: 'Costas / posterior de coxa',
   bunny: 'https://iframe.mediadelivery.net/embed/655450/6895cd36-19b3-4959-ab27-647eb7f2ae9c',
-  tip: 'Stiff com o kettlebell nas duas mãos: joelhos destravados, coluna neutra, desce só até o meio da canela (menos que no vídeo, pra poupar o quadril). Na remada, tronco inclinado e o kettlebell sobe até a barriga, fechando as escápulas.',
+  tip: 'Terra e stiff com o kettlebell nas duas mãos: joelhos destravados, coluna neutra, desce só até o meio da canela nos dois (menos que no vídeo, pra poupar o quadril). Na remada, tronco inclinado e o kettlebell sobe até a barriga, fechando as escápulas. Nos trechos de arremesso ou desenvolvimento acima da cabeça: PULA e fica em pé respirando até voltar o terra/remada (ombro tem track próprio logo depois).',
   loads: [ { label: 'Kettlebell', placeholder: '8' } ],
 };
 
@@ -362,16 +362,7 @@ const TRK_OMBROS3 = {
   label: 'Track · Ombros', title: 'Ombros · MaxLift Mix #3', min: 5,
   duration: '~5 min · auxiliar', tag: 'Ombros',
   bunny: 'https://iframe.mediadelivery.net/embed/655450/8459a173-6950-4422-89e6-f885b41b9441',
-  tip: 'Em pé, joelhos destravados e abdômen firme. Desenvolvimento e elevações com o kettlebell segurado pelas alças, ou um braço de cada vez se ficar pesado. Sobe até a linha do ombro nas elevações, sem balançar o tronco.',
-  loads: [ { label: 'Kettlebell', placeholder: '8' } ],
-};
-
-const TRK_GLUTEOS3 = {
-  type: 'track', group: 'gluteos', role: 'forca',
-  label: 'Track · Glúteos e Panturrilhas', title: 'Glúteos e Panturrilhas · MaxLift Mix #3', min: 5,
-  duration: '~5 min · grande', tag: 'Glúteos / Panturrilha',
-  bunny: 'https://iframe.mediadelivery.net/embed/655450/68903c12-9fa5-4da6-9d26-ccbf02aa413c',
-  tip: 'Na elevação de quadril, kettlebell apoiado em cima do quadril, segurando com as mãos: sobe até alinhar o corpo e aperta o glúteo, sem arquear a lombar. Na panturrilha, em pé segurando o kettlebell, perto de uma parede pra apoio.',
+  tip: 'Em pé, joelhos destravados e abdômen firme. Desenvolvimento e elevações com o kettlebell segurado pelos dois lados da alça, ou um braço de cada vez se ficar pesado. Sobe até a linha do ombro nas elevações, sem balançar o tronco.',
   loads: [ { label: 'Kettlebell', placeholder: '8' } ],
 };
 
@@ -380,7 +371,7 @@ const TRK_TRICEPS3 = {
   label: 'Track · Tríceps', title: 'Tríceps · MaxLift Mix #3', min: 5,
   duration: '~5 min · auxiliar', tag: 'Tríceps',
   bunny: 'https://iframe.mediadelivery.net/embed/655450/ad56fa7c-b959-449a-904a-dea6f941787b',
-  tip: 'Kettlebell segurado pelas alças com as duas mãos. Cotovelos apontando pra frente e parados; só o antebraço mexe. Pesou? Faz com uma garrafa de água de 2 a 5 L.',
+  tip: 'Kettlebell segurado pelos dois lados da alça com as duas mãos. Cotovelos apontando pra frente e parados; só o antebraço mexe. Pesou? Faz com uma garrafa de água de 2 a 5 L.',
   loads: [ { label: 'Kettlebell', placeholder: '8' } ],
 };
 
@@ -404,10 +395,10 @@ const TRK_STEP_PREP = {
 
 const TRK_STEP = {
   type: 'track', group: 'cardio', role: 'cardio',
-  label: 'Cardio 3/3 · MaxStep', title: 'MaxStep #1 (repete até completar o tempo)', min: 18,
+  label: 'Cardio 3/3 · MaxStep + caminhada', title: 'MaxStep #1 (2x) + caminhada rápida', min: 18,
   duration: '~18 min', tag: 'Aeróbico',
   bunny: 'https://iframe.mediadelivery.net/embed/655450/361e1faf-2d79-4c33-a263-1563fad53286',
-  tip: 'Faz o MaxStep #1 (~4 min) umas 4 vezes seguidas, ou 2 a 3 vezes e completa com caminhada rápida (na rua ou marchando no lugar). Sem corrida e sem salto: sempre um pé no step ou no chão. Ritmo em que dá pra conversar. Total do cardio: semanas 1–2 ~22 min · 3–4 ~25 min · 5–6 ~28 min. Se o quadril reclamar, baixa a altura do step ou faz no chão.',
+  tip: 'Faz o MaxStep #1 (~4 min) 2 vezes seguidas e completa o tempo com caminhada rápida (na rua ou marchando no lugar). Sem corrida e sem salto: sempre um pé no step ou no chão. Ritmo em que dá pra conversar. Total do cardio: semanas 1–2 ~22 min · 3–4 ~25 min · 5–6 ~28 min. Se o quadril reclamar, baixa a altura do step ou faz no chão.',
   loads: [],
 };
 
@@ -446,6 +437,8 @@ const V = {
   agachSumoKb: 'https://vd.mfitpersonal.com.br/184/mp4/184.mp4',
   pranchaRemada: 'https://vd.mfitpersonal.com.br/912/mp4/912.mp4',
   elevFrontalKb: 'https://vd.mfitpersonal.com.br/159/mp4/159.mp4',
+  elevQuadrilUni: 'https://vd.mfitpersonal.com.br/255/mp4/255.mp4',
+  panturrilhaUniParede: 'https://vd.mfitpersonal.com.br/763/mp4/763.mp4',
 };
 
 /* Regra 24: mobilidade de quadril + glúteo cruzado + abdômen + coluna, todo treino (coluna varia por dia). */
@@ -515,7 +508,7 @@ const MUSC_1B = {
   meta: 'Bi-set: os 2 em sequência, sem descanso entre eles. 3 voltas; 60–90s entre as voltas. Sugestão: kettlebell de 8 kg na rosca.',
   exercises: [
     { name: 'Rosca Direta', muscle: 'Bíceps', biset: true, reps: '3x12', loadLabel: 'Rosca (kettlebell)',
-      tip: 'Kettlebell segurado pelas alças com as duas mãos. Cotovelos colados no corpo, sobe até o peito e desce devagar, sem jogar o tronco.', video: V.roscaDireta },
+      tip: 'Kettlebell segurado pelos dois lados da alça com as duas mãos. Cotovelos colados no corpo, sobe até o peito e desce devagar, sem jogar o tronco.', video: V.roscaDireta },
     { name: 'Abdominal Prancha Isométrica', muscle: 'Abdômen', biset: true, reps: '3x 20–30s', loadLabel: null,
       tip: 'Antebraços no chão, corpo reto da cabeça ao calcanhar, abdômen firme e respirando. Pesou? Apoia os joelhos.', video: V.prancha },
   ],
@@ -539,9 +532,21 @@ const MUSC_2B = {
   meta: 'Bi-set: os 2 em sequência no colchonete, sem descanso entre eles. 3 voltas; 60–90s entre as voltas.',
   exercises: [
     { name: 'Tríceps Testa com Carga', muscle: 'Tríceps', biset: true, reps: '3x12', loadLabel: 'Tríceps (kettlebell)',
-      tip: 'Deitada, kettlebell segurado pelas alças acima do peito. Dobra só os cotovelos levando o peso pra trás da cabeça, com controle, e estica de volta. Se o seu kettlebell for pesado pra isso, usa uma garrafa de água de 2 a 5 L.', video: V.tricepsTestaCarga },
+      tip: 'Deitada, kettlebell segurado pelos dois lados da alça acima do peito. Dobra só os cotovelos levando o peso pra trás da cabeça, com controle, e estica de volta. Se o seu kettlebell for pesado pra isso, usa uma garrafa de água de 2 a 5 L.', video: V.tricepsTestaCarga },
     { name: 'Perdigueiro Alternado', muscle: 'Core / lombar', biset: true, reps: '3x10 cada lado', loadLabel: null,
       tip: 'Em 4 apoios, estica braço e perna opostos até a linha do corpo, segura 2 s e volta. Quadril parado e abdômen firme.', video: V.perdigueiro },
+  ],
+};
+
+const MUSC_3G = {
+  type: 'lift', label: 'Bi-set · Glúteo + Panturrilha',
+  title: 'Elevação de Quadril Unilateral ↔ Panturrilha Unilateral na Parede', role: 'forca', min: 5,
+  meta: 'Bi-set: os 2 em sequência, sem descanso entre eles. 3 voltas; 60–90s entre as voltas. Sem flexão de quadril carregada: glúteo trabalhando em extensão.',
+  exercises: [
+    { name: 'Elevação de Quadril Unilateral', muscle: 'Glúteos', biset: true, reps: '3x12 cada lado', loadLabel: null,
+      tip: 'Deitada, um pé apoiado e a outra perna estendida pro alto. Sobe o quadril apertando o glúteo até alinhar o corpo, segura 1 s e desce devagar, sem girar o quadril. Incomodou o quadril? Faz com os dois pés no chão.', video: V.elevQuadrilUni },
+    { name: 'Panturrilha Unilateral na Parede', muscle: 'Panturrilha', biset: true, reps: '3x15 cada lado', loadLabel: null,
+      tip: 'Mãos na parede, apoiada num pé só: sobe na ponta do pé o mais alto que der, segura 1 s e desce devagar. Ficou fácil? Segura o kettlebell na mão do mesmo lado.', video: V.panturrilhaUniParede },
   ],
 };
 
@@ -563,7 +568,7 @@ const MUSC_3B = {
   meta: 'Bi-set: os 2 em sequência, sem descanso entre eles. 3 voltas; 60–90s entre as voltas.',
   exercises: [
     { name: 'Elevação Frontal com Kettlebell', muscle: 'Ombro', biset: true, reps: '3x12', loadLabel: 'Elevação (kettlebell)',
-      tip: 'Em pé, kettlebell segurado pelas alças na frente das coxas. Sobe com os braços quase esticados até a linha do ombro, sem balançar o corpo, e desce devagar.', video: V.elevFrontalKb },
+      tip: 'Em pé, kettlebell segurado pelos dois lados da alça na frente das coxas. Sobe com os braços quase esticados até a linha do ombro, sem balançar o corpo, e desce devagar.', video: V.elevFrontalKb },
     { name: 'Abdominal Supra Solo', muscle: 'Abdômen', biset: true, reps: '3x15', loadLabel: null,
       tip: 'Joelhos dobrados, pés no chão. Sobe só até tirar as escápulas do chão, sem puxar o pescoço. Curto, controlado, soltando o ar na subida.', video: V.abdomSupra },
   ],
@@ -573,8 +578,8 @@ const MUSC_3B = {
    Cada dia: aquec (track) → mobilidade (Regra 24) → track → bi-set → track → bi-set → MaxStep (3 vídeos) → soltura (track).
    Quadril: 1 bloco com flexão de quadril carregada por dia (T1 Pernas · T2 Posteriores · T3 Agachamento Sumô). */
 const AULA_1 = [ TRK_AQUEC3, MOB_1, TRK_PERNAS3, MUSC_1A, TRK_PEITO3, MUSC_1B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
-const AULA_2 = [ TRK_AQUEC3, MOB_2, TRK_POST3, MUSC_2A, TRK_OMBROS3, MUSC_2B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
-const AULA_3 = [ TRK_AQUEC3, MOB_3, TRK_GLUTEOS3, MUSC_3A, TRK_TRICEPS3, MUSC_3B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
+const AULA_2 = [ TRK_AQUEC3, MOB_2, MUSC_2A, TRK_POST3, TRK_OMBROS3, MUSC_2B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
+const AULA_3 = [ TRK_AQUEC3, MOB_3, MUSC_3G, MUSC_3A, TRK_TRICEPS3, MUSC_3B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
 
 const TRAINING_SLOTS = [
   { label: 'Treino 1 — Full Body (pernas, costas, peito, bíceps)', blocks: AULA_1 },
