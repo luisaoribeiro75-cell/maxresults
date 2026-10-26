@@ -317,7 +317,7 @@
   <div class="day-modal-overlay" id="dayModal">
     <div class="day-modal">
       <h3>⚙️ Dias de Treino</h3>
-      <p>Escolha até 4 dias para treinar esta semana</p>
+      <p>Escolha até 3 dias para treinar esta semana</p>
       <div id="dayOptions"></div>
       <div class="day-modal-actions">
         <button class="cancel-btn" onclick="closeDayModal()">Cancelar</button>
@@ -342,7 +342,7 @@ const ATHLETE = 'Rosane';
 
 const WEEKLY_GOALS = [
   { icon: '🌱', type: 'strength', text: '<strong>Objetivo do ciclo:</strong> definir interna da coxa e glúteos sem irritar lombar' },
-  { icon: '🧩', type: 'strength', text: '<strong>Estrutura:</strong> 4x/semana — A (anterior) e B (posterior), cada um 2x. Tudo em bi-set, 60 min, intensidade moderada' },
+  { icon: '🧩', type: 'strength', text: '<strong>Estrutura:</strong> 3x/semana alternando — uma semana A-B-A, na outra B-A-B (A = anterior, B = posterior). Tudo em bi-set, ~60 min, intensidade moderada' },
   { icon: '💗', type: 'assessment', text: '<strong>Fibromialgia:</strong> nada de ir à exaustão. Dia ruim? Faz aquecimento + mobilidade + cardio leve e vai embora — não pula, só ajusta.' },
   { icon: '🛡️', type: 'assessment', text: '<strong>Coluna:</strong> zero carga axial, sempre sentada/apoiada. Se a lombar ou o quadril reclamarem, reduz amplitude e avisa o Luisão.' },
   { icon: '🎯', type: 'assessment', text: '<strong>Ênfases:</strong> parte interna da coxa, glúteos e braços — cobertas nos dois treinos' },
@@ -494,7 +494,7 @@ const TREINO_B = [
     meta: '⭐ Glúteo (tua ênfase) + costas — troca da elevação pélvica por uma variação guiada e apoiada',
     exercises: [
       { name: 'Glúteos 4 Apoios Coice com Banco na Polia', muscle: 'Glúteos', duration: '3x12-15 cada lado', equipment: 'Polia baixa + banco', tip: 'Apoia bem o tronco no banco e faz o coice curto, controlado, sem arquear a lombar. É a substituição da elevação pélvica deste ciclo.', video: V.gluteoCoicePolia },
-      { name: 'Remada Unilateral Halteres (Serrote)', muscle: 'Costas (meio)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'Uma mão e um joelho no banco ao lado. Puxa na direção da cintura, sem girar o tronco.', video: V.remadaSerrote },
+      { name: 'Remada Unilateral Halteres (Serrote)', muscle: 'Costas (meio)', duration: '3x12 cada lado', equipment: 'Halter + banco', tip: 'NÃO é a remada baixa de aparelho: é com 1 halter, apoiada no banco comum. Uma mão e um joelho no banco, o halter na outra mão. Puxa na direção da cintura, sem girar o tronco. Faz um lado, depois o outro.', video: V.remadaSerrote },
     ]
   },
   {
@@ -535,15 +535,21 @@ const TREINO_B = [
   },
 ];
 
-const TRAINING_SLOTS = [
-  { day: 'Segunda', label: 'Treino A — Anterior', blocks: TREINO_A },
-  { day: 'Terça', label: 'Treino B — Posterior', blocks: TREINO_B },
-  { day: 'Quinta', label: 'Treino A — Anterior', blocks: TREINO_A },
-  { day: 'Sexta', label: 'Treino B — Posterior', blocks: TREINO_B },
-];
+// 3x/sem alternando (Luisão 26/10/2026): semana da referência (26/10) e as pares = A-B-A; ímpares = B-A-B.
+const SLOT_A = { label: 'Treino A — Anterior', blocks: TREINO_A };
+const SLOT_B = { label: 'Treino B — Posterior', blocks: TREINO_B };
+function weekParity() {
+  const ref = new Date(2026, 9, 26); // segunda 26/10/2026
+  const d = new Date(); const dow = d.getDay(); const mon = new Date(d.getFullYear(), d.getMonth(), d.getDate() - dow + (dow === 0 ? -6 : 1));
+  const weeks = Math.round((mon - ref) / (7 * 86400000));
+  return ((weeks % 2) + 2) % 2;
+}
+const TRAINING_SLOTS = weekParity() === 0
+  ? [{ day: 'Segunda', ...SLOT_A }, { day: 'Quarta', ...SLOT_B }, { day: 'Sexta', ...SLOT_A }]
+  : [{ day: 'Segunda', ...SLOT_B }, { day: 'Quarta', ...SLOT_A }, { day: 'Sexta', ...SLOT_B }];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
-const DAY_CONFIG_KEY = 'maxresults-rosane-days-v2';
-const DEFAULT_DAYS = ['Seg', 'Ter', 'Qui', 'Sex'];
+const DAY_CONFIG_KEY = 'maxresults-rosane-days-v3';
+const DEFAULT_DAYS = ['Seg', 'Qua', 'Sex'];
 
 function getMonday(d) {
   const dt = new Date(d);
@@ -1129,6 +1135,19 @@ loadAvatar();
   rebuild();
 })();
 
+
+// ─── Voltar do celular fecha o vídeo, não a página (06/10/2026) ───
+(function(){
+  const ov = document.getElementById('videoOverlay'); if (!ov) return;
+  const fecha = (typeof closeVideo === 'function') ? closeVideo : null; if (!fecha) return;
+  const mo = new MutationObserver(() => {
+    if (ov.classList.contains('active') && !(history.state && history.state.mrVideo)) history.pushState({ mrVideo: 1 }, '');
+  });
+  mo.observe(ov, { attributes: true, attributeFilter: ['class'] });
+  window.addEventListener('popstate', () => { if (ov.classList.contains('active')) fecha(); });
+  const origClose = closeVideo;
+  closeVideo = function() { origClose(); if (history.state && history.state.mrVideo) history.back(); };
+})();
 </script>
 </body>
 </html>
