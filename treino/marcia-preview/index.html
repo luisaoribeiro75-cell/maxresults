@@ -306,7 +306,7 @@ const ATHLETE = 'Márcia';
 const MIX_GOALS = [
   { icon: '🎯', text: '<strong>Objetivo:</strong> perder gordura e definir pernas, braços e glúteo. 4x por semana: <strong>seg e qui = Anteriores</strong> (perna da frente, peito, ombro, tríceps) · <strong>ter e sex = Posteriores</strong> (glúteo, costas, posterior de coxa, bíceps).' },
   { icon: '🎬', text: '<strong>Como funciona (Mix = aula + sala):</strong> aquecimento do MaxLift → mobilidade de quadril e coluna → track MaxLift → bi-set de sala → track MaxLift → bi-set → MaxStep → alongamento. Toca o vídeo e acompanha; no bi-set, os 2 exercícios em sequência, sem sair do lugar.' },
-  { icon: '🛡️', text: '<strong>Coluna em primeiro lugar neste ciclo:</strong> nada pesado nas costas. No track de pernas, halteres ao lado do corpo (ou só a barra). Coluna neutra e abdômen firme em tudo. Fisgou ou doeu? Diminui a amplitude ou a carga e me avisa.' },
+  { icon: '🛡️', text: '<strong>Coluna em primeiro lugar neste ciclo:</strong> <strong>nunca coloque a barra nas costas</strong>: nos tracks de Pernas e de Glúteos, use halteres segurados à frente do corpo. Coluna neutra e abdômen firme em tudo. Fisgou ou doeu? Diminui a amplitude ou a carga e me avisa.' },
   { icon: '👟', text: '<strong>Cardio = MaxStep:</strong> os 3 vídeos no fim, pra ir pegando os passos de novo, sempre sem salto. Completa o tempo no elíptico, bike ou caminhada inclinada. Começa leve: os primeiros minutos são o aquecimento do cardio.' },
   { icon: '📈', text: '<strong>Cargas:</strong> as sugeridas são um ponto de partida tranquilo. Testa, ajusta e anota no campo kg. Da próxima vez a carga anotada aparece e você decide se sobe, mantém ou desce.' },
   { icon: '⏱️', text: '<strong>Tempo:</strong> ~55 min (peso ~30 · cardio ~22 · alongamento ~4). Dia corrido? Encurta o complemento do cardio, nunca o aquecimento nem a mobilidade.' },
@@ -326,7 +326,7 @@ const TRK_AQUEC3 = {
   label: 'Track 1 · Aquecimento', title: 'Aquecimento · MaxLift Mix #3', min: 5,
   duration: '~5 min · no ritmo', tag: 'Preparação',
   bunny: 'https://iframe.mediadelivery.net/embed/655450/effaba34-672c-422b-8b5b-e69432b5a636',
-  tip: 'É o aquecimento específico do dia: acompanha a coreografia do início ao fim com a barra vazia ou halteres bem leves. Prepara as articulações e os músculos que vêm a seguir.',
+  tip: 'É o aquecimento específico do dia: acompanha a coreografia do início ao fim com halteres bem leves (⚠️ <strong>não coloque a barra nas costas: use halteres segurados à frente do corpo</strong>). Prepara as articulações e os músculos que vêm a seguir.',
   loads: [],
 };
 
@@ -335,8 +335,8 @@ const TRK_PERNAS3 = {
   label: 'Track · Pernas (Agachamento)', title: 'Pernas · MaxLift Mix #3', min: 6,
   duration: '~6 min · grande', tag: 'Perna (quadríceps/glúteo)',
   bunny: 'https://iframe.mediadelivery.net/embed/655450/fbea751a-8118-4167-aff2-91b797300953',
-  tip: 'Neste ciclo, nada de barra pesada nas costas: faz com um halter em cada mão, ao lado do corpo (sugestão: 4 kg cada), ou só com a barra vazia. Desce até onde a lombar continua neutra, joelho na linha do pé, sobe soltando o ar.',
-  loads: [ { label: 'Halteres (cada) ou barra', placeholder: '4' } ],
+  tip: '⚠️ <strong>Não coloque a barra nas costas: use halteres segurados à frente do corpo.</strong> O vídeo mostra o agachamento com barra; você faz o mesmo movimento segurando 1 halter na frente do peito (ou um em cada mão, na frente). Sugestão: 8 kg (1 halter) ou 4 kg cada. Desce até onde a lombar continua neutra, joelho na linha do pé, sobe soltando o ar.',
+  loads: [ { label: 'Halteres à frente do corpo', placeholder: '8' } ],
 };
 
 const TRK_PEITO3 = {
@@ -353,8 +353,8 @@ const TRK_GLUTEOS3 = {
   label: 'Track · Glúteos e Panturrilhas (ênfase)', title: 'Glúteos e Panturrilhas · MaxLift Mix #3', min: 5,
   duration: '~5 min · ênfase', tag: 'Glúteos / Panturrilha',
   bunny: 'https://iframe.mediadelivery.net/embed/655450/68903c12-9fa5-4da6-9d26-ccbf02aa413c',
-  tip: 'Track da sua ênfase. Aperta o glúteo em cada repetição e segue a cadência. Na elevação de quadril, sobe até alinhar o corpo e para ali: sem arquear a lombar. Sugestão: 5 kg (anilha ou halter).',
-  loads: [ { label: 'Glúteos (anilha/halter)', placeholder: '5' } ],
+  tip: '⚠️ <strong>Não coloque a barra nas costas: use halteres segurados à frente do corpo.</strong> O track tem panturrilha no step e afundo; o vídeo usa barra nas costas, você faz os dois com halteres segurados à frente do corpo. Tronco alto no afundo, joelho da frente na linha do pé, desce controlando. Sugestão: 4 kg cada halter.',
+  loads: [ { label: 'Halteres à frente do corpo (cada)', placeholder: '4' } ],
 };
 
 const TRK_BICEPS3 = {
@@ -436,7 +436,7 @@ const MOB_A = {
     { name: 'Alongamento de Glúteos II', muscle: 'Glúteos', biset: false, reps: '20s cada lado', loadLabel: null,
       tip: 'Deitada, cruza o tornozelo sobre o joelho oposto e puxa a coxa em direção ao peito, sem tirar a lombar do chão.', video: V.alongGluteos },
     { name: 'Alongamento Abdomên', muscle: 'Abdômen', biset: false, reps: '2x 15s', loadLabel: null,
-      tip: 'De barriga pra baixo, apoia as mãos e sobe o tronco só até onde for confortável, quadril no chão. Sem dor na lombar; se incomodar, fica apoiada nos antebraços.', video: V.alongAbdomen },
+      tip: 'Padrão: posição de esfinge — de barriga pra baixo, apoiada nos ANTEBRAÇOS, quadril no chão, peito aberto, respirando. Só depois de algumas semanas sem nenhum incômodo na lombar, progride pra cobra (mãos no chão, braços mais esticados). Sentiu a lombar? Volta pra esfinge.', video: V.alongAbdomen },
     { name: 'Mobilidade Torácica I', muscle: 'Coluna torácica', biset: false, reps: '8 cada lado', loadLabel: null,
       tip: 'Gira a parte de cima das costas com controle; quadril parado.', video: V.mobToracica },
   ],
@@ -452,7 +452,7 @@ const MOB_B = {
     { name: 'Alongamento de Glúteos II', muscle: 'Glúteos', biset: false, reps: '20s cada lado', loadLabel: null,
       tip: 'Deitada, cruza o tornozelo sobre o joelho oposto e puxa a coxa em direção ao peito, sem tirar a lombar do chão.', video: V.alongGluteos },
     { name: 'Alongamento Abdomên', muscle: 'Abdômen', biset: false, reps: '2x 15s', loadLabel: null,
-      tip: 'De barriga pra baixo, apoia as mãos e sobe o tronco só até onde for confortável, quadril no chão. Sem dor na lombar; se incomodar, fica apoiada nos antebraços.', video: V.alongAbdomen },
+      tip: 'Padrão: posição de esfinge — de barriga pra baixo, apoiada nos ANTEBRAÇOS, quadril no chão, peito aberto, respirando. Só depois de algumas semanas sem nenhum incômodo na lombar, progride pra cobra (mãos no chão, braços mais esticados). Sentiu a lombar? Volta pra esfinge.', video: V.alongAbdomen },
     { name: 'Mobilidade Dorsal I', muscle: 'Coluna torácica', biset: false, reps: '8 cada lado', loadLabel: null,
       tip: 'Em 4 apoios, passa um braço por baixo do corpo e volta abrindo pro teto. Gira a parte de cima das costas; a lombar fica quieta.', video: V.mobDorsal },
   ],
