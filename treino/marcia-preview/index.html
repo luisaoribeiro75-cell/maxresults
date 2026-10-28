@@ -307,9 +307,9 @@ const MIX_GOALS = [
   { icon: '🎯', text: '<strong>Objetivo:</strong> perder gordura e definir pernas, braços e glúteo. 4x por semana: <strong>seg e qui = Anteriores</strong> (perna da frente, peito, ombro, tríceps) · <strong>ter e sex = Posteriores</strong> (glúteo, costas, posterior de coxa, bíceps).' },
   { icon: '🎬', text: '<strong>Como funciona (Mix = aula + sala):</strong> aquecimento do MaxLift → mobilidade de quadril e coluna → track MaxLift → bi-set de sala → track MaxLift → bi-set → MaxStep → alongamento. Toca o vídeo e acompanha; no bi-set, os 2 exercícios em sequência, sem sair do lugar.' },
   { icon: '🛡️', text: '<strong>Coluna em primeiro lugar neste ciclo:</strong> <strong>nunca coloque a barra nas costas</strong>: nos tracks de Pernas e de Glúteos, use halteres segurados à frente do corpo. Coluna neutra e abdômen firme em tudo. Fisgou ou doeu? Diminui a amplitude ou a carga e me avisa.' },
-  { icon: '👟', text: '<strong>Cardio = MaxStep:</strong> os 3 vídeos no fim, pra ir pegando os passos de novo, sempre sem salto. Completa o tempo no elíptico, bike ou caminhada inclinada. Começa leve: os primeiros minutos são o aquecimento do cardio.' },
+  { icon: '👟', text: '<strong>Cardio = MaxStep:</strong> os 3 vídeos no fim, pra ir pegando os passos de novo, sempre sem salto. Completa o tempo no elíptico, bike ou caminhada inclinada. Começa leve: os primeiros minutos são o aquecimento do cardio. <strong>Da semana 3 em diante entra a aula nova, o MaxStep #2</strong>, no lugar do elíptico/bike (último vídeo do cardio).' },
   { icon: '📈', text: '<strong>Cargas:</strong> as sugeridas são um ponto de partida tranquilo. Testa, ajusta e anota no campo kg. Da próxima vez a carga anotada aparece e você decide se sobe, mantém ou desce.' },
-  { icon: '⏱️', text: '<strong>Tempo:</strong> ~55 min (peso ~30 · cardio ~22 · alongamento ~4). Dia corrido? Encurta o complemento do cardio, nunca o aquecimento nem a mobilidade.' },
+  { icon: '⏱️', text: '<strong>Tempo:</strong> ~55 min (peso ~30 · cardio ~22, subindo pra ~25–28 · alongamento ~4). Dia corrido? Encurta o complemento do cardio, nunca o aquecimento nem a mobilidade.' },
   { icon: '💧', text: '<strong>No dia a dia:</strong> não treina em jejum longo e leva água. Se sentir tontura ou mal-estar, para e me avisa.' },
   { icon: '📊', text: '<strong>Avaliação física:</strong> ainda não recebi as suas medidas. Quando puder, manda pelo link que te passei: é com ela que eu acompanho a sua evolução.' },
 ];
@@ -389,8 +389,19 @@ const TRK_STEP = {
   label: 'Cardio 3/3 · MaxStep + complemento', title: 'MaxStep #1 + elíptico/bike/caminhada', min: 18,
   duration: '~18 min', tag: 'Aeróbico',
   bunny: 'https://iframe.mediadelivery.net/embed/655450/361e1faf-2d79-4c33-a263-1563fad53286',
-  tip: 'Faz o MaxStep #1 (~4 min) 2 vezes seguidas e completa o tempo no elíptico, bike ou caminhada inclinada: sem corrida e sem salto, sempre um pé no step ou no chão. Ritmo em que dá pra conversar. Total do cardio: semanas 1–2 ~22 min · 3–4 ~25 min · 5–6 ~28 min. Se a lombar reclamar, baixa a altura do step.',
+  tip: 'Faz o MaxStep #1 (~4 min) 2 vezes seguidas e completa o tempo no elíptico, bike ou caminhada inclinada: sem corrida e sem salto, sempre um pé no step ou no chão. Ritmo em que dá pra conversar. Total do cardio: semanas 1–2 ~22 min · 3–4 ~25 min · 5–6 ~28 min. Se a lombar reclamar, baixa a altura do step. Da semana 3 em diante, o complemento vira o MaxStep #2 (próximo vídeo).',
   loads: [],
+};
+
+/* PROGRESSÃO (28/10/2026, aula aprovada pelo Luisão): MaxStep #2 substitui o COMPLEMENTO (elíptico/bike) do 3/3 a partir da semana 3.
+   min: 0 porque o tempo dele já está contado no TRK_STEP (troca o complemento, não soma). Aula inteira (33 min) não cabe no tempo dela → só até a música 4/5. */
+const TRK_STEP2 = {
+  type: 'track', group: 'cardio', role: 'cardio',
+  label: 'Cardio · progressão (semana 3 em diante) · MaxStep #2', title: 'MaxStep #2 no lugar do elíptico/bike', min: 0,
+  duration: 'semanas 3–6 · ~18 → 21 min', tag: 'Aeróbico',
+  bunny: 'https://iframe.mediadelivery.net/embed/655450/a9b2ef1b-8b77-463a-becf-ae386e711344',
+  tip: 'A partir da semana 3, já com os passos do #1: pula a Orientação, faz a Preparação e o MaxStep #1 uma vez só, e no lugar do elíptico/bike toca o MaxStep #2 desde o começo (a música 1 é o aquecimento dele). Semanas 3–4: até o fim da música 4 (~18 min) · 5–6: até o fim da música 5 (~21 min). A tarja no vídeo mostra o número da música. Total do cardio fica ~23–25 e ~26–28 min. ⚠️ <strong>Sem salto em nenhum momento:</strong> o ricochet (música 3) e a revisão (música 5) você faz sem impulsão, subindo e descendo pisando, sempre um pé no step ou no chão. Ritmo em que dá pra conversar. Se a lombar reclamar, baixa a altura do step. Parou na música indicada? Vai direto pro alongamento (as músicas 6 e 7 não cabem no seu tempo de treino).',
+  loads: [ { label: 'Até a música nº', placeholder: '4' } ],
 };
 
 const TRK_ALONG3 = {
@@ -508,8 +519,8 @@ const MUSC_B2 = {
 
 /* MISTO 4x/sem (Regra 17: Ant/Post/rest/Ant/Post) · UM mix por ciclo (Mix #3 — Regra 18; renovação troca pro #2).
    Cada dia: aquec (track) → mobilidade (Regra 24) → track → bi-set → track → bi-set → MaxStep (3 vídeos) → soltura (track). */
-const AULA_A = [ TRK_AQUEC3, MOB_A, TRK_PERNAS3, MUSC_A1, TRK_PEITO3, MUSC_A2, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
-const AULA_B = [ TRK_AQUEC3, MOB_B, TRK_GLUTEOS3, MUSC_B1, TRK_BICEPS3, MUSC_B2, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
+const AULA_A = [ TRK_AQUEC3, MOB_A, TRK_PERNAS3, MUSC_A1, TRK_PEITO3, MUSC_A2, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3 ];
+const AULA_B = [ TRK_AQUEC3, MOB_B, TRK_GLUTEOS3, MUSC_B1, TRK_BICEPS3, MUSC_B2, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3 ];
 
 const TRAINING_SLOTS = [
   { label: 'Treino A — Anteriores (MaxLift + sala + MaxStep)', blocks: AULA_A },
