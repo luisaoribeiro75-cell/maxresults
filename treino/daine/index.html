@@ -364,13 +364,13 @@ const ATHLETE = 'Daíne';
 
 const WEEKLY_GOALS = [
   { icon: '🏋️', type: 'strength', text: '<strong>Mix#7 — Anterior / Posterior (4x/sem):</strong> treino NOVO. Agora os dias se dividem em <strong>frente do corpo</strong> (A e C: perna da frente, peito, ombro, tríceps, abdômen) e <strong>parte de trás</strong> (B e D: posterior de coxa, glúteo, costas, bíceps, postura). Cada músculo treina 2x por semana com mais descanso entre um e outro.' },
-  { icon: '💪', type: 'strength', text: '<strong>Continua o foco em FORÇA:</strong> 9 a 12 repetições com carga desafiadora, descanso de 60 a 90s entre as voltas. Funcionou: na última avaliação você <strong>ganhou massa magra e perdeu gordura</strong> 👏. Sem aeróbico no fim — o tempo é todo de força.' },
+  { icon: '💪', type: 'strength', text: '<strong>Continua o foco em FORÇA:</strong> 9 a 12 repetições com carga desafiadora, descanso de 60 a 90s entre as voltas. Funcionou: na avaliação de 22/09 você <strong>ganhou massa magra e perdeu gordura</strong> 👏. Sem aeróbico no fim — o tempo é todo de força.' },
   { icon: '⏱️', type: 'strength', text: '<strong>Cabe em ~45 min:</strong> aquecimento + mobilidade rápidos → 4 bi-sets → soltura. <strong>Com pouco tempo, faça 3 voltas</strong> em todos os bi-sets. Tudo em bi-set e no mesmo lugar: termina um exercício e faz o par ali do lado, sem sair da estação.' },
   { icon: '📈', type: 'strength', text: '<strong>Cargas:</strong> abra o exercício pra ver a carga sugerida (tirada do que você anotou no ciclo passado). Teste, anote no campo kg e, se fechar as 12 com boa técnica, sobe um pouco na semana seguinte.' },
   { icon: '🥩', type: 'assessment', text: '<strong>Proteína continua importando:</strong> alvo de ~1,6 g de proteína por kg de peso por dia, alinhado com a sua nutricionista. É ela que transforma o treino de força em massa magra.' },
   { icon: '💊', type: 'assessment', text: '<strong>Energia:</strong> não treine em jejum longo e hidrate bem. Se sentir tontura, náusea ou fadiga fora do normal, reduza o volume e me avise.' },
   { icon: '🛡️', type: 'assessment', text: '<strong>Coluna protegida:</strong> nada de barra nas costas, terra, búlgaro ou torção/flexão forte de tronco. Todas as remadas têm apoio. Dor = para e me avisa.' },
-  { icon: '📊', type: 'assessment', text: '<strong>Avaliação física:</strong> última em 27/10 (compare com as anteriores no painel de avaliação); próxima prevista pra 27/01/27' },
+  { icon: '📊', type: 'assessment', text: '<strong>Avaliação física:</strong> última em 27/10 — peso −2,9 kg, gordura −0,7 kg e cintura −5,5 cm 👏; próxima prevista pra 27/01/27' },
 ];
 
 // NOTA: valores em linha limpa (chave: 'url',) — SEM comentário inline, senão o gate mr-verify-videos não lê a chave.
@@ -1041,8 +1041,8 @@ const AVALIACOES = [
     perimetry:{ombro:114.5,torax:107.5,bracoE:38.0,bracoD:37.0,antebracoE:27.5,antebracoD:27.5,cintura:95.5,abdomen:112.0,quadril:119.5,coxaE:76.0,coxaD:75.0,pernaE:47.5,pernaD:45.5},
     skinfolds:{tricipital:27.7,subescapular:24.5,peitoral:10.6,axilar:23.2,abdominal:47.0,supra:20.1,coxa:48.5} },
   { date:'27/10/2026', label:'Atual', protocol:'Pollock 7 dobras', proto:'pollock', nextAssessment:'27/01/2027',
-    basics:{age:39,height:169,weight:69.5}, rcq:0.74,
-    results:{imc:24.3, imcClass:'Peso normal', fatPercent:35.54, leanPercent:64.46, leanMass:44.8, fatMass:24.7, idealWeight:85, idealFat:17, sumSkinfolds:204.0},
+    basics:{age:39,height:169,weight:94.5}, rcq:0.74,
+    results:{imc:33.1, imcClass:'Obesidade grau I', fatPercent:35.54, leanPercent:64.46, leanMass:60.9, fatMass:33.6, idealWeight:85, idealFat:17, sumSkinfolds:204.0},
     perimetry:{ombro:109.2,torax:108.2,bracoE:37.0,bracoD:36.3,antebracoE:27.3,antebracoD:27.1,cintura:90.0,abdomen:113.0,quadril:121.5,coxaE:74.2,coxaD:74.2,pernaE:47.5,pernaD:46.5},
     skinfolds:{tricipital:28.0,subescapular:29.3,peitoral:9.5,axilar:24.3,abdominal:47.8,supra:22.6,coxa:42.5} },
 ];
@@ -1052,7 +1052,7 @@ const ASSESSMENT = {
   date: '27/10/2026',
   protocol: 'Pollock, 1984 — 7 Dobras',
   nextAssessment: '27/01/2027',
-  basics: { age: 39, height: 169, weight: 69.5 },
+  basics: { age: 39, height: 169, weight: 94.5 },
   perimetry: [
     { label: 'Ombro', value: 109.2 }, { label: 'Tórax', value: 108.2 },
     { label: 'Braço Esq.', value: 37.0 }, { label: 'Braço Dir.', value: 36.3 },
@@ -1069,9 +1069,9 @@ const ASSESSMENT = {
     { label: 'Coxa', value: 42.5 },
   ],
   results: {
-    imc: { value: 24.3, classification: 'Peso normal' },
+    imc: { value: 33.1, classification: 'Obesidade grau I' },
     idealFat: 17, fatPercent: 35.54, leanPercent: 64.46,
-    leanMass: 44.8, fatMass: 24.7, idealWeight: 85,
+    leanMass: 60.9, fatMass: 33.6, idealWeight: 85,
     sumSkinfolds: 204.0,
   },
   objective: 'Emagrecimento (foco em força / massa magra)',
