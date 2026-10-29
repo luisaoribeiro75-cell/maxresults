@@ -307,14 +307,14 @@ const MIX_GOALS = [
   { icon: '🎯', text: '<strong>Objetivo:</strong> perder gordura com ênfase em quadril e coxa. Perna entra todo dia (via aula MaxLift) e o cardio fecha a sessão.' },
   { icon: '🎬', text: '<strong>Como funciona (Mix = aula + musculação):</strong> 3x por semana, ~60 min. Cada dia = aquecimento (aula) → track MaxLift → bi-set de musculação → track MaxLift → bi-set → cardio → soltura. Toca o vídeo e acompanha; no bi-set, é o seu treino de sala.' },
   { icon: '🫁', text: '<strong>Ritmo deste ciclo:</strong> moderado. Nunca prende a respiração na força (solta o ar no esforço), não segura posição parada por muito tempo e o cardio é no "ritmo de conversa". Tontura ou mal-estar: para e me avisa.' },
-  { icon: '💃', text: '<strong>Cardio:</strong> segunda e quarta é a sua aula de dança à noite (não precisa de esteira depois do peso). Sexta: 20 min de esteira ou bike aqui, subindo pra 25 e 30 ao longo do ciclo. Quando o Max Step estiver gravado, ele entra na sexta.' },
+  { icon: '💃', text: '<strong>Cardio:</strong> segunda e quarta é a sua aula de dança à noite (não precisa de esteira depois do peso). Sexta é dia de Max Step: a aula MaxStep #2 no vídeo, começando com ~21 min e subindo pra 25 e 29 ao longo do ciclo.' },
   { icon: '📈', text: '<strong>Cargas:</strong> anota o peso de cada track e do bi-set no campo kg. Na volta do mix (a cada 2 semanas) sobe o que fechou bem.' },
   { icon: '📊', text: '<strong>Avaliação 06/10:</strong> 67,4 kg · 28,6% de gordura · cintura 74,5 · quadril 108,5 · coxa 63,5. Reavaliação em ~jan/27 pra medir a mudança.' },
 ];
 
 /* ═══════════════════════════════════════════════════════════════════════
    TRACKS — cada track = 1 vídeo Bunny (por grupo). MaxLift Mix #3 = lib 655450.
-   Cardio = MaxCicle #1 (lib 655450). URLs de embed reais do painel Bunny.
+   Cardio de sexta = MaxStep #2 (lib 655450, aula aprovada 28/10/2026). URLs de embed reais do painel Bunny.
    Campos: type/group/role (lidos pelo gate) · min (régua Regra 19) ·
    bunny (player) · loads[] (1–3 campos de carga — Regra 17). SEM bi-set/âncora.
    ═══════════════════════════════════════════════════════════════════════ */
@@ -391,13 +391,13 @@ const TRK_ABD3 = {
   loads: [ { label: 'Anilha/caneleira (se usar)', placeholder: '—' } ],
 };
 
-const TRK_CARDIO = {
+const TRK_STEP2 = {
   type: 'track', group: 'cardio', role: 'cardio',
-  label: 'Cardio · esteira ou bike (ou MaxCicle #1)', title: 'Cardio progressivo · 20 → 30 min', min: 25,
-  duration: '20–30 min', tag: 'Aeróbico',
-  bunny: 'https://iframe.mediadelivery.net/embed/655450/dcf2c03a-4a77-4012-8cc0-f9fe51782bd4',
-  tip: 'Esteira (caminhada rápida, pode inclinar) ou bike, no ritmo em que você ainda consegue conversar. Semanas 1–2: 20 min · 3–4: 25 min · 5–6: 30 min. Se preferir fazer com vídeo, toca o MaxCicle #1 e completa o tempo na esteira. Anota o tempo no campo.',
-  loads: [ { label: 'Minutos feitos', placeholder: '20' } ],
+  label: 'Cardio de sexta · MaxStep #2 (aula no vídeo)', title: 'MaxStep #2 · 21 → 25 → 29 min', min: 25,
+  duration: '21–29 min', tag: 'Aeróbico',
+  bunny: 'https://iframe.mediadelivery.net/embed/655450/a9b2ef1b-8b77-463a-becf-ae386e711344',
+  tip: 'Sexta o seu cardio é o Max Step. Começa leve: a música 1 é o aquecimento do cardio. Semanas 1–2: até o fim da música 5 (~21 min) · 3–4: até o fim da música 6 (~25 min) · 5–6: até o fim da música 7 (~29 min). A tarja no vídeo mostra o número da música. 🫁 <strong>Ritmo em que dá pra conversar</strong>, soltando o ar no esforço (nunca prende a respiração); nas músicas mais fortes (5, 6 e 7), se o fôlego apertar, tira os braços e faz o passo mais baixo. No ricochet (música 3) e na tesoura (música 6), se preferir, faz sem impulsão: sempre um pé no step ou no chão. Tontura, falta de ar ou mal-estar: para, caminha devagar e me avisa. A volta à calma do vídeo pode pular: o alongamento vem logo abaixo. Sem step ou sem espaço? 20–30 min de esteira ou bike no lugar. Anota os minutos no campo.',
+  loads: [ { label: 'Minutos feitos', placeholder: '21' } ],
 };
 
 /* AULA — a ORDEM deste array é a que vale (estrutura §3.0 + S1). Full Track
@@ -498,7 +498,7 @@ const MUSC_C2 = {
    Tempo: aquec 6 + tracks ~14 + bi-sets ~14 + cardio 20–30 + soltura 5 ≈ 60–70 min (Regra 19). */
 const AULA_A = [ TRK_AQUEC3, TRK_PEITO3, MUSC_A1, TRK_PERNAS3, MUSC_A2, TRK_CARDIO_DANCA, TRK_ALONG3 ];
 const AULA_B = [ TRK_AQUEC3, TRK_POST3, MUSC_B1, TRK_GLUTEOS, MUSC_B2, TRK_CARDIO_DANCA, TRK_ALONG3 ];
-const AULA_C = [ TRK_AQUEC3, TRK_PERNAS3, MUSC_C1, TRK_PEITO3, MUSC_C2, TRK_CARDIO, TRK_ALONG3 ];
+const AULA_C = [ TRK_AQUEC3, TRK_PERNAS3, MUSC_C1, TRK_PEITO3, MUSC_C2, TRK_STEP2, TRK_ALONG3 ];
 
 const TRAINING_SLOTS = [
   { label: 'Treino A — Segunda · Anteriores (MaxLift + sala)', blocks: AULA_A },

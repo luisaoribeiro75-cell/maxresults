@@ -308,9 +308,9 @@ const MIX_GOALS = [
   { icon: '🏠', text: '<strong>Em casa, com o que você tem:</strong> kettlebell + colchonete. Nos vídeos do MaxLift o pessoal usa barra e halteres: você faz o mesmo movimento segurando o kettlebell pelos dois lados da alça. Em cada vídeo eu explico a adaptação.' },
   { icon: '🎬', text: '<strong>Como funciona (Mix = aula + exercícios):</strong> aquecimento do MaxLift → mobilidade → track MaxLift → bi-set → track MaxLift → bi-set → MaxStep → alongamento. No bi-set, os 2 exercícios em sequência, sem descanso entre eles.' },
   { icon: '🛡️', text: '<strong>Quadril protegido:</strong> sem corrida e sem salto. Agachamento e stiff só até onde o quadril fica confortável. Incomodou na virilha ou na lateral do quadril? Diminui a amplitude ou o peso e me avisa.' },
-  { icon: '👟', text: '<strong>Cardio = MaxStep:</strong> step, degrau baixo da escada ou só no chão marcando os passos, sempre sem salto. Começa leve: os primeiros minutos já são o aquecimento do cardio.' },
+  { icon: '👟', text: '<strong>Cardio = MaxStep:</strong> step, degrau baixo da escada ou só no chão marcando os passos, sempre sem salto. Começa leve: os primeiros minutos já são o aquecimento do cardio. <strong>Da semana 3 em diante entra a aula nova, o MaxStep #2</strong>, no lugar da caminhada (último vídeo do cardio).' },
   { icon: '📈', text: '<strong>Cargas:</strong> a sugestão parte de um kettlebell de 8 kg. Usa o seu e anota o peso no campo kg. Da próxima vez ele aparece e você decide se mantém ou aumenta as repetições.' },
-  { icon: '⏱️', text: '<strong>Tempo:</strong> ~55 min (aquecimento + força ~28–30 · cardio ~22 · alongamento ~4).' },
+  { icon: '⏱️', text: '<strong>Tempo:</strong> ~55 min (aquecimento + força ~28–30 · cardio ~22, subindo pra ~25–28 · alongamento ~4).' },
   { icon: '📊', text: '<strong>Avaliação física:</strong> ainda não recebi as suas medidas. Quando puder, manda pelo link que te passei: é com ela que eu acompanho a sua evolução.' },
 ];
 
@@ -398,8 +398,19 @@ const TRK_STEP = {
   label: 'Cardio 3/3 · MaxStep + caminhada', title: 'MaxStep #1 (2x) + caminhada rápida', min: 18,
   duration: '~18 min', tag: 'Aeróbico',
   bunny: 'https://iframe.mediadelivery.net/embed/655450/361e1faf-2d79-4c33-a263-1563fad53286',
-  tip: 'Faz o MaxStep #1 (~4 min) 2 vezes seguidas e completa o tempo com caminhada rápida (na rua ou marchando no lugar). Sem corrida e sem salto: sempre um pé no step ou no chão. Ritmo em que dá pra conversar. Total do cardio: semanas 1–2 ~22 min · 3–4 ~25 min · 5–6 ~28 min. Se o quadril reclamar, baixa a altura do step ou faz no chão.',
+  tip: 'Faz o MaxStep #1 (~4 min) 2 vezes seguidas e completa o tempo com caminhada rápida (na rua ou marchando no lugar). Sem corrida e sem salto: sempre um pé no step ou no chão. Ritmo em que dá pra conversar. Total do cardio: semanas 1–2 ~22 min · 3–4 ~25 min · 5–6 ~28 min. Se o quadril reclamar, baixa a altura do step ou faz no chão. Da semana 3 em diante, a caminhada vira o MaxStep #2 (próximo vídeo).',
   loads: [],
+};
+
+/* PROGRESSÃO (28/10/2026, aula aprovada pelo Luisão): MaxStep #2 substitui o COMPLEMENTO (caminhada) do 3/3 a partir da semana 3.
+   min: 0 porque o tempo dele já está contado no TRK_STEP (troca o complemento, não soma). Aula inteira (33 min) não cabe + música 6 (tesoura/joelhos) pesa no quadril → só até a música 4/5. */
+const TRK_STEP2 = {
+  type: 'track', group: 'cardio', role: 'cardio',
+  label: 'Cardio · progressão (semana 3 em diante) · MaxStep #2', title: 'MaxStep #2 no lugar da caminhada', min: 0,
+  duration: 'semanas 3–6 · ~18 → 21 min', tag: 'Aeróbico',
+  bunny: 'https://iframe.mediadelivery.net/embed/655450/a9b2ef1b-8b77-463a-becf-ae386e711344',
+  tip: 'A partir da semana 3, já com os passos do #1: pula a Orientação, faz a Preparação e o MaxStep #1 uma vez só, e no lugar da caminhada toca o MaxStep #2 desde o começo (a música 1 é o aquecimento dele). Semanas 3–4: até o fim da música 4 (~18 min) · 5–6: até o fim da música 5 (~21 min). A tarja no vídeo mostra o número da música. Total do cardio fica ~23–25 e ~26–28 min. Degrau baixo ou no chão, como no #1. ⚠️ <strong>Sem salto em nenhum momento:</strong> o ricochet (música 3) e a revisão (música 5) você faz sem impulsão, subindo e descendo pisando, sempre um pé no step ou no chão. No meio giro, gira pelos pés, sem torcer o quadril. Se o quadril reclamar, volta pro passo básico ou faz no chão. Parou na música indicada? Vai direto pro alongamento (as músicas 6 e 7 ficam fora do seu treino: não cabem no tempo e a 6 tem tesoura e joelho alto).',
+  loads: [ { label: 'Até a música nº', placeholder: '4' } ],
 };
 
 const TRK_ALONG3 = {
@@ -563,9 +574,9 @@ const MUSC_3B = {
 /* MISTO 3x/sem Full Body (Regra 17) · UM mix por ciclo (Mix #3 — Regra 18; renovação troca pro #2).
    Cada dia: aquec (track) → mobilidade (Regra 24) → track → bi-set → track → bi-set → MaxStep (3 vídeos) → soltura (track).
    Quadril: 1 bloco com flexão de quadril carregada por dia (T1 Pernas · T2 Posteriores · T3 Agachamento Sumô). */
-const AULA_1 = [ TRK_AQUEC3, MOB_1, TRK_PERNAS3, MUSC_1A, TRK_PEITO3, MUSC_1B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
-const AULA_2 = [ TRK_AQUEC3, MOB_2, TRK_POST3, MUSC_2A, TRK_OMBROS3, MUSC_2B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
-const AULA_3 = [ TRK_AQUEC3, MOB_3, TRK_PERNAS3, MUSC_3G, TRK_TRICEPS3, MUSC_3B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_ALONG3 ];
+const AULA_1 = [ TRK_AQUEC3, MOB_1, TRK_PERNAS3, MUSC_1A, TRK_PEITO3, MUSC_1B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3 ];
+const AULA_2 = [ TRK_AQUEC3, MOB_2, TRK_POST3, MUSC_2A, TRK_OMBROS3, MUSC_2B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3 ];
+const AULA_3 = [ TRK_AQUEC3, MOB_3, TRK_PERNAS3, MUSC_3G, TRK_TRICEPS3, MUSC_3B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3 ];
 
 const TRAINING_SLOTS = [
   { label: 'Treino 1 — Full Body (pernas, costas, peito, bíceps)', blocks: AULA_1 },
