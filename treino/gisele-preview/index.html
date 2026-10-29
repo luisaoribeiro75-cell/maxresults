@@ -351,7 +351,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Ciclo 1 · Gerado em 26/10/2026</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Ciclo 1 · Gerado em 26/10/2026 · aula MaxCicle #1 no Treino A em 29/10/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -362,13 +362,13 @@
 const ATHLETE = 'Gisele';
 
 const WEEKLY_GOALS = [
-  { icon: '🎯', type: 'strength', text: '<strong>4x por semana, ~55 min:</strong> Treino A (frente: peito, coxa, ombro, tríceps) e Treino B (trás: costas, posterior de coxa, glúteo, bíceps), 2x cada. Abdômen e estabilidade da coluna nos dois.' },
+  { icon: '🎯', type: 'strength', text: '<strong>4x por semana, ~55 min (Treino A com a aula de bike: ~65-70 min):</strong> Treino A (frente: peito, coxa, ombro, tríceps) e Treino B (trás: costas, posterior de coxa, glúteo, bíceps), 2x cada. Abdômen e estabilidade da coluna nos dois.' },
   { icon: '⏱️', type: 'strength', text: '<strong>Como é cada treino:</strong> aquecimento específico (articulações + 1 série leve dos músculos do dia) → mobilidade de quadril e coluna → 3 bi-sets → 20 min de cardio → soltura. Sobrou tempo num dia? Estica o cardio pra 30 min.' },
   { icon: '💪', type: 'strength', text: '<strong>Força de volta:</strong> 3 séries de 10–12 em tudo. A carga certa é a que deixa as 2 últimas repetições difíceis, mas com a postura perfeita. Fechou as 12 fácil em todas as séries? Sobe um pouco na próxima.' },
   { icon: '🛡️', type: 'assessment', text: '<strong>Lombar protegida:</strong> nada de barra nas costas nem agachamento pesado; perna e glúteo em máquina, ombro sentada com encosto. Em todo exercício: abdômen firme e quadril "encaixado" (sem empinar o bumbum), costelas pra baixo.' },
   { icon: '🧘', type: 'strength', text: '<strong>Mobilidade todo dia:</strong> quadril, glúteo, posterior (hand to toes) e coluna. São 4–5 minutos que fazem diferença no conforto da lombar — não pule.' },
   { icon: '📈', type: 'strength', text: '<strong>Cargas:</strong> cada exercício traz uma carga sugerida pra começar. Teste, ajuste e <strong>anote no campo kg</strong>; na próxima vez ela aparece aqui e você decide se aumenta, mantém ou diminui.' },
-  { icon: '🏃', type: 'cardio', text: '<strong>Cardio:</strong> 20 min de bike ou elíptico no fim de todo treino. Os 2–3 primeiros minutos bem leves — já é o aquecimento dele. Depois, ritmo firme em que dá pra falar frases curtas.' },
+  { icon: '🏃', type: 'cardio', text: '<strong>Cardio:</strong> no Treino A, a aula <strong>MaxCicle #1</strong> (~33 min) na bike de spinning; dia corrido, troca por 20 min de bike comum. No Treino B, 20 min de elíptico. Sempre começando leve — os primeiros minutos já são o aquecimento.' },
 ];
 
 // NOTA: valores em linha limpa (chave: 'url',) — SEM comentário inline, senão o gate
@@ -385,6 +385,7 @@ const V = {
   mobQuadrilX: 'https://vd.mfitpersonal.com.br/282/mp4/282.mp4',
   mobToracica6: 'https://vd.mfitpersonal.com.br/299/mp4/299.mp4',
   bike: 'https://vd.mfitpersonal.com.br/518/mp4/518.mp4',
+  maxCicle: 'https://player.mediadelivery.net/play/655450/dcf2c03a-4a77-4012-8cc0-f9fe51782bd4',
   eliptico: 'https://vd.mfitpersonal.com.br/562/mp4/562.mp4',
   alongQuadParede: 'https://vd.mfitpersonal.com.br/v2/1180/mp4/1180_opt.mp4',
   alongPeitoral: 'https://vd.mfitpersonal.com.br/v2/1168/mp4/1168_opt.mp4',
@@ -464,11 +465,12 @@ const BISET_A_3 = {
 };
 
 const CARDIO_A = {
-  type: 'cardio', label: 'Cardio',
-  title: 'Bike — Condicionamento', duration: '20 min',
-  meta: 'Começa leve, depois ritmo firme. Sobrou tempo? Vai até 30 min.',
+  type: 'cardio', label: 'Cardio · Aula MaxResults',
+  title: 'MaxCicle #1 na bike de spinning (~33 min) — ou Bike 20 min', duration: '~33 min (ou 20)',
+  meta: 'Faça UM dos dois: a aula MaxCicle #1 completa na bike de spinning (~33 min) OU, no dia em que estiver sem tempo ou a spinning estiver ocupada, 20 min de bike comum. A aula começa leve — já é o aquecimento dela.',
   exercises: [
-    { name: 'Bicicleta', muscle: 'Cardiovascular', duration: '20 min', equipment: 'Bike ergométrica (ou elíptico)', tip: 'Banco na altura do quadril. ' + CARDIO_TIP, video: V.bike },
+    { name: 'MaxCicle #1', muscle: 'Cardiovascular / Pernas', duration: '~33 min', equipment: 'Bike de spinning', carga: 'Carga da bike moderada — nos picos, 7 a 8 de 10', tip: 'Siga a aula do começo ao fim: ela já começa leve (é o aquecimento) e alterna ritmo, subida e sprint. Selim na altura do quadril e guidão alto o suficiente pra tronco ficar mais em pé. Abdômen firme e quadril encaixado o tempo todo, sem afundar a lombar. Nas partes em pé, só se a lombar estiver bem; se incomodar, faça sentada aumentando um pouco a carga. Nos picos vá a uns 7 a 8 de 10, não ao máximo.', video: V.maxCicle },
+    { name: 'Bicicleta', muscle: 'Cardiovascular', duration: '20 min', equipment: 'Bike ergométrica', tip: 'SÓ no dia em que não fizer a aula. Banco na altura do quadril. ' + CARDIO_TIP, video: V.bike },
   ]
 };
 
