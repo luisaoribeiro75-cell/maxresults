@@ -290,7 +290,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Ciclo 1 &middot; 28/10/2026 &middot; musculação (força) + MaxStep</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Ciclo 1 &middot; 28/10/2026 &middot; musculação (força) + MaxLift braços + MaxStep</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -306,13 +306,13 @@ const ATHLETE = 'Larissa';
 const MIX_GOALS = [
   { icon: '🎯', text: '<strong>Objetivo:</strong> perder gordura, com atenção à barriga e ao glúteo, e braços mais firmes. 3x por semana, corpo inteiro em todos os treinos: <strong>seg = Treino 1 · qua = Treino 2 · sex = Treino 3</strong>. Começou numa quinta? Toca em "trocar o treino do dia" e faz o Treino 1 hoje.' },
   { icon: '💪', text: '<strong>Foco em FORÇA:</strong> 10 a 12 repetições com carga desafiadora (as 2 últimas custam, mas saem bonitas), descanso de 60 a 90 s entre as voltas. É o que preserva e constrói músculo enquanto a gordura vai embora.' },
-  { icon: '🎬', text: '<strong>Como funciona (Mix = musculação + aula):</strong> aquecimento do MaxLift → mobilidade → 3 bi-sets de musculação → aula de MaxStep → alongamento. No bi-set, os 2 exercícios em sequência, sem sair do lugar.' },
-  { icon: '🛡️', text: '<strong>Joelho protegido:</strong> nada de salto. Leg Press e agachamento só na amplitude em que o joelho fica confortável, com carga moderada. Estalo sem dor é comum; se doer ou incomodar, diminui a amplitude ou a carga e me avisa.' },
+  { icon: '🎬', text: '<strong>Como funciona (Mix = musculação + aula):</strong> aquecimento do MaxLift → mobilidade → bi-set de musculação → track MaxLift de braço ou ombro → bi-set → aula de MaxStep → alongamento. No bi-set, os 2 exercícios em sequência, sem sair do lugar; no track, é só dar o play e acompanhar.' },
+  { icon: '🛡️', text: '<strong>Joelho protegido:</strong> nada de salto. Leg Press e agachamento só na amplitude em que o joelho fica confortável, com carga moderada; a extensora é só segurando parada (isometria). Estalo sem dor é comum; se doer ou incomodar, diminui a amplitude ou a carga e me avisa.' },
   { icon: '👟', text: '<strong>Cardio = MaxStep:</strong> degrau baixo, sem impulsão, sempre um pé no step ou no chão. Dá pra fazer na academia ou em casa com o seu step. Começa leve: os primeiros minutos já são o aquecimento do cardio. <strong>Da semana 3 em diante entra o MaxStep #2</strong> no lugar do complemento (último vídeo do cardio).' },
   { icon: '📈', text: '<strong>Cargas:</strong> cada exercício já vem com uma carga sugerida no campo kg. Testa, ajusta e anota o que usou. Da próxima vez a sua carga aparece ali e você decide se sobe, mantém ou desce.' },
   { icon: '🥩', text: '<strong>Proteína importa:</strong> alvo de ~1,6 g de proteína por kg de peso por dia, alinhado com a sua nutricionista. É ela que transforma o treino de força em músculo.' },
   { icon: '💧', text: '<strong>No dia a dia:</strong> não treina em jejum longo e leva água. Se sentir tontura, enjoo ou faltar energia, reduz o ritmo e me avisa.' },
-  { icon: '⏱️', text: '<strong>Tempo:</strong> ~55 min (aquecimento + força ~29 · cardio ~22, subindo pra ~25–28 · alongamento ~4). Dia corrido? Encurta o complemento do cardio, nunca a força.' },
+  { icon: '⏱️', text: '<strong>Tempo:</strong> ~55 min. Se o tempo ficar apertado, é só me avisar que a gente encurta.' },
   { icon: '📊', text: '<strong>Avaliação física:</strong> ainda não recebi as suas medidas. Quando puder, manda pelo link que te passei: é com ela que eu acompanho a sua evolução.' },
 ];
 
@@ -330,6 +330,33 @@ const TRK_AQUEC3 = {
   bunny: 'https://iframe.mediadelivery.net/embed/655450/effaba34-672c-422b-8b5b-e69432b5a636',
   tip: 'Aquecimento do dia: acompanha a coreografia do início ao fim sem peso ou com halteres bem leves. Joelho protegido: agachamento curto (só até onde fica confortável), sem salto e sem afundo profundo. Se o vídeo pedir um desses, faz o movimento pequeno ou marca o passo no lugar.',
   loads: [],
+};
+
+const TRK_OMBROS3 = {
+  type: 'track', group: 'ombros', role: 'forca',
+  label: 'Track · Ombros', title: 'Ombros · MaxLift Mix #3', min: 5,
+  duration: '~5 min · auxiliar', tag: 'Ombros',
+  bunny: 'https://iframe.mediadelivery.net/embed/655450/8459a173-6950-4422-89e6-f885b41b9441',
+  tip: 'Em pé, joelhos destravados e abdômen firme. Desenvolvimento e elevações no ritmo da música, subindo até a linha do ombro nas elevações, sem balançar o tronco. Peso que deixa você bem cansada no fim da música, mas sem perder a postura. Se o vídeo tiver agachamento ou salto no meio, fica em pé marcando o passo.',
+  loads: [ { label: 'Desenvolvimento (cada halter)', placeholder: '4' }, { label: 'Elevações (cada halter)', placeholder: '2' } ],
+};
+
+const TRK_TRICEPS3 = {
+  type: 'track', group: 'triceps', role: 'forca',
+  label: 'Track · Tríceps', title: 'Tríceps · MaxLift Mix #3', min: 5,
+  duration: '~5 min · auxiliar', tag: 'Tríceps',
+  bunny: 'https://iframe.mediadelivery.net/embed/655450/ad56fa7c-b959-449a-904a-dea6f941787b',
+  tip: 'Vem depois do peito, na ordem certa. Cotovelos apontando pra frente e parados: só o antebraço mexe. Peso que deixa o fim da música difícil. É a parte de trás do braço, a que firma o "tchauzinho".',
+  loads: [ { label: 'Tríceps (halter/barra)', placeholder: '5' } ],
+};
+
+const TRK_BICEPS3 = {
+  type: 'track', group: 'biceps', role: 'forca',
+  label: 'Track · Bíceps', title: 'Bíceps · MaxLift Mix #3', min: 4,
+  duration: '~4 min · auxiliar', tag: 'Bíceps',
+  bunny: 'https://iframe.mediadelivery.net/embed/655450/e18186ea-7e7b-4f46-b9b8-ef9526108a52',
+  tip: 'Vem depois da remada, na ordem certa. Em pé, joelhos destravados e abdômen firme pra não jogar o tronco. Cotovelo colado no corpo. Peso que deixa o fim da música difícil.',
+  loads: [ { label: 'Rosca (cada halter)', placeholder: '5' } ],
 };
 
 const TRK_STEP_ORIENT = {
@@ -395,7 +422,6 @@ const V = {
   mobToracica1: 'https://vd.mfitpersonal.com.br/283/mp4/283.mp4',
   legPress45: 'https://vd.mfitpersonal.com.br/495/mp4/495.mp4',
   elevLateral: 'https://vd.mfitpersonal.com.br/131/mp4/131.mp4',
-  puxadaAberta: 'https://vd.mfitpersonal.com.br/565/mp4/565.mp4',
   abducaoEmPe: 'https://vd.mfitpersonal.com.br/249/mp4/249.mp4',
   elevQuadrilBanco: 'https://vd.mfitpersonal.com.br/246/mp4/246.mp4',
   abdomSupra: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
@@ -403,14 +429,10 @@ const V = {
   supinoRetoHalteres: 'https://vd.mfitpersonal.com.br/201/mp4/201.mp4',
   cadeiraFlexora: 'https://vd.mfitpersonal.com.br/502/mp4/502.mp4',
   abdomInfraCurto: 'https://vd.mfitpersonal.com.br/6/mp4/6.mp4',
-  gluteoCoicePolia: 'https://vd.mfitpersonal.com.br/457/mp4/457.mp4',
-  tricepsCorda: 'https://vd.mfitpersonal.com.br/418/mp4/418.mp4',
   sumoHalteres: 'https://vd.mfitpersonal.com.br/77/mp4/77.mp4',
   serrote: 'https://vd.mfitpersonal.com.br/210/mp4/210.mp4',
-  abducaoMaquina: 'https://vd.mfitpersonal.com.br/515/mp4/515.mp4',
+  cadeiraExtensora: 'https://vd.mfitpersonal.com.br/504/mp4/504.mp4',
   prancha: 'https://vd.mfitpersonal.com.br/14/mp4/14.mp4',
-  elevQuadrilUni: 'https://vd.mfitpersonal.com.br/625/mp4/625.mp4',
-  roscaAlternada: 'https://vd.mfitpersonal.com.br/110/mp4/110.mp4',
 };
 
 /* Mobilidade (§3.0 bloco 2): quadril/glúteo sem ajoelhar (joelho protegido) + articulação de cima do dia. */
@@ -424,7 +446,7 @@ const MOB_1 = {
     { name: 'Alongamento de Glúteos II', muscle: 'Glúteos', equipment: 'Colchonete', biset: false, reps: '20s cada lado', loadLabel: null,
       tip: 'Deitada, cruza o tornozelo sobre o joelho oposto e puxa a coxa em direção ao peito. Alongamento confortável no glúteo, nunca no joelho.', video: V.alongGluteos },
     { name: 'Mobilidade de Ombro I', muscle: 'Ombro / Escápula', equipment: 'Nenhum', biset: false, reps: '10 reps', loadLabel: null,
-      tip: 'Movimento amplo e controlado, preparando o ombro pra puxada e pra elevação lateral.', video: V.mobOmbro1 },
+      tip: 'Movimento amplo e controlado, preparando o ombro pro track de Ombros.', video: V.mobOmbro1 },
   ]
 };
 
@@ -458,31 +480,19 @@ const MOB_3 = {
 
 /* ── TREINO 1: pernas/glúteo + costas + ombro + abdômen ── */
 const MUSC_1A = {
-  type: 'lift', label: 'Bi-set 1 · Pernas + Ombro',
-  title: 'Leg Press 45 ↔ Elevação Lateral com Halteres', role: 'forca', min: 7,
-  meta: 'Bi-set ancorado: Leg Press + halteres ao lado (uma estação só). <strong>Antes: 1 série leve de 15 de cada (aquecimento).</strong> Depois 3 voltas, sem descanso entre os dois; 60–90 s entre as voltas.',
+  type: 'lift', label: 'Bi-set 1 · Pernas + Glúteo',
+  title: 'Leg Press 45 ↔ Abdução de Quadril em Pé com Caneleira', role: 'forca', min: 7,
+  meta: 'Bi-set ancorado: Leg Press + caneleira ao lado (uma estação só). <strong>Antes: 1 série leve de 15 de cada (aquecimento).</strong> Depois 3 voltas, sem descanso entre os dois; 60–90 s entre as voltas.',
   exercises: [
     { name: 'Leg Press 45', muscle: 'Glúteos / Quadríceps', equipment: 'Leg Press 45', biset: true, reps: '3x10-12', loadLabel: 'Leg Press', sug: '40',
       tip: 'Pés na parte de CIMA da plataforma, na largura do quadril: assim o glúteo trabalha mais e o joelho menos. Desce só até onde o joelho fica confortável (no máximo até 90°), sem tirar o quadril do banco, e empurra pelo calcanhar sem travar o joelho lá em cima. Carga moderada: aqui a gente não pesa.', video: V.legPress45 },
-    { name: 'Elevação Lateral com Halteres', muscle: 'Ombro', equipment: 'Halteres (ao lado do Leg Press)', biset: true, reps: '3x10-12', loadLabel: 'Elevação Lateral', sug: '4',
-      tip: 'Em pé ao lado do Leg Press. Cotovelo levemente dobrado, sobe até a linha do ombro sem balançar o tronco e desce devagar. É o ombro que deixa o braço com cara de definido.', video: V.elevLateral },
-  ]
-};
-
-const MUSC_1B = {
-  type: 'lift', label: 'Bi-set 2 · Costas + Glúteo',
-  title: 'Puxada Aberta Barra reta ↔ Abdução de Quadril em Pé com Caneleira', role: 'forca', min: 7,
-  meta: 'Bi-set ancorado: puxador + caneleira ao lado (uma estação só). <strong>Antes: 1 série leve de 15 na puxada.</strong> 3 voltas; 60–90 s entre as voltas.',
-  exercises: [
-    { name: 'Puxada Aberta Barra reta', muscle: 'Costas', equipment: 'Puxador', biset: true, reps: '3x10-12', loadLabel: 'Puxada', sug: '30',
-      tip: 'Sentada com a coxa travada, peito aberto. Puxa a barra até a altura do queixo fechando as escápulas, sem jogar o tronco pra trás. Solta o ar puxando.', video: V.puxadaAberta },
-    { name: 'Abdução de Quadril em Pé com Caneleira', muscle: 'Glúteo médio', equipment: 'Caneleira (ao lado do puxador)', biset: true, reps: '3x12 cada lado', loadLabel: 'Caneleira', sug: '3',
-      tip: 'Em pé, segurando no puxador, joelho de apoio levemente dobrado. Abre a perna pro lado sem inclinar o tronco, segura 1 s lá em cima e volta devagar. É o glúteo da lateral, que arredonda o quadril.', video: V.abducaoEmPe },
+    { name: 'Abdução de Quadril em Pé com Caneleira', muscle: 'Glúteo médio', equipment: 'Caneleira (ao lado do Leg Press)', biset: true, reps: '3x12 cada lado', loadLabel: 'Caneleira', sug: '3',
+      tip: 'Em pé ao lado do Leg Press, segurando nele, joelho de apoio levemente dobrado. Abre a perna pro lado sem inclinar o tronco, segura 1 s lá em cima e volta devagar. É o glúteo da lateral, que arredonda o quadril.', video: V.abducaoEmPe },
   ]
 };
 
 const MUSC_1C = {
-  type: 'lift', label: 'Bi-set 3 · Glúteo + Abdômen',
+  type: 'lift', label: 'Bi-set 2 · Glúteo + Abdômen',
   title: 'Elevação de Quadril apoiando banco nas costas ↔ Abdominal Supra Solo', role: 'forca', min: 7,
   meta: 'Bi-set ancorado: banco + colchonete ao lado (uma estação só). 3 voltas; 60–90 s entre as voltas.',
   exercises: [
@@ -518,18 +528,6 @@ const MUSC_2B = {
   ]
 };
 
-const MUSC_2C = {
-  type: 'lift', label: 'Bi-set 3 · Glúteo + Tríceps',
-  title: 'Glúteos Coice na Polia ↔ Tríceps na Polia com Corda', role: 'forca', min: 7,
-  meta: 'Bi-set ancorado: mesmo crossover, polia de baixo e polia de cima (uma estação só). Tríceps depois do peito (ordem certa). 3 voltas; 60–90 s entre as voltas.',
-  exercises: [
-    { name: 'Glúteos Coice na Polia', muscle: 'Glúteos', equipment: 'Crossover (polia baixa)', biset: true, reps: '3x12 cada lado', loadLabel: 'Coice (polia)', sug: '10',
-      tip: 'Tornozeleira na polia baixa, de frente pro aparelho segurando firme. Leva a perna pra trás e um pouco pra cima apertando o glúteo, sem arquear a lombar, e volta devagar. Joelho de apoio destravado.', video: V.gluteoCoicePolia },
-    { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', equipment: 'Crossover (polia alta, mesmo aparelho)', biset: true, reps: '3x10-12', loadLabel: 'Tríceps (polia)', sug: '15',
-      tip: 'Na polia de cima, cotovelos colados no corpo. Estica o braço inteiro abrindo a corda lá embaixo e volta devagar. É a parte de trás do braço, a que firma o "tchauzinho".', video: V.tricepsCorda },
-  ]
-};
-
 /* ── TREINO 3: pernas/glúteo + costas + bíceps + abdômen ── */
 const MUSC_3A = {
   type: 'lift', label: 'Bi-set 1 · Pernas + Costas',
@@ -544,38 +542,26 @@ const MUSC_3A = {
 };
 
 const MUSC_3B = {
-  type: 'lift', label: 'Bi-set 2 · Glúteo + Abdômen',
-  title: 'Abdução de Quadril Máquina ↔ Abdominal Prancha Isométrica', role: 'forca', min: 7,
-  meta: 'Bi-set ancorado: abdutora + colchonete ao lado (uma estação só). 3 voltas; 60–90 s entre as voltas.',
+  type: 'lift', label: 'Bi-set 2 · Coxa (isometria) + Abdômen',
+  title: 'Cadeira Extensora ↔ Abdominal Prancha Isométrica', role: 'forca', min: 7,
+  meta: 'Bi-set ancorado: extensora + colchonete ao lado (uma estação só). Extensora SÓ em isometria (segura parada, sem repetições). 3 voltas; 60–90 s entre as voltas.',
   exercises: [
-    { name: 'Abdução de Quadril Máquina', muscle: 'Glúteo médio', equipment: 'Abdutora', biset: true, reps: '3x10-12', loadLabel: 'Abdutora', sug: '35',
-      tip: 'Costas no encosto, abre as pernas com força, segura 1 s aberta e volta devagar sem deixar o peso bater. Carga desafiadora: as últimas têm que queimar.', video: V.abducaoMaquina },
-    { name: 'Abdominal Prancha Isométrica', muscle: 'Abdômen', equipment: 'Colchonete (ao lado da abdutora)', biset: true, reps: '3x 30s', loadLabel: null,
+    { name: 'Cadeira Extensora', muscle: 'Quadríceps (isometria)', equipment: 'Cadeira Extensora', biset: true, reps: '3x 20s segurando', loadLabel: 'Extensora', sug: '15',
+      tip: 'SÓ ISOMETRIA, nada de repetições: sobe até o ângulo em que o joelho fica confortável (sem esticar até o fim) e segura parada 20 s, respirando. Carga moderada. Sem dor: se incomodar, baixa um pouco o ângulo ou a carga. Estalo sem dor é comum. Ficou fácil segurar? Sobe a carga aos poucos.', video: V.cadeiraExtensora },
+    { name: 'Abdominal Prancha Isométrica', muscle: 'Abdômen', equipment: 'Colchonete (ao lado da extensora)', biset: true, reps: '3x 30s', loadLabel: null,
       tip: 'Antebraços no chão, corpo reto da cabeça ao calcanhar, barriga encolhida e respirando. Pesou? Apoia os joelhos num colchonete macio.', video: V.prancha },
   ]
 };
 
-const MUSC_3C = {
-  type: 'lift', label: 'Bi-set 3 · Glúteo + Bíceps',
-  title: 'Elevação de Quadril Unilateral ↔ Rosca Alternada com Halteres', role: 'forca', min: 7,
-  meta: 'Bi-set ancorado: colchonete + halteres ao lado (uma estação só). Bíceps depois das costas (ordem certa). 3 voltas; 60–90 s entre as voltas.',
-  exercises: [
-    { name: 'Elevação de Quadril Unilateral', muscle: 'Glúteos', equipment: 'Colchonete + halter', biset: true, reps: '3x10-12 cada lado', loadLabel: 'Halter no quadril', sug: '5',
-      tip: 'Deitada, um pé apoiado e a outra perna estendida pro alto. Sobe o quadril apertando o glúteo até alinhar o corpo, segura 1 s e desce devagar, sem girar o quadril. Ficou fácil? Halter apoiado no quadril do lado que trabalha.', video: V.elevQuadrilUni },
-    { name: 'Rosca Alternada com Halteres', muscle: 'Bíceps', equipment: 'Halteres', biset: true, reps: '3x10-12 cada braço', loadLabel: 'Rosca (cada halter)', sug: '6',
-      tip: 'Em pé, joelhos destravados, cotovelo colado no corpo. Sobe girando a palma pra cima e desce devagar, sem jogar o tronco.', video: V.roscaAlternada },
-  ]
-};
-
 /* MIX 3x/sem Full Body (Regra 5/17) · força 3x10-12 (Regra 21, decisão Luisão 28/10) + aula MaxStep.
-   Cada dia: aquec (track) → mobilidade → 3 bi-sets → MaxStep (3 vídeos + progressão #2) → soltura (track). */
-const AULA_1 = [ TRK_AQUEC3, MOB_1, MUSC_1A, MUSC_1B, MUSC_1C, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3 ];
-const AULA_2 = [ TRK_AQUEC3, MOB_2, MUSC_2A, MUSC_2B, MUSC_2C, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3 ];
-const AULA_3 = [ TRK_AQUEC3, MOB_3, MUSC_3A, MUSC_3B, MUSC_3C, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3 ];
+   Cada dia: aquec (track) → mobilidade → bi-set → track de braço/ombro MaxLift → bi-set (Regra 18) → MaxStep (3 vídeos + progressão #2) → soltura (track). */
+const AULA_1 = [ TRK_AQUEC3, MOB_1, MUSC_1A, TRK_OMBROS3, MUSC_1C, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3 ];
+const AULA_2 = [ TRK_AQUEC3, MOB_2, MUSC_2A, TRK_TRICEPS3, MUSC_2B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3 ];
+const AULA_3 = [ TRK_AQUEC3, MOB_3, MUSC_3A, TRK_BICEPS3, MUSC_3B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3 ];
 
 const TRAINING_SLOTS = [
-  { label: 'Treino 1 — Full Body (glúteo, pernas, costas, ombro, abdômen)', blocks: AULA_1 },
-  { label: 'Treino 2 — Full Body (glúteo, posterior, peito, tríceps, abdômen)', blocks: AULA_2 },
+  { label: 'Treino 1 — Full Body (glúteo, pernas, ombros, abdômen)', blocks: AULA_1 },
+  { label: 'Treino 2 — Full Body (posterior, glúteo, peito, tríceps, abdômen)', blocks: AULA_2 },
   { label: 'Treino 3 — Full Body (glúteo, pernas, costas, bíceps, abdômen)', blocks: AULA_3 },
 ];
 const DAY_CONFIG_KEY = 'maxresults-' + 'larissa-marchiote' + '-days-v1';
@@ -653,7 +639,7 @@ function render() { renderMixGoal(); renderDaySwitcher(); renderWorkout(); updat
 
 function renderMixGoal() {
   document.getElementById('mixGoal').innerHTML = `
-    <div class="mix-goal-header"><span class="mix-goal-label">Meta da Semana</span><span class="mix-goal-badge">Ciclo 1 · Força + MaxStep</span></div>
+    <div class="mix-goal-header"><span class="mix-goal-label">Meta da Semana</span><span class="mix-goal-badge">Ciclo 1 · Força + MaxLift + MaxStep</span></div>
     <div class="mix-goal-items">${MIX_GOALS.map(g => `<div class="mix-goal-item"><div class="mix-goal-icon">${g.icon}</div><div class="mix-goal-text">${g.text}</div></div>`).join('')}</div>`;
 }
 
