@@ -310,7 +310,7 @@ const MIX_GOALS = [
   { icon: '🛡️', text: '<strong>Quadril protegido:</strong> sem corrida e sem salto. Agachamento e stiff só até onde o quadril fica confortável. Incomodou na virilha ou na lateral do quadril? Diminui a amplitude ou o peso e me avisa.' },
   { icon: '👟', text: '<strong>Cardio = MaxStep:</strong> step, degrau baixo da escada ou só no chão marcando os passos, sempre sem salto. Começa leve: os primeiros minutos já são o aquecimento do cardio. <strong>Da semana 3 em diante entra a aula nova, o MaxStep #2</strong>, no lugar da caminhada (último vídeo do cardio).' },
   { icon: '📈', text: '<strong>Cargas:</strong> a sugestão parte de um kettlebell de 8 kg. Usa o seu e anota o peso no campo kg. Da próxima vez ele aparece e você decide se mantém ou aumenta as repetições.' },
-  { icon: '⏱️', text: '<strong>Tempo:</strong> ~57 min (aquecimento + força ~28–30 · cardio ~22, subindo pra ~25–28 · alongamento ~6).' },
+  { icon: '⏱️', text: '<strong>Tempo:</strong> ~58 min (aquecimento + força ~28–30 · cardio ~22, subindo pra ~25–28 · alongamento ~7).' },
   { icon: '📊', text: '<strong>Avaliação física:</strong> ainda não recebi as suas medidas. Quando puder, manda pelo link que te passei: é com ela que eu acompanho a sua evolução.' },
 ];
 
@@ -450,6 +450,7 @@ const V = {
   panturrilhaUniParede: 'https://vd.mfitpersonal.com.br/763/mp4/763.mp4',
   alongAbdutor: 'https://vd.mfitpersonal.com.br/748/mp4/748.mp4',
   alongGluteos3: 'https://vd.mfitpersonal.com.br/100/mp4/100.mp4',
+  alongFlexorQuadril: 'https://player.mediadelivery.net/play/655450/677c3e2b-f9b6-478b-9526-cf695e8f273d',
 };
 
 /* Regra 24: mobilidade de quadril + glúteo cruzado + abdômen + coluna, todo treino (coluna varia por dia). */
@@ -505,13 +506,15 @@ const MOB_3 = {
    Suave e sem dor: 2x 20s cada lado, sem balanço. */
 const ALONG_QUADRIL = {
   type: 'lift', label: 'Soltura · Quadril',
-  title: 'Alongamentos de quadril e glúteo (volta à calma)', role: 'soltura', min: 2,
-  meta: 'Fecha todo treino. Suave: alongou, segura e respira. 2x 20s cada lado, começando pelo esquerdo. ~2 min.',
+  title: 'Alongamentos de quadril e glúteo (volta à calma)', role: 'soltura', min: 3,
+  meta: 'Fecha todo treino. Suave: alongou, segura e respira. 2x 20s cada lado, começando pelo esquerdo. ~3 min.',
   exercises: [
     { name: 'Alongamento de Abdutor I', muscle: 'Lateral do quadril', biset: false, reps: '2x 20s cada lado', loadLabel: null,
       tip: 'Mãos no chão, uma perna esticada pra trás e a da frente dobrada, cruzando na frente do corpo. Desce o quadril devagar só até sentir alongar a lateral de fora do quadril da perna da frente. Sem balançar e sem dor: se der pontada na lateral, sobe um pouco e alivia. Joelho incomodou? Apoia o joelho de trás no colchonete.', video: V.alongAbdutor },
     { name: 'Alongamento de Glúteos III', muscle: 'Glúteos', biset: false, reps: '2x 20s cada lado', loadLabel: null,
       tip: 'Deitada de barriga pra cima, cruza uma perna sobre a outra e abraça, trazendo as pernas em direção ao peito. Cabeça e lombar no colchonete, ombros soltos. Puxa só até sentir alongar o glúteo, sem aperto na lateral do quadril. Respira fundo e solta mais um pouco a cada expiração.', video: V.alongGluteos3 },
+    { name: 'Alongamento Flexor do Quadril', muscle: 'Frente do quadril', biset: false, reps: '2x 20s cada lado', loadLabel: null,
+      tip: 'Peito do pé de trás apoiado no sofá (ou banco), joelho de trás no colchonete e a outra perna à frente, como numa passada. Abdômen firme e encaixa o quadril pra frente, sem arquear a lombar. Parada, só segura e respira.', video: V.alongFlexorQuadril },
   ],
 };
 
