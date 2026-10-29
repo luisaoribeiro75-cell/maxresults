@@ -466,11 +466,10 @@ const BISET_A_3 = {
 
 const CARDIO_A = {
   type: 'cardio', label: 'Cardio · Aula MaxResults',
-  title: 'MaxCicle #1 na bike de spinning (~33 min) — ou Bike 20 min', duration: '~33 min (ou 20)',
-  meta: 'Faça UM dos dois: a aula MaxCicle #1 completa na bike de spinning (~33 min) OU, no dia em que estiver sem tempo ou a spinning estiver ocupada, 20 min de bike comum. A aula começa leve — já é o aquecimento dela.',
+  title: 'MaxCicle #1 na bike de spinning', duration: '~33 min',
+  meta: 'A aula começa leve, já é o aquecimento dela. Dia corrido ou spinning ocupada? Faz a bike 20 min no lugar e marca a aula como feita.',
   exercises: [
-    { name: 'MaxCicle #1', muscle: 'Cardiovascular / Pernas', duration: '~33 min', equipment: 'Bike de spinning', carga: 'Carga da bike moderada — nos picos, 7 a 8 de 10', tip: 'Siga a aula do começo ao fim: ela já começa leve (é o aquecimento) e alterna ritmo, subida e sprint. Selim na altura do quadril e guidão alto o suficiente pra tronco ficar mais em pé. Abdômen firme e quadril encaixado o tempo todo, sem afundar a lombar. Nas partes em pé, só se a lombar estiver bem; se incomodar, faça sentada aumentando um pouco a carga. Nos picos vá a uns 7 a 8 de 10, não ao máximo.', video: V.maxCicle },
-    { name: 'Bicicleta', muscle: 'Cardiovascular', duration: '20 min', equipment: 'Bike ergométrica', tip: 'SÓ no dia em que não fizer a aula. Banco na altura do quadril. ' + CARDIO_TIP, video: V.bike },
+    { name: 'MaxCicle #1', muscle: 'Cardiovascular / Pernas', duration: '~33 min', equipment: 'Bike de spinning', carga: 'Carga da bike moderada. Nos picos, 7 a 8 de 10', tip: 'Siga a aula do começo ao fim: ela já começa leve (é o aquecimento) e alterna ritmo, subida e sprint. Selim na altura do quadril e guidão alto o suficiente pro tronco ficar mais em pé. Abdômen firme e quadril encaixado o tempo todo, sem afundar a lombar. Nas partes em pé, só se a lombar estiver bem; se incomodar, faça sentada aumentando um pouco a carga. Nos picos vá a uns 7 a 8 de 10, não ao máximo. Dia corrido? Faz a bike 20 min (banco na altura do quadril, começando leve) e marca como feito.', video: V.maxCicle },
   ]
 };
 
@@ -899,7 +898,7 @@ function finishWorkout() {
   }
   
   // Record session for frequency tracking
-  recordSession();
+  if (typeof recordSession === 'function') recordSession();
   renderDaySwitcher();
 }
 
