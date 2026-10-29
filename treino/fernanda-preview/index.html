@@ -290,7 +290,7 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Ciclo 1 &middot; 26/10/2026 &middot; MaxLift Mix #3 + kettlebell + MaxStep</footer>
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Ciclo 1 &middot; 26/10/2026 (ajuste 29/10) &middot; MaxLift Mix #3 + kettlebell + MaxStep</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -306,11 +306,11 @@ const ATHLETE = 'Fernanda';
 const MIX_GOALS = [
   { icon: '🎯', text: '<strong>Objetivo:</strong> perder gordura, com atenção especial ao abdômen. 3x por semana, corpo inteiro em todos os treinos: <strong>seg = Treino 1 · qua = Treino 2 · sex = Treino 3</strong>. Tudo gravado: treina no horário que for melhor aí.' },
   { icon: '🏠', text: '<strong>Em casa, com o que você tem:</strong> kettlebell + colchonete. Nos vídeos do MaxLift o pessoal usa barra e halteres: você faz o mesmo movimento segurando o kettlebell pelos dois lados da alça. Em cada vídeo eu explico a adaptação.' },
-  { icon: '🎬', text: '<strong>Como funciona (Mix = aula + exercícios):</strong> aquecimento do MaxLift → mobilidade → track MaxLift → bi-set → track MaxLift → bi-set → MaxStep → alongamento. No bi-set, os 2 exercícios em sequência, sem descanso entre eles.' },
+  { icon: '🎬', text: '<strong>Como funciona (Mix = aula + exercícios):</strong> aquecimento do MaxLift → mobilidade → track MaxLift → bi-set → track MaxLift → bi-set → MaxStep → alongamento (track + 2 alongamentos de quadril). No bi-set, os 2 exercícios em sequência, sem descanso entre eles.' },
   { icon: '🛡️', text: '<strong>Quadril protegido:</strong> sem corrida e sem salto. Agachamento e stiff só até onde o quadril fica confortável. Incomodou na virilha ou na lateral do quadril? Diminui a amplitude ou o peso e me avisa.' },
   { icon: '👟', text: '<strong>Cardio = MaxStep:</strong> step, degrau baixo da escada ou só no chão marcando os passos, sempre sem salto. Começa leve: os primeiros minutos já são o aquecimento do cardio. <strong>Da semana 3 em diante entra a aula nova, o MaxStep #2</strong>, no lugar da caminhada (último vídeo do cardio).' },
   { icon: '📈', text: '<strong>Cargas:</strong> a sugestão parte de um kettlebell de 8 kg. Usa o seu e anota o peso no campo kg. Da próxima vez ele aparece e você decide se mantém ou aumenta as repetições.' },
-  { icon: '⏱️', text: '<strong>Tempo:</strong> ~55 min (aquecimento + força ~28–30 · cardio ~22, subindo pra ~25–28 · alongamento ~4).' },
+  { icon: '⏱️', text: '<strong>Tempo:</strong> ~57 min (aquecimento + força ~28–30 · cardio ~22, subindo pra ~25–28 · alongamento ~6).' },
   { icon: '📊', text: '<strong>Avaliação física:</strong> ainda não recebi as suas medidas. Quando puder, manda pelo link que te passei: é com ela que eu acompanho a sua evolução.' },
 ];
 
@@ -448,6 +448,8 @@ const V = {
   elevFrontalKb: 'https://vd.mfitpersonal.com.br/159/mp4/159.mp4',
   elevQuadrilUni: 'https://vd.mfitpersonal.com.br/255/mp4/255.mp4',
   panturrilhaUniParede: 'https://vd.mfitpersonal.com.br/763/mp4/763.mp4',
+  alongAbdutor: 'https://vd.mfitpersonal.com.br/748/mp4/748.mp4',
+  alongGluteos3: 'https://vd.mfitpersonal.com.br/100/mp4/100.mp4',
 };
 
 /* Regra 24: mobilidade de quadril + glúteo cruzado + abdômen + coluna, todo treino (coluna varia por dia). */
@@ -496,6 +498,20 @@ const MOB_3 = {
       tip: 'De barriga pra baixo, apoia as mãos e sobe o tronco só até onde for confortável, quadril no chão. Se incomodar a lombar, fica apoiada nos antebraços.', video: V.alongAbdomen },
     { name: 'Hand to Toes', muscle: 'Posterior de coxa / Coluna', biset: false, reps: '6 reps + 10s embaixo', loadLabel: null,
       tip: 'Em pé, joelhos levemente dobrados: desce enrolando a coluna, vértebra por vértebra, até onde as mãos chegarem (pés ou canelas). Sobe devagar enrolando de volta. Sem tranco.', video: V.handToToes },
+  ],
+};
+
+/* v4 29/10/2026 (GO Luisão): volta à calma específica do quadril, depois do Track Alongamentos, nos 3 treinos.
+   Suave e sem dor: 2x 20s cada lado, sem balanço. */
+const ALONG_QUADRIL = {
+  type: 'lift', label: 'Soltura · Quadril',
+  title: 'Alongamentos de quadril e glúteo (volta à calma)', role: 'soltura', min: 2,
+  meta: 'Fecha todo treino. Suave: alongou, segura e respira. 2x 20s cada lado, começando pelo esquerdo. ~2 min.',
+  exercises: [
+    { name: 'Alongamento de Abdutor I', muscle: 'Lateral do quadril', biset: false, reps: '2x 20s cada lado', loadLabel: null,
+      tip: 'Mãos no chão, uma perna esticada pra trás e a da frente dobrada, cruzando na frente do corpo. Desce o quadril devagar só até sentir alongar a lateral de fora do quadril da perna da frente. Sem balançar e sem dor: se der pontada na lateral, sobe um pouco e alivia. Joelho incomodou? Apoia o joelho de trás no colchonete.', video: V.alongAbdutor },
+    { name: 'Alongamento de Glúteos III', muscle: 'Glúteos', biset: false, reps: '2x 20s cada lado', loadLabel: null,
+      tip: 'Deitada de barriga pra cima, cruza uma perna sobre a outra e abraça, trazendo as pernas em direção ao peito. Cabeça e lombar no colchonete, ombros soltos. Puxa só até sentir alongar o glúteo, sem aperto na lateral do quadril. Respira fundo e solta mais um pouco a cada expiração.', video: V.alongGluteos3 },
   ],
 };
 
@@ -574,9 +590,9 @@ const MUSC_3B = {
 /* MISTO 3x/sem Full Body (Regra 17) · UM mix por ciclo (Mix #3 — Regra 18; renovação troca pro #2).
    Cada dia: aquec (track) → mobilidade (Regra 24) → track → bi-set → track → bi-set → MaxStep (3 vídeos) → soltura (track).
    Quadril: 1 bloco com flexão de quadril carregada por dia (T1 Pernas · T2 Posteriores · T3 Agachamento Sumô). */
-const AULA_1 = [ TRK_AQUEC3, MOB_1, TRK_PERNAS3, MUSC_1A, TRK_PEITO3, MUSC_1B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3 ];
-const AULA_2 = [ TRK_AQUEC3, MOB_2, TRK_POST3, MUSC_2A, TRK_OMBROS3, MUSC_2B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3 ];
-const AULA_3 = [ TRK_AQUEC3, MOB_3, TRK_PERNAS3, MUSC_3G, TRK_TRICEPS3, MUSC_3B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3 ];
+const AULA_1 = [ TRK_AQUEC3, MOB_1, TRK_PERNAS3, MUSC_1A, TRK_PEITO3, MUSC_1B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3, ALONG_QUADRIL ];
+const AULA_2 = [ TRK_AQUEC3, MOB_2, TRK_POST3, MUSC_2A, TRK_OMBROS3, MUSC_2B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3, ALONG_QUADRIL ];
+const AULA_3 = [ TRK_AQUEC3, MOB_3, TRK_PERNAS3, MUSC_3G, TRK_TRICEPS3, MUSC_3B, TRK_STEP_ORIENT, TRK_STEP_PREP, TRK_STEP, TRK_STEP2, TRK_ALONG3, ALONG_QUADRIL ];
 
 const TRAINING_SLOTS = [
   { label: 'Treino 1 — Full Body (pernas, costas, peito, bíceps)', blocks: AULA_1 },
