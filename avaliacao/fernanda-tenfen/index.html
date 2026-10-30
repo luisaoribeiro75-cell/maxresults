@@ -349,7 +349,7 @@ function renderCompare(ia, ib) {
 function moveBA(v){ const w=document.getElementById('baAfter'), d=document.getElementById('baDiv'); if(w){w.style.width=v+'%';} if(d){d.style.left=v+'%';} }
 
 /* ── Estado + navegação ── */
-let mode='view', selView=AVALIACOES.length-1, selA=0, selB=AVALIACOES.length-1;
+let mode='compare', selView=AVALIACOES.length-1, selA=Math.max(0,AVALIACOES.length-2), selB=AVALIACOES.length-1; // abre no comparativo: penúltima → atual
 function setMode(m){ mode=m; document.getElementById('mView').classList.toggle('active',m==='view'); document.getElementById('mCmp').classList.toggle('active',m==='compare'); draw(); }
 function pickView(i){ selView=i; draw(); }
 function pickCmp(i){ // alterna papel: se não é A nem B, vira B (mantém A); clique em A/B limpa
@@ -377,18 +377,15 @@ function draw(){
       return;
     }
     const chips = AVALIACOES.map((a,i)=>{ let c='chip'; if(i===selA)c+=' a'; else if(i===selB)c+=' b'; return `<div class="${c}" onclick="setCmp(${i})">${a.data}${i===selA?'<span class="tag">ANTES</span>':(i===selB?'<span class="tag">DEPOIS</span>':'')}</div>`; }).join('');
-    pa.innerHTML = `<div class="picker-label">Toque em duas avaliações</div><div class="chips">${chips}</div><div class="compare-hint">Primeiro toque = ANTES · segundo = DEPOIS · toque de novo pra trocar.</div>`;
+    pa.innerHTML = `<div class="picker-label">Toque em duas avaliações</div><div class="chips">${chips}</div><div class="compare-hint">Toque em outra data pra comparar com ela (a mais antiga fica como ANTES).</div>`;
     bd.innerHTML = renderCompare(selA, selB);
     moveBA(50);
   }
 }
-let cmpNext='a';
+// Toque numa data = ela entra na comparação; a mais antiga é sempre ANTES.
 function setCmp(i){
-  if(i===selA){ selA=null; cmpNext='a'; if(selB===null){} draw(); return; }
-  if(i===selB){ selB=null; cmpNext='b'; draw(); return; }
-  if(selA===null){ selA=i; } else if(selB===null){ selB=i; } else { // ambos setados: substitui o mais antigo escolhido
-    selB=i;
-  }
+  if(i===selA||i===selB) return;
+  if(i<selB){ selA=i; } else { selA=selB; selB=i; }
   draw();
 }
 draw();
