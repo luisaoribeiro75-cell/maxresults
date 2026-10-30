@@ -265,6 +265,14 @@
     .calc-row .k { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
     .calc-row .v { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--text); }
     .calc-row.big .v { font-size: 22px; color: var(--green); }
+    .prev { font-size: 10.5px; color: var(--text-muted); margin-top: 4px; font-weight: 600; letter-spacing: .2px; }
+    .prev b { color: var(--text-dim, #b0b0b6); }
+    .prev .dg { color: #34d399; } .prev .dr { color: #ef4444; } .prev .dn { color: #f59e0b; }
+    .hist-box { margin-top: 10px; font-size: 12px; line-height: 1.5; border-radius: 10px; padding: 10px 12px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.35); color: #ededef; }
+    .hist-box.none { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1); color: #8a8a92; }
+    .foto-status { margin: 0 auto 18px; max-width: 360px; text-align: left; font-size: 13px; line-height: 1.8; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 12px 14px; }
+    .foto-status .ok { color: #34d399; } .foto-status .err { color: #ef4444; font-weight: 700; } .foto-status .wait { color: #f59e0b; }
+    .sec-btn { display: inline-block; margin: 6px 4px; padding: 11px 18px; border-radius: 999px; border: 1px solid #f59e0b; color: #f59e0b; background: rgba(245,158,11,0.1); font-weight: 700; font-size: 13px; text-decoration: none; cursor: pointer; }
     .calc-note { font-size: 11px; color: var(--text-muted); margin-top: 8px; }
 
     .measure-grid {
@@ -467,7 +475,9 @@
 
       <div class="field">
         <label>Nome completo <span class="required">*</span></label>
-        <input type="text" name="nome" required placeholder="Nome do aluno">
+        <input type="text" name="nome" required placeholder="Nome do aluno" list="alunosList" autocomplete="off">
+        <datalist id="alunosList"></datalist>
+        <div class="hist-box none" id="histBox" style="display:none"></div>
       </div>
 
       <div class="measure-grid">
@@ -699,7 +709,7 @@
 
     <button type="submit" class="submit-btn" id="submitBtn">
       Enviar Avaliação 📨
-      <div class="btn-sub">Os dados e fotos serão enviados para o Luisão via WhatsApp</div>
+      <div class="btn-sub">Dados e fotos ficam salvos automaticamente (planilha + Google Drive)</div>
     </button>
   </form>
 
@@ -707,6 +717,9 @@
     <div class="emoji">🎉</div>
     <h2>Avaliação Enviada!</h2>
     <p>Obrigado! O Luisão vai analisar seus dados e montar seu treino personalizado. Aguarde o contato pelo WhatsApp! 💪</p>
+    <div class="foto-status" id="fotoStatus" style="display:none"></div>
+    <button type="button" class="sec-btn" id="fotoRetry" style="display:none">🔁 Tentar subir as fotos de novo</button>
+    <a class="sec-btn" id="waBtn" target="_blank" rel="noopener" style="display:none">💬 Mandar resumo no WhatsApp</a>
   </div>
 
   <footer class="footer">
@@ -803,7 +816,8 @@ function calcComposicao(){
     set('calcMG', mg.toFixed(1).replace('.',',')+' kg');
     set('calcMM', mm.toFixed(1).replace('.',',')+' kg');
   } else { set('calcMG','—'); set('calcMM','— (informe o peso)'); }
-  document.getElementById('calcNote').textContent = (sexo==='m'?'Fórmula MASCULINA':'Fórmula FEMININA') + ' — Jackson-Pollock-Ward 7 dobras + Siri.';
+  const gAnt = (typeof ultima !== 'undefined' && ultima) ? gorduraDe(ultima, sexo) : null;
+  document.getElementById('calcNote').textContent = (sexo==='m'?'Fórmula MASCULINA':'Fórmula FEMININA') + ' — Jackson-Pollock-Ward 7 dobras + Siri.' + (gAnt ? ` · Anterior (${ultimaData}): ${gAnt.toFixed(2).replace('.',',')}% → agora ${(gord-gAnt>0?'+':'')}${(gord-gAnt).toFixed(2).replace('.',',')} pontos` : '');
 }
 
 document.querySelectorAll('input, textarea, select').forEach(el => {
@@ -883,7 +897,7 @@ document.getElementById('avaliacaoForm').addEventListener('submit', function(e) 
 
   msg += '\n📸 *Fotos:* ';
   const photoCount = Object.keys(photoFiles).length;
-  msg += photoCount > 0 ? `${photoCount} foto(s) — envio separado a seguir` : 'Nenhuma enviada';
+  msg += photoCount > 0 ? `${photoCount} foto(s) — subindo direto pro Google Drive pelo app` : 'Nenhuma enviada';
   msg += '\n';
 
   if (d.observacoes) msg += `\n*Obs:* ${d.observacoes}\n`;
@@ -908,15 +922,143 @@ document.getElementById('avaliacaoForm').addEventListener('submit', function(e) 
 
   const phone = '5541999775758';
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-  window.open(url, '_blank');
-  if (photoCount > 0) {
-    setTimeout(() => {
-      alert('Agora envie as ' + photoCount + ' foto(s) na mesma conversa do WhatsApp com o Luisão! 📸');
-    }, 1500);
-  }
+  const wa = document.getElementById('waBtn'); wa.href = url; wa.style.display = 'inline-block';
+  enviarFotos(WEBHOOK_URL, d.nome || 'Aluno', d.data_avaliacao || hojeISO());
   this.style.display = 'none';
   document.getElementById('successScreen').classList.add('visible');
 });
+
+
+/* ═══ FOTOS: sobem sozinhas pro Google Drive (via planilha), com confirmação ═══ (30/10/2026)
+   Antes as fotos ficavam só no celular e dependiam de mandar à mão no WhatsApp — e se perdiam. */
+const ANGULO = { photoFront: 'frente', photoCostas: 'costas', photoLateral: 'lado' };
+function hojeISO(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function reduzirFoto(file, max=1600, q=0.85){
+  return new Promise((ok, erro) => {
+    const img = new Image(), u = URL.createObjectURL(file);
+    img.onload = () => {
+      const k = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight));
+      const c = document.createElement('canvas'); c.width = Math.round(img.naturalWidth*k); c.height = Math.round(img.naturalHeight*k);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(u);
+      ok(c.toDataURL('image/jpeg', q).split(',')[1]);
+    };
+    img.onerror = () => { URL.revokeObjectURL(u); erro(new Error('não consegui ler a foto')); };
+    img.src = u;
+  });
+}
+async function subirFoto(urlApi, aluna, data, angulo, file){
+  const b64 = await reduzirFoto(file);
+  let ultimoErro = '';
+  for (let t = 1; t <= 3; t++) {
+    try {
+      const r = await fetch(urlApi, { method: 'POST', body: JSON.stringify({ tipo: 'foto', aluna, data, angulo, mime: 'image/jpeg', b64 }) });
+      const j = await r.json();
+      if (j && j.ok && j.bytes) return true;  // só o script novo devolve bytes = foto gravada de verdade
+      ultimoErro = (j && j.erro) || 'resposta estranha';
+    } catch (e) { ultimoErro = e.message || 'sem internet?'; }
+    await new Promise(z => setTimeout(z, 1500 * t));
+  }
+  throw new Error(ultimoErro);
+}
+const estadoFoto = {};
+async function enviarFotos(urlApi, aluna, data){
+  const box = document.getElementById('fotoStatus'), retry = document.getElementById('fotoRetry');
+  const ids = Object.keys(photoFiles);
+  if (!ids.length) return;
+  box.style.display = 'block'; retry.style.display = 'none';
+  const pinta = () => { box.innerHTML = '<b>📸 Fotos</b><br>' + ids.map(id => {
+    const st = estadoFoto[id] || 'wait';
+    return `${ANGULO[id]}: ` + (st === 'ok' ? '<span class="ok">✅ salva no Drive</span>' : st === 'wait' ? '<span class="wait">⏳ subindo...</span>' : `<span class="err">❌ não subiu (${st})</span>`);
+  }).join('<br>'); };
+  ids.forEach(id => { if (estadoFoto[id] !== 'ok') estadoFoto[id] = 'wait'; }); pinta();
+  for (const id of ids) {
+    if (estadoFoto[id] === 'ok') continue;
+    try { await subirFoto(urlApi, aluna, data, ANGULO[id], photoFiles[id]); estadoFoto[id] = 'ok'; }
+    catch (e) { estadoFoto[id] = e.message; }
+    pinta();
+  }
+  if (ids.some(id => estadoFoto[id] !== 'ok')) {
+    retry.style.display = 'inline-block';
+    retry.onclick = () => enviarFotos(urlApi, aluna, data);
+    box.innerHTML += '<br><span class="err">Não feche esta página: as fotos ainda estão aqui. Toque em "Tentar de novo".</span>';
+  }
+}
+window.addEventListener('beforeunload', e => {
+  if (Object.keys(photoFiles).some(id => estadoFoto[id] && estadoFoto[id] !== 'ok')) { e.preventDefault(); e.returnValue = ''; }
+});
+
+/* ═══ ÚLTIMA AVALIAÇÃO: digitou o nome → cada campo mostra a medida anterior ═══ (30/10/2026)
+   Fonte: a página de avaliação do aluno (avaliacao/<slug>/), lista em avaliacao/index.json. */
+const sem = t => String(t||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim().replace(/\s+/g,' ');
+const mb = (n,l) => a => a.membros && a.membros[n] ? a.membros[n][l] : null;
+const ANTES = {
+  peso:[a=>a.peso,'low'], altura:[a=>a.altura,''], idade:[a=>a.idade,''],
+  pescoco:[a=>a.tronco.pescoco,''], ombro:[a=>a.tronco.ombro,''], torax:[a=>a.tronco.peitoral,''],
+  cintura:[a=>a.tronco.cintura,'low'], abdomen:[a=>a.tronco.abdomen,'low'], quadril:[a=>a.tronco.quadril,''],
+  braco_esq:[mb('Braço relaxado','e'),''], braco_dir:[mb('Braço relaxado','d'),''],
+  antebraco_esq:[mb('Antebraço','e'),''], antebraco_dir:[mb('Antebraço','d'),''],
+  coxa_esq:[mb('Coxa','e'),''], coxa_dir:[mb('Coxa','d'),''], perna_esq:[mb('Panturrilha','e'),''], perna_dir:[mb('Panturrilha','d'),''],
+  db_tricipital:[a=>a.dobras.Tricipital,'low'], db_subescapular:[a=>a.dobras.Subescapular,'low'], db_peitoral:[a=>a.dobras.Peitoral,'low'],
+  db_axilar:[a=>a.dobras['Axilar méd.'],'low'], db_suprailiaca:[a=>a.dobras['Suprailíaca'],'low'], db_abdominal:[a=>a.dobras.Abdominal,'low'], db_coxa:[a=>a.dobras.Coxa,'low'],
+};
+let ALUNOS = [], ultima = null, ultimaData = '', carregado = '';
+const fmt = v => (Math.round(v*10)/10).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1});
+function pintaAntes(){
+  Object.keys(ANTES).forEach(name => {
+    const el = document.querySelector(`[name="${name}"]`); if (!el) return;
+    let p = el.parentElement.querySelector('.prev');
+    const v = ultima ? ANTES[name][0](ultima) : null;
+    if (v == null) { if (p) p.remove(); return; }
+    if (!p) { p = document.createElement('div'); p.className = 'prev'; el.insertAdjacentElement('afterend', p); }
+    const atual = parseFloat(String(el.value).replace(',','.'));
+    let delta = '';
+    if (!isNaN(atual) && name !== 'idade') {
+      const d = atual - v, flat = Math.abs(d) < 0.05;
+      const cls = flat ? 'dn' : (ANTES[name][1] === 'low' ? (d < 0 ? 'dg' : 'dr') : 'dn');
+      delta = ` · <span class="${cls}">${flat ? '= igual' : (d < 0 ? '↓ ' : '↑ ') + fmt(Math.abs(d))}</span>`;
+    }
+    p.innerHTML = `antes: <b>${fmt(v)}</b>${delta}`;
+  });
+}
+function gorduraDe(a, sexo){
+  const ds = Object.values(a.dobras||{}); if (ds.length < 7 || ds.some(x => x == null)) return null;
+  const s = ds.reduce((x,y)=>x+y,0), id = a.idade;
+  const bd = sexo === 'm' ? 1.112 - 0.00043499*s + 0.00000055*s*s - 0.00028826*id : 1.0970 - 0.00046971*s + 0.00000056*s*s - 0.00012828*id;
+  return 495/bd - 450;
+}
+async function carregaHistorico(){
+  const nome = document.querySelector('[name="nome"]').value, box = document.getElementById('histBox');
+  const n = sem(nome); if (n.length < 3 || n === carregado) return;
+  const hit = ALUNOS.filter(a => sem(a.nome) === n || sem(a.nome).startsWith(n + ' ') || n.startsWith(sem(a.nome)));
+  const slugGuess = n.replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  const slug = hit.length === 1 ? hit[0].slug : (ALUNOS.find(a => a.slug === slugGuess) || {}).slug;
+  carregado = n;
+  if (!slug) { ultima = null; pintaAntes(); box.style.display = 'block'; box.className = 'hist-box none'; box.textContent = '🆕 Sem avaliação anterior salva pra esse nome — esta vira o ponto de partida.'; return; }
+  try {
+    const html = await (await fetch(`../../avaliacao/${slug}/?v=${Date.now()}`)).text();
+    const m = html.match(/const AVALIACOES = (\[[\s\S]*?\n\]);/);
+    const lista = new Function('return ' + m[1])();
+    const sx = (html.match(/sexo:\s*"([MF])"/) || [])[1];
+    ultima = lista[lista.length - 1]; ultimaData = ultima.data;
+    const sexoEl = document.querySelector('[name="sexo"]'); if (sx && !sexoEl.value) sexoEl.value = sx.toLowerCase();
+    const alt = document.querySelector('[name="altura"]'); if (!alt.value && ultima.altura) alt.value = ultima.altura;
+    const g = gorduraDe(ultima, (sx||'').toLowerCase());
+    box.style.display = 'block'; box.className = 'hist-box';
+    box.innerHTML = `📂 <b>Última avaliação: ${ultima.data}</b> (${lista.length} no histórico)<br>${fmt(ultima.peso)} kg${g ? ' · ' + fmt(g) + '% gordura' : ''} — a medida anterior aparece embaixo de cada campo.`;
+    pintaAntes(); calcComposicao(); updateProgress();
+  } catch (e) {
+    ultima = null; pintaAntes(); box.style.display = 'block'; box.className = 'hist-box none'; box.textContent = '⚠️ Não consegui puxar a avaliação anterior (sem internet?). Dá pra seguir normal.';
+    carregado = '';
+  }
+}
+fetch('../../avaliacao/index.json?v=' + Date.now()).then(r => r.json()).then(l => {
+  ALUNOS = l; document.getElementById('alunosList').innerHTML = l.map(a => `<option value="${a.nome}">`).join('');
+}).catch(() => {});
+(() => { const el = document.querySelector('[name="nome"]'); let t;
+  el.addEventListener('change', carregaHistorico); el.addEventListener('blur', carregaHistorico);
+  el.addEventListener('input', () => { clearTimeout(t); t = setTimeout(carregaHistorico, 900); });
+  document.querySelectorAll('input').forEach(i => i.addEventListener('input', () => { if (ultima) pintaAntes(); }));
+})();
 
 updateProgress();
 </script>
