@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como está sendo? | MaxResults</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#08080a">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#08080a;--surface:#111114;--surface-2:#19191d;--border:rgba(255,255,255,.06);--border-light:rgba(255,255,255,.1);--text:#ededef;--muted:#8a8a93;--accent:#f59e0b;--accent-dim:rgba(245,158,11,.12);--green:#34d399}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100dvh;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+.c{max-width:480px;margin:0 auto;padding:28px 20px 80px}
+.brand{font-family:'Outfit',sans-serif;font-size:15px;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-family:'Outfit',sans-serif;font-size:26px;font-weight:800;letter-spacing:-.6px;margin-bottom:6px}
+.sub{color:var(--muted);font-size:14px;margin-bottom:28px}
+.q{margin-bottom:26px}
+.q label,.q .lbl{display:block;font-family:'Outfit',sans-serif;font-size:16px;font-weight:600;margin-bottom:6px}
+.hint{font-size:12.5px;color:var(--muted);margin-bottom:10px}
+textarea,input[type=text]{width:100%;padding:12px 14px;background:var(--surface);border:1px solid var(--border-light);border-radius:10px;color:var(--text);font:15px 'DM Sans',sans-serif;outline:none}
+textarea{min-height:84px;resize:vertical}
+textarea:focus,input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
+.nps{display:grid;grid-template-columns:repeat(11,1fr);gap:4px}
+.nps button{aspect-ratio:1;border:1px solid var(--border-light);background:var(--surface);color:var(--text);border-radius:8px;font:600 14px 'Outfit',sans-serif;cursor:pointer}
+.nps button.on{background:var(--accent);border-color:var(--accent);color:#111}
+.ends{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);margin-top:6px}
+.opt{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;cursor:pointer;font-size:14.5px}
+.opt.on{border-color:rgba(245,158,11,.5);background:var(--accent-dim)}
+.dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--border-light);flex-shrink:0}
+.opt.on .dot{border-color:var(--accent);background:radial-gradient(var(--accent) 45%,transparent 50%)}
+.btn{width:100%;padding:16px;border:0;border-radius:14px;background:linear-gradient(135deg,var(--accent),#fbbf24);color:#111;font:800 16px 'Outfit',sans-serif;cursor:pointer;margin-top:6px}
+.btn:disabled{opacity:.4}
+.ok{display:none;text-align:center;padding-top:60px}.ok.on{display:block}
+.ok .e{font-size:54px;margin-bottom:12px}.ok h2{font-family:'Outfit',sans-serif;font-size:24px;margin-bottom:8px}.ok p{color:var(--muted)}
+.err{color:#fb7185;font-size:13px;margin-top:8px;display:none}
+</style>
+</head>
+<body>
+<div class="c">
+<form id="f">
+  <div class="brand">MaxResults</div>
+  <h1 id="tit">Como está sendo?</h1>
+  <div class="sub">Leva 1 minuto. Eu leio tudo pessoalmente. Luisão</div>
+
+  <div class="q"><label for="nome">Seu nome</label><input type="text" id="nome" required></div>
+
+  <div class="q"><span class="lbl">De 0 a 10, quanto você indicaria a MaxResults pra uma amiga?</span>
+    <div class="nps" id="nps"></div><div class="ends"><span>nada provável</span><span>com certeza</span></div></div>
+
+  <div class="q"><label for="frase">Se uma amiga te perguntasse como é treinar comigo, o que você diria em uma frase?</label>
+    <textarea id="frase" required></textarea></div>
+
+  <div class="q"><label for="facil">O que ficou mais fácil no seu dia a dia desde que começou?</label>
+    <div class="hint">Opcional</div><textarea id="facil"></textarea></div>
+
+  <div class="q"><label for="melhor">Se você pudesse mudar uma coisa no seu treino, qual seria?</label>
+    <div class="hint">Fica só entre nós, nunca é publicado.</div><textarea id="melhor"></textarea></div>
+
+  <div class="q"><span class="lbl">Posso usar o que você escreveu nas perguntas da amiga e do dia a dia nos stories, posts e anúncios da MaxResults?</span>
+    <div class="hint">Você pode pedir pra tirar a qualquer momento, é só me mandar mensagem.</div>
+    <div id="aut"></div></div>
+
+  <div class="q"><label for="amiga">Tem alguém que você acha que ia curtir treinar comigo? Ela ganha 7 dias grátis 🎁</label>
+    <div class="hint">Opcional. Pode ser só o nome, ou nome e WhatsApp. Se preferir, você mesma manda pra ela.</div><input type="text" id="amiga" placeholder="Nome e WhatsApp (opcional)"></div>
+
+  <button class="btn" id="b" type="submit">Enviar pelo WhatsApp</button>
+  <div class="err" id="err">Falta a nota de 0 a 10, a frase pra amiga e a resposta da autorização.</div>
+</form>
+<div class="ok" id="ok"><div class="e">🙏</div><h2>Muito obrigado!</h2><p>Agora é só tocar em enviar lá no WhatsApp.</p></div>
+</div>
+<script>
+const P=new URLSearchParams(location.search), n=(P.get('n')||'').trim();
+if(n){document.getElementById('nome').value=n;document.getElementById('tit').textContent=n+', como está sendo?'}
+let nota=null, aut=null;
+const g=document.getElementById('nps');
+for(let i=0;i<=10;i++){const b=document.createElement('button');b.type='button';b.textContent=i;b.onclick=()=>{nota=i;[...g.children].forEach(x=>x.classList.toggle('on',x===b))};g.appendChild(b)}
+const A=document.getElementById('aut');
+['Não','Sim, sem nome','Sim, com meu primeiro nome'].forEach(t=>{const d=document.createElement('div');d.className='opt';d.innerHTML='<span class="dot"></span>'+t;d.onclick=()=>{aut=t;[...A.children].forEach(x=>x.classList.toggle('on',x===d))};A.appendChild(d)});
+document.getElementById('f').addEventListener('submit',e=>{
+  e.preventDefault();
+  const v=id=>document.getElementById(id).value.trim();
+  if(nota===null||!v('frase')||!aut){document.getElementById('err').style.display='block';return}
+  const m=`*PESQUISA DE SATISFAÇÃO*\n*Nome:* ${v('nome')}\n*Nota (0 a 10):* ${nota}\n*Pra uma amiga:* ${v('frase')}\n*Ficou mais fácil:* ${v('facil')||'—'}\n*Mudaria:* ${v('melhor')||'—'}\n*Depoimento:* ${aut}\n*Indicação:* ${v('amiga')||'—'}`;
+  window.open('https://wa.me/5541999775758?text='+encodeURIComponent(m),'_blank');
+  document.getElementById('f').style.display='none';document.getElementById('ok').classList.add('on');
+});
+</script>
+</body>
+</html>
