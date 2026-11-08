@@ -309,7 +309,7 @@ dl.kv dd{margin:0}
 <footer class="foot"><span>Luisão Ribeiro · Personal Trainer · CREF 003063-PR</span><span id="atual"></span></footer>
 </div>
 <script>
-const AL={"id": "juliano-ferreira", "nome": "Juliano Ferreira", "primeiro": "Juliano", "sub": "Trio com Luiz e Mônica", "treinoSlug": null, "formato": "trio", "ultimaAval": null, "avaliacoes": {}, "horarios": [], "dieta": false, "lembreteHora": null, "recado": null, "treinosMes": null, "contrato": {"status": "pendente", "plano": "a definir", "vencimento": 30, "reposicoes": 1}, "regraDias": 90, "atualizado": "08/11/2026"};
+const AL={"id": "juliano-ferreira", "nome": "Juliano Ferreira", "primeiro": "Juliano", "sub": "Trio com Luiz e Mônica", "treinoSlug": null, "formato": "trio", "ultimaAval": null, "avaliacoes": {}, "horarios": [{"dia": 1, "hora": "20:15"}, {"dia": 2, "hora": "19:15"}, {"dia": 4, "hora": "20:15"}], "dieta": false, "lembreteHora": null, "recado": null, "treinosMes": null, "quinzena": null, "contrato": {"status": "pendente", "plano": "a definir", "vencimento": 30, "reposicoes": 1}, "regraDias": 90, "atualizado": "08/11/2026"};
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const API='https://script.google.com/macros/s/AKfycbxVIwFvx1TpgvbEoI8jUDnY4pCRAKDaSwpxnsamHEyNuwEKumuqLYH1zby1C-jW-e6jaA/exec';
 const WA='https://wa.me/5541988012393?text=',go=t=>window.open(WA+encodeURIComponent(t),'_blank');
@@ -369,10 +369,11 @@ $('#x-wa').onclick=e=>{e.preventDefault();go(pedidoTxt('wa'))};
   r.onend=r.onerror=()=>{b.classList.remove('rec');b.textContent='🎤 Falar em vez de escrever';r=null};b.classList.add('rec');b.textContent='● Gravando... toque pra parar';try{r.start()}catch(e){r.onend()}}})();
 // agenda
 const H=AL.horarios||[],LIM=AL.contrato&&AL.contrato.reposicoes;
-$('#ag-box').innerHTML=(H.length?`<ul class="list">${H.map(h=>`<li><span><b>${DIAS[h.dia]}</b> · ${h.hora}</span><span class="pair">${h.treino||''}</span></li>`).join('')}</ul>`:'<p class="hint">Teus horários fixos com o Luisão entram aqui.</p>')+
+$('#ag-box').innerHTML=(H.length?`<ul class="list">${H.map(h=>`<li><span><b>${DIAS[h.dia]}</b> · ${h.hora}</span><span class="pair">${h.treino||''}</span></li>`).join('')}</ul>`:'<p class="hint">Teus horários fixos com o Luisão entram aqui.</p>')+(AL.quinzena?'<p class="pair">Presencial só na <b>1ª quinzena</b> do mês. Na 2ª quinzena, teu treino é online.</p>':'')+
  (LIM?`<p class="pair">Reposições do teu plano: até <b>${LIM}</b> por mês${AL.formato==='trio'||AL.formato==='dupla'?' (da turma, todos juntos)':''}.</p>`:'');
 const rq=$('#r-quando'),rd=$('#r-dia'),fimMes=new Date(now.getFullYear(),now.getMonth()+1,0);rd.min=iso(now);rd.max=iso(fimMes);
 function checa(){const q=rq.value?new Date(rq.value):null,fora=q&&(q-now)<12*36e5,dm=rd.value&&rd.value>iso(fimMes);$('#r-fora').classList.toggle('on',!!fora);$('#r-mes').classList.toggle('on',!!dm);$('#r-btn').disabled=!!(fora||dm||!q)}
+(function(){if(!H.length)return;for(let i=0;i<21;i++){const d=new Date(now);d.setDate(now.getDate()+i);const h=H.find(x=>x.dia===d.getDay());if(!h||(AL.quinzena&&d.getDate()>15))continue;const[hh,mm]=h.hora.split(':');d.setHours(+hh,+mm,0,0);if(d>now){rq.value=iso(d)+'T'+h.hora;break}}})();
 rq.onchange=rd.onchange=checa;checa();
 $('#r-btn').onclick=()=>{const q=new Date(rq.value);go(`Oi Luisão! Preciso remarcar a aula de ${DIAS[q.getDay()]} ${br(q)} às ${pad(q.getHours())}h${pad(q.getMinutes())}.${rd.value?` Posso repor em ${rd.value.split('-').reverse().slice(0,2).join('/')} às ${$('#r-hora').value}?`:''}`)};
 // dieta
