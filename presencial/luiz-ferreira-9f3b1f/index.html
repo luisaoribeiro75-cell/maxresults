@@ -309,7 +309,7 @@ dl.kv dd{margin:0}
 <footer class="foot"><span>Luisão Ribeiro · Personal Trainer · CREF 003063-PR</span><span id="atual"></span></footer>
 </div>
 <script>
-const AL={"id": "luiz-ferreira", "nome": "Luiz Ferreira Jr", "primeiro": "Luiz", "sub": "Trio com Juliano e Mônica", "treinoSlug": null, "formato": "trio", "ultimaAval": null, "avaliacoes": {}, "horarios": [{"dia": 1, "hora": "20:15"}, {"dia": 2, "hora": "19:15"}, {"dia": 4, "hora": "20:15"}], "dieta": false, "lembreteHora": null, "recado": null, "treinosMes": null, "quinzena": null, "contrato": {"status": "pendente", "plano": "a definir", "vencimento": 30, "reposicoes": 1}, "regraDias": 90, "atualizado": "08/11/2026"};
+const AL={"id": "luiz-ferreira", "nome": "Luiz Ferreira Jr", "primeiro": "Luiz", "sub": "Trio com Juliano e Mônica", "treinoSlug": null, "formato": "trio", "ultimaAval": null, "avaliacoes": {}, "horarios": [{"dia": 1, "hora": "20:15"}, {"dia": 2, "hora": "19:15"}, {"dia": 4, "hora": "20:15"}], "dieta": false, "lembreteHora": null, "recado": null, "treinosMes": null, "quinzena": null, "contrato": {"status": "pendente", "plano": "a definir", "vencimento": 30, "reposicoes": 1, "pdf": null, "linkAssinatura": null, "assinadoPdf": null}, "regraDias": 90, "atualizado": "08/11/2026"};
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const API='https://script.google.com/macros/s/AKfycbxVIwFvx1TpgvbEoI8jUDnY4pCRAKDaSwpxnsamHEyNuwEKumuqLYH1zby1C-jW-e6jaA/exec';
 const WA='https://wa.me/5541988012393?text=',go=t=>window.open(WA+encodeURIComponent(t),'_blank');
@@ -393,7 +393,11 @@ if(AL.dieta)(function(){const K='mr-dieta-'+AL.id;let reg={};try{reg=JSON.parse(
 if(!cNa){const C=AL.contrato||{};const st=$('#c-status');st.textContent=cOk?'✓ Assinado · tudo certo':'Aguardando tua assinatura';if(cOk)st.classList.add('ok');
  $('#c-kv').innerHTML=(C.plano&&C.plano!=='a definir'?`<dt>Plano</dt><dd>${C.plano}</dd>`:'')+(C.vencimento?`<dt>Pagamento</dt><dd>todo dia ${C.vencimento}</dd>`:'')+(C.reposicoes?`<dt>Reposições</dt><dd>até ${C.reposicoes} por mês</dd>`:'');
  $('#c-rep').innerHTML=`<b>Remarcação com 12 h de antecedência.</b> A aula pode ser reposta dentro do limite do teu plano${C.reposicoes?` (até ${C.reposicoes} por mês)`:''}, no próprio mês.`;
- $('#c-acoes').innerHTML=cOk?'':'<button class="share" type="button" id="c-sign">Quero assinar: falar com o Luisão</button>';const cs=$('#c-sign');if(cs)cs.onclick=()=>go('Oi Luisão! Quero fechar meu Acordo de Treino. Te mando meu CPF por aqui.')}
+ const pdf=C.pdf?`<a class="ghost" style="text-decoration:none;display:inline-block" href="${C.pdf}" target="_blank" rel="noopener">Ler o acordo completo (PDF)</a>`:'';
+ const ass=cOk?(C.assinadoPdf?`<a class="share" style="text-decoration:none;display:inline-block" href="${C.assinadoPdf}" target="_blank" rel="noopener">Baixar meu acordo assinado</a>`:''):
+  (C.linkAssinatura?`<a class="share" style="text-decoration:none;display:inline-block" href="${C.linkAssinatura}" target="_blank" rel="noopener">Assinar online (1 minuto)</a>`:'<button class="share" type="button" id="c-sign">Quero assinar: falar com o Luisão</button>');
+ $('#c-acoes').innerHTML=pdf+ass+(cOk||!C.linkAssinatura?'':'<p class="pair" style="flex-basis:100%">Assinatura eletrônica pelo ZapSign, com validade jurídica. A cópia assinada chega no teu e-mail e fica aqui.</p>');
+ const cs=$('#c-sign');if(cs)cs.onclick=()=>go('Oi Luisão! Quero fechar meu Acordo de Treino. Te mando meu CPF por aqui.')}
 </script>
 </body>
 </html>
