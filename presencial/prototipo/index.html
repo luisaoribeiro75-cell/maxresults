@@ -4,7 +4,22 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Painel Presencial</title>
+<title>Ricardo · Luisão Ribeiro</title>
+<meta name="theme-color" content="#0a0a0b">
+<link rel="apple-touch-icon" href="https://luisaoribeiro75-cell.github.io/maxresults/presencial/assets/icon-180.png">
+<link rel="icon" type="image/png" href="https://luisaoribeiro75-cell.github.io/maxresults/presencial/assets/favicon.png">
+<link rel="manifest" href="https://luisaoribeiro75-cell.github.io/maxresults/presencial/manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Luisão Ribeiro">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Luisão Ribeiro · Personal Trainer">
+<meta property="og:title" content="Ricardo, teus treinos · Luisão Ribeiro">
+<meta property="og:description" content="Teu painel de treino com o Luisão Ribeiro, personal trainer.">
+<meta property="og:image" content="https://luisaoribeiro75-cell.github.io/maxresults/presencial/assets/og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
@@ -155,6 +170,11 @@ dl.kv dd{margin:0}
 .report .ck{color:var(--good)}
 .mic{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:2px;padding:8px 12px;cursor:pointer;margin-top:8px}
 .mic.rec{border-color:var(--red);color:var(--red)}
+.d-sem{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;height:110px}
+.d-sem div{display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+.d-sem i{width:100%;max-width:26px;background:var(--gold);border-radius:2px 2px 0 0;min-height:2px}
+.d-sem i.livre{background:transparent;border:1px dashed var(--gold)}
+.d-sem span{font-size:11px;color:var(--muted)}
 .foot{margin-top:40px;color:var(--muted);font-size:12px;letter-spacing:.06em;border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .demo{font-size:11px;color:var(--warn);margin-top:8px}
 
@@ -206,6 +226,7 @@ dl.kv dd{margin:0}
   <button role="tab" aria-selected="false" data-p="carga"><span>Recordes</span>Evolução</button>
   <button role="tab" aria-selected="false" data-p="agenda"><span>Reposições</span>Agenda</button>
   <button role="tab" aria-selected="false" data-p="extra"><span>Sem desculpas</span>Pedir treino</button>
+  <button role="tab" aria-selected="false" data-p="dieta"><span>Apoio</span>Dieta</button>
   <button role="tab" aria-selected="false" data-p="contrato" class="bad" id="b-contrato"><span>Pendente</span>Contrato</button>
   <button role="tab" aria-selected="false" data-p="conq"><span>Nível ouro</span>Conquistas</button>
   <button role="tab" aria-selected="false" data-p="rev"><span>Laudo</span>Revisão do ciclo</button>
@@ -324,6 +345,32 @@ dl.kv dd{margin:0}
   <button class="share" type="button" id="x-btn">Pedir o treino</button>
   <div class="okbox" id="x-ok">✓ Pedido enviado. Assim que ficar pronto, ele aparece na aba <b>Treino</b>, em "Treino que você pediu".</div>
   <p class="demo">Protótipo: este botão não envia nada. Na página do aluno ele já chega pra gente.</p>
+</section>
+
+<!-- DIETA -->
+<section class="panel" id="p-dieta" role="tabpanel">
+  <h2>Dieta</h2>
+  <p class="hint">Tua dieta é a do teu nutricionista. Aqui é só o teu apoio: 10 segundos por dia, sem cobrança.</p>
+  <h3 style="margin-top:6px">Check-in de hoje</h3>
+  <p class="lbl" style="margin:0 0 8px">Quanto da tua dieta você fez hoje?</p>
+  <div class="seg" data-q="pct"><button type="button" data-v="0">0%</button><button type="button" data-v="25">25%</button><button type="button" data-v="50">50%</button><button type="button" data-v="75">75%</button><button type="button" data-v="100">100%</button></div>
+  <p class="lbl" style="margin:16px 0 8px">Comeu algo nas 2–3 horas antes do treino?</p>
+  <div class="seg" data-q="pre"><button type="button" data-v="sim">Sim</button><button type="button" data-v="nao">Não</button><button type="button" data-v="sem-treino">Hoje não treinei</button></div>
+  <p class="lbl" style="margin:16px 0 8px">Água hoje</p>
+  <div class="seg" data-q="agua"><button type="button" data-v="pouca">💧 Pouca</button><button type="button" data-v="ok">💧💧 Ok</button><button type="button" data-v="bem">💧💧💧 Bem</button></div>
+  <div class="seg" style="margin-top:12px"><button type="button" id="d-livre" aria-pressed="false">🃏 Hoje é dia livre (festa, viagem): não conta na média</button></div>
+  <button class="share" type="button" id="d-btn">Registrar o dia</button>
+  <div class="okbox" id="d-ok">✓ Registrado. Consistência ganha de perfeição.</div>
+  <h3>Tua semana</h3>
+  <div id="d-semana" class="d-sem"></div>
+  <p class="pair" id="d-media"></p>
+  <div class="challenge" style="margin-top:14px"><div class="row" style="justify-content:space-between;margin:0"><span class="lbl">Desafio opcional</span><span class="pair">selo "Abastecido · nov/2026"</span></div>
+    <b style="font-family:var(--display);font-weight:300;font-size:18px">Chegar abastecido em 12 treinos no mês</b><div class="bar"><i style="width:33%"></i></div><span class="pair">4 de 12</span></div>
+  <h3>Lembrete do lanche antes do treino</h3>
+  <p class="pair" style="margin:0">Cria um alarme no TEU celular, só nos dias de treino. O que comer é o teu nutricionista quem diz.</p>
+  <div class="form" style="margin-top:10px"><label>Horário do lembrete<input type="text" id="d-hora" value="17:30" inputmode="numeric"></label></div>
+  <button class="ghost" type="button" id="d-ics">⏰ Criar lembrete no meu celular</button>
+  <p class="demo">Protótipo: o registro fica só neste celular. Na página do aluno ele chega no painel do Luisão.</p>
 </section>
 
 <!-- CONTRATO -->
@@ -481,6 +528,20 @@ $('#x-btn').onclick=()=>{$('#x-ok').classList.add('on')};
   r.onresult=e=>{let s='';for(const x of e.results)s+=x[0].transcript+' ';t.value=(antes?antes+' ':'')+s.trim()};r.onend=r.onerror=()=>{b.classList.remove('rec');b.textContent='🎤 Falar em vez de escrever';r=null};
   b.classList.add('rec');b.textContent='● Gravando... toque pra parar';try{r.start()}catch(e){r.onend()}}})();
 
+// dieta (protótipo: guarda só neste celular)
+(function(){const K='mr-dieta',hojeK=iso(now);let reg={};try{reg=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
+ if(!Object.keys(reg).length){for(let i=1;i<=6;i++){const d=new Date(now);d.setDate(now.getDate()-i);reg[iso(d)]=i===3?{livre:true}:{pct:[75,100,50,75,100,75][i-1]}}}
+ const sel={};document.querySelectorAll('#p-dieta .seg[data-q]').forEach(g=>g.onclick=e=>{const b=e.target.closest('button');if(!b)return;g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));sel[g.dataset.q]=b.dataset.v});
+ const lv=$('#d-livre');lv.onclick=()=>lv.setAttribute('aria-pressed',lv.getAttribute('aria-pressed')!=='true');
+ function sem(){const box=$('#d-semana');let h='',soma=0,n=0;for(let i=6;i>=0;i--){const d=new Date(now);d.setDate(now.getDate()-i);const r=reg[iso(d)];
+   h+=`<div>${r&&r.livre?'<i class="livre" style="height:50px"></i>':`<i style="height:${r&&r.pct!=null?Math.max(2,Math.round(r.pct*0.85)):2}px;${r?'':'opacity:.25'}"></i>`}<span>${DIAS[d.getDay()].slice(0,1)}</span></div>`;if(r&&!r.livre&&r.pct!=null){soma+=+r.pct;n++}}
+  box.innerHTML=h;$('#d-media').textContent=n?`Média da semana: ${Math.round(soma/n)}% · ${n} dias registrados${Math.round(soma/n)>=70?' · consistência ganha de perfeição':''}`:'Quando quiser, é só registrar.'}
+ sem();$('#d-btn').onclick=()=>{reg[hojeK]=lv.getAttribute('aria-pressed')==='true'?{livre:true}:{pct:sel.pct!=null?+sel.pct:null,pre:sel.pre,agua:sel.agua};try{localStorage.setItem(K,JSON.stringify(reg))}catch(e){}$('#d-ok').classList.add('on');sem()};
+ $('#d-ics').onclick=()=>{const m=($('#d-hora').value||'17:30').match(/(\d{1,2})\D?(\d{2})/)||[0,'17','30'],hh=pad(+m[1]),mm=m[2];
+  const dias=Object.keys(TR).map(k=>['SU','MO','TU','WE','TH','FR','SA'][k]).join(',');const d0=iso(now).replace(/-/g,'');
+  const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Luisao Ribeiro//PT','BEGIN:VEVENT','UID:lanche-'+Date.now()+'@luisaoribeiro','DTSTAMP:'+d0+'T000000','DTSTART:'+d0+'T'+hh+mm+'00','DURATION:PT15M','RRULE:FREQ=WEEKLY;BYDAY='+dias,'SUMMARY:Lanche de antes do treino','DESCRIPTION:Hora do lanche que teu nutri passou. Hoje a gente voa!','BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:Lanche de antes do treino','TRIGGER:PT0M','END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='lembrete-lanche.ics';document.body.appendChild(a);a.click();a.remove()};
+})();
 // contrato
 $('#c-sign').onclick=function(){if(this.dataset.done)return;this.dataset.done=1;const st=$('#c-status'),bt=$('#b-contrato');
  st.textContent='✓ Assinado em '+br(now)+' · tudo certo';st.classList.add('ok');bt.classList.remove('bad');bt.classList.add('okc');bt.querySelector('span').textContent='✓ Em dia';
