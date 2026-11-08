@@ -391,7 +391,7 @@ if(AL.dieta)(function(){const K='mr-dieta-'+AL.id;let reg={};try{reg=JSON.parse(
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='lembrete-lanche.ics';document.body.appendChild(a);a.click();a.remove()}})();
 // contrato
 if(!cNa){const C=AL.contrato||{};const st=$('#c-status');st.textContent=cOk?'✓ Assinado · tudo certo':'Aguardando tua assinatura';if(cOk)st.classList.add('ok');
- $('#c-kv').innerHTML=(C.plano&&C.plano!=='a definir'?`<dt>Plano</dt><dd>${C.plano}</dd>`:'')+(C.vencimento?`<dt>Vencimento</dt><dd>todo dia ${C.vencimento}</dd>`:'')+(C.reposicoes?`<dt>Reposições</dt><dd>até ${C.reposicoes} por mês</dd>`:'');
+ $('#c-kv').innerHTML=(C.plano&&C.plano!=='a definir'?`<dt>Plano</dt><dd>${C.plano}</dd>`:'')+(C.vencimento?`<dt>Pagamento</dt><dd>todo dia ${C.vencimento}</dd>`:'')+(C.reposicoes?`<dt>Reposições</dt><dd>até ${C.reposicoes} por mês</dd>`:'');
  $('#c-rep').innerHTML=`<b>Remarcação com 12 h de antecedência.</b> A aula pode ser reposta dentro do limite do teu plano${C.reposicoes?` (até ${C.reposicoes} por mês)`:''}, no próprio mês.`;
  $('#c-acoes').innerHTML=cOk?'':'<button class="share" type="button" id="c-sign">Quero assinar: falar com o Luisão</button>';const cs=$('#c-sign');if(cs)cs.onclick=()=>go('Oi Luisão! Quero fechar meu Acordo de Treino. Te mando meu CPF por aqui.')}
 </script>
