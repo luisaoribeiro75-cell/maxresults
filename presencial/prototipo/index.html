@@ -51,6 +51,18 @@ h1{font-family:var(--display);font-weight:200;font-size:42px;line-height:1.05;ma
 .dots{display:flex;gap:5px;margin-top:12px}
 .dots i{width:10px;height:10px;border-radius:50%;border:1px solid var(--gold)}
 .dots i.on{background:var(--gold)}
+.dots i.cor{background:transparent;border-style:dashed;position:relative}.dots i.cor::after{content:"✈";position:absolute;inset:-3px 0 0;font-size:8px;text-align:center;color:var(--gold)}
+.club{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.club .bar{grid-column:1/-1;margin-top:2px}
+.club .bar i.mk{position:relative}
+.yearago{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;border:1px solid var(--tagline);background:var(--sel);padding:14px 16px;margin-bottom:18px}
+.yearago b{font-family:var(--display);font-weight:300;font-size:26px;color:var(--gold)}
+.stamp{border:1px solid var(--gold);padding:14px 16px;margin-top:14px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;background:var(--sel)}
+.stamp .seal{width:54px;height:54px;border-radius:50%;border:2px dashed var(--gold);display:grid;place-items:center;font-family:var(--display);color:var(--gold);font-size:11px;letter-spacing:.08em;text-align:center;line-height:1.1;transform:rotate(-12deg)}
+.challenge{border:1px solid var(--line);padding:14px 16px;margin-bottom:14px}
+.bet{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:6px}
+.bet div{background:var(--surface);padding:14px}
+.bet b{display:block;font-family:var(--display);font-weight:300;font-size:26px;color:var(--gold)}
 .pr-chip{position:absolute;top:12px;right:12px;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#111;background:var(--gold);padding:2px 6px;border-radius:2px;font-weight:600}
 .peek{all:unset;cursor:pointer;display:block;margin-top:8px}
 .peek .veil{font-family:var(--display);font-weight:300;font-size:17px;color:var(--gold);border:1px dashed var(--tagline);padding:10px 10px;display:block;text-align:center;border-radius:2px}
@@ -170,8 +182,8 @@ dl.kv dd{margin:0}
 </header>
 
 <section class="kpis" aria-label="Resumo">
-  <div class="kpi"><div class="lbl">Treinos no mês</div><div class="val">11<small>de 12</small></div><div class="delta">7 semanas seguidas sem faltar</div>
-    <div class="dots" aria-label="Últimas 8 semanas"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+  <div class="kpi"><div class="lbl">Treinos no mês</div><div class="val">11<small>de 12</small></div><div class="delta">7 semanas seguidas</div><div class="delta n">1 salva pelo coringa de viagem ✈</div>
+    <div class="dots" aria-label="Últimas 8 semanas"><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on cor" title="Coringa de viagem: treino sem desculpas"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
   <div class="kpi"><span class="pr-chip">Recorde</span><div class="lbl">Força</div><div class="val">72<small>kg</small></div><div class="delta n">agachamento · 0,86× o seu peso</div><div class="delta">↑ 20% no ciclo</div><svg class="spark" data-s="60,62,64,66,70,72" viewBox="0 0 100 30" preserveAspectRatio="none"></svg></div>
   <div class="kpi"><div class="lbl">Condicionamento</div><div class="val">61<small>bpm</small></div><div class="delta">↓ 6 bpm em repouso desde jan</div><svg class="spark" data-s="67,66,65,63,62,61" viewBox="0 0 100 30" preserveAspectRatio="none"></svg></div>
   <div class="kpi"><div class="lbl">Corpo</div>
@@ -243,11 +255,26 @@ dl.kv dd{margin:0}
 <section class="panel" id="p-carga" role="tabpanel">
   <h2>Evolução e recordes</h2>
   <p class="hint">Seus recordes pessoais. Cada ponto dourado no gráfico é um recorde batido.</p>
+  <div class="yearago"><span class="lbl">Você de 12 meses atrás</span><span>agachamento <b>56 kg</b></span><span class="pair">→</span><span>hoje <b>72 kg</b></span></div>
   <table><thead><tr><th>Exercício</th><th class="n">Recorde</th><th class="n">Quando</th><th class="n">No ciclo</th></tr></thead><tbody id="prtab"></tbody></table>
   <div class="row" style="margin-top:18px"><label for="ex" class="lbl">Gráfico</label><select id="ex"></select></div>
   <div class="chartbox"><svg class="chart" id="chart" viewBox="0 0 640 230" role="img" aria-label="Gráfico de evolução de carga"></svg></div>
-  <h3>Em breve: condicionamento</h3>
-  <p class="pair">Testes que a gente repete de tempos em tempos (tipo um circuito fixo, um tiro de bike ou de remo) pra você ver quanto melhorou no fôlego, não só na força.</p>
+  <h3>Clubes de força</h3>
+  <p class="hint">Quanto você levanta comparado ao seu próprio peso (84 kg). Só você contra você.</p>
+  <div class="club"><span><b>Levantamento terra</b> · 100 kg</span><span class="tag pr">Clube 1× ✓</span><div class="bar"><i style="width:100%"></i></div><span class="pair">1,19× o seu peso · próximo: Clube 1,25× (faltam 5 kg)</span></div>
+  <div class="club"><span><b>Agachamento</b> · 72 kg</span><span class="tag">Clube 0,75× ✓</span><div class="bar"><i style="width:86%"></i></div><span class="pair">0,86× o seu peso · próximo: Clube 1× (faltam 12 kg)</span></div>
+  <div class="club"><span><b>Supino</b> · 2 × 28 kg</span><span class="tag">a caminho</span><div class="bar"><i style="width:67%"></i></div><span class="pair">0,67× o seu peso · próximo: Clube 0,75× (faltam 7 kg)</span></div>
+  <h3>Testes de condicionamento</h3>
+  <p class="hint">Repetidos a cada ciclo, sempre do mesmo jeito, com o Luisão. Comparação com você mesmo.</p>
+  <table><thead><tr><th>Teste</th><th class="n">Antes</th><th class="n">Agora</th><th class="n">Recorde</th></tr></thead><tbody>
+    <tr><td>Recuperação no banco<br><span class="pair">batimento 1 min depois de 3 min de subida</span></td><td class="n">118</td><td class="n up">106 bpm</td><td class="n">106</td></tr>
+    <tr><td>AMRAP 10 min<br><span class="pair">10 agachamentos + 10 remadas + 10 flexões</span></td><td class="n">4+12</td><td class="n up">5+20</td><td class="n">5+20</td></tr>
+    <tr><td>Contra o relógio<br><span class="pair">40 agach. · 30 remadas · 20 flexões · 10 burpees</span></td><td class="n">12:40</td><td class="n up">11:05</td><td class="n">11:05</td></tr>
+    <tr><td>Bike 2 km</td><td class="n">4:58</td><td class="n up">4:41</td><td class="n">4:41</td></tr>
+    <tr><td>Corda · salto simples<br><span class="pair">repetições em 1 min</span></td><td class="n">88</td><td class="n up">104</td><td class="n">104</td></tr>
+    <tr><td>Corda · big jump<br><span class="pair">repetições em 1 min · prepara o double under</span></td><td class="n">31</td><td class="n up">40</td><td class="n">40</td></tr>
+    <tr><td>Corda · double unders<br><span class="pair">repetições em 1 min</span></td><td class="n">—</td><td class="n up">6 <span class="tag pr">1º!</span></td><td class="n">6</td></tr>
+  </tbody></table>
 </section>
 
 <!-- AGENDA -->
@@ -328,7 +355,10 @@ dl.kv dd{margin:0}
 <section class="panel" id="p-conq" role="tabpanel">
   <h2>Conquistas</h2>
   <p class="hint">Aparecem sozinhas quando você chega lá.</p>
+  <div class="challenge"><div class="row" style="justify-content:space-between;margin:0"><span class="lbl">Desafio de novembro</span><span class="pair">vale um selo de nov/2026</span></div>
+    <b style="font-family:var(--display);font-weight:300;font-size:20px">12 de 12 treinos no mês</b><div class="bar"><i style="width:42%"></i></div><span class="pair">5 de 12 até agora · ainda dá</span></div>
   <div class="level"><div class="big">128</div><div><div class="lbl">Quilometragem · treinos com o Luisão</div><b style="font-family:var(--display);font-weight:300;font-size:20px;color:var(--gold)">Nível Ouro</b><div class="bar"><i style="width:56%"></i></div><div class="pair" style="margin-top:6px">faltam 22 treinos pro nível Platina (150)</div></div></div>
+  <div class="stamp"><div class="seal">CARIMBO<br>DO<br>LUISÃO</div><div><b>Aula mais forte de outubro</b><div class="pair">"Terra de 100 kg com a lombar perfeita. Aula de livro." · dado à mão, 31/10</div></div></div>
   <ul class="list" style="margin-top:14px">
     <li><span><span class="medal">72 kg</span><b>Recorde no agachamento</b></span><span class="pair">30/10</span></li>
     <li><span><span class="medal">7 sem</span><b>Sete semanas seguidas sem faltar</b></span><span class="pair">hoje</span></li>
@@ -353,6 +383,10 @@ dl.kv dd{margin:0}
     <li><span class="ck">✓</span><span>Frequência</span><b>92%</b></li>
     <li><span class="ck">✓</span><span>Corpo <span class="tag">toque pra ver</span></span><b class="up">melhorou</b></li>
   </ul>
+  <h3>Aposta do ciclo 4</h3>
+  <p class="hint" style="margin:0">Agachamento no fim do ciclo. Quem chegar mais perto ganha.</p>
+  <div class="bet"><div><span class="lbl">Seu palpite</span><b>78 kg</b></div><div><span class="lbl">Palpite do Luisão</span><b>80 kg</b></div></div>
+  <p class="pair">Resultado na revisão de 18/12.</p>
   <h3>Plano do ciclo 4</h3>
   <p style="margin:0">Mais posterior de coxa e glúteo, descida controlada no agachamento, meta de 80 kg até o Natal.</p>
   <h3>Em dezembro</h3>
