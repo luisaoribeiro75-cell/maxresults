@@ -288,7 +288,17 @@
     .video-overlay.active { display: flex; }
     .video-overlay video, .video-overlay iframe { max-width: 100%; max-height: 80vh; border-radius: 12px; border: none; }
     .video-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); border: none; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-  </style>
+      /* dias flexíveis (06/10/2026) */
+    .day-btn.rest { opacity: 0.45; cursor: pointer; }
+    .day-btn.rest .day-num { color: var(--text-muted, #71717a); }
+    .day-btn.moved::before { opacity: 0.5; }
+    .day-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 2px 0 14px; }
+    .day-actions select, .day-actions button { font-family: var(--font-body, inherit); font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-light, var(--border, #2a2a2e)); background: var(--surface, #141416); color: var(--text, #f4f4f5); cursor: pointer; -webkit-appearance: none; appearance: none; }
+    .day-actions select { padding-right: 28px; background-image: linear-gradient(45deg, transparent 50%, var(--text-muted, #71717a) 50%), linear-gradient(135deg, var(--text-muted, #71717a) 50%, transparent 50%); background-position: calc(100% - 15px) 55%, calc(100% - 10px) 55%; background-size: 5px 5px; background-repeat: no-repeat; max-width: 100%; }
+    .day-actions button.primary { background: var(--accent-lift, #f59e0b); color: #000; border-color: transparent; }
+    .day-actions .hint { width: 100%; font-size: 11px; color: var(--text-muted, #71717a); }
+    .rest-message .day-actions { justify-content: center; margin-top: 18px; }
+</style>
 </head>
 <body>
 <div class="container">
@@ -342,7 +352,11 @@
   <div class="week-overview" id="weekOverview"></div>
   <button class="assess-toggle" id="assessToggle">📊 Avaliação Física<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
   <div class="assess-panel" id="assessPanel"></div>
-  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Ciclo 3 · Mês 1 (Volume) · Gerado em 10/07/2026</footer>
+        <!-- autor:ini -->
+<style>.mr-autor{box-sizing:border-box;display:flex;gap:14px;align-items:center;margin:28px auto 8px;width:auto;max-width:min(560px,100%);overflow-wrap:anywhere;padding:14px 16px;border:1px solid var(--border-light,rgba(127,127,127,.25));border-radius:var(--radius,16px);background:var(--surface,transparent)}.mr-autor img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none}.mr-autor-t{display:flex;flex-direction:column;gap:2px;min-width:0;font-size:13px;line-height:1.4;color:var(--text-dim,inherit)}.mr-autor-k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted,inherit)}.mr-autor-n{font-weight:700;font-size:15px;color:var(--text,inherit)}</style>
+<section class="mr-autor" aria-label="Quem monta seu treino"><img src="data:image/jpeg;base64,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" alt="Luisão Ribeiro"><div class="mr-autor-t"><span class="mr-autor-k">Quem monta seu treino</span><span class="mr-autor-n">Luisão Ribeiro · dou aula desde 1995</span><span>8 certificações internacionais</span><span>CREF 003063-PR</span><span>Cada vídeo aqui fui eu que escolhi pra você.</span></div></section>
+<!-- autor:fim -->
+  <footer class="footer">Metodologia MaxResults &middot; Luisão Ribeiro<br>Ciclo 4 · Mês 2 (Intensificação) · Gerado em 27/08/2026</footer>
 </div>
 <div class="video-overlay" id="videoOverlay" onclick="closeVideo()">
   <button class="video-close" onclick="closeVideo()">✕</button>
@@ -353,9 +367,9 @@
 const ATHLETE = 'Rafael';
 
 const WEEKLY_GOALS = [
-  { icon: '🎯', type: 'strength', text: '<strong>Objetivo:</strong> definição muscular (misto), com ênfase em <strong>braços + postura</strong>' },
-  { icon: '🌱', type: 'strength', text: '<strong>Retomada consciente:</strong> 1ª semana em intensidade moderada-baixa. Foco em execução e sensação de progresso — sem pressa.' },
-  { icon: '📈', type: 'strength', text: '<strong>Progressão:</strong> comece leve, domine o movimento. Fez todas as reps com folga? sobe a carga só na próxima semana.' },
+  { icon: '🎯', type: 'strength', text: '<strong>Objetivo:</strong> emagrecer e definir, mantendo 3x/semana com ênfase em <strong>abdômen + braços + postura</strong>' },
+  { icon: '🔥', type: 'strength', text: '<strong>Intensidade:</strong> agora sobe para intenso controlado. Carga boa, execução limpa e descanso cronometrado.' },
+  { icon: '📈', type: 'strength', text: '<strong>Meta do ciclo:</strong> completar mais treinos inteiros. Se bater todas as reps com técnica, sobe pouco a carga na semana seguinte.' },
   { icon: '💧', type: 'assessment', text: '<strong>Medicação (hidratação):</strong> beba água antes/durante/depois. Levante do banco <strong>devagar</strong> (tontura ao levantar). Sentiu tontura? senta, hidrata e avisa.' },
   { icon: '❤️', type: 'fat', text: '<strong>Cardio zona aeróbica, sem picos:</strong> ritmo de conversa. Falta de ar desproporcional, tontura ou dor no peito → <strong>pare</strong> e reporte.' },
   { icon: '🩺', type: 'assessment', text: '<strong>Avaliação física vencida (20/03/2026):</strong> vamos reagendar pra medir seu progresso. <a href="https://wa.me/5541999775758?text=Oi%20Luis%C3%A3o!%20Quero%20reagendar%20minha%20avalia%C3%A7%C3%A3o%20f%C3%ADsica%20🏋️" target="_blank" style="color:var(--accent-lift);">Agendar com Luisão</a>' },
@@ -410,8 +424,12 @@ const V = {
   // Substitutos 18/07 (lista negra masculina + supino-barra-e-solo)
   mobQuadrilDin: 'https://vd.mfitpersonal.com.br/v2/1062/mp4/1062_opt.mp4',
   bomDia: 'https://vd.mfitpersonal.com.br/269/mp4/269.mp4',
-  bulgaroCarga: 'https://vd.mfitpersonal.com.br/789/mp4/789.mp4',
+  afundoHalteres: 'https://vd.mfitpersonal.com.br/32/mp4/32.mp4',
+  crucifixoPowerBand: 'https://player.mediadelivery.net/play/655450/16ee2831-901a-4b04-96ae-9e1bd8b9ffb4',
   abdomSupra: 'https://vd.mfitpersonal.com.br/20/mp4/20.mp4',
+  abdomInfra: 'https://vd.mfitpersonal.com.br/375/mp4/375.mp4',
+  abdomCanivete: 'https://player.mediadelivery.net/play/655450/9b1d98af-ba64-4237-aba8-a8db6109e6b9',
+  pranchaLateral: 'https://vd.mfitpersonal.com.br/181/mp4/181.mp4',
   alongColuna1: 'https://vd.mfitpersonal.com.br/96/mp4/96.mp4',
   alongColuna2: 'https://vd.mfitpersonal.com.br/97/mp4/97.mp4',
   // Aquecimento de ombro (acervo MFit — substituem os "sem vídeo" 18/07)
@@ -497,29 +515,29 @@ const BISET_A_2 = {
 
 const ISO_A_1 = {
   type: 'lift', label: 'Bi-Set 3',
-  title: 'Tríceps na Polia com Corda ↔ Elevação Lateral', duration: '3x12–15 · Sem descanso no par',
-  meta: 'Dois isolados independentes (refino Regra 1, 18/07) — halteres ao lado da polia, uma estação só. Descanso 60–90s ao fim do par.',
+  title: 'Tríceps na Polia com Corda ↔ Abdominal Canivete', duration: '3x12–15 · Sem descanso no par',
+  meta: 'Braço + abdômen no colchonete ao lado da polia. Descanso 60–75s ao fim do par.',
   exercises: [
     { name: 'Tríceps na Polia com Corda', muscle: 'Tríceps', duration: '3x12–15', equipment: 'Polia alta + corda', tip: 'Ênfase braço. Cotovelos fixos ao lado do corpo, estenda até o fim abrindo a corda.', video: V.tricepsCorda },
-    { name: 'Elevação Lateral com Halteres', muscle: 'Ombro (deltoide medial)', duration: '3x12–15', equipment: 'Halteres (ao lado da polia)', tip: 'Cotovelos levemente flexionados, sobe até a linha dos ombros sem balançar o tronco. Halteres ao lado da polia — sem ocupar outra estação.', video: V.elevLateral },
+    { name: 'Abdominal Canivete', muscle: 'Core / Abdômen', duration: '3x12–15', equipment: 'Colchonete (ao lado da polia)', tip: 'Sobe tronco e pernas ao mesmo tempo, formando um V. Desce controlando sem relaxar no chão.', video: V.abdomCanivete },
   ]
 };
 
 const ISO_A_2 = {
   type: 'lift', label: 'Isolado 1',
-  title: 'Tríceps Francês (Testa) com Halteres', duration: '3x10–12',
-  meta: 'Finalização — ênfase braço. Descanso 60s.',
+  title: 'Elevação Lateral com Halteres', duration: '3x12–15',
+  meta: 'Finalização de ombro/postura. Descanso 45–60s.',
   exercises: [
-    { name: 'Tríceps Francês (Testa) com Halteres', muscle: 'Tríceps', duration: '3x10–12', equipment: 'Halteres (ou barra W)', tip: 'Ênfase braço. Cotovelos apontando pra cima e fixos, desça o peso atrás da cabeça e estenda.', video: V.tricepsFrances },
+    { name: 'Elevação Lateral com Halteres', muscle: 'Ombro (deltoide medial)', duration: '3x12–15', equipment: 'Halteres', tip: 'Cotovelos levemente flexionados, sobe até a linha dos ombros sem balançar o tronco.', video: V.elevLateral },
   ]
 };
 
 const CARDIO_A = {
   type: 'cardio', label: 'Cardio',
-  title: 'Esteira Inclinada — Zona Aeróbica', duration: '25–30 min',
+  title: 'Esteira Inclinada — Zona Aeróbica', duration: '15–20 min',
   meta: 'Ritmo de conversa. Sem picos.',
   exercises: [
-    { name: 'Esteira Caminhada Inclinada', muscle: 'Cardiovascular', duration: '25–30 min', equipment: 'Esteira (ou bike)', tip: 'Inclinação 5–8%, ritmo confortável de conversa (~65–70% FCmax). Alternativa: bike ergométrica leve. ⚠️ Tontura/falta de ar/dor no peito → pare, sente e hidrate.', video: V.esteiraInclinada },
+    { name: 'Esteira Caminhada Inclinada', muscle: 'Cardiovascular', duration: '15–20 min', equipment: 'Esteira (ou bike)', tip: 'Inclinação 5–8%, ritmo confortável de conversa (~65–70% FCmax). Alternativa: bike ergométrica leve. ⚠️ Tontura/falta de ar/dor no peito → pare, sente e hidrate.', video: V.esteiraInclinada },
   ]
 };
 
@@ -574,20 +592,20 @@ const SOLO_B_1 = {
 
 const BISET_B_1 = {
   type: 'lift', label: 'Bi-Set 1',
-  title: 'Puxada Frontal ↔ Flexão de Joelhos com Caneleiras', duration: '3x10–15 · Sem descanso no par',
-  meta: 'Costas grande + posterior isolado (livre). Âncora no puxador — nórdica feita ao lado no colchonete, sem ocupar outra máquina. Descanso 60–90s ao fim do par.',
+  title: 'Puxada Frontal ↔ Crucifixo com Power Band (mobilidade)', duration: '3x10–12 / 12–15 · Sem descanso no par',
+  meta: 'Costas grande + MOBILIDADE do antagonista (peito/ombro anterior — encurtamento). O Power Band abre o peito no intervalo da puxada, ancorado no próprio puxador. Descanso 60–90s ao fim do par.',
   exercises: [
     { name: 'Puxada Frontal (pegada aberta)', muscle: 'Costas (dorsal)', duration: '3x10–12', equipment: 'Polia alta / puxador', tip: 'Pegada aberta. Puxe a barra até o peito levando as escápulas "pro bolso". Sem jogar o tronco.', video: V.puxadaFrontal },
-    { name: 'Flexão de Joelhos com Caneleiras', muscle: 'Posterior de coxa', duration: '3x12 cada perna', equipment: 'Caneleira + colchonete (ao lado do puxador)', tip: 'Deitado de bruços no colchonete ao lado do puxador, dobra o joelho trazendo o calcanhar ao glúteo com a caneleira, desce controlando. Dá pra fazer sozinho — sem precisar de parceiro.', video: V.flexaoJoelhosCaneleira },
+    { name: 'Crucifixo com Power Band', muscle: 'Mobilidade — Peito / Ombro ant.', duration: '3x12–15', equipment: 'Power Band (faixa elástica)', tip: 'Mobilidade do antagonista: abra os braços contra a faixa alongando o peito e a frente do ombro, controlando na volta. Trata o encurtamento de peitoral/ombro anterior enquanto descansa da puxada. Sem carga pesada — é mobilidade.', video: V.crucifixoPowerBand },
   ]
 };
 
 const SOLO_B_2 = {
   type: 'lift', label: 'Solo 2',
-  title: 'Agachamento Búlgaro com Carga', duration: '3x10–12 cada perna',
-  meta: 'Composto de glúteo unilateral (Regra 9 — substitui a ênfase pélvica). Descanso 90s.',
+  title: 'Afundo com Halteres', duration: '3x10–12 cada perna',
+  meta: 'Composto de glúteo/quadríceps unilateral (Regra 9 — substitui a ênfase pélvica). Trocado do Búlgaro por dificuldade de execução (03/09). Descanso 90s.',
   exercises: [
-    { name: 'Agachamento Búlgaro com Carga', muscle: 'Glúteos / Quadríceps', duration: '3x10–12 cada perna', equipment: 'Halteres + banco (pé de trás apoiado)', tip: 'Peito do pé de trás no banco, tronco levemente inclinado à frente pra jogar a carga no glúteo. Desce controlado e empurra pelo calcanhar da frente.', video: V.bulgaroCarga },
+    { name: 'Afundo com Halteres', muscle: 'Glúteos / Quadríceps', duration: '3x10–12 cada perna', equipment: 'Halteres', tip: 'Passo firme à frente, desça o joelho de trás em direção ao chão (sem tocar forte), tronco ereto. Empurra pelo calcanhar da frente pra subir. Execução mais estável que o búlgaro.', video: V.afundoHalteres },
   ]
 };
 
@@ -603,11 +621,20 @@ const BISET_B_2 = {
 
 const BISET_B_3 = {
   type: 'lift', label: 'Bi-Set 3',
-  title: 'Remada Curvada com Halteres ↔ Prancha Abdominal', duration: '3x10–12 / 30–45s · Sem descanso no par',
-  meta: 'Costas grande + core (postural). Descanso 60–90s ao fim do par.',
+  title: 'Remada Curvada com Halteres ↔ Abdominal Infra', duration: '3x10–12 / 15 reps · Sem descanso no par',
+  meta: 'Costas grande + abdômen inferior. Colchonete ao lado do banco. Descanso 60–75s ao fim do par.',
   exercises: [
     { name: 'Remada Curvada com Halteres (unilateral)', muscle: 'Costas', duration: '3x10–12/lado', equipment: 'Halter + banco', tip: 'Uma mão e um joelho no banco, tronco paralelo ao chão. Puxe o halter em direção ao quadril. 10–12 cada lado.', video: V.remadaCurvada },
-    { name: 'Prancha Abdominal (isometria)', muscle: 'Core / Abdômen', duration: '3x30–45s', equipment: 'Colchonete', tip: 'Postural/core. Antebraços no chão, corpo reto, abdômen e glúteo firmes. Segure 30–45s.', video: V.pranchaAbdominal },
+    { name: 'Abdominal Infra no chão', muscle: 'Core / Abdômen inferior', duration: '3x15', equipment: 'Colchonete', tip: 'Suba as pernas com controle, lombar apoiada e sem embalar.', video: V.abdomInfra },
+  ]
+};
+
+const ISO_B_3 = {
+  type: 'lift', label: 'Isolado — Posterior',
+  title: 'Flexão de Joelhos com Caneleiras', duration: '3x12 cada perna',
+  meta: 'Isolado de posterior de coxa (realocado do Bi-Set 1 quando entrou a mobilidade). Descanso 45–60s.',
+  exercises: [
+    { name: 'Flexão de Joelhos com Caneleiras', muscle: 'Posterior de coxa', duration: '3x12 cada perna', equipment: 'Caneleira + colchonete', tip: 'Deitado de bruços, dobra o joelho trazendo o calcanhar ao glúteo com a caneleira, desce controlando. Dá pra fazer sozinho — sem parceiro.', video: V.flexaoJoelhosCaneleira },
   ]
 };
 
@@ -622,19 +649,19 @@ const ISO_B_1 = {
 
 const ISO_B_2 = {
   type: 'lift', label: 'Isolado 2',
-  title: 'Rosca Martelo com Halteres', duration: '3x10–12',
-  meta: 'Finalização — ênfase braço. Descanso 45–60s.',
+  title: 'Prancha Lateral', duration: '3x20–30s cada lado',
+  meta: 'Finalização de core lateral. Descanso 30–45s.',
   exercises: [
-    { name: 'Rosca Martelo com Halteres', muscle: 'Bíceps / Antebraço', duration: '3x10–12', equipment: 'Halteres', tip: 'Ênfase braço. Pegada neutra (polegar pra cima), suba sem girar o punho. Controle na descida.', video: V.roscaMartelo },
+    { name: 'Prancha Lateral', muscle: 'Core / Oblíquos', duration: '3x20–30s cada lado', equipment: 'Colchonete', tip: 'Corpo em linha, quadril alto, ombro longe da orelha. Troque de lado mantendo controle.', video: V.pranchaLateral },
   ]
 };
 
 const CARDIO_B = {
   type: 'cardio', label: 'Cardio',
-  title: 'Esteira Inclinada — Zona Aeróbica', duration: '25–30 min',
+  title: 'Esteira Inclinada — Zona Aeróbica', duration: '15–20 min',
   meta: 'Ritmo de conversa. Sem picos.',
   exercises: [
-    { name: 'Esteira Caminhada Inclinada', muscle: 'Cardiovascular', duration: '25–30 min', equipment: 'Esteira (ou bike)', tip: 'Inclinação 5–8%, ritmo confortável de conversa (~65–70% FCmax). Alternativa: bike ergométrica leve. ⚠️ Tontura/falta de ar/dor no peito → pare, sente e hidrate.', video: V.esteiraInclinada },
+    { name: 'Esteira Caminhada Inclinada', muscle: 'Cardiovascular', duration: '15–20 min', equipment: 'Esteira (ou bike)', tip: 'Inclinação 5–8%, ritmo confortável de conversa (~65–70% FCmax). Alternativa: bike ergométrica leve. ⚠️ Tontura/falta de ar/dor no peito → pare, sente e hidrate.', video: V.esteiraInclinada },
   ]
 };
 
@@ -652,7 +679,7 @@ const SOLTURA_B = {
 };
 
 const TREINO_A = [ AQUEC_A, MOBIL_A, SOLO_A_1, BISET_A_1, SOLO_A_SUPINO, SOLO_A_2, BISET_A_2, ISO_A_1, ISO_A_2, CARDIO_A, SOLTURA_A ];
-const TREINO_B = [ AQUEC_B, MOBIL_B, SOLO_B_1, BISET_B_1, SOLO_B_2, BISET_B_2, BISET_B_3, ISO_B_1, ISO_B_2, CARDIO_B, SOLTURA_B ];
+const TREINO_B = [ AQUEC_B, MOBIL_B, SOLO_B_1, BISET_B_1, SOLO_B_2, BISET_B_2, BISET_B_3, ISO_B_3, ISO_B_1, ISO_B_2, CARDIO_B, SOLTURA_B ];
 
 // 3x/sem alternando A · B · A (Semana 1). Descanso mínimo de 48h entre repetições.
 const TRAINING_SLOTS = [
@@ -661,7 +688,7 @@ const TRAINING_SLOTS = [
   { label: 'Treino A — Anterior', blocks: TREINO_A },
 ];
 const ALL_DAYS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
-const DAY_CONFIG_KEY = 'maxresults-rafael-days-v1';
+const DAY_CONFIG_KEY = 'maxresults-rafael-days-c4-v1';
 const DEFAULT_DAYS = ['Seg', 'Qua', 'Sex'];
 
 function getMonday(d) {
@@ -710,7 +737,7 @@ function getWeekKey() {
   return m.getFullYear() + '-' + pad(m.getMonth()+1) + '-' + pad(m.getDate());
 }
 
-const STORAGE_KEY = 'maxresults-rafael-' + getWeekKey() + '-v1';
+const STORAGE_KEY = 'maxresults-rafael-' + getWeekKey() + '-c4-v1';
 let currentDayIndex = 0;
 let completedExercises = loadProgress();
 
@@ -899,7 +926,7 @@ function saveDayConfig() {
   closeDayModal();
 }
 
-const FINISH_KEY = 'maxresults-rafael-finished-v1';
+const FINISH_KEY = 'maxresults-rafael-finished-c4-v1';
 function loadFinished() { try { return JSON.parse(localStorage.getItem(FINISH_KEY)||'{}'); } catch { return {}; } }
 
 function finishWorkout() {
@@ -959,8 +986,8 @@ function updateFinishButton() {
   }
 }
 
-const LOAD_KEY = 'maxresults-rafael-loads-v1';
-const REST_KEY = 'maxresults-rafael-rest-v1';
+const LOAD_KEY = 'maxresults-rafael-loads-c4-v1';
+const REST_KEY = 'maxresults-rafael-rest-c4-v1';
 function loadLoads() { try { return JSON.parse(localStorage.getItem(LOAD_KEY)||'{}'); } catch { return {}; } }
 function saveLoad(input) { const loads=loadLoads(); const k=input.dataset.loadKey; input.value.trim() ? loads[k]=input.value.trim() : delete loads[k]; localStorage.setItem(LOAD_KEY, JSON.stringify(loads)); }
 function restoreLoads() { const loads=loadLoads(); document.querySelectorAll('.load-input').forEach(i => { const k=i.dataset.loadKey; if (loads[k]) i.value=loads[k]; }); }
@@ -1074,8 +1101,8 @@ document.getElementById('assessPanel').innerHTML = renderAssessment(ASSESSMENT) 
 document.getElementById('assessToggle').addEventListener('click', function() { this.classList.toggle('open'); document.getElementById('assessPanel').classList.toggle('open'); });
 
 // ─── Session Timer ───
-const TIMER_KEY = 'maxresults-rafael-timer-v1';
-const HISTORY_KEY = 'maxresults-rafael-history-v1';
+const TIMER_KEY = 'maxresults-rafael-timer-c4-v1';
+const HISTORY_KEY = 'maxresults-rafael-history-c4-v1';
 let timerInterval = null;
 let sessionStartTime = null;
 
@@ -1122,7 +1149,7 @@ function recordSession() {
   day.blocks.forEach((b, bi) => { b.exercises.forEach((_, ei) => { total++; if (completedExercises[exerciseKey(currentDayIndex, bi, ei)]) done++; }); });
   const pct = total > 0 ? Math.round((done / total) * 100) : 0;
   const slotId = (day.label||'').includes('Treino A') ? 'A' : (day.label||'').includes('Treino B') ? 'B' : '?';
-  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'\u2705 **Rafael** finalizou treino!\n\ud83d\udcc5 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') \u2014 '+day.label+'\n\ud83d\udcca Exerc\u00edcios: '+pct+'% ('+done+'/'+total+')',username:'Frequ\u00eancia \u2014 Rafael',embeds:[{fields:[{name:'studentSlug',value:'rafael',inline:true},{name:'cycleId',value:'rafael-2026-07-10',inline:true},{name:'slotId',value:slotId,inline:true},{name:'slotLabel',value:day.label||'',inline:false},{name:'loads',value:JSON.stringify(loadLoads()).slice(0,1000),inline:false}]}]})}).catch(function(){});}catch(e){}
+  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'\u2705 **Rafael** finalizou treino!\n\ud83d\udcc5 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') \u2014 '+day.label+'\n\ud83d\udcca Exerc\u00edcios: '+pct+'% ('+done+'/'+total+')',username:'Frequ\u00eancia \u2014 Rafael',embeds:[{fields:[{name:'studentSlug',value:'rafael',inline:true},{name:'cycleId',value:'rafael-2026-08-27-c4',inline:true},{name:'slotId',value:slotId,inline:true},{name:'slotLabel',value:day.label||'',inline:false},{name:'loads',value:JSON.stringify(loadLoads()).slice(0,1000),inline:false}]}]})}).catch(function(){});}catch(e){}
 }
 
 function stopSession() {
@@ -1146,7 +1173,7 @@ function stopSession() {
   document.getElementById('stopBtn').classList.add('hidden');
   document.getElementById('timerDisplay').textContent = '00:00';
   const slotId = (day.label||'').includes('Treino A') ? 'A' : (day.label||'').includes('Treino B') ? 'B' : '?';
-  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'\u2705 **Rafael** finalizou treino!\n\ud83d\udcc5 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') \u2014 '+day.label+'\n\u23f1\ufe0f Tempo: '+formatDuration(elapsed)+'\n\ud83d\udcca Exerc\u00edcios: '+pct+'% ('+done+'/'+total+')',username:'Frequ\u00eancia \u2014 Rafael',embeds:[{fields:[{name:'studentSlug',value:'rafael',inline:true},{name:'cycleId',value:'rafael-2026-07-10',inline:true},{name:'slotId',value:slotId,inline:true},{name:'slotLabel',value:day.label||'',inline:false},{name:'loads',value:JSON.stringify(loadLoads()).slice(0,1000),inline:false}]}]})}).catch(function(){});}catch(e){}alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
+  try{fetch('https://discord.com/api/webhooks/1524429182736662578/Qj6goPvSE29dijyZb1umcD-7FUXP4zouakk8A_gYTFPhqpqJZh_UwFaxK8xJUmAAKFQ0',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:'\u2705 **Rafael** finalizou treino!\n\ud83d\udcc5 '+new Date().toLocaleDateString('pt-BR')+' ('+day.day+') \u2014 '+day.label+'\n\u23f1\ufe0f Tempo: '+formatDuration(elapsed)+'\n\ud83d\udcca Exerc\u00edcios: '+pct+'% ('+done+'/'+total+')',username:'Frequ\u00eancia \u2014 Rafael',embeds:[{fields:[{name:'studentSlug',value:'rafael',inline:true},{name:'cycleId',value:'rafael-2026-08-27-c4',inline:true},{name:'slotId',value:slotId,inline:true},{name:'slotLabel',value:day.label||'',inline:false},{name:'loads',value:JSON.stringify(loadLoads()).slice(0,1000),inline:false}]}]})}).catch(function(){});}catch(e){}alert('Sessão finalizada! \nTempo: ' + formatDuration(elapsed) + '\nExercícios: ' + pct + '% concluídos');
 }
 
 function restoreTimer() {
@@ -1166,7 +1193,7 @@ function restoreTimer() {
 restoreTimer();
 
 // ─── Avatar photo ───
-const AVATAR_KEY = 'maxresults-rafael-avatar-v1';
+const AVATAR_KEY = 'maxresults-rafael-avatar-c4-v1';
 function loadAvatar() {
   const data = localStorage.getItem(AVATAR_KEY);
   const circle = document.getElementById('avatarCircle');
@@ -1219,6 +1246,71 @@ loadAvatar();
   const el = document.getElementById('assessAlertMsg');
   if (el) el.textContent = F[new Date().getMonth()].split('{n}').join(ATHLETE);
 })();
+
+// ─── Dias flexíveis (06/10/2026): trocar o treino do dia, treinar num dia de descanso, adiar pra amanhã. Vale só pra semana atual. ───
+(function(){
+  const OV_KEY = DAY_CONFIG_KEY + '-ov-' + getWeekKey();
+  function loadOv() { try { return JSON.parse(localStorage.getItem(OV_KEY) || '{}'); } catch { return {}; } }
+  function saveOv(o) { localStorage.setItem(OV_KEY, JSON.stringify(o)); }
+  const basePattern = buildSchedule;              // padrão da engrenagem
+  buildSchedule = function() {
+    const base = basePattern(); const ov = loadOv();
+    return base.map(d => {
+      if (!(d.dayName in ov)) return d;
+      const v = ov[d.dayName];
+      if (v === 'rest') return { dayName: d.dayName, rest: true, label: 'Descanso', moved: true };
+      const slot = TRAINING_SLOTS[v]; if (!slot) return d;
+      return { dayName: d.dayName, rest: false, label: slot.label, blocks: slot.blocks, moved: true };
+    });
+  };
+  function slotIndexOf(day) { return day.rest ? null : TRAINING_SLOTS.findIndex(s => s.label === day.label); }
+  function rebuild() { WEEK_SCHEDULE = buildSchedule(); WEEK = buildWeek(); render(); }
+  window.setDayOverride = function(di, value) {
+    const ov = loadOv(); const name = WEEK[di].day;
+    if (value === 'default') delete ov[name]; else ov[name] = value === 'rest' ? 'rest' : Number(value);
+    saveOv(ov); rebuild();
+  };
+  window.postponeDay = function(di) {
+    const names = WEEK.map(d => d.day);
+    const slots = []; for (let j = di; j < WEEK.length; j++) { const s = slotIndexOf(WEEK[j]); if (s !== null) slots.push(s); }
+    if (!slots.length) return;
+    const room = WEEK.length - (di + 1);
+    if (slots.length > room && !confirm('Não cabe tudo até sábado: o último treino da semana ficaria de fora. Adiar mesmo assim?')) return;
+    const ov = loadOv();
+    ov[names[di]] = 'rest';
+    for (let j = di + 1, k = 0; j < WEEK.length; j++, k++) ov[names[j]] = k < slots.length ? slots[k] : 'rest';
+    saveOv(ov); rebuild();
+  };
+  window.resetWeekOverrides = function() { localStorage.removeItem(OV_KEY); rebuild(); };
+  // dia de descanso também abre
+  selectDay = function(i) { currentDayIndex = i; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const baseSwitcher = renderDaySwitcher;
+  renderDaySwitcher = function() {
+    baseSwitcher();
+    document.querySelectorAll('#daySwitcher .day-btn').forEach((b, i) => { b.disabled = false; if (WEEK[i] && WEEK[i].moved) b.classList.add('moved'); });
+  };
+  const baseWorkout = renderWorkout;
+  renderWorkout = function() {
+    baseWorkout();
+    const day = WEEK[currentDayIndex]; const content = document.getElementById('workoutContent'); if (!content) return;
+    const cur = slotIndexOf(day); const hasOv = Object.keys(loadOv()).length > 0;
+    const opts = TRAINING_SLOTS.map((s, k) => `<option value="${k}" ${k === cur ? 'selected' : ''}>${s.label}</option>`).join('');
+    const today = new Date().toISOString().split('T')[0]; const isPast = day.date < today;
+    let html;
+    if (day.rest) {
+      html = `<div class="day-actions"><select onchange="if(this.value!=='')setDayOverride(${currentDayIndex}, this.value)"><option value="">Treinar neste dia? Escolha o treino…</option>${opts}</select>${hasOv ? '<button onclick="resetWeekOverrides()">Voltar ao padrão da semana</button>' : ''}</div>`;
+      const box = content.querySelector('.rest-message'); if (box) box.insertAdjacentHTML('beforeend', html); else content.insertAdjacentHTML('afterbegin', html);
+    } else {
+      html = `<div class="day-actions"><select onchange="setDayOverride(${currentDayIndex}, this.value)">${opts}<option value="rest">Descansar neste dia</option></select>` +
+        (currentDayIndex < WEEK.length - 1 ? `<button onclick="postponeDay(${currentDayIndex})" title="Empurra este treino e os seguintes um dia pra frente">Adiar pra amanhã →</button>` : '') +
+        (hasOv ? '<button onclick="resetWeekOverrides()">Voltar ao padrão</button>' : '') +
+        `<span class="hint">${isPast ? 'Perdeu este dia? ' : ''}Troca só esta semana. Pra mudar os dias fixos, use a engrenagem ⚙️.</span></div>`;
+      content.insertAdjacentHTML('afterbegin', html);
+    }
+  };
+  rebuild();
+})();
+
 </script>
 </body>
 </html>
