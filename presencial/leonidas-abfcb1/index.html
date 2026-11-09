@@ -218,22 +218,9 @@ dl.kv dd{margin:0}
 
 <section class="panel" id="p-extra" role="tabpanel">
   <h2>Treino sem desculpas</h2>
-  <p class="hint">Não vai dar pra treinar comigo? Viajando? Me diz quando, quanto tempo e onde. O treino chega aqui, na aba Treino, em uns 20 minutos.</p>
-  <div class="form">
-    <label>Quero treino para<input id="x-dia" type="date"></label>
-    <label>Tempo que vou ter<select id="x-tempo"><option>20 min</option><option selected>30 min</option><option>45 min</option><option>60 min</option></select></label>
-    <label>Onde vou treinar<select id="x-local"><option>Academia do hotel</option><option>Quarto do hotel / casa</option><option>Ao ar livre</option><option>Academia completa</option></select></label>
-  </div>
-  <fieldset class="chips"><legend class="lbl">O que vou ter lá</legend>
-    <label><input type="checkbox" value="Só o corpo" checked>Só o corpo</label>
-    <label><input type="checkbox" value="Elástico">Elástico</label>
-    <label><input type="checkbox" value="Halteres">Halteres</label>
-    <label><input type="checkbox" value="Banco">Banco</label>
-    <label><input type="checkbox" value="Esteira ou bike">Esteira ou bike</label>
-    <label><input type="checkbox" value="Academia">Academia</label>
-  </fieldset>
-  <label class="lbl" for="x-txt" style="display:block;margin-top:16px">Quer falar mais alguma coisa? (opcional)</label>
-  <textarea id="x-txt" style="margin-top:8px" placeholder="Ex.: tô com o ombro meio cansado, chego tarde no hotel..."></textarea>
+  <p class="hint">Não vai dar pra treinar comigo? Viajando? Escreve aqui, ou toca no 🎤 do teclado e fala. O treino chega na aba Treino em uns 20 minutos.</p>
+  <div style="border-left:2px solid var(--gold);padding:6px 0 6px 12px;margin:12px 0;line-height:1.7">Não esquece de me dizer:<br>📍 <b>onde</b> você vai treinar<br>⏱ <b>quanto tempo</b> você tem<br>🏋️ <b>que material</b> tem lá<br>📅 e <b>quando</b>, se não for hoje</div>
+  <textarea id="x-txt" style="min-height:130px" placeholder="Ex.: Amanhã cedo, no quarto do hotel, 30 minutos. Só tenho um elástico."></textarea>
   <button class="mic" type="button" id="x-mic">🎤 Falar em vez de escrever</button><br>
   <button class="share" type="button" id="x-btn">Pedir o treino</button>
   <div class="okbox" id="x-ok">✓ Pedido enviado. Assim que ficar pronto, aparece na aba <b>Treino</b>.</div>
@@ -359,10 +346,8 @@ if(ds.length){const meds=Object.keys(AV[ds[ds.length-1]]);let med=meds.includes(
    const d=v.map((n,i)=>(i?'L':'M')+x(i)+' '+y(n)).join(' ');g+=`<path d="${d}" fill="none" style="stroke:var(--gold)" stroke-width="2"/>`;
    v.forEach((n,i)=>g+=`<circle cx="${x(i)}" cy="${y(n)}" r="5" style="fill:var(--gold)"/><text x="${x(i)}" y="${y(n)-12}" text-anchor="middle" style="fill:var(--text)" font-size="13">${fmt(n)}</text>`);$('#a-chart').innerHTML=g}graf()}}
 // pedir treino
-const xd=$('#x-dia');xd.min=iso(now);xd.value=iso(now);
-function pedidoTxt(id){const mat=$$('#p-extra .chips input:checked').map(i=>i.value).join(', ')||'nada';
- return ['TREINO SEM DESCULPAS','Aluno: '+AL.nome+' ('+SLUG+')','Pedido: '+id,'Enviado: '+now.toLocaleString('pt-BR'),'Quando: '+xd.value.split('-').reverse().join('/'),'Tempo: '+$('#x-tempo').value,'Onde: '+$('#x-local').value+' · material: '+mat,'Disse: '+($('#x-txt').value.trim()||'(nada escrito)'),'Origem: página presencial'].join('\n')}
-$('#x-btn').onclick=function(){const id=Math.random().toString(36).slice(2,8);enviar('sem-desculpas',pedidoTxt(id));this.disabled=true;$('#x-ok').classList.add('on')};
+function pedidoTxt(id){return ['TREINO SEM DESCULPAS','Aluno: '+AL.nome+' ('+SLUG+')','Pedido: '+id,'Enviado: '+now.toLocaleString('pt-BR'),'Disse (texto livre: tirar daqui quando, tempo, onde e material): '+($('#x-txt').value.trim()||'(nada escrito)'),'Origem: página presencial'].join('\n')}
+$('#x-btn').onclick=function(){const t=$('#x-txt');if(!t.value.trim()){t.focus();t.placeholder='Escreve ou fala aqui: onde, quanto tempo e que material você tem.';return}const id=Math.random().toString(36).slice(2,8);enviar('sem-desculpas',pedidoTxt(id));this.disabled=true;$('#x-ok').classList.add('on')};
 $('#x-wa').onclick=e=>{e.preventDefault();go(pedidoTxt('wa'))};
 (function(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition,b=$('#x-mic'),t=$('#x-txt');if(!SR){b.textContent='🎤 Pra falar, use o microfone do teclado';b.disabled=true;return}
  let r=null;b.onclick=()=>{if(r){r.stop();return}r=new SR();r.lang='pt-BR';r.continuous=true;const antes=t.value;r.onresult=e=>{let s='';for(const x of e.results)s+=x[0].transcript+' ';t.value=(antes?antes+' ':'')+s.trim()};

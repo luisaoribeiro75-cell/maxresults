@@ -61,29 +61,16 @@
   }
 
   function form() {
-    esc = { quando: 'Hoje' };
+    esc = {};
     sheet.innerHTML =
       '<button class="sd-x" type="button" aria-label="Fechar">×</button>' +
       '<h2>⚡ Treino sem desculpas</h2>' +
-      '<p class="sd-sub">Não vai dar pra treinar comigo? Me conta quando, quanto tempo e onde. O treino chega aqui nesta página.</p>' +
-      '<span class="sd-lbl">Quando</span>' + chips('quando') + chips('periodo') +
-      '<input class="sd-time" type="time" aria-label="Horário (opcional)">' +
-      '<span class="sd-lbl">Quanto tempo</span>' + chips('tempo') +
-      '<span class="sd-lbl">Onde</span>' + chips('onde') +
-      '<span class="sd-lbl">Fala do seu jeito</span>' +
-      '<div class="sd-txtwrap"><textarea class="sd-txt" placeholder="Ex.: Hoje no fim da tarde, umas 17h30, tenho 30 minutos na academia do hotel. Me manda alguma coisa."></textarea>' +
+      '<p class="sd-sub">Não vai dar pra treinar comigo? Escreve aqui, ou toca no 🎤 e fala. O treino chega nesta página.</p>' +
+      '<p class="sd-sub" style="border-left:2px solid #f59e0b;padding-left:10px;color:#e5e7eb;line-height:1.7">Não esquece de me dizer:<br>📍 <b>onde</b> você vai treinar<br>⏱ <b>quanto tempo</b> você tem<br>🏋️ <b>que material</b> tem lá<br>📅 e <b>quando</b>, se não for hoje</p>' +
+      '<div class="sd-txtwrap"><textarea class="sd-txt" style="min-height:130px" placeholder="Ex.: Amanhã cedo, no quarto do hotel, 30 minutos. Só tenho um elástico."></textarea>' +
       '<button class="sd-mic" type="button" aria-label="Falar">🎤</button></div>' +
-      '<p class="sd-hint">Pode escrever ou falar. Dor, cansaço ou o que tiver no lugar, conta aqui também.</p>' +
+      '<p class="sd-hint">Dor, cansaço ou o que mais tiver, conta aqui também.</p>' +
       '<button class="sd-send" type="button">Mandar pedido</button>';
-    sheet.querySelector('.sd-chip[data-v="Hoje"]').classList.add('on');
-    sheet.querySelectorAll('.sd-chips').forEach(function (g) {
-      g.addEventListener('click', function (e) {
-        var b = e.target.closest('.sd-chip'); if (!b) return;
-        var k = g.getAttribute('data-k'), on = b.classList.contains('on');
-        g.querySelectorAll('.sd-chip').forEach(function (x) { x.classList.remove('on'); });
-        if (!on) { b.classList.add('on'); esc[k] = b.getAttribute('data-v'); } else { delete esc[k]; }
-      });
-    });
     sheet.querySelector('.sd-x').onclick = close;
     sheet.querySelector('.sd-send').onclick = enviar;
     mic();
@@ -110,16 +97,13 @@
 
   function enviar() {
     var txt = sheet.querySelector('.sd-txt').value.trim();
-    var hora = sheet.querySelector('.sd-time').value;
-    if (!txt && !esc.tempo && !esc.onde) { sheet.querySelector('.sd-txt').focus(); sheet.querySelector('.sd-hint').textContent = 'Me conta pelo menos quanto tempo e onde, ou escreve do seu jeito.'; return; }
+        if (!txt) { sheet.querySelector('.sd-txt').focus(); sheet.querySelector('.sd-hint').textContent = 'Escreve ou fala aqui: onde, quanto tempo e que material você tem.'; return; }
     var id = Math.random().toString(36).slice(2, 8);
     var agora = new Date();
     var linhas = [
       'TREINO SEM DESCULPAS', 'Aluno: ' + NOME + ' (' + ALUNO + ')', 'Pedido: ' + id,
       'Enviado: ' + agora.toLocaleString('pt-BR'),
-      'Quando: ' + [esc.quando, esc.periodo, hora].filter(Boolean).join(' · '),
-      'Tempo: ' + (esc.tempo || '(não marcou)'), 'Onde: ' + (esc.onde || '(não marcou)'),
-      'Disse: ' + (txt || '(nada escrito)')
+      'Disse (texto livre: tirar daqui quando, tempo, onde e material): ' + txt
     ];
     var conteudo = linhas.join('\n');
     var payload = JSON.stringify({ tipo: 'sem-desculpas', aluna: ALUNO, conteudo: conteudo });
