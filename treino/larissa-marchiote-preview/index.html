@@ -308,7 +308,7 @@ const ATHLETE = 'Larissa';
    MIX / METAS DA SEMANA (Regra 18 — rodízio quinzenal de mixes)
    ═══════════════════════════════════════════════════════════════════════ */
 const MIX_GOALS = [
-  { icon: '🎯', text: '<strong>Objetivo:</strong> perder gordura, com atenção à barriga e ao glúteo, e braços mais firmes. 3x por semana, corpo inteiro em todos os treinos: <strong>seg = Treino 1 · qua = Treino 2 · sex = Treino 3</strong>. Começou numa quinta? Toca em "trocar o treino do dia" e faz o Treino 1 hoje.' },
+  { icon: '🎯', text: '<strong>Objetivo:</strong> perder gordura, com atenção à barriga e ao glúteo, e braços mais firmes. 3x por semana, corpo inteiro em todos os treinos: <strong>3 dias na semana, os que der, na ordem Treino 1 → 2 → 3</strong>; se der, não repete dia seguido. Plantão mudou o dia? Toca em "trocar o treino do dia" e faz o próximo da sequência.' },
   { icon: '💪', text: '<strong>Foco em FORÇA:</strong> 10 a 12 repetições com carga desafiadora (as 2 últimas custam, mas saem bonitas), descanso de 60 a 90 s entre as voltas. É o que preserva e constrói músculo enquanto a gordura vai embora.' },
   { icon: '🎬', text: '<strong>Como funciona (Mix = musculação + aula):</strong> aquecimento do MaxLift → mobilidade → bi-set de musculação → track MaxLift de braço ou ombro → bi-set → aula de MaxCicle na bike → alongamento. No bi-set, os 2 exercícios em sequência, sem sair do lugar; no track, é só dar o play e acompanhar.' },
   { icon: '🛡️', text: '<strong>Joelho protegido:</strong> nada de salto. Leg Press e agachamento só na amplitude em que o joelho fica confortável, com carga moderada; a extensora é só segurando parada (isometria). Estalo sem dor é comum; se doer ou incomodar, diminui a amplitude ou a carga e me avisa.' },
@@ -370,7 +370,7 @@ const TRK_CICLE = {
   label: 'Cardio · MaxCicle #1 (bike, sentada)', title: 'MaxCicle #1 na bike · sempre sentada', min: 22,
   duration: 'sem. 1–2 ~22 min · 3–4 ~25 · 5–6 ~28', tag: 'Aeróbico',
   bunny: 'https://iframe.mediadelivery.net/embed/655450/dcf2c03a-4a77-4012-8cc0-f9fe51782bd4',
-  tip: 'Dá o play e pedala junto: a aula começa leve (é o aquecimento do cardio). <strong>Ajuste da bike antes de começar:</strong> selim ALTO, na altura do quadril em pé ao lado da bike; com o pedal lá embaixo, o joelho fica quase esticado, só levemente dobrado. Selim baixo é o que mais força o joelho. ⚠️ <strong>Joelho protegido:</strong> fica SENTADA a aula inteira (quando o vídeo pedir pra ficar em pé, continua sentada pedalando). Carga leve a moderada: nas subidas aumenta só um pouco e mantém a pedalada redonda; nunca pedala pesado e devagar. Nos sprints, acelera com a carga leve, a uns 7 de 10, sem ir ao máximo. Joelho apontando pra frente, alinhado com o pé. Tempo: semanas 1–2 ~22 min · 3–4 ~25 · 5–6 ~28. Chegou no tempo da semana? Vai pro alongamento (sobrou tempo e o joelho tá bem, pode ir até o fim da aula, ~33 min). A bike tá ocupada? Faz no elíptico o mesmo tempo, passada suave. Se o joelho incomodar, tira a carga e pedala leve; se continuar, para e me avisa.',
+  tip: 'Dá o play e pedala junto: a aula começa leve (é o aquecimento do cardio). <strong>Ajuste da bike antes de começar:</strong> selim ALTO, na altura do quadril em pé ao lado da bike; com o pedal lá embaixo, o joelho fica quase esticado, só levemente dobrado. Selim baixo é o que mais força o joelho. ⚠️ <strong>Joelho protegido:</strong> fica SENTADA a aula inteira (quando o vídeo pedir pra ficar em pé, continua sentada pedalando). Carga leve a moderada: nas subidas aumenta só um pouco e mantém a pedalada redonda; nunca pedala pesado e devagar. Nos sprints, acelera com a carga leve, a uns 7 de 10, sem ir ao máximo. Joelho apontando pra frente, alinhado com o pé. Tempo: semanas 1–2 ~22 min · 3–4 ~25 · 5–6 ~28. Chegou no tempo da semana? Vai pro alongamento (sobrou tempo e o joelho tá bem, pode ir até o fim da aula, ~33 min). A bike tá ocupada? Faz no elíptico o mesmo tempo, passada suave. Em casa: marcha no lugar, sem step, ritmo de conversa, mesmo tempo. Se o joelho incomodar, tira a carga e pedala leve; se continuar, para e me avisa.',
   loads: [ { label: 'Minutos feitos', placeholder: '22' } ],
 };
 
@@ -1251,7 +1251,7 @@ document.getElementById('assessToggle').addEventListener('click', function() { t
       html = `<div class="day-actions"><select onchange="setDayOverride(${currentDayIndex}, this.value)">${opts}<option value="rest">Descansar neste dia</option></select>` +
         (currentDayIndex < WEEK.length - 1 ? `<button onclick="postponeDay(${currentDayIndex})" title="Empurra este treino e os seguintes um dia pra frente">Adiar pra amanhã →</button>` : '') +
         (hasOv ? '<button onclick="resetWeekOverrides()">Voltar ao padrão</button>' : '') +
-        `<span class="hint">${isPast ? 'Perdeu este dia? ' : ''}Troca só esta semana. ${typeof TRAINING_SLOTS !== 'undefined' ? 'Seus dias fixos são seg, qua e sex.' : ''}</span></div>`;
+        `<span class="hint">${isPast ? 'Perdeu este dia? ' : ''}Troca só esta semana. ${typeof TRAINING_SLOTS !== 'undefined' ? 'Faz 3 dias na semana, os que der, na ordem Treino 1 → 2 → 3.' : ''}</span></div>`;
       content.insertAdjacentHTML('afterbegin', html);
     }
   };
