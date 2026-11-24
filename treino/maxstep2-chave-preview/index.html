@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Max Step #2 | MaxResults</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#08080a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://assets.mediadelivery.net/playerjs/player-0.1.0.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #08080a; --surface: #111114; --surface-2: #19191d; --border: rgba(255,255,255,0.08);
+      --text: #ededef; --text-dim: #b0b0b6; --text-muted: #6b6b73;
+      --accent: #f59e0b; --accent-dim: rgba(245,158,11,0.12); --green: #34d399;
+      --radius: 16px; --font-display: 'Outfit', sans-serif; --font-body: 'DM Sans', sans-serif;
+    }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100dvh; -webkit-font-smoothing: antialiased; }
+    body::before { content: ''; position: fixed; top: -120px; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: radial-gradient(ellipse, rgba(245,158,11,0.07) 0%, transparent 70%); pointer-events: none; }
+    .container { max-width: 480px; margin: 0 auto; padding: 20px 16px 60px; position: relative; }
+    .brand { font-family: var(--font-display); font-size: 15px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; background: linear-gradient(135deg, var(--accent), #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    h1 { font-family: var(--font-display); font-size: 26px; font-weight: 800; letter-spacing: -0.6px; margin: 6px 0 2px; }
+    .sub { font-size: 13px; color: var(--text-dim); }
+    .preview { margin-top: 12px; padding: 10px 12px; border: 1px dashed rgba(245,158,11,0.45); border-radius: 12px; background: rgba(245,158,11,0.07); font-size: 12px; color: var(--text-dim); }
+    .preview strong { color: var(--accent); }
+
+    /* palco: player + chave por cima (a chave fica visível na tela cheia do palco) */
+    .stage { position: relative; margin-top: 16px; width: 100%; aspect-ratio: 9 / 16; max-height: 78dvh; margin-left: auto; margin-right: auto; background: #000; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; transition: opacity .25s; }
+    .stage iframe.off { opacity: 0; pointer-events: none; visibility: hidden; }
+    .stage:fullscreen { max-height: none; border-radius: 0; border: 0; aspect-ratio: auto; width: 100vw; height: 100vh; }
+    .stage:-webkit-full-screen { max-height: none; border-radius: 0; border: 0; width: 100vw; height: 100vh; }
+
+    .switch { display: flex; gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; margin-top: 14px; }
+    .switch button { flex: 1; border: 0; border-radius: 999px; padding: 11px 8px; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .2px; color: var(--text-dim); background: transparent; cursor: pointer; -webkit-appearance: none; transition: all .2s; }
+    .switch button[aria-pressed="true"] { background: var(--accent); color: #111; box-shadow: 0 0 18px rgba(245,158,11,.25); }
+    .stage .switch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 5; margin: 0; width: min(92%, 340px); background: rgba(8,8,10,.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: none; }
+    .stage:fullscreen .switch, .stage:-webkit-full-screen .switch { display: flex; }
+    .stage .switch button { padding: 8px 6px; font-size: 12px; }
+
+    .status { font-size: 12px; color: var(--text-muted); margin-top: 8px; text-align: center; min-height: 18px; }
+    .actions { display: flex; gap: 8px; margin-top: 12px; }
+    .actions button { flex: 1; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font-family: var(--font-body); font-weight: 600; font-size: 13px; cursor: pointer; }
+    .tips { margin-top: 18px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); position: relative; overflow: hidden; }
+    .tips::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), #22d3ee); }
+    .tips h2 { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+    .tips li { list-style: none; font-size: 13px; color: var(--text-dim); padding: 5px 0; }
+    .tips li strong { color: var(--text); }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="brand">MaxResults</div>
+  <h1>Max Step #2</h1>
+  <div class="sub">Aula completa · 33 min · cardiorrespiratória</div>
+  <div class="preview"><strong>PREVIEW interno</strong> · teste da chave "Com minha voz / Só música". Não enviar para alunas.</div>
+
+  <div class="switch" id="switchMain" role="group" aria-label="Áudio da aula">
+    <button type="button" data-modo="voz" aria-pressed="true">🎙️ Com minha voz</button>
+    <button type="button" data-modo="musica" aria-pressed="false">🎵 Só música</button>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="switch" id="switchStage" role="group" aria-label="Áudio da aula">
+      <button type="button" data-modo="voz" aria-pressed="true">🎙️ Com minha voz</button>
+      <button type="button" data-modo="musica" aria-pressed="false">🎵 Só música</button>
+    </div>
+    <iframe id="pVoz" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+    <iframe id="pMusica" class="off" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+  </div>
+  <div class="status" id="status">Carregando o player…</div>
+
+  <div class="actions">
+    <button type="button" id="btnFull">⛶ Tela cheia com a chave</button>
+  </div>
+
+  <div class="tips">
+    <h2>Lembretes</h2>
+    <ul>
+      <li>🔁 <strong>Troca no mesmo segundo:</strong> pode trocar a qualquer momento, a aula continua de onde estava.</li>
+      <li>⛶ <strong>Tela cheia:</strong> use o botão acima para ficar em tela cheia sem perder a chave. O botão de tela cheia do próprio player também funciona (aí a chave fica escondida até sair).</li>
+      <li>📺 <strong>Transmitir para a TV:</strong> no iPhone/Mac, toque no ícone AirPlay do player. Se trocar de versão durante a transmissão, toque no AirPlay de novo.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+(function () {
+  var LIB = 655450;
+  var VIDEOS = {
+    voz:    'a9b2ef1b-8b77-463a-becf-ae386e711344',   // MAX-STEP-2-v4 (com a voz)
+    musica: 'dc0fb4d0-f9af-4a09-a052-9dc766bc249f'    // MAX-STEP-2-v4-SO-MUSICA (mesmo vídeo, mesma duração)
+  };
+  var frames = { voz: document.getElementById('pVoz'), musica: document.getElementById('pMusica') };
+  var st = {};            // estado por player: pronto, tempo, tocando
+  var players = {};
+  var atual = 'voz';
+  var statusEl = document.getElementById('status');
+
+  function embed(id, t) {
+    return 'https://iframe.mediadelivery.net/embed/' + LIB + '/' + id +
+           '?autoplay=false&preload=true&responsive=true' + (t ? '&t=' + Math.floor(t) : '');
+  }
+  function fmt(s) { s = Math.max(0, Math.floor(s || 0)); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
+  function status(msg) { statusEl.textContent = msg; }
+
+  function montar(modo) {
+    st[modo] = { pronto: false, tempo: 0, tocando: false, pendente: null };
+    frames[modo].src = embed(VIDEOS[modo]);
+    if (!window.playerjs) return;                       // sem Player.js: fallback por ?t=
+    var p = new playerjs.Player(frames[modo]);
+    players[modo] = p;
+    p.on('ready', function () {
+      st[modo].pronto = true;
+      p.on('timeupdate', function (d) { if (d && typeof d.seconds === 'number') st[modo].tempo = d.seconds; });
+      p.on('play',  function () { st[modo].tocando = true; });
+      p.on('pause', function () { st[modo].tocando = false; });
+      p.on('ended', function () { st[modo].tocando = false; });
+      if (modo === atual) status('Pronto. Aperte o play.');
+      if (st[modo].pendente) { var f = st[modo].pendente; st[modo].pendente = null; f(); }
+    });
+  }
+
+  function marcar(modo) {
+    document.querySelectorAll('.switch button').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.dataset.modo === modo ? 'true' : 'false');
+    });
+    frames.voz.classList.toggle('off', modo !== 'voz');
+    frames.musica.classList.toggle('off', modo !== 'musica');
+  }
+
+  function trocar(modo) {
+    if (modo === atual) return;
+    var de = atual, t = st[de].tempo, tocava = st[de].tocando;
+    var pDe = players[de], pPara = players[modo];
+    atual = modo; marcar(modo);
+    try { localStorage.setItem('mr-step2-audio', modo); } catch (e) {}
+
+    if (!pPara) {                                        // fallback: recarrega no segundo certo
+      frames[modo].src = embed(VIDEOS[modo], t) + (tocava ? '&autoplay=true' : '');
+      status((modo === 'voz' ? 'Com minha voz' : 'Só música') + ' · ' + fmt(t));
+      return;
+    }
+    // pega o tempo exato do player que estava tocando, depois pausa e passa pro outro
+    var feito = false;
+    function seguir(tempo) {
+      if (feito) return; feito = true;
+      if (pDe) pDe.pause();
+      var ir = function () {
+        pPara.setCurrentTime(tempo);
+        if (tocava) pPara.play();
+        status((modo === 'voz' ? 'Com minha voz' : 'Só música') + ' · ' + fmt(tempo) + (tocava ? '' : ' · aperte o play'));
+      };
+      if (st[modo].pronto) ir(); else { st[modo].pendente = ir; status('Carregando a outra versão…'); }
+    }
+    if (pDe && st[de].pronto) {
+      // estado real do player (o evento "play" chega mesmo quando o navegador bloqueia o autoplay)
+      pDe.getPaused(function (pausado) {
+        if (typeof pausado === 'boolean') tocava = !pausado;
+        pDe.getCurrentTime(function (s) { seguir(typeof s === 'number' ? s : t); });
+      });
+      setTimeout(function () { seguir(t); }, 400);       // se o player não responder, usa o último timeupdate
+    } else seguir(t);
+  }
+
+  document.querySelectorAll('.switch button').forEach(function (b) {
+    b.addEventListener('click', function () { trocar(b.dataset.modo); });
+  });
+
+  document.getElementById('btnFull').addEventListener('click', function () {
+    var el = document.getElementById('stage');
+    var req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if (req) { req.call(el); }
+    else status('Neste aparelho use o botão de tela cheia do próprio player.');
+  });
+
+  montar('voz'); montar('musica');
+  var salvo = null; try { salvo = localStorage.getItem('mr-step2-audio'); } catch (e) {}
+  if (salvo === 'musica') { atual = 'musica'; marcar('musica'); }
+  if (!window.playerjs) status('Player carregado (modo simples).');
+  window.__mrStep2 = { st: st, players: players, trocar: trocar, atual: function () { return atual; } };
+})();
+</script>
+</body>
+</html>
